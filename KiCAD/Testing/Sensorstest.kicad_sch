@@ -1,0 +1,156 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "83d815a9-304d-4250-bd21-11739257f180")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 135.89 53.34)
+		(size 40.64 20.32)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "089e1d8f-d75d-480d-9a8d-9d4566879aeb")
+		(property "Sheetname" "Downlink"
+			(at 135.89 51.8156 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "untitled.kicad_sch"
+			(at 135.89 74.4224 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/f8d6ed9e-a4dc-41fc-b20f-d7adfc22f239"
+					(page "66")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 69.85 40.64)
+		(size 156.21 109.22)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 5 5 5 1)
+		)
+		(fill
+			(color 126 126 126 1.0000)
+		)
+		(uuid "1404d42a-ddb2-4b30-8c29-c93c6f5a8eba")
+		(property "Sheetname" "Communications"
+			(at 69.85 37.592 0)
+			(effects
+				(font
+					(size 5.08 5.08)
+					(thickness 0.635)
+					(color 0 0 0 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "FPGAtest.kicad_sch"
+			(at 69.85 150.6224 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/f8d6ed9e-a4dc-41fc-b20f-d7adfc22f239"
+					(page "12")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/4a6b0952-2083-4eaa-b524-b8433d939392"
+					(page "13")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/cf408ff5-70b9-47aa-a60b-e9805c20febd"
+					(page "14")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/0b4840ab-408a-4bad-aa4a-8961d8c029ff"
+					(page "15")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/14c27257-c4d7-4264-90e7-a81f096a4327"
+					(page "16")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/acb34bbe-985c-435d-be77-82dc8c5b75ff"
+					(page "17")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/27651bf0-423e-4ee8-b685-ef74885650fd"
+					(page "18")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/af859685-f0c5-4a77-9dd1-69e12ac407f6"
+					(page "19")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/48a0165c-5191-4be3-9acb-f57a1c7e01f9"
+					(page "20")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 83.82 53.34)
+		(size 40.64 20.32)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "b86a9e24-9249-43e2-9245-ce648ed3051e")
+		(property "Sheetname" "Receive Commands"
+			(at 83.82 51.8156 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ReceiveTest.kicad_sch"
+			(at 83.82 74.4224 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/f8d6ed9e-a4dc-41fc-b20f-d7adfc22f239"
+					(page "21")
+				)
+			)
+		)
+	)
+)

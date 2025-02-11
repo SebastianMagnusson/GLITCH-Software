@@ -1,0 +1,218 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "18457d0b-0328-4341-b1a8-5579eb27dd9a")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 72.39 83.82)
+		(size 33.02 13.97)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "0c8af229-8672-4927-aad5-8db022034375")
+		(property "Sheetname" "Store Data"
+			(at 72.39 82.2956 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "TakeDatTest.kicad_sch"
+			(at 72.39 98.5524 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/95f96183-ad96-43d7-8aa8-7ec7f50a6c3c"
+					(page "15")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 162.56 55.88)
+		(size 33.02 13.97)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "3da1c4c7-fbc1-4d1b-98ff-e85ba71f2183")
+		(property "Sheetname" "Send to Downlink"
+			(at 162.56 54.3556 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "TakeDatTest.kicad_sch"
+			(at 162.56 70.6124 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/95f96183-ad96-43d7-8aa8-7ec7f50a6c3c"
+					(page "13")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 72.39 55.88)
+		(size 33.02 13.97)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "66618cdb-f255-4d32-88e6-2b8730c4f29b")
+		(property "Sheetname" "Take Data"
+			(at 72.39 54.3556 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "TakeDatTest.kicad_sch"
+			(at 72.39 70.6124 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/95f96183-ad96-43d7-8aa8-7ec7f50a6c3c"
+					(page "23")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 116.84 55.88)
+		(size 33.02 13.97)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "89cfe4fd-1f44-4ed9-b55a-b8da4fbabb26")
+		(property "Sheetname" "Format"
+			(at 116.84 54.3556 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "TakeDatTest.kicad_sch"
+			(at 116.84 70.6124 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/95f96183-ad96-43d7-8aa8-7ec7f50a6c3c"
+					(page "11")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 62.23 44.45)
+		(size 161.29 106.68)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 132 132 132 1.0000)
+		)
+		(uuid "c1009f6c-001f-462f-872a-07698589f117")
+		(property "Sheetname" "Sensor Data"
+			(at 62.23 41.6556 0)
+			(effects
+				(font
+					(size 5.08 5.08)
+					(thickness 1.016)
+					(bold yes)
+					(color 0 0 0 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SensorDataTesttest.kicad_sch"
+			(at 62.23 151.8924 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/95f96183-ad96-43d7-8aa8-7ec7f50a6c3c"
+					(page "16")
+				)
+			)
+		)
+	)
+)

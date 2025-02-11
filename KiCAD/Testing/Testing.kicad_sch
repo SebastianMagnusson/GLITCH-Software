@@ -1,0 +1,432 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "f035f0a1-379f-4f34-81a0-5945bf64a21f")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 118.11 85.09)
+		(size 33.02 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "052ffbfa-27de-4361-b8d7-a1df06f05eae")
+		(property "Sheetname" "UNUSED"
+			(at 118.11 83.5656 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "BitTest.kicad_sch"
+			(at 118.11 102.3624 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 118.11 113.03)
+		(size 33.02 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "4d03505e-143b-495c-b920-d43f35028f7b")
+		(property "Sheetname" "UNUSED3"
+			(at 118.11 111.5056 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "BitTest.kicad_sch"
+			(at 118.11 130.3024 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f"
+					(page "9")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 74.93 113.03)
+		(size 33.02 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "5c32343f-18f9-4a53-a0c1-fb6eb76c1ffc")
+		(property "Sheetname" "UNUSED2"
+			(at 74.93 111.5056 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "BitTest.kicad_sch"
+			(at 74.93 130.3024 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f"
+					(page "8")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 74.93 85.09)
+		(size 33.02 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "6fc5fdd6-a818-40b4-b92a-e3dccf9762b7")
+		(property "Sheetname" "Device Control"
+			(at 74.93 83.5656 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "DeviceControlTest.kicad_sch"
+			(at 74.93 102.3624 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 161.29 113.03)
+		(size 33.02 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "863c6fb0-24eb-4126-868a-7fe22a1be6a6")
+		(property "Sheetname" "UNUSED4"
+			(at 161.29 111.5056 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "BitTest.kicad_sch"
+			(at 161.29 130.3024 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f"
+					(page "10")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 118.11 57.15)
+		(size 33.02 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "95f96183-ad96-43d7-8aa8-7ec7f50a6c3c")
+		(property "Sheetname" "Sensor Data"
+			(at 118.11 55.8034 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SensorDataTest.kicad_sch"
+			(at 118.11 74.2446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f"
+					(page "14")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 161.29 85.09)
+		(size 33.02 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "b8fe72a2-8395-4d80-853f-fad5515045ac")
+		(property "Sheetname" "UNUSED1"
+			(at 161.29 83.5656 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "BitTest.kicad_sch"
+			(at 161.29 102.3624 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 63.5 46.99)
+		(size 156.21 109.22)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 5 5 5 1)
+		)
+		(fill
+			(color 126 126 126 1.0000)
+		)
+		(uuid "c4a7ec2d-3a4b-4cc8-9a8c-e22dfc142d2d")
+		(property "Sheetname" "FPGA"
+			(at 63.5 43.942 0)
+			(effects
+				(font
+					(size 5.08 5.08)
+					(thickness 1.016)
+					(bold yes)
+					(color 0 0 0 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "FPGAtest.kicad_sch"
+			(at 63.5 156.9724 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 161.29 57.15)
+		(size 33.02 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "e9e6a473-6f21-4bb1-a330-121059b31b53")
+		(property "Sheetname" "Bit-Flip Data"
+			(at 161.29 55.6256 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "BitTest.kicad_sch"
+			(at 161.29 74.4224 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 74.93 57.15)
+		(size 33.02 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "f8d6ed9e-a4dc-41fc-b20f-d7adfc22f239")
+		(property "Sheetname" "Communications"
+			(at 74.93 55.6256 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Commstest.kicad_sch"
+			(at 74.93 74.4224 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

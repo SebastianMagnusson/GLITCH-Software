@@ -1,2 +1,2 @@
 # GLITCH-Software
-The official GLITCH repository for Software
+The official GLITCH repository for Software.

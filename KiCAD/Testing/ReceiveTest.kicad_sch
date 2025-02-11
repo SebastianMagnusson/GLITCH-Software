@@ -1,0 +1,176 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "a68e9a91-0e93-4e1e-a4e4-a42dece04509")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 64.77 53.34)
+		(size 153.67 100.33)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 132 132 132 1.0000)
+		)
+		(uuid "5201cf19-b309-4e90-b92e-a37dd76d0d94")
+		(property "Sheetname" "Receive Commands"
+			(at 64.77 50.5456 0)
+			(effects
+				(font
+					(size 5.08 5.08)
+					(thickness 1.016)
+					(bold yes)
+					(color 0 0 0 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "RecTest1.kicad_sch"
+			(at 64.77 154.4324 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/f8d6ed9e-a4dc-41fc-b20f-d7adfc22f239/b86a9e24-9249-43e2-9245-ce648ed3051e"
+					(page "39")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 76.2 99.06)
+		(size 38.1 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "55253fab-cc38-454a-adf3-e99e3b4db48e")
+		(property "Sheetname" "Distribute"
+			(at 76.2 97.5356 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "RecRecTest.kicad_sch"
+			(at 76.2 116.3324 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/f8d6ed9e-a4dc-41fc-b20f-d7adfc22f239/b86a9e24-9249-43e2-9245-ce648ed3051e"
+					(page "50")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 130.81 64.77)
+		(size 38.1 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "ef2040ca-374e-4fa4-90cc-5b950e826952")
+		(property "Sheetname" "Translate"
+			(at 130.81 63.2456 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "RecRecTest.kicad_sch"
+			(at 130.81 82.0424 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/f8d6ed9e-a4dc-41fc-b20f-d7adfc22f239/b86a9e24-9249-43e2-9245-ce648ed3051e"
+					(page "31")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 76.2 64.77)
+		(size 38.1 16.51)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "f2de4037-6aba-4d2a-b4f6-a10f537450b8")
+		(property "Sheetname" "Receive"
+			(at 76.2 63.2456 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "RecRecTest.kicad_sch"
+			(at 76.2 82.0424 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/f8d6ed9e-a4dc-41fc-b20f-d7adfc22f239/b86a9e24-9249-43e2-9245-ce648ed3051e"
+					(page "57")
+				)
+			)
+		)
+	)
+)

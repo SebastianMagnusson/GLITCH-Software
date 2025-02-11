@@ -1,0 +1,203 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "fb744965-2278-43db-bb00-421f03938f66")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 62.23 45.72)
+		(size 175.26 109.22)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 132 132 132 1.0000)
+		)
+		(uuid "a3d38be6-8615-459d-8acf-eeb5df0aa289")
+		(property "Sheetname" "Device Control"
+			(at 62.23 42.9256 0)
+			(effects
+				(font
+					(size 5.08 5.08)
+					(thickness 1.016)
+					(bold yes)
+					(color 0 0 0 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "devcontesttest.kicad_sch"
+			(at 62.23 155.7024 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/6fc5fdd6-a818-40b4-b92a-e3dccf9762b7"
+					(page "69")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 74.93 58.42)
+		(size 38.1 13.97)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "af2fe92f-996a-4d4c-a6a4-9757272b4c83")
+		(property "Sheetname" "Initialize SRAM (DUT)"
+			(at 74.93 56.8956 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "InitializeTest.kicad_sch"
+			(at 74.93 73.1524 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Field2" ""
+			(at 74.93 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/6fc5fdd6-a818-40b4-b92a-e3dccf9762b7"
+					(page "70")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 127 58.42)
+		(size 38.1 13.97)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "d5c8bd9f-fd79-4ce8-ab3d-6af12d9e4e0f")
+		(property "Sheetname" "Turn on Sensors"
+			(at 127 56.8956 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "InitializeTest.kicad_sch"
+			(at 127 73.1524 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Field2" ""
+			(at 127 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/6fc5fdd6-a818-40b4-b92a-e3dccf9762b7"
+					(page "55")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 179.07 58.42)
+		(size 38.1 13.97)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "de912c66-843b-4ec2-ad2c-db32c8bcc63f")
+		(property "Sheetname" "Turn off Sensors"
+			(at 179.07 56.8956 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "InitializeTest.kicad_sch"
+			(at 179.07 73.1524 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Field2" ""
+			(at 179.07 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/6fc5fdd6-a818-40b4-b92a-e3dccf9762b7"
+					(page "56")
+				)
+			)
+		)
+	)
+)

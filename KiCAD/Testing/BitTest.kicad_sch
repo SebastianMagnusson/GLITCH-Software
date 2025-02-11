@@ -1,0 +1,377 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "fb744965-2278-43db-bb00-421f03938f66")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 160.02 91.44)
+		(size 33.02 15.24)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "0dd024b5-e9cd-4505-b5ed-381302b91180")
+		(property "Sheetname" "Store Data"
+			(at 160.02 89.9156 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "LoopThroughDUTtest.kicad_sch"
+			(at 160.02 107.4424 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/e9e6a473-6f21-4bb1-a330-121059b31b53"
+					(page "48")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/052ffbfa-27de-4361-b8d7-a1df06f05eae"
+					(page "49")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/b8fe72a2-8395-4d80-853f-fad5515045ac"
+					(page "51")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/5c32343f-18f9-4a53-a0c1-fb6eb76c1ffc"
+					(page "52")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/4d03505e-143b-495c-b920-d43f35028f7b"
+					(page "53")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/863c6fb0-24eb-4126-868a-7fe22a1be6a6"
+					(page "54")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 52.07 48.26)
+		(size 175.26 104.14)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 132 132 132 1.0000)
+		)
+		(uuid "34d59ca5-a3b7-49a8-8ff7-2585e0b581ed")
+		(property "Sheetname" "Bit-Flip Data"
+			(at 52.07 45.4656 0)
+			(effects
+				(font
+					(size 5.08 5.08)
+					(thickness 1.016)
+					(bold yes)
+					(color 0 0 0 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Bitbittest.kicad_sch"
+			(at 52.07 153.1624 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/e9e6a473-6f21-4bb1-a330-121059b31b53"
+					(page "27")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 113.03 91.44)
+		(size 33.02 15.24)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "644a5d32-c9f4-4aac-bd37-46d801ee7d15")
+		(property "Sheetname" "Reset values in DUT"
+			(at 113.03 89.9156 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "LoopThroughDUTtest.kicad_sch"
+			(at 113.03 107.4424 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/e9e6a473-6f21-4bb1-a330-121059b31b53"
+					(page "42")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/052ffbfa-27de-4361-b8d7-a1df06f05eae"
+					(page "43")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/b8fe72a2-8395-4d80-853f-fad5515045ac"
+					(page "44")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/5c32343f-18f9-4a53-a0c1-fb6eb76c1ffc"
+					(page "45")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/4d03505e-143b-495c-b920-d43f35028f7b"
+					(page "46")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/863c6fb0-24eb-4126-868a-7fe22a1be6a6"
+					(page "47")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 160.02 63.5)
+		(size 33.02 15.24)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "9c6863b6-48d1-4c0f-8627-06a17f87547f")
+		(property "Sheetname" "Format"
+			(at 160.02 61.9756 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "LoopThroughDUTtest.kicad_sch"
+			(at 160.02 79.5024 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/e9e6a473-6f21-4bb1-a330-121059b31b53"
+					(page "26")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/052ffbfa-27de-4361-b8d7-a1df06f05eae"
+					(page "28")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/b8fe72a2-8395-4d80-853f-fad5515045ac"
+					(page "29")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/5c32343f-18f9-4a53-a0c1-fb6eb76c1ffc"
+					(page "30")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/4d03505e-143b-495c-b920-d43f35028f7b"
+					(page "32")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/863c6fb0-24eb-4126-868a-7fe22a1be6a6"
+					(page "34")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 113.03 63.5)
+		(size 33.02 15.24)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "a8e016cd-e23a-41eb-abc6-e7dfa5c3990e")
+		(property "Sheetname" "Save Bit-Flip Data"
+			(at 113.03 61.9756 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "LoopThroughDUTtest.kicad_sch"
+			(at 113.03 79.5024 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/e9e6a473-6f21-4bb1-a330-121059b31b53"
+					(page "17")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/052ffbfa-27de-4361-b8d7-a1df06f05eae"
+					(page "18")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/b8fe72a2-8395-4d80-853f-fad5515045ac"
+					(page "19")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/5c32343f-18f9-4a53-a0c1-fb6eb76c1ffc"
+					(page "20")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/4d03505e-143b-495c-b920-d43f35028f7b"
+					(page "24")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/863c6fb0-24eb-4126-868a-7fe22a1be6a6"
+					(page "25")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 64.77 91.44)
+		(size 33.02 15.24)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "d28bbcb8-45f3-4b04-a83f-06cb965fc60d")
+		(property "Sheetname" "Send to Downlink"
+			(at 64.77 89.9156 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "LoopThroughDUTtest.kicad_sch"
+			(at 64.77 107.4424 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/e9e6a473-6f21-4bb1-a330-121059b31b53"
+					(page "35")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/052ffbfa-27de-4361-b8d7-a1df06f05eae"
+					(page "36")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/b8fe72a2-8395-4d80-853f-fad5515045ac"
+					(page "37")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/5c32343f-18f9-4a53-a0c1-fb6eb76c1ffc"
+					(page "38")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/4d03505e-143b-495c-b920-d43f35028f7b"
+					(page "40")
+				)
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/863c6fb0-24eb-4126-868a-7fe22a1be6a6"
+					(page "41")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 64.77 63.5)
+		(size 33.02 15.24)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.508)
+			(type solid)
+			(color 0 0 0 1)
+		)
+		(fill
+			(color 255 255 255 1.0000)
+		)
+		(uuid "db327d35-bc42-4988-8139-e2eb1858c2d2")
+		(property "Sheetname" "Loop Through DUT"
+			(at 64.77 61.9756 0)
+			(effects
+				(font
+					(size 2.54 2.54)
+					(thickness 0.508)
+					(bold yes)
+					(color 255 255 255 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "LoopThroughDUTtest.kicad_sch"
+			(at 64.77 79.5024 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Testing"
+				(path "/f035f0a1-379f-4f34-81a0-5945bf64a21f/e9e6a473-6f21-4bb1-a330-121059b31b53"
+					(page "33")
+				)
+			)
+		)
+	)
+)
