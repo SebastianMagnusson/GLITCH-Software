@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date             : Wed Apr  2 09:25:32 2025
+| Date             : Wed Apr  2 14:27:57 2025
 | Host             : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command          : report_power -file Block_Test_wrapper_power_routed.rpt -pb Block_Test_wrapper_power_summary_routed.pb -rpx Block_Test_wrapper_power_routed.rpx
 | Design           : Block_Test_wrapper
@@ -53,11 +53,11 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      124 |       --- |             --- |
+| Slice Logic    |    <0.001 |      126 |       --- |             --- |
 |   LUT as Logic |    <0.001 |       53 |     20800 |            0.25 |
-|   Register     |    <0.001 |       51 |     41600 |            0.12 |
+|   Register     |    <0.001 |       52 |     41600 |            0.13 |
 |   Others       |     0.000 |        6 |       --- |             --- |
-| Signals        |    <0.001 |       80 |       --- |             --- |
+| Signals        |    <0.001 |       82 |       --- |             --- |
 | I/O            |    <0.001 |        6 |       106 |            5.66 |
 | Static Power   |     0.072 |          |           |                 |
 | Total          |     0.072 |          |           |                 |

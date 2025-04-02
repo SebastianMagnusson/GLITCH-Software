@@ -68,7 +68,7 @@
         "vlnv": "xilinx.com:module_ref:UART_TXmod:1.0",
         "ip_revision": "1",
         "xci_name": "Block_Test_UART_TXmod_0_0",
-        "xci_path": "ip\\Block_Test_UART_TXmod_0_0\\Block_Test_UART_TXmod_0_0.xci",
+        "xci_path": "ip\\Block_Test_UART_TXmod_0_0_1\\Block_Test_UART_TXmod_0_0.xci",
         "inst_hier_path": "UART_TXmod_0",
         "reference_info": {
           "ref_type": "hdl",
@@ -102,7 +102,7 @@
         "vlnv": "xilinx.com:module_ref:Pulsemod:1.0",
         "ip_revision": "1",
         "xci_name": "Block_Test_Pulsemod_0_0",
-        "xci_path": "ip\\Block_Test_Pulsemod_0_0\\Block_Test_Pulsemod_0_0.xci",
+        "xci_path": "ip\\Block_Test_Pulsemod_0_0_1\\Block_Test_Pulsemod_0_0.xci",
         "inst_hier_path": "Pulsemod_0",
         "reference_info": {
           "ref_type": "hdl",

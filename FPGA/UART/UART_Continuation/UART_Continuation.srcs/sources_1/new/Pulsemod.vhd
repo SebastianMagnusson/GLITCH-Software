@@ -32,32 +32,41 @@ end Pulsemod;
 
 architecture rtl of Pulsemod is
 
-  signal Counter : integer range 0 to 2 := 0;
-  signal Active  : std_logic := '0';
+  --type States is (Idle, Active);
+  --signal SM : States := Idle;
+
+  signal Counter           : integer range 0 to 2 := 0;
+  signal Active            : std_logic := '0';
+  signal i_signal_previous : std_logic := '0';
 
 begin
 
-  process(i_signal,sysclk) is
+  process(sysclk) is
   begin
   
-    if rising_edge(i_signal) then
-      Counter <= 0;
-      Active  <= '1';
-    end if;
-    
-    if rising_edge(sysclk) then
-      if Active = '1' then
-        if Counter < 2 then
-          Counter <= Counter + 1;
-          o_pulse <= '1';
-        else
-          o_pulse <= '0';
-          Counter <= 0;
+if rising_edge(sysclk) then
+            -- Detect the rising edge of trigger (kinda)
+            if i_signal = '1' and i_signal_previous = '0' then
+                active <= '1';
+                counter <= 0;
+            end if;
+
+            -- Update i_signal_Previous
+            i_signal_previous <= i_signal;
+
+            -- Pulse for PULSE_LENGTH
+            if Active = '1' then
+                if counter < PULSE_LENGTH then
+                    o_pulse <= '1';
+                    counter <= counter + 1;
+                else
+                    o_pulse <= '0';
+                    Active  <= '0';  -- Stop after PULSE_LENGTH clock cycles
+                end if;
+            else
+                o_pulse <= '0';
+            end if;
         end if;
-      else
-        o_pulse <= '0';
-      end if;
-    end if;
     
   end process;
 end rtl;

@@ -2,10 +2,10 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Tue Apr  1 11:39:38 2025
+-- Date        : Wed Apr  2 12:42:30 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim {c:/Users/Sebastian
---               Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/ip/Block_Test_UART_RXmod_0_0/Block_Test_UART_RXmod_0_0_sim_netlist.vhdl}
+--               Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Continuation/UART_Continuation.gen/sources_1/bd/Block_Test/ip/Block_Test_UART_RXmod_0_0/Block_Test_UART_RXmod_0_0_sim_netlist.vhdl}
 -- Design      : Block_Test_UART_RXmod_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.

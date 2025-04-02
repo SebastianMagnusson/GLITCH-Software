@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1743578597">
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1743596627">
   <File Type="PA-TCL" Name="Block_Test_wrapper.tcl"/>
   <File Type="REPORTS-TCL" Name="Block_Test_wrapper_reports.tcl"/>
   <File Type="INIT-TIMING" Name="Block_Test_wrapper_timing_summary_init.rpt"/>
@@ -52,12 +52,12 @@
   <File Type="ROUTE-RQS-PB" Name="Block_Test_wrapper_rqs_routed.pb"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="Block_Test_wrapper_postroute_physopt.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="Block_Test_wrapper_postroute_physopt_bb.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="Block_Test_wrapper_timing_summary_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="Block_Test_wrapper_timing_summary_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="Block_Test_wrapper_timing_summary_postroute_physopted.rpx"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="Block_Test_wrapper_bus_skew_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="Block_Test_wrapper_bus_skew_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="Block_Test_wrapper_bus_skew_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="UART_RXmod_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="UART_RXmod_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="UART_RXmod_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="UART_RXmod_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="UART_RXmod_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="UART_RXmod_bus_skew_postroute_physopted.rpx"/>
   <File Type="BG-BIT" Name="Block_Test_wrapper.bit"/>
   <File Type="BG-BIN" Name="Block_Test_wrapper.bin"/>
   <File Type="BITSTR-MSK" Name="Block_Test_wrapper.msk"/>
@@ -163,5 +163,7 @@
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="Block_Test_UART_TXmod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="Block_Test_UART_RXmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Block_Test_Pulsemod_0_0"/>
 </GenRun>
