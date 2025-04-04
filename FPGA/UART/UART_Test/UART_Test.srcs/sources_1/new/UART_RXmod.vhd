@@ -84,7 +84,7 @@ begin
             r_SM_Main   <= s_RX_Data_Bits;
           else 
             r_Clk_Count            <= 0;
-            r_RX_Byte(r_Bit_Index) <= r_RX_Data;
+            r_RX_Byte(r_Bit_Index) <= r_RX_Data; -- Inverts the RX_Byte (For testing)
             
             -- Check if all bits have been received
             if r_Bit_Index < 7 then
