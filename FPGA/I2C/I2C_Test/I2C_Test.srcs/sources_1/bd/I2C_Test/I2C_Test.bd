@@ -1,0 +1,271 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x7599EBB87599EBB8",
+      "device": "xc7a35tcpg236-1",
+      "gen_directory": "../../../../I2C_Test.gen/sources_1/bd/I2C_Test",
+      "name": "I2C_Test",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "I2Cmod_0": "",
+      "UART_TXmod_0": "",
+      "Read_Sensorsmod_0": "",
+      "xlconstant_0": ""
+    },
+    "ports": {
+      "sysclk": {
+        "direction": "I"
+      },
+      "SDA": {
+        "direction": "IO"
+      },
+      "SCL": {
+        "direction": "IO"
+      },
+      "uart_rxd_out": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "I2Cmod_0": {
+        "vlnv": "xilinx.com:module_ref:I2Cmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "I2C_Test_I2Cmod_0_0",
+        "xci_path": "ip\\I2C_Test_I2Cmod_0_0\\I2C_Test_I2Cmod_0_0.xci",
+        "inst_hier_path": "I2Cmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "I2Cmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "SDA": {
+            "direction": "IO"
+          },
+          "SCL": {
+            "direction": "IO"
+          },
+          "sysclk": {
+            "direction": "I"
+          },
+          "reset_n": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "ena": {
+            "direction": "I"
+          },
+          "addr": {
+            "direction": "I",
+            "left": "6",
+            "right": "0"
+          },
+          "rw": {
+            "direction": "I"
+          },
+          "data_wr": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "busy": {
+            "direction": "O"
+          },
+          "data_rd": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "ack_error": {
+            "direction": "O"
+          }
+        }
+      },
+      "UART_TXmod_0": {
+        "vlnv": "xilinx.com:module_ref:UART_TXmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "I2C_Test_UART_TXmod_0_0",
+        "xci_path": "ip\\I2C_Test_UART_TXmod_0_0\\I2C_Test_UART_TXmod_0_0.xci",
+        "inst_hier_path": "UART_TXmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_TXmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_TX_DV": {
+            "direction": "I"
+          },
+          "i_TX_Byte": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "o_TX_Active": {
+            "direction": "O"
+          },
+          "o_TX_Serial": {
+            "direction": "O"
+          },
+          "o_TX_Done": {
+            "direction": "O"
+          }
+        }
+      },
+      "Read_Sensorsmod_0": {
+        "vlnv": "xilinx.com:module_ref:Read_Sensorsmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "I2C_Test_Read_Sensorsmod_0_0",
+        "xci_path": "ip\\I2C_Test_Read_Sensorsmod_0_0\\I2C_Test_Read_Sensorsmod_0_0.xci",
+        "inst_hier_path": "Read_Sensorsmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Read_Sensorsmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_busy": {
+            "direction": "I"
+          },
+          "i_data_read": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "i_TX_done": {
+            "direction": "I"
+          },
+          "o_i2c_ena": {
+            "direction": "O"
+          },
+          "o_i2c_address": {
+            "direction": "O",
+            "left": "6",
+            "right": "0"
+          },
+          "o_i2c_rw": {
+            "direction": "O"
+          },
+          "o_i2c_data_wr": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "o_TX_DV": {
+            "direction": "O"
+          },
+          "o_TX_data": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "9",
+        "xci_name": "I2C_Test_xlconstant_0_0",
+        "xci_path": "ip\\I2C_Test_xlconstant_0_0\\I2C_Test_xlconstant_0_0.xci",
+        "inst_hier_path": "xlconstant_0"
+      }
+    },
+    "nets": {
+      "I2Cmod_0_busy": {
+        "ports": [
+          "I2Cmod_0/busy",
+          "Read_Sensorsmod_0/i_busy"
+        ]
+      },
+      "I2Cmod_0_data_rd": {
+        "ports": [
+          "I2Cmod_0/data_rd",
+          "Read_Sensorsmod_0/i_data_read"
+        ]
+      },
+      "Net": {
+        "ports": [
+          "SDA",
+          "I2Cmod_0/SDA"
+        ]
+      },
+      "Net1": {
+        "ports": [
+          "SCL",
+          "I2Cmod_0/SCL"
+        ]
+      },
+      "Read_Sensorsmod_0_o_TX_DV": {
+        "ports": [
+          "Read_Sensorsmod_0/o_TX_DV",
+          "UART_TXmod_0/i_TX_DV"
+        ]
+      },
+      "Read_Sensorsmod_0_o_TX_data": {
+        "ports": [
+          "Read_Sensorsmod_0/o_TX_data",
+          "UART_TXmod_0/i_TX_Byte"
+        ]
+      },
+      "Read_Sensorsmod_0_o_i2c_address": {
+        "ports": [
+          "Read_Sensorsmod_0/o_i2c_address",
+          "I2Cmod_0/addr"
+        ]
+      },
+      "Read_Sensorsmod_0_o_i2c_data_wr": {
+        "ports": [
+          "Read_Sensorsmod_0/o_i2c_data_wr",
+          "I2Cmod_0/data_wr"
+        ]
+      },
+      "Read_Sensorsmod_0_o_i2c_ena": {
+        "ports": [
+          "Read_Sensorsmod_0/o_i2c_ena",
+          "I2Cmod_0/ena"
+        ]
+      },
+      "Read_Sensorsmod_0_o_i2c_rw": {
+        "ports": [
+          "Read_Sensorsmod_0/o_i2c_rw",
+          "I2Cmod_0/rw"
+        ]
+      },
+      "UART_TXmod_0_o_TX_Done": {
+        "ports": [
+          "UART_TXmod_0/o_TX_Done",
+          "Read_Sensorsmod_0/i_TX_done"
+        ]
+      },
+      "UART_TXmod_0_o_TX_Serial": {
+        "ports": [
+          "UART_TXmod_0/o_TX_Serial",
+          "uart_rxd_out"
+        ]
+      },
+      "sysclk_0_1": {
+        "ports": [
+          "sysclk",
+          "Read_Sensorsmod_0/sysclk",
+          "UART_TXmod_0/sysclk",
+          "I2Cmod_0/sysclk"
+        ]
+      },
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "I2Cmod_0/reset_n"
+        ]
+      }
+    }
+  }
+}
