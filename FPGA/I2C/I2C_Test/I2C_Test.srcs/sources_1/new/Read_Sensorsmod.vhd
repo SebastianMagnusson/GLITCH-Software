@@ -15,6 +15,7 @@ use IEEE.NUMERIC_STD.ALL;
 entity Read_Sensorsmod is
   generic(Clockfrequency : integer := 12*1000000); -- 12 Mhz
   Port(sysclk        : in std_logic;
+       reset_n       : in std_logic;
        i_busy        : in std_logic;
        i_data_read   : in std_logic_vector(7 downto 0);
        i_TX_done     : in std_logic;
@@ -23,23 +24,24 @@ entity Read_Sensorsmod is
        o_i2c_rw      : out std_logic;
        o_i2c_data_wr : out std_logic_vector(7 downto 0);
        o_TX_DV       : out std_logic;
-       o_TX_data     : out std_logic_vector(7 downto 0));
+       o_TX_data     : out std_logic_vector(7 downto 0);
+       led2          : out std_logic);
 end Read_Sensorsmod;
 
 architecture rtl of Read_Sensorsmod is
 
   type SM_Main is (START,TEMP,SEND_TEMP,PREP_ALT,ALT,SEND_ALT,RTC,SEND_RTC);
-  signal state : SM_Main := START;
+  signal state : SM_Main;
   
   signal busy_prev : std_logic;
-  signal temp_data : std_logic_vector(15 downto 0) := (others => '0');
-  signal alt_data  : std_logic_vector(23 downto 0) := (others => '0');
-  signal rtc_data  : std_logic_vector(23 downto 0) := (others => '0');
+  signal temp_data : std_logic_vector(15 downto 0);
+  signal alt_data  : std_logic_vector(23 downto 0);
+  signal rtc_data  : std_logic_vector(23 downto 0);
 
 begin
 
   -- Process of hell
-  Main : process(sysclk)
+  Main : process(sysclk, reset_n)
   
     variable sec_cnt    : integer range 0 to 5*Clockfrequency := 0;   -- Count to 5 seconds between sensor readings
     variable busy_cnt   : integer range 0 to 5 := 0;                  -- Count busy transisions during one transaction
@@ -49,7 +51,20 @@ begin
     
   begin
   
-    if rising_edge(sysclk) then
+    if(reset_n = '0') then
+    sec_cnt    := 0;
+    busy_cnt   := 0;
+    conv_cnt   := 0;
+    mess_cnt   := 0;
+    sensor_cnt := 0;
+    temp_data  <= (others => '0');
+    alt_data   <= (others => '0');
+    rtc_data   <= (others => '0');
+    o_i2c_ena  <= '0';
+    o_TX_DV    <= '0';
+    state      <= START;
+    
+    elsif rising_edge(sysclk) then
       case state is 
       
         -- Waits here 5 seconds before starting to read sensors
@@ -60,10 +75,13 @@ begin
           else                                -- 5 seconds has passed
             sec_cnt := 0;
             if(sensor_cnt = 0) then
+              led2 <= '1';
               state <= TEMP;
             elsif(sensor_cnt = 1) then
+              led2    <= '0';
               state <= ALT;
             else
+              led2    <= '1';
               state <= RTC;
             end if;
           end if;
@@ -99,6 +117,7 @@ begin
                 o_TX_DV   <= '1';                          -- Send first byte to TX module
                 o_TX_data <= temp_data(15 downto 8);
                 
+                
                 state <= SEND_TEMP;                        -- Move SEND_TEMP
               end if;
             when OTHERS =>
@@ -128,7 +147,7 @@ begin
             when 0 =>                                    -- No command latched in i2c master
               o_TX_DV <= '0';                              -- Keep TX driver low
               o_i2c_ena     <= '1';                        -- Initiate transaction
-              o_i2c_address <= "1110111";                  -- Altitude sensor i2c address
+              o_i2c_address <= "1110110";                  -- Altitude sensor i2c address
               o_i2c_rw       <= '0';                       -- Write mode
               o_i2c_data_wr <= "00000000";                 -- Command to start pressure conversion
             when 1 =>                                    -- 1st busy high: command 1 latched
@@ -157,7 +176,7 @@ begin
             when 0 =>                                    -- No command latched in i2c master
               o_TX_DV <= '0';                              -- Keep TX driver low
               o_i2c_ena     <= '1';                        -- Initiate transaction
-              o_i2c_address <= "1110111";                  -- Altimeter sensor i2c address
+              o_i2c_address <= "1110110";                  -- Altimeter sensor i2c address
               o_i2c_rw       <= '1';                       -- Read mode
             when 1 =>                                    -- 1st command latched in, safe to issue command 2
               o_TX_DV  <= '0';                             -- Keep TX driver low

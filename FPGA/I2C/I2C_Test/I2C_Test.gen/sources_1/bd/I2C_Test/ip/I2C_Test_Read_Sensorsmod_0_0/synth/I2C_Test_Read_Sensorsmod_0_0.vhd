@@ -56,6 +56,7 @@ USE ieee.numeric_std.ALL;
 ENTITY I2C_Test_Read_Sensorsmod_0_0 IS
   PORT (
     sysclk : IN STD_LOGIC;
+    reset_n : IN STD_LOGIC;
     i_busy : IN STD_LOGIC;
     i_data_read : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
     i_TX_done : IN STD_LOGIC;
@@ -64,7 +65,8 @@ ENTITY I2C_Test_Read_Sensorsmod_0_0 IS
     o_i2c_rw : OUT STD_LOGIC;
     o_i2c_data_wr : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     o_TX_DV : OUT STD_LOGIC;
-    o_TX_data : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+    o_TX_data : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+    led2 : OUT STD_LOGIC
   );
 END I2C_Test_Read_Sensorsmod_0_0;
 
@@ -77,6 +79,7 @@ ARCHITECTURE I2C_Test_Read_Sensorsmod_0_0_arch OF I2C_Test_Read_Sensorsmod_0_0 I
     );
     PORT (
       sysclk : IN STD_LOGIC;
+      reset_n : IN STD_LOGIC;
       i_busy : IN STD_LOGIC;
       i_data_read : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
       i_TX_done : IN STD_LOGIC;
@@ -85,7 +88,8 @@ ARCHITECTURE I2C_Test_Read_Sensorsmod_0_0_arch OF I2C_Test_Read_Sensorsmod_0_0 I
       o_i2c_rw : OUT STD_LOGIC;
       o_i2c_data_wr : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       o_TX_DV : OUT STD_LOGIC;
-      o_TX_data : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+      o_TX_data : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      led2 : OUT STD_LOGIC
     );
   END COMPONENT Read_Sensorsmod;
   ATTRIBUTE X_CORE_INFO : STRING;
@@ -96,6 +100,12 @@ ARCHITECTURE I2C_Test_Read_Sensorsmod_0_0_arch OF I2C_Test_Read_Sensorsmod_0_0 I
   ATTRIBUTE CORE_GENERATION_INFO OF I2C_Test_Read_Sensorsmod_0_0_arch: ARCHITECTURE IS "I2C_Test_Read_Sensorsmod_0_0,Read_Sensorsmod,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=Read_Sensorsmod,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,Clockfrequency=12000000}";
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
   ATTRIBUTE IP_DEFINITION_SOURCE OF I2C_Test_Read_Sensorsmod_0_0_arch: ARCHITECTURE IS "module_ref";
+  ATTRIBUTE X_INTERFACE_INFO : STRING;
+  ATTRIBUTE X_INTERFACE_MODE : STRING;
+  ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
+  ATTRIBUTE X_INTERFACE_INFO OF reset_n: SIGNAL IS "xilinx.com:signal:reset:1.0 reset_n RST";
+  ATTRIBUTE X_INTERFACE_MODE OF reset_n: SIGNAL IS "slave reset_n";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF reset_n: SIGNAL IS "XIL_INTERFACENAME reset_n, POLARITY ACTIVE_LOW, INSERT_VIP 0";
 BEGIN
   U0 : Read_Sensorsmod
     GENERIC MAP (
@@ -103,6 +113,7 @@ BEGIN
     )
     PORT MAP (
       sysclk => sysclk,
+      reset_n => reset_n,
       i_busy => i_busy,
       i_data_read => i_data_read,
       i_TX_done => i_TX_done,
@@ -111,6 +122,7 @@ BEGIN
       o_i2c_rw => o_i2c_rw,
       o_i2c_data_wr => o_i2c_data_wr,
       o_TX_DV => o_TX_DV,
-      o_TX_data => o_TX_data
+      o_TX_data => o_TX_data,
+      led2 => led2
     );
 END I2C_Test_Read_Sensorsmod_0_0_arch;

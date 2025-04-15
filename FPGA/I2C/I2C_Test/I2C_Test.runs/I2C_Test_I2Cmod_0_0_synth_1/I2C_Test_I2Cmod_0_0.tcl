@@ -56,6 +56,8 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "I2C_Test_I2Cmod_0_0_synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 2
+set_param xicom.use_bs_reader 1
 set_param project.vivado.isBlockSynthRun true
 OPTRACE "Creating in-memory project" START { }
 set_param ips.modRefOverrideMrefDirPath c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.gen/sources_1/bd/mref

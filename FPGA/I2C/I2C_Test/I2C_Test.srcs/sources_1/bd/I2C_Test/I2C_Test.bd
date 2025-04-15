@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x7599EBB87599EBB8",
+      "boundary_crc": "0x775134CE775134CE",
       "device": "xc7a35tcpg236-1",
       "gen_directory": "../../../../I2C_Test.gen/sources_1/bd/I2C_Test",
       "name": "I2C_Test",
@@ -14,7 +14,7 @@
       "I2Cmod_0": "",
       "UART_TXmod_0": "",
       "Read_Sensorsmod_0": "",
-      "xlconstant_0": ""
+      "Switchmod_0": ""
     },
     "ports": {
       "sysclk": {
@@ -27,6 +27,15 @@
         "direction": "IO"
       },
       "uart_rxd_out": {
+        "direction": "O"
+      },
+      "btn0": {
+        "direction": "I"
+      },
+      "led1": {
+        "direction": "O"
+      },
+      "led2": {
         "direction": "O"
       }
     },
@@ -134,6 +143,10 @@
           "sysclk": {
             "direction": "I"
           },
+          "reset_n": {
+            "type": "rst",
+            "direction": "I"
+          },
           "i_busy": {
             "direction": "I"
           },
@@ -168,15 +181,37 @@
             "direction": "O",
             "left": "7",
             "right": "0"
+          },
+          "led2": {
+            "direction": "O"
           }
         }
       },
-      "xlconstant_0": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "ip_revision": "9",
-        "xci_name": "I2C_Test_xlconstant_0_0",
-        "xci_path": "ip\\I2C_Test_xlconstant_0_0\\I2C_Test_xlconstant_0_0.xci",
-        "inst_hier_path": "xlconstant_0"
+      "Switchmod_0": {
+        "vlnv": "xilinx.com:module_ref:Switchmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "I2C_Test_Switchmod_0_0",
+        "xci_path": "ip\\I2C_Test_Switchmod_0_0\\I2C_Test_Switchmod_0_0.xci",
+        "inst_hier_path": "Switchmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Switchmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_signal": {
+            "direction": "I"
+          },
+          "o_signal": {
+            "direction": "O"
+          },
+          "led0": {
+            "direction": "O"
+          }
+        }
       }
     },
     "nets": {
@@ -202,6 +237,12 @@
         "ports": [
           "SCL",
           "I2Cmod_0/SCL"
+        ]
+      },
+      "Read_Sensorsmod_0_led2": {
+        "ports": [
+          "Read_Sensorsmod_0/led2",
+          "led2"
         ]
       },
       "Read_Sensorsmod_0_o_TX_DV": {
@@ -240,6 +281,19 @@
           "I2Cmod_0/rw"
         ]
       },
+      "Switchmod_0_led0": {
+        "ports": [
+          "Switchmod_0/led0",
+          "led1"
+        ]
+      },
+      "Switchmod_0_o_signal": {
+        "ports": [
+          "Switchmod_0/o_signal",
+          "I2Cmod_0/reset_n",
+          "Read_Sensorsmod_0/reset_n"
+        ]
+      },
       "UART_TXmod_0_o_TX_Done": {
         "ports": [
           "UART_TXmod_0/o_TX_Done",
@@ -252,18 +306,19 @@
           "uart_rxd_out"
         ]
       },
+      "i_signal_0_1": {
+        "ports": [
+          "btn0",
+          "Switchmod_0/i_signal"
+        ]
+      },
       "sysclk_0_1": {
         "ports": [
           "sysclk",
-          "Read_Sensorsmod_0/sysclk",
           "UART_TXmod_0/sysclk",
-          "I2Cmod_0/sysclk"
-        ]
-      },
-      "xlconstant_0_dout": {
-        "ports": [
-          "xlconstant_0/dout",
-          "I2Cmod_0/reset_n"
+          "Switchmod_0/sysclk",
+          "I2Cmod_0/sysclk",
+          "Read_Sensorsmod_0/sysclk"
         ]
       }
     }

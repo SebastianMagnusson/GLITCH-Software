@@ -15,7 +15,7 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==I2C_Test_UA
 # IP: bd/I2C_Test/ip/I2C_Test_Read_Sensorsmod_0_0/I2C_Test_Read_Sensorsmod_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==I2C_Test_Read_Sensorsmod_0_0 || ORIG_REF_NAME==I2C_Test_Read_Sensorsmod_0_0} -quiet] -quiet
 
-# IP: bd/I2C_Test/ip/I2C_Test_xlconstant_0_0/I2C_Test_xlconstant_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==I2C_Test_xlconstant_0_0 || ORIG_REF_NAME==I2C_Test_xlconstant_0_0} -quiet] -quiet
+# IP: bd/I2C_Test/ip/I2C_Test_Switchmod_0_0/I2C_Test_Switchmod_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==I2C_Test_Switchmod_0_0 || ORIG_REF_NAME==I2C_Test_Switchmod_0_0} -quiet] -quiet
 
 # XDC: c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.gen/sources_1/bd/I2C_Test/I2C_Test_ooc.xdc
