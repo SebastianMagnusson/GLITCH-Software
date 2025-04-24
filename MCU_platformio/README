@@ -1,0 +1,5 @@
+This is the MCU dev module for the project.
+
+It uses the PlatformIO extension in VS code, settings for the esp32dev kit and the ESP-IDF framework
+
+Make sure the CMakeLists and platformio.ini file are correct, also check the properties file.
