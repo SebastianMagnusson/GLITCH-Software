@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Tue Apr 15 09:02:32 2025
+// Date        : Tue Apr 29 11:26:46 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.gen/sources_1/bd/I2C_Test/ip/I2C_Test_I2Cmod_0_0/I2C_Test_I2Cmod_0_0_sim_netlist.v
@@ -118,8 +118,8 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   wire SDA;
   wire SDA_INST_0_i_1_n_0;
   wire ack_error;
-  wire ack_error_i_1_n_0;
-  wire ack_error_i_2_n_0;
+  wire ack_error_int_i_1_n_0;
+  wire ack_error_int_i_2_n_0;
   wire [7:0]addr_rw;
   wire addr_rw0;
   wire [2:0]bit_cnt;
@@ -450,27 +450,27 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .O(SDA_INST_0_i_1_n_0));
   LUT6 #(
     .INIT(64'hFFFFFBFF40404040)) 
-    ack_error_i_1
+    ack_error_int_i_1
        (.I0(data_clk__0),
         .I1(data_clk_prev),
-        .I2(ack_error_i_2_n_0),
+        .I2(ack_error_int_i_2_n_0),
         .I3(\FSM_onehot_state_reg_n_0_[1] ),
         .I4(scl_ena_reg_n_0),
         .I5(ack_error),
-        .O(ack_error_i_1_n_0));
+        .O(ack_error_int_i_1_n_0));
   LUT4 #(
     .INIT(16'hEEE0)) 
-    ack_error_i_2
+    ack_error_int_i_2
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(\FSM_onehot_state_reg_n_0_[5] ),
         .I2(SDA),
         .I3(ack_error),
-        .O(ack_error_i_2_n_0));
-  FDCE ack_error_reg
+        .O(ack_error_int_i_2_n_0));
+  FDCE ack_error_int_reg
        (.C(sysclk),
         .CE(1'b1),
         .CLR(busy_i_2_n_0),
-        .D(ack_error_i_1_n_0),
+        .D(ack_error_int_i_1_n_0),
         .Q(ack_error));
   LUT6 #(
     .INIT(64'hFE00000000000000)) 

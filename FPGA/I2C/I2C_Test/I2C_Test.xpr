@@ -202,15 +202,15 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="I2C_Test_I2Cmod_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/I2C_Test_I2Cmod_0_0" RelGenDir="$PGENDIR/I2C_Test_I2Cmod_0_0">
-      <Config>
-        <Option Name="TopModule" Val="I2C_Test_I2Cmod_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="I2C_Test_Read_Sensorsmod_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/I2C_Test_Read_Sensorsmod_0_0" RelGenDir="$PGENDIR/I2C_Test_Read_Sensorsmod_0_0">
       <Config>
         <Option Name="TopModule" Val="I2C_Test_Read_Sensorsmod_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="I2C_Test_I2Cmod_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/I2C_Test_I2Cmod_0_0" RelGenDir="$PGENDIR/I2C_Test_I2Cmod_0_0">
+      <Config>
+        <Option Name="TopModule" Val="I2C_Test_I2Cmod_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -268,7 +268,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="I2C_Test_I2Cmod_0_0_synth_1" Type="Ft3:Synth" SrcSet="I2C_Test_I2Cmod_0_0" Part="xc7a35tcpg236-1" ConstrsSet="I2C_Test_I2Cmod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/I2C_Test_I2Cmod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/I2C_Test_I2Cmod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/I2C_Test_I2Cmod_0_0_synth_1" ParallelReportGen="true">
+    <Run Id="I2C_Test_Read_Sensorsmod_0_0_synth_1" Type="Ft3:Synth" SrcSet="I2C_Test_Read_Sensorsmod_0_0" Part="xc7a35tcpg236-1" ConstrsSet="I2C_Test_Read_Sensorsmod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/I2C_Test_Read_Sensorsmod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/I2C_Test_Read_Sensorsmod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/I2C_Test_Read_Sensorsmod_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -280,7 +280,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="I2C_Test_Read_Sensorsmod_0_0_synth_1" Type="Ft3:Synth" SrcSet="I2C_Test_Read_Sensorsmod_0_0" Part="xc7a35tcpg236-1" ConstrsSet="I2C_Test_Read_Sensorsmod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/I2C_Test_Read_Sensorsmod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/I2C_Test_Read_Sensorsmod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/I2C_Test_Read_Sensorsmod_0_0_synth_1" ParallelReportGen="true">
+    <Run Id="I2C_Test_I2Cmod_0_0_synth_1" Type="Ft3:Synth" SrcSet="I2C_Test_I2Cmod_0_0" Part="xc7a35tcpg236-1" ConstrsSet="I2C_Test_I2Cmod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/I2C_Test_I2Cmod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/I2C_Test_I2Cmod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/I2C_Test_I2Cmod_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -348,7 +348,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="I2C_Test_I2Cmod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="I2C_Test_I2Cmod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="I2C_Test_I2Cmod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/I2C_Test_I2Cmod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/I2C_Test_I2Cmod_0_0_impl_1" ParallelReportGen="true">
+    <Run Id="I2C_Test_Read_Sensorsmod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="I2C_Test_Read_Sensorsmod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="I2C_Test_Read_Sensorsmod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/I2C_Test_Read_Sensorsmod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/I2C_Test_Read_Sensorsmod_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
           <Desc>Default settings for Implementation.</Desc>
@@ -367,7 +367,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="I2C_Test_Read_Sensorsmod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="I2C_Test_Read_Sensorsmod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="I2C_Test_Read_Sensorsmod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/I2C_Test_Read_Sensorsmod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/I2C_Test_Read_Sensorsmod_0_0_impl_1" ParallelReportGen="true">
+    <Run Id="I2C_Test_I2Cmod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="I2C_Test_I2Cmod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="I2C_Test_I2Cmod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/I2C_Test_I2Cmod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/I2C_Test_I2Cmod_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
           <Desc>Default settings for Implementation.</Desc>

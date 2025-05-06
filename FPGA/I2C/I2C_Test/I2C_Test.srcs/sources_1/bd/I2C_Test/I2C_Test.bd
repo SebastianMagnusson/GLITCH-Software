@@ -7,8 +7,7 @@
       "name": "I2C_Test",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2024.2",
-      "validated": "true"
+      "tool_version": "2024.2"
     },
     "design_tree": {
       "I2Cmod_0": "",
@@ -290,8 +289,8 @@
       "Switchmod_0_o_signal": {
         "ports": [
           "Switchmod_0/o_signal",
-          "I2Cmod_0/reset_n",
-          "Read_Sensorsmod_0/reset_n"
+          "Read_Sensorsmod_0/reset_n",
+          "I2Cmod_0/reset_n"
         ]
       },
       "UART_TXmod_0_o_TX_Done": {
@@ -317,8 +316,8 @@
           "sysclk",
           "UART_TXmod_0/sysclk",
           "Switchmod_0/sysclk",
-          "I2Cmod_0/sysclk",
-          "Read_Sensorsmod_0/sysclk"
+          "Read_Sensorsmod_0/sysclk",
+          "I2Cmod_0/sysclk"
         ]
       }
     }

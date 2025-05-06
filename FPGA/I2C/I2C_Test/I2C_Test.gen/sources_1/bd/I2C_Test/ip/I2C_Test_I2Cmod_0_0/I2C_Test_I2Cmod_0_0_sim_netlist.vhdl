@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Tue Apr 15 09:02:32 2025
+-- Date        : Tue Apr 29 11:26:46 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.gen/sources_1/bd/I2C_Test/ip/I2C_Test_I2Cmod_0_0/I2C_Test_I2Cmod_0_0_sim_netlist.vhdl
@@ -60,8 +60,8 @@ architecture STRUCTURE of I2C_Test_I2Cmod_0_0_I2Cmod is
   signal SCL_reg0 : STD_LOGIC;
   signal SDA_INST_0_i_1_n_0 : STD_LOGIC;
   signal \^ack_error\ : STD_LOGIC;
-  signal ack_error_i_1_n_0 : STD_LOGIC;
-  signal ack_error_i_2_n_0 : STD_LOGIC;
+  signal ack_error_int_i_1_n_0 : STD_LOGIC;
+  signal ack_error_int_i_2_n_0 : STD_LOGIC;
   signal addr_rw : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal addr_rw0 : STD_LOGIC;
   signal bit_cnt : STD_LOGIC_VECTOR ( 2 downto 0 );
@@ -488,20 +488,20 @@ SDA_INST_0_i_1: unisim.vcomponents.LUT4
       I3 => \FSM_onehot_state_reg_n_0_[1]\,
       O => SDA_INST_0_i_1_n_0
     );
-ack_error_i_1: unisim.vcomponents.LUT6
+ack_error_int_i_1: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFFFFBFF40404040"
     )
         port map (
       I0 => \data_clk__0\,
       I1 => data_clk_prev,
-      I2 => ack_error_i_2_n_0,
+      I2 => ack_error_int_i_2_n_0,
       I3 => \FSM_onehot_state_reg_n_0_[1]\,
       I4 => scl_ena_reg_n_0,
       I5 => \^ack_error\,
-      O => ack_error_i_1_n_0
+      O => ack_error_int_i_1_n_0
     );
-ack_error_i_2: unisim.vcomponents.LUT4
+ack_error_int_i_2: unisim.vcomponents.LUT4
     generic map(
       INIT => X"EEE0"
     )
@@ -510,14 +510,14 @@ ack_error_i_2: unisim.vcomponents.LUT4
       I1 => \FSM_onehot_state_reg_n_0_[5]\,
       I2 => SDA,
       I3 => \^ack_error\,
-      O => ack_error_i_2_n_0
+      O => ack_error_int_i_2_n_0
     );
-ack_error_reg: unisim.vcomponents.FDCE
+ack_error_int_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => '1',
       CLR => busy_i_2_n_0,
-      D => ack_error_i_1_n_0,
+      D => ack_error_int_i_1_n_0,
       Q => \^ack_error\
     );
 \addr_rw[7]_i_1\: unisim.vcomponents.LUT6

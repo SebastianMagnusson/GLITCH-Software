@@ -2,11 +2,16 @@
 -- Company:  GLITH
 -- Engineer: SEB
 ----------------------------------------------------------------------------------
+-- V1.0
 -- This is a module which will test the i2c protocol.
 -- If it does everything correctly, data should be read 
 -- first from the temp dev board, then the altimeter
 -- dev board, and then the RTC dev board. There should also be
 -- a 5 seconds delay between all of these.
+-- V2.0
+-- Changed glitch in RTC state (wrong data)
+-- Changed START state to move to PREP-ALT and not ALT, also a glitch
+----------------------------------------------------------------------------------
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -62,7 +67,9 @@ begin
     rtc_data   <= (others => '0');
     o_i2c_ena  <= '0';
     o_TX_DV    <= '0';
+    busy_prev  <= '0';
     state      <= START;
+    led2 <= '0';
     
     elsif rising_edge(sysclk) then
       case state is 
@@ -75,13 +82,13 @@ begin
           else                                -- 5 seconds has passed
             sec_cnt := 0;
             if(sensor_cnt = 0) then
-              led2 <= '1';
+              --led2 <= '1';
               state <= TEMP;
             elsif(sensor_cnt = 1) then
-              led2    <= '0';
-              state <= ALT;
+              --led2    <= '0';
+              state <= PREP_ALT;
             else
-              led2    <= '1';
+              --led2    <= '1';
               state <= RTC;
             end if;
           end if;
@@ -100,9 +107,11 @@ begin
               o_i2c_address <= "1000000";                  -- Temp sensor i2c address
               o_i2c_rw       <= '0';                       -- Write mode
               o_i2c_data_wr <= "11100011";                 -- Set pointer to "Measure Temperature" register
+              led2 <= '1';
             when 1 =>                                    -- 1st command latched in, safe to issue command 2
               o_TX_DV  <= '0';                             -- Keep TX driver low
               o_i2c_rw <= '1';                             -- Read temperature (address still the same)
+              led2 <= '0';
             when 2 =>                                    -- 2nd command latched in, wait to receive 1st byte of data
               o_TX_DV <= '0';                              -- Keep TX driver low
               if(i_busy = '0') then                        -- First data byte is ready
@@ -261,7 +270,7 @@ begin
                 rtc_data(7 downto 0) <= i_data_read;       -- Save last byte (hours)
                 
                 o_TX_DV   <= '1';                          -- Send first byte to TX module
-                o_TX_data <= alt_data(23 downto 16);
+                o_TX_data <= rtc_data(23 downto 16);
                 
                 state <= SEND_RTC;                         -- Move to SEND_RTC
               end if;

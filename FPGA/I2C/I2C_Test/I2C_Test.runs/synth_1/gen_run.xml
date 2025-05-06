@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1744700486" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/I2Cmod.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1745918755" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/I2Cmod.dcp">
   <File Type="PA-TCL" Name="I2C_Test_wrapper.tcl"/>
   <File Type="REPORTS-TCL" Name="I2C_Test_wrapper_reports.tcl"/>
   <File Type="RDS-RDS" Name="I2C_Test_wrapper.vds"/>
@@ -85,6 +85,6 @@
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="I2C_Test_UART_TXmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="I2C_Test_Switchmod_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="I2C_Test_I2Cmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="I2C_Test_Read_Sensorsmod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="I2C_Test_I2Cmod_0_0"/>
 </GenRun>

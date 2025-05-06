@@ -2,11 +2,19 @@
 -- Company:  GLITCH
 -- Engineer: SEB
 ----------------------------------------------------------------------------------
+-- V1.0:
+-- Created file
+-- Not working (with sensors, it still creates bitstream)
+-- V2.0
+-- Changed library from std_logic_unsigned to numeric_std.
+-- Changed ack_error into type "out" instead of "buffer". Also
+-- created an internal signal "ack_error_int" to account for this.
+----------------------------------------------------------------------------------
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;                                                                                                      
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
-
+--use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 entity I2Cmod is  
   generic(Sys_Clockfrequency : integer := 12*1000000; -- Input clock speed from user logic in Hz
@@ -21,7 +29,7 @@ entity I2Cmod is
        data_wr   : in std_logic_vector(7 downto 0);   -- Data to write to slave
        busy      : out std_logic;                     -- Indicates transaction in progress
        data_rd   : out std_logic_vector(7 downto 0);  -- Data read from slave
-       ack_error : buffer std_logic);                 -- Flag if improper acknowledge from slave       
+       ack_error : out std_logic);                 -- Flag if improper acknowledge from slave       
 end I2Cmod;
 
 architecture rtl of I2Cmod is
@@ -41,6 +49,8 @@ architecture rtl of I2Cmod is
   signal data_rx       : std_logic_vector(7 downto 0); -- Data received from slave
   signal bit_cnt       : integer range 0 to 7 := 7;    -- Tracks bit number in transaction
   signal stretch       : std_logic := '0';             -- Identifies if slave is stretching scl
+  
+  signal ack_error_int : std_logic; -- New internal buffer from V2.0
 
 begin
 
@@ -86,13 +96,13 @@ begin
   process(sysclk, reset_n)
   begin
     if(reset_n = '0') then      -- Reset asserted
-      state     <= READY;       -- Return to initial state 
-      busy      <= '1';         -- Indicate not available
-      scl_ena   <= '0';         -- Sets scl high impedance (see after process)
-      sda_int   <= '1';         -- Sets sda high impedance (see after process)
-      ack_error <= '0';         -- Clear acknowledge error flag
-      bit_cnt   <= 7;           -- Restarts data bit counter
-      data_rd   <= "00000000";  -- Clear data read port
+      state         <= READY;       -- Return to initial state 
+      busy          <= '1';         -- Indicate not available
+      scl_ena       <= '0';         -- Sets scl high impedance (see after process)
+      sda_int       <= '1';         -- Sets sda high impedance (see after process)
+      ack_error_int <= '0';         -- Clear acknowledge error flag
+      bit_cnt       <= 7;           -- Restarts data bit counter
+      data_rd       <= "00000000";  -- Clear data read port
       
     elsif(sysclk'event and sysclk = '1') then
       if(data_clk = '1' and data_clk_prev = '0') then -- Data clock rising edge
@@ -201,21 +211,21 @@ begin
         case state is
           when START =>            -- Starting new transaction
             if(scl_ena = '0') then -- Enable scl output
-              scl_ena   <= '1';    -- Reset acknowledge error output
-              ack_error <= '0';    -- Reset acknowledge error output
+              scl_ena       <= '1';    -- Reset acknowledge error output
+              ack_error_int <= '0';    -- Reset acknowledge error output
             end if;
           
-          when SLV_ACK1 =>                          -- Receiving slave acknowledge (command)
-            if(SDA /= '0' or ack_error = '1') then  -- No-acknowledge or previous no-acknowledge
-              ack_error <= '1';                     -- Set error output if no-acknowledge
+          when SLV_ACK1 =>                              -- Receiving slave acknowledge (command)
+            if(SDA /= '0' or ack_error_int = '1') then  -- No-acknowledge or previous no-acknowledge
+              ack_error_int <= '1';                     -- Set error output if no-acknowledge
             end if;
             
           when READ =>                -- Receiving slave data
             data_rx(bit_cnt) <= SDA;  -- Receive current slave data bit
             
-          when SLV_ACK2 =>                         -- Receiving slave acknowledge (write)
-            if(SDA /= '0' or ack_error = '1') then -- No-acknowledge or previous no-acknowledge
-              ack_error <= '1';                    -- Set error output if no-acknowledge
+          when SLV_ACK2 =>                             -- Receiving slave acknowledge (write)
+            if(SDA /= '0' or ack_error_int = '1') then -- No-acknowledge or previous no-acknowledge
+              ack_error_int <= '1';                    -- Set error output if no-acknowledge
             end if;                                
             
           when STOP =>
@@ -237,5 +247,8 @@ begin
   -- Set SCL and SDA outputs
   SCL <= '0' when (scl_ena = '1' and scl_clk = '0') else 'Z';
   SDA <= '0' when (sda_ena_n = '0')                 else 'Z';
+  
+  -- ack_error out
+  ack_error <= ack_error_int;
             
 end rtl;
