@@ -133,8 +133,10 @@
           <Proxy FileSetName="I2C_Test_UART_TXmod_0_0"/>
         </CompFileExtendedInfo>
       </File>
-      <File Path="$PGENDIR/sources_1/bd/I2C_Test/hdl/I2C_Test_wrapper.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/hdl/I2C_Test_wrapper.vhd">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PGENDIR/sources_1/bd/I2C_Test/hdl/I2C_Test_wrapper.vhd"/>
+          <Attr Name="ImportTime" Val="1746597596"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>

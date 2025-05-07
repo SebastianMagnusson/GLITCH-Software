@@ -55,8 +55,12 @@ USE ieee.numeric_std.ALL;
 
 ENTITY I2C_Test_I2Cmod_0_0 IS
   PORT (
-    SDA : INOUT STD_LOGIC;
-    SCL : INOUT STD_LOGIC;
+    sda_i : IN STD_LOGIC;
+    sda_o : OUT STD_LOGIC;
+    sda_t : OUT STD_LOGIC;
+    scl_i : IN STD_LOGIC;
+    scl_o : OUT STD_LOGIC;
+    scl_t : OUT STD_LOGIC;
     sysclk : IN STD_LOGIC;
     reset_n : IN STD_LOGIC;
     ena : IN STD_LOGIC;
@@ -78,8 +82,12 @@ ARCHITECTURE I2C_Test_I2Cmod_0_0_arch OF I2C_Test_I2Cmod_0_0 IS
       Bus_Clockfrequency : INTEGER
     );
     PORT (
-      SDA : INOUT STD_LOGIC;
-      SCL : INOUT STD_LOGIC;
+      sda_i : IN STD_LOGIC;
+      sda_o : OUT STD_LOGIC;
+      sda_t : OUT STD_LOGIC;
+      scl_i : IN STD_LOGIC;
+      scl_o : OUT STD_LOGIC;
+      scl_t : OUT STD_LOGIC;
       sysclk : IN STD_LOGIC;
       reset_n : IN STD_LOGIC;
       ena : IN STD_LOGIC;
@@ -104,8 +112,12 @@ BEGIN
       Bus_Clockfrequency => 400000
     )
     PORT MAP (
-      SDA => SDA,
-      SCL => SCL,
+      sda_i => sda_i,
+      sda_o => sda_o,
+      sda_t => sda_t,
+      scl_i => scl_i,
+      scl_o => scl_o,
+      scl_t => scl_t,
       sysclk => sysclk,
       reset_n => reset_n,
       ena => ena,

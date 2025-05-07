@@ -1,19 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Apr 29 11:25:32 2025" VIVADOVERSION="2024.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed May  7 07:59:56 2025" VIVADOVERSION="2024.2">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a35t" NAME="I2C_Test" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
   <EXTERNALPORTS>
-    <PORT DIR="IO" NAME="SCL" SIGIS="undef" SIGNAME="External_Ports_SCL">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="I2Cmod_0" PORT="SCL"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="IO" NAME="SDA" SIGIS="undef" SIGNAME="External_Ports_SDA">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="I2Cmod_0" PORT="SDA"/>
-      </CONNECTIONS>
-    </PORT>
     <PORT DIR="I" NAME="btn0" SIGIS="undef" SIGNAME="External_Ports_btn0">
       <CONNECTIONS>
         <CONNECTION INSTANCE="Switchmod_0" PORT="i_signal"/>
@@ -27,6 +17,36 @@
     <PORT DIR="O" NAME="led2" SIGIS="undef" SIGNAME="Read_Sensorsmod_0_led2">
       <CONNECTIONS>
         <CONNECTION INSTANCE="Read_Sensorsmod_0" PORT="led2"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="scl_i" SIGIS="undef" SIGNAME="External_Ports_scl_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="I2Cmod_0" PORT="scl_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="scl_o" SIGIS="undef" SIGNAME="I2Cmod_0_scl_o">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="I2Cmod_0" PORT="scl_o"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="scl_t" SIGIS="undef" SIGNAME="I2Cmod_0_scl_t">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="I2Cmod_0" PORT="scl_t"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="sda_i" SIGIS="undef" SIGNAME="External_Ports_sda_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="I2Cmod_0" PORT="sda_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="sda_o" SIGIS="undef" SIGNAME="I2Cmod_0_sda_o">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="I2Cmod_0" PORT="sda_o"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="sda_t" SIGIS="undef" SIGNAME="I2Cmod_0_sda_t">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="I2Cmod_0" PORT="sda_t"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">
@@ -56,16 +76,6 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="IO" NAME="SCL" SIGIS="undef" SIGNAME="External_Ports_SCL">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="SCL"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="IO" NAME="SDA" SIGIS="undef" SIGNAME="External_Ports_SDA">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="SDA"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" NAME="ack_error" SIGIS="undef"/>
         <PORT DIR="I" LEFT="6" NAME="addr" RIGHT="0" SIGIS="undef" SIGNAME="Read_Sensorsmod_0_o_i2c_address">
           <CONNECTIONS>
@@ -100,6 +110,36 @@
         <PORT DIR="I" NAME="rw" SIGIS="undef" SIGNAME="Read_Sensorsmod_0_o_i2c_rw">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Read_Sensorsmod_0" PORT="o_i2c_rw"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="scl_i" SIGIS="undef" SIGNAME="External_Ports_scl_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="scl_i"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="scl_o" SIGIS="undef" SIGNAME="I2Cmod_0_scl_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="scl_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="scl_t" SIGIS="undef" SIGNAME="I2Cmod_0_scl_t">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="scl_t"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sda_i" SIGIS="undef" SIGNAME="External_Ports_sda_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sda_i"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="sda_o" SIGIS="undef" SIGNAME="I2Cmod_0_sda_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sda_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="sda_t" SIGIS="undef" SIGNAME="I2Cmod_0_sda_t">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sda_t"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">

@@ -1,13 +1,14 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x775134CE775134CE",
+      "boundary_crc": "0xAD216838AD216838",
       "device": "xc7a35tcpg236-1",
       "gen_directory": "../../../../I2C_Test.gen/sources_1/bd/I2C_Test",
       "name": "I2C_Test",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2024.2"
+      "tool_version": "2024.2",
+      "validated": "true"
     },
     "design_tree": {
       "I2Cmod_0": "",
@@ -19,12 +20,6 @@
       "sysclk": {
         "direction": "I"
       },
-      "SDA": {
-        "direction": "IO"
-      },
-      "SCL": {
-        "direction": "IO"
-      },
       "uart_rxd_out": {
         "direction": "O"
       },
@@ -35,6 +30,24 @@
         "direction": "O"
       },
       "led2": {
+        "direction": "O"
+      },
+      "sda_i": {
+        "direction": "I"
+      },
+      "scl_i": {
+        "direction": "I"
+      },
+      "sda_o": {
+        "direction": "O"
+      },
+      "sda_t": {
+        "direction": "O"
+      },
+      "scl_o": {
+        "direction": "O"
+      },
+      "scl_t": {
         "direction": "O"
       }
     },
@@ -51,11 +64,23 @@
           "boundary_crc": "0x0"
         },
         "ports": {
-          "SDA": {
-            "direction": "IO"
+          "sda_i": {
+            "direction": "I"
           },
-          "SCL": {
-            "direction": "IO"
+          "sda_o": {
+            "direction": "O"
+          },
+          "sda_t": {
+            "direction": "O"
+          },
+          "scl_i": {
+            "direction": "I"
+          },
+          "scl_o": {
+            "direction": "O"
+          },
+          "scl_t": {
+            "direction": "O"
           },
           "sysclk": {
             "direction": "I"
@@ -226,16 +251,28 @@
           "Read_Sensorsmod_0/i_data_read"
         ]
       },
-      "Net": {
+      "I2Cmod_0_scl_o": {
         "ports": [
-          "SDA",
-          "I2Cmod_0/SDA"
+          "I2Cmod_0/scl_o",
+          "scl_o"
         ]
       },
-      "Net1": {
+      "I2Cmod_0_scl_t": {
         "ports": [
-          "SCL",
-          "I2Cmod_0/SCL"
+          "I2Cmod_0/scl_t",
+          "scl_t"
+        ]
+      },
+      "I2Cmod_0_sda_o": {
+        "ports": [
+          "I2Cmod_0/sda_o",
+          "sda_o"
+        ]
+      },
+      "I2Cmod_0_sda_t": {
+        "ports": [
+          "I2Cmod_0/sda_t",
+          "sda_t"
         ]
       },
       "Read_Sensorsmod_0_led2": {
@@ -309,6 +346,18 @@
         "ports": [
           "btn0",
           "Switchmod_0/i_signal"
+        ]
+      },
+      "scl_i_0_1": {
+        "ports": [
+          "scl_i",
+          "I2Cmod_0/scl_i"
+        ]
+      },
+      "sda_i_0_1": {
+        "ports": [
+          "sda_i",
+          "I2Cmod_0/sda_i"
         ]
       },
       "sysclk_0_1": {

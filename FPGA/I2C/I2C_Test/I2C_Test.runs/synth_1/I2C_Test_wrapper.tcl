@@ -73,7 +73,7 @@ set_property ip_output_repo c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.gen/sources_1/bd/I2C_Test/hdl/I2C_Test_wrapper.vhd
+read_vhdl -library xil_defaultlib C:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.srcs/sources_1/imports/hdl/I2C_Test_wrapper.vhd
 add_files C:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.srcs/sources_1/bd/I2C_Test/I2C_Test.bd
 set_property used_in_implementation false [get_files -all c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.gen/sources_1/bd/I2C_Test/I2C_Test_ooc.xdc]
 

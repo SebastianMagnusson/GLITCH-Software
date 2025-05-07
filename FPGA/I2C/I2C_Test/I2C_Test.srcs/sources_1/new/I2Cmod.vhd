@@ -19,8 +19,14 @@ use IEEE.NUMERIC_STD.ALL;
 entity I2Cmod is  
   generic(Sys_Clockfrequency : integer := 12*1000000; -- Input clock speed from user logic in Hz
           Bus_Clockfrequency : integer := 400000);    -- Speed the i2c bus (scl) will run at in Hz
-  Port(SDA       : inout std_logic;                   -- Serial data output of i2c bus
-       SCL       : inout std_logic;                   -- Serial clock output of i2c bus
+  Port(--SDA       : inout std_logic;                   -- Serial data output of i2c bus (old)
+       --SCL       : inout std_logic;                   -- Serial clock output of i2c bus (old)
+       sda_i : in  std_logic; -- New signals for using the IOBUF
+       sda_o : out std_logic;
+       sda_t : out std_logic;
+       scl_i : in  std_logic;
+       scl_o : out std_logic;
+       scl_t : out std_logic;
        sysclk    : in std_logic;                      -- System clock
        reset_n   : in std_logic;                      -- Active low reset
        ena       : in std_logic;                      -- Latch in command
@@ -79,7 +85,7 @@ begin
           data_clk <= '1';
         when 2*divider to 3*divider-1 =>    -- Third 1/4 cycle of clocking
           scl_clk <= '1';                   -- Release scl
-          if(SCL = '0') then                -- Detect if slave is stretching clock
+          if(scl_i = '0') then                -- Detect if slave is stretching clock
             stretch <= '1';
           else
             stretch <= '0';
@@ -216,15 +222,15 @@ begin
             end if;
           
           when SLV_ACK1 =>                              -- Receiving slave acknowledge (command)
-            if(SDA /= '0' or ack_error_int = '1') then  -- No-acknowledge or previous no-acknowledge
+            if(sda_i /= '0' or ack_error_int = '1') then  -- No-acknowledge or previous no-acknowledge
               ack_error_int <= '1';                     -- Set error output if no-acknowledge
             end if;
             
           when READ =>                -- Receiving slave data
-            data_rx(bit_cnt) <= SDA;  -- Receive current slave data bit
+            data_rx(bit_cnt) <= sda_i;  -- Receive current slave data bit
             
           when SLV_ACK2 =>                             -- Receiving slave acknowledge (write)
-            if(SDA /= '0' or ack_error_int = '1') then -- No-acknowledge or previous no-acknowledge
+            if(sda_i /= '0' or ack_error_int = '1') then -- No-acknowledge or previous no-acknowledge
               ack_error_int <= '1';                    -- Set error output if no-acknowledge
             end if;                                
             
@@ -244,9 +250,15 @@ begin
                  not data_clk_prev when STOP,    -- Generate stop condition
                  sda_int           when OTHERS;  -- Set to internal sda signal
                  
-  -- Set SCL and SDA outputs
-  SCL <= '0' when (scl_ena = '1' and scl_clk = '0') else 'Z';
-  SDA <= '0' when (sda_ena_n = '0')                 else 'Z';
+  -- Set SCL and SDA outputs (OLD)
+  --SCL <= '0' when (scl_ena = '1' and scl_clk = '0') else 'Z';
+  --SDA <= '0' when (sda_ena_n = '0')                 else 'Z';
+  
+  -- Set SCL and SDA outputs (NEW V3.0)
+  scl_o <= '0';                                                 -- Drives SCL line low
+  scl_t <= '0' when (scl_ena = '1' and scl_clk = '0') else '1'; -- Enables high impedence/pull down mode
+  sda_o <= '0';                                                 -- Drives SDA line low                  
+  sda_t <= '0' when (sda_ena_n = '0')                 else '1'; -- Enables high impedence/pull down mode
   
   -- ack_error out
   ack_error <= ack_error_int;

@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
---Date        : Tue Apr 29 11:25:32 2025
+--Date        : Wed May  7 07:59:56 2025
 --Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 --Command     : generate_target I2C_Test.bd
 --Design      : I2C_Test
@@ -14,11 +14,15 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity I2C_Test is
   port (
-    SCL : inout STD_LOGIC;
-    SDA : inout STD_LOGIC;
     btn0 : in STD_LOGIC;
     led1 : out STD_LOGIC;
     led2 : out STD_LOGIC;
+    scl_i : in STD_LOGIC;
+    scl_o : out STD_LOGIC;
+    scl_t : out STD_LOGIC;
+    sda_i : in STD_LOGIC;
+    sda_o : out STD_LOGIC;
+    sda_t : out STD_LOGIC;
     sysclk : in STD_LOGIC;
     uart_rxd_out : out STD_LOGIC
   );
@@ -31,8 +35,12 @@ end I2C_Test;
 architecture STRUCTURE of I2C_Test is
   component I2C_Test_I2Cmod_0_0 is
   port (
-    SDA : inout STD_LOGIC;
-    SCL : inout STD_LOGIC;
+    sda_i : in STD_LOGIC;
+    sda_o : out STD_LOGIC;
+    sda_t : out STD_LOGIC;
+    scl_i : in STD_LOGIC;
+    scl_o : out STD_LOGIC;
+    scl_t : out STD_LOGIC;
     sysclk : in STD_LOGIC;
     reset_n : in STD_LOGIC;
     ena : in STD_LOGIC;
@@ -93,8 +101,6 @@ architecture STRUCTURE of I2C_Test is
 begin
 I2Cmod_0: component I2C_Test_I2Cmod_0_0
      port map (
-      SCL => SCL,
-      SDA => SDA,
       ack_error => NLW_I2Cmod_0_ack_error_UNCONNECTED,
       addr(6 downto 0) => Read_Sensorsmod_0_o_i2c_address(6 downto 0),
       busy => I2Cmod_0_busy,
@@ -103,6 +109,12 @@ I2Cmod_0: component I2C_Test_I2Cmod_0_0
       ena => Read_Sensorsmod_0_o_i2c_ena,
       reset_n => Switchmod_0_o_signal,
       rw => Read_Sensorsmod_0_o_i2c_rw,
+      scl_i => scl_i,
+      scl_o => scl_o,
+      scl_t => scl_t,
+      sda_i => sda_i,
+      sda_o => sda_o,
+      sda_t => sda_t,
       sysclk => sysclk
     );
 Read_Sensorsmod_0: component I2C_Test_Read_Sensorsmod_0_0

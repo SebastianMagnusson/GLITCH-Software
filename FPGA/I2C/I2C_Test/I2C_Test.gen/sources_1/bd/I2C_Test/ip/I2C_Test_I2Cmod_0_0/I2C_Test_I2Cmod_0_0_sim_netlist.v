@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Tue Apr 29 11:26:46 2025
+// Date        : Wed May  7 08:01:08 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.gen/sources_1/bd/I2C_Test/ip/I2C_Test_I2Cmod_0_0/I2C_Test_I2Cmod_0_0_sim_netlist.v
@@ -17,8 +17,12 @@
 (* x_core_info = "I2Cmod,Vivado 2024.2" *) 
 (* NotValidForBitStream *)
 module I2C_Test_I2Cmod_0_0
-   (SDA,
-    SCL,
+   (sda_i,
+    sda_o,
+    sda_t,
+    scl_i,
+    scl_o,
+    scl_t,
     sysclk,
     reset_n,
     ena,
@@ -28,8 +32,12 @@ module I2C_Test_I2Cmod_0_0
     busy,
     data_rd,
     ack_error);
-  inout SDA;
-  inout SCL;
+  input sda_i;
+  output sda_o;
+  output sda_t;
+  input scl_i;
+  output scl_o;
+  output scl_t;
   input sysclk;
   (* x_interface_info = "xilinx.com:signal:reset:1.0 reset_n RST" *) (* x_interface_mode = "slave reset_n" *) (* x_interface_parameter = "XIL_INTERFACENAME reset_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input reset_n;
   input ena;
@@ -40,8 +48,7 @@ module I2C_Test_I2Cmod_0_0
   output [7:0]data_rd;
   output ack_error;
 
-  wire SCL;
-  wire SDA;
+  wire \<const0> ;
   wire ack_error;
   wire [6:0]addr;
   wire busy;
@@ -50,43 +57,57 @@ module I2C_Test_I2Cmod_0_0
   wire ena;
   wire reset_n;
   wire rw;
+  wire scl_i;
+  wire scl_t;
+  wire sda_i;
+  wire sda_t;
   wire sysclk;
 
+  assign scl_o = \<const0> ;
+  assign sda_o = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
   I2C_Test_I2Cmod_0_0_I2Cmod U0
        (.D({addr,rw}),
-        .SCL(SCL),
-        .SDA(SDA),
         .ack_error(ack_error),
         .busy(busy),
         .data_rd(data_rd),
         .data_wr(data_wr),
         .ena(ena),
         .reset_n(reset_n),
+        .scl_i(scl_i),
+        .scl_t(scl_t),
+        .sda_i(sda_i),
+        .sda_t(sda_t),
         .sysclk(sysclk));
 endmodule
 
 (* ORIG_REF_NAME = "I2Cmod" *) 
 module I2C_Test_I2Cmod_0_0_I2Cmod
    (data_rd,
+    scl_t,
     ack_error,
+    sda_t,
     busy,
-    SCL,
-    SDA,
     ena,
     reset_n,
     sysclk,
     D,
-    data_wr);
+    data_wr,
+    sda_i,
+    scl_i);
   output [7:0]data_rd;
+  output scl_t;
   output ack_error;
+  output sda_t;
   output busy;
-  inout SCL;
-  inout SDA;
   input ena;
   input reset_n;
   input sysclk;
   input [7:0]D;
   input [7:0]data_wr;
+  input sda_i;
+  input scl_i;
 
   wire [7:0]D;
   wire \FSM_onehot_state[0]_i_1_n_0 ;
@@ -113,10 +134,6 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   wire \FSM_onehot_state_reg_n_0_[6] ;
   wire \FSM_onehot_state_reg_n_0_[7] ;
   wire \FSM_onehot_state_reg_n_0_[8] ;
-  wire SCL;
-  wire SCL_reg0;
-  wire SDA;
-  wire SDA_INST_0_i_1_n_0;
   wire ack_error;
   wire ack_error_int_i_1_n_0;
   wire ack_error_int_i_2_n_0;
@@ -166,6 +183,9 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   wire scl_clk_i_1_n_0;
   wire scl_ena_i_1_n_0;
   wire scl_ena_reg_n_0;
+  wire scl_i;
+  wire scl_t;
+  wire sda_i;
   wire sda_int_i_11_n_0;
   wire sda_int_i_12_n_0;
   wire sda_int_i_13_n_0;
@@ -188,6 +208,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   wire sda_int_reg_i_10_n_0;
   wire sda_int_reg_i_7_n_0;
   wire sda_int_reg_n_0;
+  wire sda_t;
   wire stretch__0;
   wire stretch_i_1_n_0;
   wire stretch_n_0;
@@ -200,7 +221,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I1(ena),
         .I2(\FSM_onehot_state_reg_n_0_[0] ),
         .O(\FSM_onehot_state[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'hFE00AA00)) 
     \FSM_onehot_state[1]_i_1 
@@ -213,10 +234,10 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFF6FF6)) 
     \FSM_onehot_state[1]_i_2 
-       (.I0(addr_rw[6]),
-        .I1(D[6]),
-        .I2(addr_rw[7]),
-        .I3(D[7]),
+       (.I0(addr_rw[7]),
+        .I1(D[7]),
+        .I2(addr_rw[6]),
+        .I3(D[6]),
         .I4(\FSM_onehot_state[1]_i_3_n_0 ),
         .I5(\FSM_onehot_state[1]_i_4_n_0 ),
         .O(\FSM_onehot_state[1]_i_2_n_0 ));
@@ -240,7 +261,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I4(addr_rw[5]),
         .I5(D[5]),
         .O(\FSM_onehot_state[1]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'hFFFEAAAA)) 
     \FSM_onehot_state[2]_i_1 
@@ -250,7 +271,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I3(bit_cnt[0]),
         .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .O(\FSM_onehot_state[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'h0002)) 
     \FSM_onehot_state[3]_i_1 
@@ -260,23 +281,23 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I3(bit_cnt[2]),
         .O(\FSM_onehot_state[3]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hF444F444FFFFF444)) 
+    .INIT(64'hFFFF44F444F444F4)) 
     \FSM_onehot_state[4]_i_1 
        (.I0(\FSM_onehot_state[4]_i_2_n_0 ),
         .I1(\FSM_onehot_state_reg_n_0_[5] ),
-        .I2(\FSM_onehot_state_reg_n_0_[4] ),
-        .I3(\FSM_onehot_state[6]_i_3_n_0 ),
-        .I4(\FSM_onehot_state_reg_n_0_[3] ),
-        .I5(addr_rw[0]),
+        .I2(\FSM_onehot_state_reg_n_0_[3] ),
+        .I3(addr_rw[0]),
+        .I4(\FSM_onehot_state_reg_n_0_[4] ),
+        .I5(\FSM_onehot_state[6]_i_3_n_0 ),
         .O(\FSM_onehot_state[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'hB)) 
     \FSM_onehot_state[4]_i_2 
        (.I0(\FSM_onehot_state[1]_i_2_n_0 ),
         .I1(ena),
         .O(\FSM_onehot_state[4]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT4 #(
     .INIT(16'h0002)) 
     \FSM_onehot_state[5]_i_1 
@@ -301,7 +322,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
        (.I0(\FSM_onehot_state[1]_i_2_n_0 ),
         .I1(\FSM_onehot_state_reg_n_0_[7] ),
         .O(\FSM_onehot_state[6]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hFE)) 
     \FSM_onehot_state[6]_i_3 
@@ -309,7 +330,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I1(bit_cnt[1]),
         .I2(bit_cnt[0]),
         .O(\FSM_onehot_state[6]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
     .INIT(16'h0002)) 
     \FSM_onehot_state[7]_i_1 
@@ -324,7 +345,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
        (.I0(data_clk__0),
         .I1(data_clk_prev),
         .O(busy1));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'h54)) 
     \FSM_onehot_state[8]_i_2 
@@ -414,41 +435,6 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .D(\FSM_onehot_state[8]_i_2_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[8] ));
   LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
-    SCL_INST_0
-       (.I0(1'b0),
-        .I1(SCL_reg0),
-        .I2(1'b0),
-        .I3(1'b0),
-        .I4(1'b0),
-        .I5(1'b0),
-        .O(SCL));
-  LUT2 #(
-    .INIT(4'h2)) 
-    SCL_INST_0_i_1
-       (.I0(scl_ena_reg_n_0),
-        .I1(scl_clk),
-        .O(SCL_reg0));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'hBDB80000)) 
-    SDA_INST_0
-       (.I0(\FSM_onehot_state_reg_n_0_[1] ),
-        .I1(data_clk_prev),
-        .I2(\FSM_onehot_state_reg_n_0_[8] ),
-        .I3(sda_int_reg_n_0),
-        .I4(SDA_INST_0_i_1_n_0),
-        .O(SDA));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT4 #(
-    .INIT(16'h03D1)) 
-    SDA_INST_0_i_1
-       (.I0(sda_int_reg_n_0),
-        .I1(\FSM_onehot_state_reg_n_0_[8] ),
-        .I2(data_clk_prev),
-        .I3(\FSM_onehot_state_reg_n_0_[1] ),
-        .O(SDA_INST_0_i_1_n_0));
-  LUT6 #(
     .INIT(64'hFFFFFBFF40404040)) 
     ack_error_int_i_1
        (.I0(data_clk__0),
@@ -463,7 +449,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
     ack_error_int_i_2
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(\FSM_onehot_state_reg_n_0_[5] ),
-        .I2(SDA),
+        .I2(sda_i),
         .I3(ack_error),
         .O(ack_error_int_i_2_n_0));
   FDCE ack_error_int_reg
@@ -560,7 +546,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I4(\FSM_onehot_state_reg_n_0_[6] ),
         .I5(bit_cnt[2]),
         .O(\bit_cnt[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'h56)) 
     \bit_cnt[2]_i_2 
@@ -607,7 +593,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
     busy_i_2
        (.I0(reset_n),
         .O(busy_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     busy_i_3
@@ -620,20 +606,20 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
     .INIT(64'hAAAAAAA8AAAAAAAA)) 
     busy_i_4
        (.I0(busy1),
-        .I1(\FSM_onehot_state_reg_n_0_[8] ),
+        .I1(busy_i_5_n_0),
         .I2(\FSM_onehot_state_reg_n_0_[0] ),
-        .I3(busy_i_5_n_0),
-        .I4(\FSM_onehot_state_reg_n_0_[6] ),
+        .I3(\FSM_onehot_state_reg_n_0_[6] ),
+        .I4(\FSM_onehot_state_reg_n_0_[8] ),
         .I5(busy_i_6_n_0),
         .O(busy4_out));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT2 #(
     .INIT(4'hE)) 
     busy_i_5
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
         .I1(\FSM_onehot_state_reg_n_0_[4] ),
         .O(busy_i_5_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
     .INIT(8'h1F)) 
     busy_i_6
@@ -754,7 +740,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I1(reset_n),
         .I2(data_clk__0),
         .O(data_clk_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     data_clk_prev_i_1
@@ -835,13 +821,13 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT5 #(
     .INIT(32'hFFEF0020)) 
     \data_rx[0]_i_1 
-       (.I0(SDA),
+       (.I0(sda_i),
         .I1(\FSM_onehot_state[6]_i_3_n_0 ),
         .I2(reset_n),
         .I3(\data_rx[0]_i_2_n_0 ),
         .I4(data_rx[0]),
         .O(\data_rx[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hDF)) 
     \data_rx[0]_i_2 
@@ -852,7 +838,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT5 #(
     .INIT(32'hFFBF0080)) 
     \data_rx[1]_i_1 
-       (.I0(SDA),
+       (.I0(sda_i),
         .I1(\data_rx[5]_i_2_n_0 ),
         .I2(reset_n),
         .I3(bit_cnt[2]),
@@ -861,7 +847,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT5 #(
     .INIT(32'hFFBF0080)) 
     \data_rx[2]_i_1 
-       (.I0(SDA),
+       (.I0(sda_i),
         .I1(\data_rx[6]_i_2_n_0 ),
         .I2(reset_n),
         .I3(bit_cnt[2]),
@@ -870,7 +856,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT5 #(
     .INIT(32'hFFBF0080)) 
     \data_rx[3]_i_1 
-       (.I0(SDA),
+       (.I0(sda_i),
         .I1(\data_rx[7]_i_2_n_0 ),
         .I2(reset_n),
         .I3(bit_cnt[2]),
@@ -879,14 +865,14 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT6 #(
     .INIT(64'hFFFFFFFB00000008)) 
     \data_rx[4]_i_1 
-       (.I0(SDA),
+       (.I0(sda_i),
         .I1(bit_cnt[2]),
         .I2(bit_cnt[0]),
         .I3(bit_cnt[1]),
         .I4(\data_rx[4]_i_2_n_0 ),
         .I5(data_rx[4]),
         .O(\data_rx[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
     .INIT(16'hDFFF)) 
     \data_rx[4]_i_2 
@@ -898,13 +884,13 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT5 #(
     .INIT(32'hBFFF8000)) 
     \data_rx[5]_i_1 
-       (.I0(SDA),
+       (.I0(sda_i),
         .I1(bit_cnt[2]),
         .I2(reset_n),
         .I3(\data_rx[5]_i_2_n_0 ),
         .I4(data_rx[5]),
         .O(\data_rx[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'h00400000)) 
     \data_rx[5]_i_2 
@@ -917,13 +903,13 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT5 #(
     .INIT(32'hBFFF8000)) 
     \data_rx[6]_i_1 
-       (.I0(SDA),
+       (.I0(sda_i),
         .I1(bit_cnt[2]),
         .I2(reset_n),
         .I3(\data_rx[6]_i_2_n_0 ),
         .I4(data_rx[6]),
         .O(\data_rx[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'h00400000)) 
     \data_rx[6]_i_2 
@@ -936,13 +922,13 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT5 #(
     .INIT(32'hBFFF8000)) 
     \data_rx[7]_i_1 
-       (.I0(SDA),
+       (.I0(sda_i),
         .I1(bit_cnt[2]),
         .I2(reset_n),
         .I3(\data_rx[7]_i_2_n_0 ),
         .I4(data_rx[7]),
         .O(\data_rx[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'h00800000)) 
     \data_rx[7]_i_2 
@@ -1081,6 +1067,12 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .CLR(busy_i_2_n_0),
         .D(scl_ena_i_1_n_0),
         .Q(scl_ena_reg_n_0));
+  LUT2 #(
+    .INIT(4'hB)) 
+    scl_t_INST_0
+       (.I0(scl_clk),
+        .I1(scl_ena_reg_n_0),
+        .O(scl_t));
   LUT6 #(
     .INIT(64'hFFFFFEFF0000FE00)) 
     sda_int_i_1
@@ -1101,7 +1093,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I4(bit_cnt[2]),
         .I5(sda_int_i_21_n_0),
         .O(sda_int_i_11_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
     .INIT(16'hFEFF)) 
     sda_int_i_12
@@ -1133,42 +1125,42 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     sda_int_i_15
-       (.I0(addr_rw[3]),
-        .I1(addr_rw[2]),
-        .I2(bit_cnt[1]),
-        .I3(addr_rw[1]),
-        .I4(bit_cnt[0]),
-        .I5(addr_rw[0]),
-        .O(sda_int_i_15_n_0));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    sda_int_i_16
-       (.I0(addr_rw[7]),
-        .I1(addr_rw[6]),
-        .I2(bit_cnt[1]),
-        .I3(addr_rw[5]),
-        .I4(bit_cnt[0]),
-        .I5(addr_rw[4]),
-        .O(sda_int_i_16_n_0));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    sda_int_i_17
        (.I0(data_wr[3]),
         .I1(data_wr[2]),
         .I2(bit_cnt[1]),
         .I3(data_wr[1]),
         .I4(bit_cnt[0]),
         .I5(data_wr[0]),
-        .O(sda_int_i_17_n_0));
+        .O(sda_int_i_15_n_0));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    sda_int_i_18
+    sda_int_i_16
        (.I0(data_wr[7]),
         .I1(data_wr[6]),
         .I2(bit_cnt[1]),
         .I3(data_wr[5]),
         .I4(bit_cnt[0]),
         .I5(data_wr[4]),
+        .O(sda_int_i_16_n_0));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    sda_int_i_17
+       (.I0(addr_rw[3]),
+        .I1(addr_rw[2]),
+        .I2(bit_cnt[1]),
+        .I3(addr_rw[1]),
+        .I4(bit_cnt[0]),
+        .I5(addr_rw[0]),
+        .O(sda_int_i_17_n_0));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    sda_int_i_18
+       (.I0(addr_rw[7]),
+        .I1(addr_rw[6]),
+        .I2(bit_cnt[1]),
+        .I3(addr_rw[5]),
+        .I4(bit_cnt[0]),
+        .I5(addr_rw[4]),
         .O(sda_int_i_18_n_0));
   LUT6 #(
     .INIT(64'h000C4400CC0C4400)) 
@@ -1187,10 +1179,10 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I1(\FSM_onehot_state[1]_i_2_n_0 ),
         .I2(ena),
         .I3(sda_int_i_6_n_0),
-        .I4(sda_int_reg_i_7_n_0),
-        .I5(\FSM_onehot_state_reg_n_0_[1] ),
+        .I4(\FSM_onehot_state_reg_n_0_[5] ),
+        .I5(sda_int_reg_i_7_n_0),
         .O(sda_int_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h1)) 
     sda_int_i_20
@@ -1214,8 +1206,8 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I1(\bit_cnt[2]_i_2_n_0 ),
         .I2(sda_int_i_8_n_0),
         .I3(sda_int_i_9_n_0),
-        .I4(sda_int_reg_i_10_n_0),
-        .I5(\FSM_onehot_state_reg_n_0_[5] ),
+        .I4(\FSM_onehot_state_reg_n_0_[1] ),
+        .I5(sda_int_reg_i_10_n_0),
         .O(sda_int_i_3_n_0));
   LUT6 #(
     .INIT(64'hFEEEFFFFFEEEFEEE)) 
@@ -1283,6 +1275,14 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
         .I1(sda_int_i_16_n_0),
         .O(sda_int_reg_i_7_n_0),
         .S(bit_cnt[2]));
+  LUT4 #(
+    .INIT(16'hFC2E)) 
+    sda_t_INST_0
+       (.I0(sda_int_reg_n_0),
+        .I1(\FSM_onehot_state_reg_n_0_[8] ),
+        .I2(data_clk_prev),
+        .I3(\FSM_onehot_state_reg_n_0_[1] ),
+        .O(sda_t));
   LUT6 #(
     .INIT(64'h00DC02000000FF00)) 
     stretch
@@ -1296,7 +1296,7 @@ module I2C_Test_I2Cmod_0_0_I2Cmod
   LUT3 #(
     .INIT(8'h74)) 
     stretch_i_1
-       (.I0(SCL),
+       (.I0(scl_i),
         .I1(stretch_n_0),
         .I2(stretch__0),
         .O(stretch_i_1_n_0));

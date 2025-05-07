@@ -42,8 +42,12 @@
     },
     "boundary": {
       "ports": {
-        "SDA": [ { "direction": "inout" } ],
-        "SCL": [ { "direction": "inout" } ],
+        "sda_i": [ { "direction": "in" } ],
+        "sda_o": [ { "direction": "out" } ],
+        "sda_t": [ { "direction": "out" } ],
+        "scl_i": [ { "direction": "in" } ],
+        "scl_o": [ { "direction": "out" } ],
+        "scl_t": [ { "direction": "out" } ],
         "sysclk": [ { "direction": "in" } ],
         "reset_n": [ { "direction": "in" } ],
         "ena": [ { "direction": "in" } ],
