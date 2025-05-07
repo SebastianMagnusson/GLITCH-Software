@@ -1,18 +1,20 @@
 #include <stdio.h>
+
+#ifndef esp32dev
+#include <stdint.h>
+#include <stdlib.h>
+#endif
+
+#ifdef esp32dev
 #include "esp_log.h"
+#endif
 
-typedef struct {
-	uint8_t* data; // Pointer to the Ethernet frame data
-    int priority; // Priority of the frame (0-3)
-    frame_t* next; // Pointer to the next frame in the buffer (for linked list implementation)
-} frame_t;
+typedef struct frame_tm frame_tm_t; // Forward declaration of frame_tm structure
 
-// The size needs to be looked over, maybe implement a dynamic array or linked list instead of a static array
-extern frame_t* buffer_tm[100]; // Declare tm buffer
-extern int size_tm; // Initialize size of tm buffer to 0
+void buffer_init(); // Function to initialize the buffer
 
-extern uint8_t* buffer_tc[100]; // Declare tc buffer
-extern int size_tc; // Initialize size of tc buffer to 0
+void buffer_add_tm(int priority, uint8_t* data); // Function to add tm frame to the buffer with priority
+void buffer_add_tc(uint8_t* data); // Function to add frame to the tc buffer
 
-void buffer_add_tm(int priority, uint8_t* data);
-uint8_t* buffer_retreive_tm();
+uint8_t* buffer_retreive_tm(); // Function to retreive tm frames from buffer
+uint8_t* buffer_retreive_tc(); // Function to retreive tc frames from buffer
