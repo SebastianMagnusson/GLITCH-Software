@@ -14,13 +14,9 @@
 
 #define MAX_BUFFER_SIZE 10 // Maximum size of the buffer (used for the circular array)
 
-struct frame_tm{
-	uint8_t* data; // Pointer to the Ethernet frame data
-    int priority; // Priority of the frame (0-3)
-    frame_tm_t* next; // Pointer to the next frame in the buffer (for linked list implementation)
-};
 
-frame_tm_t* head_tm; // Head of the linked list for tm buffer
+
+frame_tm* head_tm; // Head of the linked list for tm buffer
 
 // Circular array for tc buffer with max size of MAX_BUFFER_SIZE
 // Curcular means that the as long as there are not more than MAX_BUFFER_SIZE commands to be sent, the buffer will not overflow
@@ -53,7 +49,7 @@ void buffer_add_tm(int priority, uint8_t* data) {
         return; // Return if the priority is invalid
     }
 
-    frame_tm_t* new_frame = (frame_tm_t*)malloc(sizeof(frame_tm_t)); // Allocate memory for the new frame
+    frame_tm* new_frame = (frame_tm*)malloc(sizeof(frame_tm)); // Allocate memory for the new frame
     new_frame->data = data; // Set the data of the new frame
     new_frame->priority = priority; // Set the priority of the new frame
 
@@ -63,18 +59,20 @@ void buffer_add_tm(int priority, uint8_t* data) {
         return; // Return after adding the frame to the buffer
     }
 
-    frame_tm_t* current_frame = head_tm; // Start from the head of the linked list
+    frame_tm* current_frame = head_tm; // Start from the head of the linked list
+    frame_tm* previous_frame = NULL; // Pointer to the previous frame in the linked list
 
-    while (current_frame->next != NULL && current_frame->next->priority >= new_frame->priority) { // Traverse the linked list to find the correct position to insert the new frame based on priority
+    while (current_frame != NULL && current_frame->priority >= new_frame->priority) { // Traverse the linked list to find the correct position to insert the new frame based on priority
+        previous_frame = current_frame; // Store the previous frame
         current_frame = current_frame->next; // Move to the next frame in the linked list
     }
 
-    if (current_frame->next == NULL) {
-        new_frame->next = NULL; // Set the next pointer of the new frame to NULL
-        current_frame->next = new_frame; // Insert the new frame at the end of the linked list
+    if (previous_frame == NULL) { // Check if the new frame should be inserted at the head of the linked list
+        new_frame->next = head_tm; // Link the new frame to the current head of the linked list
+        head_tm = new_frame; // Set the new frame as the head of the linked list
     } else {
-        new_frame->next = current_frame->next; // Link the new frame to the next frame
-        current_frame->next = new_frame; // Link the current frame to the new frame
+        previous_frame->next = new_frame; // Link the previous frame to the new frame
+        new_frame->next = current_frame; // Link the new frame to the current frame
     }
 
 }
@@ -90,10 +88,34 @@ uint8_t* buffer_retreive_tm() {
         return (uint8_t*)NULL; // Return NULL if the buffer is empty
     }
 
-    frame_tm_t* frame = head_tm; // Get the first frame in the linked list
+    frame_tm* frame = head_tm; // Get the first frame in the linked list
     head_tm = head_tm->next; // Move the head pointer to the next frame in the linked list
     return frame->data; // Return the data of the first frame
 
+}
+
+frame_tm* peek_tm(int index) {
+    if (head_tm == NULL) { // Check if the linked list is empty
+        #ifdef esp32dev
+        ESP_LOGE("Buffer", "Buffer is empty, no data to retrieve\n"); // Log error message
+        #endif
+        return NULL; // Return NULL if the buffer is empty
+    }
+
+    frame_tm* current_frame = head_tm; // Start from the head of the linked list
+
+    for (int i = 0; i < index && current_frame != NULL; i++) { // Traverse the linked list to find the frame at the specified index
+        current_frame = current_frame->next; // Move to the next frame in the linked list
+    }
+
+    if (current_frame == NULL) { // Check if the frame at the specified index exists
+        #ifdef esp32dev
+        ESP_LOGE("Buffer", "Frame at index %d does not exist\n", index); // Log error message
+        #endif
+        return NULL; // Return NULL if the frame at the specified index does not exist
+    }
+
+    return current_frame; // Return the pointer to the frame at the specified index
 }
 
 /// @brief Function to add command ready to be sent to FPGA
@@ -125,4 +147,22 @@ uint8_t* buffer_retreive_tc() {
     front_tc = (front_tc + 1) % MAX_BUFFER_SIZE; // Move the front pointer to the next data in the buffer
     size_tc--; // Decrement the size of the buffer
     return data; // Return the data of the first frame
+}
+
+uint8_t* peek_tc(int index) {
+    if (size_tc == 0) { // Check if the buffer is empty
+        #ifdef esp32dev
+        ESP_LOGE("Buffer", "Buffer is empty, no data to retrieve\n"); // Log error message
+        #endif
+        return (uint8_t*)NULL; // Return NULL if the buffer is empty
+    }
+
+    if (index < 0 || index >= size_tc) { // Check if the index is valid
+        #ifdef esp32dev
+        ESP_LOGE("Buffer", "Invalid index: %d\n", index); // Log error message
+        #endif
+        return (uint8_t*)NULL; // Return NULL if the index is invalid
+    }
+
+    return buffer_tc[(front_tc + index) % MAX_BUFFER_SIZE]; // Return the data at the specified index in the buffer
 }
