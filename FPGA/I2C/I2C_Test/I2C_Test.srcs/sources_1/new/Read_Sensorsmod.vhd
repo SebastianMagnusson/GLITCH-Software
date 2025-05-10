@@ -11,6 +11,9 @@
 -- V2.0
 -- Changed glitch in RTC state (wrong data)
 -- Changed START state to move to PREP-ALT and not ALT, also a glitch
+-- V3.0
+-- Fixed data taken from ALT and RTC. (There was a bug that made the last
+-- byte not being transmitted to the UART module)
 ----------------------------------------------------------------------------------
 
 library IEEE;
@@ -42,6 +45,9 @@ architecture rtl of Read_Sensorsmod is
   signal temp_data : std_logic_vector(15 downto 0);
   signal alt_data  : std_logic_vector(23 downto 0);
   signal rtc_data  : std_logic_vector(23 downto 0);
+  
+  signal TX_done_prev : std_logic;
+  
 
 begin
 
@@ -68,6 +74,7 @@ begin
     o_i2c_ena  <= '0';
     o_TX_DV    <= '0';
     busy_prev  <= '0';
+    TX_done_prev <= '1';
     state      <= START;
     led2 <= '0';
     
@@ -82,13 +89,13 @@ begin
           else                                -- 5 seconds has passed
             sec_cnt := 0;
             if(sensor_cnt = 0) then
-              --led2 <= '1';
+              led2  <= '1';
               state <= TEMP;
             elsif(sensor_cnt = 1) then
-              --led2    <= '0';
+              led2  <= '0';
               state <= PREP_ALT;
             else
-              --led2    <= '1';
+              led2  <= '1';
               state <= RTC;
             end if;
           end if;
@@ -107,11 +114,9 @@ begin
               o_i2c_address <= "1000000";                  -- Temp sensor i2c address
               o_i2c_rw       <= '0';                       -- Write mode
               o_i2c_data_wr <= "11100011";                 -- Set pointer to "Measure Temperature" register
-              led2 <= '1';
             when 1 =>                                    -- 1st command latched in, safe to issue command 2
               o_TX_DV  <= '0';                             -- Keep TX driver low
               o_i2c_rw <= '1';                             -- Read temperature (address still the same)
-              led2 <= '0';
             when 2 =>                                    -- 2nd command latched in, wait to receive 1st byte of data
               o_TX_DV <= '0';                              -- Keep TX driver low
               if(i_busy = '0') then                        -- First data byte is ready
@@ -186,7 +191,7 @@ begin
               o_TX_DV <= '0';                              -- Keep TX driver low
               o_i2c_ena     <= '1';                        -- Initiate transaction
               o_i2c_address <= "1110110";                  -- Altimeter sensor i2c address
-              o_i2c_rw       <= '1';                       -- Read mode
+              o_i2c_rw      <= '1';                        -- Read mode
             when 1 =>                                    -- 1st command latched in, safe to issue command 2
               o_TX_DV  <= '0';                             -- Keep TX driver low
               if(i_busy = '0') then                        -- 1st byte of data ready
@@ -223,11 +228,13 @@ begin
             else
               o_TX_DV <= '0';
             end if;
-          else                                    -- Sending third and final byte
-            if(i_TX_done = '1') then              -- Waits until previous transmission is done
-              o_TX_DV   <= '1';
+          else                                               -- Sending third and final byte
+            TX_done_prev <= i_TX_done;                       -- Makes sure previous message is sent
+            if(i_TX_done = '1' and TX_done_prev = '0') then  -- Waits for previous transmission to be done 
+              o_TX_DV   <= '1';                         
               o_TX_data <= alt_data(7 downto 0);
               
+              TX_done_prev <= '1';
               mess_cnt := 0;
               sensor_cnt := sensor_cnt + 1;       -- Next sensor will be RTC
               state     <= START;                 -- Moves to START
@@ -289,11 +296,13 @@ begin
             else
               o_TX_DV <= '0';
             end if;
-          else                                    -- Sending third and final byte
-            if(i_TX_done = '1') then              -- Waits until previous transmission is done
+          else                                               -- Sending third and final byte
+            TX_done_prev <= i_TX_done;                       -- Makes sure previous message is sent
+            if(i_TX_done = '1' and TX_done_prev = '0') then  -- Waits until previous transmission is done
               o_TX_DV   <= '1';
               o_TX_data <= rtc_data(7 downto 0);
               
+              TX_done_prev <= '1';
               mess_cnt := 0;
               sensor_cnt := 0;       -- Sensor count restarted, next will be temperature
               state     <= START;    -- Moves to START

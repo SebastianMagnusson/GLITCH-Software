@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1746598579">
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1746626110">
   <File Type="PA-TCL" Name="I2C_Test_wrapper.tcl"/>
   <File Type="REPORTS-TCL" Name="I2C_Test_wrapper_reports.tcl"/>
   <File Type="INIT-TIMING" Name="I2C_Test_wrapper_timing_summary_init.rpt"/>
@@ -170,6 +170,6 @@
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="I2C_Test_UART_TXmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="I2C_Test_Switchmod_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="I2C_Test_Read_Sensorsmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="I2C_Test_I2Cmod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="I2C_Test_Read_Sensorsmod_0_0"/>
 </GenRun>

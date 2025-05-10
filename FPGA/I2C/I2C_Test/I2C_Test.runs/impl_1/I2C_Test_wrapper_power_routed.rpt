@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date             : Wed May  7 08:17:19 2025
+| Date             : Wed May  7 15:56:12 2025
 | Host             : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command          : report_power -file I2C_Test_wrapper_power_routed.rpt -pb I2C_Test_wrapper_power_summary_routed.pb -rpx I2C_Test_wrapper_power_routed.rpx
 | Design           : I2C_Test_wrapper
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.072        |
+| Total On-Chip Power (W)  | 0.073        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 0.001        |
@@ -53,16 +53,16 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      491 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      216 |     20800 |            1.04 |
-|   Register     |    <0.001 |      212 |     41600 |            0.51 |
+| Slice Logic    |    <0.001 |      499 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      214 |     20800 |            1.03 |
+|   Register     |    <0.001 |      215 |     41600 |            0.52 |
 |   CARRY4       |    <0.001 |       12 |      8150 |            0.15 |
 |   F7/F8 Muxes  |    <0.001 |        1 |     32600 |           <0.01 |
 |   Others       |     0.000 |       10 |       --- |             --- |
-| Signals        |    <0.001 |      373 |       --- |             --- |
+| Signals        |    <0.001 |      378 |       --- |             --- |
 | I/O            |    <0.001 |        7 |       106 |            6.60 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.072 |          |           |                 |
+| Total          |     0.073 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 

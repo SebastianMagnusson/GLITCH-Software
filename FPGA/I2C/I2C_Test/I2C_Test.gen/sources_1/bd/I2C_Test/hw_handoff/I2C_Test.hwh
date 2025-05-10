@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed May  7 07:59:56 2025" VIVADOVERSION="2024.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed May  7 15:53:27 2025" VIVADOVERSION="2024.2">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a35t" NAME="I2C_Test" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -53,8 +53,8 @@
       <CONNECTIONS>
         <CONNECTION INSTANCE="UART_TXmod_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="Switchmod_0" PORT="sysclk"/>
-        <CONNECTION INSTANCE="Read_Sensorsmod_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="I2Cmod_0" PORT="sysclk"/>
+        <CONNECTION INSTANCE="Read_Sensorsmod_0" PORT="sysclk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="uart_rxd_out" SIGIS="undef" SIGNAME="UART_TXmod_0_o_TX_Serial">
@@ -240,8 +240,8 @@
         </PORT>
         <PORT DIR="O" NAME="o_signal" SIGIS="undef" SIGNAME="Switchmod_0_o_signal">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Read_Sensorsmod_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="I2Cmod_0" PORT="reset_n"/>
+            <CONNECTION INSTANCE="Read_Sensorsmod_0" PORT="reset_n"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">

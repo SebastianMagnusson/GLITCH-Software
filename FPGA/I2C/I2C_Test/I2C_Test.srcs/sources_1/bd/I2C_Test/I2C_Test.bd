@@ -326,8 +326,8 @@
       "Switchmod_0_o_signal": {
         "ports": [
           "Switchmod_0/o_signal",
-          "Read_Sensorsmod_0/reset_n",
-          "I2Cmod_0/reset_n"
+          "I2Cmod_0/reset_n",
+          "Read_Sensorsmod_0/reset_n"
         ]
       },
       "UART_TXmod_0_o_TX_Done": {
@@ -365,8 +365,8 @@
           "sysclk",
           "UART_TXmod_0/sysclk",
           "Switchmod_0/sysclk",
-          "Read_Sensorsmod_0/sysclk",
-          "I2Cmod_0/sysclk"
+          "I2Cmod_0/sysclk",
+          "Read_Sensorsmod_0/sysclk"
         ]
       }
     }
