@@ -53,6 +53,8 @@ void app_main(void) {
     gpio_init(LED_PIN); // Initialize GPIO for LED
     uart_init(UART_NUM, TX_PIN_0, RX_PIN_0); // Initialize UART
 
+    buffer_init(); // Initialize the buffer
+
     xTaskCreate(&uart_task, "UART_task", 2048, NULL, 10, NULL); // Create UART task
 
     
