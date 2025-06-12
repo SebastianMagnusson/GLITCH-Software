@@ -14,6 +14,10 @@
 -- V3.0
 -- Fixed data taken from ALT and RTC. (There was a bug that made the last
 -- byte not being transmitted to the UART module)
+-- V4.0
+-- Fixed a bug with reading data from altimeter sensor by adding the
+-- pressure conversion, before this was done wrong.
+-- Added ALT_READ state
 ----------------------------------------------------------------------------------
 
 library IEEE;
@@ -38,7 +42,7 @@ end Read_Sensorsmod;
 
 architecture rtl of Read_Sensorsmod is
 
-  type SM_Main is (START,TEMP,SEND_TEMP,PREP_ALT,ALT,SEND_ALT,RTC,SEND_RTC);
+  type SM_Main is (START,TEMP,SEND_TEMP,PREP_ALT,ALT_READ,ALT,SEND_ALT,RTC,SEND_RTC);
   signal state : SM_Main;
   
   signal busy_prev : std_logic;
@@ -163,7 +167,7 @@ begin
               o_i2c_ena     <= '1';                        -- Initiate transaction
               o_i2c_address <= "1110110";                  -- Altitude sensor i2c address
               o_i2c_rw       <= '0';                       -- Write mode
-              o_i2c_data_wr <= "00000000";                 -- Command to start pressure conversion
+              o_i2c_data_wr <= "01001000";                 -- Command to start pressure conversion
             when 1 =>                                    -- 1st busy high: command 1 latched
               o_i2c_ena <= '0';                            -- Deassert enable to stop transaction
               if(conv_cnt < Clockfrequency/100) then       -- Wait 10ms before moving on, so pressure measurment is ready
@@ -172,9 +176,33 @@ begin
                 conv_cnt := 0;
                 if(i_busy = '0') then                    -- Pressure convertion complete
                   busy_cnt := 0;
-                  state <= ALT;
+                  state <= ALT_READ;
                 end if;
               end if;
+            when OTHERS =>
+              NULL;
+          end case;
+          
+        -- Sends command to read pressure
+        when ALT_READ =>
+          busy_prev <= i_busy;
+          if(busy_prev = '0' and i_busy = '1') then -- Busy just went high
+            busy_cnt := busy_cnt + 1;
+          end if;
+          -- Case for which command we are currently on according to i2c protocol
+          case busy_cnt is
+            when 0 =>                                    -- No command latched in i2c master
+              o_TX_DV <= '0';                              -- Keep TX driver low
+              o_i2c_ena     <= '1';                        -- Initiate transaction
+              o_i2c_address <= "1110110";                  -- Altitude sensor i2c address
+              o_i2c_rw       <= '0';                       -- Write mode
+              o_i2c_data_wr <= "00000000";                 -- Command to read pressure data
+            when 1 =>                                    -- 1st busy high: command 1 latched
+              o_i2c_ena <= '0';                            -- Deassert enable to stop transaction
+                if(i_busy = '0') then                      -- Read pressure command complete
+                  busy_cnt := 0;
+                  state <= ALT;
+                end if;
             when OTHERS =>
               NULL;
           end case;

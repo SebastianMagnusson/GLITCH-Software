@@ -56,8 +56,6 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "I2C_Test_Read_Sensorsmod_0_0_synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 2
-set_param xicom.use_bs_reader 1
 set_param project.vivado.isBlockSynthRun true
 OPTRACE "Creating in-memory project" START { }
 set_param ips.modRefOverrideMrefDirPath c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.gen/sources_1/bd/mref
@@ -77,7 +75,7 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib C:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.srcs/sources_1/new/Read_Sensorsmod.vhd
-read_ip -quiet c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.srcs/sources_1/bd/I2C_Test/ip/I2C_Test_Read_Sensorsmod_0_0/I2C_Test_Read_Sensorsmod_0_0.xci
+read_ip -quiet C:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.srcs/sources_1/bd/I2C_Test/ip/I2C_Test_Read_Sensorsmod_0_0/I2C_Test_Read_Sensorsmod_0_0.xci
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
