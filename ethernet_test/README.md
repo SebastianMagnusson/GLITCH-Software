@@ -1,3 +1,9 @@
+## Useful links for ethernet part
+
+https://github.com/Zelmoghazy/esp32-ethernet-lan8720
+https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/network/esp_eth.html
+
+
 # _Sample project_
 
 (See the README.md file in the upper level 'examples' directory for more information about examples.)
