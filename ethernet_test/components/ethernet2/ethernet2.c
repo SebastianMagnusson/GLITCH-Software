@@ -6,7 +6,10 @@
 #include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "esp_netif.h"
+#include "esp_netif_types.h"
 #include "esp_eth.h"
+#include "esp_event.h"
+#include <string.h>
 
 #define CONFIG_ETH_MDC_GPIO 23
 #define CONFIG_ETH_MDIO_GPIO 18
@@ -16,9 +19,9 @@
 #define STATIC_IP 0 // Set to 1 if you want to use static IP, otherwise set to 0 for DHCP
 
 #if STATIC_IP
-    #define S_IP ""
-    #define GATEWAY ""
-    #define NETMASK ""
+    #define S_IP "192.168.1.5"
+    #define GATEWAY "192.168.1.1"
+    #define NETMASK "255.255.255.0"
 #endif
 
 static const char *TAG = "Ethernet";
@@ -127,9 +130,9 @@ void ethernet_setup(void){
         }
         esp_netif_ip_info_t info_t;
         memset(&info_t, 0, sizeof(esp_netif_ip_info_t));
-        ipaddr_aton((const char *)S_IP, &info_t.ip.addr);
-        ipaddr_aton((const char *)GATEWAY, &info_t.gw.addr);
-        ipaddr_aton((const char *)NETMASK, &info_t.netmask.addr);
+        esp_ip4addr_aton((const char *)S_IP, &info_t.ip.addr);
+        esp_ip4addr_aton((const char *)GATEWAY, &info_t.gw.addr);
+        esp_ip4addr_aton((const char *)NETMASK, &info_t.netmask.addr);
         if(esp_netif_set_ip_info(eth_netif, &info_t) != ESP_OK){
             ESP_LOGE(TAG, "Failed to set ip info");
         }
@@ -138,6 +141,8 @@ void ethernet_setup(void){
     ESP_ERROR_CHECK(esp_netif_attach(eth_netif, esp_eth_new_netif_glue(eth_handle))); // attach Ethernet driver to TCP/IP stack
     ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ESP_EVENT_ANY_ID, &eth_event_handler, NULL)); // register user defined Ethernet event handlers
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP, &got_ip_event_handler, NULL)); // register user defined IP event handlers
+
+    ESP_ERROR_CHECK(esp_netif_dhcpc_start(eth_netif)); // start DHCP client on Ethernet interface
     ESP_ERROR_CHECK(esp_eth_start(eth_handle)); // start Ethernet driver state machine
 
 }
@@ -163,9 +168,4 @@ esp_err_t eth_transmit(esp_eth_handle_t eth_handle, uint8_t *message, uint32_t l
     }
 
     return ret; // Return success if transmission is successful
-}
-
-esp_err_t eth_receive(esp_eth_handle_t eth_handle){
-
-
 }

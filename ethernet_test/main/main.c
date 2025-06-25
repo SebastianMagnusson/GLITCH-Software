@@ -75,13 +75,18 @@ static void got_ip_event_handler(void *arg, esp_event_base_t event_base,
 
 void app_main(void)
 {
+
+    ethernet_setup(); 
+    ESP_LOGI("main", "DONE");
+    
     // Initialize Ethernet driver
     /*Possible that we should change this to 1 if we use this part of the code. 
       If we use the on below this is not needed but other parts need to be changed.*/
-    uint8_t eth_port_cnt = 0;
+    /*
+      uint8_t eth_port_cnt = 0;
     esp_eth_handle_t *eth_handles;
-    ESP_ERROR_CHECK(example_eth_init(&eth_handles, &eth_port_cnt));
-
+    ESP_ERROR_CHECK(eth_init(&eth_handles, &eth_port_cnt));
+    */
     /*Alternative which may or may not work
     
     esp_eth_handle_t eth_handle;
@@ -90,20 +95,21 @@ void app_main(void)
     */
 
     // Initialize TCP/IP network interface aka the esp-netif (should be called only once in application)
-    ESP_ERROR_CHECK(esp_netif_init());
+    //ESP_ERROR_CHECK(esp_netif_init());
     // Create default event loop that running in background
-    ESP_ERROR_CHECK(esp_event_loop_create_default());
-
+    //ESP_ERROR_CHECK(esp_event_loop_create_default());
+    /*
     esp_netif_t *eth_netifs[eth_port_cnt];
     esp_eth_netif_glue_handle_t eth_netif_glues[eth_port_cnt];
-
+    */
     // Create instance of esp-netif for Ethernet
     // Use ESP_NETIF_DEFAULT_ETH when just one Ethernet interface is used and you don't need to modify
     // default esp-netif configuration parameters.
+    /*
     esp_netif_config_t cfg = ESP_NETIF_DEFAULT_ETH();
     eth_netifs[0] = esp_netif_new(&cfg);
     eth_netif_glues[0] = esp_eth_new_netif_glue(eth_handles[0]);
-
+    */
 
     /*This could be good if we need static IP which is probably true if I remember correctly.
     
@@ -120,20 +126,28 @@ void app_main(void)
         if(esp_netif_set_ip_info(eth_netif, &info_t) != ESP_OK){
             ESP_LOGE(TAG, "Failed to set ip info");
         }
-    #endif /* STATIC_IP */
+    #endif
+    */
 
     // Attach Ethernet driver to TCP/IP stack
-    ESP_ERROR_CHECK(esp_netif_attach(eth_netifs[0], eth_netif_glues[0]));
+    //ESP_ERROR_CHECK(esp_netif_attach(eth_netifs[0], eth_netif_glues[0]));
 
     
 
 
     // Register user defined event handlers
+    /*
     ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ESP_EVENT_ANY_ID, &eth_event_handler, NULL));
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP, &got_ip_event_handler, NULL));
-
+    */
     // Start Ethernet driver state machine
+    /*
     for (int i = 0; i < eth_port_cnt; i++) {
         ESP_ERROR_CHECK(esp_eth_start(eth_handles[i]));
     }
+    */
+
+    // wait 600 seconds for linkup
+    vTaskDelay(pdMS_TO_TICKS(600000));
+    
 }
