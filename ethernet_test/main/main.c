@@ -75,9 +75,10 @@ static void got_ip_event_handler(void *arg, esp_event_base_t event_base,
 
 void app_main(void)
 {
-
+    ESP_ERROR_CHECK(nvs_flash_init()); // Initialize NVS flash storage
     ethernet_setup(); 
-    ESP_LOGI("main", "DONE");
+
+    tcp_client();
     
     // Initialize Ethernet driver
     /*Possible that we should change this to 1 if we use this part of the code. 
@@ -131,9 +132,6 @@ void app_main(void)
 
     // Attach Ethernet driver to TCP/IP stack
     //ESP_ERROR_CHECK(esp_netif_attach(eth_netifs[0], eth_netif_glues[0]));
-
-    
-
 
     // Register user defined event handlers
     /*
