@@ -14,27 +14,30 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <errno.h>
-#include <netdb.h>            // struct addrinfo
+#include <netdb.h> 
 #include <arpa/inet.h>
 
-#define HOST_IP_ADDR "192.168.0.165" // Replace with your host IP address default is 192.168.0.165
-#define HOST_PORT 3333 // Replace with your host port number default is 3333 range 0 to 65535
+#define HOST_IP_ADDR "192.168.0.165"    // Replace with your host IP address default is 192.168.0.165
+#define HOST_PORT 3333                  // Replace with your host port number default is 3333 range 0 to 65535
 
 #define CONFIG_ETH_MDC_GPIO 23
 #define CONFIG_ETH_MDIO_GPIO 18
 #define CONFIG_ETH_PHY_RST_GPIO 5
 #define CONFIG_ETH_PHY_ADDR 1
 
-static const char *payload = "Message from ESP32 "; // Placeholder for message to send
+#define CONNECTED_BIT            BIT0   // Bit to indicate connection status
+#define ETH_CONNECTION_TMO_MS   (10000) // Timeout for Ethernet connection in milliseconds
 
-#define STATIC_IP 0 // Set to 1 if you want to use static IP, otherwise set to 0 for DHCP
+#define USE_STATIC_IP 1 // Set to 1 if you want to use static IP, otherwise set to 0 for DHCP
 
-#if STATIC_IP
-    #define S_IP "192.168.1.5"
-    #define GATEWAY "192.168.1.1"
-    #define NETMASK "255.255.255.0"
+#if USE_STATIC_IP
+    #define STATIC_IP "192.168.1.5"
+    #define STATIC_GATEWAY "192.168.1.1"
+    #define STATIC_NETMASK "255.255.255.0"
 #endif
 
+static EventGroupHandle_t s_network_event_group;    // Event group to signal connection status
+static const char *payload = "Message from ESP32 "; // Placeholder for message to send
 static const char *TAG = "Ethernet";
 
 /** Event handler for Ethernet events */
@@ -79,6 +82,8 @@ static void got_ip_event_handler(void *arg, esp_event_base_t event_base,
     ESP_LOGI(TAG, "ETHMASK:" IPSTR, IP2STR(&ip_info->netmask));
     ESP_LOGI(TAG, "ETHGW:" IPSTR, IP2STR(&ip_info->gw));
     ESP_LOGI(TAG, "~~~~~~~~~~~");
+
+    xEventGroupSetBits(s_network_event_group, CONNECTED_BIT); // Set the CONNECTED_BIT in the event group to indicate that the Ethernet connection is established
 }
 
 static esp_eth_handle_t eth_init(esp_eth_mac_t **mac_out, esp_eth_phy_t **phy_out){
@@ -134,20 +139,30 @@ void ethernet_setup(void){
     esp_netif_config_t cfg = ESP_NETIF_DEFAULT_ETH(); // apply default network interface configuration for Ethernet
     esp_netif_t *eth_netif = esp_netif_new(&cfg); // create network interface for Ethernet driver
 
-    #if STATIC_IP
+    // Might have to change this into the event handler for the ethernet driver so that it sets it again if it is disconnected**
+
+    #if USE_STATIC_IP
         if (esp_netif_dhcpc_stop(eth_netif) != ESP_OK) {
             ESP_LOGE(TAG, "Failed to stop dhcp client");
             return;
         }
         esp_netif_ip_info_t info_t;
         memset(&info_t, 0, sizeof(esp_netif_ip_info_t));
-        esp_ip4addr_aton((const char *)S_IP, &info_t.ip.addr);
-        esp_ip4addr_aton((const char *)GATEWAY, &info_t.gw.addr);
-        esp_ip4addr_aton((const char *)NETMASK, &info_t.netmask.addr);
+        info_t.ip.addr = ipaddr_addr(STATIC_IP);
+        info_t.gw.addr = ipaddr_addr(STATIC_GATEWAY);
+        info_t.netmask.addr = ipaddr_addr(STATIC_NETMASK);
+        /*
+        esp_ip4addr_aton((const char *)STATIC_IP, &info_t.ip.addr);
+        esp_ip4addr_aton((const char *)STATIC_GATEWAY, &info_t.gw.addr);
+        esp_ip4addr_aton((const char *)STATIC_NETMASK, &info_t.netmask.addr);
+        */
         if(esp_netif_set_ip_info(eth_netif, &info_t) != ESP_OK){
             ESP_LOGE(TAG, "Failed to set ip info");
         }
-    #endif /* STATIC_IP */
+
+        ESP_LOGD(TAG, "Success to set static ip: %s, netmask: %s, gw: %s", STATIC_IP, STATIC_NETMASK, STATIC_GATEWAY);
+
+    #endif /* USE_STATIC_IP */
 
     ESP_ERROR_CHECK(esp_netif_attach(eth_netif, esp_eth_new_netif_glue(eth_handle))); // attach Ethernet driver to TCP/IP stack
     ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ESP_EVENT_ANY_ID, &eth_event_handler, NULL)); // register user defined Ethernet event handlers
@@ -155,6 +170,37 @@ void ethernet_setup(void){
 
     ESP_ERROR_CHECK(esp_netif_dhcpc_start(eth_netif)); // start DHCP client on Ethernet interface
     ESP_ERROR_CHECK(esp_eth_start(eth_handle)); // start Ethernet driver state machine
+
+    #if USE_STATIC_IP
+        /* Waiting until the connection is established (CONNECTED_BIT). The bits are set by eth_event_handler() (see above) */
+        EventBits_t bits = xEventGroupWaitBits(s_network_event_group,
+                CONNECTED_BIT,
+                pdFALSE,
+                pdFALSE,
+                pdMS_TO_TICKS(ETH_CONNECTION_TMO_MS));
+
+        /* xEventGroupWaitBits() returns the bits before the call returned, hence we can test which event actually happened. */
+        if (!(bits & CONNECTED_BIT)) {
+            ESP_LOGE(TAG, "Ethernet link not connected in defined timeout of %d msecs", ETH_CONNECTION_TMO_MS);
+        }
+    #else
+        // set up dhcp client
+        ESP_LOGI(TAG, "Waiting for Ethernet link to be established...");
+        s_network_event_group = xEventGroupCreate(); // Create an event group to signal connection
+        ESP_ERROR_CHECK(esp_netif_dhcpc_start(eth_netif)); // Start DHCP client on Ethernet interface
+        /* Waiting until the connection is established (CONNECTED_BIT). The bits are set by got_ip_event_handler() (see above) */
+        EventBits_t bits = xEventGroupWaitBits(s_network_event_group,
+                CONNECTED_BIT,
+                pdFALSE,
+                pdFALSE,
+                pdMS_TO_TICKS(ETH_CONNECTION_TMO_MS));
+        /* xEventGroupWaitBits() returns the bits before the call returned, hence we can test which event actually happened. */
+        if (!(bits & CONNECTED_BIT)) {
+            ESP_LOGE(TAG, "Ethernet link not connected in defined timeout of %d msecs", ETH_CONNECTION_TMO_MS); // Log error if connection is not established
+        } else {
+            ESP_LOGI(TAG, "Ethernet link established successfully"); // Log success if connection is established
+        }
+    #endif
 
 }
 

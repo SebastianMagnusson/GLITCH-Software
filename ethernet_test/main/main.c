@@ -16,13 +16,13 @@
 #include "esp_log.h"
 #include "ethernet.h"
 #include "sdkconfig.h"
+#include "nvs_flash.h"
 
 #include "buffer.h"
 #include "uart.h"
 #include "priority.h"
 
 #include "ethernet2.h"
-
 
 static const char *TAG = "eth_example";
 
