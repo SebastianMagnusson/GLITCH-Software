@@ -139,8 +139,12 @@ void ethernet_setup(void){
     esp_netif_config_t cfg = ESP_NETIF_DEFAULT_ETH(); // apply default network interface configuration for Ethernet
     esp_netif_t *eth_netif = esp_netif_new(&cfg); // create network interface for Ethernet driver
 
-    // Might have to change this into the event handler for the ethernet driver so that it sets it again if it is disconnected**
 
+    ESP_ERROR_CHECK(esp_netif_attach(eth_netif, esp_eth_new_netif_glue(eth_handle))); // attach Ethernet driver to TCP/IP stack
+    ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ESP_EVENT_ANY_ID, &eth_event_handler, NULL)); // register user defined Ethernet event handlers
+    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP, &got_ip_event_handler, NULL)); // register user defined IP event handlers
+
+    // Might have to change this into the event handler for the ethernet driver so that it sets it again if it is disconnected**    
     #if USE_STATIC_IP
         if (esp_netif_dhcpc_stop(eth_netif) != ESP_OK) {
             ESP_LOGE(TAG, "Failed to stop dhcp client");
@@ -160,18 +164,14 @@ void ethernet_setup(void){
             ESP_LOGE(TAG, "Failed to set ip info");
         }
 
-        ESP_LOGD(TAG, "Success to set static ip: %s, netmask: %s, gw: %s", STATIC_IP, STATIC_NETMASK, STATIC_GATEWAY);
+        ESP_LOGI(TAG, "Success to set static ip: %s, netmask: %s, gw: %s", STATIC_IP, STATIC_NETMASK, STATIC_GATEWAY);
 
     #endif /* USE_STATIC_IP */
 
-    ESP_ERROR_CHECK(esp_netif_attach(eth_netif, esp_eth_new_netif_glue(eth_handle))); // attach Ethernet driver to TCP/IP stack
-    ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ESP_EVENT_ANY_ID, &eth_event_handler, NULL)); // register user defined Ethernet event handlers
-    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP, &got_ip_event_handler, NULL)); // register user defined IP event handlers
-
-    ESP_ERROR_CHECK(esp_netif_dhcpc_start(eth_netif)); // start DHCP client on Ethernet interface
     ESP_ERROR_CHECK(esp_eth_start(eth_handle)); // start Ethernet driver state machine
 
     #if USE_STATIC_IP
+        s_network_event_group = xEventGroupCreate(); // Create an event group to signal connection
         /* Waiting until the connection is established (CONNECTED_BIT). The bits are set by eth_event_handler() (see above) */
         EventBits_t bits = xEventGroupWaitBits(s_network_event_group,
                 CONNECTED_BIT,
