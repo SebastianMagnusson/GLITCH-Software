@@ -17,10 +17,17 @@ void uart_task(void *pvParameters)
 
     while(1) {
         uint8_t* data = uart_receive(); // Receive data from UART
+        
         if (data == NULL) {
             ESP_LOGE(TAG, "Failed to receive data\n"); // Log error if data reception fails
             continue; // Continue to the next iteration of the loop
         }
+        
+        // Send to priority
+        // Send to buffer
+        
+        // Check if there is any tc in buffer
+        // If there is, send to FPGA 
 
         ESP_LOGI(TAG, "Data received: %s\n", data); // Log the received data
         free(data); // Free the allocated memory for the received data
