@@ -35,8 +35,8 @@
 #define USE_STATIC_IP 1 // Set to 1 if you want to use static IP, otherwise set to 0 for DHCP
 
 #if USE_STATIC_IP
-    #define STATIC_IP "192.168.1.5"
-    #define STATIC_GATEWAY "192.168.1.1"
+    #define STATIC_IP "192.168.4.2"
+    #define STATIC_GATEWAY "192.168.4.1"
     #define STATIC_NETMASK "255.255.255.0"
 #endif
 
@@ -159,11 +159,7 @@ void ethernet_setup(void){
         info_t.ip.addr = ipaddr_addr(STATIC_IP);
         info_t.gw.addr = ipaddr_addr(STATIC_GATEWAY);
         info_t.netmask.addr = ipaddr_addr(STATIC_NETMASK);
-        /*
-        esp_ip4addr_aton((const char *)STATIC_IP, &info_t.ip.addr);
-        esp_ip4addr_aton((const char *)STATIC_GATEWAY, &info_t.gw.addr);
-        esp_ip4addr_aton((const char *)STATIC_NETMASK, &info_t.netmask.addr);
-        */
+        
         if(esp_netif_set_ip_info(eth_netif, &info_t) != ESP_OK){
             ESP_LOGE(TAG, "Failed to set ip info");
         }
@@ -342,6 +338,7 @@ void tcp_server_task(void *pvParameters)
 
 }
 
+/*
 void tcp_client(void)
 {
     char rx_buffer[128];
@@ -399,3 +396,4 @@ void tcp_client(void)
         }
     }
 }
+*/

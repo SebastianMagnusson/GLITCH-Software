@@ -18,8 +18,6 @@ int front_tc; // Pointer to the front of the tc buffer
 int size_tc; // Size of the tc buffer
 
 
-/// @brief Function to initialize the buffer
-/// @note The function initializes the head of the linked list to NULL and allocates memory for the tc buffer
 void buffer_init() {
     head_tm = NULL; // Initialize the head of the linked list to NULL
     for (int i = 0; i < MAX_BUFFER_SIZE; i++) {
@@ -29,10 +27,6 @@ void buffer_init() {
     size_tc = 0; // Initialize the size of the tc buffer to 0     
 }
 
-/// @brief Function to add frame to the buffer with priority
-/// @param priority: Priority of the frame (0-3)
-/// @param data: Pointer to the frame to be added to the buffer
-/// @note The function uses the frame_tm_t structure to store the ethernet frame and its priority in a linked list
 void buffer_add_tm(int priority, uint8_t* data) {
     // Check if the priority is valid (0-3)
     if (priority < 0 || priority > 3) {
@@ -70,8 +64,6 @@ void buffer_add_tm(int priority, uint8_t* data) {
 
 }
 
-/// @brief Function to retreive frames from buffer
-/// @return Ethernet frame
 uint8_t* buffer_retreive_tm() {
 
     if (head_tm == NULL) { // Check if the linked list is empty
@@ -111,8 +103,7 @@ frame_tm* peek_tm(int index) {
     return current_frame; // Return the pointer to the frame at the specified index
 }
 
-/// @brief Function to add command ready to be sent to FPGA
-/// @param data: Pointer to the data to be added to the buffer
+
 void buffer_add_tc(uint8_t* data) {
 
     if (size_tc >= MAX_BUFFER_SIZE) { // Check if the buffer is full

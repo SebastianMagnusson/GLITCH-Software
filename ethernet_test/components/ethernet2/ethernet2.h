@@ -13,7 +13,7 @@ void ethernet_setup(void); // Function to setup Ethernet driver and network inte
 /// @note This function creates a TCP client that connects to a server specified by the HOST_IP
 /// @note This function is designed to run in a loop, attempting to connect to the server and send/receive data.
 /// @param  void
-void tcp_client(void); // Function to create a TCP client that connects to a server
+// void tcp_client(void); // Function to create a TCP client that connects to a server
 
 
 /// @brief set up the tcp server to listen for incoming connections

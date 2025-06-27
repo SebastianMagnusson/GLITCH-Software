@@ -1,7 +1,7 @@
 import socket
 
 # get the hostname
-host = "192.168.1.184"
+host = 'localhost' #"192.168.1.184"
 port = 5000  # initiate port no above 1024
 
 server_socket = socket.socket()  # get instance

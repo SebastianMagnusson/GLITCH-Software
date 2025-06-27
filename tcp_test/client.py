@@ -1,7 +1,9 @@
 import socket
 
-host = "192.168.1.184"  # as both code is running on same pc
-port = 5000  # socket server port number
+host = "192.168.4.2" # Have to change this to the server's IP address 
+# and make sure the pc uses the same netmask and gateway (see in ipconfig and change in network settings, 
+# should be undefined if not connected via ethernet except for the esp32)
+port = 8080  # socket server port number
 
 client_socket = socket.socket()  # instantiate
 client_socket.connect((host, port))  # connect to the server
