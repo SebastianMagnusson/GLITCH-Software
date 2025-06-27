@@ -41,7 +41,7 @@
 #endif
 
 static EventGroupHandle_t s_network_event_group;    // Event group to signal connection status
-static const char *payload = "Message from ESP32 "; // Placeholder for message to send
+// static const char *payload = "Message from ESP32 "; // Placeholder for message to send
 static const char *TAG = "Ethernet";
 
 /** Event handler for Ethernet events */

@@ -25,8 +25,6 @@
 
 #include "ethernet2.h"
 
-static const char *TAG = "eth_example";
-
 void app_main(void)
 {
     ESP_ERROR_CHECK(nvs_flash_init()); // Initialize NVS flash storage
@@ -36,7 +34,7 @@ void app_main(void)
 
     uart_init(); // Initialize UART communication
     buffer_init(); // Initialize buffer for internal use
-    
+
 
     // wait for 100 seconds (remove once the loop is implemented)
     vTaskDelay(pdMS_TO_TICKS(100000)); // Delay for 100 seconds to keep the task running
