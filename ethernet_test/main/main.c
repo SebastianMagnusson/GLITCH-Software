@@ -17,6 +17,7 @@
 #include "ethernet.h"
 #include "sdkconfig.h"
 #include "nvs_flash.h"
+#include <sys/socket.h>
 
 #include "buffer.h"
 #include "uart.h"
@@ -78,7 +79,9 @@ void app_main(void)
     ESP_ERROR_CHECK(nvs_flash_init()); // Initialize NVS flash storage
     ethernet_setup(); 
 
-    tcp_client();
+    xTaskCreate(tcp_server_task, "tcp_server", 4096, (void*)AF_INET, 5, NULL);
+
+    // tcp_client();
     
     // Initialize Ethernet driver
     /*Possible that we should change this to 1 if we use this part of the code. 

@@ -14,3 +14,9 @@ void ethernet_setup(void); // Function to setup Ethernet driver and network inte
 /// @note This function is designed to run in a loop, attempting to connect to the server and send/receive data.
 /// @param  void
 void tcp_client(void); // Function to create a TCP client that connects to a server
+
+
+/// @brief set up the tcp server to listen for incoming connections
+/// @note This function creates a TCP server that listens for incoming connections on a specified port.
+/// @param pvParameters ip address family (AF_INET for IPv4, AF_INET6 for IPv6)
+void tcp_server_task(void *pvParameters);
