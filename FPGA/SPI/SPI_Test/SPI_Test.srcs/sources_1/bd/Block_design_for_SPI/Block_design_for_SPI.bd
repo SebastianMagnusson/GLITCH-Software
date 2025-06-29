@@ -171,6 +171,9 @@
           "o_spi_data": {
             "direction": "O"
           },
+          "led0": {
+            "direction": "O"
+          },
           "o_TX_DV": {
             "direction": "O"
           },

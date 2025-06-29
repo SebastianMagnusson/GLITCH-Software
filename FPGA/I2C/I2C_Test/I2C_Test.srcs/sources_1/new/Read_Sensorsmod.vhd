@@ -18,6 +18,9 @@
 -- Fixed a bug with reading data from altimeter sensor by adding the
 -- pressure conversion, before this was done wrong.
 -- Added ALT_READ state
+-- V5.0 Will clarify if it works. Basically sending "write" in prep_alt 
+-- and read_alt was done incorrectly by turning off i2c_ena before the 
+-- entire command is sent.
 ----------------------------------------------------------------------------------
 
 library IEEE;
@@ -169,12 +172,13 @@ begin
               o_i2c_rw       <= '0';                       -- Write mode
               o_i2c_data_wr <= "01001000";                 -- Command to start pressure conversion
             when 1 =>                                    -- 1st busy high: command 1 latched
-              o_i2c_ena <= '0';                            -- Deassert enable to stop transaction
+              -- o_i2c_ena <= '0'; -- REMOVED                           
               if(conv_cnt < Clockfrequency/100) then       -- Wait 10ms before moving on, so pressure measurment is ready
                 conv_cnt := conv_cnt + 1;
               else
                 conv_cnt := 0;
                 if(i_busy = '0') then                    -- Pressure convertion complete
+                  o_i2c_ena <= '0'; -- NEW Deassert enable to stop transaction
                   busy_cnt := 0;
                   state <= ALT_READ;
                 end if;
@@ -198,8 +202,9 @@ begin
               o_i2c_rw       <= '0';                       -- Write mode
               o_i2c_data_wr <= "00000000";                 -- Command to read pressure data
             when 1 =>                                    -- 1st busy high: command 1 latched
-              o_i2c_ena <= '0';                            -- Deassert enable to stop transaction
+              -- o_i2c_ena <= '0'; REMOVED                          
                 if(i_busy = '0') then                      -- Read pressure command complete
+                  o_i2c_ena <= '0'; -- NEW Deassert enable to stop transaction
                   busy_cnt := 0;
                   state <= ALT;
                 end if;
