@@ -1,0 +1,5 @@
+bitstring
+pandas
+numpy
+pyqtgraph
+PyQt5
