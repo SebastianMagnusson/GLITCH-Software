@@ -7,7 +7,7 @@ class Logger:
     def __init__(self):
         now = datetime.now()
         timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
-        self.filename = "storage/logs/log_" + timestamp + ".csv"
+        self.filename = "ground_station/storage/logs/log_" + timestamp + ".csv"
         self.file_exists = os.path.isfile(self.filename)
         self.fieldnames = ["timestamp", "type", "seq_counter", "rtc", "data"]
 
