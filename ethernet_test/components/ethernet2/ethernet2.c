@@ -1,4 +1,7 @@
 #include "ethernet2.h"
+#include "buffer.h"
+#include "format.h"
+
 #include "esp_log.h"
 #include "esp_check.h"
 #include "esp_mac.h"
@@ -231,20 +234,40 @@ esp_err_t eth_transmit(esp_eth_handle_t eth_handle, uint8_t *message, uint32_t l
 static void do_retransmit(const int sock)
 {
     int len;
-    char rx_buffer[128];
+    uint8_t rx_buffer[128];
 
     do {
-        len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, 0);
+        
+        uint8_t *tc_data = buffer_retreive_tm(); // Retrieve data from the buffer
+        if (tc_data != NULL) {
+            int sent = send(sock, tc_data, strlen((const char *)tc_data), 0); // Send the retrieved data over TCP
+            if (sent < 0) {
+                ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
+                // Failed to retransmit, giving up
+            }
+        }
+
+        len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, MSG_DONTWAIT);
         if (len < 0) {
-            ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
+            // ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                // No data available, continue to the next iteration
+                len = 1;
+                vTaskDelay(pdMS_TO_TICKS(10)); // Delay to avoid busy-waiting
+            }
         } else if (len == 0) {
             ESP_LOGW(TAG, "Connection closed");
         } else {
+            
             rx_buffer[len] = 0; // Null-terminate whatever is received and treat it like a string
             ESP_LOGI(TAG, "Received %d bytes: %s", len, rx_buffer);
 
+            buffer_add_tc(rx_buffer); // Add the received data to the buffer
+
             // send() can return less bytes than supplied length.
             // Walk-around for robust implementation.
+            // Have to check bitrate on this as it might add a big padding overhead
+            /*
             int to_write = len;
             while (to_write > 0) {
                 int written = send(sock, rx_buffer + (len - to_write), to_write, 0);
@@ -254,7 +277,8 @@ static void do_retransmit(const int sock)
                     return;
                 }
                 to_write -= written;
-            }
+            } 
+            */
         }
     } while (len > 0);
 }
@@ -273,7 +297,7 @@ void tcp_server_task(void *pvParameters)
     struct sockaddr_in *dest_addr_ip4 = (struct sockaddr_in *)&dest_addr;
     dest_addr_ip4->sin_addr.s_addr = htonl(INADDR_ANY);
     dest_addr_ip4->sin_family = AF_INET;
-    dest_addr_ip4->sin_port = htons(HOST_PORT); // Port number can be changed as needed, not below 1024
+    dest_addr_ip4->sin_port = htons(HOST_PORT); 
     ip_protocol = IPPROTO_IP;
 
     int listen_sock = socket(addr_family, SOCK_STREAM, ip_protocol);
