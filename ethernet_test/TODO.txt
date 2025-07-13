@@ -1,0 +1,15 @@
+Add bit offset to pack_tm function in format.c (DONE-ish)
+    - In order to avoid padding in data string to accomodate the different packet types
+        - DONE , but need to add the actual offset into the pack_tm function. 
+
+Define a CRC system.
+
+Define if the RTC in ack packet shall be from the MCU(FPGA) or same as the tc received.
+    - For now it is from the tc received.
+
+Finish packet validity check.
+    - Dependent on the above defininition.
+
+Create testing setups.
+
+Write proper readme files with config instructions.

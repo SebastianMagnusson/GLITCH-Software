@@ -20,6 +20,8 @@
 #include <netdb.h> 
 #include <arpa/inet.h>
 
+
+
 #define HOST_IP_ADDR "192.168.0.165"    // Replace with your host IP address default is 192.168.0.165
 #define HOST_PORT 8080                  // Can be changed as needed, not below 1024
 
@@ -74,6 +76,7 @@ static void eth_event_handler(void *arg, esp_event_base_t event_base,
     default:
         break;
     }
+
 }
 
 /** Event handler for IP_EVENT_ETH_GOT_IP */

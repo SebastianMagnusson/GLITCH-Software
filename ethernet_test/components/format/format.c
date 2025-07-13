@@ -3,118 +3,191 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdbool.h>
 
-#define CHECK_BIT(var,pos) (((var)>>(pos)) & 1) // Macro to check if a bit is set in a variable
+#define CHECK_BIT(var,pos) (((var)>>(pos)) & 1)
 
 #define HOUSEKEEPING_PACKET_SIZE 32
 #define HOUSEKEEPING_DATA_SIZE 28
 
+#define BITFLIP_PACKET_SIZE 32
+#define BITFLIP_DATA_SIZE 28
+
+#define RADIATION_PACKET_SIZE 32
+#define RADIATION_DATA_SIZE 28
+
 #define ACKNOWLEDGEMENT_PACKET_SIZE 7
+#define ACKNOWLEDGEMENT_DATA_SIZE 3
 
-struct housekeeping_telemetry {
-    uint8_t id : 2;
-    uint16_t sequence_number : 16;
-    uint8_t data[28]; // Need to change this to the actual size of the data
-    uint16_t crc : 16;
-};
+int housekeeping_sequence_number = 0;
+int bitflip_sequence_number = 0;
+int radiation_sequence_number = 0;
+int acknowledgement_sequence_number = 0;
 
-struct bitflip_telemetry {
-    uint8_t id : 2;
-    uint16_t sequence_number : 16;
-    uint8_t data[28]; // Need to change this to the actual size of the data
-    uint16_t crc : 16;
-};
 
-struct radiation_telemetry {
-    uint8_t id : 2;
-    uint16_t sequence_number : 16;
-    uint8_t data[28]; // Need to change this to the actual size of the data
-    uint16_t crc : 16;
-};
-
-struct acknowledgement_telemetry {
-    uint8_t id : 2;
-    uint16_t sequence_number : 16;
-    uint8_t data : 2; // Need to change this to the actual size of the data
-    uint16_t crc : 16;
-};
-
-int housekeeping_sequence_number = 0; // Global variable to keep track of the sequence number for housekeeping telemetry
-int bitflip_sequence_number = 0; // Global variable to keep track of the sequence number for bitflip telemetry
-int radiation_sequence_number = 0; // Global variable to keep track of the sequence number for radiation telemetry
-int acknowledgement_sequence_number = 0; // Global variable to keep track of the sequence number for acknowledgement telemetry
-
-uint16_t calculate_crc(uint8_t* data, int length) {
-    if (data == NULL || length <= 0) {
-        return 0; // Return 0 if data is NULL or length is invalid
+// Function to pack data manually into packets
+uint8_t* pack_tm(uint8_t* data, int packet_size, int data_size){
+    if (data == NULL) {
+        return NULL;
+    }
+    uint8_t id = data[0] & 0b00000011; 
+    uint8_t* packet = (uint8_t*)calloc(packet_size, sizeof(uint8_t));
+    if (packet == NULL) {
+        return NULL;
+    }
+    uint16_t seq_num = 0;
+    int bit_offset = 0; // Bit offset to avoid padding at the end of data
+    switch (id) {
+        case 0:
+            seq_num = housekeeping_sequence_number;
+            bit_offset = 0;
+            break;
+        case 1:
+            seq_num = bitflip_sequence_number;
+            bit_offset = 0;
+            break;
+        case 2:
+            seq_num = radiation_sequence_number;
+            bit_offset = 0;
+            break;
+        default:
+            free(packet);
+            return NULL;
     }
 
+    packet[0] = id | ((seq_num << 2) & 0b11111100);
+    packet[1] = (seq_num >> 6) & 0b11111111;
+    packet[2] = (seq_num >> 14) & 0b00000011; 
+
+    // Include the first 6 bits of the data in third byte (The first two bits are id which shouldn't be in the data part)
+    packet[2] |= (data[0]) & 0b11111100;
+
+    // Don't have to change the bit offset as the 3 bytes are complete with alignment on the data bytes intact (2+16+6 = 3 bytes).
+    int array_offset = 3;    
+    for (int i = 1; i < data_size; i++) {
+        packet[i + array_offset] = data[i];
+    }
+
+    uint16_t crc = calculate_crc(packet, packet_size - 2);
+    // Place the crc into the packet with the correct bit offset (array_offset + data_size + 1 == packet_size)
+    packet[array_offset + data_size - 1] |= crc << bit_offset;
+    packet[array_offset + data_size] = crc >> (8 - bit_offset);
+    packet[array_offset + data_size + 1] = crc >> (16 - bit_offset); 
+
+    return packet;
+}
+
+bool is_valid_packet(uint32_t rtc, uint16_t crc, uint8_t* packet) {
+    if (packet == NULL || rtc == 0 || crc == 0) {
+        return false;
+    }
+    
+    uint16_t calculated_crc = calculate_crc(packet, ACKNOWLEDGEMENT_PACKET_SIZE - 2);
+    
+    // Check if the calculated CRC matches the provided CRC
+    if (calculated_crc != crc) {
+        return false;
+    }
+
+    // Additional checks to be added here, such as checking RTC validity
+
+    return true;
+}
+
+uint8_t* unpack_tc(uint8_t* packet) {
+    if (packet == NULL) {
+        return (uint8_t)NULL;
+    }
+
+    // 2 bytes
+    uint16_t seq_num = packet[0] << 8 | packet[1];
+
+    // 3 bits
+    uint8_t tc = packet[2] & 0b00000111; 
+
+    // 17 bits
+    uint32_t rtc = ((packet[2] & 0b11111000) << 12) | 
+           (packet[3] << 4) |
+           (packet[4] & 0b00001111);
+
+    uint16_t crc = (packet[4] & 0b11110000) << 12 | 
+                   (packet[5] << 4) | 
+                   (packet[6] & 0b00001111);
+                   
+    if (!is_valid_packet(rtc, crc, packet)) {
+        return NULL;
+    }
+
+    // If everything is fine, create a new data array to return and stuff the data & RTC into it
+    uint8_t* data = (uint8_t*)calloc(ACKNOWLEDGEMENT_DATA_SIZE, sizeof(uint8_t));
+    if (data == NULL) {
+        return NULL; // Allocation failed
+    }
+
+    data[0] = packet[2];
+    data[1] = packet[3];
+    data[2] = packet[4];
+
+    return data;
+}
+
+// Have to do this properly, calculate on bit level
+uint16_t calculate_crc(uint8_t* data, int length) {
+    if (data == NULL || length <= 0) {
+        return 0;
+    }
+
+    // This below is bullshit
     uint16_t crc = 0; // Initialize CRC to 0
     for (int i = 0; i < length; i++) {
         crc ^= CHECK_BIT(data[i/8],i%8); // XOR each bit of data with the current CRC value
     }
     
-    return crc; // Return the calculated CRC value
+    return crc;
 }
 
 
 uint8_t* format_tm(uint8_t* data) {
     if (data == NULL) {
-        return NULL; // Return NULL if data is NULL
+        return (uint8_t*)NULL;
     }
 
-    int telemetry_type = CHECK_BIT(data[0], 0) + CHECK_BIT(data[0], 1) * 2; // Get the telemetry type from the first byte
+    int telemetry_type = CHECK_BIT(data[0], 0) + CHECK_BIT(data[0], 1) * 2;
+
+    uint8_t* packet = NULL;
 
     if (telemetry_type == 0) {
-        struct housekeeping_telemetry* formatted_data = (struct housekeeping_telemetry*)malloc(sizeof(struct housekeeping_telemetry)); // Allocate memory for formatted data
-        formatted_data->id = 0; // Set the telemetry type ID
-        formatted_data->sequence_number = housekeeping_sequence_number;
-        memcpy(formatted_data->data, data, sizeof(formatted_data->data)); // Copy data into struct array, divide by 4 to get rid of type
-        formatted_data->crc = calculate_crc(data,28*8); // calculate crc, update this to the actual size of the data
-
-        housekeeping_sequence_number++; // Increment the sequence number for the next telemetry data
-        return (uint8_t*)formatted_data; // Return the formatted data as a byte array
-
+        packet = pack_tm(data, HOUSEKEEPING_PACKET_SIZE, HOUSEKEEPING_DATA_SIZE);
+        housekeeping_sequence_number++;
     } else if (telemetry_type == 1) {
-        struct bitflip_telemetry* formatted_data = (struct bitflip_telemetry*)malloc(sizeof(struct bitflip_telemetry)); // Allocate memory for formatted data
-        formatted_data->id = 1; // Set the telemetry type ID
-        formatted_data->sequence_number = bitflip_sequence_number;
-        memcpy(formatted_data->data, data, sizeof(formatted_data->data)); // Copy data into struct array, divide by 4 to get rid of type
-        formatted_data->crc = calculate_crc(data,28*8); // calculate crc, update this to the actual size of the data
-
-        bitflip_sequence_number++; // Increment the sequence number for the next telemetry data
-        return (uint8_t*)formatted_data; // Return the formatted data as a byte array
-
+        packet = pack_tm(data, BITFLIP_PACKET_SIZE, BITFLIP_DATA_SIZE);
+        bitflip_sequence_number++;
     } else if (telemetry_type == 2) {
-        struct radiation_telemetry* formatted_data = (struct radiation_telemetry*)malloc(sizeof(struct radiation_telemetry)); // Allocate memory for formatted data
-        formatted_data->id = 2; // Set the telemetry type ID
-        formatted_data->sequence_number = radiation_sequence_number;
-        memcpy(formatted_data->data, data, sizeof(formatted_data->data)); // Copy data into struct array, divide by 4 to get rid of type
-        formatted_data->crc = calculate_crc(data,28*8); // calculate crc, update this to the actual size of the data
-
-        radiation_sequence_number++; // Increment the sequence number for the next telemetry data
-        return (uint8_t*)formatted_data; // Return the formatted data as a byte array
-
+        packet = pack_tm(data, RADIATION_PACKET_SIZE, RADIATION_DATA_SIZE);
+        radiation_sequence_number++;
     } else {
-        return (uint8_t*)NULL; // Return NULL if telemetry type is invalid
+        return (uint8_t*)NULL;
     }
 
+    if (packet == NULL) {
+        return (uint8_t*)NULL;
+    }
 
 }
 
 uint8_t* format_tc(uint8_t* data) {
     if (data == NULL) {
-        return NULL; // Return NULL if data is NULL
+        return NULL;
     }
+    
+    uint8_t* packet = (uint8_t*)calloc(ACKNOWLEDGEMENT_PACKET_SIZE, sizeof(uint8_t));
+    packet[0] = 3 | ((acknowledgement_sequence_number << 2) & 0b11111100);
+    packet[1] = (acknowledgement_sequence_number >> 6) & 0b11111111;
+    packet[2] = (acknowledgement_sequence_number >> 14) & 0b00000011;
 
-    uint8_t packet[ACKNOWLEDGEMENT_PACKET_SIZE] = {0};
-    packet[0] = 3 | ((acknowledgement_sequence_number << 2) & 0b11111100); // Set the first byte with telemetry type ID and sequence number
-    packet[1] = (acknowledgement_sequence_number >> 6) & 0b11111111; // Set the second byte with the next 8 bits of sequence number
-    packet[2] = (acknowledgement_sequence_number >> 14) & 0b00000011; // Set the third byte with the last 2 bits of sequence number
-
-    packet[2] |= (data[0]) & 0b11111100; // Include the first 6 bits of the data in the third byte
-    packet[3] = ((data[0] >> 6) & 0b00000011) | (data[1] & 0b11111100);
-    packet[4] = ((data[1] >> 6) & 0b00000011) | (data[2] & 0b00111100);
+    packet[2] |= (data[0] << 2) & 0b11111100;
+    packet[3] = ((data[0] >> 6) & 0b00000011) | ((data[1] << 2) & 0b11111100);
+    packet[4] = ((data[1] >> 6) & 0b00000011) | ((data[2] << 2) & 0b00111100);
     
     uint16_t crc = calculate_crc(packet, ACKNOWLEDGEMENT_PACKET_SIZE - 2);
     packet[ACKNOWLEDGEMENT_PACKET_SIZE - 3] |= (crc << 6) & 0b11000000;
@@ -122,78 +195,4 @@ uint8_t* format_tc(uint8_t* data) {
     packet[ACKNOWLEDGEMENT_PACKET_SIZE - 1] = ((crc >> 10) & 0b00111111);
 
     return packet;
-}
-
-
-
-// More practical approach: Manual byte-level packing
-// This creates a fixed-size buffer and manually packs data into it
-
-#define PACKED_HOUSEKEEPING_SIZE 31  // 2bits + 16bits + 28bytes + 16bits = 30.25 bytes, rounded up
-
-typedef struct {
-    uint8_t packed_data[PACKED_HOUSEKEEPING_SIZE];
-} manual_packed_telemetry_t;
-
-// Function to pack data manually into packets
-uint8_t* pack_data(uint8_t* data){
-    if (data == NULL) {
-        return NULL; // Return NULL if data is NULL
-    }
-    uint8_t id = data[0] & 0b00000011; // Extract the first two bits for the telemetry type ID
-    switch (id){
-        case 1: { // Housekeeping telemetry
-            uint8_t packet[HOUSEKEEPING_PACKET_SIZE] = {0};
-            packet[0] = id | ((housekeeping_sequence_number << 2) & 0b11111100);
-            packet[1] = (housekeeping_sequence_number >> 6) & 0b11111111;
-            packet[2] = (housekeeping_sequence_number >> 14) & 0b00000011; 
-
-            // Include the first 6 bits of the data in third byte
-            packet[2] |= (data[0]) & 0b11111100;
-
-            // Pack the data into the packet with bit offset 2 and array offset 3
-            int a_offset = 3;
-            
-            for (int i = 0; i < HOUSEKEEPING_DATA_SIZE-1; i++) {
-                packet[i + a_offset] = data[i+1];
-            }
-
-            uint16_t crc = calculate_crc(packet, HOUSEKEEPING_PACKET_SIZE - 2); // Calculate CRC for the packet
-            packet[HOUSEKEEPING_PACKET_SIZE - 2] = (crc >> 8) & 0xFF; // Store the high byte of CRC
-            packet[HOUSEKEEPING_PACKET_SIZE - 1] = crc & 0xFF; // Store the low byte of CRC
-
-            return packet;
-        }
-
-
-    }
-    
-    return (uint8_t*)NULL; 
-}
-
-// Function to unpack the manually packed data
-uint8_t unpack_TC(uint8_t* packet) {
-    if (packet == NULL) {
-        return (uint8_t)NULL; // Return if packet is NULL
-    }
-    
-    // Unpack sequence number (first 16 bits)
-    uint16_t seq_num = packet[0] << 8 | packet[1];
-
-    // Unpack data(TC) (next 3 bits)
-    uint8_t data = packet[2] & 0b00000111; 
-
-    // Unpack RTC (next 17 bits)
-    uint32_t rtc = ((packet[2] & 0b11111000) << 12) | 
-           (packet[3] << 4) |
-           (packet[4] & 0b00001111);
-
-    // Unpack CRC (last 16 bits)
-    uint16_t crc = (packet[4] & 0b11110000) << 12 | 
-                   (packet[5] << 4) | 
-                   (packet[6] & 0b00001111);
-                   
-    // Need to add error checking for everything here before returning
-
-    return data;
 }
