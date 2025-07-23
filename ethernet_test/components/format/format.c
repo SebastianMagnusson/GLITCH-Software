@@ -24,6 +24,21 @@ int bitflip_sequence_number = 0;
 int radiation_sequence_number = 0;
 int acknowledgement_sequence_number = 0;
 
+// Have to do this properly, calculate on bit level
+uint16_t calculate_crc(uint8_t* data, int length) {
+    if (data == NULL || length <= 0) {
+        return 0;
+    }
+
+    // This below is bullshit
+    uint16_t crc = 0; // Initialize CRC to 0
+    for (int i = 0; i < length; i++) {
+        crc ^= CHECK_BIT(data[i/8],i%8); // XOR each bit of data with the current CRC value
+    }
+    
+    return crc;
+}
+
 
 // Function to pack data manually into packets
 uint8_t* pack_tm(uint8_t* data, int packet_size, int data_size){
@@ -96,7 +111,7 @@ bool is_valid_packet(uint32_t rtc, uint16_t crc, uint8_t* packet) {
 
 uint8_t* unpack_tc(uint8_t* packet) {
     if (packet == NULL) {
-        return (uint8_t)NULL;
+        return (uint8_t*)NULL;
     }
 
     // 2 bytes
@@ -131,22 +146,6 @@ uint8_t* unpack_tc(uint8_t* packet) {
     return data;
 }
 
-// Have to do this properly, calculate on bit level
-uint16_t calculate_crc(uint8_t* data, int length) {
-    if (data == NULL || length <= 0) {
-        return 0;
-    }
-
-    // This below is bullshit
-    uint16_t crc = 0; // Initialize CRC to 0
-    for (int i = 0; i < length; i++) {
-        crc ^= CHECK_BIT(data[i/8],i%8); // XOR each bit of data with the current CRC value
-    }
-    
-    return crc;
-}
-
-
 uint8_t* format_tm(uint8_t* data) {
     if (data == NULL) {
         return (uint8_t*)NULL;
@@ -172,6 +171,7 @@ uint8_t* format_tm(uint8_t* data) {
     if (packet == NULL) {
         return (uint8_t*)NULL;
     }
+    return packet;
 
 }
 
