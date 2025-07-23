@@ -236,34 +236,36 @@ esp_err_t eth_transmit(esp_eth_handle_t eth_handle, uint8_t *message, uint32_t l
 // This function is used to retransmit data received from the client.
 static void do_retransmit(const int sock)
 {
-    int len;
+    int len_receive;
+    int len_send;
     uint8_t rx_buffer[128];
 
     do {
         
         uint8_t *tc_data = buffer_retreive_tm(); // Retrieve data from the buffer
         if (tc_data != NULL) {
-            int sent = send(sock, tc_data, strlen((const char *)tc_data), 0); // Send the retrieved data over TCP
+            len_send = check_length(tc_data); // Check the length of the data to be sent
+            int sent = send(sock, tc_data, len_send, 0); // Send the retrieved data over TCP
             if (sent < 0) {
                 ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
                 // Failed to retransmit, giving up
             }
         }
 
-        len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, MSG_DONTWAIT);
-        if (len < 0) {
+        len_receive = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, MSG_DONTWAIT);
+        if (len_receive < 0) {
             // ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
             if (errno == EAGAIN || errno == EWOULDBLOCK) {
                 // No data available, continue to the next iteration
-                len = 1;
+                len_receive = 1;
                 vTaskDelay(pdMS_TO_TICKS(10)); // Delay to avoid busy-waiting
             }
-        } else if (len == 0) {
+        } else if (len_receive == 0) {
             ESP_LOGW(TAG, "Connection closed");
         } else {
             
-            rx_buffer[len] = 0; // Null-terminate whatever is received and treat it like a string
-            ESP_LOGI(TAG, "Received %d bytes: %s", len, rx_buffer);
+            rx_buffer[len_receive] = 0; // Null-terminate whatever is received and treat it like a string
+            ESP_LOGI(TAG, "Received %d bytes: %s", len_receive, rx_buffer);
 
             buffer_add_tc(rx_buffer); // Add the received data to the buffer
 
@@ -283,7 +285,7 @@ static void do_retransmit(const int sock)
             } 
             */
         }
-    } while (len > 0);
+    } while (len_receive > 0);
 }
 
 void tcp_server_task(void *pvParameters)

@@ -1,162 +1,178 @@
 #include <stdio.h>
 #include <stdbool.h> 
+#include <string.h>
 #include "esp_log.h"
-
 
 #include "buffer.h"
 
+#define CHECK_BIT(var,pos) (((var)>>(pos)) & 1) // Macro to check if a bit is set in a variable
 #define MAX_BUFFER_SIZE 10 // Maximum size of the buffer (used for the circular array)
-
-
 
 frame_tm* head_tm; // Head of the linked list for tm buffer
 
 // Circular array for tc buffer with max size of MAX_BUFFER_SIZE
 // Curcular means that the as long as there are not more than MAX_BUFFER_SIZE commands to be sent, the buffer will not overflow
-uint8_t* buffer_tc[MAX_BUFFER_SIZE]; // Circular array for tc buffer with max size of MAX_BUFFER_SIZE
-int front_tc; // Pointer to the front of the tc buffer
-int size_tc; // Size of the tc buffer
+uint8_t* buffer_tc[MAX_BUFFER_SIZE]; 
+int front_tc; 
+int size_tc; 
 
 
-void buffer_init() {
-    head_tm = NULL; // Initialize the head of the linked list to NULL
-    for (int i = 0; i < MAX_BUFFER_SIZE; i++) {
-        buffer_tc[i] = NULL; // Initialize each element of the buffer to NULL
+int check_length(uint8_t* data) {
+    int telemetry_type = CHECK_BIT(data[0], 0) + CHECK_BIT(data[0], 1) * 2; // Get the telemetry type from the first byte
+
+    if (telemetry_type == 0){
+        return 28; // Should return the length of the data to be read (look in sed or somewhere)
+    } 
+    if (telemetry_type == 1){
+        return 28; // Should return the length of the data to be read (look in sed or somewhere)
     }
-    front_tc = 0; // Initialize the front of the tc buffer to 0
-    size_tc = 0; // Initialize the size of the tc buffer to 0     
+    if (telemetry_type == 2){
+        return 3; // Should return the length of the data to be read (This ones wierd cuz don't really know size)
+    }
+    if (telemetry_type == 3){
+        return 4; // Should return the length of the data to be read (look in sed or somewhere)
+    }
+
+    return (int)NULL;
+
 }
 
-void buffer_add_tm(int priority, uint8_t* data) {
+// Function to initialize the tm buffer as NULL and set the front and size to 0 for tc buffer
+void buffer_init() {
+    head_tm = NULL;
+    for (int i = 0; i < MAX_BUFFER_SIZE; i++) {
+        buffer_tc[i] = NULL; 
+    }
+    front_tc = 0;
+    size_tc = 0;
+}
+
+void buffer_add_tm(int priority, uint8_t* data, int len) {
     // Check if the priority is valid (0-3)
     if (priority < 0 || priority > 3) {
         
-        ESP_LOGE("Buffer", "Invalid priority: %d, No data added to buffer", priority); // Log error message
+        ESP_LOGE("Buffer", "Invalid priority: %d, No data added to buffer", priority);
         
-        return; // Return if the priority is invalid
+        return;
     }
 
-    frame_tm* new_frame = (frame_tm*)malloc(sizeof(frame_tm)); // Allocate memory for the new frame
-    new_frame->data = data; // Set the data of the new frame
-    new_frame->priority = priority; // Set the priority of the new frame
-
-    if (head_tm == NULL) { // Check if the linked list is empty
-        head_tm = new_frame; // Set the new frame as the head of the linked list
-        head_tm->next = NULL; // Set the next pointer to NULL
-        return; // Return after adding the frame to the buffer
+    frame_tm* new_frame = (frame_tm*)malloc(sizeof(frame_tm));
+    if (!new_frame) {
+        ESP_LOGE("Buffer", "Failed to allocate memory for frame_tm");
+        return;
     }
 
-    // Log the data added to the buffer
-    ESP_LOGI("Buffer", "TM added to buffer with priority %d: %s",
-             new_frame->priority, new_frame->data); // Log the first 8 bytes of the data
-
-    frame_tm* current_frame = head_tm; // Start from the head of the linked list
-    frame_tm* previous_frame = NULL; // Pointer to the previous frame in the linked list
-
-    while (current_frame != NULL && current_frame->priority >= new_frame->priority) { // Traverse the linked list to find the correct position to insert the new frame based on priority
-        previous_frame = current_frame; // Store the previous frame
-        current_frame = current_frame->next; // Move to the next frame in the linked list
+    new_frame->data = (uint8_t *)malloc(len);
+    if (!new_frame->data) {
+        ESP_LOGE("Buffer", "Failed to allocate memory for data");
+        free(new_frame);
+        return;
     }
 
-    if (previous_frame == NULL) { // Check if the new frame should be inserted at the head of the linked list
-        new_frame->next = head_tm; // Link the new frame to the current head of the linked list
-        head_tm = new_frame; // Set the new frame as the head of the linked list
+    ESP_LOGI("Buffer", "TM added to buffer with priority %d and length %d: %s",
+             priority, len, data); 
+
+    memcpy(new_frame->data, data, len);
+    new_frame->priority = priority;
+
+    // Check if the new frame is the first frame to be added to the buffer
+    if (head_tm == NULL) { 
+        head_tm = new_frame; 
+        head_tm->next = NULL;
+        return;
+    }
+
+    frame_tm* current_frame = head_tm;
+    frame_tm* previous_frame = NULL; 
+
+    // Traverse the linked list to find the correct position to insert the new frame based on priority
+    while (current_frame != NULL && current_frame->priority >= new_frame->priority) { 
+        previous_frame = current_frame; 
+        current_frame = current_frame->next;
+    }
+
+    // Insert the new frame in the linked list based on priority
+    if (previous_frame == NULL) { 
+        new_frame->next = head_tm; 
+        head_tm = new_frame; 
     } else {
-        previous_frame->next = new_frame; // Link the previous frame to the new frame
-        new_frame->next = current_frame; // Link the new frame to the current frame
+        previous_frame->next = new_frame; 
+        new_frame->next = current_frame; 
     }
 
 }
 
 uint8_t* buffer_retreive_tm() {
 
-    if (head_tm == NULL) { // Check if the linked list is empty
-        
-        // ESP_LOGE("Buffer", "Buffer is empty, no data to retrieve"); // Log error message
-        
-        return (uint8_t*)NULL; // Return NULL if the buffer is empty
+    if (head_tm == NULL) {         
+        return (uint8_t*)NULL;
     }
 
-    frame_tm* frame = head_tm; // Get the first frame in the linked list
-    head_tm = head_tm->next; // Move the head pointer to the next frame in the linked list
-    // Log the data retrieved from the buffer
-    ESP_LOGI("Buffer", "TM retrieved from buffer: %s", frame->data); // Log the first 8 bytes of the data
-    return frame->data; // Return the data of the first frame
+    // Take the first frame and remove it from the buffer
+    frame_tm* frame = head_tm; 
+    head_tm = head_tm->next; 
+    ESP_LOGI("Buffer", "TM retrieved from buffer: %s", frame->data);
+    return frame->data; 
 
 }
 
 frame_tm* peek_tm(int index) {
-    if (head_tm == NULL) { // Check if the linked list is empty
-        
-        ESP_LOGE("Buffer", "Buffer is empty, no data to retrieve"); // Log error message
-        
-        return NULL; // Return NULL if the buffer is empty
+    if (head_tm == NULL) {        
+        ESP_LOGE("Buffer", "Buffer is empty, no data to retrieve");
+        return NULL;
     }
 
-    frame_tm* current_frame = head_tm; // Start from the head of the linked list
+    frame_tm* current_frame = head_tm; 
 
-    for (int i = 0; i < index && current_frame != NULL; i++) { // Traverse the linked list to find the frame at the specified index
-        current_frame = current_frame->next; // Move to the next frame in the linked list
+    for (int i = 0; i < index && current_frame != NULL; i++) { 
+        current_frame = current_frame->next; 
     }
 
-    if (current_frame == NULL) { // Check if the frame at the specified index exists
-        
-        ESP_LOGE("Buffer", "Frame at index %d does not exist", index); // Log error message
-        
-        return NULL; // Return NULL if the frame at the specified index does not exist
+    if (current_frame == NULL) { 
+        ESP_LOGE("Buffer", "Frame at index %d does not exist", index);
+        return NULL;
     }
 
-    return current_frame; // Return the pointer to the frame at the specified index
+    return current_frame;
 }
 
 
 void buffer_add_tc(uint8_t* data) {
 
-    if (size_tc >= MAX_BUFFER_SIZE) { // Check if the buffer is full
-        
-        ESP_LOGE("Buffer", "Buffer is full, no data added"); // Log error message
-        
-        return; // Return if the buffer is full
+    if (size_tc >= MAX_BUFFER_SIZE) {        
+        ESP_LOGE("Buffer", "Buffer is full, no data added");        
+        return; 
     }
 
-    buffer_tc[(front_tc + size_tc)%MAX_BUFFER_SIZE] = data; // Add the data to the buffer
-    // Log the data added to the buffer
-    ESP_LOGI("Buffer", "TC added to buffer: %s", data); // Log the first 8 bytes of the data
-    size_tc++; // Increment the size of the buffer
+    // Add the data to the buffer and increment the size
+    buffer_tc[(front_tc + size_tc)%MAX_BUFFER_SIZE] = data; 
+    ESP_LOGI("Buffer", "TC added to buffer: %s", data); 
+    size_tc++;
 }
 
 uint8_t* buffer_retreive_tc() {
     
-    // ESP_LOGI("Buffer", "Retrieving data from buffer"); // Log the retrieval of data from the buffer
-    if (size_tc == 0) { // Check if the buffer is empty
-        
-        // ESP_LOGE("Buffer", "Buffer is empty, no data to retrieve"); // Log error message
-        
-        return (uint8_t*)NULL; // Return NULL if the buffer is empty
+    if (size_tc == 0) {
+        return (uint8_t*)NULL; 
     }
 
-    uint8_t* data = buffer_tc[front_tc]; // Get the first data in the buffer
-    front_tc = (front_tc + 1) % MAX_BUFFER_SIZE; // Move the front pointer to the next data in the buffer
-    size_tc--; // Decrement the size of the buffer
-    // Log the data retrieved from the buffer
-    ESP_LOGI("Buffer", "TC retreived from buffer: %s", data);
-    return data; // Return the data of the first frame
+    // Retrieve the data from the buffer and decrement the size
+    uint8_t* data = buffer_tc[front_tc]; 
+    front_tc = (front_tc + 1) % MAX_BUFFER_SIZE;
+    size_tc--; ESP_LOGI("Buffer", "TC retreived from buffer: %s", data);
+    return data; 
 }
 
 uint8_t* peek_tc(int index) {
-    if (size_tc == 0) { // Check if the buffer is empty
-        
-        ESP_LOGE("Buffer", "Buffer is empty, no data to retrieve"); // Log error message
-        
-        return (uint8_t*)NULL; // Return NULL if the buffer is empty
+    if (size_tc == 0) {        
+        ESP_LOGE("Buffer", "Buffer is empty, no data to retrieve"); 
+        return (uint8_t*)NULL; 
     }
 
-    if (index < 0 || index >= size_tc) { // Check if the index is valid
-        
-        ESP_LOGE("Buffer", "Invalid index: %d", index); // Log error message
-        
-        return (uint8_t*)NULL; // Return NULL if the index is invalid
+    if (index < 0 || index >= size_tc) {        
+        ESP_LOGE("Buffer", "Invalid index: %d", index); 
+        return (uint8_t*)NULL; 
     }
 
-    return buffer_tc[(front_tc + index) % MAX_BUFFER_SIZE]; // Return the data at the specified index in the buffer
+    return buffer_tc[(front_tc + index) % MAX_BUFFER_SIZE];
 }

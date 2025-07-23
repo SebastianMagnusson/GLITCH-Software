@@ -9,6 +9,11 @@ typedef struct frame_tm{
     struct frame_tm* next; // Pointer to the next frame in the buffer (for linked list implementation)
 }frame_tm;
 
+/// @brief Function to check the length of the data based on telemetry type
+/// @param data Pointer to the data buffer (first byte of the data)
+/// @return Length of the data to be read
+int check_length(uint8_t* data); // Function to check the length of the data based on telemetry type
+
 /// @brief Function to initialize the buffer
 /// @note The function initializes the head of the linked list to NULL and allocates memory for the tc buffer
 void buffer_init(); // Function to initialize the buffer
@@ -17,7 +22,7 @@ void buffer_init(); // Function to initialize the buffer
 /// @param priority: Priority of the frame (0-3)
 /// @param data: Pointer to the frame to be added to the buffer
 /// @note The function uses the frame_tm_t structure to store the ethernet frame and its priority in a linked list
-void buffer_add_tm(int priority, uint8_t* data); // Function to add tm frame to the buffer with priority
+void buffer_add_tm(int priority, uint8_t* data, int len); // Function to add tm frame to the buffer with priority
 
 /// @brief Function to add command ready to be sent to FPGA
 /// @param data: Pointer to the data to be added to the buffer

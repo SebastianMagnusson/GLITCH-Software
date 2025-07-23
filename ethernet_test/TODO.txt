@@ -13,3 +13,5 @@ Finish packet validity check.
 Create testing setups.
 
 Write proper readme files with config instructions.
+
+Clean up the code and define file names and such correctly
