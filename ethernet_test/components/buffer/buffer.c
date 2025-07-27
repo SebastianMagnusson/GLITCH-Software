@@ -2,7 +2,7 @@
 #include <stdbool.h> 
 #include <string.h>
 #include "esp_log.h"
-
+#include "sdkconfig.h"
 #include "buffer.h"
 
 #define CHECK_BIT(var,pos) (((var)>>(pos)) & 1) // Macro to check if a bit is set in a variable
@@ -40,6 +40,25 @@ int check_length(uint8_t* data) {
 // Function to initialize the tm buffer as NULL and set the front and size to 0 for tc buffer
 void buffer_init() {
     head_tm = NULL;
+    for (int i = 0; i < MAX_BUFFER_SIZE; i++) {
+        buffer_tc[i] = NULL; 
+    }
+    front_tc = 0;
+    size_tc = 0;
+}
+
+void buffer_deinit() {
+    // Free the memory allocated for the tm buffer
+    frame_tm* current_frame = head_tm;
+    while (current_frame != NULL) {
+        frame_tm* next_frame = current_frame->next;
+        free(current_frame->data); // Free the data pointer
+        free(current_frame); // Free the frame itself
+        current_frame = next_frame;
+    }
+    head_tm = NULL; // Set head to NULL after deinitialization
+
+    // Reset the tc buffer
     for (int i = 0; i < MAX_BUFFER_SIZE; i++) {
         buffer_tc[i] = NULL; 
     }

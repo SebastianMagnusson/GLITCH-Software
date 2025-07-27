@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 #include "esp_log.h"
 
 #pragma once
@@ -17,6 +18,10 @@ int check_length(uint8_t* data); // Function to check the length of the data bas
 /// @brief Function to initialize the buffer
 /// @note The function initializes the head of the linked list to NULL and allocates memory for the tc buffer
 void buffer_init(); // Function to initialize the buffer
+
+/// @brief Function to deinitialize the buffer and free memory
+/// @note The function frees the memory allocated for the tm buffer and sets the head to NULL
+void buffer_deinit(); // Function to deinitialize the buffer and free memory
 
 /// @brief Function to add frame to the buffer with priority
 /// @param priority: Priority of the frame (0-3)

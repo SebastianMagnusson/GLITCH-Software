@@ -27,8 +27,6 @@ void app_main(void)
     uart_init();
     buffer_init();
 
-
     // wait for 100 seconds (remove once the loop is implemented)
     vTaskDelay(pdMS_TO_TICKS(100000));
-
 }

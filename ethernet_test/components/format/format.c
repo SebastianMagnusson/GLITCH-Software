@@ -1,28 +1,17 @@
-#include "format.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include "sdkconfig.h"
+#include "format.h"
 
 #define CHECK_BIT(var,pos) (((var)>>(pos)) & 1)
 
-#define HOUSEKEEPING_PACKET_SIZE 32
-#define HOUSEKEEPING_DATA_SIZE 28
-
-#define BITFLIP_PACKET_SIZE 32
-#define BITFLIP_DATA_SIZE 28
-
-#define RADIATION_PACKET_SIZE 32
-#define RADIATION_DATA_SIZE 28
-
-#define ACKNOWLEDGEMENT_PACKET_SIZE 7
-#define ACKNOWLEDGEMENT_DATA_SIZE 3
-
-int housekeeping_sequence_number = 0;
-int bitflip_sequence_number = 0;
-int radiation_sequence_number = 0;
-int acknowledgement_sequence_number = 0;
+int housekeeping_sequence_number = 1;
+int bitflip_sequence_number = 1;
+int radiation_sequence_number = 1;
+int acknowledgement_sequence_number = 1;
 
 // Have to do this properly, calculate on bit level
 uint16_t calculate_crc(uint8_t* data, int length) {
@@ -97,7 +86,7 @@ bool is_valid_packet(uint32_t rtc, uint16_t crc, uint8_t* packet) {
         return false;
     }
     
-    uint16_t calculated_crc = calculate_crc(packet, ACKNOWLEDGEMENT_PACKET_SIZE - 2);
+    uint16_t calculated_crc = calculate_crc(packet, CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE - 2);
     
     // Check if the calculated CRC matches the provided CRC
     if (calculated_crc != crc) {
@@ -134,7 +123,7 @@ uint8_t* unpack_tc(uint8_t* packet) {
     }
 
     // If everything is fine, create a new data array to return and stuff the data & RTC into it
-    uint8_t* data = (uint8_t*)calloc(ACKNOWLEDGEMENT_DATA_SIZE, sizeof(uint8_t));
+    uint8_t* data = (uint8_t*)calloc(CONFIG_ACKNOWLEDGEMENT_DATA_SIZE, sizeof(uint8_t));
     if (data == NULL) {
         return NULL; // Allocation failed
     }
@@ -156,13 +145,13 @@ uint8_t* format_tm(uint8_t* data) {
     uint8_t* packet = NULL;
 
     if (telemetry_type == 0) {
-        packet = pack_tm(data, HOUSEKEEPING_PACKET_SIZE, HOUSEKEEPING_DATA_SIZE);
+        packet = pack_tm(data, CONFIG_HOUSEKEEPING_PACKET_SIZE, CONFIG_HOUSEKEEPING_DATA_SIZE);
         housekeeping_sequence_number++;
     } else if (telemetry_type == 1) {
-        packet = pack_tm(data, BITFLIP_PACKET_SIZE, BITFLIP_DATA_SIZE);
+        packet = pack_tm(data, CONFIG_BITFLIP_PACKET_SIZE, CONFIG_BITFLIP_DATA_SIZE);
         bitflip_sequence_number++;
     } else if (telemetry_type == 2) {
-        packet = pack_tm(data, RADIATION_PACKET_SIZE, RADIATION_DATA_SIZE);
+        packet = pack_tm(data, CONFIG_RADIATION_PACKET_SIZE, CONFIG_RADIATION_DATA_SIZE);
         radiation_sequence_number++;
     } else {
         return (uint8_t*)NULL;
@@ -180,7 +169,7 @@ uint8_t* format_tc(uint8_t* data) {
         return NULL;
     }
     
-    uint8_t* packet = (uint8_t*)calloc(ACKNOWLEDGEMENT_PACKET_SIZE, sizeof(uint8_t));
+    uint8_t* packet = (uint8_t*)calloc(CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE, sizeof(uint8_t));
     packet[0] = 3 | ((acknowledgement_sequence_number << 2) & 0b11111100);
     packet[1] = (acknowledgement_sequence_number >> 6) & 0b11111111;
     packet[2] = (acknowledgement_sequence_number >> 14) & 0b00000011;
@@ -189,10 +178,10 @@ uint8_t* format_tc(uint8_t* data) {
     packet[3] = ((data[0] >> 6) & 0b00000011) | ((data[1] << 2) & 0b11111100);
     packet[4] = ((data[1] >> 6) & 0b00000011) | ((data[2] << 2) & 0b00111100);
     
-    uint16_t crc = calculate_crc(packet, ACKNOWLEDGEMENT_PACKET_SIZE - 2);
-    packet[ACKNOWLEDGEMENT_PACKET_SIZE - 3] |= (crc << 6) & 0b11000000;
-    packet[ACKNOWLEDGEMENT_PACKET_SIZE - 2] = (crc >> 2);
-    packet[ACKNOWLEDGEMENT_PACKET_SIZE - 1] = ((crc >> 10) & 0b00111111);
+    uint16_t crc = calculate_crc(packet, CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE - 2);
+    packet[CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE - 3] |= (crc << 6) & 0b11000000;
+    packet[CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE - 2] = (crc >> 2);
+    packet[CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE - 1] = ((crc >> 10) & 0b00111111);
 
     return packet;
 }

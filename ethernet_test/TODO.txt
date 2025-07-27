@@ -14,4 +14,8 @@ Create testing setups.
 
 Write proper readme files with config instructions.
 
-Clean up the code and define file names and such correctly
+Clean up the code
+    - Comment clearing
+    - File naming
+    - Moving stuff into Kconfig instead of defining them in files
+    - Remove all ESP_LOG shit as well probably

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "esp_log.h"
-
+#include "sdkconfig.h"
 #include "priority.h"
 
 #define CHECK_BIT(var,pos) (((var)>>(pos)) & 1) // Macro to check if a bit is set in a variable
@@ -16,7 +16,7 @@ int priority_assign(uint8_t* data) {
         
         ESP_LOGE(TAG,"Data is NULL, returning priority 0\n"); // Log error message
         
-        return 0; // Return default priority if data is NULL
+        return 4; // Return lowest priority if data is NULL
     }
 
     int telemetry_type = CHECK_BIT(data[0], 0) + CHECK_BIT(data[0], 1) * 2; // Get the telemetry type from the first byte
@@ -48,6 +48,6 @@ int priority_assign(uint8_t* data) {
     
     ESP_LOGW(TAG,"No telemetry type found, priority 0\n"); // Log warning message
     
-    return 0; // Return least priority if no telemetry type is found
+    return 4; // Return least priority if no telemetry type is found
 
 }
