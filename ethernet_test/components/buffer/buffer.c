@@ -6,13 +6,11 @@
 #include "buffer.h"
 
 #define CHECK_BIT(var,pos) (((var)>>(pos)) & 1) // Macro to check if a bit is set in a variable
-#define MAX_BUFFER_SIZE 10 // Maximum size of the buffer (used for the circular array)
-
 frame_tm* head_tm; // Head of the linked list for tm buffer
 
-// Circular array for tc buffer with max size of MAX_BUFFER_SIZE
-// Curcular means that the as long as there are not more than MAX_BUFFER_SIZE commands to be sent, the buffer will not overflow
-uint8_t* buffer_tc[MAX_BUFFER_SIZE]; 
+// Circular array for tc buffer with max size of MAX_TC_BUFFER_SIZE
+// Curcular means that the as long as there are not more than MAX_TC_BUFFER_SIZE commands to be sent, the buffer will not overflow
+uint8_t* buffer_tc[CONFIG_MAX_TC_BUFFER_SIZE]; 
 int front_tc; 
 int size_tc; 
 
@@ -40,7 +38,7 @@ int check_length(uint8_t* data) {
 // Function to initialize the tm buffer as NULL and set the front and size to 0 for tc buffer
 void buffer_init() {
     head_tm = NULL;
-    for (int i = 0; i < MAX_BUFFER_SIZE; i++) {
+    for (int i = 0; i < CONFIG_MAX_TC_BUFFER_SIZE; i++) {
         buffer_tc[i] = NULL; 
     }
     front_tc = 0;
@@ -59,14 +57,14 @@ void buffer_deinit() {
     head_tm = NULL; // Set head to NULL after deinitialization
 
     // Reset the tc buffer
-    for (int i = 0; i < MAX_BUFFER_SIZE; i++) {
+    for (int i = 0; i < CONFIG_MAX_TC_BUFFER_SIZE; i++) {
         buffer_tc[i] = NULL; 
     }
     front_tc = 0;
     size_tc = 0;
 }
 
-void buffer_add_tm(int priority, uint8_t* data, int len) {
+void buffer_add_tm(int priority, uint8_t* data) {
     // Check if the priority is valid (0-3)
     if (priority < 0 || priority > 3) {
         
@@ -74,6 +72,8 @@ void buffer_add_tm(int priority, uint8_t* data, int len) {
         
         return;
     }
+    
+    int len = check_length(data);
 
     frame_tm* new_frame = (frame_tm*)malloc(sizeof(frame_tm));
     if (!new_frame) {
@@ -158,13 +158,13 @@ frame_tm* peek_tm(int index) {
 
 void buffer_add_tc(uint8_t* data) {
 
-    if (size_tc >= MAX_BUFFER_SIZE) {        
+    if (size_tc >= CONFIG_MAX_TC_BUFFER_SIZE) {        
         ESP_LOGE("Buffer", "Buffer is full, no data added");        
         return; 
     }
 
     // Add the data to the buffer and increment the size
-    buffer_tc[(front_tc + size_tc)%MAX_BUFFER_SIZE] = data; 
+    buffer_tc[(front_tc + size_tc)%CONFIG_MAX_TC_BUFFER_SIZE] = data; 
     ESP_LOGI("Buffer", "TC added to buffer: %s", data); 
     size_tc++;
 }
@@ -177,7 +177,7 @@ uint8_t* buffer_retreive_tc() {
 
     // Retrieve the data from the buffer and decrement the size
     uint8_t* data = buffer_tc[front_tc]; 
-    front_tc = (front_tc + 1) % MAX_BUFFER_SIZE;
+    front_tc = (front_tc + 1) % CONFIG_MAX_TC_BUFFER_SIZE;
     size_tc--; ESP_LOGI("Buffer", "TC retreived from buffer: %s", data);
     return data; 
 }
@@ -193,5 +193,5 @@ uint8_t* peek_tc(int index) {
         return (uint8_t*)NULL; 
     }
 
-    return buffer_tc[(front_tc + index) % MAX_BUFFER_SIZE];
+    return buffer_tc[(front_tc + index) % CONFIG_MAX_TC_BUFFER_SIZE];
 }

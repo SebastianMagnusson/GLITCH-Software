@@ -20,25 +20,6 @@
 #include <netdb.h> 
 #include <arpa/inet.h>
 
-
-
-#define HOST_IP_ADDR "192.168.0.165"    // Replace with your host IP address default is 192.168.0.165
-#define HOST_PORT 8080                  // Can be changed as needed, not below 1024
-
-#define CONFIG_ETH_MDC_GPIO 23
-#define CONFIG_ETH_MDIO_GPIO 18
-#define CONFIG_ETH_PHY_RST_GPIO 5
-#define CONFIG_ETH_PHY_ADDR 1
-
-#define CONNECTED_BIT            BIT0   // Bit to indicate connection status
-#define ETH_CONNECTION_TMO_MS   (10000) // Timeout for Ethernet connection in milliseconds
-
-#define KEEPALIVE_IDLE              5 // "TCP keep-alive idle time(s)"
-#define KEEPALIVE_INTERVAL          5 // "TCP keep-alive interval time(s)"
-#define KEEPALIVE_COUNT             3 // "TCP keep-alive packet retry send counts"
-
-#define USE_STATIC_IP 1 // Set to 1 if you want to use static IP, otherwise set to 0 for DHCP
-
 #if USE_STATIC_IP
     #define STATIC_IP "192.168.4.2"
     #define STATIC_GATEWAY "192.168.4.1"
@@ -93,7 +74,7 @@ static void got_ip_event_handler(void *arg, esp_event_base_t event_base,
     ESP_LOGI(TAG, "ETHGW:" IPSTR, IP2STR(&ip_info->gw));
     ESP_LOGI(TAG, "~~~~~~~~~~~");
 
-    xEventGroupSetBits(s_network_event_group, CONNECTED_BIT); // Set the CONNECTED_BIT in the event group to indicate that the Ethernet connection is established
+    xEventGroupSetBits(s_network_event_group, CONFIG_CONNECTED_BIT); // Set the CONNECTED_BIT in the event group to indicate that the Ethernet connection is established
 }
 
 static esp_eth_handle_t eth_init(esp_eth_mac_t **mac_out, esp_eth_phy_t **phy_out){
@@ -138,6 +119,27 @@ err:
 
 }
 
+esp_err_t eth_deinit(esp_eth_handle_t *eth_handles, uint8_t eth_cnt)
+{
+    ESP_RETURN_ON_FALSE(eth_handles != NULL, ESP_ERR_INVALID_ARG, TAG, "array of Ethernet handles cannot be NULL");
+    for (int i = 0; i < eth_cnt; i++) {
+        esp_eth_mac_t *mac = NULL;
+        esp_eth_phy_t *phy = NULL;
+        if (eth_handles[i] != NULL) {
+            esp_eth_get_mac_instance(eth_handles[i], &mac);
+            esp_eth_get_phy_instance(eth_handles[i], &phy);
+            ESP_RETURN_ON_ERROR(esp_eth_driver_uninstall(eth_handles[i]), TAG, "Ethernet %p uninstall failed", eth_handles[i]);
+        }
+        if (mac != NULL) {
+            mac->del(mac);
+        }
+        if (phy != NULL) {
+            phy->del(phy);
+        }
+    }
+    free(eth_handles);
+    return ESP_OK;
+}
 
 void ethernet_setup(void){
 
@@ -196,13 +198,13 @@ void ethernet_setup(void){
         ESP_ERROR_CHECK(esp_netif_dhcpc_start(eth_netif)); // Start DHCP client on Ethernet interface
         /* Waiting until the connection is established (CONNECTED_BIT). The bits are set by got_ip_event_handler() (see above) */
         EventBits_t bits = xEventGroupWaitBits(s_network_event_group,
-                CONNECTED_BIT,
+                CONFIG_CONNECTED_BIT,
                 pdFALSE,
                 pdFALSE,
-                pdMS_TO_TICKS(ETH_CONNECTION_TMO_MS));
+                pdMS_TO_TICKS(CONFIG_ETH_CONNECTION_TMO_MS));
         /* xEventGroupWaitBits() returns the bits before the call returned, hence we can test which event actually happened. */
-        if (!(bits & CONNECTED_BIT)) {
-            ESP_LOGE(TAG, "Ethernet link not connected in defined timeout of %d msecs", ETH_CONNECTION_TMO_MS); // Log error if connection is not established
+        if (!(bits & CONFIG_CONNECTED_BIT)) {
+            ESP_LOGE(TAG, "Ethernet link not connected in defined timeout of %d msecs", CONFIG_ETH_CONNECTION_TMO_MS); // Log error if connection is not established
         } else {
             ESP_LOGI(TAG, "Ethernet link established successfully"); // Log success if connection is established
         }
@@ -294,15 +296,15 @@ void tcp_server_task(void *pvParameters)
     int addr_family = AF_INET;
     int ip_protocol = 0;
     int keepAlive = 1;
-    int keepIdle = KEEPALIVE_IDLE;
-    int keepInterval = KEEPALIVE_INTERVAL;
-    int keepCount = KEEPALIVE_COUNT;
+    int keepIdle = CONFIG_KEEPALIVE_IDLE;
+    int keepInterval = CONFIG_KEEPALIVE_INTERVAL;
+    int keepCount = CONFIG_KEEPALIVE_COUNT;
     struct sockaddr_storage dest_addr;
 
     struct sockaddr_in *dest_addr_ip4 = (struct sockaddr_in *)&dest_addr;
     dest_addr_ip4->sin_addr.s_addr = htonl(INADDR_ANY);
     dest_addr_ip4->sin_family = AF_INET;
-    dest_addr_ip4->sin_port = htons(HOST_PORT); 
+    dest_addr_ip4->sin_port = htons(CONFIG_HOST_PORT);
     ip_protocol = IPPROTO_IP;
 
     int listen_sock = socket(addr_family, SOCK_STREAM, ip_protocol);
@@ -322,7 +324,7 @@ void tcp_server_task(void *pvParameters)
         ESP_LOGE(TAG, "IPPROTO: %d", addr_family);
         goto CLEAN_UP;
     }
-    ESP_LOGI(TAG, "Socket bound, port %d", HOST_PORT);
+    ESP_LOGI(TAG, "Socket bound, port %d", CONFIG_HOST_PORT);
 
     err = listen(listen_sock, 1);
     if (err != 0) {

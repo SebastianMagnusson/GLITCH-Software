@@ -19,7 +19,7 @@
 
 void app_main(void)
 {
-    ESP_ERROR_CHECK(nvs_flash_init()); // Initialize NVS flash storage
+    ESP_ERROR_CHECK(nvs_flash_init()); 
     ethernet_setup(); 
 
     xTaskCreate(tcp_server_task, "tcp_server", 4096, (void*)AF_INET, 5, NULL);

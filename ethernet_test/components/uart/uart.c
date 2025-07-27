@@ -7,11 +7,6 @@
 #include "priority.h"
 #include "format.h"
 
-#define UART_NUM UART_NUM_0
-#define TX_PIN 1 // GPIO pin number for TX (transmit)
-#define RX_PIN 3 // GPIO pin number for RX (receive)
-#define UART_BUF_SIZE 1500 // Max size of the UART buffer
-
 static const char *TAG = "UART";
 
 uint8_t* generate_data(int type){
@@ -76,8 +71,7 @@ void uart_task(void *pvParameters)
             printf("%02X", formatted_data[i]);
         }
         printf("\n");
-        int len = check_length(formatted_data);
-        buffer_add_tm(priority, formatted_data, len);
+        buffer_add_tm(priority, formatted_data);
 
         test++;
         vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second before the next iteration (maybe should remove)
@@ -85,6 +79,7 @@ void uart_task(void *pvParameters)
 }
 
 // Function to concatenate two data strings (might not be in use, delete at own risk)
+/*
 uint8_t* concatenate_data(uint8_t* data1, uint8_t* data2, int length) {
     
     uint8_t* concatenated_data = (uint8_t*)malloc(length);
@@ -98,15 +93,15 @@ uint8_t* concatenate_data(uint8_t* data1, uint8_t* data2, int length) {
 
     return concatenated_data; 
 }
-
+*/
 
 void uart_init(void) {
 
-    uart_flush(UART_NUM); // Flush the UART buffer to clear any existing data
+    uart_flush(CONFIG_UART_NUM); // Flush the UART buffer to clear any existing data
 
     // Configure the UART parameters
     uart_config_t uart_config = {
-        .baud_rate = 115200,                
+        .baud_rate = CONFIG_UART_BAUD_RATE,                
         .data_bits = UART_DATA_8_BITS,      
         .parity = UART_PARITY_DISABLE,      
         .stop_bits = UART_STOP_BITS_1,      
@@ -117,7 +112,7 @@ void uart_init(void) {
     esp_err_t ret = ESP_OK; // Variable to store return value
 
     // Initialize the UART with the configuration
-    ret = uart_param_config(UART_NUM, &uart_config);
+    ret = uart_param_config(CONFIG_UART_NUM, &uart_config);
     if (ret == ESP_OK) {
         ESP_LOGI(TAG, "UART configured successfully");
     } else {
@@ -125,7 +120,7 @@ void uart_init(void) {
     }
 
     // Set UART pins (TX and RX)
-    ret = uart_set_pin(UART_NUM, TX_PIN, RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    ret = uart_set_pin(CONFIG_UART_NUM, CONFIG_TX_PIN, CONFIG_RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
     if (ret == ESP_OK) {
         ESP_LOGI(TAG, "UART pins set successfully");
     } else {
@@ -133,7 +128,7 @@ void uart_init(void) {
     }
     
     // Install the UART driver
-    ret = uart_driver_install(UART_NUM, 2048, 0, 0, NULL, 0);
+    ret = uart_driver_install(CONFIG_UART_NUM, 2048, 0, 0, NULL, 0);
     if (ret == ESP_OK) {
         ESP_LOGI(TAG, "UART driver installed successfully");
     } else {
@@ -144,11 +139,15 @@ void uart_init(void) {
 
 }
 
+void uart_deinit(void) {
+    uart_driver_delete(CONFIG_UART_NUM);
+}
+
 
 void uart_send(uint8_t* message) {
     ESP_LOGI(TAG, "Sending message: %s, length :%d", message, check_length(message)); 
-    uart_write_bytes(UART_NUM, message, check_length(message)); 
-    uart_write_bytes(UART_NUM, "\n", 1);
+    uart_write_bytes(CONFIG_UART_NUM, message, check_length(message)); 
+    uart_write_bytes(CONFIG_UART_NUM, "\n", 1);
 }
 
 
@@ -157,7 +156,7 @@ uint8_t* uart_receive(void) {
     uint8_t header;
 
     // Grab the first byte waiting, in order to get the TM type and full length of the data to be read
-    int length = uart_read_bytes(UART_NUM, &header, 1, pdMS_TO_TICKS(20)); 
+    int length = uart_read_bytes(CONFIG_UART_NUM, &header, 1, pdMS_TO_TICKS(20)); 
     if (length != 1) { 
         if (length < 0) {
             ESP_LOGE(TAG, "Error reading bytes from UART");
@@ -168,7 +167,7 @@ uint8_t* uart_receive(void) {
     }
     
     int tm_length = check_length(&header); 
-    if (tm_length <= 0 || tm_length > UART_BUF_SIZE) {
+    if (tm_length <= 0 || tm_length > CONFIG_UART_BUF_SIZE) {
         return (uint8_t*)NULL; 
     }
 
@@ -181,12 +180,7 @@ uint8_t* uart_receive(void) {
 
     full_data[0] = header;
 
-    uart_read_bytes(UART_NUM, full_data + 1, tm_length-1, pdMS_TO_TICKS(20)); 
-    
-    // Set the last byte to null terminator if the data is a string
-    if (full_data[tm_length] != '\0') { 
-        full_data[tm_length] = '\0'; 
-    }
+    uart_read_bytes(CONFIG_UART_NUM, full_data + 1, tm_length-1, pdMS_TO_TICKS(20)); 
     
     return full_data; 
 }

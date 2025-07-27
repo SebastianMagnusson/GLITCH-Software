@@ -82,7 +82,7 @@ static void test_format_tc(void) {
         for (j = 0; j < 1; j++) {
             TEST_ASSERT_EQUAL_INT(data_in[i][j], data_out[i][j]);
         }
-        TEST_ASSERT_EQUAL_INT(data_in[i][j+1] & 0b00000111, data_out[i][j+1] & 0b00000111);
+        TEST_ASSERT_EQUAL_INT(data_in[i][j+1] & 0b00001111, data_out[i][j+1] & 0b00001111);
     }
     
     // find a way to check size, maybe look for the padding ig
