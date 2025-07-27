@@ -92,8 +92,11 @@ config UART_BAUD_RATE
     default 115200
 
 config UART_NUM
-    string "UART number"
-    default UART_NUM_0
+    int "UART number"
+    range 0 2
+    default 0
+    help
+        UART port number: 0 for UART_NUM_0, 1 for UART_NUM_1, 2 for UART_NUM_2
 
 config TX_PIN
     int "TX pin"

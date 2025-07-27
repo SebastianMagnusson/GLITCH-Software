@@ -1,6 +1,7 @@
 #include "ethernet2.h"
 #include "buffer.h"
 #include "format.h"
+#include "sdkconfig.h"
 
 #include "esp_log.h"
 #include "esp_check.h"
