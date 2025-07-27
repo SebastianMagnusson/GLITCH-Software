@@ -1,0 +1,35 @@
+menu "default packet config"
+
+config HOUSEKEEPING_PACKET_SIZE
+    int "Housekeeping packet size"
+    default 256
+
+config HOUSEKEEPING_DATA_SIZE
+    int "Housekeeping data size"
+    default 1024
+
+config BITFLIP_PACKET_SIZE
+    int "Bitflip packet size"
+    default 256
+
+config BITFLIP_DATA_SIZE
+    int "Bitflip data size"
+    default 1024
+
+config RADIATION_PACKET_SIZE
+    int "Radiation packet size"
+    default 256
+
+config RADIATION_DATA_SIZE
+    int "Radiation data size"
+    default 1024
+
+config ACKNOWLEDGEMENT_PACKET_SIZE
+    int "Acknowledgement packet size"
+    default 7
+
+config ACKNOWLEDGEMENT_DATA_SIZE
+    int "Acknowledgement data size"
+    default 3
+
+endmenu
