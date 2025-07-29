@@ -18,13 +18,14 @@ Write proper readme files with config instructions.
 Clean up the code
     - Comment clearing
     - File naming
+        - DONE
     - Moving stuff into Kconfig instead of defining them in files
         - DONE
     - Remove all ESP_LOG shit as well probably
     - Clean the entire ethernet2 file (set up real send and receive functions and fix the task)
 
 Add ethernet and uart deinit functions
-    - They are there but not implemented
+    - They are there but not implemented and tested
 
 Fix tests
 
@@ -35,3 +36,11 @@ Try the test_packet thing
 
 Would be nice to have the CONFIG sizes in the test files.
     - Don't know how since they don't compile with the other things, might also be why the #include is not working as intended.
+
+Implement cut-off procedure
+    - DONE Started with confirmation_task
+    - Need to make kill function to tear down everything.
+        - Might be best to have in the main function.
+        - Use a struct to have callback pointer from tcp_server_task to indicate kill. (essentially same as for confirmation_task)
+
+Implement proper error handling

@@ -15,7 +15,7 @@
 #include "uart.h"
 #include "priority.h"
 
-#include "ethernet2.h"
+#include "ethernet.h"
 
 void app_main(void)
 {
