@@ -7,6 +7,9 @@
 /// @brief Function to initialize UART communication, configures the pins, installs driver and sets parameters
 void uart_init(void);
 
+/// @brief Function to deinitialize UART communication, deinitializes the driver and frees resources
+void uart_deinit(void);
+
 /// @brief Function to send data over UART
 /// @param uint8_t* Pointer to the message to be sent (string format) (should be NULL terminated) 
 void uart_send(uint8_t* message);

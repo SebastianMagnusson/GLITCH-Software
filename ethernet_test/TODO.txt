@@ -16,13 +16,11 @@ Create testing setups.
 Write proper readme files with config instructions.
 
 Clean up the code
-    - Comment clearing
-    - File naming
-        - DONE
-    - Moving stuff into Kconfig instead of defining them in files
-        - DONE
+    - DONE Comment clearing
+    - DONE File naming
+    - DONE Moving stuff into Kconfig instead of defining them in files
     - Remove all ESP_LOG shit as well probably
-    - Clean the entire ethernet2 file (set up real send and receive functions and fix the task)
+    - DONE (Kinda) Clean the entire ethernet2 file
 
 Add ethernet and uart deinit functions
     - They are there but not implemented and tested
@@ -34,13 +32,19 @@ Try the test_packet thing
     - Some tests in and it works fine.
     - Might be time to replace even in format file, but will have to test that first.
 
-Would be nice to have the CONFIG sizes in the test files.
+Would be nice to have the CONFIG packet and data sizes in the test files.
     - Don't know how since they don't compile with the other things, might also be why the #include is not working as intended.
 
 Implement cut-off procedure
     - DONE Started with confirmation_task
-    - Need to make kill function to tear down everything.
-        - Might be best to have in the main function.
-        - Use a struct to have callback pointer from tcp_server_task to indicate kill. (essentially same as for confirmation_task)
+    - DONE (Not as a function but in the main and ethernet tasks) Need to make kill function to tear down everything.
+        - DONE Might be best to have in the main function.
+        - DONE Use a struct to have callback pointer from tcp_server_task to indicate kill. (essentially same as for confirmation_task)
+        - DONE Have the buffer be drained before killing ethernet task.
 
 Implement proper error handling
+
+Implement the radiation data things
+    - buffer
+    - sorter
+    - sending

@@ -29,12 +29,17 @@
 
 typedef struct {
     int sock;
-    volatile int *kill_flag;  // Pointer to task-specific kill flag
+    volatile int *kill_flag;  
 } confirmation_task_params_t;
+
+typedef struct {
+    esp_eth_handle_t eth_handle; // Handle for the Ethernet driver
+    volatile int *kill_flag;  
+    volatile int *reset_flag; 
+} tcp_server_task_params_t;
 
 
 static EventGroupHandle_t s_network_event_group;    // Event group to signal connection status
-// static const char *payload = "Message from ESP32 "; // Placeholder for message to send
 static const char *TAG = "Ethernet";
 
 /** Event handler for Ethernet events */
@@ -148,7 +153,7 @@ esp_err_t eth_deinit(esp_eth_handle_t *eth_handles, uint8_t eth_cnt)
     return ESP_OK;
 }
 
-void ethernet_setup(void){
+esp_eth_handle_t ethernet_setup(void){
 
     esp_eth_handle_t eth_handle = eth_init(NULL, NULL); // Initialize Ethernet driver
 
@@ -170,7 +175,7 @@ void ethernet_setup(void){
         // Then it would only need to be called once at the start
         if (esp_netif_dhcpc_stop(eth_netif) != ESP_OK) {
             ESP_LOGE(TAG, "Failed to stop dhcp client");
-            return;
+            return NULL;
         }
 
         esp_netif_ip_info_t info_t;
@@ -222,30 +227,51 @@ void ethernet_setup(void){
         }
     #endif
 
+    return eth_handle;
+
 }
 
 
-esp_err_t eth_transmit(esp_eth_handle_t eth_handle, uint8_t *message, uint32_t length)
+esp_err_t eth_transmit(const int sock, uint8_t *message)
 {
-    esp_err_t ret = ESP_OK;
-
-    if (eth_handle == NULL || message == NULL || length == 0) {
+    if (sock == 0 || message == NULL) {
         return ESP_ERR_INVALID_ARG; 
     }
 
-    ret = esp_eth_transmit(eth_handle, message, length);
+    size_t length = check_length(message); 
+    int len_sent = send(sock, message, length, 0);
 
     /* Might need to use an alternative transmission method in order to be able to decide padding and other parameters
-       But probably not since we add the padding manually in the format_tm function
-    ret = esp_eth_transmit_vargs(eth_handle, ); // Alternative transmission method
+       But probably not since we should add the padding manually in the format_tm function, depending on the 
+    ret = esp_eth_transmit_vargs(eth_handle, message, length); // Alternative transmission method
+    */
+   
+    // Keep this in mind for datarate testing
+    // send() can return less bytes than supplied length.
+    // Walk-around for robust implementation.
+    // Have to check bitrate on this as it might add a big padding overhead
+    /*
+    int to_write = len;
+    while (to_write > 0) {
+        int written = send(sock, rx_buffer + (len - to_write), to_write, 0);
+        if (written < 0) {
+            ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
+            // Failed to retransmit, giving up
+            return;
+        }
+        to_write -= written;
+    } 
     */
     
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to transmit data over Ethernet: %s", esp_err_to_name(ret));
-        return ret;
+    // If the send fails twice, return ESP_FAIL
+    if (len_sent < 0) {
+        len_sent = send(sock, message, length, 0);
+        if (len_sent < 0) {
+            return ESP_FAIL;
+        }
     }
 
-    return ret;
+    return ESP_OK;
 }
 
 // This function is used to retransmit data received from the client.
@@ -312,52 +338,60 @@ void confirmation_task(void *pvParameters)
     int len;
     uint8_t response[128];
 
-    for (int i = 0; i < 500 && *kill_flag == 0; i++) { // Run the task for a maximum of 5 seconds or until kill flag is set
-
-        len = recv(sock, response, sizeof(response) - 1, MSG_DONTWAIT);
-        if (len < 0) {
-            if (errno == EAGAIN || errno == EWOULDBLOCK) {
-                // No data available, continue to the next iteration
-                vTaskDelay(pdMS_TO_TICKS(10)); // Delay to avoid busy-waiting
-            } else {
-                ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
-                break; // Exit the loop on error
-            }
-            continue;
+    // Use select() to wait for data with a 5-second timeout
+    fd_set readfds;
+    struct timeval timeout;
+    
+    FD_ZERO(&readfds);
+    FD_SET(sock, &readfds);
+    
+    timeout.tv_sec = 5;      // 5 seconds
+    timeout.tv_usec = 0;     // 0 microseconds
+    
+    int ready = select(sock + 1, &readfds, NULL, NULL, &timeout);
+    
+    if (ready > 0) {
+        // Data is available, safe to call recv without blocking
+        len = recv(sock, response, sizeof(response) - 1, 0);
+        
+        if (len <= 0) {
+            // No data or error, kill task
+            ESP_LOGW(TAG, "No data received or recv error, killing confirmation task");
+            vTaskDelete(NULL);
         }
 
         uint8_t *tc_received = unpack_tc(response);
         if (tc_received == NULL) {
-            ESP_LOGE(TAG, "Failed to unpack telecommand packet");
-            continue; // Skip to the next iteration if unpacking fails
+            ESP_LOGE(TAG, "Failed to unpack telecommand packet, killing confirmation task");
+            vTaskDelete(NULL);
         }
 
         if (((tc_received[3] >> 1) & 0b00000011) == 3)  {
             uint8_t *ack_packet = format_tc(tc_received);
             if (ack_packet != NULL) {
-                int sent = send(sock, ack_packet, check_length(ack_packet), 0);
-                if (sent < 0) {
-                    ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
-                }
+
+                eth_transmit(sock, ack_packet); 
                 
                 buffer_add_tc(tc_received);
 
-                // Set the kill flag and exit the task
+                // Set the kill flag
                 *kill_flag = 1;
-                vTaskDelete(NULL);
             }
         }
-
-        vTaskDelay(pdMS_TO_TICKS(10)); // Delay to avoid busy-waiting
     }
 
-    vTaskDelete(NULL); // Delete the task when done
+    vTaskDelete(NULL);
 }
 
 void tcp_server_task(void *pvParameters)
 {
+    tcp_server_task_params_t *params = (tcp_server_task_params_t*)pvParameters;
+    esp_eth_handle_t eth_handle = params->eth_handle;
+    volatile int *server_kill_flag = params->kill_flag;
+    volatile int *reset_flag = params->reset_flag;
+
     char addr_str[128];
-    int addr_family = AF_INET;
+    int addr_family = AF_INET; 
     int ip_protocol = 0;
     int keepAlive = 1;
     int keepIdle = CONFIG_KEEPALIVE_IDLE;
@@ -444,50 +478,53 @@ void tcp_server_task(void *pvParameters)
             
             uint8_t *tc_data = buffer_retreive_tm(); 
             if (tc_data != NULL) {
-                len_send = check_length(tc_data); 
-
-                // Try to send the data, if it fails, try again once
-                int sent = send(sock, tc_data, len_send, 0); 
-                if (sent < 0) {
-                    sent = send(sock, tc_data, len_send, 0);
+                
+                // If transmission fail, shutdown socket restart loop.
+                err = eth_transmit(sock, tc_data); 
+                if (err != ESP_OK) {
+                    break;
                 }
 
-                // Keep this in mind for datarate testing
-                // send() can return less bytes than supplied length.
-                // Walk-around for robust implementation.
-                // Have to check bitrate on this as it might add a big padding overhead
-                /*
-                int to_write = len;
-                while (to_write > 0) {
-                    int written = send(sock, rx_buffer + (len - to_write), to_write, 0);
-                    if (written < 0) {
-                        ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
-                        // Failed to retransmit, giving up
-                        return;
-                    }
-                    to_write -= written;
-                } 
-                */
-
-
-
             }
+
             // Receive data from the client but dont wait for it
             len_receive = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, MSG_DONTWAIT);
-            if (len_receive < 0) {
+            
+            // Check if the confirmation task has completed
+            if (confirmation_kill_flag && confirmation_task_handle != NULL) {
+
+                // The confirmation task has completed, set server kill flag and kill task
+                *server_kill_flag = 1;
+                confirmation_task_handle = NULL;
+
+                // Drain the buffer before killing the task
+                uint8_t *tc_data = buffer_retreive_tm();
+                while (tc_data != NULL) {
+                    len_send = check_length(tc_data);
+                    int sent = send(sock, tc_data, len_send, 0);
+                    if (sent < 0) {
+                        ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
+                    }
+                    tc_data = buffer_retreive_tm(); // Retrieve next data from the buffer
+                }
+
+                // Close the socket and delete the task
+                shutdown(sock, 0);
+                close(sock);
+                eth_deinit(eth_handle, 1);
+                vTaskDelete(NULL);
+
+            }
+
+            if (len_receive <= 0) {
                 // These error are not fatal, just means that there is no data available
                 if (errno == EAGAIN || errno == EWOULDBLOCK) {
                     len_receive = 1;
-                    vTaskDelay(pdMS_TO_TICKS(10)); // Delay to avoid busy-waiting
-                } else {
+                } else { // Break the loop to close and reopen the socket
+                    break;
+                }                
 
-                    // Implement error handling here, might be sane to just close the socket and reopen it
-
-                }
-
-                
-
-            } else if (len_receive >= 0) {
+            } else if (len_receive > 0) {
 
                 uint8_t* tc_received = unpack_tc(rx_buffer);
                 if (tc_received == NULL) {
@@ -495,25 +532,15 @@ void tcp_server_task(void *pvParameters)
                     continue;
                 } 
                 // Check if the telecommand warrants a response
-                if ((tc_received[3] >> 1) & 0b00000011) {
+                if (((tc_received[3] >> 1) & 0b00000011) == 3) {
                     xTaskCreate(confirmation_task, "confirmation", 2048, &task_params, 5, &confirmation_task_handle); 
                 }
 
                 buffer_add_tc(rx_buffer); // Add the received data to the buffer
 
-            }
-
-
-            // Check if the confirmation task has completed
-            if (confirmation_kill_flag && confirmation_task_handle != NULL) {
-                
-
-
-            }
+            }            
 
         } while (len_receive > 0);
-
-
 
         shutdown(sock, 0);
         close(sock);
@@ -521,6 +548,7 @@ void tcp_server_task(void *pvParameters)
 
     CLEAN_UP:
     close(listen_sock);
+    *reset_flag = 1;
     vTaskDelete(NULL);
 
 }

@@ -5,8 +5,8 @@
 
 /// @brief setup function for Ethernet driver and network interface
 /// @note This function initializes the Ethernet driver, creates a network interface, and registers event handlers.
-/// @param void
-void ethernet_setup(void); // Function to setup Ethernet driver and network interface
+/// @return esp_eth_handle_t The handle of the Ethernet driver.
+esp_eth_handle_t ethernet_setup(void); // Function to setup Ethernet driver and network interface
 
 
 /// @brief sets up the tcp client to connect to the laptop server
