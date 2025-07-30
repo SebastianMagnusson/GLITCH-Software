@@ -1,0 +1,50 @@
+Add bit offset to pack_tm function in format.c (DONE-ish)
+    - In order to avoid padding in data string to accomodate the different packet types
+        - DONE, but need to add the actual offset into the pack_tm function. 
+
+Define a CRC system.
+
+Define if the RTC in ack packet shall be from the MCU(FPGA) or same as the tc received.
+    - For now it is from the tc received.
+
+Finish packet validity check.
+    - Dependent on the above defininition.
+
+Create testing setups.
+    - DONE
+
+Write proper readme files with config instructions.
+
+Clean up the code
+    - DONE Comment clearing
+    - DONE File naming
+    - DONE Moving stuff into Kconfig instead of defining them in files
+    - Remove all ESP_LOG shit as well probably
+    - DONE (Kinda) Clean the entire ethernet2 file
+
+Add ethernet and uart deinit functions
+    - They are there but not implemented and tested
+
+Fix tests
+
+Try the test_packet thing
+    - Seems to be working but don't know for sure
+    - Some tests in and it works fine.
+    - Might be time to replace even in format file, but will have to test that first.
+
+Would be nice to have the CONFIG packet and data sizes in the test files.
+    - Don't know how since they don't compile with the other things, might also be why the #include is not working as intended.
+
+Implement cut-off procedure
+    - DONE Started with confirmation_task
+    - DONE (Not as a function but in the main and ethernet tasks) Need to make kill function to tear down everything.
+        - DONE Might be best to have in the main function.
+        - DONE Use a struct to have callback pointer from tcp_server_task to indicate kill. (essentially same as for confirmation_task)
+        - DONE Have the buffer be drained before killing ethernet task.
+
+Implement proper error handling
+
+Implement the radiation data things
+    - buffer
+    - sorter
+    - sending

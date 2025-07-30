@@ -1,0 +1,168 @@
+menu "packet size config"
+
+## Data sizes
+config ID_SIZE
+    int "ID size"
+    default 2
+
+config SEQ_COUNTER_SIZE
+    int "Sequence counter size"
+    default 16
+
+config RTC_SIZE
+    int "RTC size"
+    default 17
+
+config GNSS_SIZE
+    int "GNSS size"
+    default 55
+
+config TEMP_SIZE
+    int "Temperature size"
+    default 99
+
+config ALT_SIZE
+    int "Altitude size"
+    default 24
+
+config BITFLIP_SIZE
+    int "Bitflip size"
+    default 172
+
+config RADIATION_SIZE
+    int "Radiation size"
+    default 256
+
+config TC_SIZE
+    int "TC size"
+    default 3
+
+config CRC_SIZE
+    int "CRC size"
+    default 16
+
+
+## Packet sizes
+config HOUSEKEEPING_PACKET_SIZE
+    int "Housekeeping packet size"
+    default 30
+
+config HOUSEKEEPING_DATA_SIZE
+    int "Housekeeping data size"
+    default 1024
+
+config BITFLIP_PACKET_SIZE
+    int "Bitflip packet size"
+    default 29
+
+config BITFLIP_DATA_SIZE
+    int "Bitflip data size"
+    default 1024
+
+config RADIATION_PACKET_SIZE
+    int "Radiation packet size"
+    default 40
+
+config RADIATION_DATA_SIZE
+    int "Radiation data size"
+    default 1024
+
+config ACKNOWLEDGEMENT_PACKET_SIZE
+    int "Acknowledgement packet size"
+    default 8
+
+config ACKNOWLEDGEMENT_DATA_SIZE
+    int "Acknowledgement data size"
+    default 3
+
+endmenu
+
+menu "buffer size config"
+
+config MAX_TC_BUFFER_SIZE
+    int "Buffer size"
+    default 1024
+
+endmenu
+
+menu "uart config"
+
+config UART_BAUD_RATE
+    int "UART baud rate"
+    default 115200
+
+config UART_NUM
+    int "UART number"
+    range 0 2
+    default 0
+    help
+        UART port number: 0 for UART_NUM_0, 1 for UART_NUM_1, 2 for UART_NUM_2
+
+config TX_PIN
+    int "TX pin"
+    default 1
+
+config RX_PIN
+    int "RX pin"
+    default 3
+
+config UART_BUF_SIZE
+    int "UART buffer size"
+    default 1500
+
+endmenu
+
+menu "ethernet config"
+
+    config HOST_IP_ADDR
+        string "Host IP address"
+        default "192.168.0.165"
+
+    config HOST_PORT
+        int "Host port"
+        range 1024 65535
+        default 8080
+
+    config ETH_MDC_GPIO
+        int "ETH MDC GPIO"
+        default 23
+
+    config ETH_MDIO_GPIO
+        int "ETH MDIO GPIO"
+        default 18
+
+    config ETH_PHY_RST_GPIO
+        int "ETH PHY reset GPIO"
+        default 5
+
+    config ETH_PHY_ADDR
+        int "ETH PHY address"
+        default 1
+
+    config CONNECTED_BIT
+        int "Connected bit"
+        default 0
+
+    config ETH_CONNECTION_TMO_MS
+        int "Ethernet connection timeout (ms)"
+        default 10000
+
+    config KEEPALIVE_IDLE
+        int "TCP keep-alive idle time (s)"
+        default 5
+
+    config KEEPALIVE_INTERVAL
+        int "TCP keep-alive interval time (s)"
+        default 5
+
+    config KEEPALIVE_COUNT
+        int "TCP keep-alive packet retry count"
+        default 3
+
+    config USE_STATIC_IP
+        bool "Use static IP"
+        default y
+
+
+    
+endmenu
