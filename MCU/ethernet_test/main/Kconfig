@@ -1,3 +1,51 @@
+menu "misc config"
+
+config RADIATION_PACKET_NUMBER
+    int "Radiation packet number"
+    default 150
+
+config RADIATION_PACKET_WAIT_TIME
+    int "Radiation wait time (ms)"
+    default 100
+
+endmenu
+
+menu "prios and ids"
+
+config HOUSEKEEPING_PACKET_PRIO
+    int "Housekeeping task priority"
+    default 2
+
+config HOUSEKEEPING_PACKET_ID
+    int "Housekeeping task ID"
+    default 0
+
+config BITFLIP_PACKET_PRIO
+    int "Bitflip task priority"
+    default 1
+
+config BITFLIP_PACKET_ID
+    int "Bitflip task ID"
+    default 1
+
+config RADIATION_PACKET_PRIO
+    int "Radiation task priority"
+    default 3
+
+config RADIATION_PACKET_ID
+    int "Radiation task ID"
+    default 2
+
+config ACKNOWLEDGEMENT_PACKET_PRIO
+    int "Acknowledgement task priority"
+    default 0
+
+config ACKNOWLEDGEMENT_PACKET_ID
+    int "Acknowledgement task ID"
+    default 3
+
+endmenu
+
 menu "packet size config"
 
 ## Data sizes
@@ -82,6 +130,10 @@ menu "buffer size config"
 config MAX_TC_BUFFER_SIZE
     int "Buffer size"
     default 1024
+
+config MAX_RADIATION_BUFFER_SIZE
+    int "Radiation buffer size"
+    default 350
 
 endmenu
 

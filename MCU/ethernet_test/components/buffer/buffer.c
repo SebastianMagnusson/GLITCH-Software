@@ -4,8 +4,9 @@
 #include "esp_log.h"
 #include "sdkconfig.h"
 #include "buffer.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
-#define CHECK_BIT(var,pos) (((var)>>(pos)) & 1) // Macro to check if a bit is set in a variable
 frame_tm* head_tm; // Head of the linked list for tm buffer
 
 // Circular array for tc buffer with max size of MAX_TC_BUFFER_SIZE
@@ -14,21 +15,25 @@ uint8_t* buffer_tc[CONFIG_MAX_TC_BUFFER_SIZE];
 int front_tc; 
 int size_tc; 
 
+// Circular array for radiation data buffer with max size of MAX_RADIATION_BUFFER_SIZE
+uint8_t* buffer_rad[CONFIG_MAX_RADIATION_BUFFER_SIZE];
+int front_rad;
+int size_rad;
 
 int check_length(uint8_t* data) {
-    int telemetry_type = CHECK_BIT(data[0], 0) + CHECK_BIT(data[0], 1) * 2; // Get the telemetry type from the first byte
 
-    if (telemetry_type == 0){
-        return 28; // Should return the length of the data to be read (look in sed or somewhere)
+    int telemetry_type = data[0] & 0b00000011;
+    if (telemetry_type == CONFIG_HOUSEKEEPING_PACKET_ID){
+        return CONFIG_HOUSEKEEPING_PACKET_SIZE; // Should return the length of the data to be read (look in sed or somewhere)
     } 
-    if (telemetry_type == 1){
-        return 28; // Should return the length of the data to be read (look in sed or somewhere)
+    if (telemetry_type == CONFIG_BITFLIP_PACKET_ID){
+        return CONFIG_BITFLIP_PACKET_SIZE; // Should return the length of the data to be read (look in sed or somewhere)
     }
-    if (telemetry_type == 2){
-        return 3; // Should return the length of the data to be read (This ones wierd cuz don't really know size)
+    if (telemetry_type == CONFIG_RADIATION_PACKET_ID){
+        return CONFIG_RADIATION_PACKET_SIZE; // Should return the length of the data to be read (This ones wierd cuz don't really know size)
     }
-    if (telemetry_type == 3){
-        return 4; // Should return the length of the data to be read (look in sed or somewhere)
+    if (telemetry_type == CONFIG_ACKNOWLEDGEMENT_PACKET_ID){
+        return CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE; // Should return the length of the data to be read (look in sed or somewhere)
     }
 
     return (int)NULL;
@@ -43,6 +48,11 @@ void buffer_init() {
     }
     front_tc = 0;
     size_tc = 0;
+    for (int i = 0; i < CONFIG_MAX_RADIATION_BUFFER_SIZE; i++) {
+        buffer_rad[i] = NULL; 
+    }
+    front_rad = 0;
+    size_rad = 0;
 }
 
 void buffer_deinit() {
@@ -64,6 +74,54 @@ void buffer_deinit() {
     size_tc = 0;
 }
 
+uint8_t** buffer_retreive_rad(int size) {
+    if (size <= 0 || size > size_rad) {
+        return NULL;
+    }
+
+    int start = (front_rad - size/2 + CONFIG_MAX_RADIATION_BUFFER_SIZE) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
+    int end = (front_rad + size/2) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
+
+    uint8_t** retrieved_data = (uint8_t**)malloc(size * sizeof(uint8_t*));
+
+    for (int i = 0; i < size/2; i++) {
+        int index = (start + i) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
+        retrieved_data[i] = buffer_rad[index];
+    }
+
+    while (front_rad != end) {
+        vTaskDelay(pdMS_TO_TICKS(10)); // Wait for the next radiation data to be available (Hopefully)
+    }
+
+    for (int i = size/2; i < size; i++) {
+        int index = (end - size/2 + i) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
+        retrieved_data[i] = buffer_rad[index];
+    }
+
+    return retrieved_data;
+}
+
+
+void buffer_add_rad(uint8_t* data) {
+    
+    // Calculate the next position to insert (one position after front_rad)
+    int next_pos = (front_rad + 1) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
+    
+    // Add data at the next position
+    buffer_rad[next_pos] = data; 
+    ESP_LOGI("Buffer", "Radiation data added to buffer: %s", data); 
+    
+    // Update front_rad to point to the newest item
+    front_rad = next_pos;
+    
+    // Update size only if buffer isn't full yet
+    if (size_rad < CONFIG_MAX_RADIATION_BUFFER_SIZE) {
+        size_rad++;
+    }
+    
+    return;
+}
+
 void buffer_add_tm(int priority, uint8_t* data) {
     // Check if the priority is valid (0-3)
     if (priority < 0 || priority > 3) {
@@ -72,16 +130,21 @@ void buffer_add_tm(int priority, uint8_t* data) {
         
         return;
     }
-    
+
+    if ((data[0] & 0b00000011) == CONFIG_RADIATION_PACKET_ID) {
+        buffer_add_rad(data);
+        return;
+    }
+
     int len = check_length(data);
 
-    frame_tm* new_frame = (frame_tm*)malloc(sizeof(frame_tm));
+    frame_tm* new_frame = (frame_tm*)calloc(1, sizeof(frame_tm));
     if (!new_frame) {
         ESP_LOGE("Buffer", "Failed to allocate memory for frame_tm");
         return;
     }
 
-    new_frame->data = (uint8_t *)malloc(len);
+    new_frame->data = (uint8_t *)calloc(len, sizeof(uint8_t));
     if (!new_frame->data) {
         ESP_LOGE("Buffer", "Failed to allocate memory for data");
         free(new_frame);

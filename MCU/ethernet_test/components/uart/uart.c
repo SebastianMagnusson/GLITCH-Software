@@ -43,6 +43,46 @@ uint8_t* generate_data(int type){
 
 }
 
+void uart_send(uint8_t* message) {
+    ESP_LOGI(TAG, "Sending message: %s, length :%d", message, check_length(message)); 
+    uart_write_bytes(UART_NUM, message, check_length(message)); 
+    uart_write_bytes(UART_NUM, "\n", 1);
+}
+
+uint8_t* uart_receive(void) {
+
+    uint8_t header;
+
+    // Grab the first byte waiting, in order to get the TM type and full length of the data to be read
+    int length = uart_read_bytes(UART_NUM, &header, 1, pdMS_TO_TICKS(20)); 
+    if (length != 1) { 
+        if (length < 0) {
+            ESP_LOGE(TAG, "Error reading bytes from UART");
+        } else {
+            // ESP_LOGW(TAG, "No data received"); // Log warning for no data
+        }
+        return (uint8_t*)NULL; 
+    }
+    
+    int tm_length = check_length(&header); 
+    if (tm_length <= 0 || tm_length > CONFIG_UART_BUF_SIZE) {
+        return (uint8_t*)NULL; 
+    }
+
+    uint8_t* full_data = (uint8_t*)malloc(tm_length);
+
+    if (full_data == NULL) {
+        ESP_LOGE(TAG, "Failed to allocate memory for data buffer");
+        return (uint8_t*)NULL; 
+    }
+
+    full_data[0] = header;
+
+    uart_read_bytes(UART_NUM, full_data + 1, tm_length-1, pdMS_TO_TICKS(20)); 
+    
+    return full_data; 
+}
+
 void uart_task(void *pvParameters)
 {
     ESP_LOGI(TAG, "Starting UART task");
@@ -148,43 +188,3 @@ void uart_deinit(void) {
 }
 
 
-void uart_send(uint8_t* message) {
-    ESP_LOGI(TAG, "Sending message: %s, length :%d", message, check_length(message)); 
-    uart_write_bytes(UART_NUM, message, check_length(message)); 
-    uart_write_bytes(UART_NUM, "\n", 1);
-}
-
-
-uint8_t* uart_receive(void) {
-
-    uint8_t header;
-
-    // Grab the first byte waiting, in order to get the TM type and full length of the data to be read
-    int length = uart_read_bytes(UART_NUM, &header, 1, pdMS_TO_TICKS(20)); 
-    if (length != 1) { 
-        if (length < 0) {
-            ESP_LOGE(TAG, "Error reading bytes from UART");
-        } else {
-            // ESP_LOGW(TAG, "No data received"); // Log warning for no data
-        }
-        return (uint8_t*)NULL; 
-    }
-    
-    int tm_length = check_length(&header); 
-    if (tm_length <= 0 || tm_length > CONFIG_UART_BUF_SIZE) {
-        return (uint8_t*)NULL; 
-    }
-
-    uint8_t* full_data = (uint8_t*)malloc(tm_length);
-
-    if (full_data == NULL) {
-        ESP_LOGE(TAG, "Failed to allocate memory for data buffer");
-        return (uint8_t*)NULL; 
-    }
-
-    full_data[0] = header;
-
-    uart_read_bytes(UART_NUM, full_data + 1, tm_length-1, pdMS_TO_TICKS(20)); 
-    
-    return full_data; 
-}

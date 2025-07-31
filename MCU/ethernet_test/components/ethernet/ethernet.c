@@ -30,7 +30,7 @@
 typedef struct {
     int sock;
     volatile int *kill_flag;  
-} confirmation_task_params_t;
+} general_task_params_t;
 
 typedef struct {
     esp_eth_handle_t eth_handle; // Handle for the Ethernet driver
@@ -400,6 +400,34 @@ static int eth_receive_data(int sock, uint8_t *buffer, size_t buffer_size, int f
     return len_received;
 }
 
+void radiation_sending_task(void *pvParameters)
+{
+    general_task_params_t *params = (general_task_params_t*)pvParameters;
+    int sock = params->sock;
+    volatile int *kill_flag = params->kill_flag;
+    uint8_t **rad_data;
+
+    do {
+        // Retrieve radiation data from buffer
+        rad_data = buffer_retreive_rad(CONFIG_RADIATION_PACKET_NUMBER*2);
+        if (rad_data == NULL) {
+            return;
+        }
+    } while (rad_data == NULL);
+
+    // Send the data and wait for set time before next transmission
+    for (int i = 0; i < (CONFIG_RADIATION_PACKET_NUMBER * 2); i++) {
+        if (eth_transmit(sock, rad_data[i], 2) != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to send radiation data");
+            vTaskDelete(NULL);
+        }
+        vTaskDelay(pdMS_TO_TICKS(CONFIG_RADIATION_PACKET_WAIT_TIME));
+    }
+    
+    free(rad_data); // Free the array of pointers
+    vTaskDelete(NULL); // Delete task when done
+}
+
 /**
  * @brief Drain all pending data from the transmit buffer
  * @param sock Socket file descriptor
@@ -468,7 +496,7 @@ static esp_err_t do_retransmit(const int sock)
 
 void confirmation_task(void *pvParameters)
 {
-    confirmation_task_params_t *params = (confirmation_task_params_t*)pvParameters;
+    general_task_params_t *params = (general_task_params_t*)pvParameters;
     int sock = params->sock;
     volatile int *kill_flag = params->kill_flag;
     
@@ -529,7 +557,7 @@ void confirmation_task(void *pvParameters)
  * @return ESP_OK on success, ESP_FAIL on failure
  */
 static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock, 
-                                            confirmation_task_params_t *task_params,
+                                            general_task_params_t *task_params,
                                             TaskHandle_t *confirmation_task_handle)
 {
     uint8_t *tc_received = unpack_tc(rx_buffer);
@@ -575,7 +603,7 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
     volatile int confirmation_kill_flag = 0;
     
     // Set up task parameters for confirmation task
-    confirmation_task_params_t task_params = {
+    general_task_params_t task_params = {
         .sock = sock,
         .kill_flag = &confirmation_kill_flag
     };

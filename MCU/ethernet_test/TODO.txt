@@ -45,6 +45,11 @@ Implement cut-off procedure
 Implement proper error handling
 
 Implement the radiation data things
-    - buffer
+    - DONE buffer
     - sorter
-    - sending
+    - DONE sending
+
+Implement data generation file
+    - Remove weird thing that is right now in the uart file.
+
+Might need to think about having data regulation in case we get a lot of bitflips

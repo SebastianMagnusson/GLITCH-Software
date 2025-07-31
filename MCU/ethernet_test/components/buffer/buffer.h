@@ -42,6 +42,11 @@ uint8_t* buffer_retreive_tm(); // Function to retreive tm frames from buffer
 /// @return uint8_t*: Pointer to the data to be retreived from the buffer
 uint8_t* buffer_retreive_tc(); // Function to retreive tc frames from buffer
 
+/// @brief Function to retreive radiation data from buffer
+/// @param int: Amount packets to be retreived from the buffer (not over CONFIG_MAX_RADIATION_BUFFER_SIZE)
+/// @return uint8_t**: Pointer to the array of pointers to the data retreived from the buffer
+uint8_t** buffer_retreive_rad(int size); // Function to retreive radiation frames from buffer
+
 /// @brief Function to peek tm frame at a specific index
 /// @param int: Index of the frame to be peeked
 /// @return frame_tm*: The frame_tm pointer at the specified index
