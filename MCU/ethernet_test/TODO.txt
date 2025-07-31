@@ -47,7 +47,8 @@ Implement proper error handling
 Implement the radiation data things
     - DONE buffer
     - sorter
-    - DONE sending
+    - (DONE) sending
+        - Could have sending function as a task and the radiation packets about to be sent as an input pointer in the params while using it in the calling task
 
 Implement data generation file
     - Remove weird thing that is right now in the uart file.
