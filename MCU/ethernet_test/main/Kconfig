@@ -146,6 +146,14 @@ menu "ethernet config"
     config ETH_CONNECTION_TMO_MS
         int "Ethernet connection timeout (ms)"
         default 10000
+        
+    config ETH_BUFFER_SIZE
+        int "Ethernet buffer size"
+        default 128
+        
+    config KEEPALIVE_ENABLED
+        bool "Enable TCP keep-alive"
+        default y
 
     config KEEPALIVE_IDLE
         int "TCP keep-alive idle time (s)"

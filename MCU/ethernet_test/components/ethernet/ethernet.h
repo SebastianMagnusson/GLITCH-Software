@@ -20,3 +20,16 @@ esp_eth_handle_t ethernet_setup(void); // Function to setup Ethernet driver and 
 /// @note This function creates a TCP server that listens for incoming connections on a specified port.
 /// @param pvParameters ip address family (AF_INET for IPv4, AF_INET6 for IPv6)
 void tcp_server_task(void *pvParameters);
+
+/// @brief Transmit data over Ethernet with error handling
+/// @param sock Socket file descriptor
+/// @param message Message buffer to transmit
+/// @return ESP_OK on success, ESP_FAIL on failure
+esp_err_t eth_transmit(const int sock, uint8_t *message, int max_retries);
+
+/// @brief Robust transmission function with configurable retry logic
+/// @param sock Socket file descriptor
+/// @param message Message buffer to send
+/// @param max_retries Maximum number of retry attempts
+/// @return ESP_OK on success, ESP_FAIL on failure
+esp_err_t eth_transmit_robust(int sock, uint8_t *message, int max_retries);
