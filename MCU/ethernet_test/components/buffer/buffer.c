@@ -24,16 +24,16 @@ int check_length(uint8_t* data) {
 
     int telemetry_type = data[0] & 0b00000011;
     if (telemetry_type == CONFIG_HOUSEKEEPING_PACKET_ID){
-        return CONFIG_HOUSEKEEPING_PACKET_SIZE; // Should return the length of the data to be read (look in sed or somewhere)
+        return CONFIG_HOUSEKEEPING_PACKET_SIZE; 
     } 
     if (telemetry_type == CONFIG_BITFLIP_PACKET_ID){
-        return CONFIG_BITFLIP_PACKET_SIZE; // Should return the length of the data to be read (look in sed or somewhere)
+        return CONFIG_BITFLIP_PACKET_SIZE; 
     }
     if (telemetry_type == CONFIG_RADIATION_PACKET_ID){
-        return CONFIG_RADIATION_PACKET_SIZE; // Should return the length of the data to be read (This ones wierd cuz don't really know size)
+        return CONFIG_RADIATION_PACKET_SIZE; 
     }
     if (telemetry_type == CONFIG_ACKNOWLEDGEMENT_PACKET_ID){
-        return CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE; // Should return the length of the data to be read (look in sed or somewhere)
+        return CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE; 
     }
 
     return (int)NULL;
@@ -74,33 +74,61 @@ void buffer_deinit() {
     size_tc = 0;
 }
 
-uint8_t** buffer_retreive_rad(int size) {
+void buffer_retreive_rad_end(void *pvParameters) {
+
+    buffer_retreive_rad_end_params_t *params = (buffer_retreive_rad_end_params_t*)pvParameters;
+    uint8_t** retreived_rad = params->retreived_rad;
+    int size = params->size;
+    int end = params->end;
+
+    if (end < 0 || end >= CONFIG_MAX_RADIATION_BUFFER_SIZE) {
+        return;
+    }
+
+    int front_temp = front_rad;
+    int index = size/2;
+
+    while (front_rad != end) {
+        if (front_rad != front_temp) {
+            retreived_rad[index] = buffer_rad[front_rad];
+            front_temp = front_rad;
+            index++;
+        }
+    }
+
+    vTaskDelete(NULL);
+    return;
+
+}
+
+void buffer_retreive_rad(uint8_t** retreived_rad, int size){
     if (size <= 0 || size > size_rad) {
-        return NULL;
+        return;
+    } else if (size == 1) {
+        retreived_rad[0] = buffer_rad[front_rad];
+        return;
     }
 
     int start = (front_rad - size/2 + CONFIG_MAX_RADIATION_BUFFER_SIZE) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
     int end = (front_rad + size/2) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
 
-    uint8_t** retrieved_data = (uint8_t**)malloc(size * sizeof(uint8_t*));
+    // Create a task to retrieve the rest of the data while returning the first half
+    buffer_retreive_rad_end_params_t params = {
+        .retreived_rad = retreived_rad,
+        .size = size,
+        .end = end
+    };
+    xTaskCreate(buffer_retreive_rad_end, "buffer_retreive_rad_end", 2048, &params, 5, NULL);
 
+    // Fill the first half of the retreived_rad array
     for (int i = 0; i < size/2; i++) {
         int index = (start + i) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
-        retrieved_data[i] = buffer_rad[index];
+        retreived_rad[i] = buffer_rad[index];
     }
 
-    while (front_rad != end) {
-        vTaskDelay(pdMS_TO_TICKS(10)); // Wait for the next radiation data to be available (Hopefully)
-    }
+    return;
 
-    for (int i = size/2; i < size; i++) {
-        int index = (end - size/2 + i) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
-        retrieved_data[i] = buffer_rad[index];
-    }
-
-    return retrieved_data;
 }
-
 
 void buffer_add_rad(uint8_t* data) {
     

@@ -44,6 +44,10 @@ config ACKNOWLEDGEMENT_PACKET_ID
     int "Acknowledgement task ID"
     default 3
 
+config CUT_OFF_TC_ID
+    int "Cut-off telecommand ID"
+    default 3
+
 endmenu
 
 menu "packet size config"

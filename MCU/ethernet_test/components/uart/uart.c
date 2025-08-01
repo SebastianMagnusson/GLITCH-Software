@@ -7,41 +7,12 @@
 #include "priority.h"
 #include "format.h"
 #include "sdkconfig.h"
+#include "packet_generation.h"
 
 // Define UART_NUM as the properly cast uart_port_t type
 #define UART_NUM (uart_port_t)CONFIG_UART_NUM
 
 static const char *TAG = "UART";
-
-uint8_t* generate_data(int type){
-
-    uint8_t* data = (uint8_t*)malloc(28);
-    if (data == NULL) {
-        ESP_LOGE(TAG, "Failed to allocate memory for data buffer");
-        return NULL;
-    }
-
-    if (type == 0){
-        data[0] = 0b10101000;
-    } else if (type == 1){
-        data[0] = 0b10101001; // Set the first byte to indicate bit-flip telemetry
-    } else if (type == 2){
-        data[0] = 0b10101010; // Set the first byte to indicate radiation telemetry
-    } else if (type == 3){
-        data[0] = 0b10101011; // Set the first byte to indicate acknowledgement telemetry
-    } else {
-        ESP_LOGE(TAG, "Invalid telemetry type: %d", type);
-        free(data); // Free allocated memory if type is invalid
-        return (uint8_t*)NULL; // Return NULL if type is invalid
-    }
-    
-    for (int i = 1; i < 28; i++) { // Fill the rest of the data buffer with dummy data
-        data[i] = i; // Just an example, you can fill it with actual telemetry data
-    }
-
-    return data; // Return the generated data buffer
-
-}
 
 void uart_send(uint8_t* message) {
     ESP_LOGI(TAG, "Sending message: %s, length :%d", message, check_length(message)); 
@@ -94,8 +65,12 @@ void uart_task(void *pvParameters)
         }
         
         // uint8_t* data = uart_receive(); // Receive data from UART
-        uint8_t* data = generate_data(test%2); // Generate dummy data for testing, replace with uart_receive() in production
-
+        uint8_t* data = NULL; // Generate dummy data for testing, replace with uart_receive() in production
+        if (test%2) {
+            data = generate_HK_data(); // Generate dummy housekeeping data
+        } else {
+            data = generate_ACK_data(); // Generate dummy acknowledgement data
+        }
         if (data == NULL) {
             continue; 
         }

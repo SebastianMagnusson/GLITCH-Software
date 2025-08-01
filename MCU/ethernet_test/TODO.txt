@@ -1,6 +1,7 @@
 Add bit offset to pack_tm function in format.c (DONE-ish)
     - In order to avoid padding in data string to accomodate the different packet types
-        - DONE, but need to add the actual offset into the pack_tm function. 
+        - DONE, but need to add the actual offset into the pack_tm function.
+        - Equists in packet_generation.c, should work 
 
 Define a CRC system.
 
@@ -34,6 +35,7 @@ Try the test_packet thing (Should be way better than the current setup)
 
 Would be nice to have the CONFIG packet and data sizes in the test files.
     - Don't know how since they don't compile with the other things, might also be why the #include is not working as intended.
+    - Could have a small header file with the defines
 
 Implement cut-off procedure
     - DONE Started with confirmation_task
@@ -47,10 +49,12 @@ Implement proper error handling
 Implement the radiation data things
     - DONE buffer
     - sorter
-    - (DONE) sending
-        - Could have sending function as a task and the radiation packets about to be sent as an input pointer in the params while using it in the calling task
+    - DONE sending
+        - DONE Could have sending function as a task and the radiation packets about to be sent as an input pointer in the params while using it in the calling task
 
 Implement data generation file
-    - Remove weird thing that is right now in the uart file.
+    - DONE Remove weird thing that is right now in the uart file.
 
 Might need to think about having data regulation in case we get a lot of bitflips
+
+Check priority of the different tasks

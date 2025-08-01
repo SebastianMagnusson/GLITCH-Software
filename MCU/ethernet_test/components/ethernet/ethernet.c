@@ -27,17 +27,6 @@
     #define STATIC_NETMASK "255.255.255.0"
 #endif
 
-typedef struct {
-    int sock;
-    volatile int *kill_flag;  
-} general_task_params_t;
-
-typedef struct {
-    esp_eth_handle_t eth_handle; // Handle for the Ethernet driver
-    volatile int *kill_flag;  
-    volatile int *reset_flag; 
-} tcp_server_task_params_t;
-
 
 static EventGroupHandle_t s_network_event_group;    // Event group to signal connection status
 static const char *TAG = "Ethernet";
@@ -405,11 +394,11 @@ void radiation_sending_task(void *pvParameters)
     general_task_params_t *params = (general_task_params_t*)pvParameters;
     int sock = params->sock;
     volatile int *kill_flag = params->kill_flag;
-    uint8_t **rad_data;
+    uint8_t **rad_data = (uint8_t**)calloc(CONFIG_RADIATION_PACKET_NUMBER*2, sizeof(uint8_t*));
 
     do {
         // Retrieve radiation data from buffer
-        rad_data = buffer_retreive_rad(CONFIG_RADIATION_PACKET_NUMBER*2);
+        buffer_retreive_rad(rad_data, CONFIG_RADIATION_PACKET_NUMBER*2);
         if (rad_data == NULL) {
             return;
         }
@@ -422,10 +411,16 @@ void radiation_sending_task(void *pvParameters)
             vTaskDelete(NULL);
         }
         vTaskDelay(pdMS_TO_TICKS(CONFIG_RADIATION_PACKET_WAIT_TIME));
+        
+        if (*kill_flag) {
+            free(rad_data);
+            vTaskDelete(NULL);
+        }
+
     }
     
-    free(rad_data); // Free the array of pointers
-    vTaskDelete(NULL); // Delete task when done
+    free(rad_data);
+    vTaskDelete(NULL);
 }
 
 /**
@@ -517,7 +512,7 @@ void confirmation_task(void *pvParameters)
     
     if (ready > 0) {
         // Data is available, safe to call recv without blocking
-        len = recv(sock, response, sizeof(response) - 1, 0);
+        len = eth_receive_data(sock, response, sizeof(response), MSG_DONTWAIT);
         
         if (len <= 0) {
             // No data or error, kill task
@@ -531,7 +526,7 @@ void confirmation_task(void *pvParameters)
             vTaskDelete(NULL);
         }
 
-        if (((tc_received[3] >> 1) & 0b00000011) == 3)  {
+        if (((tc_received[3] >> 1) & 0b00000011) == CONFIG_CUT_OFF_TC_ID)  {
             uint8_t *ack_packet = format_tc(tc_received);
             if (ack_packet != NULL) {
 
@@ -566,15 +561,23 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
         return ESP_FAIL;
     }
 
-    // Check if the telecommand warrants a response (acknowledgment type)
-    if (((tc_received[3] >> 1) & 0b00000011) == 3) {
+    // Check if the telecommand warrants a confirmation task
+    if (((tc_received[3] >> 1) & 0b00000111) == CONFIG_CUT_OFF_TC_ID) {
         if (xTaskCreate(confirmation_task, "confirmation", 2048, task_params, 5, confirmation_task_handle) != pdPASS) {
             ESP_LOGE(TAG, "Failed to create confirmation task");
             return ESP_FAIL;
         }
     }
 
-    buffer_add_tc(rx_buffer); // Add the received data to the buffer
+    uint8_t tc_id = (tc_received[3] >> 1) & 0b00000111;
+    buffer_add_tc(&tc_id);
+    uint8_t *ack_packet = format_tc(tc_received);
+    if (ack_packet == NULL) {
+        ESP_LOGE(TAG, "Failed to format telecommand packet for acknowledgment");
+        return ESP_FAIL;
+    }
+    eth_transmit(sock, ack_packet, 2);
+
     return ESP_OK;
 }
 
@@ -615,9 +618,13 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
     // Main communication loop
     do {
         // Send any pending data from transmit buffer
-        uint8_t *tc_data = buffer_retreive_tm(); 
-        if (tc_data != NULL) {
-            if (eth_transmit(sock, tc_data, 2) != ESP_OK) {
+        uint8_t *tm_packet = buffer_retreive_tm(); 
+        if (tm_packet != NULL) {
+            if (tm_packet[3] == 0b00000011) {
+                xTaskCreate(radiation_sending_task, "radiation_sending", 2048, &task_params, 5, NULL);
+            }
+
+            if (eth_transmit(sock, tm_packet, 2) != ESP_OK) {
                 ESP_LOGE(TAG, "Transmission failed, closing connection");
                 break;
             }
@@ -651,6 +658,7 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
             if (process_received_telecommand(rx_buffer, sock, &task_params, &confirmation_task_handle) != ESP_OK) {
                 ESP_LOGW(TAG, "Failed to process telecommand, continuing...");
             }
+
         } else if (len_receive < 0) {
             // Fatal error occurred
             ESP_LOGE(TAG, "Fatal receive error, closing connection");

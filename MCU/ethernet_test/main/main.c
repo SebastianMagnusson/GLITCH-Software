@@ -17,12 +17,6 @@
 
 #include "ethernet.h"
 
-typedef struct {
-    esp_eth_handle_t eth_handle;
-    volatile int *kill_flag;  
-    volatile int *reset_flag; 
-} tcp_server_task_params_t;
-
 void app_main(void)
 {
     ESP_ERROR_CHECK(nvs_flash_init()); 

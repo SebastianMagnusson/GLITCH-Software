@@ -1,6 +1,17 @@
+#include "esp_eth_driver.h"
+
 #pragma once
 
-#include "esp_eth_driver.h"
+typedef struct {
+    int sock;
+    volatile int *kill_flag;  
+} general_task_params_t;
+
+typedef struct {
+    esp_eth_handle_t eth_handle; // Handle for the Ethernet driver
+    volatile int *kill_flag;  
+    volatile int *reset_flag; 
+} tcp_server_task_params_t;
 
 
 /// @brief setup function for Ethernet driver and network interface
