@@ -10,6 +10,12 @@ typedef struct frame_tm{
     struct frame_tm* next; // Pointer to the next frame in the buffer (for linked list implementation)
 }frame_tm;
 
+typedef struct {
+    uint8_t** retreived_rad; // Pointer to array where retrieved radiation data will be stored
+    int size; // Size of the data to retrieve
+    int end; // End index for retrieval
+} buffer_retreive_rad_end_params_t;
+
 /// @brief Function to check the length of the data based on telemetry type
 /// @param uint8_t* Pointer to the data buffer (first byte of the data)
 /// @return int: Length of the data to be read
@@ -41,6 +47,11 @@ uint8_t* buffer_retreive_tm(); // Function to retreive tm frames from buffer
 /// @brief Function to retreive command ready to be sent to FPGA
 /// @return uint8_t*: Pointer to the data to be retreived from the buffer
 uint8_t* buffer_retreive_tc(); // Function to retreive tc frames from buffer
+
+/// @brief Function to retreive radiation frames from buffer
+/// @param uint8_t**: Pointer to the array where retrieved radiation data will be stored
+/// @param int: Size of the data to retrieve
+void buffer_retreive_rad(uint8_t** retreived_rad, int size); // Function to retreive radiation frames from buffer
 
 /// @brief Function to peek tm frame at a specific index
 /// @param int: Index of the frame to be peeked

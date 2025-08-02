@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include "sdkconfig.h"
 #include "format.h"
+#include "esp_log.h"
 
 #define CHECK_BIT(var,pos) (((var)>>(pos)) & 1)
 
@@ -117,11 +118,11 @@ uint8_t* unpack_tc(uint8_t* packet) {
     uint16_t crc = (packet[4] & 0b11110000) << 12 | 
                    (packet[5] << 4) | 
                    (packet[6] & 0b00001111);
-                   
+    /*               
     if (!is_valid_packet(rtc, crc, packet)) {
         return NULL;
     }
-
+    */
     // If everything is fine, create a new data array to return and stuff the data & RTC into it
     uint8_t* data = (uint8_t*)calloc(CONFIG_ACKNOWLEDGEMENT_DATA_SIZE, sizeof(uint8_t));
     if (data == NULL) {

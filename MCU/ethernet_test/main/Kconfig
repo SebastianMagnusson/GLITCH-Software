@@ -1,3 +1,55 @@
+menu "misc config"
+
+config RADIATION_PACKET_NUMBER
+    int "Radiation packet number"
+    default 150
+
+config RADIATION_PACKET_WAIT_TIME
+    int "Radiation wait time (ms)"
+    default 100
+
+endmenu
+
+menu "prios and ids"
+
+config HOUSEKEEPING_PACKET_PRIO
+    int "Housekeeping task priority"
+    default 2
+
+config HOUSEKEEPING_PACKET_ID
+    int "Housekeeping task ID"
+    default 0
+
+config BITFLIP_PACKET_PRIO
+    int "Bitflip task priority"
+    default 1
+
+config BITFLIP_PACKET_ID
+    int "Bitflip task ID"
+    default 1
+
+config RADIATION_PACKET_PRIO
+    int "Radiation task priority"
+    default 3
+
+config RADIATION_PACKET_ID
+    int "Radiation task ID"
+    default 2
+
+config ACKNOWLEDGEMENT_PACKET_PRIO
+    int "Acknowledgement task priority"
+    default 0
+
+config ACKNOWLEDGEMENT_PACKET_ID
+    int "Acknowledgement task ID"
+    default 3
+
+config CUT_OFF_TC_ID
+    int "Cut-off telecommand ID"
+    default 3
+
+endmenu
+
 menu "packet size config"
 
 ## Data sizes
@@ -83,6 +135,10 @@ config MAX_TC_BUFFER_SIZE
     int "Buffer size"
     default 1024
 
+config MAX_RADIATION_BUFFER_SIZE
+    int "Radiation buffer size"
+    default 350
+
 endmenu
 
 menu "uart config"
@@ -141,11 +197,19 @@ menu "ethernet config"
 
     config CONNECTED_BIT
         int "Connected bit"
-        default 0
+        default 1
 
     config ETH_CONNECTION_TMO_MS
         int "Ethernet connection timeout (ms)"
         default 10000
+        
+    config ETH_BUFFER_SIZE
+        int "Ethernet buffer size"
+        default 128
+        
+    config KEEPALIVE_ENABLED
+        bool "Enable TCP keep-alive"
+        default y
 
     config KEEPALIVE_IDLE
         int "TCP keep-alive idle time (s)"
