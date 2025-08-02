@@ -7,7 +7,13 @@ class Logger:
     def __init__(self):
         now = datetime.now()
         timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
-        self.filename = "ground_station/storage/logs/log_" + timestamp + ".csv"
+        
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        log_dir = os.path.join(current_dir, "logs")
+        
+        os.makedirs(log_dir, exist_ok=True)
+        
+        self.filename = os.path.join(log_dir, f"log_{timestamp}.csv")
         self.file_exists = os.path.isfile(self.filename)
         self.fieldnames = ["timestamp", "type", "seq_counter", "rtc", "data"]
 
