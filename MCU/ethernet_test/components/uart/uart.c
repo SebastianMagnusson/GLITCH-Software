@@ -69,7 +69,7 @@ void uart_task(void *pvParameters)
         if (test%2) {
             data = generate_HK_data(); // Generate dummy housekeeping data
         } else {
-            data = generate_ACK_data(); // Generate dummy acknowledgement data
+            data = generate_BF_data(); // Generate dummy acknowledgement data
         }
         if (data == NULL) {
             continue; 

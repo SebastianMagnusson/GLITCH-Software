@@ -47,6 +47,7 @@ void app_main(void)
             uart_deinit();
             break;
         }
+        vTaskDelay(pdMS_TO_TICKS(100)); // Yield control to other tasks
     }
 
 }

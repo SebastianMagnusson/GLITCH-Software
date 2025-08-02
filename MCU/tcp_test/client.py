@@ -12,7 +12,9 @@ def receive_data(sock):
             if not data:
                 print("Server closed the connection.")
                 break
-            print("Received from server:", data.decode(errors='replace'))
+            decoded_data = data.decode(errors='replace')
+            binary_data = ' '.join(format(ord(char), '08b') for char in decoded_data)
+            print("Received from server:", binary_data)
         except socket.error as e:
             print("Receive error:", e)
             break
@@ -23,7 +25,8 @@ def send_data(sock):
         try:
             message = f"Hello {counter}"
             sock.send(message.encode())
-            print(f"Sent: {message}")
+            binary_message = ' '.join(format(ord(char), '08b') for char in message)
+            print(f"Sent: {binary_message}")
             counter += 1
             time.sleep(2)  # Send every 2 seconds
         except socket.error as e:

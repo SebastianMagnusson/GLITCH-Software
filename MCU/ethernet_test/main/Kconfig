@@ -197,7 +197,7 @@ menu "ethernet config"
 
     config CONNECTED_BIT
         int "Connected bit"
-        default 0
+        default 1
 
     config ETH_CONNECTION_TMO_MS
         int "Ethernet connection timeout (ms)"

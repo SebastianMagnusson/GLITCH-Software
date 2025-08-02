@@ -6,6 +6,7 @@
 #include "esp_log.h"
 #include "esp_check.h"
 #include "esp_mac.h"
+#include "esp_task_wdt.h"
 #include "driver/gpio.h"
 #include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
@@ -20,6 +21,7 @@
 #include <errno.h>
 #include <netdb.h> 
 #include <arpa/inet.h>
+#include <fcntl.h>
 
 #if CONFIG_USE_STATIC_IP
     #define STATIC_IP "192.168.4.2"
@@ -400,7 +402,7 @@ void radiation_sending_task(void *pvParameters)
         // Retrieve radiation data from buffer
         buffer_retreive_rad(rad_data, CONFIG_RADIATION_PACKET_NUMBER*2);
         if (rad_data == NULL) {
-            return;
+            vTaskDelay(pdMS_TO_TICKS(100)); // Yield control while waiting for data
         }
     } while (rad_data == NULL);
 
@@ -632,7 +634,9 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
 
         // Receive data from client (non-blocking)
         len_receive = eth_receive_data(sock, rx_buffer, sizeof(rx_buffer), MSG_DONTWAIT);
-        
+        ESP_LOGD(TAG, "Received %d bytes from client", len_receive);
+
+
         // Check if confirmation task has completed
         if (confirmation_kill_flag && confirmation_task_handle != NULL) {
             ESP_LOGI(TAG, "Confirmation task completed, shutting down server");
@@ -655,6 +659,12 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
 
         // Process received data
         if (len_receive > 0) {
+            // Add debugging: log the received data
+            ESP_LOGI(TAG, "Received %d bytes. Raw data:", len_receive);
+            for (int i = 0; i < len_receive && i < 16; i++) {
+                ESP_LOGI(TAG, "  byte[%d]: 0x%02X", i, rx_buffer[i]);
+            }
+            
             if (process_received_telecommand(rx_buffer, sock, &task_params, &confirmation_task_handle) != ESP_OK) {
                 ESP_LOGW(TAG, "Failed to process telecommand, continuing...");
             }
@@ -666,8 +676,11 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
         }
         // len_receive == 0 means no data available (EAGAIN/EWOULDBLOCK), continue loop
 
-        // Small delay to prevent busy waiting
-        vTaskDelay(pdMS_TO_TICKS(1));
+        // Feed the watchdog to prevent timeout
+        esp_task_wdt_reset();
+        
+        // Small delay to prevent busy waiting - increased to give more time
+        vTaskDelay(pdMS_TO_TICKS(10));
 
     } while (len_receive >= 0);
 
@@ -682,9 +695,19 @@ void tcp_server_task(void *pvParameters)
     volatile int *reset_flag = params->reset_flag;
 
     // Create and configure server socket
-    int listen_sock = create_tcp_server_socket(CONFIG_HOST_PORT);
+    int listen_sock = create_tcp_server_socket();
     if (listen_sock < 0) {
         ESP_LOGE(TAG, "Failed to create server socket");
+        *reset_flag = 1;
+        vTaskDelete(NULL);
+        return;
+    }
+
+    // Set socket to non-blocking mode to prevent accept() from blocking indefinitely
+    int flags = fcntl(listen_sock, F_GETFL, 0);
+    if (flags < 0 || fcntl(listen_sock, F_SETFL, flags | O_NONBLOCK) < 0) {
+        ESP_LOGE(TAG, "Failed to set socket to non-blocking mode");
+        close(listen_sock);
         *reset_flag = 1;
         vTaskDelete(NULL);
         return;
@@ -694,16 +717,28 @@ void tcp_server_task(void *pvParameters)
     
     // Main server loop
     while (1) {
+        // Check server kill flag
+        if (*server_kill_flag) {
+            ESP_LOGI(TAG, "Server kill flag set, exiting");
+            break;
+        }
+
         ESP_LOGI(TAG, "Socket listening");
 
-        // Accept incoming connections
+        // Accept incoming connections (non-blocking)
         struct sockaddr_storage source_addr;
         socklen_t addr_len = sizeof(source_addr);
         int connected_sock = accept(listen_sock, (struct sockaddr *)&source_addr, &addr_len);
 
         if (connected_sock < 0) {
-            ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
-            break;
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                // No pending connections, yield control and try again
+                vTaskDelay(pdMS_TO_TICKS(100));
+                continue;
+            } else {
+                ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
+                break;
+            }
         }
 
         // Convert client IP address to string for logging
@@ -719,6 +754,10 @@ void tcp_server_task(void *pvParameters)
         shutdown(connected_sock, 0);
         close(connected_sock);
         ESP_LOGI(TAG, "Client connection closed");
+        
+        // Feed the watchdog and add small delay
+        esp_task_wdt_reset();
+        vTaskDelay(pdMS_TO_TICKS(100));
     }
 
     // Cleanup

@@ -137,7 +137,13 @@ void buffer_add_rad(uint8_t* data) {
     
     // Add data at the next position
     buffer_rad[next_pos] = data; 
-    ESP_LOGI("Buffer", "Radiation data added to buffer: %s", data); 
+    ESP_LOGI("Buffer", "Radiation data added to buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c), Byte 1: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
+             data[0], 
+             (data[0] & 0x80) ? '1' : '0', (data[0] & 0x40) ? '1' : '0', (data[0] & 0x20) ? '1' : '0', (data[0] & 0x10) ? '1' : '0',
+             (data[0] & 0x08) ? '1' : '0', (data[0] & 0x04) ? '1' : '0', (data[0] & 0x02) ? '1' : '0', (data[0] & 0x01) ? '1' : '0',
+             data[1],
+             (data[1] & 0x80) ? '1' : '0', (data[1] & 0x40) ? '1' : '0', (data[1] & 0x20) ? '1' : '0', (data[1] & 0x10) ? '1' : '0',
+             (data[1] & 0x08) ? '1' : '0', (data[1] & 0x04) ? '1' : '0', (data[1] & 0x02) ? '1' : '0', (data[1] & 0x01) ? '1' : '0'); 
     
     // Update front_rad to point to the newest item
     front_rad = next_pos;
@@ -179,8 +185,13 @@ void buffer_add_tm(int priority, uint8_t* data) {
         return;
     }
 
-    ESP_LOGI("Buffer", "TM added to buffer with priority %d and length %d: %s",
-             priority, len, data); 
+    ESP_LOGI("Buffer", "TM added to buffer with priority %d and length %d - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c), Byte 1: 0x%02X (0b%c%c%c%c%c%c%c%c)",
+             priority, len, data[0], 
+             (data[0] & 0x80) ? '1' : '0', (data[0] & 0x40) ? '1' : '0', (data[0] & 0x20) ? '1' : '0', (data[0] & 0x10) ? '1' : '0',
+             (data[0] & 0x08) ? '1' : '0', (data[0] & 0x04) ? '1' : '0', (data[0] & 0x02) ? '1' : '0', (data[0] & 0x01) ? '1' : '0',
+             data[1],
+             (data[1] & 0x80) ? '1' : '0', (data[1] & 0x40) ? '1' : '0', (data[1] & 0x20) ? '1' : '0', (data[1] & 0x10) ? '1' : '0',
+             (data[1] & 0x08) ? '1' : '0', (data[1] & 0x04) ? '1' : '0', (data[1] & 0x02) ? '1' : '0', (data[1] & 0x01) ? '1' : '0'); 
 
     memcpy(new_frame->data, data, len);
     new_frame->priority = priority;
@@ -221,7 +232,13 @@ uint8_t* buffer_retreive_tm() {
     // Take the first frame and remove it from the buffer
     frame_tm* frame = head_tm; 
     head_tm = head_tm->next; 
-    ESP_LOGI("Buffer", "TM retrieved from buffer: %s", frame->data);
+    ESP_LOGI("Buffer", "TM retrieved from buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c), Byte 1: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
+             frame->data[0], 
+             (frame->data[0] & 0x80) ? '1' : '0', (frame->data[0] & 0x40) ? '1' : '0', (frame->data[0] & 0x20) ? '1' : '0', (frame->data[0] & 0x10) ? '1' : '0',
+             (frame->data[0] & 0x08) ? '1' : '0', (frame->data[0] & 0x04) ? '1' : '0', (frame->data[0] & 0x02) ? '1' : '0', (frame->data[0] & 0x01) ? '1' : '0',
+             frame->data[1],
+             (frame->data[1] & 0x80) ? '1' : '0', (frame->data[1] & 0x40) ? '1' : '0', (frame->data[1] & 0x20) ? '1' : '0', (frame->data[1] & 0x10) ? '1' : '0',
+             (frame->data[1] & 0x08) ? '1' : '0', (frame->data[1] & 0x04) ? '1' : '0', (frame->data[1] & 0x02) ? '1' : '0', (frame->data[1] & 0x01) ? '1' : '0');
     return frame->data; 
 
 }
@@ -256,7 +273,13 @@ void buffer_add_tc(uint8_t* data) {
 
     // Add the data to the buffer and increment the size
     buffer_tc[(front_tc + size_tc)%CONFIG_MAX_TC_BUFFER_SIZE] = data; 
-    ESP_LOGI("Buffer", "TC added to buffer: %s", data); 
+    ESP_LOGI("Buffer", "TC added to buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c), Byte 1: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
+             data[0], 
+             (data[0] & 0x80) ? '1' : '0', (data[0] & 0x40) ? '1' : '0', (data[0] & 0x20) ? '1' : '0', (data[0] & 0x10) ? '1' : '0',
+             (data[0] & 0x08) ? '1' : '0', (data[0] & 0x04) ? '1' : '0', (data[0] & 0x02) ? '1' : '0', (data[0] & 0x01) ? '1' : '0',
+             data[1],
+             (data[1] & 0x80) ? '1' : '0', (data[1] & 0x40) ? '1' : '0', (data[1] & 0x20) ? '1' : '0', (data[1] & 0x10) ? '1' : '0',
+             (data[1] & 0x08) ? '1' : '0', (data[1] & 0x04) ? '1' : '0', (data[1] & 0x02) ? '1' : '0', (data[1] & 0x01) ? '1' : '0'); 
     size_tc++;
 }
 
@@ -269,7 +292,14 @@ uint8_t* buffer_retreive_tc() {
     // Retrieve the data from the buffer and decrement the size
     uint8_t* data = buffer_tc[front_tc]; 
     front_tc = (front_tc + 1) % CONFIG_MAX_TC_BUFFER_SIZE;
-    size_tc--; ESP_LOGI("Buffer", "TC retreived from buffer: %s", data);
+    size_tc--; 
+    ESP_LOGI("Buffer", "TC retrieved from buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c), Byte 1: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
+             data[0], 
+             (data[0] & 0x80) ? '1' : '0', (data[0] & 0x40) ? '1' : '0', (data[0] & 0x20) ? '1' : '0', (data[0] & 0x10) ? '1' : '0',
+             (data[0] & 0x08) ? '1' : '0', (data[0] & 0x04) ? '1' : '0', (data[0] & 0x02) ? '1' : '0', (data[0] & 0x01) ? '1' : '0',
+             data[1],
+             (data[1] & 0x80) ? '1' : '0', (data[1] & 0x40) ? '1' : '0', (data[1] & 0x20) ? '1' : '0', (data[1] & 0x10) ? '1' : '0',
+             (data[1] & 0x08) ? '1' : '0', (data[1] & 0x04) ? '1' : '0', (data[1] & 0x02) ? '1' : '0', (data[1] & 0x01) ? '1' : '0');
     return data; 
 }
 
