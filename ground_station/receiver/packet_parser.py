@@ -40,7 +40,6 @@ def parse_hk(bits):
         "sensor_board": convert_temp(bits.read("uint:32")),
         "gnss": bits.read("uint:55"),
         "altitude": bits.read("int:24"),
-        "radiation": bits.read("uint:1"),
         "crc": bits.read("uint:16")
     }
 
