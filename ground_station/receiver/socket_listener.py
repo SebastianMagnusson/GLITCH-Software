@@ -7,7 +7,7 @@ def dl_pkts(ip="0.0.0.0", port=5005, telemetry_manager=None):
     sock.bind((ip, port))
     print(f"Listening on {ip}:{port}...")
     logger = Logger()
-
+    
     while True:
         data, addr = sock.recvfrom(4096)
         parsed = parse_packet(data)

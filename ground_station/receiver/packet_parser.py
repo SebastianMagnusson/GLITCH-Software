@@ -17,7 +17,7 @@ def parse_packet(data):
 def parse_hk(bits):
     return {
         "type": "HK",
-        "seq_counter": bits.read("uint:10"),
+        "seq_counter": bits.read("uint:16"),
         "rtc": bits.read("uint:17"),
         "internal": convert_temp(bits.read("uint:32")),
         "external": convert_temp(bits.read("uint:32")),
@@ -30,7 +30,7 @@ def parse_hk(bits):
 def parse_bf(bits):
     return {
         "type": "BF",
-        "seq_counter": bits.read("uint:10"),
+        "seq_counter": bits.read("uint:16"),
         "rtc": bits.read("uint:17"),
         "bit_flip": bits.read("uint:172"),
         "crc": bits.read("int:16")
@@ -39,7 +39,7 @@ def parse_bf(bits):
 def parse_ack(bits):
     return {
         "type": "ACK",
-        "seq_counter": bits.read("uint:10"),
+        "seq_counter": bits.read("uint:16"),
         "rtc": bits.read("uint:17"),
         "telecommand_ack": bits.read("uint:3"),
         "crc": bits.read("uint:16")
