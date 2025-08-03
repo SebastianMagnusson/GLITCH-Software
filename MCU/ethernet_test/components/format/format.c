@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include "sdkconfig.h"
 #include "format.h"
+#include "packet_generation.h"
 #include "esp_log.h"
 
 #define CHECK_BIT(var,pos) (((var)>>(pos)) & 1)
@@ -108,16 +109,16 @@ uint8_t* unpack_tc(uint8_t* packet) {
     uint16_t seq_num = packet[0] << 8 | packet[1];
 
     // 3 bits
-    uint8_t tc = packet[2] & 0b00000111; 
+    uint8_t tc = packet[2] >> 5 & 0b00000111; 
 
     // 17 bits
-    uint32_t rtc = ((packet[2] & 0b11111000) << 12) | 
+    uint32_t rtc = ((packet[2] & 0b00011111) << 12) | 
            (packet[3] << 4) |
-           (packet[4] & 0b00001111);
+           ((packet[4] >> 4) & 0b00001111);
 
-    uint16_t crc = (packet[4] & 0b11110000) << 12 | 
+    uint16_t crc = (packet[4] & 0b00001111) << 12 | 
                    (packet[5] << 4) | 
-                   (packet[6] & 0b00001111);
+                   ((packet[6] >> 4) & 0b00001111);
     /*               
     if (!is_valid_packet(rtc, crc, packet)) {
         return NULL;
@@ -141,26 +142,45 @@ uint8_t* format_tm(uint8_t* data) {
         return (uint8_t*)NULL;
     }
 
-    int telemetry_type = CHECK_BIT(data[0], 0) + CHECK_BIT(data[0], 1) * 2;
+    int telemetry_type = CHECK_BIT(data[0], 6) + CHECK_BIT(data[0], 7) * 2;
+    size_t bit_pos = 0;
 
     uint8_t* packet = NULL;
 
-    if (telemetry_type == 0) {
-        packet = pack_tm(data, CONFIG_HOUSEKEEPING_PACKET_SIZE, CONFIG_HOUSEKEEPING_DATA_SIZE);
+    if (telemetry_type == CONFIG_HOUSEKEEPING_PACKET_ID) {
+        uint8_t *packet = calloc(CONFIG_HOUSEKEEPING_PACKET_SIZE, sizeof(uint8_t));
+                
+        set_bits(packet, &bit_pos, CONFIG_HOUSEKEEPING_PACKET_ID, CONFIG_ID_SIZE);            // ID
+        set_bits(packet, &bit_pos, housekeeping_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
+        set_bits_data(packet, &bit_pos, data, CONFIG_HOUSEKEEPING_DATA_SIZE); // Combined experiment data
+        set_bits(packet, &bit_pos, 0x1234, CONFIG_CRC_SIZE);      // CRC
+
+        // packet = pack_tm(data, CONFIG_HOUSEKEEPING_PACKET_SIZE, CONFIG_HOUSEKEEPING_DATA_SIZE);
         housekeeping_sequence_number++;
-    } else if (telemetry_type == 1) {
-        packet = pack_tm(data, CONFIG_BITFLIP_PACKET_SIZE, CONFIG_BITFLIP_DATA_SIZE);
+    } else if (telemetry_type == CONFIG_BITFLIP_PACKET_ID) {
+        uint8_t *packet = calloc(CONFIG_BITFLIP_PACKET_SIZE, sizeof(uint8_t));
+
+        set_bits(packet, &bit_pos, CONFIG_BITFLIP_PACKET_ID, CONFIG_ID_SIZE);            // ID
+        set_bits(packet, &bit_pos, bitflip_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
+        set_bits_data(packet, &bit_pos, data, CONFIG_BITFLIP_DATA_SIZE); // Combined experiment data
+        set_bits(packet, &bit_pos, 0x1234, CONFIG_CRC_SIZE);      // CRC
+
+        //packet = pack_tm(data, CONFIG_BITFLIP_PACKET_SIZE, CONFIG_BITFLIP_DATA_SIZE);
         bitflip_sequence_number++;
-    } else if (telemetry_type == 2) {
-        packet = pack_tm(data, CONFIG_RADIATION_PACKET_SIZE, CONFIG_RADIATION_DATA_SIZE);
+    } else if (telemetry_type == CONFIG_RADIATION_PACKET_ID) {
+        uint8_t *packet = calloc(CONFIG_RADIATION_PACKET_SIZE, sizeof(uint8_t));
+
+        set_bits(packet, &bit_pos, CONFIG_RADIATION_PACKET_ID, CONFIG_ID_SIZE);            // ID
+        set_bits(packet, &bit_pos, radiation_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
+        set_bits_data(packet, &bit_pos, data, CONFIG_RADIATION_DATA_SIZE); // Combined experiment data
+        set_bits(packet, &bit_pos, 0x1234, CONFIG_CRC_SIZE);      // CRC
+
+        //packet = pack_tm(data, CONFIG_RADIATION_PACKET_SIZE, CONFIG_RADIATION_DATA_SIZE);
         radiation_sequence_number++;
     } else {
         return (uint8_t*)NULL;
     }
 
-    if (packet == NULL) {
-        return (uint8_t*)NULL;
-    }
     return packet;
 
 }
@@ -169,7 +189,16 @@ uint8_t* format_tc(uint8_t* data) {
     if (data == NULL) {
         return NULL;
     }
+
+    uint8_t *packet = calloc(CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE, sizeof(uint8_t));
+
+    size_t bit_pos = 0;
+    set_bits(packet, &bit_pos, CONFIG_ACKNOWLEDGEMENT_PACKET_ID, CONFIG_ID_SIZE);            // ID
+    set_bits(packet, &bit_pos, acknowledgement_sequence_number, CONFIG_SEQ_COUNTER_SIZE);           // Seq. Counter
+    set_bits_data(packet, &bit_pos, data, CONFIG_ACKNOWLEDGEMENT_DATA_SIZE); // Telecommand ACK
+    set_bits(packet, &bit_pos, 0x1234, CONFIG_CRC_SIZE);      // CRC
     
+    /*
     uint8_t* packet = (uint8_t*)calloc(CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE, sizeof(uint8_t));
     packet[0] = 3 | ((acknowledgement_sequence_number << 2) & 0b11111100);
     packet[1] = (acknowledgement_sequence_number >> 6) & 0b11111111;
@@ -183,6 +212,6 @@ uint8_t* format_tc(uint8_t* data) {
     packet[CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE - 3] |= (crc << 6) & 0b11000000;
     packet[CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE - 2] = (crc >> 2);
     packet[CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE - 1] = ((crc >> 10) & 0b00111111);
-
+    */
     return packet;
 }

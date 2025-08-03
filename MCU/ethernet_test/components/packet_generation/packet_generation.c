@@ -21,7 +21,7 @@ void set_bits_data(uint8_t* buf, size_t* bit_pos, const uint8_t* data, int bits)
     for (int i = bits - 1; i >= 0; i--) {
         int byte_index = (*bit_pos) / 8;
         int bit_index = 7 - ((*bit_pos) % 8);
-        buf[byte_index] |= ((data[(i+2) / 8] >> ((i+2) % 8)) & 1) << bit_index;
+        buf[byte_index] |= ((data[bits/8 - (i) / 8] >> ((i) % 8)) & 1) << bit_index;
         (*bit_pos)++;
     }
 }
@@ -53,7 +53,7 @@ uint8_t* generate_HK_packet() {
     size_t bit_pos = 0;
     set_bits(packet, &bit_pos, CONFIG_HOUSEKEEPING_PACKET_ID, CONFIG_ID_SIZE);            // ID
     set_bits(packet, &bit_pos, 42, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
-    set_bits(packet, &bit_pos, 0x1FFFF, CONFIG_HOUSEKEEPING_DATA_SIZE); // Combined experiment data
+    set_bits(packet, &bit_pos, 0x1BBFFAA, CONFIG_HOUSEKEEPING_DATA_SIZE); // Combined experiment data
     set_bits(packet, &bit_pos, 0xABCD, CONFIG_CRC_SIZE);      // CRC
 
     return packet;
@@ -63,7 +63,7 @@ uint8_t* generate_HK_data() {
     uint8_t *data = calloc(CONFIG_HOUSEKEEPING_DATA_SIZE, sizeof(uint8_t));
     size_t bit_pos = 0;
     set_bits(data, &bit_pos, CONFIG_HOUSEKEEPING_PACKET_ID, CONFIG_ID_SIZE); // ID
-    set_bits(data, &bit_pos, 0x1FFFF, CONFIG_HOUSEKEEPING_DATA_SIZE); // Combined experiment data
+    set_bits(data, &bit_pos, 0x1FFFFAA, CONFIG_HOUSEKEEPING_DATA_SIZE); // Combined experiment data
     return data;
 }
 
@@ -73,7 +73,7 @@ uint8_t* generate_BF_packet() {
     size_t bit_pos = 0;
     set_bits(packet, &bit_pos, CONFIG_BITFLIP_PACKET_ID, CONFIG_ID_SIZE);            // ID
     set_bits(packet, &bit_pos, 99, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
-    set_bits(packet, &bit_pos, 0xABCDE, CONFIG_BITFLIP_DATA_SIZE); // Combined experiment data
+    set_bits(packet, &bit_pos, 0xABCDEF, CONFIG_BITFLIP_DATA_SIZE); // Combined experiment data
     set_bits(packet, &bit_pos, 0x1234, CONFIG_CRC_SIZE);      // CRC
 
     return packet;
@@ -115,7 +115,7 @@ uint8_t* generate_ACK_packet() {
     set_bits(packet, &bit_pos, 1, CONFIG_SEQ_COUNTER_SIZE);           // Seq. Counter
     set_bits(packet, &bit_pos, 0x01, CONFIG_ACKNOWLEDGEMENT_DATA_SIZE); // Telecommand ACK
     set_bits(packet, &bit_pos, 0x1234, CONFIG_CRC_SIZE);      // CRC
-
+    
     return packet;
 }
 
@@ -177,8 +177,8 @@ int main() {
 
     uint8_t *test_data_packet = calloc(6, sizeof(uint8_t));
     size_t test_bit_pos = 0;
-    set_bits(test_data_packet, &test_bit_pos, 1, 2); // Example ID
-    set_bits(test_data_packet, &test_bit_pos, 0xFFFF, 16); // Example data
+    set_bits(test_data_packet, &test_bit_pos, 2, 2); // Example ID
+    set_bits(test_data_packet, &test_bit_pos, 0xFFFF, 16); // Example seq
     set_bits_data(test_data_packet, &test_bit_pos, test_data, 14); // Example data
     set_bits(test_data_packet, &test_bit_pos, 0xFFFF, 16); // Example CRC
     printf("\nTest Data Packet:\n");

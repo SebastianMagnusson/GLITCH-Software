@@ -66,23 +66,24 @@ void uart_task(void *pvParameters)
         
         // uint8_t* data = uart_receive(); // Receive data from UART
         uint8_t* data = NULL; // Generate dummy data for testing, replace with uart_receive() in production
-        if (test%2) {
-            data = generate_HK_data(); // Generate dummy housekeeping data
+        if (test%2 == 0) {
+            data = generate_HK_packet(); // Generate dummy housekeeping data
         } else {
-            data = generate_BF_data(); // Generate dummy acknowledgement data
+            data = generate_BF_packet(); // Generate dummy bit flip data
         }
         if (data == NULL) {
             continue; 
         }
         
         int priority = priority_assign(data); 
-        
+        /*
         uint8_t* formatted_data = format_tm(data);
         if (formatted_data == NULL) {
             ESP_LOGE(TAG, "Failed to format data");
             free(data); 
             continue; 
         }
+        
         int i;
         for (i = 0; i < 34; i++)
         {
@@ -90,7 +91,8 @@ void uart_task(void *pvParameters)
             printf("%02X", formatted_data[i]);
         }
         printf("\n");
-        buffer_add_tm(priority, formatted_data);
+        */
+        buffer_add_tm(priority, data);
 
         test++;
         vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second before the next iteration (maybe should remove)

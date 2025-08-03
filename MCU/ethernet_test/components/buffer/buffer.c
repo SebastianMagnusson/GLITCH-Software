@@ -22,7 +22,7 @@ int size_rad;
 
 int check_length(uint8_t* data) {
 
-    int telemetry_type = data[0] & 0b00000011;
+    int telemetry_type = (data[0] >> 6) & 0b00000011;
     if (telemetry_type == CONFIG_HOUSEKEEPING_PACKET_ID){
         return CONFIG_HOUSEKEEPING_PACKET_SIZE; 
     } 
@@ -273,13 +273,10 @@ void buffer_add_tc(uint8_t* data) {
 
     // Add the data to the buffer and increment the size
     buffer_tc[(front_tc + size_tc)%CONFIG_MAX_TC_BUFFER_SIZE] = data; 
-    ESP_LOGI("Buffer", "TC added to buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c), Byte 1: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
+    ESP_LOGI("Buffer", "TC added to buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
              data[0], 
              (data[0] & 0x80) ? '1' : '0', (data[0] & 0x40) ? '1' : '0', (data[0] & 0x20) ? '1' : '0', (data[0] & 0x10) ? '1' : '0',
-             (data[0] & 0x08) ? '1' : '0', (data[0] & 0x04) ? '1' : '0', (data[0] & 0x02) ? '1' : '0', (data[0] & 0x01) ? '1' : '0',
-             data[1],
-             (data[1] & 0x80) ? '1' : '0', (data[1] & 0x40) ? '1' : '0', (data[1] & 0x20) ? '1' : '0', (data[1] & 0x10) ? '1' : '0',
-             (data[1] & 0x08) ? '1' : '0', (data[1] & 0x04) ? '1' : '0', (data[1] & 0x02) ? '1' : '0', (data[1] & 0x01) ? '1' : '0'); 
+             (data[0] & 0x08) ? '1' : '0', (data[0] & 0x04) ? '1' : '0', (data[0] & 0x02) ? '1' : '0', (data[0] & 0x01) ? '1' : '0');
     size_tc++;
 }
 
@@ -293,13 +290,10 @@ uint8_t* buffer_retreive_tc() {
     uint8_t* data = buffer_tc[front_tc]; 
     front_tc = (front_tc + 1) % CONFIG_MAX_TC_BUFFER_SIZE;
     size_tc--; 
-    ESP_LOGI("Buffer", "TC retrieved from buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c), Byte 1: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
+    ESP_LOGI("Buffer", "TC retrieved from buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
              data[0], 
              (data[0] & 0x80) ? '1' : '0', (data[0] & 0x40) ? '1' : '0', (data[0] & 0x20) ? '1' : '0', (data[0] & 0x10) ? '1' : '0',
-             (data[0] & 0x08) ? '1' : '0', (data[0] & 0x04) ? '1' : '0', (data[0] & 0x02) ? '1' : '0', (data[0] & 0x01) ? '1' : '0',
-             data[1],
-             (data[1] & 0x80) ? '1' : '0', (data[1] & 0x40) ? '1' : '0', (data[1] & 0x20) ? '1' : '0', (data[1] & 0x10) ? '1' : '0',
-             (data[1] & 0x08) ? '1' : '0', (data[1] & 0x04) ? '1' : '0', (data[1] & 0x02) ? '1' : '0', (data[1] & 0x01) ? '1' : '0');
+             (data[0] & 0x08) ? '1' : '0', (data[0] & 0x04) ? '1' : '0', (data[0] & 0x02) ? '1' : '0', (data[0] & 0x01) ? '1' : '0');
     return data; 
 }
 

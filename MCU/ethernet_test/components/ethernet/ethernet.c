@@ -222,6 +222,54 @@ esp_eth_handle_t ethernet_setup(void){
 
 }
 
+/**
+ * @brief Clear listen socket buffers and reset connection queue
+ * @param listen_sock Listening socket file descriptor
+ * @return ESP_OK on success, ESP_FAIL on failure
+ */
+static esp_err_t clear_listen_socket_buffers(int listen_sock)
+{
+    if (listen_sock <= 0) {
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    // For listening sockets, we mainly need to clear any pending connections
+    // Set socket to non-blocking temporarily
+    int flags = fcntl(listen_sock, F_GETFL, 0);
+    if (flags >= 0) {
+        fcntl(listen_sock, F_SETFL, flags | O_NONBLOCK);
+    }
+
+    // Accept and immediately close any pending connections to clear the queue
+    int cleared_connections = 0;
+    struct sockaddr_storage temp_addr;
+    socklen_t temp_addr_len = sizeof(temp_addr);
+    
+    while (1) {
+        int temp_sock = accept(listen_sock, (struct sockaddr *)&temp_addr, &temp_addr_len);
+        if (temp_sock < 0) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                // No more pending connections
+                break;
+            } else {
+                ESP_LOGW(TAG, "Error while clearing listen queue: errno %d", errno);
+                break;
+            }
+        } else {
+            // Close the pending connection immediately
+            close(temp_sock);
+            cleared_connections++;
+        }
+    }
+
+    // Reset socket to original flags
+    if (flags >= 0) {
+        fcntl(listen_sock, F_SETFL, flags);
+    }
+
+    ESP_LOGI(TAG, "Cleared %d pending connections from listen socket", cleared_connections);
+    return ESP_OK;
+}
 
 /**
  * @brief Create and configure a TCP server socket
@@ -266,6 +314,7 @@ static int create_tcp_server_socket()
         return -1;
     }
 
+    // clear_listen_socket_buffers(listen_sock);
     return listen_sock;
 }
 
@@ -564,14 +613,14 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
     }
 
     // Check if the telecommand warrants a confirmation task
-    if (((tc_received[3] >> 1) & 0b00000111) == CONFIG_CUT_OFF_TC_ID) {
+    if (((tc_received[0] >> 5) & 0b00000111) == CONFIG_CUT_OFF_TC_ID) {
         if (xTaskCreate(confirmation_task, "confirmation", 2048, task_params, 5, confirmation_task_handle) != pdPASS) {
             ESP_LOGE(TAG, "Failed to create confirmation task");
             return ESP_FAIL;
         }
     }
 
-    uint8_t tc_id = (tc_received[3] >> 1) & 0b00000111;
+    uint8_t tc_id = (tc_received[0]) & 0b11100000;
     buffer_add_tc(&tc_id);
     uint8_t *ack_packet = format_tc(tc_received);
     if (ack_packet == NULL) {
@@ -580,6 +629,44 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
     }
     eth_transmit(sock, ack_packet, 2);
 
+    return ESP_OK;
+}
+
+/**
+ * @brief Clear socket buffers and drain any pending data
+ * @param sock Socket file descriptor
+ * @return ESP_OK on success, ESP_FAIL on failure
+ */
+static esp_err_t clear_socket_buffers(int sock)
+{
+    if (sock <= 0) {
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    // Set socket to non-blocking mode temporarily
+    int flags = fcntl(sock, F_GETFL, 0);
+    if (flags >= 0) {
+        fcntl(sock, F_SETFL, flags | O_NONBLOCK);
+    }
+
+    // Drain receive buffer
+    uint8_t drain_buffer[256];
+    int bytes_drained = 0;
+    int total_drained = 0;
+    
+    do {
+        bytes_drained = recv(sock, drain_buffer, sizeof(drain_buffer), MSG_DONTWAIT);
+        if (bytes_drained > 0) {
+            total_drained += bytes_drained;
+        }
+    } while (bytes_drained > 0);
+
+    // Reset socket to original flags
+    if (flags >= 0) {
+        fcntl(sock, F_SETFL, flags);
+    }
+
+    ESP_LOGI(TAG, "Drained %d bytes from socket buffers", total_drained);
     return ESP_OK;
 }
 
@@ -598,12 +685,12 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
     }
 
     // Initial retransmission of any buffered data
-    // Can remove
+    /* Can remove
     if (do_retransmit(sock) != ESP_OK) {
         ESP_LOGE(TAG, "Initial retransmission failed");
         return;
     }
-
+    */
     // Create a task-specific kill flag for confirmation task
     volatile int confirmation_kill_flag = 0;
     
@@ -684,6 +771,8 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
 
     } while (len_receive >= 0);
 
+    clear_socket_buffers(sock);
+
     return;
 }
 
@@ -693,6 +782,8 @@ void tcp_server_task(void *pvParameters)
     esp_eth_handle_t eth_handle = params->eth_handle;
     volatile int *server_kill_flag = params->kill_flag;
     volatile int *reset_flag = params->reset_flag;
+
+    esp_task_wdt_add(NULL);
 
     // Create and configure server socket
     int listen_sock = create_tcp_server_socket();
@@ -733,7 +824,8 @@ void tcp_server_task(void *pvParameters)
         if (connected_sock < 0) {
             if (errno == EAGAIN || errno == EWOULDBLOCK) {
                 // No pending connections, yield control and try again
-                vTaskDelay(pdMS_TO_TICKS(100));
+                esp_task_wdt_reset();
+                vTaskDelay(pdMS_TO_TICKS(5000));
                 continue;
             } else {
                 ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
@@ -755,9 +847,6 @@ void tcp_server_task(void *pvParameters)
         close(connected_sock);
         ESP_LOGI(TAG, "Client connection closed");
         
-        // Feed the watchdog and add small delay
-        esp_task_wdt_reset();
-        vTaskDelay(pdMS_TO_TICKS(100));
     }
 
     // Cleanup
@@ -766,3 +855,4 @@ void tcp_server_task(void *pvParameters)
     ESP_LOGI(TAG, "TCP server task exiting");
     vTaskDelete(NULL);
 }
+

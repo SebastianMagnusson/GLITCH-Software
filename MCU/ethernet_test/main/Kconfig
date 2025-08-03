@@ -71,7 +71,7 @@ config GNSS_SIZE
 
 config TEMP_SIZE
     int "Temperature size"
-    default 99
+    default 96
 
 config ALT_SIZE
     int "Altitude size"

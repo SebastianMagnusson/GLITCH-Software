@@ -13,7 +13,7 @@ int priority_assign(uint8_t* data) {
         return 4; 
     }
 
-    int telemetry_type = CHECK_BIT(data[0], 0) + CHECK_BIT(data[0], 1) * 2; 
+    int telemetry_type = CHECK_BIT(data[0], 6) + CHECK_BIT(data[0], 7) * 2; 
     if (telemetry_type == 0){
         return 1;
     } 
