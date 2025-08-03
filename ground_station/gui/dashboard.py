@@ -439,8 +439,6 @@ class Dashboard(QMainWindow):
         self.update_display()
     
     def send_command(self):
-        ip = "MCU IP"
-        port = 0
         seq = self.uplink_seq_counter
         self.uplink_seq_counter += 1
         rtc = 0  # TODO: RTC logic here
@@ -457,8 +455,12 @@ class Dashboard(QMainWindow):
         print(f"Sending telecommand: type={command_type}, code={tc_code}")
 
         try:
-            send_telecommand(ip, port, seq, tc_code, rtc)
-            self.status_label.setText(f"Status: Sent {command_type} command")
+            # Use the new function signature with telemetry_manager
+            success = send_telecommand(self.telemetry_manager, seq, tc_code, rtc)
+            if success:
+                self.status_label.setText(f"Status: Sent {command_type} command")
+            else:
+                self.status_label.setText(f"Status: Failed to send {command_type} command - No connection")
         except Exception as e:
             print(f"Error sending command: {e}")
             self.status_label.setText(f"Status: Failed to send {command_type} command")
