@@ -1,0 +1,4 @@
+timestamp,type,seq_counter,rtc,data
+2025-08-02T17:09:09.974095,HK,8192,0,"{'type': 'HK', 'seq_counter': 8192, 'rtc': 0, 'internal': 106.905, 'external': -46.85, 'sensor_board': -46.85, 'gnss': 0, 'altitude': 0, 'radiation': 0, 'crc': 0}"
+2025-08-02T17:09:10.025909,HK,12289,1,"{'type': 'HK', 'seq_counter': 12289, 'rtc': 1, 'internal': 84.94, 'external': -46.85, 'sensor_board': -46.85, 'gnss': 0, 'altitude': 0, 'radiation': 0, 'crc': 0}"
+2025-08-02T17:09:10.132799,HK,36865,1,"{'type': 'HK', 'seq_counter': 36865, 'rtc': 1, 'internal': 84.94, 'external': -46.85, 'sensor_board': -46.85, 'gnss': 0, 'altitude': 0, 'radiation': 0, 'crc': 0}"
