@@ -9,6 +9,8 @@ def calculate_crc(data: bytes) -> int:
 def validate_crc(data) -> bool:
     crc_received = int.from_bytes(data[-2:], byteorder='big')
     crc_calculated = calculate_crc(data[:-2])
+    if crc_received != crc_calculated:
+        print(f"CRC mismatch: received {crc_received}, calculated {crc_calculated}")
 
     return crc_received == crc_calculated
 

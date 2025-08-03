@@ -4,10 +4,12 @@ from receiver.validate_crc import validate_crc
 
 def parse_packet(data):
     bits = BitStream(bytes=data)
+    #print packet
+    print(bits)
 
-    #if not validate_crc(data):
-    #    print("CRC validation failed for packet")
-    #    return None
+    if not validate_crc(data):
+        print("CRC validation failed for packet")
+        return None
     
     packet_id = bits.read("uint:2")
 

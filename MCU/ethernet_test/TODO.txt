@@ -2,8 +2,10 @@ Add bit offset to pack_tm function in format.c (DONE-ish)
     - In order to avoid padding in data string to accomodate the different packet types
         - DONE, but need to add the actual offset into the pack_tm function.
         - Equists in packet_generation.c, should work 
+    - DONE
 
 Define a CRC system.
+    - DONE
 
 Define if the RTC in ack packet shall be from the MCU(FPGA) or same as the tc received.
     - DONE For now it is from the tc received.
