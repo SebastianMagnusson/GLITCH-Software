@@ -165,7 +165,7 @@ void buffer_add_tm(int priority, uint8_t* data) {
         return;
     }
 
-    if ((data[0] & 0b00000011) == CONFIG_RADIATION_PACKET_ID) {
+    if ((data[0] >> 6 & 0b00000011) == CONFIG_RADIATION_PACKET_ID) {
         buffer_add_rad(data);
         return;
     }

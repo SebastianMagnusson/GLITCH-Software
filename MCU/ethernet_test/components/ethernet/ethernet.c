@@ -711,10 +711,11 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
         // Send any pending data from transmit buffer
         uint8_t *tm_packet = buffer_retreive_tm(); 
         if (tm_packet != NULL) {
+            /*
             if (tm_packet[3] == 0b00000011) {
                 xTaskCreate(radiation_sending_task, "radiation_sending", 2048, &task_params, 5, NULL);
             }
-
+            */
             if (eth_transmit(sock, tm_packet, 2) != ESP_OK) {
                 ESP_LOGE(TAG, "Transmission failed, closing connection");
                 break;
@@ -767,7 +768,7 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
 
         // Feed the watchdog to prevent timeout
         esp_task_wdt_reset();
-        eth_transmit(sock, generate_RAD_packet(), 2);
+        // eth_transmit(sock, generate_RAD_packet(), 2);
         // Small delay to prevent busy waiting - increased to give more time
         vTaskDelay(pdMS_TO_TICKS(500));
 
@@ -827,7 +828,7 @@ void tcp_server_task(void *pvParameters)
             if (errno == EAGAIN || errno == EWOULDBLOCK) {
                 // No pending connections, yield control and try again
                 esp_task_wdt_reset();
-                vTaskDelay(pdMS_TO_TICKS(5000));
+                vTaskDelay(pdMS_TO_TICKS(2000));
                 continue;
             } else {
                 ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);

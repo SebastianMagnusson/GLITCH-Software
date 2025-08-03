@@ -152,7 +152,7 @@ uint8_t* unpack_tc(uint8_t* packet) {
     }
     */
     // If everything is fine, create a new data array to return and stuff the data & RTC into it
-    uint8_t* data = (uint8_t*)calloc(CONFIG_ACKNOWLEDGEMENT_DATA_SIZE, sizeof(uint8_t));
+    uint8_t* data = (uint8_t*)calloc((CONFIG_ACKNOWLEDGEMENT_DATA_SIZE + 7) / 8, sizeof(uint8_t));
     if (data == NULL) {
         return NULL; // Allocation failed
     }
@@ -175,33 +175,32 @@ uint8_t* format_tm(uint8_t* data) {
     uint8_t* packet = NULL;
 
     if (telemetry_type == CONFIG_HOUSEKEEPING_PACKET_ID) {
-        uint8_t *packet = calloc(CONFIG_HOUSEKEEPING_PACKET_SIZE, sizeof(uint8_t));
+        packet = calloc(CONFIG_HOUSEKEEPING_PACKET_SIZE, sizeof(uint8_t));
                 
         set_bits(packet, &bit_pos, CONFIG_HOUSEKEEPING_PACKET_ID, CONFIG_ID_SIZE);            // ID
         set_bits(packet, &bit_pos, housekeeping_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
         set_bits_data(packet, &bit_pos, data, CONFIG_HOUSEKEEPING_DATA_SIZE); // Combined experiment data
         set_bits(packet, &bit_pos, calculate_crc(packet, CONFIG_HOUSEKEEPING_PACKET_SIZE - 2), CONFIG_CRC_SIZE);      // CRC
-
         // packet = pack_tm(data, CONFIG_HOUSEKEEPING_PACKET_SIZE, CONFIG_HOUSEKEEPING_DATA_SIZE);
         housekeeping_sequence_number++;
     } else if (telemetry_type == CONFIG_BITFLIP_PACKET_ID) {
-        uint8_t *packet = calloc(CONFIG_BITFLIP_PACKET_SIZE, sizeof(uint8_t));
+        packet = calloc(CONFIG_BITFLIP_PACKET_SIZE, sizeof(uint8_t));
 
         set_bits(packet, &bit_pos, CONFIG_BITFLIP_PACKET_ID, CONFIG_ID_SIZE);            // ID
         set_bits(packet, &bit_pos, bitflip_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
         set_bits_data(packet, &bit_pos, data, CONFIG_BITFLIP_DATA_SIZE); // Combined experiment data
         set_bits(packet, &bit_pos, calculate_crc(packet, CONFIG_BITFLIP_PACKET_SIZE - 2), CONFIG_CRC_SIZE);      // CRC
-
+        ESP_LOGI("Format", "Bitflip crc: %04X", calculate_crc(packet, CONFIG_BITFLIP_PACKET_SIZE - 2));
         //packet = pack_tm(data, CONFIG_BITFLIP_PACKET_SIZE, CONFIG_BITFLIP_DATA_SIZE);
         bitflip_sequence_number++;
     } else if (telemetry_type == CONFIG_RADIATION_PACKET_ID) {
-        uint8_t *packet = calloc(CONFIG_RADIATION_PACKET_SIZE, sizeof(uint8_t));
+        packet = calloc(CONFIG_RADIATION_PACKET_SIZE, sizeof(uint8_t));
 
         set_bits(packet, &bit_pos, CONFIG_RADIATION_PACKET_ID, CONFIG_ID_SIZE);            // ID
         set_bits(packet, &bit_pos, radiation_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
         set_bits_data(packet, &bit_pos, data, CONFIG_RADIATION_DATA_SIZE); // Combined experiment data
         set_bits(packet, &bit_pos, calculate_crc(packet, CONFIG_RADIATION_PACKET_SIZE - 2), CONFIG_CRC_SIZE);      // CRC
-
+        ESP_LOGI("Format", "Radiation crc: %04X", calculate_crc(packet, CONFIG_RADIATION_PACKET_SIZE - 2));
         //packet = pack_tm(data, CONFIG_RADIATION_PACKET_SIZE, CONFIG_RADIATION_DATA_SIZE);
         radiation_sequence_number++;
     } else {

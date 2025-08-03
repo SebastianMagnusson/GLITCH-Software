@@ -74,7 +74,7 @@ void uart_task(void *pvParameters)
             data = generate_BF_data(); // Generate dummy bit flip data
             packet = format_tm(data);
         }
-        if (data == NULL) {
+        if (data == NULL || packet == NULL) {
             continue; 
         }
         
