@@ -7,8 +7,8 @@ def calculate_crc(data: bytes) -> int:
     return crc16(data)
 
 def validate_crc(data) -> bool:
-    crc_received = int.from_bytes(data[-16:], byteorder='big')
-    crc_calculated = calculate_crc(data[:-16])
+    crc_received = int.from_bytes(data[-2:], byteorder='big')
+    crc_calculated = calculate_crc(data[:-2])
 
     return crc_received == crc_calculated
 

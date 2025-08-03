@@ -107,6 +107,29 @@ class Dashboard(QMainWindow):
         
         #add bf to left panel
         left_panel.addWidget(self.bf_group)
+
+        # Radiation
+        self.rad_group = QGroupBox("Radiation")
+        rad_layout = QVBoxLayout(self.rad_group)
+        self.rad_labels = {}
+
+        rad_params = [
+            ("Sequence Counter", "seq_counter"),
+            ("RTC", "rtc"),
+            ("Radiation Data", "radiation")
+        ]
+
+        for display_name, param_key in rad_params:
+            hbox = QHBoxLayout()
+            key_label = QLabel(f"{display_name}:")
+            key_label.setFixedWidth(150)
+            value_label = QLabel("--")
+            hbox.addWidget(key_label)
+            hbox.addWidget(value_label)
+            rad_layout.addLayout(hbox)
+            self.rad_labels[param_key] = value_label
+
+        left_panel.addWidget(self.rad_group)
         
         # Packet statistics section
         stats_group = QGroupBox("Packet statistics")
@@ -333,7 +356,13 @@ class Dashboard(QMainWindow):
         for key, label in self.bf_labels.items():
             if key in bf_data:
                 label.setText(str(bf_data[key]))
-        
+
+        # Update RAD
+        rad_data = self.telemetry_manager.current_data["RAD"]
+        for key, label in self.rad_labels.items():
+            if key in rad_data:
+                label.setText(str(rad_data[key]))
+
         # Update ACK
         ack_data = self.telemetry_manager.current_data["ACK"]
         for key, label in self.ack_labels.items():

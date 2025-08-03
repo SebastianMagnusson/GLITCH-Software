@@ -66,10 +66,13 @@ void uart_task(void *pvParameters)
         
         // uint8_t* data = uart_receive(); // Receive data from UART
         uint8_t* data = NULL; // Generate dummy data for testing, replace with uart_receive() in production
+        uint8_t* packet = NULL;
         if (test%2 == 0) {
-            data = generate_HK_packet(); // Generate dummy housekeeping data
+            data = generate_HK_data(); // Generate dummy housekeeping data
+            packet = format_tm(data);
         } else {
-            data = generate_BF_packet(); // Generate dummy bit flip data
+            data = generate_BF_data(); // Generate dummy bit flip data
+            packet = format_tm(data);
         }
         if (data == NULL) {
             continue; 
@@ -92,7 +95,7 @@ void uart_task(void *pvParameters)
         }
         printf("\n");
         */
-        buffer_add_tm(priority, data);
+        buffer_add_tm(priority, packet);
 
         test++;
         vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second before the next iteration (maybe should remove)

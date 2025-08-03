@@ -1,3 +1,0 @@
-timestamp,type,seq_counter,rtc,data
-2025-08-02T16:47:33.179074,HK,128,0,"{'type': 'HK', 'seq_counter': 128, 'rtc': 0, 'internal': 128.526796875, 'external': -46.85, 'sensor_board': -46.85, 'gnss': 0, 'altitude': 0, 'radiation': 0, 'crc': 0}"
-2025-08-02T16:47:33.232758,HK,192,2048,"{'type': 'HK', 'seq_counter': 192, 'rtc': 2048, 'internal': 29.34109374999999, 'external': -46.85, 'sensor_board': -46.85, 'gnss': 0, 'altitude': 0, 'radiation': 0, 'crc': 0}"

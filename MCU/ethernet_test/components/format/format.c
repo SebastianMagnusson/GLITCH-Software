@@ -15,19 +15,46 @@ int bitflip_sequence_number = 1;
 int radiation_sequence_number = 1;
 int acknowledgement_sequence_number = 1;
 
-// Have to do this properly, calculate on bit level
+// Replace the existing calculate_crc function with this implementation
+
 uint16_t calculate_crc(uint8_t* data, int length) {
     if (data == NULL || length <= 0) {
         return 0;
     }
 
-    // This below is bullshit
-    uint16_t crc = 0; // Initialize CRC to 0
+    uint16_t crc = 0xFFFF;  // Initial value for CRC-16-CCITT
+    uint16_t polynomial = 0x1021;  // CRC-16-CCITT polynomial
+
     for (int i = 0; i < length; i++) {
-        crc ^= CHECK_BIT(data[i/8],i%8); // XOR each bit of data with the current CRC value
+        crc ^= (uint16_t)(data[i] << 8);  // XOR byte into upper byte of crc
+        
+        for (int j = 0; j < 8; j++) {  // Process each bit
+            if (crc & 0x8000) {  // If MSB is set
+                crc = (crc << 1) ^ polynomial;
+            } else {
+                crc <<= 1;
+            }
+        }
     }
     
     return crc;
+}
+
+
+// Add this function after calculate_crc
+
+bool validate_crc_mcu(uint8_t* packet, int total_length) {
+    if (packet == NULL || total_length < 3) {
+        return false;
+    }
+    
+    // Extract CRC from last 2 bytes
+    uint16_t received_crc = (packet[total_length - 2] << 8) | packet[total_length - 1];
+    
+    // Calculate CRC for all data except the CRC bytes
+    uint16_t calculated_crc = calculate_crc(packet, total_length - 2);
+    
+    return received_crc == calculated_crc;
 }
 
 
@@ -153,7 +180,7 @@ uint8_t* format_tm(uint8_t* data) {
         set_bits(packet, &bit_pos, CONFIG_HOUSEKEEPING_PACKET_ID, CONFIG_ID_SIZE);            // ID
         set_bits(packet, &bit_pos, housekeeping_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
         set_bits_data(packet, &bit_pos, data, CONFIG_HOUSEKEEPING_DATA_SIZE); // Combined experiment data
-        set_bits(packet, &bit_pos, 0x1234, CONFIG_CRC_SIZE);      // CRC
+        set_bits(packet, &bit_pos, calculate_crc(packet, CONFIG_HOUSEKEEPING_PACKET_SIZE - 2), CONFIG_CRC_SIZE);      // CRC
 
         // packet = pack_tm(data, CONFIG_HOUSEKEEPING_PACKET_SIZE, CONFIG_HOUSEKEEPING_DATA_SIZE);
         housekeeping_sequence_number++;
@@ -163,7 +190,7 @@ uint8_t* format_tm(uint8_t* data) {
         set_bits(packet, &bit_pos, CONFIG_BITFLIP_PACKET_ID, CONFIG_ID_SIZE);            // ID
         set_bits(packet, &bit_pos, bitflip_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
         set_bits_data(packet, &bit_pos, data, CONFIG_BITFLIP_DATA_SIZE); // Combined experiment data
-        set_bits(packet, &bit_pos, 0x1234, CONFIG_CRC_SIZE);      // CRC
+        set_bits(packet, &bit_pos, calculate_crc(packet, CONFIG_BITFLIP_PACKET_SIZE - 2), CONFIG_CRC_SIZE);      // CRC
 
         //packet = pack_tm(data, CONFIG_BITFLIP_PACKET_SIZE, CONFIG_BITFLIP_DATA_SIZE);
         bitflip_sequence_number++;
@@ -173,7 +200,7 @@ uint8_t* format_tm(uint8_t* data) {
         set_bits(packet, &bit_pos, CONFIG_RADIATION_PACKET_ID, CONFIG_ID_SIZE);            // ID
         set_bits(packet, &bit_pos, radiation_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
         set_bits_data(packet, &bit_pos, data, CONFIG_RADIATION_DATA_SIZE); // Combined experiment data
-        set_bits(packet, &bit_pos, 0x1234, CONFIG_CRC_SIZE);      // CRC
+        set_bits(packet, &bit_pos, calculate_crc(packet, CONFIG_RADIATION_PACKET_SIZE - 2), CONFIG_CRC_SIZE);      // CRC
 
         //packet = pack_tm(data, CONFIG_RADIATION_PACKET_SIZE, CONFIG_RADIATION_DATA_SIZE);
         radiation_sequence_number++;

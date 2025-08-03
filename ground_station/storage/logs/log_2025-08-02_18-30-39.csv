@@ -1,2 +1,0 @@
-timestamp,type,seq_counter,rtc,data
-2025-08-02T18:30:39.622273,BF,99,5497,"{'type': 'BF', 'seq_counter': 99, 'rtc': 5497, 'bit_flip': 4440249817156533370910473634686368896443958803038208, 'crc': 0}"
