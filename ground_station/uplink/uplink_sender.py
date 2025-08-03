@@ -1,4 +1,3 @@
-import socket
 from bitstring import BitArray
 
 def build_telecommand(seq, tc_code, rtc, crc=0x1F):  # TODO: real crc

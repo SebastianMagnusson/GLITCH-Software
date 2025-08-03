@@ -1,16 +1,12 @@
-from receiver.socket_listener import dl_pkts
+from telemetry.telemetry_manager import TelemetryManager
 from uplink.uplink_sender import send_telecommand
-from gui.dashboard import TelemetryManager, Dashboard, run
+from gui.dashboard import Dashboard, run
 import threading
 
 if __name__ == "__main__":
     telemetry_manager = TelemetryManager()
     
-    listener_thread = threading.Thread(
-        target=dl_pkts, 
-        kwargs={"telemetry_manager": telemetry_manager}
-    )
-    listener_thread.daemon = True
-    listener_thread.start()
+    # Start the MCU connection
+    telemetry_manager.start_connection()
     
     run(telemetry_manager)
