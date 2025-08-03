@@ -27,7 +27,6 @@ class Dashboard(QMainWindow):
         pg.setConfigOption('foreground', 'w')
         
         self.telemetry_manager = telemetry_manager
-        self.telemetry_manager.register_callback(self.callback_update)
         
         self.setWindowTitle("GLITCH Ground Station")
         
@@ -318,6 +317,9 @@ class Dashboard(QMainWindow):
         self.time_counter = 0
         
         self.max_data_points = 100
+        
+        # Move the callback registration to the very end after all attributes are created
+        self.telemetry_manager.register_callback(self.callback_update)
     
     def update_display(self):
         # Update HK
