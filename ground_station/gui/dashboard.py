@@ -12,11 +12,15 @@ from PyQt5.QtGui import QPalette, QColor
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from telemetry.telemetry_manager import TelemetryManager
+from uplink.uplink_sender import send_telecommand  # Import the uplink sender
+from uplink.telecommand_types import TC_RESET, TC_SET_MODE_POWER_SAVE, TC_SET_MODE_NORMAL
 from PyQt5.QtWidgets import QMessageBox
 
 class Dashboard(QMainWindow):
     def __init__(self, telemetry_manager):
         super().__init__()
+        
+        self.uplink_seq_counter = 0
         
         # make graphs dark
         pg.setConfigOption('background', '#393939')
@@ -175,7 +179,7 @@ class Dashboard(QMainWindow):
         hbox = QHBoxLayout()
         hbox.addWidget(QLabel("Command Type:"))
         self.cmd_type_combo = QComboBox()
-        self.cmd_type_combo.addItems(["RESET", "CHANGE MODE", "CUTOFF"])
+        self.cmd_type_combo.addItems(["RESET", "CHANGE MODE"])
         hbox.addWidget(self.cmd_type_combo)
         cmd_layout.addLayout(hbox)
 
@@ -435,12 +439,31 @@ class Dashboard(QMainWindow):
         self.update_display()
     
     def send_command(self):
+        ip = "MCU IP"
+        port = 0
+        seq = self.uplink_seq_counter
+        self.uplink_seq_counter += 1
+        rtc = 0  # TODO: RTC logic here
+
         command_type = self.cmd_type_combo.currentText()
-        
-        print(f"Sending command: {command_type}")
+        if command_type == "RESET":
+            tc_code = TC_RESET
+        elif command_type == "CHANGE MODE":
+            mode = self.mode_combo.currentText()
+            tc_code = TC_SET_MODE_POWER_SAVE if mode == "POWER SAVING" else TC_SET_MODE_NORMAL
+        else:
+            tc_code = 0
+
+        print(f"Sending telecommand: type={command_type}, code={tc_code}")
+
+        try:
+            send_telecommand(ip, port, seq, tc_code, rtc)
+            self.status_label.setText(f"Status: Sent {command_type} command")
+        except Exception as e:
+            print(f"Error sending command: {e}")
+            self.status_label.setText(f"Status: Failed to send {command_type} command")
+
         self.log(command_type)
-        
-        self.status_label.setText(f"Status: Sent {command_type} command")
     
     def user_confirm(self):
         command_type = self.cmd_type_combo.currentText()
