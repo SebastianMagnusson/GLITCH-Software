@@ -23,6 +23,8 @@
 #include <arpa/inet.h>
 #include <fcntl.h>
 
+#include "packet_generation.h"
+
 #if CONFIG_USE_STATIC_IP
     #define STATIC_IP "192.168.4.2"
     #define STATIC_GATEWAY "192.168.4.1"
@@ -765,9 +767,9 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
 
         // Feed the watchdog to prevent timeout
         esp_task_wdt_reset();
-        
+        eth_transmit(sock, generate_RAD_packet(), 2);
         // Small delay to prevent busy waiting - increased to give more time
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(500));
 
     } while (len_receive >= 0);
 
