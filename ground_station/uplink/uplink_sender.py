@@ -1,12 +1,13 @@
 from bitstring import BitArray
+from receiver.validate_crc import calculate_crc
 
-def build_telecommand(seq, tc_code, rtc, crc=0x1F):  # TODO: real crc
+def build_telecommand(seq, tc_code, rtc):
     packet = BitArray()
     packet.append(f"uint:16={seq}")    # 16 bits
     packet.append(f"uint:3={tc_code}") # 3 bits  
     packet.append(f"uint:17={rtc}")    # 17 bits
-    packet.append(f"uint:16={crc}")    # 16 bits
-
+    packet.append(f"uint:16=0")        # 16 bits placeholder for CRC
+    
     current_length = len(packet)
     padding_needed = (8 - (current_length % 8)) % 8
     
@@ -14,7 +15,15 @@ def build_telecommand(seq, tc_code, rtc, crc=0x1F):  # TODO: real crc
         packet.append(f"uint:{padding_needed}=0")  # Pad with zeros
         print(f"Padded {padding_needed} bits to make packet {len(packet)} bits total")
     
-    return packet.bytes
+    # Calculate CRC for all data except the last 2 bytes
+    packet_bytes = bytearray(packet.bytes)
+    crc = calculate_crc(packet_bytes[:-2])
+    
+    # Replace the CRC placeholder with actual CRC
+    packet_bytes[-2] = (crc >> 8) & 0xFF  # High byte
+    packet_bytes[-1] = crc & 0xFF         # Low byte
+    
+    return bytes(packet_bytes)
 
 def send_telecommand(telemetry_manager, seq, tc_code, rtc):
     """Send telecommand using the existing TCP connection"""
