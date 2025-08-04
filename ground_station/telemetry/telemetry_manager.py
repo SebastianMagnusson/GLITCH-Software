@@ -7,6 +7,7 @@ from datetime import datetime
 import pandas as pd
 from receiver.packet_parser import parse_packet
 from storage.logger import Logger
+import config
 
 class TelemetryManager:
     def __init__(self):
@@ -30,8 +31,13 @@ class TelemetryManager:
     def register_callback(self, callback):
         self.callbacks.append(callback)
 
-    def start_connection(self, mcu_ip="192.168.4.2", port=8080):
+    def start_connection(self, mcu_ip=None, port=None):
         """Start the MCU connection in a separate thread"""
+        if mcu_ip is None:
+            mcu_ip = config.DEFAULT_MCU_IP
+        if port is None:
+            port = config.DEFAULT_MCU_PORT
+            
         self._connection_thread = threading.Thread(
             target=self._manage_mcu_connection, 
             args=(mcu_ip, port),
@@ -46,11 +52,11 @@ class TelemetryManager:
             try:
                 print(f"Creating socket...")
                 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                sock.settimeout(10)
+                sock.settimeout(config.CONNECTION_TIMEOUT)
                 
-                print(f"Binding to 192.168.4.1...")
-                sock.bind(('192.168.4.1', 0))
-                print(f"Bound to ethernet interface 192.168.4.1")
+                print(f"Binding to {config.DEFAULT_GROUND_STATION_IP}...")
+                sock.bind((config.DEFAULT_GROUND_STATION_IP, 0))
+                print(f"Bound to ethernet interface {config.DEFAULT_GROUND_STATION_IP}")
                 
                 sock.connect((mcu_ip, port))
                 print(f"Connected to MCU at {mcu_ip}:{port}")
@@ -58,7 +64,7 @@ class TelemetryManager:
                 self.uplink_socket = sock
                 
                 while True:
-                    data = sock.recv(4096)
+                    data = sock.recv(config.SOCKET_RECV_BUFFER)
                     if not data:
                         print("Connection closed by MCU")
                         break
@@ -86,8 +92,8 @@ class TelemetryManager:
             if sock:
                 sock.close()
                 self.uplink_socket = None
-            print("Retrying in 5 seconds...")
-            time.sleep(5)
+            print(f"Retrying in {config.RECONNECT_DELAY} seconds...")
+            time.sleep(config.RECONNECT_DELAY)
 
     def update(self, packet):
         packet_type = packet["type"]
@@ -105,8 +111,8 @@ class TelemetryManager:
             packet_with_time["timestamp"] = datetime.now().isoformat()
         self.history[packet_type].append(packet_with_time)
         
-        if len(self.history[packet_type]) > 1000:
-            self.history[packet_type] = self.history[packet_type][-1000:]
+        if len(self.history[packet_type]) > config.MAX_HISTORY_SIZE:
+            self.history[packet_type] = self.history[packet_type][-config.MAX_HISTORY_SIZE:]
         
         for callback in self.callbacks:
             callback(processed_packet)

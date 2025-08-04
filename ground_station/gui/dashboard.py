@@ -12,9 +12,10 @@ from PyQt5.QtGui import QPalette, QColor
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from telemetry.telemetry_manager import TelemetryManager
-from uplink.uplink_sender import send_telecommand  # Import the uplink sender
+from uplink.uplink_sender import send_telecommand
 from uplink.telecommand_types import TC_RESET, TC_SET_MODE_POWER_SAVE, TC_SET_MODE_NORMAL
 from PyQt5.QtWidgets import QMessageBox
+import config
 
 class Dashboard(QMainWindow):
     def __init__(self, telemetry_manager):
@@ -22,7 +23,7 @@ class Dashboard(QMainWindow):
         
         self.uplink_seq_counter = 0
         
-        # make graphs dark
+        # Configure dark theme for graphs
         pg.setConfigOption('background', '#393939')
         pg.setConfigOption('foreground', 'w')
         
@@ -41,10 +42,28 @@ class Dashboard(QMainWindow):
         title_label = QLabel("GLITCH Dashboard")
         title_label.setStyleSheet("font-size: 18px; font-weight: bold;")
         header_layout.addWidget(title_label)
-        
-        self.status_label = QLabel("Status: Waiting for data...")
-        self.status_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        header_layout.addWidget(self.status_label)
+
+        # Create status layout with circle and text
+        status_layout = QHBoxLayout()
+        status_layout.setSpacing(8)
+
+        # Create status circle
+        self.status_circle = QLabel("●")
+        self.status_circle.setFixedSize(16, 16)
+        self.status_circle.setAlignment(Qt.AlignCenter)
+        self.status_circle.setStyleSheet("color: red; font-size: 14px; font-weight: bold;")
+
+        # Create status text
+        self.status_label = QLabel("Status: Disconnected from MCU")
+        self.status_label.setAlignment(Qt.AlignVCenter)
+
+        status_layout.addWidget(self.status_circle)
+        status_layout.addWidget(self.status_label)
+
+        # Create status widget and add to header
+        status_widget = QWidget()
+        status_widget.setLayout(status_layout)
+        header_layout.addWidget(status_widget)
         main_layout.addLayout(header_layout)
         
         # Main layout
@@ -81,7 +100,6 @@ class Dashboard(QMainWindow):
             hk_layout.addLayout(hbox)
             self.hk_labels[param_key] = value_label
         
-        # add hk to left panel
         left_panel.addWidget(self.hk_group)
         
         # Bit Flip
@@ -105,7 +123,6 @@ class Dashboard(QMainWindow):
             bf_layout.addLayout(hbox)
             self.bf_labels[param_key] = value_label
         
-        #add bf to left panel
         left_panel.addWidget(self.bf_group)
 
         # Radiation
@@ -175,10 +192,11 @@ class Dashboard(QMainWindow):
         self.packet_counters = {
             "HK": 0,
             "BF": 0,
-            "ACK": 0
+            "ACK": 0,
+            "RAD": 0
         }
-        
-        for packet_type in ["HK", "BF", "ACK"]:
+
+        for packet_type in ["HK", "BF", "ACK", "RAD"]:
             hbox = QHBoxLayout()
             hbox.addWidget(QLabel(f"{packet_type}:"))
             counter_label = QLabel("0")
@@ -186,10 +204,9 @@ class Dashboard(QMainWindow):
             stats_layout.addLayout(hbox)
             self.packet_counters[packet_type] = counter_label
         
-        # add stats to left panel
         left_panel.addWidget(stats_group)
 
-        # create right panel for commands
+        # Create right panel for commands
         right_panel = QVBoxLayout()
         right_panel.setSpacing(10)
         right_panel.setAlignment(Qt.AlignTop)
@@ -264,10 +281,9 @@ class Dashboard(QMainWindow):
         self.cmd_log_table.setAlternatingRowColors(True)
         cmd_log_layout.addWidget(self.cmd_log_table)
 
-        # add cmd log to right panel
         right_panel.addWidget(cmd_log_group)
         
-        #create graph panel
+        # Create graph panel
         graph_panel = QVBoxLayout()
         graph_panel.setSpacing(10)
         graph_panel.setAlignment(Qt.AlignTop)
@@ -332,16 +348,18 @@ class Dashboard(QMainWindow):
         # Add content layout to main layout
         main_layout.addLayout(content_layout)
         
-        # refresh
+        # Setup refresh timer
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_display)
         self.timer.start(1000)
         
         self.time_counter = 0
         
-        self.max_data_points = 100
+        self.max_data_points = config.MAX_DATA_POINTS_GRAPH
         
-        # Move the callback registration to the very end after all attributes are created
+        self.connection_timeout = config.CONNECTION_TIMEOUT
+    
+        # Register callback after all attributes are initialized
         self.telemetry_manager.register_callback(self.callback_update)
     
     def update_display(self):
@@ -371,7 +389,7 @@ class Dashboard(QMainWindow):
         
         # Update packet counters
         total_packets = 0
-        for packet_type in ["HK", "BF", "ACK"]:
+        for packet_type in ["HK", "BF", "ACK", "RAD"]:
             count = len(self.telemetry_manager.history[packet_type])
             self.packet_counters[packet_type].setText(str(count))
             total_packets += count
@@ -382,11 +400,48 @@ class Dashboard(QMainWindow):
         self.corrupt_packets_label.setText("0")
         self.valid_packets_label.setText(str(total_packets))
         
-        # Update
+        # Update graphs
         if hk_data:
             self.time_counter += 1 
             self.update_temperature(hk_data)
             self.update_altitude(hk_data)
+
+        # Update connection status
+        self.update_connection_status()
+    
+    def update_connection_status(self):
+        """Update connection status indicator with real-time information"""
+        current_time = pd.Timestamp.now()
+        
+        # Check if we have an active socket connection
+        has_connection = (hasattr(self.telemetry_manager, 'uplink_socket') and 
+                         self.telemetry_manager.uplink_socket is not None)
+        
+        if has_connection:
+            if self.last_packet_time is None:
+                # Connected but no packets yet
+                self.status_label.setText("Status: Connected to MCU - Waiting for data...")
+                self.status_circle.setStyleSheet("color: orange; font-size: 14px; font-weight: bold;")
+            else:
+                # Check time since last packet
+                time_since_last = (current_time - self.last_packet_time).total_seconds()
+                
+                if time_since_last <= 5:
+                    # Recent data - all good
+                    self.status_label.setText(f"Status: Connected - Last packet: {self.last_packet_time.strftime('%H:%M:%S')}")
+                    self.status_circle.setStyleSheet("color: green; font-size: 14px; font-weight: bold;")
+                elif time_since_last <= self.connection_timeout:
+                    # No recent data but still within timeout
+                    self.status_label.setText(f"Status: Connected - No data for {int(time_since_last)}s")
+                    self.status_circle.setStyleSheet("color: orange; font-size: 14px; font-weight: bold;")
+                else:
+                    # No data for too long - likely connection issues
+                    self.status_label.setText(f"Status: Connected but no data for {int(time_since_last)}s")
+                    self.status_circle.setStyleSheet("color: red; font-size: 14px; font-weight: bold;")
+        else:
+            # No socket connection
+            self.status_label.setText("Status: Disconnected from MCU")
+            self.status_circle.setStyleSheet("color: red; font-size: 14px; font-weight: bold;")
 
     def update_altitude(self, hk_data):
         self.alt_time_data = np.append(self.alt_time_data, self.time_counter)
@@ -466,13 +521,14 @@ class Dashboard(QMainWindow):
         self.sensor_board_line.setData(self.time_data, self.sensor_board_temp_data)
     
     def callback_update(self, packet):
-        self.status_label.setText(f"Status: Received packet at {pd.Timestamp.now().strftime('%H:%M:%S')}")
+        """Called when new packet is received"""
+        self.last_packet_time = pd.Timestamp.now()
         self.update_display()
-    
+
     def send_command(self):
         seq = self.uplink_seq_counter
         self.uplink_seq_counter += 1
-        rtc = 0  # TODO: RTC logic here
+        rtc = int(pd.Timestamp.now().timestamp()) & 0x1FFFF
 
         command_type = self.cmd_type_combo.currentText()
         if command_type == "RESET":
@@ -483,18 +539,14 @@ class Dashboard(QMainWindow):
         else:
             tc_code = 0
 
-        print(f"Sending telecommand: type={command_type}, code={tc_code}")
+        print(f"Sending telecommand: type={command_type}, code={tc_code}, rtc={rtc}")
 
         try:
-            # Use the new function signature with telemetry_manager
             success = send_telecommand(self.telemetry_manager, seq, tc_code, rtc)
-            if success:
-                self.status_label.setText(f"Status: Sent {command_type} command")
-            else:
-                self.status_label.setText(f"Status: Failed to send {command_type} command - No connection")
+            #Add success message to TC log
+            self.log(success)
         except Exception as e:
             print(f"Error sending command: {e}")
-            self.status_label.setText(f"Status: Failed to send {command_type} command")
 
         self.log(command_type)
     
@@ -528,7 +580,8 @@ class Dashboard(QMainWindow):
         self.cmd_log_table.setItem(0, 0, QTableWidgetItem(timestamp))
         self.cmd_log_table.setItem(0, 1, QTableWidgetItem(command_text))
         
-        if self.cmd_log_table.rowCount() > 100:
+        # Use config for max log entries
+        if self.cmd_log_table.rowCount() > config.MAX_LOG_ENTRIES:
             self.cmd_log_table.removeRow(self.cmd_log_table.rowCount() - 1)
 
 def run(telemetry_manager=None):

@@ -29,18 +29,18 @@ def send_telecommand(telemetry_manager, seq, tc_code, rtc):
     """Send telecommand using the existing TCP connection"""
     if not telemetry_manager:
         print("No telemetry manager provided")
-        return False
+        return "No telemetry manager available"
         
     if not hasattr(telemetry_manager, 'uplink_socket') or not telemetry_manager.uplink_socket:
         print("No connection to MCU available")
-        return False
-    
+        return "No connection to MCU available"
+
     try:
         packet = build_telecommand(seq, tc_code, rtc)
         telemetry_manager.uplink_socket.send(packet)
         print(f"Sent TC code {tc_code} (seq: {seq}) via TCP connection - {len(packet)} bytes")
-        return True
+        return f"Sent TC code {tc_code} (seq: {seq}) successfully"
     except Exception as e:
         print(f"Failed to send telecommand: {e}")
         telemetry_manager.uplink_socket = None
-        return False
+        return f"Failed to send telecommand: {e}"

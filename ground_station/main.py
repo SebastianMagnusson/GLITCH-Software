@@ -1,12 +1,18 @@
 from telemetry.telemetry_manager import TelemetryManager
 from uplink.uplink_sender import send_telecommand
 from gui.dashboard import Dashboard, run
-import threading
+import config
 
 if __name__ == "__main__":
-    telemetry_manager = TelemetryManager()
+    print(f"Starting GLITCH Ground Station")
+    print(f"Configuration:")
+    print(f"  MCU IP: {config.DEFAULT_MCU_IP}")
+    print(f"  MCU Port: {config.DEFAULT_MCU_PORT}")
+    print(f"  Ground Station IP: {config.DEFAULT_GROUND_STATION_IP}")
+    print(f"  Connection Timeout: {config.CONNECTION_TIMEOUT}s")
+    print(f"  Max History Size: {config.MAX_HISTORY_SIZE}")
     
-    # Start the MCU connection
+    telemetry_manager = TelemetryManager()
     telemetry_manager.start_connection()
     
     run(telemetry_manager)
