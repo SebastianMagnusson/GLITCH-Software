@@ -40,6 +40,24 @@ uint16_t calculate_crc(uint8_t* data, int length) {
     return crc;
 }
 
+uint16_t calculate_packet_crc(uint8_t* packet, size_t data_bits) {
+    size_t data_bytes = (data_bits + 7) / 8;
+    uint8_t* crc_data = calloc(data_bytes, sizeof(uint8_t));
+    
+    // Copy the data portion
+    memcpy(crc_data, packet, data_bytes);
+    
+    // Clear unused bits in the last byte if not byte-aligned
+    if (data_bits % 8 != 0) {
+        uint8_t mask = 0xFF << (8 - (data_bits % 8));
+        crc_data[data_bytes - 1] &= mask;
+    }
+    
+    uint16_t crc = calculate_crc(crc_data, data_bytes);
+    free(crc_data);
+    return crc;
+}
+
 
 // Add this function after calculate_crc
 
@@ -171,44 +189,55 @@ uint8_t* format_tm(uint8_t* data) {
 
     int telemetry_type = CHECK_BIT(data[0], 6) + CHECK_BIT(data[0], 7) * 2;
     size_t bit_pos = 0;
-
     uint8_t* packet = NULL;
 
     if (telemetry_type == CONFIG_HOUSEKEEPING_PACKET_ID) {
         packet = calloc(CONFIG_HOUSEKEEPING_PACKET_SIZE, sizeof(uint8_t));
                 
-        set_bits(packet, &bit_pos, CONFIG_HOUSEKEEPING_PACKET_ID, CONFIG_ID_SIZE);            // ID
-        set_bits(packet, &bit_pos, housekeeping_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
-        set_bits_data(packet, &bit_pos, data, CONFIG_HOUSEKEEPING_DATA_SIZE); // Combined experiment data
-        set_bits(packet, &bit_pos, calculate_crc(packet, CONFIG_HOUSEKEEPING_PACKET_SIZE - 2), CONFIG_CRC_SIZE);      // CRC
-        // packet = pack_tm(data, CONFIG_HOUSEKEEPING_PACKET_SIZE, CONFIG_HOUSEKEEPING_DATA_SIZE);
+        set_bits(packet, &bit_pos, CONFIG_HOUSEKEEPING_PACKET_ID, CONFIG_ID_SIZE);            // ID: 2 bits
+        set_bits(packet, &bit_pos, housekeeping_sequence_number, CONFIG_SEQ_COUNTER_SIZE);    // Seq: 16 bits
+        set_bits_data(packet, &bit_pos, data, CONFIG_HOUSEKEEPING_DATA_SIZE);                 // Data: ? bits
+        
+        size_t data_bits = bit_pos; 
+        uint16_t crc = calculate_packet_crc(packet, data_bits); 
+        
+        set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                     // CRC: 16 bits
+        ESP_LOGI("Format", "Housekeeping crc: %04X", crc);
         housekeeping_sequence_number++;
+        
     } else if (telemetry_type == CONFIG_BITFLIP_PACKET_ID) {
         packet = calloc(CONFIG_BITFLIP_PACKET_SIZE, sizeof(uint8_t));
 
-        set_bits(packet, &bit_pos, CONFIG_BITFLIP_PACKET_ID, CONFIG_ID_SIZE);            // ID
-        set_bits(packet, &bit_pos, bitflip_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
-        set_bits_data(packet, &bit_pos, data, CONFIG_BITFLIP_DATA_SIZE); // Combined experiment data
-        set_bits(packet, &bit_pos, calculate_crc(packet, CONFIG_BITFLIP_PACKET_SIZE - 2), CONFIG_CRC_SIZE);      // CRC
-        ESP_LOGI("Format", "Bitflip crc: %04X", calculate_crc(packet, CONFIG_BITFLIP_PACKET_SIZE - 2));
-        //packet = pack_tm(data, CONFIG_BITFLIP_PACKET_SIZE, CONFIG_BITFLIP_DATA_SIZE);
+        set_bits(packet, &bit_pos, CONFIG_BITFLIP_PACKET_ID, CONFIG_ID_SIZE);                // ID: 2 bits
+        set_bits(packet, &bit_pos, bitflip_sequence_number, CONFIG_SEQ_COUNTER_SIZE);        // Seq: 16 bits
+        set_bits_data(packet, &bit_pos, data, CONFIG_BITFLIP_DATA_SIZE);                     // Data: ? bits
+        
+        size_t data_bits = bit_pos; 
+        uint16_t crc = calculate_packet_crc(packet, data_bits); 
+        
+        set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                    // CRC: 16 bits
+        ESP_LOGI("Format", "Bitflip crc: %04X", crc);
         bitflip_sequence_number++;
+        
     } else if (telemetry_type == CONFIG_RADIATION_PACKET_ID) {
         packet = calloc(CONFIG_RADIATION_PACKET_SIZE, sizeof(uint8_t));
 
-        set_bits(packet, &bit_pos, CONFIG_RADIATION_PACKET_ID, CONFIG_ID_SIZE);            // ID
-        set_bits(packet, &bit_pos, radiation_sequence_number, CONFIG_SEQ_COUNTER_SIZE);          // Seq. Counter
-        set_bits_data(packet, &bit_pos, data, CONFIG_RADIATION_DATA_SIZE); // Combined experiment data
-        set_bits(packet, &bit_pos, calculate_crc(packet, CONFIG_RADIATION_PACKET_SIZE - 2), CONFIG_CRC_SIZE);      // CRC
-        ESP_LOGI("Format", "Radiation crc: %04X", calculate_crc(packet, CONFIG_RADIATION_PACKET_SIZE - 2));
-        //packet = pack_tm(data, CONFIG_RADIATION_PACKET_SIZE, CONFIG_RADIATION_DATA_SIZE);
+        set_bits(packet, &bit_pos, CONFIG_RADIATION_PACKET_ID, CONFIG_ID_SIZE);              // ID: 2 bits
+        set_bits(packet, &bit_pos, radiation_sequence_number, CONFIG_SEQ_COUNTER_SIZE);      // Seq: 16 bits
+        set_bits_data(packet, &bit_pos, data, CONFIG_RADIATION_DATA_SIZE);                   // Data: ? bits
+
+        size_t data_bits = bit_pos;
+        uint16_t crc = calculate_packet_crc(packet, data_bits);
+
+        set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                    // CRC: 16 bits
+        ESP_LOGI("Format", "Radiation crc: %04X", crc);
         radiation_sequence_number++;
+        
     } else {
         return (uint8_t*)NULL;
     }
 
     return packet;
-
 }
 
 uint8_t* format_tc(uint8_t* data) {
@@ -219,11 +248,17 @@ uint8_t* format_tc(uint8_t* data) {
     uint8_t *packet = calloc(CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE, sizeof(uint8_t));
 
     size_t bit_pos = 0;
-    set_bits(packet, &bit_pos, CONFIG_ACKNOWLEDGEMENT_PACKET_ID, CONFIG_ID_SIZE);            // ID
-    set_bits(packet, &bit_pos, acknowledgement_sequence_number, CONFIG_SEQ_COUNTER_SIZE);           // Seq. Counter
-    set_bits_data(packet, &bit_pos, data, CONFIG_ACKNOWLEDGEMENT_DATA_SIZE); // Telecommand ACK
-    set_bits(packet, &bit_pos, 0x1234, CONFIG_CRC_SIZE);      // CRC
+    set_bits(packet, &bit_pos, CONFIG_ACKNOWLEDGEMENT_PACKET_ID, CONFIG_ID_SIZE);            // ID: 2 bits
+    set_bits(packet, &bit_pos, acknowledgement_sequence_number, CONFIG_SEQ_COUNTER_SIZE);    // Seq: 16 bits
+    set_bits_data(packet, &bit_pos, data, CONFIG_ACKNOWLEDGEMENT_DATA_SIZE);                 // Data: ? bits
     
+    // Calculate CRC on actual data bits
+    size_t data_bits = bit_pos;
+    uint16_t crc = calculate_packet_crc(packet, data_bits);
+    
+    set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                        // CRC: 16 bits
+    ESP_LOGI("Format", "Acknowledgement crc: %04X", crc);
+    acknowledgement_sequence_number++;
     /*
     uint8_t* packet = (uint8_t*)calloc(CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE, sizeof(uint8_t));
     packet[0] = 3 | ((acknowledgement_sequence_number << 2) & 0b11111100);
