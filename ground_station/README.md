@@ -29,7 +29,7 @@ The GLITCH Ground Station provides a dashboard for monitoring telemetry data inc
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone <https://github.com/SebastianMagnusson/GLITCH-Software.git>
 cd GLITCH-Software/ground_station
 ```
 
