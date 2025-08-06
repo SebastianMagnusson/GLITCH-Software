@@ -1,4 +1,4 @@
-# GLITCH Ground Station
+# Ground Station module
 
 A Python-based ground station for receiving, processing, and visualizing telemetry data from the GLITCH mission.
 
