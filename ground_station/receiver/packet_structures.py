@@ -1,65 +1,17 @@
-from utils import calculate_packet_bits, convert_temp
+from receiver.packet_types import PacketType, HousekeepingPacket, BitFlipPacket, AckPacket, RadiationPacket
 
-# Packet type constants (downlink 2-bit IDs)
-PACKET_TYPE_HK   = 0b00  # Housekeeping
-PACKET_TYPE_BF   = 0b01  # Bit Flip
-PACKET_TYPE_RAD  = 0b10  # Radiation
-PACKET_TYPE_ACK  = 0b11  # Acknowledgment
-
-# Field parsing configurations
+# Schema registry: maps packet type to (parser_class, size_in_bits)
 PACKET_PARSERS = {
-    PACKET_TYPE_HK: {
-        "fields": [
-            ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("internal", "uint:32", convert_temp),
-            ("external", "uint:32", convert_temp),
-            ("sensor_board", "uint:32", convert_temp),
-            ("gnss", "uint:55"),
-            ("altitude", "int:48"),
-            ("crc", "uint:16")
-        ]
-    },
-    PACKET_TYPE_BF: {
-        "fields": [
-            ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("bit_flip", "uint:172"),
-            ("crc", "uint:16")
-        ]
-    },
-    PACKET_TYPE_ACK: {
-        "fields": [
-            ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("telecommand_ack", "uint:3"),
-            ("crc", "uint:16")
-        ]
-    },
-    PACKET_TYPE_RAD: {
-        "fields": [
-            ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("radiation", "uint:9984"),
-            ("crc", "uint:16")
-        ]
-    }
+    PacketType.HK: (HousekeepingPacket, 250),   # 16+17+32+32+32+55+48+16 + 2 for ID
+    PacketType.BF: (BitFlipPacket, 223),        # 16+17+172+16 + 2 for ID
+    PacketType.ACK: (AckPacket, 54),            # 16+17+3+16 + 2 for ID
+    PacketType.RAD: (RadiationPacket, 10035),   # 16+17+9984+16 + 2 for ID
 }
 
-# Auto-generate packet structures with calculated bit lengths
+# Auto-generate packet structures for backward compatibility
 PACKET_STRUCTURES = {}
-for pkt_type, parser_config in PACKET_PARSERS.items():
-    total_bits = calculate_packet_bits(parser_config["fields"])
-    
-    # Map packet type to name
-    type_names = {
-        PACKET_TYPE_HK: "HK",
-        PACKET_TYPE_BF: "BF", 
-        PACKET_TYPE_ACK: "ACK",
-        PACKET_TYPE_RAD: "RAD"
-    }
-    
+for pkt_type, (parser_class, total_bits) in PACKET_PARSERS.items():
     PACKET_STRUCTURES[pkt_type] = {
         "bits": total_bits,
-        "name": type_names[pkt_type]
+        "name": pkt_type.name
     }

@@ -1,9 +1,9 @@
 # Configuration settings for ground station
 
 # Network settings
-DEFAULT_MCU_IP = "192.168.4.2"
+DEFAULT_MCU_IP = "127.0.0.1"
 DEFAULT_MCU_PORT = 8080
-DEFAULT_GROUND_STATION_IP = "192.168.4.1"
+DEFAULT_GROUND_STATION_IP = "127.0.0.1"
 
 # Connection settings
 CONNECTION_TIMEOUT = 10
