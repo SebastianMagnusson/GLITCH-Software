@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from receiver.packet_parser import parse
@@ -29,4 +30,8 @@ def test_parse_packet():
         print("Failed to parse packet")
 
 if __name__ == "__main__":
+    t = time.process_time()
     test_parse_packet()
+    #print elapsed time in ms
+    elapsed_time = time.process_time() - t
+    print(f"Test completed in {elapsed_time * 1000:.4f} ms")

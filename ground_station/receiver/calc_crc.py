@@ -1,6 +1,6 @@
-def calculate_crc_bits(data_bytes: bytes, data_bits: int) -> int:
+def calc_crc(data_bytes: bytes, data_bits: int) -> int:
     crc = 0xFFFF
-    polynomial = 0x1021
+    pol = 0x1021
     
     for i in range(data_bits):
         byte_index = i // 8
@@ -11,7 +11,7 @@ def calculate_crc_bits(data_bytes: bytes, data_bits: int) -> int:
             crc ^= (bit << 15)
             
             if crc & 0x8000:
-                crc = ((crc << 1) ^ polynomial) & 0xFFFF
+                crc = ((crc << 1) ^ pol) & 0xFFFF
             else:
                 crc = (crc << 1) & 0xFFFF
     

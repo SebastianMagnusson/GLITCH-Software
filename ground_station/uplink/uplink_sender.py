@@ -1,5 +1,5 @@
 from bitstring import BitArray
-from receiver.validate_crc import calculate_crc
+from receiver.calc_crc import calc_crc
 
 def build_telecommand(seq, tc_code, rtc):
     packet = BitArray()
@@ -17,8 +17,8 @@ def build_telecommand(seq, tc_code, rtc):
     
     # Calculate CRC for all data except the last 2 bytes
     packet_bytes = bytearray(packet.bytes)
-    crc = calculate_crc(packet_bytes[:-2])
-    
+    crc = calc_crc(packet_bytes[:-2])
+
     # Replace the CRC placeholder with actual CRC
     packet_bytes[-2] = (crc >> 8) & 0xFF  # High byte
     packet_bytes[-1] = crc & 0xFF         # Low byte
