@@ -1,6 +1,5 @@
 from telemetry.telemetry_manager import TelemetryManager
-from uplink.uplink_sender import send_telecommand
-from gui.dashboard import Dashboard, run
+from gui.dashboard import run
 import config
 
 if __name__ == "__main__":

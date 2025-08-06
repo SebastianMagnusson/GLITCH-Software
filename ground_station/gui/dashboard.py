@@ -6,9 +6,8 @@ import pyqtgraph as pg
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, 
                             QVBoxLayout, QHBoxLayout, QLabel, QTableWidget, 
                             QTableWidgetItem, QPushButton, QGroupBox, QComboBox,
-                            QFrame, QSizePolicy)
+                            QFrame)
 from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtGui import QPalette, QColor
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from telemetry.telemetry_manager import TelemetryManager

@@ -10,10 +10,10 @@ def convert_temp(raw32):
 
 # Packet definitions
 STRUCTURES = {
-    packet_types.PACKET_TYPE_HK: {"bits": 250, "name": "HK"},
-    packet_types.PACKET_TYPE_BF: {"bits": 223, "name": "BF"}, 
-    packet_types.PACKET_TYPE_ACK: {"bits": 54, "name": "ACK"},
-    packet_types.PACKET_TYPE_RAD: {"bits": 10035, "name": "RAD"}
+    packet_types.PACKET_TYPE_HK: {"bits": packet_lengths.PACKET_SIZE_HK, "name": "HK"},
+    packet_types.PACKET_TYPE_BF: {"bits": packet_lengths.PACKET_SIZE_BF, "name": "BF"},
+    packet_types.PACKET_TYPE_ACK: {"bits": packet_lengths.PACKET_SIZE_ACK, "name": "ACK"},
+    packet_types.PACKET_TYPE_RAD: {"bits": packet_lengths.PACKET_SIZE_RAD, "name": "RAD"}
 }
 
 PARSERS = {
