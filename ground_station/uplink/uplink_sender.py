@@ -1,5 +1,5 @@
 from bitstring import BitArray
-from receiver.calc_crc import calc_crc
+from utils import calc_crc
 
 def build_telecommand(seq, tc_code, rtc):
     packet = BitArray()

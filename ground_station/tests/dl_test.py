@@ -9,7 +9,7 @@ import random
 # Add the parent directory to the path to import modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from main import main as run_main
-from receiver.calc_crc import calc_crc
+from utils import calc_crc
 import config
 
 #initial temperatures for all sensors
