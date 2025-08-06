@@ -8,8 +8,6 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget,
                             QTableWidgetItem, QPushButton, QGroupBox, QComboBox,
                             QFrame)
 from PyQt5.QtCore import Qt, QTimer
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from telemetry.telemetry_manager import TelemetryManager
 from uplink.uplink_sender import send_telecommand
 from uplink.tc_types import TC_RESET, TC_SET_MODE_POWER_SAVE, TC_SET_MODE_NORMAL

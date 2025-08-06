@@ -1,64 +1,11 @@
 from bitstring import BitStream
-import receiver.packet_types as packet_types
-from receiver.calc_crc import calc_crc
-import receiver.packet_lengths as packet_lengths
-
-def convert_temp(raw32):
-    """Convert raw temperature reading to Celsius"""
-    raw16 = raw32 & 0xFFFF
-    return (175.72 * raw16 / 65536.0) - 46.85
-
-# Packet definitions
-STRUCTURES = {
-    packet_types.PACKET_TYPE_HK: {"bits": packet_lengths.PACKET_SIZE_HK, "name": "HK"},
-    packet_types.PACKET_TYPE_BF: {"bits": packet_lengths.PACKET_SIZE_BF, "name": "BF"},
-    packet_types.PACKET_TYPE_ACK: {"bits": packet_lengths.PACKET_SIZE_ACK, "name": "ACK"},
-    packet_types.PACKET_TYPE_RAD: {"bits": packet_lengths.PACKET_SIZE_RAD, "name": "RAD"}
-}
-
-PARSERS = {
-    packet_types.PACKET_TYPE_HK: {
-        "fields": [
-            ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("internal", "uint:32", convert_temp),
-            ("external", "uint:32", convert_temp),
-            ("sensor_board", "uint:32", convert_temp),
-            ("gnss", "uint:55"),
-            ("altitude", "int:48"),
-            ("crc", "uint:16")
-        ]
-    },
-    packet_types.PACKET_TYPE_BF: {
-        "fields": [
-            ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("bit_flip", "uint:172"),
-            ("crc", "uint:16")
-        ]
-    },
-    packet_types.PACKET_TYPE_ACK: {
-        "fields": [
-            ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("telecommand_ack", "uint:3"),
-            ("crc", "uint:16")
-        ]
-    },
-    packet_types.PACKET_TYPE_RAD: {
-        "fields": [
-            ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("radiation", "uint:9984"),
-            ("crc", "uint:16")
-        ]
-    }
-}
+from utils import calc_crc
+from receiver.packet_structures import PACKET_STRUCTURES, PACKET_PARSERS
 
 def validate_and_parse(data):
     """Validate CRC and parse packet"""
     # Find matching packet by length
-    for pkt_id, struct in STRUCTURES.items():
+    for pkt_id, struct in PACKET_STRUCTURES.items():
         expected_bytes = ((struct["bits"] + 7) // 8)
         if len(data) == expected_bytes:
             try:
@@ -84,12 +31,12 @@ def validate_and_parse(data):
 
 def parse_fields(bits, pkt_type):
     """Parse packet fields"""
-    if pkt_type not in PARSERS:
+    if pkt_type not in PACKET_PARSERS:
         raise ValueError(f"Unknown packet type: {pkt_type}")
-    
-    config = PARSERS[pkt_type]
-    result = {"type": STRUCTURES[pkt_type]["name"]}
-    
+
+    config = PACKET_PARSERS[pkt_type]
+    result = {"type": PACKET_STRUCTURES[pkt_type]["name"]}
+
     # Parse all fields except CRC
     for field in config["fields"][:-1]:
         name = field[0]
