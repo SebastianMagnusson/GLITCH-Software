@@ -2,7 +2,7 @@ from telemetry.telemetry_manager import TelemetryManager
 from gui.dashboard import run
 import config
 
-if __name__ == "__main__":
+def main():
     print(f"Starting GLITCH Ground Station")
     print(f"Configuration:")
     print(f"  MCU IP: {config.DEFAULT_MCU_IP}")
@@ -15,3 +15,6 @@ if __name__ == "__main__":
     telemetry_manager.start_connection()
     
     run(telemetry_manager)
+
+if __name__ == "__main__":
+    main()

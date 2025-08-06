@@ -1,3 +1,4 @@
+import threading
 import socket
 import time
 import sys
@@ -7,6 +8,7 @@ import random
 
 # Add the parent directory to the path to import modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from main import main as run_main
 from receiver.calc_crc import calc_crc
 import config
 
@@ -192,4 +194,16 @@ def send_packets_tcp(ip=None, port=None):
     server_sock.close()
 
 if __name__ == "__main__":
-    send_packets_tcp()
+    # Start mock MCU in a separate thread
+    mcu_thread = threading.Thread(target=send_packets_tcp, daemon=True)
+    mcu_thread.start()
+    
+    # Give the server a moment to start up
+    time.sleep(1)
+    
+    # Start the ground station in the main thread
+    print("Starting ground station...")
+    try:
+        run_main()
+    except KeyboardInterrupt:
+        print("Shutting down...")
