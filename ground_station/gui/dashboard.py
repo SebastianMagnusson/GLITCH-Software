@@ -543,7 +543,7 @@ class Dashboard(QMainWindow):
 
         try:
             success = send_telecommand(self.telemetry_manager, seq, tc_code, rtc)
-            #Add success message to TC log
+
             self.log(success)
         except Exception as e:
             print(f"Error sending command: {e}")
@@ -580,7 +580,6 @@ class Dashboard(QMainWindow):
         self.cmd_log_table.setItem(0, 0, QTableWidgetItem(timestamp))
         self.cmd_log_table.setItem(0, 1, QTableWidgetItem(command_text))
         
-        # Use config for max log entries
         if self.cmd_log_table.rowCount() > config.MAX_LOG_ENTRIES:
             self.cmd_log_table.removeRow(self.cmd_log_table.rowCount() - 1)
 

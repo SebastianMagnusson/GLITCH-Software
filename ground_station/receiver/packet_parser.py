@@ -1,117 +1,130 @@
 from bitstring import BitStream
 import receiver.packet_types as packet_types
-from receiver.validate_crc import calculate_crc
+from receiver.validate_crc import calculate_crc_bits
+import receiver.packet_lengths as packet_lengths
 
-def validate_crc_robust(data):
-    """Try to validate CRC against all known packet structures"""
-    
-    packet_structures = {
-        0: 2 + 16 + 17 + 32 + 32 + 32 + 55 + 24,  # HK: 210 bits
-        1: 2 + 16 + 17 + 172,                      # BF: 207 bits  
-        2: 2 + 16 + 17 + 3,                        # ACK: 38 bits
-        3: 2 + 16 + 17 + 9984                      # RAD: 10019 bits
+def convert_temp(raw32):
+    """Convert raw temperature reading to Celsius"""
+    raw16 = raw32 & 0xFFFF
+    return (175.72 * raw16 / 65536.0) - 46.85
+
+# Define packet structures
+PACKET_STRUCTURES = {
+    packet_types.PACKET_TYPE_HK: {"bits": 250, "name": "HK"},
+    packet_types.PACKET_TYPE_BF: {"bits": 223, "name": "BF"}, 
+    packet_types.PACKET_TYPE_ACK: {"bits": 54, "name": "ACK"},
+    packet_types.PACKET_TYPE_RAD: {"bits": 10035, "name": "RAD"}
+}
+
+# Define parsing configurations
+PACKET_PARSERS = {
+    packet_types.PACKET_TYPE_HK: {
+        "fields": [
+            ("seq_counter", "uint:16"),
+            ("rtc", "uint:17"),
+            ("internal", "uint:32", convert_temp),
+            ("external", "uint:32", convert_temp),
+            ("sensor_board", "uint:32", convert_temp),
+            ("gnss", "uint:55"),
+            ("altitude", "int:48"),
+            ("crc", "uint:16")
+        ]
+    },
+    packet_types.PACKET_TYPE_BF: {
+        "fields": [
+            ("seq_counter", "uint:16"),
+            ("rtc", "uint:17"),
+            ("bit_flip", "uint:172"),
+            ("crc", "uint:16")
+        ]
+    },
+    packet_types.PACKET_TYPE_ACK: {
+        "fields": [
+            ("seq_counter", "uint:16"),
+            ("rtc", "uint:17"),
+            ("telecommand_ack", "uint:3"),
+            ("crc", "uint:16")
+        ]
+    },
+    packet_types.PACKET_TYPE_RAD: {
+        "fields": [
+            ("seq_counter", "uint:16"),
+            ("rtc", "uint:17"),
+            ("radiation", "uint:9984"),
+            ("crc", "uint:16")
+        ]
     }
-    
-    bits = BitStream(bytes=data)
-    
-    # Try each possible packet structure
-    for packet_id, data_bits in packet_structures.items():
-        try:
-            # Check if packet is long enough
-            if len(bits) < data_bits + 16:
-                continue
-                
-            # Extract data portion and CRC
-            data_portion = bits[:data_bits]
-            crc_portion = bits[data_bits:data_bits + 16]
+}
+
+def validate_crc(data):
+    """Validate CRC for all known packet types and return the valid packet ID"""
+    for packet_id, structure in PACKET_STRUCTURES.items():
+        total_packet_bits = structure["bits"]
+        expected_bytes = ((total_packet_bits + 7) // 8)
+        
+        if len(data) != expected_bytes:
+            continue
             
-            calculated_crc = calculate_crc(data_portion.bytes)
-            received_crc = crc_portion.uint
+        try:
+            # Calculate CRC for data
+            data_bits = total_packet_bits - 16 # Exclude CRC bits
+            calculated_crc = calculate_crc_bits(data, data_bits)
+            
+            # Get received CRC from packet
+            bits = BitStream(bytes=data)
+            received_crc = bits[total_packet_bits - 16:total_packet_bits].uint
             
             if calculated_crc == received_crc:
-                # Verify the packet ID matches
+                # Check if packet ID matches
                 packet_id_from_data = bits[:2].uint
                 if packet_id_from_data == packet_id:
                     return True, packet_id
                     
-        except Exception:
+        except Exception as e:
+            print(f"CRC validation error for {structure['name']}: {e}")
             continue
     
     return False, None
 
-def parse_packet(data):
-    try:
-        bits = BitStream(bytes=data)
-        print(bits)
+def parse_packet(bits, packet_type):
+    """Generic packet parser"""
+    if packet_type not in PACKET_PARSERS:
+        raise ValueError(f"Unknown packet type: {packet_type}")
+    
+    config = PACKET_PARSERS[packet_type]
+    result = {"type": PACKET_STRUCTURES[packet_type]["name"]}
+    
+    for field_config in config["fields"]:
+        field_name = field_config[0]
+        field_format = field_config[1]
+        transform_func = field_config[2] if len(field_config) > 2 else None
+        
+        value = bits.read(field_format)
+        if transform_func:
+            value = transform_func(value)
+        
+        result[field_name] = value
+    
+    return result
 
-        crc_valid, expected_packet_id = validate_crc_robust(data)
+def parse(data):
+    """Main packet parsing function"""
+    try:
+        # Validate CRC and get packet type - this does ALL validation
+        crc_valid, validated_packet_id = validate_crc(data)
         if not crc_valid:
             print("CRC validation failed for all known packet structures")
             return None
         
-        packet_id = bits.read("uint:2")
+        # Create BitStream and skip packet ID (already validated)
+        bits = BitStream(bytes=data)
+        bits.read("uint:2")  # Skip packet ID - already validated
         
-        if expected_packet_id is not None and packet_id != expected_packet_id:
-            print(f"Packet ID mismatch: header says {packet_id}, CRC validates for {expected_packet_id}")
-            return None
-
-        if packet_id == packet_types.PACKET_TYPE_HK:
-            return parse_hk(bits)
-        elif packet_id == packet_types.PACKET_TYPE_BF:
-            return parse_bf(bits)
-        elif packet_id == packet_types.PACKET_TYPE_ACK:
-            return parse_ack(bits)
-        elif packet_id == packet_types.PACKET_TYPE_RAD:
-            return parse_rad(bits)
-        else:
-            print(f"Unknown packet type: {packet_id}")
-            return None
+        # Parse the packet using the validated type
+        return parse_packet(bits, validated_packet_id)
             
     except Exception as e:
         print(f"Error parsing packet: {e}")
-        print(f"Packet length: {len(data)} bytes ({len(data) * 8} bits)")
         return None
 
-def parse_hk(bits):
-    return {
-        "type": "HK",
-        "seq_counter": bits.read("uint:16"),
-        "rtc": bits.read("uint:17"),
-        "internal": convert_temp(bits.read("uint:32")),
-        "external": convert_temp(bits.read("uint:32")),
-        "sensor_board": convert_temp(bits.read("uint:32")),
-        "gnss": bits.read("uint:55"),
-        "altitude": bits.read("int:24"),
-        "crc": bits.read("uint:16")  
-    }
 
-def parse_bf(bits):
-    return {
-        "type": "BF",
-        "seq_counter": bits.read("uint:16"),
-        "rtc": bits.read("uint:17"),
-        "bit_flip": bits.read("uint:172"),
-        "crc": bits.read("uint:16")  
-    }
-
-def parse_ack(bits):
-    return {
-        "type": "ACK",
-        "seq_counter": bits.read("uint:16"),
-        "rtc": bits.read("uint:17"),
-        "telecommand_ack": bits.read("uint:3"),
-        "crc": bits.read("uint:16")
-    }
-
-def parse_rad(bits):
-    return {
-        "type": "RAD",
-        "seq_counter": bits.read("uint:16"),
-        "rtc": bits.read("uint:17"),
-        "radiation": bits.read("uint:9984"),
-        "crc": bits.read("uint:16")
-    }
-
-def convert_temp(raw32):
-    raw16 = raw32 & 0xFFFF
-    return (175.72 * raw16 / 65536.0) - 46.85

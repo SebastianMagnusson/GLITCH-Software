@@ -1,16 +1,18 @@
-import crcmod
-
-# CRC-16-CCITT function (polynomial 0x1021, initial value 0xFFFF)
-crc16 = crcmod.mkCrcFun(0x11021, initCrc=0xFFFF, rev=False)
-
-def calculate_crc(data: bytes) -> int:
-    return crc16(data)
-
-def validate_crc(data) -> bool:
-    crc_received = int.from_bytes(data[-2:], byteorder='big')
-    crc_calculated = calculate_crc(data[:-2])
-    if crc_received != crc_calculated:
-        print(f"CRC mismatch: received {crc_received}, calculated {crc_calculated}")
-
-    return crc_received == crc_calculated
-
+def calculate_crc_bits(data_bytes: bytes, data_bits: int) -> int:
+    crc = 0xFFFF
+    polynomial = 0x1021
+    
+    for i in range(data_bits):
+        byte_index = i // 8
+        bit_index = 7 - (i % 8)
+        
+        if byte_index < len(data_bytes):
+            bit = (data_bytes[byte_index] >> bit_index) & 1
+            crc ^= (bit << 15)
+            
+            if crc & 0x8000:
+                crc = ((crc << 1) ^ polynomial) & 0xFFFF
+            else:
+                crc = (crc << 1) & 0xFFFF
+    
+    return crc

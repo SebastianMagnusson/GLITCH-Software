@@ -15,46 +15,23 @@ int bitflip_sequence_number = 1;
 int radiation_sequence_number = 1;
 int acknowledgement_sequence_number = 1;
 
-// Replace the existing calculate_crc function with this implementation
-
-uint16_t calculate_crc(uint8_t* data, int length) {
-    if (data == NULL || length <= 0) {
-        return 0;
-    }
-
-    uint16_t crc = 0xFFFF;  // Initial value for CRC-16-CCITT
-    uint16_t polynomial = 0x1021;  // CRC-16-CCITT polynomial
-
-    for (int i = 0; i < length; i++) {
-        crc ^= (uint16_t)(data[i] << 8);  // XOR byte into upper byte of crc
+uint16_t calculate_crc_bits(uint8_t* packet, size_t data_bits) {
+    uint16_t crc = 0xFFFF;
+    const uint16_t polynomial = 0x1021;
+    
+    for (size_t i = 0; i < data_bits; i++) {
+        int byte_index = i / 8;
+        int bit_index = 7 - (i % 8);
+        int bit = (packet[byte_index] >> bit_index) & 1;
         
-        for (int j = 0; j < 8; j++) {  // Process each bit
-            if (crc & 0x8000) {  // If MSB is set
-                crc = (crc << 1) ^ polynomial;
-            } else {
-                crc <<= 1;
-            }
+        crc ^= (bit << 15);
+        if (crc & 0x8000) {
+            crc = (crc << 1) ^ polynomial;
+        } else {
+            crc <<= 1;
         }
     }
     
-    return crc;
-}
-
-uint16_t calculate_packet_crc(uint8_t* packet, size_t data_bits) {
-    size_t data_bytes = (data_bits + 7) / 8;
-    uint8_t* crc_data = calloc(data_bytes, sizeof(uint8_t));
-    
-    // Copy the data portion
-    memcpy(crc_data, packet, data_bytes);
-    
-    // Clear unused bits in the last byte if not byte-aligned
-    if (data_bits % 8 != 0) {
-        uint8_t mask = 0xFF << (8 - (data_bits % 8));
-        crc_data[data_bytes - 1] &= mask;
-    }
-    
-    uint16_t crc = calculate_crc(crc_data, data_bytes);
-    free(crc_data);
     return crc;
 }
 
@@ -70,7 +47,7 @@ bool validate_crc_mcu(uint8_t* packet, int total_length) {
     uint16_t received_crc = (packet[total_length - 2] << 8) | packet[total_length - 1];
     
     // Calculate CRC for all data except the CRC bytes
-    uint16_t calculated_crc = calculate_crc(packet, total_length - 2);
+    uint16_t calculated_crc = calculate_crc_bits(packet, total_length - 2);
     
     return received_crc == calculated_crc;
 }
@@ -119,7 +96,7 @@ uint8_t* pack_tm(uint8_t* data, int packet_size, int data_size){
         packet[i + array_offset] = data[i];
     }
 
-    uint16_t crc = calculate_crc(packet, packet_size - 2);
+    uint16_t crc = calculate_crc_bits(packet, packet_size - 2);
     // Place the crc into the packet with the correct bit offset (array_offset + data_size + 1 == packet_size)
     packet[array_offset + data_size - 1] |= crc << bit_offset;
     packet[array_offset + data_size] = crc >> (8 - bit_offset);
@@ -133,7 +110,7 @@ bool is_valid_packet(uint32_t rtc, uint16_t crc, uint8_t* packet) {
         return false;
     }
     
-    uint16_t calculated_crc = calculate_crc(packet, CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE - 2);
+    uint16_t calculated_crc = calculate_crc_bits(packet, CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE - 2);
     
     // Check if the calculated CRC matches the provided CRC
     if (calculated_crc != crc) {
@@ -199,7 +176,7 @@ uint8_t* format_tm(uint8_t* data) {
         set_bits_data(packet, &bit_pos, data, CONFIG_HOUSEKEEPING_DATA_SIZE);                 // Data: ? bits
         
         size_t data_bits = bit_pos; 
-        uint16_t crc = calculate_packet_crc(packet, data_bits); 
+        uint16_t crc = calculate_crc_bits(packet, data_bits); 
         
         set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                     // CRC: 16 bits
         ESP_LOGI("Format", "Housekeeping crc: %04X", crc);
@@ -213,7 +190,7 @@ uint8_t* format_tm(uint8_t* data) {
         set_bits_data(packet, &bit_pos, data, CONFIG_BITFLIP_DATA_SIZE);                     // Data: ? bits
         
         size_t data_bits = bit_pos; 
-        uint16_t crc = calculate_packet_crc(packet, data_bits); 
+        uint16_t crc = calculate_crc_bits(packet, data_bits); 
         
         set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                    // CRC: 16 bits
         ESP_LOGI("Format", "Bitflip crc: %04X", crc);
@@ -227,7 +204,7 @@ uint8_t* format_tm(uint8_t* data) {
         set_bits_data(packet, &bit_pos, data, CONFIG_RADIATION_DATA_SIZE);                   // Data: ? bits
 
         size_t data_bits = bit_pos;
-        uint16_t crc = calculate_packet_crc(packet, data_bits);
+        uint16_t crc = calculate_crc_bits(packet, data_bits);
 
         set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                    // CRC: 16 bits
         ESP_LOGI("Format", "Radiation crc: %04X", crc);
@@ -254,7 +231,7 @@ uint8_t* format_tc(uint8_t* data) {
     
     // Calculate CRC on actual data bits
     size_t data_bits = bit_pos;
-    uint16_t crc = calculate_packet_crc(packet, data_bits);
+    uint16_t crc = calculate_crc_bits(packet, data_bits);
     
     set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                        // CRC: 16 bits
     ESP_LOGI("Format", "Acknowledgement crc: %04X", crc);

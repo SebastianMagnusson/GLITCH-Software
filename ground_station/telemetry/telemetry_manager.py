@@ -5,7 +5,7 @@ import time
 import errno
 from datetime import datetime
 import pandas as pd
-from receiver.packet_parser import parse_packet
+from receiver.packet_parser import parse
 from storage.logger import Logger
 import config
 
@@ -69,7 +69,7 @@ class TelemetryManager:
                         print("Connection closed by MCU")
                         break
                         
-                    parsed = parse_packet(data)
+                    parsed = parse(data)
                     if parsed:
                         print(f"Received packet: {parsed}")
                         self.logger.log(parsed)
