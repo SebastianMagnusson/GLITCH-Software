@@ -121,6 +121,8 @@ uint8_t* generate_packet(uint8_t packet_type) {
     
     printf("%s Packet total bits used: %zu (expected: %zu)\n", 
            config->name, bit_pos, config->total_bits);
+    //print packet for debugging in bits
+    print_packet_binary(packet, config->total_bytes);
     
     return packet;
 }
@@ -206,3 +208,19 @@ int main() {
     
     return 0;
 }
+
+// ...existing code...
+
+// New function to copy bytes directly into packet
+void set_bits_data(uint8_t *buf, size_t *bit_pos, const uint8_t *data, int bits) {
+    for (int i = 0; i < bits; i++) {
+        int src_byte = i / 8;
+        int src_bit  = 7 - (i % 8);
+        int bit = (data[src_byte] >> src_bit) & 1;
+        int dst_byte = (*bit_pos) / 8;
+        int dst_bit  = 7 - ((*bit_pos) % 8);
+        buf[dst_byte] |= bit << dst_bit;
+        (*bit_pos)++;
+    }
+}
+

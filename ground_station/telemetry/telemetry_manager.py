@@ -25,6 +25,14 @@ class TelemetryManager:
         self.uplink_socket = None
         self._connection_thread = None
         self.logger = Logger()
+        
+        # Add packet statistics tracking
+        self.packet_stats = {
+            "total_received": 0,
+            "valid_packets": 0,
+            "corrupt_packets": 0,
+            "lost_packets": 0
+        }
     
     def register_callback(self, callback):
         self.callbacks.append(callback)
@@ -66,14 +74,20 @@ class TelemetryManager:
                     if not data:
                         print("Connection closed by MCU")
                         break
+                    
+                    # Increment total received packets
+                    self.packet_stats["total_received"] += 1
                         
                     parsed = parse(data)
                     if parsed:
                         print(f"Received packet: {parsed}")
+                        self.packet_stats["valid_packets"] += 1
                         self.logger.log(parsed)
                         self.update(parsed)
                     else:
-                        print(f"Received unknown packet")
+                        print(f"Received corrupt packet - raw data: {''.join(format(byte, '08b') for byte in data)}")
+                        self.packet_stats["corrupt_packets"] += 1
+                        self.logger.log_corrupt_packet(data)
                         
             except socket.error as e:
                 print(f"Socket error: {e}")
@@ -114,3 +128,16 @@ class TelemetryManager:
         
         for callback in self.callbacks:
             callback(processed_packet)
+    
+    def get_packet_stats(self):
+        """Return current packet statistics"""
+        return self.packet_stats.copy()
+    
+    def reset_packet_stats(self):
+        """Reset packet statistics counters"""
+        self.packet_stats = {
+            "total_received": 0,
+            "valid_packets": 0,
+            "corrupt_packets": 0,
+            "lost_packets": 0
+        }

@@ -115,54 +115,63 @@ def build_ack_pkt(seq_counter, tc_ack=1):
 
     return packet.bytes
 
-def send_packets(ip="127.0.0.1", port=5005):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    seq_counter = 1
+def corrupt_packet(packet_bytes):
+    """Introduce corruption into a packet to test error handling"""
+    corruption_type = random.randint(1, 4)
+    corrupted = bytearray(packet_bytes)
+    
+    if corruption_type == 1:
+        # Flip random bits
+        num_flips = random.randint(1, 3)
+        for _ in range(num_flips):
+            byte_idx = random.randint(0, len(corrupted) - 1)
+            bit_idx = random.randint(0, 7)
+            corrupted[byte_idx] ^= (1 << bit_idx)
+    elif corruption_type == 2:
+        # Corrupt CRC (last 2 bytes)
+        if len(corrupted) >= 2:
+            corrupted[-1] = random.randint(0, 255)
+            corrupted[-2] = random.randint(0, 255)
+    elif corruption_type == 3:
+        # Truncate packet
+        if len(corrupted) > 2:
+            truncate_size = random.randint(1, min(3, len(corrupted) - 1))
+            corrupted = corrupted[:-truncate_size]
+    else:
+        # Add random bytes
+        extra_bytes = random.randint(1, 3)
+        for _ in range(extra_bytes):
+            corrupted.append(random.randint(0, 255))
+    
+    return bytes(corrupted)
 
-    print(f"Sending packets to {ip}:{port}")
-    while True:
-        packet_type = seq_counter % 3
-        
-        if packet_type == 0:
-            packet = build_hk_pkt(seq_counter % 65536)
-            packet_name = "HK"
-        elif packet_type == 1:
-            packet = build_bf_pkt(seq_counter % 65536)
-            packet_name = "BF"
-        else:
-            packet = build_ack_pkt(seq_counter % 65536)
-            packet_name = "ACK"
-            
-        sock.sendto(packet, (ip, port))
-        print(f"Sent {packet_name} packet (seq: {seq_counter % 65536}, {len(packet)} bytes)")
-        seq_counter += 1
-        time.sleep(1)
 
 def send_packets_tcp(ip=None, port=None):
-    """Send packets using TCP to match telemetry_manager expectations"""
+    """Send packets one at a time using TCP to match telemetry_manager expectations"""
     if ip is None:
         ip = config.DEFAULT_MCU_IP
     if port is None:
         port = config.DEFAULT_MCU_PORT
-    
+
     seq_counter = 1
-    
+
     print(f"Starting TCP server on {ip}:{port}")
-    
+
     # Create TCP server socket
     server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_sock.bind((ip, port))
     server_sock.listen(1)
-    
+
     print(f"Waiting for ground station connection...")
-    
+
     while True:
         try:
             client_sock, addr = server_sock.accept()
             print(f"Ground station connected from {addr}")
-            
+
             while True:
+                # Send one packet type per cycle
                 packet_type = seq_counter % 3
                 
                 if packet_type == 0:
@@ -174,23 +183,30 @@ def send_packets_tcp(ip=None, port=None):
                 else:
                     packet = build_ack_pkt(seq_counter % 65536)
                     packet_name = "ACK"
-                
+
+                # Randomly corrupt packets (10% chance)
+                send_packet = packet
+                name = packet_name
+                if random.random() < 0.1:
+                    send_packet = corrupt_packet(packet)
+                    name += " (CORRUPTED)"
+
                 try:
-                    client_sock.send(packet)
-                    print(f"Sent {packet_name} packet (seq: {seq_counter % 65536}, {len(packet)} bytes)")
+                    client_sock.send(send_packet)
+                    print(f"Sent {name} packet (seq: {seq_counter % 65536}, {len(send_packet)} bytes)")
                     seq_counter += 1
-                    time.sleep(1)
+                    time.sleep(1)  # Increased delay to avoid overwhelming receiver
                 except socket.error:
                     print("Ground station disconnected")
                     break
-                    
+
         except KeyboardInterrupt:
             print("Shutting down...")
             break
         except Exception as e:
             print(f"Error: {e}")
             time.sleep(1)
-    
+
     server_sock.close()
 
 if __name__ == "__main__":

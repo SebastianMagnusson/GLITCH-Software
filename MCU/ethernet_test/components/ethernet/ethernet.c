@@ -622,8 +622,9 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
         }
     }
 
-    uint8_t tc_id = (tc_received[0]) & 0b11100000;
-    buffer_add_tc(&tc_id);
+    // FIX: Pass the entire tc_received data, not just the ID
+    buffer_add_tc(tc_received);  // Remove the & and tc_id extraction
+    
     uint8_t *ack_packet = format_tc(tc_received);
     if (ack_packet == NULL) {
         ESP_LOGE(TAG, "Failed to format telecommand packet for acknowledgment");

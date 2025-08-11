@@ -2,34 +2,40 @@
 import csv
 import os
 from datetime import datetime
+import config
 
 class Logger:
     def __init__(self):
-        now = datetime.now()
-        timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
+        # Create logs directory if it doesn't exist
+        os.makedirs(config.LOGS_DIR, exist_ok=True)
         
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        log_dir = os.path.join(current_dir, "logs")
+        # Set up log file paths
+        self.log_file = os.path.join(config.LOGS_DIR, "telemetry.log")
+        self.corrupt_log_file = os.path.join(config.LOGS_DIR, "corrupt_packets.log")
         
-        os.makedirs(log_dir, exist_ok=True)
-        
-        self.filename = os.path.join(log_dir, f"log_{timestamp}.csv")
-        self.file_exists = os.path.isfile(self.filename)
-        self.fieldnames = ["timestamp", "type", "seq_counter", "rtc", "data"]
-
-        if not self.file_exists:
-            with open(self.filename, mode='w', newline='') as file:
-                writer = csv.DictWriter(file, fieldnames=self.fieldnames)
-                writer.writeheader()
-
+        # Initialize log files with headers if they don't exist
+        if not os.path.exists(self.log_file):
+            with open(self.log_file, 'w') as f:
+                f.write("timestamp,type,data\n")
+                
+        if not os.path.exists(self.corrupt_log_file):
+            with open(self.corrupt_log_file, 'w') as f:
+                f.write("timestamp,type,raw_hex_data\n")
+    
     def log(self, packet):
-        with open(self.filename, mode='a', newline='') as file:
-            writer = csv.DictWriter(file, fieldnames=self.fieldnames)
-            packet_data = {
-                "timestamp": datetime.now().isoformat(),
-                "type": packet["type"],
-                "seq_counter": packet["seq_counter"],
-                "rtc": packet["rtc"],
-                "data": str(packet)
-            }
-            writer.writerow(packet_data)
+        """Log valid parsed packets"""
+        timestamp = datetime.now().isoformat()
+        try:
+            with open(self.log_file, 'a') as f:
+                f.write(f"{timestamp},{packet['type']},{packet}\n")
+        except Exception as e:
+            print(f"Error logging packet: {e}")
+    
+    def log_corrupt_packet(self, raw_data):
+        """Log corrupt packet data for debugging"""
+        timestamp = datetime.now().isoformat()
+        try:
+            with open(self.corrupt_log_file, 'a') as f:
+                f.write(f"{timestamp},CORRUPT,{raw_data.hex()}\n")
+        except Exception as e:
+            print(f"Error logging corrupt packet: {e}")

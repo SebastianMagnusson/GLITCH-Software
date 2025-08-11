@@ -15,26 +15,6 @@ int bitflip_sequence_number = 1;
 int radiation_sequence_number = 1;
 int acknowledgement_sequence_number = 1;
 
-uint16_t calculate_crc_bits(uint8_t* packet, size_t data_bits) {
-    uint16_t crc = 0xFFFF;
-    const uint16_t polynomial = 0x1021;
-    
-    for (size_t i = 0; i < data_bits; i++) {
-        int byte_index = i / 8;
-        int bit_index = 7 - (i % 8);
-        int bit = (packet[byte_index] >> bit_index) & 1;
-        
-        crc ^= (bit << 15);
-        if (crc & 0x8000) {
-            crc = (crc << 1) ^ polynomial;
-        } else {
-            crc <<= 1;
-        }
-    }
-    
-    return crc;
-}
-
 
 // Add this function after calculate_crc
 

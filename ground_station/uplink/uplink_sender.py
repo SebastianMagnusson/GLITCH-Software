@@ -17,7 +17,8 @@ def build_telecommand(seq, tc_code, rtc):
     
     # Calculate CRC for all data except the last 2 bytes
     packet_bytes = bytearray(packet.bytes)
-    crc = calc_crc(packet_bytes[:-2])
+    data_bits = (len(packet_bytes) - 2) * 8  # Calculate data bits (excluding CRC bytes)
+    crc = calc_crc(packet_bytes[:-2], data_bits)
 
     # Replace the CRC placeholder with actual CRC
     packet_bytes[-2] = (crc >> 8) & 0xFF  # High byte

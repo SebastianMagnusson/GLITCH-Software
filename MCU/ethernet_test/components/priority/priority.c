@@ -8,27 +8,25 @@
 static const char *TAG = "Priority"; 
 
 int priority_assign(uint8_t* data) {
-
     if (data == NULL) {
         return 4; 
     }
 
-    int telemetry_type = CHECK_BIT(data[0], 6) + CHECK_BIT(data[0], 7) * 2; 
-    if (telemetry_type == 0){
+    int telemetry_type = (data[0] >> 6) & 0b00000011;  
+    
+    if (telemetry_type == 0){  // HK
         return 1;
     } 
-    if (telemetry_type == 1){
+    if (telemetry_type == 1){  // BF
         return 2;
     }
-    if (telemetry_type == 2){
+    if (telemetry_type == 2){  // RAD
         return 0;
     }
-    if (telemetry_type == 3){
+    if (telemetry_type == 3){  // ACK
         return 3;
     } 
     
-    ESP_LOGW(TAG,"No telemetry type found, priority 0\n"); 
-    
-    return 4; // Return least priority if no telemetry type is found
-
+    ESP_LOGW(TAG,"No telemetry type found, priority 4\n"); 
+    return 4;
 }

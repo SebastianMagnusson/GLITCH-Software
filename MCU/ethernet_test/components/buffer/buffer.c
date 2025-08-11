@@ -21,8 +21,8 @@ int front_rad;
 int size_rad;
 
 int check_length(uint8_t* data) {
-
-    int telemetry_type = (data[0] >> 6) & 0b00000011;
+    int telemetry_type = (data[0] >> 6) & 0b00000011;  // Extract first 2 bits from MSB
+    
     if (telemetry_type == CONFIG_HOUSEKEEPING_PACKET_ID){
         return CONFIG_HOUSEKEEPING_PACKET_SIZE; 
     } 
@@ -36,8 +36,7 @@ int check_length(uint8_t* data) {
         return CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE; 
     }
 
-    return (int)NULL;
-
+    return -1;
 }
 
 // Function to initialize the tm buffer as NULL and set the front and size to 0 for tc buffer
@@ -66,9 +65,12 @@ void buffer_deinit() {
     }
     head_tm = NULL; // Set head to NULL after deinitialization
 
-    // Reset the tc buffer
+    // Free any remaining TC data and reset the tc buffer
     for (int i = 0; i < CONFIG_MAX_TC_BUFFER_SIZE; i++) {
-        buffer_tc[i] = NULL; 
+        if (buffer_tc[i] != NULL) {
+            free(buffer_tc[i]); // Free the TC data
+            buffer_tc[i] = NULL; 
+        }
     }
     front_tc = 0;
     size_tc = 0;
@@ -101,33 +103,12 @@ void buffer_retreive_rad_end(void *pvParameters) {
 
 }
 
-void buffer_retreive_rad(uint8_t** retreived_rad, int size){
-    if (size <= 0 || size > size_rad) {
-        return;
-    } else if (size == 1) {
-        retreived_rad[0] = buffer_rad[front_rad];
-        return;
+void buffer_retrieve_rad(uint8_t **out, int count) {
+    if (count <= 0 || count > size_rad) return;
+    for (int i = 0; i < count; i++) {
+        int idx = (front_rad - (count - 1 - i) + CONFIG_MAX_RADIATION_BUFFER_SIZE) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
+        out[i] = buffer_rad[idx]; 
     }
-
-    int start = (front_rad - size/2 + CONFIG_MAX_RADIATION_BUFFER_SIZE) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
-    int end = (front_rad + size/2) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
-
-    // Create a task to retrieve the rest of the data while returning the first half
-    buffer_retreive_rad_end_params_t params = {
-        .retreived_rad = retreived_rad,
-        .size = size,
-        .end = end
-    };
-    xTaskCreate(buffer_retreive_rad_end, "buffer_retreive_rad_end", 2048, &params, 5, NULL);
-
-    // Fill the first half of the retreived_rad array
-    for (int i = 0; i < size/2; i++) {
-        int index = (start + i) % CONFIG_MAX_RADIATION_BUFFER_SIZE;
-        retreived_rad[i] = buffer_rad[index];
-    }
-
-    return;
-
 }
 
 void buffer_add_rad(uint8_t* data) {
@@ -159,17 +140,11 @@ void buffer_add_rad(uint8_t* data) {
 void buffer_add_tm(int priority, uint8_t* data) {
     // Check if the priority is valid (0-3)
     if (priority < 0 || priority > 3) {
-        
         ESP_LOGE("Buffer", "Invalid priority: %d, No data added to buffer", priority);
-        
         return;
     }
 
-    if ((data[0] >> 6 & 0b00000011) == CONFIG_RADIATION_PACKET_ID) {
-        buffer_add_rad(data);
-        return;
-    }
-
+    // Remove the RAD packet interception - let all packets use TM buffer
     int len = check_length(data);
 
     frame_tm* new_frame = (frame_tm*)calloc(1, sizeof(frame_tm));
@@ -265,18 +240,27 @@ frame_tm* peek_tm(int index) {
 
 
 void buffer_add_tc(uint8_t* data) {
-
     if (size_tc >= CONFIG_MAX_TC_BUFFER_SIZE) {        
         ESP_LOGE("Buffer", "Buffer is full, no data added");        
         return; 
     }
 
-    // Add the data to the buffer and increment the size
-    buffer_tc[(front_tc + size_tc)%CONFIG_MAX_TC_BUFFER_SIZE] = data; 
+    // Allocate memory for the TC data copy
+    int data_length = 7; // Standard TC packet length
+    uint8_t* data_copy = (uint8_t*)malloc(data_length);
+    if (data_copy == NULL) {
+        ESP_LOGE("Buffer", "Failed to allocate memory for TC data");
+        return;
+    }
+    
+    memcpy(data_copy, data, data_length);
+
+    // Add the copied data to the buffer
+    buffer_tc[(front_tc + size_tc) % CONFIG_MAX_TC_BUFFER_SIZE] = data_copy; 
     ESP_LOGI("Buffer", "TC added to buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
-             data[0], 
-             (data[0] & 0x80) ? '1' : '0', (data[0] & 0x40) ? '1' : '0', (data[0] & 0x20) ? '1' : '0', (data[0] & 0x10) ? '1' : '0',
-             (data[0] & 0x08) ? '1' : '0', (data[0] & 0x04) ? '1' : '0', (data[0] & 0x02) ? '1' : '0', (data[0] & 0x01) ? '1' : '0');
+             data_copy[0], 
+             (data_copy[0] & 0x80) ? '1' : '0', (data_copy[0] & 0x40) ? '1' : '0', (data_copy[0] & 0x20) ? '1' : '0', (data_copy[0] & 0x10) ? '1' : '0',
+             (data_copy[0] & 0x08) ? '1' : '0', (data_copy[0] & 0x04) ? '1' : '0', (data_copy[0] & 0x02) ? '1' : '0', (data_copy[0] & 0x01) ? '1' : '0');
     size_tc++;
 }
 
@@ -286,15 +270,34 @@ uint8_t* buffer_retreive_tc() {
         return (uint8_t*)NULL; 
     }
 
-    // Retrieve the data from the buffer and decrement the size
-    uint8_t* data = buffer_tc[front_tc]; 
+    // Get the original data
+    uint8_t* original_data = buffer_tc[front_tc]; 
+    
+    // Calculate the length needed
+    int data_length = 7; // Based on your ethernet packet length
+    
+    // Create a copy for the caller
+    uint8_t* copied_data = (uint8_t*)malloc(data_length);
+    if (copied_data == NULL) {
+        ESP_LOGE("Buffer", "Failed to allocate memory for TC copy");
+        return NULL;
+    }
+    
+    memcpy(copied_data, original_data, data_length);
+    
+    // Free the original data after copying, as buffer_retreive_tc now takes ownership
+    free(original_data);
+    buffer_tc[front_tc] = NULL;
+    
     front_tc = (front_tc + 1) % CONFIG_MAX_TC_BUFFER_SIZE;
     size_tc--; 
+    
     ESP_LOGI("Buffer", "TC retrieved from buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
-             data[0], 
-             (data[0] & 0x80) ? '1' : '0', (data[0] & 0x40) ? '1' : '0', (data[0] & 0x20) ? '1' : '0', (data[0] & 0x10) ? '1' : '0',
-             (data[0] & 0x08) ? '1' : '0', (data[0] & 0x04) ? '1' : '0', (data[0] & 0x02) ? '1' : '0', (data[0] & 0x01) ? '1' : '0');
-    return data; 
+             copied_data[0], 
+             (copied_data[0] & 0x80) ? '1' : '0', (copied_data[0] & 0x40) ? '1' : '0', (copied_data[0] & 0x20) ? '1' : '0', (copied_data[0] & 0x10) ? '1' : '0',
+             (copied_data[0] & 0x08) ? '1' : '0', (copied_data[0] & 0x04) ? '1' : '0', (copied_data[0] & 0x02) ? '1' : '0', (copied_data[0] & 0x01) ? '1' : '0');
+    
+    return copied_data; 
 }
 
 uint8_t* peek_tc(int index) {

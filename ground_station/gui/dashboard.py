@@ -131,7 +131,8 @@ class Dashboard(QMainWindow):
         rad_params = [
             ("Sequence Counter", "seq_counter"),
             ("RTC", "rtc"),
-            ("Radiation Data", "radiation")
+            ("Data Size (bits)", "radiation_size"),  # Add data size field
+            ("Data Preview", "radiation_preview")     # Add preview field
         ]
 
         for display_name, param_key in rad_params:
@@ -373,11 +374,33 @@ class Dashboard(QMainWindow):
             if key in bf_data:
                 label.setText(str(bf_data[key]))
 
-        # Update RAD
+        # Update RAD - Show statistics instead of raw data
         rad_data = self.telemetry_manager.current_data["RAD"]
         for key, label in self.rad_labels.items():
             if key in rad_data:
-                label.setText(str(rad_data[key]))
+                if key == "radiation":
+                    # Skip - we'll handle this separately
+                    continue
+                elif key == "radiation_size":
+                    # Show bit count
+                    if "radiation" in rad_data:
+                        bit_count = len(str(rad_data["radiation"])) if isinstance(rad_data["radiation"], str) else len(bin(rad_data["radiation"])[2:])
+                        label.setText(f"{bit_count} bits")
+                    else:
+                        label.setText("--")
+                elif key == "radiation_preview":
+                    # Show first/last few characters
+                    if "radiation" in rad_data:
+                        data_str = str(rad_data["radiation"])
+                        if len(data_str) > 20:
+                            preview = f"{data_str[:10]}...{data_str[-10:]}"
+                        else:
+                            preview = data_str
+                        label.setText(preview)
+                    else:
+                        label.setText("--")
+                else:
+                    label.setText(str(rad_data[key]))
 
         # Update ACK
         ack_data = self.telemetry_manager.current_data["ACK"]
@@ -385,18 +408,21 @@ class Dashboard(QMainWindow):
             if key in ack_data:
                 label.setText(str(ack_data[key]))
         
-        # Update packet counters
-        total_packets = 0
+        # Update packet counters using statistics from telemetry manager
+        packet_stats = self.telemetry_manager.get_packet_stats()
+        
+        # Update packet type counters
+        total_valid_packets = 0
         for packet_type in ["HK", "BF", "ACK", "RAD"]:
             count = len(self.telemetry_manager.history[packet_type])
             self.packet_counters[packet_type].setText(str(count))
-            total_packets += count
+            total_valid_packets += count
         
-        self.total_packets_label.setText(str(total_packets))
-        
-        self.lost_packets_label.setText("0")
-        self.corrupt_packets_label.setText("0")
-        self.valid_packets_label.setText(str(total_packets))
+        # Update overall statistics
+        self.total_packets_label.setText(str(packet_stats["total_received"]))
+        self.lost_packets_label.setText(str(packet_stats["lost_packets"]))
+        self.corrupt_packets_label.setText(str(packet_stats["corrupt_packets"]))
+        self.valid_packets_label.setText(str(packet_stats["valid_packets"]))
         
         # Update graphs
         if hk_data:

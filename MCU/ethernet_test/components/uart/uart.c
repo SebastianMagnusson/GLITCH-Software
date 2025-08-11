@@ -61,47 +61,44 @@ void uart_task(void *pvParameters)
     while(1) {
         uint8_t* tc_data = buffer_retreive_tc(); 
         if (tc_data != NULL) { 
-            uart_send(tc_data); 
+            // Unpack the TC data before sending via UART
+            uint8_t* unpacked_tc = unpack_tc(tc_data);
+            if (unpacked_tc != NULL) {
+                uart_send(unpacked_tc);
+                free(unpacked_tc); // free the allocated memory
+            }
+            
         }
         
-        // uint8_t* data = uart_receive(); // Receive data from UART
-        uint8_t* data = NULL; // Generate dummy data for testing, replace with uart_receive() in production
         uint8_t* packet = NULL;
-        if (test%2 == 0) {
-            data = generate_HK_data(); // Generate dummy housekeeping data
-            packet = format_tm(data);
+        
+        if (test % 3 == 0) {
+            ESP_LOGI(TAG, "Generating HK packet (ID=%d)", CONFIG_HOUSEKEEPING_PACKET_ID);
+            packet = generate_packet(CONFIG_HOUSEKEEPING_PACKET_ID);
+        } else if (test % 3 == 1) {
+            ESP_LOGI(TAG, "Generating BF packet (ID=%d)", CONFIG_BITFLIP_PACKET_ID);
+            packet = generate_packet(CONFIG_BITFLIP_PACKET_ID);
         } else {
-            data = generate_BF_data(); // Generate dummy bit flip data
-            packet = format_tm(data);
+            ESP_LOGI(TAG, "Generating RAD packet (ID=%d)", CONFIG_RADIATION_PACKET_ID);
+            packet = generate_packet(CONFIG_RADIATION_PACKET_ID);
         }
-        if (data == NULL || packet == NULL) {
+        
+        if (packet == NULL) {
+            ESP_LOGE(TAG, "Failed to generate packet");
             continue; 
         }
         
-        int priority = priority_assign(data); 
-        /*
-        uint8_t* formatted_data = format_tm(data);
-        if (formatted_data == NULL) {
-            ESP_LOGE(TAG, "Failed to format data");
-            free(data); 
-            continue; 
-        }
+
+        ESP_LOGI(TAG, "Generated packet - First byte: 0x%02X, Bits 0-1: %d", 
+                 packet[0], packet[0] & 0b00000011);
         
-        int i;
-        for (i = 0; i < 34; i++)
-        {
-            if (i > 0) printf(":");
-            printf("%02X", formatted_data[i]);
-        }
-        printf("\n");
-        */
+        int priority = priority_assign(packet);
         buffer_add_tm(priority, packet);
 
         test++;
-        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second before the next iteration (maybe should remove)
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
-
 // Function to concatenate two data strings (might not be in use, delete at own risk)
 /*
 uint8_t* concatenate_data(uint8_t* data1, uint8_t* data2, int length) {
@@ -159,7 +156,8 @@ void uart_init(void) {
         ESP_LOGE(TAG, "Failed to install UART driver");
     }
 
-    xTaskCreate(&uart_task, "uart_task", 2048, NULL, 10, NULL); // Create a task for UART data reception
+    // Increase stack size from 2048 to 4096 to handle radiation packets
+    xTaskCreate(&uart_task, "uart_task", 4096, NULL, 10, NULL);
 
 }
 
