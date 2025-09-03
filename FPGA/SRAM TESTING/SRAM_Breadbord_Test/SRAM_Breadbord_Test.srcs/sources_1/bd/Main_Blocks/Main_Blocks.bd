@@ -1,0 +1,282 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xA722478BA722478B",
+      "device": "xc7a35tcpg236-1",
+      "gen_directory": "../../../../SRAM_Breadbord_Test.gen/sources_1/bd/Main_Blocks",
+      "name": "Main_Blocks",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "sram_ctrl_0": "",
+      "Switchmod_0": "",
+      "UART_TXmod_0": ""
+    },
+    "ports": {
+      "sysclk": {
+        "direction": "I"
+      },
+      "btn0": {
+        "direction": "I"
+      },
+      "led0": {
+        "direction": "O"
+      },
+      "A": {
+        "direction": "O",
+        "left": "21",
+        "right": "0"
+      },
+      "CE_n": {
+        "direction": "O"
+      },
+      "WE_n": {
+        "direction": "O"
+      },
+      "uart_rxd_out": {
+        "direction": "O"
+      },
+      "DQ_o": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
+      },
+      "DQ_t": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
+      },
+      "DQ_i": {
+        "direction": "I",
+        "left": "15",
+        "right": "0"
+      }
+    },
+    "components": {
+      "sram_ctrl_0": {
+        "vlnv": "xilinx.com:module_ref:sram_ctrl:1.0",
+        "ip_revision": "1",
+        "xci_name": "Main_Blocks_sram_ctrl_0_0",
+        "xci_path": "ip\\Main_Blocks_sram_ctrl_0_0\\Main_Blocks_sram_ctrl_0_0.xci",
+        "inst_hier_path": "sram_ctrl_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "sram_ctrl",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "reset_n": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "done": {
+            "direction": "O"
+          },
+          "i_TX_done": {
+            "direction": "I"
+          },
+          "o_TX_DV": {
+            "direction": "O"
+          },
+          "o_TX_data": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "A": {
+            "direction": "O",
+            "left": "21",
+            "right": "0"
+          },
+          "DQ_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "DQ_o": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "DQ_t": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "CE_n": {
+            "direction": "O"
+          },
+          "OE_n": {
+            "direction": "O"
+          },
+          "WE_n": {
+            "direction": "O"
+          },
+          "CE2": {
+            "direction": "O"
+          },
+          "LB_n": {
+            "direction": "O"
+          },
+          "UB_n": {
+            "direction": "O"
+          }
+        }
+      },
+      "Switchmod_0": {
+        "vlnv": "xilinx.com:module_ref:Switchmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "Main_Blocks_Switchmod_0_0",
+        "xci_path": "ip\\Main_Blocks_Switchmod_0_0\\Main_Blocks_Switchmod_0_0.xci",
+        "inst_hier_path": "Switchmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Switchmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_signal": {
+            "direction": "I"
+          },
+          "o_signal": {
+            "direction": "O"
+          },
+          "led0": {
+            "direction": "O"
+          }
+        }
+      },
+      "UART_TXmod_0": {
+        "vlnv": "xilinx.com:module_ref:UART_TXmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "Main_Blocks_UART_TXmod_0_0",
+        "xci_path": "ip\\Main_Blocks_UART_TXmod_0_0\\Main_Blocks_UART_TXmod_0_0.xci",
+        "inst_hier_path": "UART_TXmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_TXmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_TX_DV": {
+            "direction": "I"
+          },
+          "i_TX_Byte": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "o_TX_Active": {
+            "direction": "O"
+          },
+          "o_TX_Serial": {
+            "direction": "O"
+          },
+          "o_TX_Done": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "DQ_i_0_1": {
+        "ports": [
+          "DQ_i",
+          "sram_ctrl_0/DQ_i"
+        ]
+      },
+      "Switchmod_0_led0": {
+        "ports": [
+          "Switchmod_0/led0",
+          "led0"
+        ]
+      },
+      "Switchmod_0_o_signal": {
+        "ports": [
+          "Switchmod_0/o_signal",
+          "sram_ctrl_0/reset_n"
+        ]
+      },
+      "UART_TXmod_0_o_TX_Done": {
+        "ports": [
+          "UART_TXmod_0/o_TX_Done",
+          "sram_ctrl_0/i_TX_done"
+        ]
+      },
+      "UART_TXmod_0_o_TX_Serial": {
+        "ports": [
+          "UART_TXmod_0/o_TX_Serial",
+          "uart_rxd_out"
+        ]
+      },
+      "i_signal_0_1": {
+        "ports": [
+          "btn0",
+          "Switchmod_0/i_signal"
+        ]
+      },
+      "sram_ctrl_0_A": {
+        "ports": [
+          "sram_ctrl_0/A",
+          "A"
+        ]
+      },
+      "sram_ctrl_0_CE_n": {
+        "ports": [
+          "sram_ctrl_0/CE_n",
+          "CE_n"
+        ]
+      },
+      "sram_ctrl_0_DQ_o": {
+        "ports": [
+          "sram_ctrl_0/DQ_o",
+          "DQ_o"
+        ]
+      },
+      "sram_ctrl_0_DQ_t": {
+        "ports": [
+          "sram_ctrl_0/DQ_t",
+          "DQ_t"
+        ]
+      },
+      "sram_ctrl_0_WE_n": {
+        "ports": [
+          "sram_ctrl_0/WE_n",
+          "WE_n"
+        ]
+      },
+      "sram_ctrl_0_o_TX_DV": {
+        "ports": [
+          "sram_ctrl_0/o_TX_DV",
+          "UART_TXmod_0/i_TX_DV"
+        ]
+      },
+      "sram_ctrl_0_o_TX_data": {
+        "ports": [
+          "sram_ctrl_0/o_TX_data",
+          "UART_TXmod_0/i_TX_Byte"
+        ]
+      },
+      "sysclk_0_1": {
+        "ports": [
+          "sysclk",
+          "Switchmod_0/sysclk",
+          "UART_TXmod_0/sysclk",
+          "sram_ctrl_0/sysclk"
+        ]
+      }
+    }
+  }
+}

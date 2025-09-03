@@ -21,6 +21,11 @@
 -- V5.0 Will clarify if it works. Basically sending "write" in prep_alt 
 -- and read_alt was done incorrectly by turning off i2c_ena before the 
 -- entire command is sent.
+-- V6.0 Altimeter values in v5.0 gave one corrects byte and to with
+-- only 1's. Two changes have been made since this. First, an i2c_ena
+-- has been delayed one clock cycle in state ALT (when 3 =>). Second, 
+-- the program now waits 20ms instead of 10ms to make sure conversion is
+-- absolutely finished.
 ----------------------------------------------------------------------------------
 
 library IEEE;
@@ -173,7 +178,7 @@ begin
               o_i2c_data_wr <= "01001000";                 -- Command to start pressure conversion
             when 1 =>                                    -- 1st busy high: command 1 latched
               -- o_i2c_ena <= '0'; -- REMOVED                           
-              if(conv_cnt < Clockfrequency/100) then       -- Wait 10ms before moving on, so pressure measurment is ready
+              if(conv_cnt < Clockfrequency/50) then       -- Wait (10ms OLD) (20ms CURRENT) before moving on, so pressure measurment is ready
                 conv_cnt := conv_cnt + 1;
               else
                 conv_cnt := 0;
@@ -236,8 +241,9 @@ begin
                 alt_data(15 downto 8) <= i_data_read;      -- Save second byte
               end if;
             when 3 =>                                    -- 3rd command latched in, 
-              o_i2c_ena <= '0';                            -- Deassert enable to stop transaction 
+              -- o_i2c_ena <= '0'; REMOVED                         -- Deassert enable to stop transaction 
               if(i_busy = '0') then                        -- 3rd byte of data ready
+                o_i2c_ena <= '0'; -- NEW Deassert enable to stop transaction
                 busy_cnt := 0;                             -- Reset busy counter
                 alt_data(7 downto 0) <= i_data_read;       -- Save last byte 
                 

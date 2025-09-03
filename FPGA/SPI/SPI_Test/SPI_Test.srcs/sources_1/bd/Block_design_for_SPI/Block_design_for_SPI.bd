@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xB0CA4D99B0CA4D99",
+      "boundary_crc": "0x3FCE82D83FCE82D8",
       "device": "xc7a35tcpg236-1",
       "gen_directory": "../../../../SPI_Test.gen/sources_1/bd/Block_design_for_SPI",
       "name": "Block_design_for_SPI",
@@ -43,6 +43,9 @@
       },
       "uart_txd_in": {
         "direction": "I"
+      },
+      "led1": {
+        "direction": "O"
       }
     },
     "components": {
@@ -248,6 +251,12 @@
       }
     },
     "nets": {
+      "Store_And_Read_mod_0_led0": {
+        "ports": [
+          "Store_And_Read_mod_0/led0",
+          "led1"
+        ]
+      },
       "Store_And_Read_mod_0_o_TX_DV": {
         "ports": [
           "Store_And_Read_mod_0/o_TX_DV",

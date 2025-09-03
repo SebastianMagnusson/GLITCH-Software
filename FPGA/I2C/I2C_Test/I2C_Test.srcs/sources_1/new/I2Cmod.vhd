@@ -15,8 +15,8 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;                                                                                                      
 --use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use IEEE.NUMERIC_STD.ALL;
-
-entity I2Cmod is  
+                                                                     
+entity I2Cmod is                                                     
   generic(Sys_Clockfrequency : integer := 12*1000000; -- Input clock speed from user logic in Hz
           Bus_Clockfrequency : integer := 400000);    -- Speed the i2c bus (scl) will run at in Hz
   Port(--SDA       : inout std_logic;                   -- Serial data output of i2c bus (old)
