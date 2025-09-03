@@ -1,2 +1,6 @@
-matplotlib
-tkintermapview
+bitstring
+pandas
+numpy
+pyqtgraph
+PyQt5
+crcmod

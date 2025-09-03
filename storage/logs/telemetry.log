@@ -1,0 +1,191 @@
+timestamp,type,data
+2025-08-07T08:52:19.159202,BF,{'type': 'BF', 'seq_counter': 1, 'rtc': 45679, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:20.164692,ACK,{'type': 'ACK', 'seq_counter': 2, 'rtc': 45680, 'telecommand_ack': 1}
+2025-08-07T08:52:21.170694,HK,{'type': 'HK', 'seq_counter': 3, 'rtc': 45681, 'internal': 19.26754577636718, 'external': -9.733118286132814, 'sensor_board': 25.26823791503906, 'gnss': 320255973501901, 'altitude': 99924}
+2025-08-07T08:52:22.174505,BF,{'type': 'BF', 'seq_counter': 4, 'rtc': 45682, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:23.175058,ACK,{'type': 'ACK', 'seq_counter': 5, 'rtc': 45683, 'telecommand_ack': 1}
+2025-08-07T08:52:24.180986,HK,{'type': 'HK', 'seq_counter': 6, 'rtc': 45684, 'internal': 19.53567321777343, 'external': -9.464990844726564, 'sensor_board': 25.53636535644531, 'gnss': 320255973501901, 'altitude': 99905}
+2025-08-07T08:52:25.183049,BF,{'type': 'BF', 'seq_counter': 7, 'rtc': 45685, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:26.183982,ACK,{'type': 'ACK', 'seq_counter': 8, 'rtc': 45686, 'telecommand_ack': 1}
+2025-08-07T08:52:27.189885,HK,{'type': 'HK', 'seq_counter': 9, 'rtc': 45687, 'internal': 19.80380065917968, 'external': -9.196863403320314, 'sensor_board': 25.80449279785156, 'gnss': 320255973501901, 'altitude': 99956}
+2025-08-07T08:52:28.190522,BF,{'type': 'BF', 'seq_counter': 10, 'rtc': 45688, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:29.195840,ACK,{'type': 'ACK', 'seq_counter': 11, 'rtc': 45689, 'telecommand_ack': 1}
+2025-08-07T08:52:30.200193,HK,{'type': 'HK', 'seq_counter': 12, 'rtc': 45690, 'internal': 20.07192810058593, 'external': -8.928735961914064, 'sensor_board': 26.07262023925781, 'gnss': 320255973501901, 'altitude': 100027}
+2025-08-07T08:52:31.201694,BF,{'type': 'BF', 'seq_counter': 13, 'rtc': 45691, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:32.206836,ACK,{'type': 'ACK', 'seq_counter': 14, 'rtc': 45692, 'telecommand_ack': 1}
+2025-08-07T08:52:33.212678,HK,{'type': 'HK', 'seq_counter': 15, 'rtc': 45693, 'internal': 19.80380065917968, 'external': -9.196863403320314, 'sensor_board': 25.80449279785156, 'gnss': 320255973501901, 'altitude': 100039}
+2025-08-07T08:52:34.216604,BF,{'type': 'BF', 'seq_counter': 16, 'rtc': 45694, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:35.221887,ACK,{'type': 'ACK', 'seq_counter': 17, 'rtc': 45695, 'telecommand_ack': 1}
+2025-08-07T08:52:36.227718,HK,{'type': 'HK', 'seq_counter': 18, 'rtc': 45696, 'internal': 19.53567321777343, 'external': -9.464990844726564, 'sensor_board': 25.53636535644531, 'gnss': 320255973501901, 'altitude': 99923}
+2025-08-07T08:52:38.234408,ACK,{'type': 'ACK', 'seq_counter': 20, 'rtc': 45698, 'telecommand_ack': 1}
+2025-08-07T08:52:39.240311,HK,{'type': 'HK', 'seq_counter': 21, 'rtc': 45699, 'internal': 19.53567321777343, 'external': -9.464990844726564, 'sensor_board': 25.53636535644531, 'gnss': 320255973501901, 'altitude': 99983}
+2025-08-07T08:52:40.243439,BF,{'type': 'BF', 'seq_counter': 22, 'rtc': 45700, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:41.244107,ACK,{'type': 'ACK', 'seq_counter': 23, 'rtc': 45701, 'telecommand_ack': 1}
+2025-08-07T08:52:43.251197,BF,{'type': 'BF', 'seq_counter': 25, 'rtc': 45703, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:44.256447,ACK,{'type': 'ACK', 'seq_counter': 26, 'rtc': 45704, 'telecommand_ack': 1}
+2025-08-07T08:52:45.258148,HK,{'type': 'HK', 'seq_counter': 27, 'rtc': 45705, 'internal': 19.53567321777343, 'external': -9.464990844726564, 'sensor_board': 25.53636535644531, 'gnss': 320255973501901, 'altitude': 99988}
+2025-08-07T08:52:46.260443,BF,{'type': 'BF', 'seq_counter': 28, 'rtc': 45706, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:47.265911,ACK,{'type': 'ACK', 'seq_counter': 29, 'rtc': 45707, 'telecommand_ack': 1}
+2025-08-07T08:52:48.268731,HK,{'type': 'HK', 'seq_counter': 30, 'rtc': 45708, 'internal': 19.80380065917968, 'external': -9.196863403320314, 'sensor_board': 25.80449279785156, 'gnss': 320255973501901, 'altitude': 99997}
+2025-08-07T08:52:49.270344,BF,{'type': 'BF', 'seq_counter': 31, 'rtc': 45709, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:50.271195,ACK,{'type': 'ACK', 'seq_counter': 32, 'rtc': 45710, 'telecommand_ack': 1}
+2025-08-07T08:52:51.277056,HK,{'type': 'HK', 'seq_counter': 33, 'rtc': 45711, 'internal': 20.07192810058593, 'external': -8.928735961914064, 'sensor_board': 26.07262023925781, 'gnss': 320255973501901, 'altitude': 100066}
+2025-08-07T08:52:52.282685,BF,{'type': 'BF', 'seq_counter': 34, 'rtc': 45712, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:54.288979,HK,{'type': 'HK', 'seq_counter': 36, 'rtc': 45714, 'internal': 20.34005554199218, 'external': -8.660608520507814, 'sensor_board': 26.34074768066406, 'gnss': 320255973501901, 'altitude': 100091}
+2025-08-07T08:52:55.294374,BF,{'type': 'BF', 'seq_counter': 37, 'rtc': 45715, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:56.298923,ACK,{'type': 'ACK', 'seq_counter': 38, 'rtc': 45716, 'telecommand_ack': 1}
+2025-08-07T08:52:57.304619,HK,{'type': 'HK', 'seq_counter': 39, 'rtc': 45717, 'internal': 20.60818298339843, 'external': -8.392481079101564, 'sensor_board': 26.60887512207031, 'gnss': 320255973501901, 'altitude': 99944}
+2025-08-07T08:52:58.307140,BF,{'type': 'BF', 'seq_counter': 40, 'rtc': 45718, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:52:59.309323,ACK,{'type': 'ACK', 'seq_counter': 41, 'rtc': 45719, 'telecommand_ack': 1}
+2025-08-07T08:53:00.310518,HK,{'type': 'HK', 'seq_counter': 42, 'rtc': 45720, 'internal': 20.34005554199218, 'external': -8.660608520507814, 'sensor_board': 26.34074768066406, 'gnss': 320255973501901, 'altitude': 100084}
+2025-08-07T08:53:01.316269,BF,{'type': 'BF', 'seq_counter': 43, 'rtc': 45721, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:53:02.316929,ACK,{'type': 'ACK', 'seq_counter': 44, 'rtc': 45722, 'telecommand_ack': 1}
+2025-08-07T08:53:03.322809,HK,{'type': 'HK', 'seq_counter': 45, 'rtc': 45723, 'internal': 20.60818298339843, 'external': -8.392481079101564, 'sensor_board': 26.60887512207031, 'gnss': 320255973501901, 'altitude': 100048}
+2025-08-07T08:53:04.328169,BF,{'type': 'BF', 'seq_counter': 46, 'rtc': 45724, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:53:05.333483,ACK,{'type': 'ACK', 'seq_counter': 47, 'rtc': 45725, 'telecommand_ack': 1}
+2025-08-07T08:53:06.334354,HK,{'type': 'HK', 'seq_counter': 48, 'rtc': 45726, 'internal': 20.60818298339843, 'external': -8.392481079101564, 'sensor_board': 26.60887512207031, 'gnss': 320255973501901, 'altitude': 99905}
+2025-08-07T08:53:07.339759,BF,{'type': 'BF', 'seq_counter': 49, 'rtc': 45727, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:53:08.343253,ACK,{'type': 'ACK', 'seq_counter': 50, 'rtc': 45728, 'telecommand_ack': 1}
+2025-08-07T08:53:09.344525,HK,{'type': 'HK', 'seq_counter': 51, 'rtc': 45729, 'internal': 20.87631042480468, 'external': -8.124353637695314, 'sensor_board': 26.87700256347656, 'gnss': 320255973501901, 'altitude': 99974}
+2025-08-07T08:53:10.349943,BF,{'type': 'BF', 'seq_counter': 52, 'rtc': 45730, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:53:11.355212,ACK,{'type': 'ACK', 'seq_counter': 53, 'rtc': 45731, 'telecommand_ack': 1}
+2025-08-07T08:53:12.360549,HK,{'type': 'HK', 'seq_counter': 54, 'rtc': 45732, 'internal': 20.87631042480468, 'external': -8.124353637695314, 'sensor_board': 26.87700256347656, 'gnss': 320255973501901, 'altitude': 99983}
+2025-08-07T08:53:13.362869,BF,{'type': 'BF', 'seq_counter': 55, 'rtc': 45733, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:53:14.365671,ACK,{'type': 'ACK', 'seq_counter': 56, 'rtc': 45734, 'telecommand_ack': 1}
+2025-08-07T08:53:15.367683,HK,{'type': 'HK', 'seq_counter': 57, 'rtc': 45735, 'internal': 21.14443786621093, 'external': -7.8562261962890645, 'sensor_board': 27.14513000488281, 'gnss': 320255973501901, 'altitude': 99935}
+2025-08-07T08:53:17.378119,ACK,{'type': 'ACK', 'seq_counter': 59, 'rtc': 45737, 'telecommand_ack': 1}
+2025-08-07T08:53:18.382735,HK,{'type': 'HK', 'seq_counter': 60, 'rtc': 45738, 'internal': 20.87631042480468, 'external': -8.124353637695314, 'sensor_board': 26.87700256347656, 'gnss': 320255973501901, 'altitude': 100075}
+2025-08-07T08:53:19.383832,BF,{'type': 'BF', 'seq_counter': 61, 'rtc': 45739, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:53:20.389386,ACK,{'type': 'ACK', 'seq_counter': 62, 'rtc': 45740, 'telecommand_ack': 1}
+2025-08-07T08:53:21.395200,HK,{'type': 'HK', 'seq_counter': 63, 'rtc': 45741, 'internal': 21.14443786621093, 'external': -7.8562261962890645, 'sensor_board': 27.14513000488281, 'gnss': 320255973501901, 'altitude': 99992}
+2025-08-07T08:53:22.399060,BF,{'type': 'BF', 'seq_counter': 64, 'rtc': 45742, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:53:23.404300,ACK,{'type': 'ACK', 'seq_counter': 65, 'rtc': 45743, 'telecommand_ack': 1}
+2025-08-07T08:54:45.930668,HK,{'type': 'HK', 'seq_counter': 1, 'rtc': 45679, 'internal': 18.73129089355468, 'external': -10.269373168945314, 'sensor_board': 24.73198303222656, 'gnss': 320255973501901, 'altitude': 99923}
+2025-08-07T08:54:50.956260,HK,{'type': 'HK', 'seq_counter': 6, 'rtc': 45684, 'internal': 19.53567321777343, 'external': -9.464990844726564, 'sensor_board': 25.53636535644531, 'gnss': 320255973501901, 'altitude': 100061}
+2025-08-07T08:54:51.962189,HK,{'type': 'HK', 'seq_counter': 7, 'rtc': 45685, 'internal': 19.53567321777343, 'external': -9.464990844726564, 'sensor_board': 25.53636535644531, 'gnss': 320255973501901, 'altitude': 100075}
+2025-08-07T08:54:52.968160,HK,{'type': 'HK', 'seq_counter': 8, 'rtc': 45686, 'internal': 19.80380065917968, 'external': -9.196863403320314, 'sensor_board': 25.80449279785156, 'gnss': 320255973501901, 'altitude': 99986}
+2025-08-07T08:54:53.974541,HK,{'type': 'HK', 'seq_counter': 9, 'rtc': 45687, 'internal': 19.80380065917968, 'external': -9.196863403320314, 'sensor_board': 25.80449279785156, 'gnss': 320255973501901, 'altitude': 100086}
+2025-08-07T08:54:54.980705,HK,{'type': 'HK', 'seq_counter': 10, 'rtc': 45688, 'internal': 19.80380065917968, 'external': -9.196863403320314, 'sensor_board': 25.80449279785156, 'gnss': 320255973501901, 'altitude': 100058}
+2025-08-07T08:54:55.986647,HK,{'type': 'HK', 'seq_counter': 11, 'rtc': 45689, 'internal': 19.53567321777343, 'external': -9.464990844726564, 'sensor_board': 25.53636535644531, 'gnss': 320255973501901, 'altitude': 100081}
+2025-08-07T08:54:56.992562,HK,{'type': 'HK', 'seq_counter': 12, 'rtc': 45690, 'internal': 19.53567321777343, 'external': -9.464990844726564, 'sensor_board': 25.53636535644531, 'gnss': 320255973501901, 'altitude': 100095}
+2025-08-07T08:54:57.997496,HK,{'type': 'HK', 'seq_counter': 13, 'rtc': 45691, 'internal': 19.53567321777343, 'external': -9.464990844726564, 'sensor_board': 25.53636535644531, 'gnss': 320255973501901, 'altitude': 100097}
+2025-08-07T08:54:58.999571,HK,{'type': 'HK', 'seq_counter': 14, 'rtc': 45692, 'internal': 19.26754577636718, 'external': -9.733118286132814, 'sensor_board': 25.26823791503906, 'gnss': 320255973501901, 'altitude': 99914}
+2025-08-07T08:55:00.005424,HK,{'type': 'HK', 'seq_counter': 15, 'rtc': 45693, 'internal': 19.26754577636718, 'external': -9.733118286132814, 'sensor_board': 25.26823791503906, 'gnss': 320255973501901, 'altitude': 100095}
+2025-08-07T08:55:01.011830,HK,{'type': 'HK', 'seq_counter': 16, 'rtc': 45694, 'internal': 19.26754577636718, 'external': -9.733118286132814, 'sensor_board': 25.26823791503906, 'gnss': 320255973501901, 'altitude': 99962}
+2025-08-07T08:55:02.015627,HK,{'type': 'HK', 'seq_counter': 17, 'rtc': 45695, 'internal': 18.99941833496093, 'external': -10.001245727539064, 'sensor_board': 25.00011047363281, 'gnss': 320255973501901, 'altitude': 99985}
+2025-08-07T08:55:03.016615,HK,{'type': 'HK', 'seq_counter': 18, 'rtc': 45696, 'internal': 18.99941833496093, 'external': -10.001245727539064, 'sensor_board': 25.00011047363281, 'gnss': 320255973501901, 'altitude': 100027}
+2025-08-07T08:55:04.022536,HK,{'type': 'HK', 'seq_counter': 19, 'rtc': 45697, 'internal': 19.26754577636718, 'external': -9.733118286132814, 'sensor_board': 25.26823791503906, 'gnss': 320255973501901, 'altitude': 99993}
+2025-08-07T08:55:04.024788,BF,{'type': 'BF', 'seq_counter': 19, 'rtc': 45697, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-07T08:55:04.025988,ACK,{'type': 'ACK', 'seq_counter': 19, 'rtc': 45697, 'telecommand_ack': 1}
+2025-08-07T08:55:05.024892,HK,{'type': 'HK', 'seq_counter': 20, 'rtc': 45698, 'internal': 18.99941833496093, 'external': -10.001245727539064, 'sensor_board': 25.00011047363281, 'gnss': 320255973501901, 'altitude': 100014}
+2025-08-07T08:55:06.030949,HK,{'type': 'HK', 'seq_counter': 21, 'rtc': 45699, 'internal': 18.99941833496093, 'external': -10.001245727539064, 'sensor_board': 25.00011047363281, 'gnss': 320255973501901, 'altitude': 100043}
+2025-08-07T08:55:07.033293,HK,{'type': 'HK', 'seq_counter': 22, 'rtc': 45700, 'internal': 19.26754577636718, 'external': -9.733118286132814, 'sensor_board': 25.26823791503906, 'gnss': 320255973501901, 'altitude': 99931}
+2025-08-07T08:55:08.037998,HK,{'type': 'HK', 'seq_counter': 23, 'rtc': 45701, 'internal': 19.26754577636718, 'external': -9.733118286132814, 'sensor_board': 25.26823791503906, 'gnss': 320255973501901, 'altitude': 100096}
+2025-08-11T11:54:38.447574,HK,{'type': 'HK', 'seq_counter': 1, 'rtc': 45679, 'internal': 18.99941833496093, 'external': -10.001245727539064, 'sensor_board': 25.00011047363281, 'gnss': 320255973501901, 'altitude': 100011}
+2025-08-11T11:54:39.451653,HK,{'type': 'HK', 'seq_counter': 2, 'rtc': 45680, 'internal': 18.73129089355468, 'external': -10.269373168945314, 'sensor_board': 24.73198303222656, 'gnss': 320255973501901, 'altitude': 99928}
+2025-08-11T11:54:43.472598,HK,{'type': 'HK', 'seq_counter': 6, 'rtc': 45684, 'internal': 18.19503601074218, 'external': -10.805628051757814, 'sensor_board': 24.19572814941406, 'gnss': 320255973501901, 'altitude': 100092}
+2025-08-11T11:54:44.478841,HK,{'type': 'HK', 'seq_counter': 7, 'rtc': 45685, 'internal': 18.19503601074218, 'external': -10.805628051757814, 'sensor_board': 24.19572814941406, 'gnss': 320255973501901, 'altitude': 100067}
+2025-08-11T11:54:45.481152,HK,{'type': 'HK', 'seq_counter': 8, 'rtc': 45686, 'internal': 17.92690856933593, 'external': -11.073755493164064, 'sensor_board': 23.92760070800781, 'gnss': 320255973501901, 'altitude': 100011}
+2025-08-11T11:54:46.485561,HK,{'type': 'HK', 'seq_counter': 9, 'rtc': 45687, 'internal': 17.65878112792968, 'external': -11.341882934570314, 'sensor_board': 23.65947326660156, 'gnss': 320255973501901, 'altitude': 100085}
+2025-08-11T11:54:47.492092,HK,{'type': 'HK', 'seq_counter': 10, 'rtc': 45688, 'internal': 17.92690856933593, 'external': -11.073755493164064, 'sensor_board': 23.92760070800781, 'gnss': 320255973501901, 'altitude': 99904}
+2025-08-11T11:54:48.498401,HK,{'type': 'HK', 'seq_counter': 11, 'rtc': 45689, 'internal': 18.19503601074218, 'external': -10.805628051757814, 'sensor_board': 24.19572814941406, 'gnss': 320255973501901, 'altitude': 100021}
+2025-08-11T11:54:49.500951,HK,{'type': 'HK', 'seq_counter': 12, 'rtc': 45690, 'internal': 17.92690856933593, 'external': -11.073755493164064, 'sensor_board': 23.92760070800781, 'gnss': 320255973501901, 'altitude': 99901}
+2025-08-11T11:54:51.513373,HK,{'type': 'HK', 'seq_counter': 14, 'rtc': 45692, 'internal': 17.92690856933593, 'external': -11.073755493164064, 'sensor_board': 23.92760070800781, 'gnss': 320255973501901, 'altitude': 99990}
+2025-08-11T11:54:52.518853,HK,{'type': 'HK', 'seq_counter': 15, 'rtc': 45693, 'internal': 17.65878112792968, 'external': -11.341882934570314, 'sensor_board': 23.65947326660156, 'gnss': 320255973501901, 'altitude': 99941}
+2025-08-11T11:54:53.523093,HK,{'type': 'HK', 'seq_counter': 16, 'rtc': 45694, 'internal': 17.65878112792968, 'external': -11.341882934570314, 'sensor_board': 23.65947326660156, 'gnss': 320255973501901, 'altitude': 99950}
+2025-08-11T11:54:54.525607,HK,{'type': 'HK', 'seq_counter': 17, 'rtc': 45695, 'internal': 17.92690856933593, 'external': -11.073755493164064, 'sensor_board': 23.92760070800781, 'gnss': 320255973501901, 'altitude': 100028}
+2025-08-11T11:54:54.528225,BF,{'type': 'BF', 'seq_counter': 17, 'rtc': 45695, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:54:54.529637,ACK,{'type': 'ACK', 'seq_counter': 17, 'rtc': 45695, 'telecommand_ack': 1}
+2025-08-11T11:54:55.532507,HK,{'type': 'HK', 'seq_counter': 18, 'rtc': 45696, 'internal': 17.65878112792968, 'external': -11.341882934570314, 'sensor_board': 23.65947326660156, 'gnss': 320255973501901, 'altitude': 99977}
+2025-08-11T11:54:56.534455,HK,{'type': 'HK', 'seq_counter': 19, 'rtc': 45697, 'internal': 17.39065368652343, 'external': -11.610010375976564, 'sensor_board': 23.39134582519531, 'gnss': 320255973501901, 'altitude': 99901}
+2025-08-11T11:54:57.539770,HK,{'type': 'HK', 'seq_counter': 20, 'rtc': 45698, 'internal': 17.39065368652343, 'external': -11.610010375976564, 'sensor_board': 23.39134582519531, 'gnss': 320255973501901, 'altitude': 99989}
+2025-08-11T11:54:58.545394,HK,{'type': 'HK', 'seq_counter': 21, 'rtc': 45699, 'internal': 17.65878112792968, 'external': -11.341882934570314, 'sensor_board': 23.65947326660156, 'gnss': 320255973501901, 'altitude': 99993}
+2025-08-11T11:55:59.317478,BF,{'type': 'BF', 'seq_counter': 1, 'rtc': 45679, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:55:59.928840,HK,{'type': 'HK', 'seq_counter': 3, 'rtc': 45681, 'internal': 19.26754577636718, 'external': -9.733118286132814, 'sensor_board': 25.26823791503906, 'gnss': 320255973501901, 'altitude': 99948}
+2025-08-11T11:56:00.232223,BF,{'type': 'BF', 'seq_counter': 4, 'rtc': 45682, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:00.537444,ACK,{'type': 'ACK', 'seq_counter': 5, 'rtc': 45683, 'telecommand_ack': 1}
+2025-08-11T11:56:00.843868,HK,{'type': 'HK', 'seq_counter': 6, 'rtc': 45684, 'internal': 18.99941833496093, 'external': -10.001245727539064, 'sensor_board': 25.00011047363281, 'gnss': 320255973501901, 'altitude': 100041}
+2025-08-11T11:56:01.148950,BF,{'type': 'BF', 'seq_counter': 7, 'rtc': 45685, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:01.454475,ACK,{'type': 'ACK', 'seq_counter': 8, 'rtc': 45686, 'telecommand_ack': 1}
+2025-08-11T11:56:01.760504,HK,{'type': 'HK', 'seq_counter': 9, 'rtc': 45687, 'internal': 19.26754577636718, 'external': -9.733118286132814, 'sensor_board': 25.26823791503906, 'gnss': 320255973501901, 'altitude': 100099}
+2025-08-11T11:56:02.066325,BF,{'type': 'BF', 'seq_counter': 10, 'rtc': 45688, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:02.369929,ACK,{'type': 'ACK', 'seq_counter': 11, 'rtc': 45689, 'telecommand_ack': 1}
+2025-08-11T11:56:02.676172,HK,{'type': 'HK', 'seq_counter': 12, 'rtc': 45690, 'internal': 18.99941833496093, 'external': -10.001245727539064, 'sensor_board': 25.00011047363281, 'gnss': 320255973501901, 'altitude': 99990}
+2025-08-11T11:56:03.283607,ACK,{'type': 'ACK', 'seq_counter': 14, 'rtc': 45692, 'telecommand_ack': 1}
+2025-08-11T11:56:03.587790,HK,{'type': 'HK', 'seq_counter': 15, 'rtc': 45693, 'internal': 18.99941833496093, 'external': -10.001245727539064, 'sensor_board': 25.00011047363281, 'gnss': 320255973501901, 'altitude': 99924}
+2025-08-11T11:56:03.892003,BF,{'type': 'BF', 'seq_counter': 16, 'rtc': 45694, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:04.197630,ACK,{'type': 'ACK', 'seq_counter': 17, 'rtc': 45695, 'telecommand_ack': 1}
+2025-08-11T11:56:04.499683,HK,{'type': 'HK', 'seq_counter': 18, 'rtc': 45696, 'internal': 18.73129089355468, 'external': -10.269373168945314, 'sensor_board': 24.73198303222656, 'gnss': 320255973501901, 'altitude': 100047}
+2025-08-11T11:56:04.805231,BF,{'type': 'BF', 'seq_counter': 19, 'rtc': 45697, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:05.110649,ACK,{'type': 'ACK', 'seq_counter': 20, 'rtc': 45698, 'telecommand_ack': 1}
+2025-08-11T11:56:05.722005,BF,{'type': 'BF', 'seq_counter': 22, 'rtc': 45700, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:06.024723,ACK,{'type': 'ACK', 'seq_counter': 23, 'rtc': 45701, 'telecommand_ack': 1}
+2025-08-11T11:56:06.330777,HK,{'type': 'HK', 'seq_counter': 24, 'rtc': 45702, 'internal': 18.73129089355468, 'external': -10.269373168945314, 'sensor_board': 24.73198303222656, 'gnss': 320255973501901, 'altitude': 99921}
+2025-08-11T11:56:06.636437,BF,{'type': 'BF', 'seq_counter': 25, 'rtc': 45703, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:06.941148,ACK,{'type': 'ACK', 'seq_counter': 26, 'rtc': 45704, 'telecommand_ack': 1}
+2025-08-11T11:56:07.247395,HK,{'type': 'HK', 'seq_counter': 27, 'rtc': 45705, 'internal': 18.99941833496093, 'external': -10.001245727539064, 'sensor_board': 25.00011047363281, 'gnss': 320255973501901, 'altitude': 100054}
+2025-08-11T11:56:07.552968,BF,{'type': 'BF', 'seq_counter': 28, 'rtc': 45706, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:07.858170,ACK,{'type': 'ACK', 'seq_counter': 29, 'rtc': 45707, 'telecommand_ack': 1}
+2025-08-11T11:56:08.163938,HK,{'type': 'HK', 'seq_counter': 30, 'rtc': 45708, 'internal': 18.73129089355468, 'external': -10.269373168945314, 'sensor_board': 24.73198303222656, 'gnss': 320255973501901, 'altitude': 99901}
+2025-08-11T11:56:08.469539,BF,{'type': 'BF', 'seq_counter': 31, 'rtc': 45709, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:08.774646,ACK,{'type': 'ACK', 'seq_counter': 32, 'rtc': 45710, 'telecommand_ack': 1}
+2025-08-11T11:56:09.080960,HK,{'type': 'HK', 'seq_counter': 33, 'rtc': 45711, 'internal': 18.73129089355468, 'external': -10.269373168945314, 'sensor_board': 24.73198303222656, 'gnss': 320255973501901, 'altitude': 100090}
+2025-08-11T11:56:09.384466,BF,{'type': 'BF', 'seq_counter': 34, 'rtc': 45712, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:09.690038,ACK,{'type': 'ACK', 'seq_counter': 35, 'rtc': 45713, 'telecommand_ack': 1}
+2025-08-11T11:56:09.993136,HK,{'type': 'HK', 'seq_counter': 36, 'rtc': 45714, 'internal': 18.46316345214843, 'external': -10.537500610351564, 'sensor_board': 24.46385559082031, 'gnss': 320255973501901, 'altitude': 99913}
+2025-08-11T11:56:10.298171,BF,{'type': 'BF', 'seq_counter': 37, 'rtc': 45715, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:10.602074,ACK,{'type': 'ACK', 'seq_counter': 38, 'rtc': 45716, 'telecommand_ack': 1}
+2025-08-11T11:56:11.515633,ACK,{'type': 'ACK', 'seq_counter': 41, 'rtc': 45719, 'telecommand_ack': 1}
+2025-08-11T11:56:11.821830,HK,{'type': 'HK', 'seq_counter': 42, 'rtc': 45720, 'internal': 17.92690856933593, 'external': -11.073755493164064, 'sensor_board': 23.92760070800781, 'gnss': 320255973501901, 'altitude': 99901}
+2025-08-11T11:56:12.126236,BF,{'type': 'BF', 'seq_counter': 43, 'rtc': 45721, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:12.735820,HK,{'type': 'HK', 'seq_counter': 45, 'rtc': 45723, 'internal': 17.65878112792968, 'external': -11.341882934570314, 'sensor_board': 23.65947326660156, 'gnss': 320255973501901, 'altitude': 99964}
+2025-08-11T11:56:13.041613,BF,{'type': 'BF', 'seq_counter': 46, 'rtc': 45724, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:13.347024,ACK,{'type': 'ACK', 'seq_counter': 47, 'rtc': 45725, 'telecommand_ack': 1}
+2025-08-11T11:56:13.651363,HK,{'type': 'HK', 'seq_counter': 48, 'rtc': 45726, 'internal': 17.65878112792968, 'external': -11.341882934570314, 'sensor_board': 23.65947326660156, 'gnss': 320255973501901, 'altitude': 99967}
+2025-08-11T11:56:13.956993,BF,{'type': 'BF', 'seq_counter': 49, 'rtc': 45727, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:14.257991,ACK,{'type': 'ACK', 'seq_counter': 50, 'rtc': 45728, 'telecommand_ack': 1}
+2025-08-11T11:56:14.563849,HK,{'type': 'HK', 'seq_counter': 51, 'rtc': 45729, 'internal': 17.39065368652343, 'external': -11.610010375976564, 'sensor_board': 23.39134582519531, 'gnss': 320255973501901, 'altitude': 99985}
+2025-08-11T11:56:14.865958,BF,{'type': 'BF', 'seq_counter': 52, 'rtc': 45730, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:15.471401,HK,{'type': 'HK', 'seq_counter': 54, 'rtc': 45732, 'internal': 17.39065368652343, 'external': -11.610010375976564, 'sensor_board': 23.39134582519531, 'gnss': 320255973501901, 'altitude': 99976}
+2025-08-11T11:56:15.776481,BF,{'type': 'BF', 'seq_counter': 55, 'rtc': 45733, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:16.082291,ACK,{'type': 'ACK', 'seq_counter': 56, 'rtc': 45734, 'telecommand_ack': 1}
+2025-08-11T11:56:16.386217,HK,{'type': 'HK', 'seq_counter': 57, 'rtc': 45735, 'internal': 17.39065368652343, 'external': -11.610010375976564, 'sensor_board': 23.39134582519531, 'gnss': 320255973501901, 'altitude': 100050}
+2025-08-11T11:56:16.691760,BF,{'type': 'BF', 'seq_counter': 58, 'rtc': 45736, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:17.300153,HK,{'type': 'HK', 'seq_counter': 60, 'rtc': 45738, 'internal': 17.122526245117186, 'external': -11.878137817382814, 'sensor_board': 23.12321838378906, 'gnss': 320255973501901, 'altitude': 99902}
+2025-08-11T11:56:17.605789,BF,{'type': 'BF', 'seq_counter': 61, 'rtc': 45739, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:17.911384,ACK,{'type': 'ACK', 'seq_counter': 62, 'rtc': 45740, 'telecommand_ack': 1}
+2025-08-11T11:56:18.215328,HK,{'type': 'HK', 'seq_counter': 63, 'rtc': 45741, 'internal': 17.122526245117186, 'external': -11.878137817382814, 'sensor_board': 23.12321838378906, 'gnss': 320255973501901, 'altitude': 99935}
+2025-08-11T11:56:18.521689,BF,{'type': 'BF', 'seq_counter': 64, 'rtc': 45742, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:18.824976,ACK,{'type': 'ACK', 'seq_counter': 65, 'rtc': 45743, 'telecommand_ack': 1}
+2025-08-11T11:56:19.131809,HK,{'type': 'HK', 'seq_counter': 66, 'rtc': 45744, 'internal': 16.854398803710936, 'external': -12.146265258789064, 'sensor_board': 22.85509094238281, 'gnss': 320255973501901, 'altitude': 99981}
+2025-08-11T11:56:19.437187,BF,{'type': 'BF', 'seq_counter': 67, 'rtc': 45745, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:19.738369,ACK,{'type': 'ACK', 'seq_counter': 68, 'rtc': 45746, 'telecommand_ack': 1}
+2025-08-11T11:56:20.039633,HK,{'type': 'HK', 'seq_counter': 69, 'rtc': 45747, 'internal': 16.586271362304686, 'external': -12.414392700195314, 'sensor_board': 22.58696350097656, 'gnss': 320255973501901, 'altitude': 99981}
+2025-08-11T11:56:20.340084,BF,{'type': 'BF', 'seq_counter': 70, 'rtc': 45748, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:20.644295,ACK,{'type': 'ACK', 'seq_counter': 71, 'rtc': 45749, 'telecommand_ack': 1}
+2025-08-11T11:56:20.949498,HK,{'type': 'HK', 'seq_counter': 72, 'rtc': 45750, 'internal': 16.586271362304686, 'external': -12.414392700195314, 'sensor_board': 22.58696350097656, 'gnss': 320255973501901, 'altitude': 100074}
+2025-08-11T11:56:21.252274,BF,{'type': 'BF', 'seq_counter': 73, 'rtc': 45751, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:21.556616,ACK,{'type': 'ACK', 'seq_counter': 74, 'rtc': 45752, 'telecommand_ack': 1}
+2025-08-11T11:56:21.857749,HK,{'type': 'HK', 'seq_counter': 75, 'rtc': 45753, 'internal': 16.854398803710936, 'external': -12.146265258789064, 'sensor_board': 22.85509094238281, 'gnss': 320255973501901, 'altitude': 99966}
+2025-08-11T11:56:22.163534,BF,{'type': 'BF', 'seq_counter': 76, 'rtc': 45754, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:22.467852,ACK,{'type': 'ACK', 'seq_counter': 77, 'rtc': 45755, 'telecommand_ack': 1}
+2025-08-11T11:56:22.769164,HK,{'type': 'HK', 'seq_counter': 78, 'rtc': 45756, 'internal': 16.854398803710936, 'external': -12.146265258789064, 'sensor_board': 22.85509094238281, 'gnss': 320255973501901, 'altitude': 99955}
+2025-08-11T11:56:23.074087,BF,{'type': 'BF', 'seq_counter': 79, 'rtc': 45757, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:23.379807,ACK,{'type': 'ACK', 'seq_counter': 80, 'rtc': 45758, 'telecommand_ack': 1}
+2025-08-11T11:56:23.989303,BF,{'type': 'BF', 'seq_counter': 82, 'rtc': 45760, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:24.290819,ACK,{'type': 'ACK', 'seq_counter': 83, 'rtc': 45761, 'telecommand_ack': 1}
+2025-08-11T11:56:24.597082,HK,{'type': 'HK', 'seq_counter': 84, 'rtc': 45762, 'internal': 16.854398803710936, 'external': -12.146265258789064, 'sensor_board': 22.85509094238281, 'gnss': 320255973501901, 'altitude': 99989}
+2025-08-11T11:56:24.902794,BF,{'type': 'BF', 'seq_counter': 85, 'rtc': 45763, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:26.121002,ACK,{'type': 'ACK', 'seq_counter': 89, 'rtc': 45767, 'telecommand_ack': 1}
+2025-08-11T11:56:26.427086,HK,{'type': 'HK', 'seq_counter': 90, 'rtc': 45768, 'internal': 17.122526245117186, 'external': -11.878137817382814, 'sensor_board': 23.12321838378906, 'gnss': 320255973501901, 'altitude': 99916}
+2025-08-11T11:56:26.728811,BF,{'type': 'BF', 'seq_counter': 91, 'rtc': 45769, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:27.033200,ACK,{'type': 'ACK', 'seq_counter': 92, 'rtc': 45770, 'telecommand_ack': 1}
+2025-08-11T11:56:27.333671,HK,{'type': 'HK', 'seq_counter': 93, 'rtc': 45771, 'internal': 17.122526245117186, 'external': -11.878137817382814, 'sensor_board': 23.12321838378906, 'gnss': 320255973501901, 'altitude': 100017}
+2025-08-11T11:56:27.639022,BF,{'type': 'BF', 'seq_counter': 94, 'rtc': 45772, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:27.944706,ACK,{'type': 'ACK', 'seq_counter': 95, 'rtc': 45773, 'telecommand_ack': 1}
+2025-08-11T11:56:28.247981,HK,{'type': 'HK', 'seq_counter': 96, 'rtc': 45774, 'internal': 17.122526245117186, 'external': -11.878137817382814, 'sensor_board': 23.12321838378906, 'gnss': 320255973501901, 'altitude': 100002}
+2025-08-11T11:56:28.553292,BF,{'type': 'BF', 'seq_counter': 97, 'rtc': 45775, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:28.858289,ACK,{'type': 'ACK', 'seq_counter': 98, 'rtc': 45776, 'telecommand_ack': 1}
+2025-08-11T11:56:29.164108,HK,{'type': 'HK', 'seq_counter': 99, 'rtc': 45777, 'internal': 17.122526245117186, 'external': -11.878137817382814, 'sensor_board': 23.12321838378906, 'gnss': 320255973501901, 'altitude': 100016}
+2025-08-11T11:56:29.465686,BF,{'type': 'BF', 'seq_counter': 100, 'rtc': 45778, 'bit_flip': 24197857203266734864793317670504947440}
+2025-08-11T11:56:29.771278,ACK,{'type': 'ACK', 'seq_counter': 101, 'rtc': 45779, 'telecommand_ack': 1}
