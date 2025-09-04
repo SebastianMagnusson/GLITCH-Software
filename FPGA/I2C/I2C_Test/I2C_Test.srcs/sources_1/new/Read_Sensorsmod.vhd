@@ -68,7 +68,7 @@ begin
   
     variable sec_cnt    : integer range 0 to 5*Clockfrequency := 0;   -- Count to 5 seconds between sensor readings
     variable busy_cnt   : integer range 0 to 5 := 0;                  -- Count busy transisions during one transaction
-    variable conv_cnt   : integer range 0 to Clockfrequency/100 := 0; -- Count for waiting for pressure conversion (10 ms)
+    variable conv_cnt   : integer range 0 to Clockfrequency/50 := 0; -- Count for waiting for pressure conversion (10 ms)
     variable mess_cnt   : integer range 0 to 2 := 0;                  -- Counting messages sent to TX module
     variable sensor_cnt : integer range 0 to 2 := 0;                  -- Counts which sensor data will be taken from
     

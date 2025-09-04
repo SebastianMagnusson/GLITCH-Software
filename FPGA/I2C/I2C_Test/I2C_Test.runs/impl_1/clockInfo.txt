@@ -1,6 +1,6 @@
 -------------------------------------
 | Tool Version : Vivado v.2024.2
-| Date         : Sun Jul 27 14:07:40 2025
+| Date         : Wed Sep  3 15:51:45 2025
 | Host         : LAPTOP-1SQM85NC
 | Design       : design_1
 | Device       : xc7a35t-cpg236-1--

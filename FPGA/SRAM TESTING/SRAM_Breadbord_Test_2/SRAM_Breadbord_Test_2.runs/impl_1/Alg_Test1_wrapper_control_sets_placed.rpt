@@ -1,0 +1,95 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Thu Sep  4 15:09:09 2025
+| Host         : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file Alg_Test1_wrapper_control_sets_placed.rpt
+| Design       : Alg_Test1_wrapper
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    17 |
+|    Minimum number of control sets                        |    17 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    40 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    17 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     1 |
+| >= 8 to < 10       |     2 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     8 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              14 |            8 |
+| No           | No                    | Yes                    |              24 |           10 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              56 |           13 |
+| Yes          | No                    | Yes                    |             115 |           30 |
+| Yes          | Yes                   | No                     |              23 |            8 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------------------------+-----------------------------------------------------------------+------------------------------------------------------------+------------------+----------------+--------------+
+|           Clock Signal           |                          Enable Signal                          |                      Set/Reset Signal                      | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------------------+-----------------------------------------------------------------+------------------------------------------------------------+------------------+----------------+--------------+
+| ~Alg_Test1_i/Switchmod_0/U0/led0 |                                                                 |                                                            |                1 |              1 |         1.00 |
+|  sysclk_IBUF_BUFG                |                                                                 | Alg_Test1_i/Read_When_Push_0/U0/A[21]_i_1_n_0              |                2 |              3 |         1.50 |
+|  sysclk_IBUF_BUFG                |                                                                 | Alg_Test1_i/Write_All_Adresses_0/U0/write_complete_i_2_n_0 |                1 |              3 |         3.00 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/Read_When_Push_0/U0/FSM_onehot_state[4]_i_1_n_0     | Alg_Test1_i/Read_When_Push_0/U0/A[21]_i_1_n_0              |                1 |              5 |         5.00 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/Write_All_Adresses_0/U0/FSM_onehot_state[4]_i_1_n_0 | Alg_Test1_i/Write_All_Adresses_0/U0/write_complete_i_2_n_0 |                2 |              5 |         2.50 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/UART_TXmod_0/U0/r_Clk_Count_1                       | Alg_Test1_i/UART_TXmod_0/U0/r_Clk_Count0                   |                2 |              7 |         3.50 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/Read_When_Push_0/U0/o_TX_data0                      |                                                            |                1 |              8 |         8.00 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/UART_TXmod_0/U0/r_TX_Data_0                         |                                                            |                2 |              8 |         4.00 |
+|  sysclk_IBUF_BUFG                |                                                                 |                                                            |                7 |             13 |         1.86 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/Read_When_Push_0/U0/data_buf0                       |                                                            |                5 |             16 |         3.20 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/Switchmod_0/U0/led0                                 | Alg_Test1_i/RW_ROUTER_0/U0/DQ_o[15]_i_1_n_0                |                6 |             16 |         2.67 |
+|  sysclk_IBUF_BUFG                |                                                                 | Alg_Test1_i/RW_ROUTER_0/U0/p_0_in                          |                7 |             18 |         2.57 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/Read_When_Push_0/U0/FSM_onehot_state_reg_n_0_[1]    | Alg_Test1_i/Read_When_Push_0/U0/A[21]_i_1_n_0              |                5 |             22 |         4.40 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/Read_When_Push_0/U0/addr_cnt[0]_i_1_n_0             | Alg_Test1_i/Read_When_Push_0/U0/A[21]_i_1_n_0              |                6 |             22 |         3.67 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/Write_All_Adresses_0/U0/write_active_0              | Alg_Test1_i/Write_All_Adresses_0/U0/write_complete_i_2_n_0 |                4 |             23 |         5.75 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/Switchmod_0/U0/led0                                 |                                                            |                5 |             24 |         4.80 |
+|  sysclk_IBUF_BUFG                | Alg_Test1_i/Write_All_Adresses_0/U0/addr_cnt                    | Alg_Test1_i/Write_All_Adresses_0/U0/write_complete_i_2_n_0 |               12 |             38 |         3.17 |
++----------------------------------+-----------------------------------------------------------------+------------------------------------------------------------+------------------+----------------+--------------+
+
+
