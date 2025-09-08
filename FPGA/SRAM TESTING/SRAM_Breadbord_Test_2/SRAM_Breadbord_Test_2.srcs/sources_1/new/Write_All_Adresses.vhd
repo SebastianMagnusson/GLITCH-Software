@@ -47,6 +47,8 @@ architecture rtl of Write_All_Adresses is
     signal write_active : std_logic; -- Drives DQ
     signal addr_cnt     : unsigned(ADDR_WIDTH-1 downto 0) := (others => '0');
     
+    signal toggle       : std_logic := '0'; -- Used to alternate between writing values
+    
     -- Convert to cycles (integer math, rounded up)
     --constant TAA_CYCLES : integer := 1; --(TAA_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
     constant TWP_CYCLES : integer := 1; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
@@ -67,6 +69,7 @@ begin
       addr_cnt       <= (others => '0'); -- Counts adresses    
       write_data     <= "1010101010101010";     
       write_complete <= '0';
+      toggle         <= '0';
       state          <= WRITE_START;
       
     elsif rising_edge(sysclk) then
@@ -97,8 +100,13 @@ begin
           state <= NEXT_ADDR;
     
         when NEXT_ADDR =>
-          addr_cnt   <= addr_cnt + 1;
-          write_data <= not write_data;
+          addr_cnt <= addr_cnt + 1;
+          toggle   <= not toggle;
+          if(toggle = '0') then
+            write_data <= "1010101010101010";
+          else
+            write_data <= "0101010101010101";
+          end if;
           if (addr_cnt = (unsigned'(ADDR_WIDTH-1 downto 0 => '1'))) then -- All addresses done
             state <= DONE;
           else                                -- Continue looping                   

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Wed Sep  3 15:51:48 2025
+| Date         : Fri Sep  5 13:29:50 2025
 | Host         : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file I2C_Test_wrapper_control_sets_placed.rpt
 | Design       : I2C_Test_wrapper
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    17 |
-|    Minimum number of control sets                        |    17 |
+| Total control sets                                       |    22 |
+|    Minimum number of control sets                        |    22 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    33 |
+| Unused register locations in slices containing registers |    45 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    17 |
+| Total control sets |    22 |
 | >= 0 to < 4        |     0 |
-| >= 4 to < 6        |     1 |
+| >= 4 to < 6        |     3 |
 | >= 6 to < 8        |     2 |
-| >= 8 to < 10       |     9 |
-| >= 10 to < 12      |     1 |
+| >= 8 to < 10       |    12 |
+| >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     2 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     2 |
+| >= 16              |     3 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              24 |           10 |
-| No           | No                    | Yes                    |              22 |           13 |
+| No           | No                    | No                     |              27 |           10 |
+| No           | No                    | Yes                    |              19 |           11 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |              35 |           10 |
-| Yes          | No                    | Yes                    |              87 |           24 |
+| Yes          | No                    | No                     |              33 |           11 |
+| Yes          | No                    | Yes                    |             133 |           34 |
 | Yes          | Yes                   | No                     |               7 |            2 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -70,26 +70,31 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+-------------------+---------------------------------------------------------+---------------------------------------------------+------------------+----------------+--------------+
-|    Clock Signal   |                      Enable Signal                      |                  Set/Reset Signal                 | Slice Load Count | Bel Load Count | Bels / Slice |
-+-------------------+---------------------------------------------------------+---------------------------------------------------+------------------+----------------+--------------+
-|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/busy_cnt                | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                1 |              4 |         4.00 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_address0          |                                                   |                2 |              6 |         3.00 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/UART_TXmod_0/U0/r_Clk_Count_1                | I2C_Test_i/UART_TXmod_0/U0/r_Clk_Count0           |                2 |              7 |         3.50 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/I2Cmod_0/U0/data_rd[7]_i_1_n_0               | I2C_Test_i/I2Cmod_0/U0/busy_i_2_n_0               |                2 |              8 |         4.00 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/UART_TXmod_0/U0/r_TX_Data_0                  |                                                   |                1 |              8 |         8.00 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/o_TX_data0              |                                                   |                3 |              8 |         2.67 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/rtc_data[7]             | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                4 |              8 |         2.00 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/temp_data[15]           | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                1 |              8 |         8.00 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/rtc_data[23]            | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                2 |              8 |         4.00 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/rtc_data[15]            | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                2 |              8 |         4.00 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/temp_data[7]            | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                2 |              8 |         4.00 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/I2Cmod_0/U0/busy1                            | I2C_Test_i/I2Cmod_0/U0/busy_i_2_n_0               |                3 |              9 |         3.00 |
-|  sysclk_IBUF_BUFG |                                                         | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                6 |             10 |         1.67 |
-|  sysclk_IBUF_BUFG |                                                         | I2C_Test_i/I2Cmod_0/U0/busy_i_2_n_0               |                7 |             12 |         1.71 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/I2Cmod_0/U0/addr_rw0                         |                                                   |                4 |             13 |         3.25 |
-|  sysclk_IBUF_BUFG |                                                         |                                                   |               10 |             24 |         2.40 |
-|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/Main.sec_cnt[0]_i_1_n_0 | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                7 |             26 |         3.71 |
-+-------------------+---------------------------------------------------------+---------------------------------------------------+------------------+----------------+--------------+
++-------------------+-----------------------------------------------------------------+---------------------------------------------------+------------------+----------------+--------------+
+|    Clock Signal   |                          Enable Signal                          |                  Set/Reset Signal                 | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------+-----------------------------------------------------------------+---------------------------------------------------+------------------+----------------+--------------+
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/FSM_sequential_state[3]_i_1_n_0 | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                2 |              4 |         2.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/busy_cnt                        | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                2 |              4 |         2.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_address0                  |                                                   |                2 |              4 |         2.00 |
+|  sysclk_IBUF_BUFG |                                                                 | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                5 |              7 |         1.40 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/UART_TXmod_0/U0/r_Clk_Count_1                        | I2C_Test_i/UART_TXmod_0/U0/r_Clk_Count0           |                2 |              7 |         3.50 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/o_TX_data0                      |                                                   |                3 |              8 |         2.67 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/alt_data[23]                    | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                1 |              8 |         8.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/alt_data[15]                    | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                2 |              8 |         4.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/alt_data[7]                     | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                1 |              8 |         8.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/rtc_data[7]                     | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                1 |              8 |         8.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/rtc_data[15]                    | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                1 |              8 |         8.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/temp_data[15]                   | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                3 |              8 |         2.67 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/temp_data[7]                    | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                2 |              8 |         4.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/rtc_data[23]                    | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                2 |              8 |         4.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/UART_TXmod_0/U0/r_TX_Data_0                          |                                                   |                3 |              8 |         2.67 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/I2Cmod_0/U0/data_rd[7]_i_1_n_0                       | I2C_Test_i/I2Cmod_0/U0/busy_i_2_n_0               |                1 |              8 |         8.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/I2Cmod_0/U0/busy1                                    | I2C_Test_i/I2Cmod_0/U0/busy_i_2_n_0               |                4 |              9 |         2.25 |
+|  sysclk_IBUF_BUFG |                                                                 | I2C_Test_i/I2Cmod_0/U0/busy_i_2_n_0               |                6 |             12 |         2.00 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/I2Cmod_0/U0/addr_rw0                                 |                                                   |                3 |             13 |         4.33 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/conv_cnt                        | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                5 |             18 |         3.60 |
+|  sysclk_IBUF_BUFG | I2C_Test_i/Read_Sensorsmod_0/U0/Main.sec_cnt[0]_i_1_n_0         | I2C_Test_i/Read_Sensorsmod_0/U0/o_i2c_ena_i_2_n_0 |                7 |             26 |         3.71 |
+|  sysclk_IBUF_BUFG |                                                                 |                                                   |               10 |             27 |         2.70 |
++-------------------+-----------------------------------------------------------------+---------------------------------------------------+------------------+----------------+--------------+
 
 

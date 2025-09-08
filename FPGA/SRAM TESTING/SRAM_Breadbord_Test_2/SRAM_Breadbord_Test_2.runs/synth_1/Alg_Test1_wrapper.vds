@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Thu Sep  4 15:07:50 2025
-# Process ID         : 30940
+# Start of session at: Mon Sep  8 11:44:12 2025
+# Process ID         : 19108
 # Current directory  : C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1
 # Command line       : vivado.exe -log Alg_Test1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Alg_Test1_wrapper.tcl
 # Log file           : C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/Alg_Test1_wrapper.vds
@@ -17,9 +17,9 @@
 # CPU Physical cores : 4
 # CPU Logical cores  : 8
 # Host memory        : 16861 MB
-# Swap memory        : 24696 MB
-# Total Virtual      : 41557 MB
-# Available Virtual  : 12788 MB
+# Swap memory        : 15032 MB
+# Total Virtual      : 31893 MB
+# Available Virtual  : 15018 MB
 #-----------------------------------------------------------
 source Alg_Test1_wrapper.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
@@ -37,23 +37,23 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 28452
+INFO: [Synth 8-7075] Helper process launched with PID 6360
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1125.332 ; gain = 467.137
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1124.426 ; gain = 468.145
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'Alg_Test1_wrapper' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.srcs/sources_1/imports/hdl/Alg_Test1_wrapper.vhd:30]
 INFO: [Synth 8-3491] module 'Alg_Test1' declared at 'c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:15' bound to instance 'Alg_Test1_i' of component 'Alg_Test1' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.srcs/sources_1/imports/hdl/Alg_Test1_wrapper.vhd:56]
 INFO: [Synth 8-638] synthesizing module 'Alg_Test1' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:36]
-INFO: [Synth 8-3491] module 'Alg_Test1_RW_ROUTER_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-30940-LAPTOP-1SQM85NC/realtime/Alg_Test1_RW_ROUTER_0_0_stub.vhdl:6' bound to instance 'RW_ROUTER_0' of component 'Alg_Test1_RW_ROUTER_0_0' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:120]
-INFO: [Synth 8-638] synthesizing module 'Alg_Test1_RW_ROUTER_0_0' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-30940-LAPTOP-1SQM85NC/realtime/Alg_Test1_RW_ROUTER_0_0_stub.vhdl:38]
-INFO: [Synth 8-3491] module 'Alg_Test1_Read_When_Push_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-30940-LAPTOP-1SQM85NC/realtime/Alg_Test1_Read_When_Push_0_0_stub.vhdl:6' bound to instance 'Read_When_Push_0' of component 'Alg_Test1_Read_When_Push_0_0' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:141]
-INFO: [Synth 8-638] synthesizing module 'Alg_Test1_Read_When_Push_0_0' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-30940-LAPTOP-1SQM85NC/realtime/Alg_Test1_Read_When_Push_0_0_stub.vhdl:31]
-INFO: [Synth 8-3491] module 'Alg_Test1_Switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-30940-LAPTOP-1SQM85NC/realtime/Alg_Test1_Switchmod_0_0_stub.vhdl:6' bound to instance 'Switchmod_0' of component 'Alg_Test1_Switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:155]
-INFO: [Synth 8-638] synthesizing module 'Alg_Test1_Switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-30940-LAPTOP-1SQM85NC/realtime/Alg_Test1_Switchmod_0_0_stub.vhdl:24]
-INFO: [Synth 8-3491] module 'Alg_Test1_UART_TXmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-30940-LAPTOP-1SQM85NC/realtime/Alg_Test1_UART_TXmod_0_0_stub.vhdl:6' bound to instance 'UART_TXmod_0' of component 'Alg_Test1_UART_TXmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:162]
-INFO: [Synth 8-638] synthesizing module 'Alg_Test1_UART_TXmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-30940-LAPTOP-1SQM85NC/realtime/Alg_Test1_UART_TXmod_0_0_stub.vhdl:26]
-INFO: [Synth 8-3491] module 'Alg_Test1_Write_All_Adresses_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-30940-LAPTOP-1SQM85NC/realtime/Alg_Test1_Write_All_Adresses_0_0_stub.vhdl:6' bound to instance 'Write_All_Adresses_0' of component 'Alg_Test1_Write_All_Adresses_0_0' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:171]
-INFO: [Synth 8-638] synthesizing module 'Alg_Test1_Write_All_Adresses_0_0' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-30940-LAPTOP-1SQM85NC/realtime/Alg_Test1_Write_All_Adresses_0_0_stub.vhdl:28]
+INFO: [Synth 8-3491] module 'Alg_Test1_RW_ROUTER_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-19108-LAPTOP-1SQM85NC/realtime/Alg_Test1_RW_ROUTER_0_0_stub.vhdl:6' bound to instance 'RW_ROUTER_0' of component 'Alg_Test1_RW_ROUTER_0_0' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:120]
+INFO: [Synth 8-638] synthesizing module 'Alg_Test1_RW_ROUTER_0_0' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-19108-LAPTOP-1SQM85NC/realtime/Alg_Test1_RW_ROUTER_0_0_stub.vhdl:38]
+INFO: [Synth 8-3491] module 'Alg_Test1_Read_When_Push_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-19108-LAPTOP-1SQM85NC/realtime/Alg_Test1_Read_When_Push_0_0_stub.vhdl:6' bound to instance 'Read_When_Push_0' of component 'Alg_Test1_Read_When_Push_0_0' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:141]
+INFO: [Synth 8-638] synthesizing module 'Alg_Test1_Read_When_Push_0_0' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-19108-LAPTOP-1SQM85NC/realtime/Alg_Test1_Read_When_Push_0_0_stub.vhdl:31]
+INFO: [Synth 8-3491] module 'Alg_Test1_Switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-19108-LAPTOP-1SQM85NC/realtime/Alg_Test1_Switchmod_0_0_stub.vhdl:6' bound to instance 'Switchmod_0' of component 'Alg_Test1_Switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:155]
+INFO: [Synth 8-638] synthesizing module 'Alg_Test1_Switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-19108-LAPTOP-1SQM85NC/realtime/Alg_Test1_Switchmod_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'Alg_Test1_UART_TXmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-19108-LAPTOP-1SQM85NC/realtime/Alg_Test1_UART_TXmod_0_0_stub.vhdl:6' bound to instance 'UART_TXmod_0' of component 'Alg_Test1_UART_TXmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:162]
+INFO: [Synth 8-638] synthesizing module 'Alg_Test1_UART_TXmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-19108-LAPTOP-1SQM85NC/realtime/Alg_Test1_UART_TXmod_0_0_stub.vhdl:26]
+INFO: [Synth 8-3491] module 'Alg_Test1_Write_All_Adresses_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-19108-LAPTOP-1SQM85NC/realtime/Alg_Test1_Write_All_Adresses_0_0_stub.vhdl:6' bound to instance 'Write_All_Adresses_0' of component 'Alg_Test1_Write_All_Adresses_0_0' [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:171]
+INFO: [Synth 8-638] synthesizing module 'Alg_Test1_Write_All_Adresses_0_0' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/.Xil/Vivado-19108-LAPTOP-1SQM85NC/realtime/Alg_Test1_Write_All_Adresses_0_0_stub.vhdl:28]
 INFO: [Synth 8-256] done synthesizing module 'Alg_Test1' (0#1) [c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/synth/Alg_Test1.vhd:36]
 INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.srcs/sources_1/imports/hdl/Alg_Test1_wrapper.vhd:74]
 INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.srcs/sources_1/imports/hdl/Alg_Test1_wrapper.vhd:74]
@@ -73,18 +73,18 @@ INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/
 INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.srcs/sources_1/imports/hdl/Alg_Test1_wrapper.vhd:74]
 INFO: [Synth 8-256] done synthesizing module 'Alg_Test1_wrapper' (0#1) [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.srcs/sources_1/imports/hdl/Alg_Test1_wrapper.vhd:30]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1230.758 ; gain = 572.562
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1229.996 ; gain = 573.715
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1230.758 ; gain = 572.562
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1229.996 ; gain = 573.715
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1230.758 ; gain = 572.562
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1229.996 ; gain = 573.715
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1230.758 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1229.996 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 16 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -109,23 +109,23 @@ Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Tes
 Finished Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1291.238 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1283.453 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 16 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 16 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1291.238 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1283.453 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1291.238 ; gain = 633.043
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1283.453 ; gain = 627.172
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1291.238 ; gain = 633.043
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1283.453 ; gain = 627.172
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -137,10 +137,10 @@ Applied set_property KEEP_HIERARCHY = SOFT for Alg_Test1_i/UART_TXmod_0. (constr
 Applied set_property KEEP_HIERARCHY = SOFT for Alg_Test1_i/Switchmod_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for Alg_Test1_i/RW_ROUTER_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1291.238 ; gain = 633.043
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1283.453 ; gain = 627.172
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1291.238 ; gain = 633.043
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1283.453 ; gain = 627.172
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -163,25 +163,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1291.238 ; gain = 633.043
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1283.453 ; gain = 627.172
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1406.797 ; gain = 748.602
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1405.730 ; gain = 749.449
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1406.797 ; gain = 748.602
+Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1405.805 ; gain = 749.523
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1416.387 ; gain = 758.191
+Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1415.449 ; gain = 759.168
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -199,37 +199,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1633.312 ; gain = 975.117
+Finished IO Insertion : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1632.023 ; gain = 975.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1633.312 ; gain = 975.117
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1632.023 ; gain = 975.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1633.312 ; gain = 975.117
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1632.023 ; gain = 975.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1633.312 ; gain = 975.117
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1632.023 ; gain = 975.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1633.312 ; gain = 975.117
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1632.023 ; gain = 975.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1633.312 ; gain = 975.117
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1632.023 ; gain = 975.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -260,18 +260,18 @@ Report Cell Usage:
 |8     |OBUF                                  |    27|
 +------+--------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1633.312 ; gain = 975.117
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1632.023 ; gain = 975.742
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:22 . Memory (MB): peak = 1633.312 ; gain = 914.637
-Synthesis Optimization Complete : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1633.312 ; gain = 975.117
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:22 . Memory (MB): peak = 1632.023 ; gain = 922.285
+Synthesis Optimization Complete : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1632.023 ; gain = 975.742
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1633.312 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1632.023 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 16 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1633.312 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1644.863 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 16 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 16 instances
@@ -280,8 +280,8 @@ Synth Design complete | Checksum: ea835624
 INFO: [Common 17-83] Releasing license: Synthesis
 57 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:26 ; elapsed = 00:00:34 . Memory (MB): peak = 1633.312 ; gain = 1167.438
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1633.312 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:33 . Memory (MB): peak = 1644.863 ; gain = 1179.016
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1644.863 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.runs/synth_1/Alg_Test1_wrapper.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file Alg_Test1_wrapper_utilization_synth.rpt -pb Alg_Test1_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Sep  4 15:08:33 2025...
+INFO: [Common 17-206] Exiting Vivado at Mon Sep  8 11:44:54 2025...

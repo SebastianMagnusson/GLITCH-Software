@@ -26,6 +26,7 @@
 -- has been delayed one clock cycle in state ALT (when 3 =>). Second, 
 -- the program now waits 20ms instead of 10ms to make sure conversion is
 -- absolutely finished.
+-- V7.0 Just ignore v5.0 and v6.0
 ----------------------------------------------------------------------------------
 
 library IEEE;
@@ -207,9 +208,9 @@ begin
               o_i2c_rw       <= '0';                       -- Write mode
               o_i2c_data_wr <= "00000000";                 -- Command to read pressure data
             when 1 =>                                    -- 1st busy high: command 1 latched
-              -- o_i2c_ena <= '0'; REMOVED                          
+                o_i2c_ena <= '0'; --REMOVED                          
                 if(i_busy = '0') then                      -- Read pressure command complete
-                  o_i2c_ena <= '0'; -- NEW Deassert enable to stop transaction
+                  --o_i2c_ena <= '0'; -- NEW Deassert enable to stop transaction
                   busy_cnt := 0;
                   state <= ALT;
                 end if;
@@ -241,9 +242,9 @@ begin
                 alt_data(15 downto 8) <= i_data_read;      -- Save second byte
               end if;
             when 3 =>                                    -- 3rd command latched in, 
-              -- o_i2c_ena <= '0'; REMOVED                         -- Deassert enable to stop transaction 
+              o_i2c_ena <= '0'; --REMOVED                         -- Deassert enable to stop transaction 
               if(i_busy = '0') then                        -- 3rd byte of data ready
-                o_i2c_ena <= '0'; -- NEW Deassert enable to stop transaction
+                --o_i2c_ena <= '0'; -- NEW Deassert enable to stop transaction
                 busy_cnt := 0;                             -- Reset busy counter
                 alt_data(7 downto 0) <= i_data_read;       -- Save last byte 
                 

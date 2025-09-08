@@ -6,11 +6,11 @@
 # Block Designs: bd/Alg_Test1/Alg_Test1.bd
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Alg_Test1 || ORIG_REF_NAME==Alg_Test1} -quiet] -quiet
 
-# IP: bd/Alg_Test1/ip/Alg_Test1_Read_When_Push_0_0/Alg_Test1_Read_When_Push_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Alg_Test1_Read_When_Push_0_0 || ORIG_REF_NAME==Alg_Test1_Read_When_Push_0_0} -quiet] -quiet
-
 # IP: bd/Alg_Test1/ip/Alg_Test1_Write_All_Adresses_0_0/Alg_Test1_Write_All_Adresses_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Alg_Test1_Write_All_Adresses_0_0 || ORIG_REF_NAME==Alg_Test1_Write_All_Adresses_0_0} -quiet] -quiet
+
+# IP: bd/Alg_Test1/ip/Alg_Test1_Read_When_Push_0_0/Alg_Test1_Read_When_Push_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Alg_Test1_Read_When_Push_0_0 || ORIG_REF_NAME==Alg_Test1_Read_When_Push_0_0} -quiet] -quiet
 
 # IP: bd/Alg_Test1/ip/Alg_Test1_UART_TXmod_0_0/Alg_Test1_UART_TXmod_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Alg_Test1_UART_TXmod_0_0 || ORIG_REF_NAME==Alg_Test1_UART_TXmod_0_0} -quiet] -quiet

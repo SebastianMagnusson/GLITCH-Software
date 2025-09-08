@@ -399,9 +399,9 @@
       "Switchmod_0_o_signal": {
         "ports": [
           "Switchmod_0/o_signal",
-          "Write_All_Adresses_0/reset_n",
           "RW_ROUTER_0/reset_n",
-          "Read_When_Push_0/reset_n"
+          "Read_When_Push_0/reset_n",
+          "Write_All_Adresses_0/reset_n"
         ]
       },
       "UART_TXmod_0_o_TX_Done": {
@@ -469,9 +469,9 @@
           "sysclk",
           "UART_TXmod_0/sysclk",
           "Switchmod_0/sysclk",
-          "Write_All_Adresses_0/sysclk",
           "RW_ROUTER_0/sysclk",
-          "Read_When_Push_0/sysclk"
+          "Read_When_Push_0/sysclk",
+          "Write_All_Adresses_0/sysclk"
         ]
       }
     }

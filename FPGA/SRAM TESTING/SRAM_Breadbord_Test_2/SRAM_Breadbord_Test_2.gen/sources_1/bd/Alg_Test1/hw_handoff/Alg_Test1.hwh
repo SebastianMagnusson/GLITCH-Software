@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Sep  4 15:06:44 2025" VIVADOVERSION="2024.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Sep  8 11:43:32 2025" VIVADOVERSION="2024.2">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a35t" NAME="Alg_Test1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -58,9 +58,9 @@
       <CONNECTIONS>
         <CONNECTION INSTANCE="UART_TXmod_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="Switchmod_0" PORT="sysclk"/>
-        <CONNECTION INSTANCE="Write_All_Adresses_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="RW_ROUTER_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="Read_When_Push_0" PORT="sysclk"/>
+        <CONNECTION INSTANCE="Write_All_Adresses_0" PORT="sysclk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="uart_rxd_out" SIGIS="undef" SIGNAME="UART_TXmod_0_o_TX_Serial">
@@ -263,9 +263,9 @@
         </PORT>
         <PORT DIR="O" NAME="o_signal" SIGIS="undef" SIGNAME="Switchmod_0_o_signal">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Write_All_Adresses_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="RW_ROUTER_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="Read_When_Push_0" PORT="reset_n"/>
+            <CONNECTION INSTANCE="Write_All_Adresses_0" PORT="reset_n"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">

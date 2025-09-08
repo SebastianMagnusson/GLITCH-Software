@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Thu Sep  4 14:18:40 2025
+-- Date        : Mon Sep  8 11:44:09 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim {c:/GitHub/GLITCH-Software/FPGA/SRAM
 --               TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/ip/Alg_Test1_Write_All_Adresses_0_0/Alg_Test1_Write_All_Adresses_0_0_sim_netlist.vhdl}
@@ -19,7 +19,7 @@ entity Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses is
   port (
     A : out STD_LOGIC_VECTOR ( 21 downto 0 );
     CE_n : out STD_LOGIC;
-    DQ_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    DQ_o : out STD_LOGIC_VECTOR ( 1 downto 0 );
     DQ_t : out STD_LOGIC_VECTOR ( 0 to 0 );
     write_complete : out STD_LOGIC;
     WE_n : out STD_LOGIC;
@@ -31,7 +31,6 @@ entity Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses is
 end Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses;
 
 architecture STRUCTURE of Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses is
-  signal \^dq_o\ : STD_LOGIC_VECTOR ( 15 downto 0 );
   signal \FSM_onehot_state[0]_i_1_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[4]_i_1_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[4]_i_2_n_0\ : STD_LOGIC;
@@ -91,13 +90,14 @@ architecture STRUCTURE of Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses is
   signal \addr_cnt_reg[8]_i_1_n_5\ : STD_LOGIC;
   signal \addr_cnt_reg[8]_i_1_n_6\ : STD_LOGIC;
   signal \addr_cnt_reg[8]_i_1_n_7\ : STD_LOGIC;
-  signal p_0_in : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal toggle : STD_LOGIC;
   signal write_active : STD_LOGIC;
   signal write_active_0 : STD_LOGIC;
   signal write_active_i_1_n_0 : STD_LOGIC;
   signal \^write_complete\ : STD_LOGIC;
   signal write_complete_i_1_n_0 : STD_LOGIC;
   signal write_complete_i_2_n_0 : STD_LOGIC;
+  signal \write_data[15]_i_1_n_0\ : STD_LOGIC;
   signal \NLW_addr_cnt_reg[20]_i_1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 1 );
   signal \NLW_addr_cnt_reg[20]_i_1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 2 );
   attribute FSM_ENCODED_STATES : string;
@@ -117,7 +117,6 @@ architecture STRUCTURE of Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses is
   attribute SOFT_HLUTNM of write_active_i_1 : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of write_complete_i_1 : label is "soft_lutpair0";
 begin
-  DQ_o(15 downto 0) <= \^dq_o\(15 downto 0);
   WE_n <= \^we_n\;
   write_complete <= \^write_complete\;
 \A_reg[0]\: unisim.vcomponents.FDCE
@@ -818,6 +817,17 @@ WE_n_reg: unisim.vcomponents.FDPE
       D => \addr_cnt_reg[8]_i_1_n_6\,
       Q => addr_cnt_reg(9)
     );
+toggle_reg: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => sysclk,
+      CE => addr_cnt,
+      CLR => write_complete_i_2_n_0,
+      D => \write_data[15]_i_1_n_0\,
+      Q => toggle
+    );
 write_active_i_1: unisim.vcomponents.LUT3
     generic map(
       INIT => X"BA"
@@ -862,188 +872,13 @@ write_complete_reg: unisim.vcomponents.FDCE
       D => write_complete_i_1_n_0,
       Q => \^write_complete\
     );
-\write_data[0]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(0),
-      O => p_0_in(0)
-    );
-\write_data[10]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(10),
-      O => p_0_in(10)
-    );
-\write_data[11]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(11),
-      O => p_0_in(11)
-    );
-\write_data[12]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(12),
-      O => p_0_in(12)
-    );
-\write_data[13]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(13),
-      O => p_0_in(13)
-    );
-\write_data[14]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(14),
-      O => p_0_in(14)
-    );
 \write_data[15]_i_1\: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
     )
         port map (
-      I0 => \^dq_o\(15),
-      O => p_0_in(15)
-    );
-\write_data[1]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(1),
-      O => p_0_in(1)
-    );
-\write_data[2]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(2),
-      O => p_0_in(2)
-    );
-\write_data[3]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(3),
-      O => p_0_in(3)
-    );
-\write_data[4]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(4),
-      O => p_0_in(4)
-    );
-\write_data[5]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(5),
-      O => p_0_in(5)
-    );
-\write_data[6]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(6),
-      O => p_0_in(6)
-    );
-\write_data[7]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(7),
-      O => p_0_in(7)
-    );
-\write_data[8]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(8),
-      O => p_0_in(8)
-    );
-\write_data[9]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \^dq_o\(9),
-      O => p_0_in(9)
-    );
-\write_data_reg[0]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      CLR => write_complete_i_2_n_0,
-      D => p_0_in(0),
-      Q => \^dq_o\(0)
-    );
-\write_data_reg[10]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      CLR => write_complete_i_2_n_0,
-      D => p_0_in(10),
-      Q => \^dq_o\(10)
-    );
-\write_data_reg[11]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      D => p_0_in(11),
-      PRE => write_complete_i_2_n_0,
-      Q => \^dq_o\(11)
-    );
-\write_data_reg[12]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      CLR => write_complete_i_2_n_0,
-      D => p_0_in(12),
-      Q => \^dq_o\(12)
-    );
-\write_data_reg[13]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      D => p_0_in(13),
-      PRE => write_complete_i_2_n_0,
-      Q => \^dq_o\(13)
+      I0 => toggle,
+      O => \write_data[15]_i_1_n_0\
     );
 \write_data_reg[14]\: unisim.vcomponents.FDCE
     generic map(
@@ -1053,8 +888,8 @@ write_complete_reg: unisim.vcomponents.FDCE
       C => sysclk,
       CE => addr_cnt,
       CLR => write_complete_i_2_n_0,
-      D => p_0_in(14),
-      Q => \^dq_o\(14)
+      D => toggle,
+      Q => DQ_o(0)
     );
 \write_data_reg[15]\: unisim.vcomponents.FDPE
     generic map(
@@ -1063,108 +898,9 @@ write_complete_reg: unisim.vcomponents.FDCE
         port map (
       C => sysclk,
       CE => addr_cnt,
-      D => p_0_in(15),
+      D => \write_data[15]_i_1_n_0\,
       PRE => write_complete_i_2_n_0,
-      Q => \^dq_o\(15)
-    );
-\write_data_reg[1]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      D => p_0_in(1),
-      PRE => write_complete_i_2_n_0,
-      Q => \^dq_o\(1)
-    );
-\write_data_reg[2]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      CLR => write_complete_i_2_n_0,
-      D => p_0_in(2),
-      Q => \^dq_o\(2)
-    );
-\write_data_reg[3]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      D => p_0_in(3),
-      PRE => write_complete_i_2_n_0,
-      Q => \^dq_o\(3)
-    );
-\write_data_reg[4]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      CLR => write_complete_i_2_n_0,
-      D => p_0_in(4),
-      Q => \^dq_o\(4)
-    );
-\write_data_reg[5]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      D => p_0_in(5),
-      PRE => write_complete_i_2_n_0,
-      Q => \^dq_o\(5)
-    );
-\write_data_reg[6]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      CLR => write_complete_i_2_n_0,
-      D => p_0_in(6),
-      Q => \^dq_o\(6)
-    );
-\write_data_reg[7]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      D => p_0_in(7),
-      PRE => write_complete_i_2_n_0,
-      Q => \^dq_o\(7)
-    );
-\write_data_reg[8]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      CLR => write_complete_i_2_n_0,
-      D => p_0_in(8),
-      Q => \^dq_o\(8)
-    );
-\write_data_reg[9]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => sysclk,
-      CE => addr_cnt,
-      D => p_0_in(9),
-      PRE => write_complete_i_2_n_0,
-      Q => \^dq_o\(9)
+      Q => DQ_o(1)
     );
 end STRUCTURE;
 library IEEE;
@@ -1195,6 +931,7 @@ entity Alg_Test1_Write_All_Adresses_0_0 is
 end Alg_Test1_Write_All_Adresses_0_0;
 
 architecture STRUCTURE of Alg_Test1_Write_All_Adresses_0_0 is
+  signal \^dq_o\ : STD_LOGIC_VECTOR ( 13 downto 12 );
   signal \^dq_t\ : STD_LOGIC_VECTOR ( 0 to 0 );
   attribute x_interface_info : string;
   attribute x_interface_info of reset_n : signal is "xilinx.com:signal:reset:1.0 reset_n RST";
@@ -1203,6 +940,14 @@ architecture STRUCTURE of Alg_Test1_Write_All_Adresses_0_0 is
   attribute x_interface_parameter : string;
   attribute x_interface_parameter of reset_n : signal is "XIL_INTERFACENAME reset_n, POLARITY ACTIVE_LOW, INSERT_VIP 0";
 begin
+  DQ_o(15 downto 14) <= \^dq_o\(13 downto 12);
+  DQ_o(13 downto 12) <= \^dq_o\(13 downto 12);
+  DQ_o(11 downto 10) <= \^dq_o\(13 downto 12);
+  DQ_o(9 downto 8) <= \^dq_o\(13 downto 12);
+  DQ_o(7 downto 6) <= \^dq_o\(13 downto 12);
+  DQ_o(5 downto 4) <= \^dq_o\(13 downto 12);
+  DQ_o(3 downto 2) <= \^dq_o\(13 downto 12);
+  DQ_o(1 downto 0) <= \^dq_o\(13 downto 12);
   DQ_t(15) <= \^dq_t\(0);
   DQ_t(14) <= \^dq_t\(0);
   DQ_t(13) <= \^dq_t\(0);
@@ -1223,7 +968,7 @@ U0: entity work.Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses
      port map (
       A(21 downto 0) => A(21 downto 0),
       CE_n => CE_n,
-      DQ_o(15 downto 0) => DQ_o(15 downto 0),
+      DQ_o(1 downto 0) => \^dq_o\(13 downto 12),
       DQ_t(0) => \^dq_t\(0),
       WE_n => WE_n,
       reset_n => reset_n,

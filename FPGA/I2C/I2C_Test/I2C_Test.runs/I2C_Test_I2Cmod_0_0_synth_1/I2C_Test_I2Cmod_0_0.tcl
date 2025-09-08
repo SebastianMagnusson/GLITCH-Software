@@ -77,7 +77,7 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib C:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.srcs/sources_1/new/I2Cmod.vhd
-read_ip -quiet c:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.srcs/sources_1/bd/I2C_Test/ip/I2C_Test_I2Cmod_0_0/I2C_Test_I2Cmod_0_0.xci
+read_ip -quiet C:/GitHub/GLITCH-Software/FPGA/I2C/I2C_Test/I2C_Test.srcs/sources_1/bd/I2C_Test/ip/I2C_Test_I2Cmod_0_0/I2C_Test_I2Cmod_0_0.xci
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

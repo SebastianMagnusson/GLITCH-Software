@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Thu Sep  4 14:18:40 2025
+// Date        : Mon Sep  8 11:44:09 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim {c:/GitHub/GLITCH-Software/FPGA/SRAM
 //               TESTING/SRAM_Breadbord_Test_2/SRAM_Breadbord_Test_2.gen/sources_1/bd/Alg_Test1/ip/Alg_Test1_Write_All_Adresses_0_0/Alg_Test1_Write_All_Adresses_0_0_sim_netlist.v}
@@ -36,13 +36,21 @@ module Alg_Test1_Write_All_Adresses_0_0
 
   wire [21:0]A;
   wire CE_n;
-  wire [15:0]DQ_o;
+  wire [13:12]\^DQ_o ;
   wire [0:0]\^DQ_t ;
   wire WE_n;
   wire reset_n;
   wire sysclk;
   wire write_complete;
 
+  assign DQ_o[15:14] = \^DQ_o [13:12];
+  assign DQ_o[13:12] = \^DQ_o [13:12];
+  assign DQ_o[11:10] = \^DQ_o [13:12];
+  assign DQ_o[9:8] = \^DQ_o [13:12];
+  assign DQ_o[7:6] = \^DQ_o [13:12];
+  assign DQ_o[5:4] = \^DQ_o [13:12];
+  assign DQ_o[3:2] = \^DQ_o [13:12];
+  assign DQ_o[1:0] = \^DQ_o [13:12];
   assign DQ_t[15] = \^DQ_t [0];
   assign DQ_t[14] = \^DQ_t [0];
   assign DQ_t[13] = \^DQ_t [0];
@@ -62,7 +70,7 @@ module Alg_Test1_Write_All_Adresses_0_0
   Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses U0
        (.A(A),
         .CE_n(CE_n),
-        .DQ_o(DQ_o),
+        .DQ_o(\^DQ_o ),
         .DQ_t(\^DQ_t ),
         .WE_n(WE_n),
         .reset_n(reset_n),
@@ -82,7 +90,7 @@ module Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses
     reset_n);
   output [21:0]A;
   output CE_n;
-  output [15:0]DQ_o;
+  output [1:0]DQ_o;
   output [0:0]DQ_t;
   output write_complete;
   output WE_n;
@@ -91,7 +99,7 @@ module Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses
 
   wire [21:0]A;
   wire CE_n;
-  wire [15:0]DQ_o;
+  wire [1:0]DQ_o;
   wire [0:0]DQ_t;
   wire \FSM_onehot_state[0]_i_1_n_0 ;
   wire \FSM_onehot_state[4]_i_1_n_0 ;
@@ -152,15 +160,16 @@ module Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses
   wire \addr_cnt_reg[8]_i_1_n_5 ;
   wire \addr_cnt_reg[8]_i_1_n_6 ;
   wire \addr_cnt_reg[8]_i_1_n_7 ;
-  wire [15:0]p_0_in;
   wire reset_n;
   wire sysclk;
+  wire toggle;
   wire write_active;
   wire write_active_0;
   wire write_active_i_1_n_0;
   wire write_complete;
   wire write_complete_i_1_n_0;
   wire write_complete_i_2_n_0;
+  wire \write_data[15]_i_1_n_0 ;
   wire [3:1]\NLW_addr_cnt_reg[20]_i_1_CO_UNCONNECTED ;
   wire [3:2]\NLW_addr_cnt_reg[20]_i_1_O_UNCONNECTED ;
 
@@ -664,6 +673,14 @@ module Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses
         .CLR(write_complete_i_2_n_0),
         .D(\addr_cnt_reg[8]_i_1_n_6 ),
         .Q(addr_cnt_reg[9]));
+  FDCE #(
+    .INIT(1'b0)) 
+    toggle_reg
+       (.C(sysclk),
+        .CE(addr_cnt),
+        .CLR(write_complete_i_2_n_0),
+        .D(\write_data[15]_i_1_n_0 ),
+        .Q(toggle));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
     .INIT(8'hBA)) 
@@ -699,212 +716,25 @@ module Alg_Test1_Write_All_Adresses_0_0_Write_All_Adresses
         .Q(write_complete));
   LUT1 #(
     .INIT(2'h1)) 
-    \write_data[0]_i_1 
-       (.I0(DQ_o[0]),
-        .O(p_0_in[0]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[10]_i_1 
-       (.I0(DQ_o[10]),
-        .O(p_0_in[10]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[11]_i_1 
-       (.I0(DQ_o[11]),
-        .O(p_0_in[11]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[12]_i_1 
-       (.I0(DQ_o[12]),
-        .O(p_0_in[12]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[13]_i_1 
-       (.I0(DQ_o[13]),
-        .O(p_0_in[13]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[14]_i_1 
-       (.I0(DQ_o[14]),
-        .O(p_0_in[14]));
-  LUT1 #(
-    .INIT(2'h1)) 
     \write_data[15]_i_1 
-       (.I0(DQ_o[15]),
-        .O(p_0_in[15]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[1]_i_1 
-       (.I0(DQ_o[1]),
-        .O(p_0_in[1]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[2]_i_1 
-       (.I0(DQ_o[2]),
-        .O(p_0_in[2]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[3]_i_1 
-       (.I0(DQ_o[3]),
-        .O(p_0_in[3]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[4]_i_1 
-       (.I0(DQ_o[4]),
-        .O(p_0_in[4]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[5]_i_1 
-       (.I0(DQ_o[5]),
-        .O(p_0_in[5]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[6]_i_1 
-       (.I0(DQ_o[6]),
-        .O(p_0_in[6]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[7]_i_1 
-       (.I0(DQ_o[7]),
-        .O(p_0_in[7]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[8]_i_1 
-       (.I0(DQ_o[8]),
-        .O(p_0_in[8]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \write_data[9]_i_1 
-       (.I0(DQ_o[9]),
-        .O(p_0_in[9]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \write_data_reg[0] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .CLR(write_complete_i_2_n_0),
-        .D(p_0_in[0]),
-        .Q(DQ_o[0]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \write_data_reg[10] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .CLR(write_complete_i_2_n_0),
-        .D(p_0_in[10]),
-        .Q(DQ_o[10]));
-  FDPE #(
-    .INIT(1'b1)) 
-    \write_data_reg[11] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .D(p_0_in[11]),
-        .PRE(write_complete_i_2_n_0),
-        .Q(DQ_o[11]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \write_data_reg[12] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .CLR(write_complete_i_2_n_0),
-        .D(p_0_in[12]),
-        .Q(DQ_o[12]));
-  FDPE #(
-    .INIT(1'b1)) 
-    \write_data_reg[13] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .D(p_0_in[13]),
-        .PRE(write_complete_i_2_n_0),
-        .Q(DQ_o[13]));
+       (.I0(toggle),
+        .O(\write_data[15]_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
     \write_data_reg[14] 
        (.C(sysclk),
         .CE(addr_cnt),
         .CLR(write_complete_i_2_n_0),
-        .D(p_0_in[14]),
-        .Q(DQ_o[14]));
+        .D(toggle),
+        .Q(DQ_o[0]));
   FDPE #(
     .INIT(1'b1)) 
     \write_data_reg[15] 
        (.C(sysclk),
         .CE(addr_cnt),
-        .D(p_0_in[15]),
-        .PRE(write_complete_i_2_n_0),
-        .Q(DQ_o[15]));
-  FDPE #(
-    .INIT(1'b1)) 
-    \write_data_reg[1] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .D(p_0_in[1]),
+        .D(\write_data[15]_i_1_n_0 ),
         .PRE(write_complete_i_2_n_0),
         .Q(DQ_o[1]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \write_data_reg[2] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .CLR(write_complete_i_2_n_0),
-        .D(p_0_in[2]),
-        .Q(DQ_o[2]));
-  FDPE #(
-    .INIT(1'b1)) 
-    \write_data_reg[3] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .D(p_0_in[3]),
-        .PRE(write_complete_i_2_n_0),
-        .Q(DQ_o[3]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \write_data_reg[4] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .CLR(write_complete_i_2_n_0),
-        .D(p_0_in[4]),
-        .Q(DQ_o[4]));
-  FDPE #(
-    .INIT(1'b1)) 
-    \write_data_reg[5] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .D(p_0_in[5]),
-        .PRE(write_complete_i_2_n_0),
-        .Q(DQ_o[5]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \write_data_reg[6] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .CLR(write_complete_i_2_n_0),
-        .D(p_0_in[6]),
-        .Q(DQ_o[6]));
-  FDPE #(
-    .INIT(1'b1)) 
-    \write_data_reg[7] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .D(p_0_in[7]),
-        .PRE(write_complete_i_2_n_0),
-        .Q(DQ_o[7]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \write_data_reg[8] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .CLR(write_complete_i_2_n_0),
-        .D(p_0_in[8]),
-        .Q(DQ_o[8]));
-  FDPE #(
-    .INIT(1'b1)) 
-    \write_data_reg[9] 
-       (.C(sysclk),
-        .CE(addr_cnt),
-        .D(p_0_in[9]),
-        .PRE(write_complete_i_2_n_0),
-        .Q(DQ_o[9]));
 endmodule
 `ifndef GLBL
 `define GLBL

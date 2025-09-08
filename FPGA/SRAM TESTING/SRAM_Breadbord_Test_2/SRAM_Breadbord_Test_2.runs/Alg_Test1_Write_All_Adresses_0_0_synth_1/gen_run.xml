@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="Alg_Test1_Write_All_Adresses_0_0_synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1756988210">
+<GenRun Id="Alg_Test1_Write_All_Adresses_0_0_synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1757324613">
   <File Type="PA-TCL" Name="Alg_Test1_Write_All_Adresses_0_0.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="Alg_Test1_Write_All_Adresses_0_0_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="Alg_Test1_Write_All_Adresses_0_0_reports.tcl"/>
@@ -12,6 +12,7 @@
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Alg_Test1_Write_All_Adresses_0_0" RelGenDir="$PGENDIR/Alg_Test1_Write_All_Adresses_0_0">
     <File Path="$PSRCDIR/sources_1/bd/Alg_Test1/ip/Alg_Test1_Write_All_Adresses_0_0/Alg_Test1_Write_All_Adresses_0_0.xci">
       <FileInfo>
+        <Attr Name="Library" Val="xil_defaultlib"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -25,6 +26,7 @@
   <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Alg_Test1_Write_All_Adresses_0_0" RelGenDir="$PGENDIR/Alg_Test1_Write_All_Adresses_0_0">
     <File Path="$PSRCDIR/sources_1/bd/Alg_Test1/ip/Alg_Test1_Write_All_Adresses_0_0/Alg_Test1_Write_All_Adresses_0_0.xci">
       <FileInfo>
+        <Attr Name="Library" Val="xil_defaultlib"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -37,6 +39,14 @@
   </FileSet>
   <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
     <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/Alg_Test1_wrapper.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>

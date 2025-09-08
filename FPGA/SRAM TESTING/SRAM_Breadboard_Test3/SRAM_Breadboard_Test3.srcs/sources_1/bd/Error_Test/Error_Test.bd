@@ -1,0 +1,474 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x31C2E5CB31C2E5CB",
+      "device": "xc7a35tcpg236-1",
+      "gen_directory": "../../../../SRAM_Breadboard_Test3.gen/sources_1/bd/Error_Test",
+      "name": "Error_Test",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "Read_WithError_0": "",
+      "RW_ROUTER_0": "",
+      "Write_addresses_With_0": "",
+      "Switchmod_0": "",
+      "UART_TXmod_0": ""
+    },
+    "ports": {
+      "sysclk": {
+        "direction": "I"
+      },
+      "led0": {
+        "direction": "O"
+      },
+      "btn0": {
+        "direction": "I"
+      },
+      "led1": {
+        "direction": "O"
+      },
+      "uart_rxd_out": {
+        "direction": "O"
+      },
+      "A": {
+        "direction": "O",
+        "left": "21",
+        "right": "0"
+      },
+      "CE_n": {
+        "direction": "O"
+      },
+      "WE_n": {
+        "direction": "O"
+      },
+      "DQ_o": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
+      },
+      "DQ_t": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
+      },
+      "DQ_i": {
+        "direction": "I",
+        "left": "15",
+        "right": "0"
+      }
+    },
+    "components": {
+      "Read_WithError_0": {
+        "vlnv": "xilinx.com:module_ref:Read_WithError:1.0",
+        "ip_revision": "1",
+        "xci_name": "Error_Test_Read_WithError_0_0",
+        "xci_path": "ip\\Error_Test_Read_WithError_0_0\\Error_Test_Read_WithError_0_0.xci",
+        "inst_hier_path": "Read_WithError_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Read_WithError",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "reset_n": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "read_complete": {
+            "direction": "O"
+          },
+          "write_complete": {
+            "direction": "I"
+          },
+          "i_TX_done": {
+            "direction": "I"
+          },
+          "o_TX_DV": {
+            "direction": "O"
+          },
+          "o_TX_data": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "A": {
+            "direction": "O",
+            "left": "21",
+            "right": "0"
+          },
+          "CE_n": {
+            "direction": "O"
+          },
+          "WE_n": {
+            "direction": "O"
+          },
+          "DQ_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "DQ_t": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "RW_ROUTER_0": {
+        "vlnv": "xilinx.com:module_ref:RW_ROUTER:1.0",
+        "ip_revision": "1",
+        "xci_name": "Error_Test_RW_ROUTER_0_0",
+        "xci_path": "ip\\Error_Test_RW_ROUTER_0_0\\Error_Test_RW_ROUTER_0_0.xci",
+        "inst_hier_path": "RW_ROUTER_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "RW_ROUTER",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "reset_n": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "led1": {
+            "direction": "O"
+          },
+          "A": {
+            "direction": "O",
+            "left": "21",
+            "right": "0"
+          },
+          "CE_n": {
+            "direction": "O"
+          },
+          "WE_n": {
+            "direction": "O"
+          },
+          "DQ_o": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "DQ_t": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "Toggle": {
+            "direction": "I"
+          },
+          "A_write": {
+            "direction": "I",
+            "left": "21",
+            "right": "0"
+          },
+          "CE_n_write": {
+            "direction": "I"
+          },
+          "WE_n_write": {
+            "direction": "I"
+          },
+          "DQ_o_write": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "DQ_t_write": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "A_read": {
+            "direction": "I",
+            "left": "21",
+            "right": "0"
+          },
+          "CE_n_read": {
+            "direction": "I"
+          },
+          "WE_n_read": {
+            "direction": "I"
+          },
+          "DQ_t_read": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "Write_addresses_With_0": {
+        "vlnv": "xilinx.com:module_ref:Write_addresses_WithError:1.0",
+        "ip_revision": "1",
+        "xci_name": "Error_Test_Write_addresses_With_0_0",
+        "xci_path": "ip\\Error_Test_Write_addresses_With_0_0\\Error_Test_Write_addresses_With_0_0.xci",
+        "inst_hier_path": "Write_addresses_With_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Write_addresses_WithError",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "reset_n": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "write_complete": {
+            "direction": "O"
+          },
+          "A": {
+            "direction": "O",
+            "left": "21",
+            "right": "0"
+          },
+          "CE_n": {
+            "direction": "O"
+          },
+          "WE_n": {
+            "direction": "O"
+          },
+          "DQ_o": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "DQ_t": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "Switchmod_0": {
+        "vlnv": "xilinx.com:module_ref:Switchmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "Error_Test_Switchmod_0_0",
+        "xci_path": "ip\\Error_Test_Switchmod_0_0\\Error_Test_Switchmod_0_0.xci",
+        "inst_hier_path": "Switchmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Switchmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_signal": {
+            "direction": "I"
+          },
+          "o_signal": {
+            "direction": "O"
+          },
+          "led0": {
+            "direction": "O"
+          }
+        }
+      },
+      "UART_TXmod_0": {
+        "vlnv": "xilinx.com:module_ref:UART_TXmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "Error_Test_UART_TXmod_0_0",
+        "xci_path": "ip\\Error_Test_UART_TXmod_0_0\\Error_Test_UART_TXmod_0_0.xci",
+        "inst_hier_path": "UART_TXmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_TXmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_TX_DV": {
+            "direction": "I"
+          },
+          "i_TX_Byte": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "o_TX_Active": {
+            "direction": "O"
+          },
+          "o_TX_Serial": {
+            "direction": "O"
+          },
+          "o_TX_Done": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "DQ_i_0_1": {
+        "ports": [
+          "DQ_i",
+          "Read_WithError_0/DQ_i"
+        ]
+      },
+      "RW_ROUTER_0_A": {
+        "ports": [
+          "RW_ROUTER_0/A",
+          "A"
+        ]
+      },
+      "RW_ROUTER_0_CE_n": {
+        "ports": [
+          "RW_ROUTER_0/CE_n",
+          "CE_n"
+        ]
+      },
+      "RW_ROUTER_0_DQ_o": {
+        "ports": [
+          "RW_ROUTER_0/DQ_o",
+          "DQ_o"
+        ]
+      },
+      "RW_ROUTER_0_DQ_t": {
+        "ports": [
+          "RW_ROUTER_0/DQ_t",
+          "DQ_t"
+        ]
+      },
+      "RW_ROUTER_0_WE_n": {
+        "ports": [
+          "RW_ROUTER_0/WE_n",
+          "WE_n"
+        ]
+      },
+      "RW_ROUTER_0_led1": {
+        "ports": [
+          "RW_ROUTER_0/led1",
+          "led1"
+        ]
+      },
+      "Read_WithError_0_A": {
+        "ports": [
+          "Read_WithError_0/A",
+          "RW_ROUTER_0/A_read"
+        ]
+      },
+      "Read_WithError_0_CE_n": {
+        "ports": [
+          "Read_WithError_0/CE_n",
+          "RW_ROUTER_0/CE_n_read"
+        ]
+      },
+      "Read_WithError_0_DQ_t": {
+        "ports": [
+          "Read_WithError_0/DQ_t",
+          "RW_ROUTER_0/DQ_t_read"
+        ]
+      },
+      "Read_WithError_0_WE_n": {
+        "ports": [
+          "Read_WithError_0/WE_n",
+          "RW_ROUTER_0/WE_n_read"
+        ]
+      },
+      "Read_WithError_0_o_TX_DV": {
+        "ports": [
+          "Read_WithError_0/o_TX_DV",
+          "UART_TXmod_0/i_TX_DV"
+        ]
+      },
+      "Read_WithError_0_o_TX_data": {
+        "ports": [
+          "Read_WithError_0/o_TX_data",
+          "UART_TXmod_0/i_TX_Byte"
+        ]
+      },
+      "Switchmod_0_led0": {
+        "ports": [
+          "Switchmod_0/led0",
+          "led0"
+        ]
+      },
+      "Switchmod_0_o_signal": {
+        "ports": [
+          "Switchmod_0/o_signal",
+          "RW_ROUTER_0/reset_n",
+          "Write_addresses_With_0/reset_n",
+          "Read_WithError_0/reset_n"
+        ]
+      },
+      "UART_TXmod_0_o_TX_Done": {
+        "ports": [
+          "UART_TXmod_0/o_TX_Done",
+          "Read_WithError_0/i_TX_done"
+        ]
+      },
+      "UART_TXmod_0_o_TX_Serial": {
+        "ports": [
+          "UART_TXmod_0/o_TX_Serial",
+          "uart_rxd_out"
+        ]
+      },
+      "Write_addresses_With_0_A": {
+        "ports": [
+          "Write_addresses_With_0/A",
+          "RW_ROUTER_0/A_write"
+        ]
+      },
+      "Write_addresses_With_0_CE_n": {
+        "ports": [
+          "Write_addresses_With_0/CE_n",
+          "RW_ROUTER_0/CE_n_write"
+        ]
+      },
+      "Write_addresses_With_0_DQ_o": {
+        "ports": [
+          "Write_addresses_With_0/DQ_o",
+          "RW_ROUTER_0/DQ_o_write"
+        ]
+      },
+      "Write_addresses_With_0_DQ_t": {
+        "ports": [
+          "Write_addresses_With_0/DQ_t",
+          "RW_ROUTER_0/DQ_t_write"
+        ]
+      },
+      "Write_addresses_With_0_WE_n": {
+        "ports": [
+          "Write_addresses_With_0/WE_n",
+          "RW_ROUTER_0/WE_n_write"
+        ]
+      },
+      "Write_addresses_With_0_write_complete": {
+        "ports": [
+          "Write_addresses_With_0/write_complete",
+          "RW_ROUTER_0/Toggle",
+          "Read_WithError_0/write_complete"
+        ]
+      },
+      "i_signal_0_1": {
+        "ports": [
+          "btn0",
+          "Switchmod_0/i_signal"
+        ]
+      },
+      "sysclk_0_1": {
+        "ports": [
+          "sysclk",
+          "RW_ROUTER_0/sysclk",
+          "Switchmod_0/sysclk",
+          "UART_TXmod_0/sysclk",
+          "Write_addresses_With_0/sysclk",
+          "Read_WithError_0/sysclk"
+        ]
+      }
+    }
+  }
+}
