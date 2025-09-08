@@ -8,3 +8,6 @@ alternating between changing 0s and 1s so you can see that it actually works.
 SRAM_Breadboard_Test3 - Press btn0 to start, all addresses are written to. The program will then read every address and return one in the middle of the memory that does not 
 follow the pattern, then it will continue its read and return the last address as well so we know that it actually goes through the entire memory. The address that does not 
 follow the pattern is set when writing at the startup.
+
+SRAM_Breadboard_Test4 - This test is the same as the 3rd one, but when pressing the btn1 after the program is run, the program will run again but this time the faulty value
+will be corrected and its address will be sent to the computer (without the last address as in test 3).
