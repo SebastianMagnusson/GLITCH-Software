@@ -122,7 +122,7 @@ uint8_t* generate_packet(uint8_t packet_type) {
     printf("%s Packet total bits used: %zu (expected: %zu)\n", 
            config->name, bit_pos, config->total_bits);
     //print packet for debugging in bits
-    print_packet_binary(packet, config->total_bytes);
+    //print_packet_binary(packet, config->total_bytes);
     
     return packet;
 }
@@ -200,8 +200,8 @@ int main() {
     for (size_t i = 0; i < NUM_PACKET_TYPES; i++) {
         uint8_t *packet = generate_packet(packet_types[i]);
         if (packet) {
-            print_packet_binary(packet, PACKET_CONFIGS[i].total_bytes);
-            printf("\n");
+            //print_packet_binary(packet, PACKET_CONFIGS[i].total_bytes);
+            //printf("\n");
             free(packet);
         }
     }

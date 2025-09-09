@@ -207,6 +207,8 @@ uint8_t* buffer_retreive_tm() {
     // Take the first frame and remove it from the buffer
     frame_tm* frame = head_tm; 
     head_tm = head_tm->next; 
+
+    uint8_t* data = frame->data;
     ESP_LOGI("Buffer", "TM retrieved from buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c), Byte 1: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
              frame->data[0], 
              (frame->data[0] & 0x80) ? '1' : '0', (frame->data[0] & 0x40) ? '1' : '0', (frame->data[0] & 0x20) ? '1' : '0', (frame->data[0] & 0x10) ? '1' : '0',
@@ -214,7 +216,9 @@ uint8_t* buffer_retreive_tm() {
              frame->data[1],
              (frame->data[1] & 0x80) ? '1' : '0', (frame->data[1] & 0x40) ? '1' : '0', (frame->data[1] & 0x20) ? '1' : '0', (frame->data[1] & 0x10) ? '1' : '0',
              (frame->data[1] & 0x08) ? '1' : '0', (frame->data[1] & 0x04) ? '1' : '0', (frame->data[1] & 0x02) ? '1' : '0', (frame->data[1] & 0x01) ? '1' : '0');
-    return frame->data; 
+
+    free(frame);
+    return data;
 
 }
 
