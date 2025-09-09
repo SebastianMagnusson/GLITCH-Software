@@ -298,10 +298,24 @@ class Dashboard(QMainWindow):
         self.temp_plot.addLegend()
         
         # Create temperature data arrays
-        self.time_data = np.array([]) 
-        self.internal_temp_data = np.array([])
-        self.external_temp_data = np.array([])
-        self.sensor_board_temp_data = np.array([])
+        self.max_data_points = 300  # 5 minutes at 1 sample per second
+        
+        # Use fixed-size arrays for temperature graph
+        self.time_data = np.zeros(self.max_data_points)
+        self.internal_temp_data = np.zeros(self.max_data_points)
+        self.external_temp_data = np.zeros(self.max_data_points)
+        self.sensor_board_temp_data = np.zeros(self.max_data_points)
+        
+        # Use fixed-size arrays for altitude graph
+        self.alt_time_data = np.zeros(self.max_data_points)
+        self.alt_data = np.zeros(self.max_data_points)
+        
+        # Track previous values for missing data points
+        self.last_internal_temp = 0
+        self.last_external_temp = 0
+        self.last_sensor_board_temp = 0
+        self.last_altitude = 0
+
         
         self.internal_line = self.temp_plot.plot(
             self.time_data, self.internal_temp_data, 
@@ -328,8 +342,10 @@ class Dashboard(QMainWindow):
         self.alt_plot.setLabel('bottom', 'Time', units='s')
         self.alt_plot.showGrid(x=True, y=True)
         
-        self.alt_time_data = np.array([])
-        self.alt_data = np.array([])
+        self.alt_line = self.alt_plot.plot(
+            [], [], # Start with empty data
+            pen=pg.mkPen('c', width=2), name='Altitude'
+        )
         
         self.alt_line = self.alt_plot.plot(
             self.alt_time_data, self.alt_data, 
@@ -468,81 +484,62 @@ class Dashboard(QMainWindow):
             self.status_circle.setStyleSheet("color: red; font-size: 14px; font-weight: bold;")
 
     def update_altitude(self, hk_data):
-        self.alt_time_data = np.append(self.alt_time_data, self.time_counter)
+        # Shift arrays left to remove oldest data point
+        self.alt_time_data[:-1] = self.alt_time_data[1:]
+        self.alt_data[:-1] = self.alt_data[1:]
         
+        # Add new data at the end
+        self.alt_time_data[-1] = self.time_counter
+        
+        # Add altitude data with fallback to previous value
         if 'altitude' in hk_data:
-            self.alt_data = np.append(
-                self.alt_data, 
-                float(hk_data['altitude'])
-            )
-        elif len(self.alt_data) > 0:
-            self.alt_data = np.append(
-                self.alt_data, 
-                self.alt_data[-1]
-            )
+            self.last_altitude = float(hk_data['altitude'])
+        self.alt_data[-1] = self.last_altitude
+        
+        # Update plot - only show non-zero values (to avoid initial zeros)
+        non_zero_indices = np.where(self.alt_time_data > 0)[0]
+        if len(non_zero_indices) > 0:
+            start_idx = non_zero_indices[0]
+            self.alt_line.setData(self.alt_time_data[start_idx:], self.alt_data[start_idx:])
         else:
-            self.alt_data = np.append(self.alt_data, 0)
-        
-        # Limit data points
-        if len(self.alt_time_data) > self.max_data_points:
-            self.alt_time_data = self.alt_time_data[-self.max_data_points:]
-            self.alt_data = self.alt_data[-self.max_data_points:]
-        
-        self.alt_line.setData(self.alt_time_data, self.alt_data)
+            # No data yet
+            self.alt_line.setData([], [])
     
     def update_temperature(self, hk_data):
-        self.time_data = np.append(self.time_data, self.time_counter)
+        # Shift arrays left to remove oldest data point
+        self.time_data[:-1] = self.time_data[1:]
+        self.internal_temp_data[:-1] = self.internal_temp_data[1:]
+        self.external_temp_data[:-1] = self.external_temp_data[1:]
+        self.sensor_board_temp_data[:-1] = self.sensor_board_temp_data[1:]
         
+        # Add new data at the end
+        self.time_data[-1] = self.time_counter
+        
+        # Add temperature data with fallback to previous values
         if 'internal' in hk_data:
-            self.internal_temp_data = np.append(
-                self.internal_temp_data, 
-                float(hk_data['internal'])
-            )
-        elif len(self.internal_temp_data) > 0:
-            self.internal_temp_data = np.append(
-                self.internal_temp_data, 
-                self.internal_temp_data[-1]
-            )
-        else:
-            self.internal_temp_data = np.append(self.internal_temp_data, 0)
-            
+            self.last_internal_temp = float(hk_data['internal'])
+        self.internal_temp_data[-1] = self.last_internal_temp
+    
         if 'external' in hk_data:
-            self.external_temp_data = np.append(
-                self.external_temp_data, 
-                float(hk_data['external'])
-            )
-        elif len(self.external_temp_data) > 0:
-            self.external_temp_data = np.append(
-                self.external_temp_data, 
-                self.external_temp_data[-1]
-            )
-        else:
-            self.external_temp_data = np.append(self.external_temp_data, 0)
-            
+            self.last_external_temp = float(hk_data['external'])
+        self.external_temp_data[-1] = self.last_external_temp
+    
         if 'sensor_board' in hk_data:
-            self.sensor_board_temp_data = np.append(
-                self.sensor_board_temp_data, 
-                float(hk_data['sensor_board'])
-            )
-        elif len(self.sensor_board_temp_data) > 0:
-            self.sensor_board_temp_data = np.append(
-                self.sensor_board_temp_data, 
-                self.sensor_board_temp_data[-1]
-            )
+            self.last_sensor_board_temp = float(hk_data['sensor_board'])
+        self.sensor_board_temp_data[-1] = self.last_sensor_board_temp
+    
+        # Update plot data - only show non-zero values (to avoid initial zeros)
+        non_zero_indices = np.where(self.time_data > 0)[0]
+        if len(non_zero_indices) > 0:
+            start_idx = non_zero_indices[0]
+            self.internal_line.setData(self.time_data[start_idx:], self.internal_temp_data[start_idx:])
+            self.external_line.setData(self.time_data[start_idx:], self.external_temp_data[start_idx:])
+            self.sensor_board_line.setData(self.time_data[start_idx:], self.sensor_board_temp_data[start_idx:])
         else:
-            self.sensor_board_temp_data = np.append(self.sensor_board_temp_data, 0)
-        
-        # Limit data points
-        if len(self.time_data) > self.max_data_points:
-            self.time_data = self.time_data[-self.max_data_points:]
-            self.internal_temp_data = self.internal_temp_data[-self.max_data_points:]
-            self.external_temp_data = self.external_temp_data[-self.max_data_points:]
-            self.sensor_board_temp_data = self.sensor_board_temp_data[-self.max_data_points:]
-        
-        # Update plot
-        self.internal_line.setData(self.time_data, self.internal_temp_data)
-        self.external_line.setData(self.time_data, self.external_temp_data)
-        self.sensor_board_line.setData(self.time_data, self.sensor_board_temp_data)
+            # No data yet
+            self.internal_line.setData([], [])
+            self.external_line.setData([], [])
+            self.sensor_board_line.setData([], [])
     
     def callback_update(self, packet):
         """Called when new packet is received"""

@@ -85,15 +85,19 @@ void uart_task(void *pvParameters)
         
         if (packet == NULL) {
             ESP_LOGE(TAG, "Failed to generate packet");
+            test++;  // Important to increment even on failure
+            vTaskDelay(pdMS_TO_TICKS(1000));
             continue; 
         }
         
-
         ESP_LOGI(TAG, "Generated packet - First byte: 0x%02X, Bits 0-1: %d", 
                  packet[0], packet[0] & 0b00000011);
         
         int priority = priority_assign(packet);
         buffer_add_tm(priority, packet);
+        
+        // Free the original packet after it's been copied into the buffer
+        free(packet);
 
         test++;
         vTaskDelay(pdMS_TO_TICKS(1000));
