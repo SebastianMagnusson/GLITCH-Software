@@ -34,3 +34,14 @@ endif()
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(ethernet_test)
+
+# In your project's CMakeLists.txt, add:
+set(EXTRA_COMPONENT_DIRS 
+    "components/buffer"
+    "components/priority"
+    "components/format"
+    "components/ethernet"
+    "components/uart"
+    "components/packet_generation"
+    "components/storage"
+)

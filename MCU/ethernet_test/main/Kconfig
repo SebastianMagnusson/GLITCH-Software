@@ -230,3 +230,41 @@ menu "ethernet config"
 
     
 endmenu
+
+menu "Storage Configuration"
+    config SD_CS_PIN
+        int "SD Card CS GPIO pin number"
+        default 15
+        help
+            GPIO pin number used for SD card chip select (CS).
+            
+    config SD_MOSI_PIN
+        int "SD Card MOSI GPIO pin number"
+        default 13
+        help
+            GPIO pin number used for SD card MOSI (Master Out Slave In).
+            
+    config SD_MISO_PIN
+        int "SD Card MISO GPIO pin number"
+        default 12
+        help
+            GPIO pin number used for SD card MISO (Master In Slave Out).
+            
+    config SD_SCK_PIN
+        int "SD Card SCK GPIO pin number"
+        default 14
+        help
+            GPIO pin number used for SD card SCK (Serial Clock).
+            
+    config SD_CARD_DETECT_PIN
+        int "SD Card detect GPIO pin number (optional)"
+        default -1
+        help
+            GPIO pin number used for SD card detect signal. Set to -1 if not used.
+            
+    config ENABLE_SD_STORAGE
+        bool "Enable packet storage on SD card"
+        default y
+        help
+            Enable storing packets to SD card for backup.
+endmenu
