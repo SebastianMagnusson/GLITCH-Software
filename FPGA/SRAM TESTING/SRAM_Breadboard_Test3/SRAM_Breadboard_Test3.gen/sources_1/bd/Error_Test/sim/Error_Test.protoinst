@@ -1,9 +1,0 @@
-{
-	"version": "1.0",
-	"modules": {
-		"Error_Test": {
-			"proto_instances": {
-			}
-		}
-	}
-}

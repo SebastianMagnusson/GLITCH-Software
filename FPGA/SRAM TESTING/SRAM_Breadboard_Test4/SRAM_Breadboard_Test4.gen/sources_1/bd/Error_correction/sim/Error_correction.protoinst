@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"Error_correction": {
+			"proto_instances": {
+			}
+		}
+	}
+}

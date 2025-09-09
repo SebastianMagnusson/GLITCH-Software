@@ -123,11 +123,12 @@ begin
           end if;
 
         when SEND_DATA =>
+        
           if(mess_cnt = 0) then
-            o_TX_DV   <= '1';                  
-            o_TX_data <= data_buf(15 downto 8);
-                             
-            mess_cnt := mess_cnt + 1;    
+             o_TX_DV   <= '1';                  
+             o_TX_data <= data_buf(15 downto 8);
+                              
+             mess_cnt := mess_cnt + 1; 
           else
             if(i_TX_Done = '1') then
               o_TX_DV   <= '1';                  
