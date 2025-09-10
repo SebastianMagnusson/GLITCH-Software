@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"loop_test": {
+			"proto_instances": {
+			}
+		}
+	}
+}
