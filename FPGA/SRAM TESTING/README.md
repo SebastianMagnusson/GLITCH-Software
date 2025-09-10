@@ -26,3 +26,12 @@
     2. Value of the faulty address
     3. Value of the fixed address
 
+---
+
+### `SRAM_Breadboard_Test5`
+- **Process:** This test builds on the 4th but adds the following feature. When the error is detected, the program loops the address 10 times to see if it oscillates (this only checks but it is easy to implement a counter). This means that you get the same data 10 times to the computer. 
+- **Output:** The words sent to the computer are:
+    1. Address of faulty address    X10
+    2. Value of the faulty address  X10
+    3. Value of the fixed address   (Only one time in the end)
+
