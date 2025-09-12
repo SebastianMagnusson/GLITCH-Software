@@ -8,6 +8,8 @@
 #include "format.h"
 #include "sdkconfig.h"
 #include "packet_generation.h"
+#include "storage.h"
+
 
 // Define UART_NUM as the properly cast uart_port_t type
 #define UART_NUM (uart_port_t)CONFIG_UART_NUM
@@ -87,14 +89,24 @@ void uart_task(void *pvParameters)
             ESP_LOGE(TAG, "Failed to generate packet");
             test++;  // Important to increment even on failure
             vTaskDelay(pdMS_TO_TICKS(1000));
+            test++;  // Important to increment even on failure
+            vTaskDelay(pdMS_TO_TICKS(1000));
             continue; 
         }
+        
         
         ESP_LOGI(TAG, "Generated packet - First byte: 0x%02X, Bits 0-1: %d", 
                  packet[0], packet[0] & 0b00000011);
         
         int priority = priority_assign(packet);
         buffer_add_tm(priority, packet);
+        
+        // Save packet to SD card if storage is enabled
+        #ifdef CONFIG_ENABLE_SD_STORAGE
+        uint8_t packet_type = (packet[0] >> 6) & 0x03;  // Extract packet type from first byte
+        storage_save_packet(packet, check_length(packet), packet_type);
+        ESP_LOGI(TAG, "Saving packet type %d, length=%d", packet_type, check_length(packet));
+        #endif
         
         // Free the original packet after it's been copied into the buffer
         free(packet);
@@ -160,13 +172,25 @@ void uart_init(void) {
         ESP_LOGE(TAG, "Failed to install UART driver");
     }
 
+    // Initialize storage if enabled
+    #ifdef CONFIG_ENABLE_SD_STORAGE
+    if (storage_init() != ESP_OK) {
+        ESP_LOGW(TAG, "Failed to initialize SD card storage, continuing without it");
+    } else {
+        ESP_LOGI(TAG, "SD card storage initialized successfully");
+    }
+    #endif
+    
     // Increase stack size from 2048 to 4096 to handle radiation packets
     xTaskCreate(&uart_task, "uart_task", 4096, NULL, 10, NULL);
-
 }
 
 void uart_deinit(void) {
     uart_driver_delete(UART_NUM);
+
+    #ifdef CONFIG_ENABLE_SD_STORAGE
+    storage_deinit();
+    #endif
 }
 
 
