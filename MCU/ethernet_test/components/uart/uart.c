@@ -102,6 +102,7 @@ void uart_task(void *pvParameters)
         #ifdef CONFIG_ENABLE_SD_STORAGE
         uint8_t packet_type = (packet[0] >> 6) & 0x03;  // Extract packet type from first byte
         storage_save_packet(packet, check_length(packet), packet_type);
+        ESP_LOGI(TAG, "Saving packet type %d, length=%d", packet_type, check_length(packet));
         #endif
         
         // Free the original packet after it's been copied into the buffer
@@ -167,9 +168,6 @@ void uart_init(void) {
     } else {
         ESP_LOGE(TAG, "Failed to install UART driver");
     }
-
-    // Increase stack size from 2048 to 4096 to handle radiation packets
-    xTaskCreate(&uart_task, "uart_task", 4096, NULL, 10, NULL);
 
     // Initialize storage if enabled
     #ifdef CONFIG_ENABLE_SD_STORAGE

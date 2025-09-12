@@ -246,7 +246,7 @@ menu "Storage Configuration"
             
     config SD_MISO_PIN
         int "SD Card MISO GPIO pin number"
-        default 12
+        default 4
         help
             GPIO pin number used for SD card MISO (Master In Slave Out).
             

@@ -83,61 +83,45 @@ static void got_ip_event_handler(void *arg, esp_event_base_t event_base,
 }
 
 static esp_eth_handle_t eth_init(esp_eth_mac_t **mac_out, esp_eth_phy_t **phy_out){
+
     esp_eth_handle_t ret = NULL;
 
-    // Init common MAC and PHY configs to default
-    eth_mac_config_t mac_config = ETH_MAC_DEFAULT_CONFIG();
-    eth_phy_config_t phy_config = ETH_PHY_DEFAULT_CONFIG();
+    eth_mac_config_t mac_config = ETH_MAC_DEFAULT_CONFIG();                      // apply default common MAC configuration
+    eth_esp32_emac_config_t esp32_emac_config = ETH_ESP32_EMAC_DEFAULT_CONFIG(); // apply default vendor-specific MAC configuration
+    esp32_emac_config.smi_gpio.mdc_num = CONFIG_ETH_MDC_GPIO;                    // alter the GPIO used for MDC signal
+    esp32_emac_config.smi_gpio.mdio_num = CONFIG_ETH_MDIO_GPIO;                  // alter the GPIO used for MDIO signal
+    esp_eth_mac_t *mac = esp_eth_mac_new_esp32(&esp32_emac_config, &mac_config); // create MAC instance
 
-    // Update PHY config based on board specific configuration
-    phy_config.phy_addr = spi_eth_module_config->phy_addr;
-    phy_config.reset_gpio_num = spi_eth_module_config->phy_reset_gpio;
+    eth_phy_config_t phy_config = ETH_PHY_DEFAULT_CONFIG();      // apply default PHY configuration
+    phy_config.phy_addr = CONFIG_ETH_PHY_ADDR;                   // alter the PHY address according to your board design
+    phy_config.reset_gpio_num = CONFIG_ETH_PHY_RST_GPIO;         // alter the GPIO used for PHY reset
+    esp_eth_phy_t *phy = esp_eth_phy_new_ip101(&phy_config);     // create generic PHY instance
 
-    // Configure SPI interface for specific SPI module
-    spi_device_interface_config_t spi_devcfg = {
-        .mode = 0,
-        .clock_speed_hz = CONFIG_ETH_SPI_CLOCK_MHZ * 1000 * 1000,
-        .queue_size = 20,
-        .spics_io_num = spi_eth_module_config->spi_cs_gpio
-    };
-    // Init vendor specific MAC config to default, and create new SPI Ethernet MAC instance
-    // and new PHY instance based on board configuration
+    esp_eth_config_t config = ETH_DEFAULT_CONFIG(mac, phy);     // apply default driver configuration
+    esp_eth_handle_t eth_handle = NULL;                         // after the driver is installed, we will get the handle of the driver
 
-    eth_w5500_config_t w5500_config = ETH_W5500_DEFAULT_CONFIG(CONFIG_ETH_SPI_HOST, &spi_devcfg);
-    w5500_config.int_gpio_num = spi_eth_module_config->int_gpio;
-    w5500_config.poll_period_ms = spi_eth_module_config->polling_ms;
-    esp_eth_mac_t *mac = esp_eth_mac_new_w5500(&w5500_config, &mac_config);
-    esp_eth_phy_t *phy = esp_eth_phy_new_w5500(&phy_config);
-
-    // Init Ethernet driver to default and install it
-    esp_eth_handle_t eth_handle = NULL;
-    esp_eth_config_t eth_config_spi = ETH_DEFAULT_CONFIG(mac, phy);
-    ESP_GOTO_ON_FALSE(esp_eth_driver_install(&eth_config_spi, &eth_handle) == ESP_OK, NULL, err, TAG, "SPI Ethernet driver install failed");
-
-    // The SPI Ethernet module might not have a burned factory MAC address, we can set it manually.
-    //if (spi_eth_module_config->mac_addr != NULL) {
-    //    ESP_GOTO_ON_FALSE(esp_eth_ioctl(eth_handle, ETH_CMD_S_MAC_ADDR, spi_eth_module_config->mac_addr) == ESP_OK,
-    //                                    NULL, err, TAG, "SPI Ethernet MAC address config failed");
-    //}
+    ESP_GOTO_ON_FALSE(esp_eth_driver_install(&config, &eth_handle) == ESP_OK, NULL, err, TAG, "Ethernet driver install failed"); // install the driver with the given configuration
 
     if (mac_out != NULL) {
-        *mac_out = mac;
+        *mac_out = mac; // return the MAC instance if requested
     }
     if (phy_out != NULL) {
-        *phy_out = phy;
+        *phy_out = phy; // return the PHY instance if requested
     }
-    return eth_handle;
+    return eth_handle; // return the handle of the installed driver
+
 err:
     if (eth_handle != NULL) {
-        esp_eth_driver_uninstall(eth_handle);
+        esp_eth_driver_uninstall(eth_handle); // uninstall the driver if it was installed
     }
     if (mac != NULL) {
-        mac->del(mac);
+        mac->del(mac); // delete the MAC instance if it was created
     }
     if (phy != NULL) {
-        phy->del(phy);
+        phy->del(phy); // delete the PHY instance if it was created
     }
-    return ret;
+    return ret; 
+
 }
 
 esp_err_t eth_deinit(esp_eth_handle_t *eth_handles, uint8_t eth_cnt)
@@ -803,7 +787,16 @@ void tcp_server_task(void *pvParameters)
     volatile int *server_kill_flag = params->kill_flag;
     volatile int *reset_flag = params->reset_flag;
 
-    esp_task_wdt_add(NULL);
+    // Configure watchdog with longer timeout
+    esp_task_wdt_config_t wdt_config = {
+        .timeout_ms = 10000,           // 10 seconds timeout
+        .idle_core_mask = (1 << 0),    // Watch core 0
+        .trigger_panic = false         // Don't panic on timeout
+    };
+    ESP_ERROR_CHECK(esp_task_wdt_reconfigure(&wdt_config));
+    ESP_ERROR_CHECK(esp_task_wdt_add(NULL));
+    
+    ESP_LOGI(TAG, "TCP server task started");
 
     // Create and configure server socket
     int listen_sock = create_tcp_server_socket();
@@ -825,54 +818,127 @@ void tcp_server_task(void *pvParameters)
     }
 
     char addr_str[128];
+    int connected_sock = -1;
     
     // Main server loop
     while (1) {
+        // Reset watchdog at the beginning of each loop
+        esp_task_wdt_reset();
+        
         // Check server kill flag
         if (*server_kill_flag) {
             ESP_LOGI(TAG, "Server kill flag set, exiting");
             break;
         }
-
-        ESP_LOGI(TAG, "Socket listening");
-
-        // Accept incoming connections (non-blocking)
-        struct sockaddr_storage source_addr;
-        socklen_t addr_len = sizeof(source_addr);
-        int connected_sock = accept(listen_sock, (struct sockaddr *)&source_addr, &addr_len);
-
-        if (connected_sock < 0) {
-            if (errno == EAGAIN || errno == EWOULDBLOCK) {
-                // No pending connections, yield control and try again
-                esp_task_wdt_reset();
-                vTaskDelay(pdMS_TO_TICKS(2000));
-                continue;
-            } else {
-                ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
-                break;
-            }
-        }
-
-        // Convert client IP address to string for logging
-        if (source_addr.ss_family == PF_INET) {
-            inet_ntoa_r(((struct sockaddr_in *)&source_addr)->sin_addr, addr_str, sizeof(addr_str) - 1);
-            ESP_LOGI(TAG, "Socket accepted from IP address: %s", addr_str);
-        }
-
-        // Handle the client connection
-        handle_client_connection(connected_sock, eth_handle, server_kill_flag);
-
-        // Close client socket after handling
-        shutdown(connected_sock, 0);
-        close(connected_sock);
-        ESP_LOGI(TAG, "Client connection closed");
         
+        // Process any pending telemetry even when not connected
+        uint8_t *tm_data = buffer_retreive_tm();
+        if (tm_data != NULL) {
+            if (connected_sock >= 0) {
+                if (eth_transmit(connected_sock, tm_data, 2) != ESP_OK) {
+                    ESP_LOGE(TAG, "Failed to send telemetry, closing connection");
+                    shutdown(connected_sock, 0);
+                    close(connected_sock);
+                    connected_sock = -1;
+                }
+            }
+            free(tm_data);  // Always free the data
+        }
+
+        // If not connected, try to accept a new connection
+        if (connected_sock < 0) {
+            ESP_LOGI(TAG, "Socket listening");
+            
+            // Accept incoming connections (non-blocking)
+            struct sockaddr_storage source_addr;
+            socklen_t addr_len = sizeof(source_addr);
+            connected_sock = accept(listen_sock, (struct sockaddr *)&source_addr, &addr_len);
+
+            if (connected_sock < 0) {
+                if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                    // No pending connections, yield control and try again
+                    vTaskDelay(pdMS_TO_TICKS(1000));
+                    continue;
+                } else {
+                    ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
+                    break;
+                }
+            }
+
+            // Connected - log the client address
+            if (source_addr.ss_family == PF_INET) {
+                inet_ntoa_r(((struct sockaddr_in *)&source_addr)->sin_addr, addr_str, sizeof(addr_str) - 1);
+                ESP_LOGI(TAG, "Socket accepted from IP address: %s", addr_str);
+            }
+            
+            // Configure the socket
+            configure_socket_keepalive(connected_sock);
+        }
+        
+        // Process data if connected
+        if (connected_sock >= 0) {
+            // Check for incoming telecommands
+            uint8_t rx_buffer[128];
+            
+            // Non-blocking receive with select() timeout
+            fd_set read_set;
+            struct timeval timeout;
+            timeout.tv_sec = 0;
+            timeout.tv_usec = 100000;  // 100ms timeout
+            
+            FD_ZERO(&read_set);
+            FD_SET(connected_sock, &read_set);
+            
+            if (select(connected_sock + 1, &read_set, NULL, NULL, &timeout) > 0) {
+                // Data available - read it
+                int len = recv(connected_sock, rx_buffer, sizeof(rx_buffer) - 1, 0);
+                
+                if (len < 0) {
+                    ESP_LOGE(TAG, "Receive error: errno %d", errno);
+                    shutdown(connected_sock, 0);
+                    close(connected_sock);
+                    connected_sock = -1;
+                } else if (len == 0) {
+                    ESP_LOGW(TAG, "Connection closed by peer");
+                    shutdown(connected_sock, 0);
+                    close(connected_sock);
+                    connected_sock = -1;
+                } else {
+                    // Process the received telecommand
+                    ESP_LOGI(TAG, "Received %d bytes. Raw data:", len);
+                    for (int i = 0; i < len && i < 16; i++) {
+                        ESP_LOGI(TAG, "  byte[%d]: 0x%02X", i, rx_buffer[i]);
+                    }
+                    
+                    // Create task params for any spawned tasks
+                    general_task_params_t task_params = {
+                        .sock = connected_sock,
+                        .kill_flag = server_kill_flag
+                    };
+                    
+                    TaskHandle_t confirmation_task_handle = NULL;
+                    if (process_received_telecommand(rx_buffer, connected_sock, &task_params, &confirmation_task_handle) != ESP_OK) {
+                        ESP_LOGW(TAG, "Failed to process telecommand");
+                    }
+                }
+            }
+            
+            // Small delay to prevent busy waiting
+            vTaskDelay(pdMS_TO_TICKS(50));
+        }
+        
+        // Reset watchdog before the next iteration
+        esp_task_wdt_reset();
     }
 
-    // Cleanup
+    // Clean up any open sockets before exit
+    if (connected_sock >= 0) {
+        shutdown(connected_sock, 0);
+        close(connected_sock);
+    }
+    
     close(listen_sock);
     *reset_flag = 1;
     ESP_LOGI(TAG, "TCP server task exiting");
     vTaskDelete(NULL);
 }
-
