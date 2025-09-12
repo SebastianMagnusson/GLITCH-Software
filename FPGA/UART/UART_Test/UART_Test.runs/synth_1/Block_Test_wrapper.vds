@@ -3,30 +3,30 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Tue Apr  1 11:39:41 2025
-# Process ID         : 34592
-# Current directory  : C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1
+# Start of session at: Mon Aug 11 19:16:48 2025
+# Process ID         : 9332
+# Current directory  : C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1
 # Command line       : vivado.exe -log Block_Test_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Block_Test_wrapper.tcl
-# Log file           : C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/Block_Test_wrapper.vds
-# Journal file       : C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1\vivado.jou
-# Running On         : LAPTOP-1SQM85NC
+# Log file           : C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/Block_Test_wrapper.vds
+# Journal file       : C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1\vivado.jou
+# Running On         : LAPTOP-FQ2KK7JS
 # Platform           : Windows Server 2016 or Windows 10
-# Operating System   : 26100
-# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-# CPU Frequency      : 2419 MHz
-# CPU Physical cores : 4
-# CPU Logical cores  : 8
-# Host memory        : 16861 MB
-# Swap memory        : 24526 MB
-# Total Virtual      : 41387 MB
-# Available Virtual  : 8424 MB
+# Operating System   : 19045
+# Processor Detail   : Intel(R) Core(TM) i3-5005U CPU @ 2.00GHz
+# CPU Frequency      : 1995 MHz
+# CPU Physical cores : 2
+# CPU Logical cores  : 4
+# Host memory        : 8499 MB
+# Swap memory        : 5816 MB
+# Total Virtual      : 14316 MB
+# Available Virtual  : 8260 MB
 #-----------------------------------------------------------
 source Block_Test_wrapper.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
-Command: read_checkpoint -auto_incremental -incremental {C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/utils_1/imports/synth_1/UART_RXmod.dcp}
-INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/utils_1/imports/synth_1/UART_RXmod.dcp for incremental synthesis
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2024.2/data/ip'.
+Command: read_checkpoint -auto_incremental -incremental C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/utils_1/imports/synth_1/UART_RXmod.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/utils_1/imports/synth_1/UART_RXmod.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top Block_Test_wrapper -part xc7a35tcpg236-1
 Starting synth_design
@@ -37,66 +37,66 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 39560
+INFO: [Synth 8-7075] Helper process launched with PID 15112
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1125.734 ; gain = 468.367
+Starting RTL Elaboration : Time (s): cpu = 00:00:21 ; elapsed = 00:00:27 . Memory (MB): peak = 1003.547 ; gain = 468.418
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'Block_Test_wrapper' [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/hdl/Block_Test_wrapper.vhd:25]
-INFO: [Synth 8-3491] module 'Block_Test' declared at 'c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/synth/Block_Test.vhd:15' bound to instance 'Block_Test_i' of component 'Block_Test' [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/hdl/Block_Test_wrapper.vhd:36]
-INFO: [Synth 8-638] synthesizing module 'Block_Test' [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/synth/Block_Test.vhd:29]
-INFO: [Synth 8-3491] module 'Block_Test_UART_RXmod_0_0' declared at 'C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/.Xil/Vivado-34592-LAPTOP-1SQM85NC/realtime/Block_Test_UART_RXmod_0_0_stub.vhdl:6' bound to instance 'UART_RXmod_0' of component 'Block_Test_UART_RXmod_0_0' [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/synth/Block_Test.vhd:51]
-INFO: [Synth 8-638] synthesizing module 'Block_Test_UART_RXmod_0_0' [C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/.Xil/Vivado-34592-LAPTOP-1SQM85NC/realtime/Block_Test_UART_RXmod_0_0_stub.vhdl:24]
-INFO: [Synth 8-3491] module 'Block_Test_UART_TXmod_0_0' declared at 'C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/.Xil/Vivado-34592-LAPTOP-1SQM85NC/realtime/Block_Test_UART_TXmod_0_0_stub.vhdl:6' bound to instance 'UART_TXmod_0' of component 'Block_Test_UART_TXmod_0_0' [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/synth/Block_Test.vhd:58]
-INFO: [Synth 8-638] synthesizing module 'Block_Test_UART_TXmod_0_0' [C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/.Xil/Vivado-34592-LAPTOP-1SQM85NC/realtime/Block_Test_UART_TXmod_0_0_stub.vhdl:26]
-INFO: [Synth 8-256] done synthesizing module 'Block_Test' (0#1) [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/synth/Block_Test.vhd:29]
-INFO: [Synth 8-256] done synthesizing module 'Block_Test_wrapper' (0#1) [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/hdl/Block_Test_wrapper.vhd:25]
+INFO: [Synth 8-638] synthesizing module 'Block_Test_wrapper' [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/hdl/Block_Test_wrapper.vhd:25]
+INFO: [Synth 8-3491] module 'Block_Test' declared at 'c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/synth/Block_Test.vhd:15' bound to instance 'Block_Test_i' of component 'Block_Test' [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/hdl/Block_Test_wrapper.vhd:36]
+INFO: [Synth 8-638] synthesizing module 'Block_Test' [c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/synth/Block_Test.vhd:29]
+INFO: [Synth 8-3491] module 'Block_Test_UART_RXmod_0_0' declared at 'C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/.Xil/Vivado-9332-LAPTOP-FQ2KK7JS/realtime/Block_Test_UART_RXmod_0_0_stub.vhdl:6' bound to instance 'UART_RXmod_0' of component 'Block_Test_UART_RXmod_0_0' [c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/synth/Block_Test.vhd:51]
+INFO: [Synth 8-638] synthesizing module 'Block_Test_UART_RXmod_0_0' [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/.Xil/Vivado-9332-LAPTOP-FQ2KK7JS/realtime/Block_Test_UART_RXmod_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'Block_Test_UART_TXmod_0_0' declared at 'C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/.Xil/Vivado-9332-LAPTOP-FQ2KK7JS/realtime/Block_Test_UART_TXmod_0_0_stub.vhdl:6' bound to instance 'UART_TXmod_0' of component 'Block_Test_UART_TXmod_0_0' [c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/synth/Block_Test.vhd:58]
+INFO: [Synth 8-638] synthesizing module 'Block_Test_UART_TXmod_0_0' [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/.Xil/Vivado-9332-LAPTOP-FQ2KK7JS/realtime/Block_Test_UART_TXmod_0_0_stub.vhdl:26]
+INFO: [Synth 8-256] done synthesizing module 'Block_Test' (0#1) [c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/synth/Block_Test.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'Block_Test_wrapper' (0#1) [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/hdl/Block_Test_wrapper.vhd:25]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1231.020 ; gain = 573.652
+Finished RTL Elaboration : Time (s): cpu = 00:00:28 ; elapsed = 00:00:34 . Memory (MB): peak = 1108.141 ; gain = 573.012
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1231.020 ; gain = 573.652
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:34 . Memory (MB): peak = 1108.141 ; gain = 573.012
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1231.020 ; gain = 573.652
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:34 . Memory (MB): peak = 1108.141 ; gain = 573.012
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1231.020 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1108.141 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/ip/Block_Test_UART_RXmod_0_0/Block_Test_UART_RXmod_0_0/Block_Test_UART_RXmod_0_0_in_context.xdc] for cell 'Block_Test_i/UART_RXmod_0'
-Finished Parsing XDC File [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/ip/Block_Test_UART_RXmod_0_0/Block_Test_UART_RXmod_0_0/Block_Test_UART_RXmod_0_0_in_context.xdc] for cell 'Block_Test_i/UART_RXmod_0'
-Parsing XDC File [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/ip/Block_Test_UART_TXmod_0_0/Block_Test_UART_TXmod_0_0/Block_Test_UART_TXmod_0_0_in_context.xdc] for cell 'Block_Test_i/UART_TXmod_0'
-Finished Parsing XDC File [c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/ip/Block_Test_UART_TXmod_0_0/Block_Test_UART_TXmod_0_0/Block_Test_UART_TXmod_0_0_in_context.xdc] for cell 'Block_Test_i/UART_TXmod_0'
-Parsing XDC File [C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc]
-WARNING: [Vivado 12-584] No ports matched 'btn0'. [C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc:20]
-Finished Parsing XDC File [C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc]
-WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/Block_Test_wrapper_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Block_Test_wrapper_propImpl.xdc].
+Parsing XDC File [c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/ip/Block_Test_UART_RXmod_0_0/Block_Test_UART_RXmod_0_0/Block_Test_UART_RXmod_0_0_in_context.xdc] for cell 'Block_Test_i/UART_RXmod_0'
+Finished Parsing XDC File [c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/ip/Block_Test_UART_RXmod_0_0/Block_Test_UART_RXmod_0_0/Block_Test_UART_RXmod_0_0_in_context.xdc] for cell 'Block_Test_i/UART_RXmod_0'
+Parsing XDC File [c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/ip/Block_Test_UART_TXmod_0_0/Block_Test_UART_TXmod_0_0/Block_Test_UART_TXmod_0_0_in_context.xdc] for cell 'Block_Test_i/UART_TXmod_0'
+Finished Parsing XDC File [c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/ip/Block_Test_UART_TXmod_0_0/Block_Test_UART_TXmod_0_0/Block_Test_UART_TXmod_0_0_in_context.xdc] for cell 'Block_Test_i/UART_TXmod_0'
+Parsing XDC File [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc]
+WARNING: [Vivado 12-584] No ports matched 'btn0'. [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc:20]
+Finished Parsing XDC File [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/Block_Test_wrapper_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Block_Test_wrapper_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/Block_Test_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/dont_touch.xdc]
-Finished Parsing XDC File [C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/dont_touch.xdc]
+Parsing XDC File [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1231.805 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1112.422 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1231.805 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 1112.422 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1231.805 ; gain = 574.438
+Finished Constraint Validation : Time (s): cpu = 00:00:58 ; elapsed = 00:01:10 . Memory (MB): peak = 1112.422 ; gain = 577.293
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1231.805 ; gain = 574.438
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:58 ; elapsed = 00:01:10 . Memory (MB): peak = 1112.422 ; gain = 577.293
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -105,10 +105,10 @@ Applied set_property KEEP_HIERARCHY = SOFT for Block_Test_i. (constraint file  a
 Applied set_property KEEP_HIERARCHY = SOFT for Block_Test_i/UART_RXmod_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for Block_Test_i/UART_TXmod_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1231.805 ; gain = 574.438
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:58 ; elapsed = 00:01:10 . Memory (MB): peak = 1112.422 ; gain = 577.293
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1231.805 ; gain = 574.438
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:58 ; elapsed = 00:01:10 . Memory (MB): peak = 1112.422 ; gain = 577.293
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -131,25 +131,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1240.078 ; gain = 582.711
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:07 ; elapsed = 00:01:20 . Memory (MB): peak = 1114.660 ; gain = 579.531
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1402.805 ; gain = 745.438
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:31 ; elapsed = 00:01:46 . Memory (MB): peak = 1286.078 ; gain = 750.949
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1402.934 ; gain = 745.566
+Finished Timing Optimization : Time (s): cpu = 00:01:31 ; elapsed = 00:01:46 . Memory (MB): peak = 1286.078 ; gain = 750.949
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1412.582 ; gain = 755.215
+Finished Technology Mapping : Time (s): cpu = 00:01:31 ; elapsed = 00:01:46 . Memory (MB): peak = 1295.652 ; gain = 760.523
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -167,37 +167,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1628.641 ; gain = 971.273
+Finished IO Insertion : Time (s): cpu = 00:01:46 ; elapsed = 00:02:04 . Memory (MB): peak = 1511.797 ; gain = 976.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1628.641 ; gain = 971.273
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:46 ; elapsed = 00:02:04 . Memory (MB): peak = 1511.797 ; gain = 976.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1628.641 ; gain = 971.273
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:46 ; elapsed = 00:02:04 . Memory (MB): peak = 1511.797 ; gain = 976.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1628.641 ; gain = 971.273
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:46 ; elapsed = 00:02:04 . Memory (MB): peak = 1511.797 ; gain = 976.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1628.641 ; gain = 971.273
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:46 ; elapsed = 00:02:04 . Memory (MB): peak = 1511.797 ; gain = 976.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1628.641 ; gain = 971.273
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:46 ; elapsed = 00:02:04 . Memory (MB): peak = 1511.797 ; gain = 976.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -221,16 +221,16 @@ Report Cell Usage:
 |4     |OBUF                           |     3|
 +------+-------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1628.641 ; gain = 971.273
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:46 ; elapsed = 00:02:04 . Memory (MB): peak = 1511.797 ; gain = 976.668
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:23 . Memory (MB): peak = 1628.641 ; gain = 970.488
-Synthesis Optimization Complete : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1628.641 ; gain = 971.273
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:13 ; elapsed = 00:01:56 . Memory (MB): peak = 1511.797 ; gain = 972.387
+Synthesis Optimization Complete : Time (s): cpu = 00:01:47 ; elapsed = 00:02:04 . Memory (MB): peak = 1511.797 ; gain = 976.668
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1628.641 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1521.016 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1628.641 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1524.652 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -238,8 +238,8 @@ Synth Design complete | Checksum: 9b2850a5
 INFO: [Common 17-83] Releasing license: Synthesis
 31 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:32 . Memory (MB): peak = 1628.641 ; gain = 1162.445
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1628.641 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/Block_Test_wrapper.dcp' has been generated.
+synth_design: Time (s): cpu = 00:02:00 ; elapsed = 00:03:23 . Memory (MB): peak = 1524.652 ; gain = 1180.883
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1524.652 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/Block_Test_wrapper.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file Block_Test_wrapper_utilization_synth.rpt -pb Block_Test_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Apr  1 11:40:22 2025...
+INFO: [Common 17-206] Exiting Vivado at Mon Aug 11 19:20:34 2025...

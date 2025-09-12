@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/Block_Test_wrapper.tcl"
+  variable script "C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.runs/synth_1/Block_Test_wrapper.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,10 +56,6 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 2
-set_param iopl.placeGlobalClockInstsInIOPlacer 0
-set_param iopl.placeRegionalClockInstsInIOPlacer 0
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -67,17 +63,17 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir {C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.cache/wt} [current_project]
-set_property parent.project_path {C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.xpr} [current_project]
+set_property webtalk.parent_dir C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.cache/wt [current_project]
+set_property parent.project_path C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_output_repo {c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.cache/ip} [current_project]
+set_property ip_output_repo c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib {{c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/hdl/Block_Test_wrapper.vhd}}
-add_files {{C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/sources_1/bd/Block_Test/Block_Test.bd}}
-set_property used_in_implementation false [get_files -all {{c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/Block_Test_ooc.xdc}}]
+read_vhdl -library xil_defaultlib C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/hdl/Block_Test_wrapper.vhd
+add_files C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/sources_1/bd/Block_Test/Block_Test.bd
+set_property used_in_implementation false [get_files -all c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/Block_Test_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -88,14 +84,14 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc {{C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc}}
-set_property used_in_implementation false [get_files {{C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc}}]
+read_xdc C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc
+set_property used_in_implementation false [get_files C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/constrs_1/new/Constraints.xdc]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental {C:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/utils_1/imports/synth_1/UART_RXmod.dcp}
+read_checkpoint -auto_incremental -incremental C:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.srcs/utils_1/imports/synth_1/UART_RXmod.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

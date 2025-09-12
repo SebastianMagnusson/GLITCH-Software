@@ -12,4 +12,4 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Block_Test_
 # IP: bd/Block_Test/ip/Block_Test_UART_TXmod_0_0/Block_Test_UART_TXmod_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Block_Test_UART_TXmod_0_0 || ORIG_REF_NAME==Block_Test_UART_TXmod_0_0} -quiet] -quiet
 
-# XDC: c:/Users/Sebastian Magnusson/Documents/GitHub/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/Block_Test_ooc.xdc
+# XDC: c:/Users/rjaco/Documents/Skolgrejs/Glitch/GLITCH-Software/FPGA/UART/UART_Test/UART_Test.gen/sources_1/bd/Block_Test/Block_Test_ooc.xdc
