@@ -109,28 +109,84 @@ All received telemetry is automatically logged to CSV files in the [`storage/log
 - RTC data
 - Complete packet data
 
+## Setup (Mac)
+
+To establish a connection between your Mac and the MCU, follow these steps:
+
+### 1. Network Configuration
+
+First, identify your network interfaces and configure the correct one:
+
+```bash
+# List all hardware ports to identify your Ethernet interface
+networksetup -listallhardwareports
+
+# Configure the interface (replace 'en9' with your Ethernet interface)
+sudo ifconfig en9 inet 192.168.4.1 netmask 255.255.255.0
+
+# Verify connection by pinging the MCU
+ping 192.168.4.2
+```
+### 2. Serial Monitoring (optional)
+To monitor serial output from the MCU:
+
+```bash
+# Using PlatformIO CLI (install with 'pip install platformio' if needed)
+pio device monitor --port /dev/tty.usbserial-114201 --baud 115200
+```
+
+Note: Your serial port may differ. Common formats are /dev/tty.usbserial-* or /dev/cu.usbserial-*.
+
+### 3. Development Environment Setup
+For MCU development in VSCode:
+
+```bash
+# Navigate to the MCU directory
+cd MCU/ethernet_test
+
+# Activate ESP-IDF environment
+. ~/esp/v5.5/esp-idf/export.sh
+# OR use the shorthand if you've set up the 'get_idf' alias
+get_idf
+```
+
+### 4. Ground Station Environment
+Activate the Python virtual environment for the ground station:
+
+```bash
+# Navigate to the ground station directory
+cd ground_station
+
+# Activate the virtual environment
+source .venv/bin/activate
+```
+
 ## File Structure
 
 ```
 ground_station/
-├── main.py                 # Application entry point
-├── config.py              # Configuration settings
-├── requirements.txt       # Python dependencies
+├── main.py                   # Application entry point
+├── config.py                 # Configuration settings
+├── requirements.txt          # Python dependencies
+├── utils.py                  # Utility functions
+├── binary_decoder.py         # Binary data decoding for MCU logs
 ├── gui/
-│   └── dashboard.py       # Main dashboard GUI
+│   └── dashboard.py          # Main dashboard GUI
 ├── telemetry/
 │   └── telemetry_manager.py  # Telemetry processing
 ├── storage/
-│   ├── logger.py         # Data logging functionality
-│   └── logs/             # Log file directory
+│   ├── logger.py             # Data logging functionality
+│   └── logs/                 # Log file directory
 ├── receiver/
-│   └── ...               # Packet receiving modules
+│   ├── packet_lengths.py     # Packet length definitions
+│   ├── packet_parser.py      # Packet parsing and validation
+│   └── packet_structures.py  # Packet data structures
 ├── uplink/
-│   └── ...               # Command uplink modules
+│   ├── tc_types.py           # Telecommand type definitions
+│   └── uplink_sender.py      # Command uplink modules
 └── tests/
-    └── ...               # Unit tests
+    └── ...                   # Unit tests
 ```
-
 ## Configuration
 
 Key configuration parameters in [`config.py`](config.py):
