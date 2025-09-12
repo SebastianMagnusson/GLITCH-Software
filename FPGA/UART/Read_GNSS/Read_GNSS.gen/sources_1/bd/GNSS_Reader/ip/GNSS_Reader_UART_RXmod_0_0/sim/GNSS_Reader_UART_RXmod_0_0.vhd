@@ -81,7 +81,7 @@ BEGIN
   U0 : UART_RXmod
     GENERIC MAP (
       Clockfrequency => 12000000,
-      Baud_Rate => 9600
+      Baud_Rate => 115200
     )
     PORT MAP (
       sysclk => sysclk,

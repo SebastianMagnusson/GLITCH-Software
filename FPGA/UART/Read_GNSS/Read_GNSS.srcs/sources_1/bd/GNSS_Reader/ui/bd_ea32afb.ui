@@ -18,13 +18,13 @@ preplace inst UART_TXmod_1 -pg 1 -lvl 2 -x 430 -y 340 -defaultsOSRD
 preplace inst Switchmod_0 -pg 1 -lvl 2 -x 430 -y 210 -defaultsOSRD
 preplace netloc Switchmod_0_led0 1 2 1 560J 220n
 preplace netloc Switchmod_0_o_signal 1 2 1 NJ 200
+preplace netloc UART_RXmod_0_o_RX_DV 1 1 1 N 340
+preplace netloc UART_RXmod_0_o_RX_byte 1 1 1 N 360
 preplace netloc UART_TXmod_0_o_TX_Serial 1 2 1 NJ 80
 preplace netloc UART_TXmod_1_o_TX_Serial 1 2 1 NJ 340
 preplace netloc i_RX_Serial_0_1 1 0 1 NJ 360
 preplace netloc i_signal_0_1 1 0 2 NJ 220 NJ
 preplace netloc sysclk_0_1 1 0 2 20 280 300
-preplace netloc UART_RXmod_0_o_RX_DV 1 1 1 N 340
-preplace netloc UART_RXmod_0_o_RX_byte 1 1 1 N 360
 levelinfo -pg 1 -10 150 430 590
 pagesize -pg 1 -db -bbox -sgen -120 0 730 420
 "

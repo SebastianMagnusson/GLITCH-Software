@@ -82,14 +82,14 @@ ARCHITECTURE GNSS_Reader_UART_RXmod_0_0_arch OF GNSS_Reader_UART_RXmod_0_0 IS
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF GNSS_Reader_UART_RXmod_0_0_arch : ARCHITECTURE IS "GNSS_Reader_UART_RXmod_0_0,UART_RXmod,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF GNSS_Reader_UART_RXmod_0_0_arch: ARCHITECTURE IS "GNSS_Reader_UART_RXmod_0_0,UART_RXmod,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=UART_RXmod,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,Clockfrequency=12000000,Baud_Rate=9600}";
+  ATTRIBUTE CORE_GENERATION_INFO OF GNSS_Reader_UART_RXmod_0_0_arch: ARCHITECTURE IS "GNSS_Reader_UART_RXmod_0_0,UART_RXmod,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=UART_RXmod,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,Clockfrequency=12000000,Baud_Rate=115200}";
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
   ATTRIBUTE IP_DEFINITION_SOURCE OF GNSS_Reader_UART_RXmod_0_0_arch: ARCHITECTURE IS "module_ref";
 BEGIN
   U0 : UART_RXmod
     GENERIC MAP (
       Clockfrequency => 12000000,
-      Baud_Rate => 9600
+      Baud_Rate => 115200
     )
     PORT MAP (
       sysclk => sysclk,

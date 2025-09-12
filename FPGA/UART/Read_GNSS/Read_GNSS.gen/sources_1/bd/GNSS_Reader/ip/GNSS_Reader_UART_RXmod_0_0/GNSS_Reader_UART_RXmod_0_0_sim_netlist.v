@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Mon Apr  7 09:53:29 2025
+// Date        : Fri Sep 12 10:28:49 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/ip/GNSS_Reader_UART_RXmod_0_0/GNSS_Reader_UART_RXmod_0_0_sim_netlist.v
@@ -59,37 +59,21 @@ module GNSS_Reader_UART_RXmod_0_0_UART_RXmod
   wire \r_Bit_Index_reg_n_0_[0] ;
   wire \r_Bit_Index_reg_n_0_[1] ;
   wire \r_Bit_Index_reg_n_0_[2] ;
+  wire [6:0]r_Clk_Count;
   wire \r_Clk_Count[0]_i_1_n_0 ;
-  wire \r_Clk_Count[10]_i_1_n_0 ;
-  wire \r_Clk_Count[10]_i_2_n_0 ;
-  wire \r_Clk_Count[10]_i_3_n_0 ;
   wire \r_Clk_Count[1]_i_1_n_0 ;
   wire \r_Clk_Count[2]_i_1_n_0 ;
   wire \r_Clk_Count[3]_i_1_n_0 ;
   wire \r_Clk_Count[4]_i_1_n_0 ;
   wire \r_Clk_Count[5]_i_1_n_0 ;
   wire \r_Clk_Count[6]_i_1_n_0 ;
-  wire \r_Clk_Count[7]_i_1_n_0 ;
-  wire \r_Clk_Count[8]_i_1_n_0 ;
-  wire \r_Clk_Count[8]_i_2_n_0 ;
-  wire \r_Clk_Count[8]_i_3_n_0 ;
-  wire \r_Clk_Count[8]_i_4_n_0 ;
-  wire \r_Clk_Count[8]_i_5_n_0 ;
-  wire \r_Clk_Count[8]_i_6_n_0 ;
-  wire \r_Clk_Count[8]_i_7_n_0 ;
-  wire \r_Clk_Count[9]_i_1_n_0 ;
-  wire \r_Clk_Count[9]_i_2_n_0 ;
-  wire \r_Clk_Count_reg_n_0_[0] ;
-  wire \r_Clk_Count_reg_n_0_[10] ;
-  wire \r_Clk_Count_reg_n_0_[1] ;
-  wire \r_Clk_Count_reg_n_0_[2] ;
-  wire \r_Clk_Count_reg_n_0_[3] ;
-  wire \r_Clk_Count_reg_n_0_[4] ;
-  wire \r_Clk_Count_reg_n_0_[5] ;
-  wire \r_Clk_Count_reg_n_0_[6] ;
-  wire \r_Clk_Count_reg_n_0_[7] ;
-  wire \r_Clk_Count_reg_n_0_[8] ;
-  wire \r_Clk_Count_reg_n_0_[9] ;
+  wire \r_Clk_Count[6]_i_2_n_0 ;
+  wire \r_Clk_Count[6]_i_3_n_0 ;
+  wire \r_Clk_Count[6]_i_4_n_0 ;
+  wire \r_Clk_Count[6]_i_5_n_0 ;
+  wire \r_Clk_Count[6]_i_6_n_0 ;
+  wire \r_Clk_Count[6]_i_7_n_0 ;
+  wire \r_Clk_Count[6]_i_8_n_0 ;
   wire \r_RX_Byte[0]_i_1_n_0 ;
   wire \r_RX_Byte[1]_i_1_n_0 ;
   wire \r_RX_Byte[2]_i_1_n_0 ;
@@ -100,20 +84,17 @@ module GNSS_Reader_UART_RXmod_0_0_UART_RXmod
   wire \r_RX_Byte[7]_i_1_n_0 ;
   wire \r_RX_Byte[7]_i_2_n_0 ;
   wire \r_RX_Byte[7]_i_3_n_0 ;
-  wire \r_RX_Byte[7]_i_4_n_0 ;
   wire r_RX_DV_i_1_n_0;
   wire r_RX_DV_i_2_n_0;
   wire r_RX_DV_i_3_n_0;
-  wire r_RX_DV_i_4_n_0;
   wire r_RX_Data;
   wire r_RX_Data_R;
   wire \r_SM_Main[0]_i_1_n_0 ;
   wire \r_SM_Main[0]_i_2_n_0 ;
   wire \r_SM_Main[0]_i_3_n_0 ;
+  wire \r_SM_Main[0]_i_4_n_0 ;
   wire \r_SM_Main[1]_i_1_n_0 ;
   wire \r_SM_Main[1]_i_2_n_0 ;
-  wire \r_SM_Main[1]_i_3_n_0 ;
-  wire \r_SM_Main[1]_i_4_n_0 ;
   wire \r_SM_Main[2]_i_1_n_0 ;
   wire \r_SM_Main_reg_n_0_[0] ;
   wire \r_SM_Main_reg_n_0_[1] ;
@@ -122,35 +103,35 @@ module GNSS_Reader_UART_RXmod_0_0_UART_RXmod
 
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
-    .INIT(32'hAAAAA9A0)) 
+    .INIT(32'hAAAAAA90)) 
     \r_Bit_Index[0]_i_1 
        (.I0(\r_Bit_Index_reg_n_0_[0] ),
         .I1(r_RX_DV_i_2_n_0),
-        .I2(\r_SM_Main_reg_n_0_[2] ),
-        .I3(\r_SM_Main_reg_n_0_[1] ),
-        .I4(\r_SM_Main_reg_n_0_[0] ),
+        .I2(\r_SM_Main_reg_n_0_[1] ),
+        .I3(\r_SM_Main_reg_n_0_[0] ),
+        .I4(\r_SM_Main_reg_n_0_[2] ),
         .O(\r_Bit_Index[0]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAAAAAAA9AAA00)) 
+    .INIT(64'hAAAAAAAAAAAA9A00)) 
     \r_Bit_Index[1]_i_1 
        (.I0(\r_Bit_Index_reg_n_0_[1] ),
         .I1(r_RX_DV_i_2_n_0),
         .I2(\r_Bit_Index_reg_n_0_[0] ),
-        .I3(\r_SM_Main_reg_n_0_[2] ),
-        .I4(\r_SM_Main_reg_n_0_[1] ),
-        .I5(\r_SM_Main_reg_n_0_[0] ),
+        .I3(\r_SM_Main_reg_n_0_[1] ),
+        .I4(\r_SM_Main_reg_n_0_[0] ),
+        .I5(\r_SM_Main_reg_n_0_[2] ),
         .O(\r_Bit_Index[1]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAAAAAAAA9AA00)) 
+    .INIT(64'hAAAAAAAAAAAAA900)) 
     \r_Bit_Index[2]_i_1 
        (.I0(\r_Bit_Index_reg_n_0_[2] ),
         .I1(r_RX_DV_i_2_n_0),
         .I2(\r_Bit_Index[2]_i_2_n_0 ),
-        .I3(\r_SM_Main_reg_n_0_[2] ),
-        .I4(\r_SM_Main_reg_n_0_[1] ),
-        .I5(\r_SM_Main_reg_n_0_[0] ),
+        .I3(\r_SM_Main_reg_n_0_[1] ),
+        .I4(\r_SM_Main_reg_n_0_[0] ),
+        .I5(\r_SM_Main_reg_n_0_[2] ),
         .O(\r_Bit_Index[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \r_Bit_Index[2]_i_2 
@@ -181,282 +162,194 @@ module GNSS_Reader_UART_RXmod_0_0_UART_RXmod
         .D(\r_Bit_Index[2]_i_1_n_0 ),
         .Q(\r_Bit_Index_reg_n_0_[2] ),
         .R(1'b0));
-  LUT6 #(
-    .INIT(64'h00000000E0EE0000)) 
-    \r_Clk_Count[0]_i_1 
-       (.I0(\r_SM_Main_reg_n_0_[0] ),
-        .I1(\r_SM_Main_reg_n_0_[1] ),
-        .I2(\r_Clk_Count[8]_i_4_n_0 ),
-        .I3(\r_Clk_Count[8]_i_5_n_0 ),
-        .I4(r_RX_DV_i_2_n_0),
-        .I5(\r_Clk_Count_reg_n_0_[0] ),
-        .O(\r_Clk_Count[0]_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'h08FF0400)) 
-    \r_Clk_Count[10]_i_1 
-       (.I0(\r_Clk_Count[10]_i_2_n_0 ),
-        .I1(r_RX_DV_i_2_n_0),
-        .I2(\r_Clk_Count[10]_i_3_n_0 ),
-        .I3(\r_Clk_Count[8]_i_2_n_0 ),
-        .I4(\r_Clk_Count_reg_n_0_[10] ),
-        .O(\r_Clk_Count[10]_i_1_n_0 ));
+    .INIT(32'h00FFA800)) 
+    \r_Clk_Count[0]_i_1 
+       (.I0(r_RX_DV_i_2_n_0),
+        .I1(\r_SM_Main_reg_n_0_[1] ),
+        .I2(\r_SM_Main_reg_n_0_[0] ),
+        .I3(\r_Clk_Count[6]_i_2_n_0 ),
+        .I4(r_Clk_Count[0]),
+        .O(\r_Clk_Count[0]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hFF7FFFFFFFFFFFFF)) 
-    \r_Clk_Count[10]_i_2 
-       (.I0(\r_Clk_Count_reg_n_0_[7] ),
-        .I1(\r_Clk_Count_reg_n_0_[5] ),
-        .I2(\r_Clk_Count_reg_n_0_[6] ),
-        .I3(\r_Clk_Count[8]_i_7_n_0 ),
-        .I4(\r_Clk_Count_reg_n_0_[8] ),
-        .I5(\r_Clk_Count_reg_n_0_[9] ),
-        .O(\r_Clk_Count[10]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000555700005555)) 
-    \r_Clk_Count[10]_i_3 
-       (.I0(\r_SM_Main_reg_n_0_[0] ),
-        .I1(\r_SM_Main[1]_i_4_n_0 ),
-        .I2(\r_Clk_Count_reg_n_0_[0] ),
-        .I3(\r_Clk_Count_reg_n_0_[3] ),
-        .I4(\r_SM_Main_reg_n_0_[1] ),
-        .I5(\r_Clk_Count[8]_i_5_n_0 ),
-        .O(\r_Clk_Count[10]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
+    .INIT(64'h00A8FFFFA8000000)) 
     \r_Clk_Count[1]_i_1 
-       (.I0(\r_Clk_Count_reg_n_0_[1] ),
-        .I1(\r_Clk_Count_reg_n_0_[0] ),
+       (.I0(r_RX_DV_i_2_n_0),
+        .I1(\r_SM_Main_reg_n_0_[1] ),
+        .I2(\r_SM_Main_reg_n_0_[0] ),
+        .I3(r_Clk_Count[0]),
+        .I4(\r_Clk_Count[6]_i_2_n_0 ),
+        .I5(r_Clk_Count[1]),
         .O(\r_Clk_Count[1]_i_1_n_0 ));
-  LUT3 #(
-    .INIT(8'h6A)) 
+  LUT6 #(
+    .INIT(64'h2A2AFFFF00800000)) 
     \r_Clk_Count[2]_i_1 
-       (.I0(\r_Clk_Count_reg_n_0_[2] ),
-        .I1(\r_Clk_Count_reg_n_0_[0] ),
-        .I2(\r_Clk_Count_reg_n_0_[1] ),
+       (.I0(\r_Clk_Count[6]_i_5_n_0 ),
+        .I1(r_Clk_Count[0]),
+        .I2(r_Clk_Count[1]),
+        .I3(\r_Clk_Count[6]_i_4_n_0 ),
+        .I4(\r_Clk_Count[6]_i_2_n_0 ),
+        .I5(r_Clk_Count[2]),
         .O(\r_Clk_Count[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT4 #(
-    .INIT(16'h6AAA)) 
+  LUT6 #(
+    .INIT(64'h777F000080800000)) 
     \r_Clk_Count[3]_i_1 
-       (.I0(\r_Clk_Count_reg_n_0_[3] ),
-        .I1(\r_Clk_Count_reg_n_0_[2] ),
-        .I2(\r_Clk_Count_reg_n_0_[1] ),
-        .I3(\r_Clk_Count_reg_n_0_[0] ),
+       (.I0(r_Clk_Count[0]),
+        .I1(r_Clk_Count[1]),
+        .I2(r_Clk_Count[2]),
+        .I3(\r_Clk_Count[6]_i_4_n_0 ),
+        .I4(\r_Clk_Count[6]_i_5_n_0 ),
+        .I5(r_Clk_Count[3]),
         .O(\r_Clk_Count[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \r_Clk_Count[4]_i_1 
-       (.I0(\r_Clk_Count_reg_n_0_[4] ),
-        .I1(\r_Clk_Count_reg_n_0_[3] ),
-        .I2(\r_Clk_Count_reg_n_0_[0] ),
-        .I3(\r_Clk_Count_reg_n_0_[1] ),
-        .I4(\r_Clk_Count_reg_n_0_[2] ),
+       (.I0(r_Clk_Count[4]),
+        .I1(r_Clk_Count[1]),
+        .I2(r_Clk_Count[0]),
+        .I3(r_Clk_Count[2]),
+        .I4(r_Clk_Count[3]),
         .O(\r_Clk_Count[4]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h6AAAAAAAAAAAAAAA)) 
     \r_Clk_Count[5]_i_1 
-       (.I0(\r_Clk_Count_reg_n_0_[5] ),
-        .I1(\r_Clk_Count_reg_n_0_[4] ),
-        .I2(\r_Clk_Count_reg_n_0_[2] ),
-        .I3(\r_Clk_Count_reg_n_0_[1] ),
-        .I4(\r_Clk_Count_reg_n_0_[0] ),
-        .I5(\r_Clk_Count_reg_n_0_[3] ),
+       (.I0(r_Clk_Count[5]),
+        .I1(r_Clk_Count[3]),
+        .I2(r_Clk_Count[2]),
+        .I3(r_Clk_Count[0]),
+        .I4(r_Clk_Count[1]),
+        .I5(r_Clk_Count[4]),
         .O(\r_Clk_Count[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT3 #(
-    .INIT(8'hA6)) 
+  LUT6 #(
+    .INIT(64'h00800000AAAAAAAA)) 
     \r_Clk_Count[6]_i_1 
-       (.I0(\r_Clk_Count_reg_n_0_[6] ),
-        .I1(\r_Clk_Count_reg_n_0_[5] ),
-        .I2(\r_Clk_Count[8]_i_7_n_0 ),
+       (.I0(\r_Clk_Count[6]_i_2_n_0 ),
+        .I1(r_Clk_Count[0]),
+        .I2(r_Clk_Count[1]),
+        .I3(r_Clk_Count[2]),
+        .I4(\r_Clk_Count[6]_i_4_n_0 ),
+        .I5(\r_Clk_Count[6]_i_5_n_0 ),
         .O(\r_Clk_Count[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT4 #(
-    .INIT(16'h9AAA)) 
-    \r_Clk_Count[7]_i_1 
-       (.I0(\r_Clk_Count_reg_n_0_[7] ),
-        .I1(\r_Clk_Count[8]_i_7_n_0 ),
-        .I2(\r_Clk_Count_reg_n_0_[5] ),
-        .I3(\r_Clk_Count_reg_n_0_[6] ),
-        .O(\r_Clk_Count[7]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h02AA0202AAAAAAAA)) 
-    \r_Clk_Count[8]_i_1 
-       (.I0(\r_Clk_Count[8]_i_2_n_0 ),
-        .I1(\r_SM_Main_reg_n_0_[0] ),
-        .I2(\r_SM_Main_reg_n_0_[1] ),
-        .I3(\r_Clk_Count[8]_i_4_n_0 ),
-        .I4(\r_Clk_Count[8]_i_5_n_0 ),
-        .I5(r_RX_DV_i_2_n_0),
-        .O(\r_Clk_Count[8]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h5555515555555555)) 
-    \r_Clk_Count[8]_i_2 
+    .INIT(64'h5555555551555555)) 
+    \r_Clk_Count[6]_i_2 
        (.I0(\r_SM_Main_reg_n_0_[2] ),
-        .I1(\r_Clk_Count[8]_i_5_n_0 ),
-        .I2(\r_Clk_Count[8]_i_6_n_0 ),
-        .I3(\r_SM_Main_reg_n_0_[0] ),
+        .I1(r_RX_Data),
+        .I2(\r_SM_Main_reg_n_0_[1] ),
+        .I3(\r_Clk_Count[6]_i_6_n_0 ),
+        .I4(\r_SM_Main_reg_n_0_[0] ),
+        .I5(\r_Clk_Count[6]_i_7_n_0 ),
+        .O(\r_Clk_Count[6]_i_2_n_0 ));
+  LUT4 #(
+    .INIT(16'h6AAA)) 
+    \r_Clk_Count[6]_i_3 
+       (.I0(r_Clk_Count[6]),
+        .I1(r_Clk_Count[5]),
+        .I2(r_Clk_Count[4]),
+        .I3(\r_Clk_Count[6]_i_8_n_0 ),
+        .O(\r_Clk_Count[6]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'h01000000)) 
+    \r_Clk_Count[6]_i_4 
+       (.I0(\r_SM_Main_reg_n_0_[1] ),
+        .I1(r_Clk_Count[3]),
+        .I2(r_Clk_Count[6]),
+        .I3(r_Clk_Count[5]),
+        .I4(r_Clk_Count[4]),
+        .O(\r_Clk_Count[6]_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'hFF3FAAAA)) 
+    \r_Clk_Count[6]_i_5 
+       (.I0(\r_SM_Main_reg_n_0_[0] ),
+        .I1(r_Clk_Count[5]),
+        .I2(r_Clk_Count[6]),
+        .I3(\r_RX_Byte[7]_i_3_n_0 ),
         .I4(\r_SM_Main_reg_n_0_[1] ),
-        .I5(r_RX_Data),
-        .O(\r_Clk_Count[8]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT5 #(
-    .INIT(32'h9AAAAAAA)) 
-    \r_Clk_Count[8]_i_3 
-       (.I0(\r_Clk_Count_reg_n_0_[8] ),
-        .I1(\r_Clk_Count[8]_i_7_n_0 ),
-        .I2(\r_Clk_Count_reg_n_0_[6] ),
-        .I3(\r_Clk_Count_reg_n_0_[5] ),
-        .I4(\r_Clk_Count_reg_n_0_[7] ),
-        .O(\r_Clk_Count[8]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFF7F)) 
-    \r_Clk_Count[8]_i_4 
-       (.I0(\r_Clk_Count_reg_n_0_[5] ),
-        .I1(\r_Clk_Count_reg_n_0_[4] ),
-        .I2(\r_Clk_Count_reg_n_0_[9] ),
-        .I3(\r_Clk_Count_reg_n_0_[0] ),
-        .I4(\r_Clk_Count_reg_n_0_[3] ),
-        .I5(\r_SM_Main_reg_n_0_[1] ),
-        .O(\r_Clk_Count[8]_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000100000000)) 
-    \r_Clk_Count[8]_i_5 
-       (.I0(\r_Clk_Count_reg_n_0_[1] ),
-        .I1(\r_Clk_Count_reg_n_0_[2] ),
-        .I2(\r_Clk_Count_reg_n_0_[8] ),
-        .I3(\r_Clk_Count_reg_n_0_[10] ),
-        .I4(\r_Clk_Count_reg_n_0_[7] ),
-        .I5(\r_Clk_Count_reg_n_0_[6] ),
-        .O(\r_Clk_Count[8]_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF7F7FFF7F)) 
-    \r_Clk_Count[8]_i_6 
-       (.I0(\r_Clk_Count_reg_n_0_[5] ),
-        .I1(\r_Clk_Count_reg_n_0_[4] ),
-        .I2(\r_Clk_Count_reg_n_0_[9] ),
-        .I3(\r_Clk_Count_reg_n_0_[0] ),
-        .I4(\r_Clk_Count_reg_n_0_[1] ),
-        .I5(\r_Clk_Count_reg_n_0_[3] ),
-        .O(\r_Clk_Count[8]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT5 #(
-    .INIT(32'h7FFFFFFF)) 
-    \r_Clk_Count[8]_i_7 
-       (.I0(\r_Clk_Count_reg_n_0_[3] ),
-        .I1(\r_Clk_Count_reg_n_0_[0] ),
-        .I2(\r_Clk_Count_reg_n_0_[1] ),
-        .I3(\r_Clk_Count_reg_n_0_[2] ),
-        .I4(\r_Clk_Count_reg_n_0_[4] ),
-        .O(\r_Clk_Count[8]_i_7_n_0 ));
-  LUT5 #(
-    .INIT(32'h20FF0200)) 
-    \r_Clk_Count[9]_i_1 
-       (.I0(r_RX_DV_i_2_n_0),
-        .I1(\r_Clk_Count[10]_i_3_n_0 ),
-        .I2(\r_Clk_Count[9]_i_2_n_0 ),
-        .I3(\r_Clk_Count[8]_i_2_n_0 ),
-        .I4(\r_Clk_Count_reg_n_0_[9] ),
-        .O(\r_Clk_Count[9]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT5 #(
-    .INIT(32'hDFFFFFFF)) 
-    \r_Clk_Count[9]_i_2 
-       (.I0(\r_Clk_Count_reg_n_0_[8] ),
-        .I1(\r_Clk_Count[8]_i_7_n_0 ),
-        .I2(\r_Clk_Count_reg_n_0_[6] ),
-        .I3(\r_Clk_Count_reg_n_0_[5] ),
-        .I4(\r_Clk_Count_reg_n_0_[7] ),
-        .O(\r_Clk_Count[9]_i_2_n_0 ));
+        .O(\r_Clk_Count[6]_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT3 #(
+    .INIT(8'h40)) 
+    \r_Clk_Count[6]_i_6 
+       (.I0(r_Clk_Count[2]),
+        .I1(r_Clk_Count[1]),
+        .I2(r_Clk_Count[0]),
+        .O(\r_Clk_Count[6]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT4 #(
+    .INIT(16'hFFF7)) 
+    \r_Clk_Count[6]_i_7 
+       (.I0(r_Clk_Count[4]),
+        .I1(r_Clk_Count[5]),
+        .I2(r_Clk_Count[6]),
+        .I3(r_Clk_Count[3]),
+        .O(\r_Clk_Count[6]_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT4 #(
+    .INIT(16'h8000)) 
+    \r_Clk_Count[6]_i_8 
+       (.I0(r_Clk_Count[3]),
+        .I1(r_Clk_Count[2]),
+        .I2(r_Clk_Count[0]),
+        .I3(r_Clk_Count[1]),
+        .O(\r_Clk_Count[6]_i_8_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \r_Clk_Count_reg[0] 
        (.C(sysclk),
-        .CE(\r_Clk_Count[8]_i_2_n_0 ),
-        .D(\r_Clk_Count[0]_i_1_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[0] ),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b0)) 
-    \r_Clk_Count_reg[10] 
-       (.C(sysclk),
         .CE(1'b1),
-        .D(\r_Clk_Count[10]_i_1_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[10] ),
+        .D(\r_Clk_Count[0]_i_1_n_0 ),
+        .Q(r_Clk_Count[0]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \r_Clk_Count_reg[1] 
        (.C(sysclk),
-        .CE(\r_Clk_Count[8]_i_2_n_0 ),
+        .CE(1'b1),
         .D(\r_Clk_Count[1]_i_1_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[1] ),
-        .R(\r_Clk_Count[8]_i_1_n_0 ));
+        .Q(r_Clk_Count[1]),
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \r_Clk_Count_reg[2] 
        (.C(sysclk),
-        .CE(\r_Clk_Count[8]_i_2_n_0 ),
+        .CE(1'b1),
         .D(\r_Clk_Count[2]_i_1_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[2] ),
-        .R(\r_Clk_Count[8]_i_1_n_0 ));
+        .Q(r_Clk_Count[2]),
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \r_Clk_Count_reg[3] 
        (.C(sysclk),
-        .CE(\r_Clk_Count[8]_i_2_n_0 ),
+        .CE(\r_Clk_Count[6]_i_2_n_0 ),
         .D(\r_Clk_Count[3]_i_1_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[3] ),
-        .R(\r_Clk_Count[8]_i_1_n_0 ));
+        .Q(r_Clk_Count[3]),
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \r_Clk_Count_reg[4] 
        (.C(sysclk),
-        .CE(\r_Clk_Count[8]_i_2_n_0 ),
+        .CE(\r_Clk_Count[6]_i_2_n_0 ),
         .D(\r_Clk_Count[4]_i_1_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[4] ),
-        .R(\r_Clk_Count[8]_i_1_n_0 ));
+        .Q(r_Clk_Count[4]),
+        .R(\r_Clk_Count[6]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \r_Clk_Count_reg[5] 
        (.C(sysclk),
-        .CE(\r_Clk_Count[8]_i_2_n_0 ),
+        .CE(\r_Clk_Count[6]_i_2_n_0 ),
         .D(\r_Clk_Count[5]_i_1_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[5] ),
-        .R(\r_Clk_Count[8]_i_1_n_0 ));
+        .Q(r_Clk_Count[5]),
+        .R(\r_Clk_Count[6]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \r_Clk_Count_reg[6] 
        (.C(sysclk),
-        .CE(\r_Clk_Count[8]_i_2_n_0 ),
-        .D(\r_Clk_Count[6]_i_1_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[6] ),
-        .R(\r_Clk_Count[8]_i_1_n_0 ));
-  FDRE #(
-    .INIT(1'b0)) 
-    \r_Clk_Count_reg[7] 
-       (.C(sysclk),
-        .CE(\r_Clk_Count[8]_i_2_n_0 ),
-        .D(\r_Clk_Count[7]_i_1_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[7] ),
-        .R(\r_Clk_Count[8]_i_1_n_0 ));
-  FDRE #(
-    .INIT(1'b0)) 
-    \r_Clk_Count_reg[8] 
-       (.C(sysclk),
-        .CE(\r_Clk_Count[8]_i_2_n_0 ),
-        .D(\r_Clk_Count[8]_i_3_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[8] ),
-        .R(\r_Clk_Count[8]_i_1_n_0 ));
-  FDRE #(
-    .INIT(1'b0)) 
-    \r_Clk_Count_reg[9] 
-       (.C(sysclk),
-        .CE(1'b1),
-        .D(\r_Clk_Count[9]_i_1_n_0 ),
-        .Q(\r_Clk_Count_reg_n_0_[9] ),
-        .R(1'b0));
+        .CE(\r_Clk_Count[6]_i_2_n_0 ),
+        .D(\r_Clk_Count[6]_i_3_n_0 ),
+        .Q(r_Clk_Count[6]),
+        .R(\r_Clk_Count[6]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFE00000002)) 
     \r_RX_Byte[0]_i_1 
@@ -538,29 +431,25 @@ module GNSS_Reader_UART_RXmod_0_0_UART_RXmod
         .I5(o_RX_byte[7]),
         .O(\r_RX_Byte[7]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h7775FFFFFFFFFFFF)) 
+    .INIT(64'hFFFFFFFFFFFFDFFF)) 
     \r_RX_Byte[7]_i_2 
        (.I0(\r_SM_Main_reg_n_0_[1] ),
         .I1(\r_RX_Byte[7]_i_3_n_0 ),
-        .I2(r_RX_DV_i_4_n_0),
-        .I3(r_RX_DV_i_3_n_0),
-        .I4(\r_Clk_Count_reg_n_0_[10] ),
-        .I5(\r_RX_Byte[7]_i_4_n_0 ),
+        .I2(r_Clk_Count[6]),
+        .I3(r_Clk_Count[5]),
+        .I4(\r_SM_Main_reg_n_0_[2] ),
+        .I5(\r_SM_Main_reg_n_0_[0] ),
         .O(\r_RX_Byte[7]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT5 #(
+    .INIT(32'h0000007F)) 
     \r_RX_Byte[7]_i_3 
-       (.I0(\r_Clk_Count_reg_n_0_[8] ),
-        .I1(\r_Clk_Count_reg_n_0_[9] ),
+       (.I0(r_Clk_Count[2]),
+        .I1(r_Clk_Count[0]),
+        .I2(r_Clk_Count[1]),
+        .I3(r_Clk_Count[3]),
+        .I4(r_Clk_Count[4]),
         .O(\r_RX_Byte[7]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT2 #(
-    .INIT(4'h1)) 
-    \r_RX_Byte[7]_i_4 
-       (.I0(\r_SM_Main_reg_n_0_[0] ),
-        .I1(\r_SM_Main_reg_n_0_[2] ),
-        .O(\r_RX_Byte[7]_i_4_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \r_RX_Byte_reg[0] 
@@ -625,44 +514,32 @@ module GNSS_Reader_UART_RXmod_0_0_UART_RXmod
         .D(\r_RX_Byte[7]_i_1_n_0 ),
         .Q(o_RX_byte[7]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
-    .INIT(32'hEEEA0008)) 
+    .INIT(32'hFFE01000)) 
     r_RX_DV_i_1
-       (.I0(\r_SM_Main_reg_n_0_[1] ),
-        .I1(\r_SM_Main_reg_n_0_[0] ),
-        .I2(\r_SM_Main_reg_n_0_[2] ),
-        .I3(r_RX_DV_i_2_n_0),
+       (.I0(r_RX_DV_i_2_n_0),
+        .I1(\r_SM_Main_reg_n_0_[2] ),
+        .I2(\r_SM_Main_reg_n_0_[0] ),
+        .I3(\r_SM_Main_reg_n_0_[1] ),
         .I4(o_RX_DV),
         .O(r_RX_DV_i_1_n_0));
   LUT6 #(
-    .INIT(64'h555555FDFFFFFFFF)) 
+    .INIT(64'h777777F7FFFFFFFF)) 
     r_RX_DV_i_2
-       (.I0(\r_Clk_Count_reg_n_0_[10] ),
-        .I1(r_RX_DV_i_3_n_0),
-        .I2(r_RX_DV_i_4_n_0),
-        .I3(\r_Clk_Count_reg_n_0_[9] ),
-        .I4(\r_Clk_Count_reg_n_0_[8] ),
+       (.I0(r_Clk_Count[5]),
+        .I1(r_Clk_Count[6]),
+        .I2(r_RX_DV_i_3_n_0),
+        .I3(r_Clk_Count[3]),
+        .I4(r_Clk_Count[4]),
         .I5(\r_SM_Main_reg_n_0_[1] ),
         .O(r_RX_DV_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'h7F)) 
     r_RX_DV_i_3
-       (.I0(\r_Clk_Count_reg_n_0_[6] ),
-        .I1(\r_Clk_Count_reg_n_0_[5] ),
-        .I2(\r_Clk_Count_reg_n_0_[7] ),
+       (.I0(r_Clk_Count[1]),
+        .I1(r_Clk_Count[0]),
+        .I2(r_Clk_Count[2]),
         .O(r_RX_DV_i_3_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'h00000001)) 
-    r_RX_DV_i_4
-       (.I0(\r_Clk_Count_reg_n_0_[1] ),
-        .I1(\r_Clk_Count_reg_n_0_[2] ),
-        .I2(\r_Clk_Count_reg_n_0_[0] ),
-        .I3(\r_Clk_Count_reg_n_0_[3] ),
-        .I4(\r_Clk_Count_reg_n_0_[4] ),
-        .O(r_RX_DV_i_4_n_0));
   FDRE #(
     .INIT(1'b0)) 
     r_RX_DV_reg
@@ -688,25 +565,26 @@ module GNSS_Reader_UART_RXmod_0_0_UART_RXmod
         .Q(r_RX_Data),
         .R(1'b0));
   LUT6 #(
-    .INIT(64'h5444544444444454)) 
+    .INIT(64'h5151010101010151)) 
     \r_SM_Main[0]_i_1 
        (.I0(\r_SM_Main_reg_n_0_[2] ),
         .I1(\r_SM_Main[0]_i_2_n_0 ),
         .I2(\r_SM_Main_reg_n_0_[1] ),
-        .I3(\r_SM_Main[1]_i_3_n_0 ),
-        .I4(\r_SM_Main[0]_i_3_n_0 ),
+        .I3(\r_SM_Main[0]_i_3_n_0 ),
+        .I4(\r_SM_Main[0]_i_4_n_0 ),
         .I5(\r_SM_Main_reg_n_0_[0] ),
         .O(\r_SM_Main[0]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'h31013131)) 
+  LUT6 #(
+    .INIT(64'h1000FFFF10000000)) 
     \r_SM_Main[0]_i_2 
-       (.I0(r_RX_Data),
-        .I1(\r_SM_Main_reg_n_0_[1] ),
-        .I2(\r_SM_Main_reg_n_0_[0] ),
-        .I3(\r_Clk_Count[8]_i_6_n_0 ),
-        .I4(\r_Clk_Count[8]_i_5_n_0 ),
+       (.I0(\r_Clk_Count[6]_i_7_n_0 ),
+        .I1(r_Clk_Count[2]),
+        .I2(r_Clk_Count[1]),
+        .I3(r_Clk_Count[0]),
+        .I4(\r_SM_Main_reg_n_0_[0] ),
+        .I5(r_RX_Data),
         .O(\r_SM_Main[0]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'h7F)) 
     \r_SM_Main[0]_i_3 
@@ -714,51 +592,42 @@ module GNSS_Reader_UART_RXmod_0_0_UART_RXmod
         .I1(\r_Bit_Index_reg_n_0_[0] ),
         .I2(\r_Bit_Index_reg_n_0_[2] ),
         .O(\r_SM_Main[0]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h10FFFFFF)) 
+    \r_SM_Main[0]_i_4 
+       (.I0(r_Clk_Count[4]),
+        .I1(r_Clk_Count[3]),
+        .I2(r_RX_DV_i_3_n_0),
+        .I3(r_Clk_Count[6]),
+        .I4(r_Clk_Count[5]),
+        .O(\r_SM_Main[0]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h5050515000500150)) 
+    .INIT(64'h0D000D0D0D000D00)) 
     \r_SM_Main[1]_i_1 
-       (.I0(\r_SM_Main_reg_n_0_[2] ),
-        .I1(r_RX_Data),
-        .I2(\r_SM_Main_reg_n_0_[1] ),
-        .I3(\r_SM_Main_reg_n_0_[0] ),
-        .I4(\r_SM_Main[1]_i_2_n_0 ),
-        .I5(\r_SM_Main[1]_i_3_n_0 ),
+       (.I0(\r_SM_Main_reg_n_0_[0] ),
+        .I1(r_RX_DV_i_2_n_0),
+        .I2(\r_SM_Main_reg_n_0_[2] ),
+        .I3(\r_SM_Main_reg_n_0_[1] ),
+        .I4(r_RX_Data),
+        .I5(\r_SM_Main[1]_i_2_n_0 ),
         .O(\r_SM_Main[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT5 #(
-    .INIT(32'hFFBAFFFF)) 
+  LUT6 #(
+    .INIT(64'h0000000000008000)) 
     \r_SM_Main[1]_i_2 
-       (.I0(\r_Clk_Count_reg_n_0_[3] ),
-        .I1(\r_Clk_Count_reg_n_0_[1] ),
-        .I2(\r_Clk_Count_reg_n_0_[0] ),
-        .I3(\r_SM_Main[1]_i_4_n_0 ),
-        .I4(\r_Clk_Count[8]_i_5_n_0 ),
+       (.I0(\r_Clk_Count[6]_i_6_n_0 ),
+        .I1(\r_SM_Main_reg_n_0_[0] ),
+        .I2(r_Clk_Count[4]),
+        .I3(r_Clk_Count[5]),
+        .I4(r_Clk_Count[6]),
+        .I5(r_Clk_Count[3]),
         .O(\r_SM_Main[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT5 #(
-    .INIT(32'h1110FFFF)) 
-    \r_SM_Main[1]_i_3 
-       (.I0(\r_Clk_Count_reg_n_0_[8] ),
-        .I1(\r_Clk_Count_reg_n_0_[9] ),
-        .I2(r_RX_DV_i_4_n_0),
-        .I3(r_RX_DV_i_3_n_0),
-        .I4(\r_Clk_Count_reg_n_0_[10] ),
-        .O(\r_SM_Main[1]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT3 #(
-    .INIT(8'h7F)) 
-    \r_SM_Main[1]_i_4 
-       (.I0(\r_Clk_Count_reg_n_0_[9] ),
-        .I1(\r_Clk_Count_reg_n_0_[4] ),
-        .I2(\r_Clk_Count_reg_n_0_[5] ),
-        .O(\r_SM_Main[1]_i_4_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
-    .INIT(8'h10)) 
+    .INIT(8'h04)) 
     \r_SM_Main[2]_i_1 
-       (.I0(r_RX_DV_i_2_n_0),
-        .I1(\r_SM_Main_reg_n_0_[2] ),
-        .I2(\r_SM_Main_reg_n_0_[0] ),
+       (.I0(\r_SM_Main_reg_n_0_[2] ),
+        .I1(\r_SM_Main_reg_n_0_[0] ),
+        .I2(r_RX_DV_i_2_n_0),
         .O(\r_SM_Main[2]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
