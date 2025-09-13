@@ -19,6 +19,7 @@ entity I2C_full_sensor_data_fetcher is
         i_TX_done_HK    : in  std_logic;
         i_TX_done_BF    : in  std_logic;
         i_TX_done_RAD   : in  std_logic;
+        i_TX_done_HTR   : in  std_logic;
         i_HK_RTC_request  : in std_logic;
         i_BF_RTC_request  : in std_logic;
         i_RAD_RTC_request : in std_logic;

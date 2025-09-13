@@ -17,7 +17,7 @@ entity TM_packet_sender is
         clk : in std_logic;
         rst : in std_logic;
 		i_HK_data : in std_logic_vector(471 downto 0);
-		i_BF_data : in std_logic_vector(199 downto 0);
+		i_BF_data : in std_logic_vector(223 downto 0);
 		i_RAD_data : in std_logic_vector(10007 downto 0);
 		i_HK_DV : in std_logic;
 		i_BF_DV : in std_logic;
@@ -27,7 +27,9 @@ entity TM_packet_sender is
 		o_TX_byte : out std_logic_vector(7 downto 0);
 		o_HK_got : out std_logic;
 		o_BF_got : out std_logic;
-		o_RAD_got : out std_logic
+		o_RAD_got : out std_logic;
+		led1 : out std_logic;
+		led2 : out std_logic
     );
 end TM_packet_sender;
 
@@ -36,11 +38,13 @@ architecture rtl of TM_packet_sender is
 	signal state : state_type := s_idle;
 
 	signal i_HK_data_i : std_logic_vector(471 downto 0);
-	signal i_BF_data_i : std_logic_vector(199 downto 0);
+	signal i_BF_data_i : std_logic_vector(223 downto 0);
 	signal i_RAD_data_i : std_logic_vector(10007 downto 0);
 	
 	signal i_TX_done_prev : std_logic;
 	signal bit_cnt : integer := 0;
+	
+	signal led : std_logic := '1';
     
 begin
     process(clk)
@@ -76,15 +80,14 @@ begin
 							state <= s_idle;
 						end if;
 					
-					when s_send_HK_first => 
-                    
+					when s_send_HK_first => 	
+						o_HK_got <= '0';                    
                         o_TX_DV <= '1';
                         o_TX_byte <= i_HK_data_i(471 downto 464);
                         bit_cnt <= 463;           
 					    state <= s_send_HK;
 					    
-					when s_send_HK =>		
-						o_HK_got <= '0';
+					when s_send_HK =>	
 						i_TX_done_prev <= i_TX_done;
 						if i_TX_done = '1' and i_TX_done_prev = '0' then
 							o_TX_DV <= '1';
@@ -101,19 +104,23 @@ begin
 										
 					when s_send_BF_first => 
                     
+						o_BF_got <= '0';
                         o_TX_DV <= '1';
-                        o_TX_byte <= i_BF_data_i(199 downto 192);
-                        bit_cnt <= 191;           
+                        o_TX_byte <= i_BF_data_i(223 downto 216);
+                        bit_cnt <= 215;           
 					    state <= s_send_BF;
 					
-					when s_send_BF =>		
-						o_BF_got <= '0';
+					when s_send_BF =>	
+					    
+					    led1 <= led;	
 						i_TX_done_prev <= i_TX_done;
 						if i_TX_done = '1' and i_TX_done_prev = '0' then
+						    led1 <= led;    
 							o_TX_DV <= '1';
 							o_TX_byte <= i_BF_data_i(bit_cnt downto bit_cnt-7);
 							i_TX_done_prev <= '1';
 							if bit_cnt-7 <= 0 then
+							    led2 <= led;
 								state <= s_clean;
 							else 
 								bit_cnt <= bit_cnt-8;
@@ -124,13 +131,13 @@ begin
 						
 					when s_send_RAD_first => 
                     
+						o_RAD_got <= '0';
                         o_TX_DV <= '1';
                         o_TX_byte <= i_RAD_data_i(10007 downto 10000);
                         bit_cnt <= 9999;           
 					    state <= s_send_RAD;
 						
 					when s_send_RAD =>		
-						o_RAD_got <= '0';
 						i_TX_done_prev <= i_TX_done;
 						if i_TX_done = '1' and i_TX_done_prev = '0' then
 							o_TX_DV <= '1';
@@ -145,7 +152,9 @@ begin
 							o_TX_DV <= '0';
 						end if;	
 						
-					when s_clean =>						
+					when s_clean =>		
+					    
+					    led <= not led;				
 						i_HK_data_i <= (others => '0');
 						i_BF_data_i <= (others => '0');
 						i_RAD_data_i <= (others => '0');
