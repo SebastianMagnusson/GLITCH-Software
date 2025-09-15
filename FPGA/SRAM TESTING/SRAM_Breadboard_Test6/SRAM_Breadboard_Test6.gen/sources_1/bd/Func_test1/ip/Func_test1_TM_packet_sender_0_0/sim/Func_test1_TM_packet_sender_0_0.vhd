@@ -68,7 +68,9 @@ ENTITY Func_test1_TM_packet_sender_0_0 IS
     o_TX_byte : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     o_HK_got : OUT STD_LOGIC;
     o_BF_got : OUT STD_LOGIC;
-    o_RAD_got : OUT STD_LOGIC
+    o_RAD_got : OUT STD_LOGIC;
+    led1 : OUT STD_LOGIC;
+    led2 : OUT STD_LOGIC
   );
 END Func_test1_TM_packet_sender_0_0;
 
@@ -94,7 +96,9 @@ ARCHITECTURE Func_test1_TM_packet_sender_0_0_arch OF Func_test1_TM_packet_sender
       o_TX_byte : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       o_HK_got : OUT STD_LOGIC;
       o_BF_got : OUT STD_LOGIC;
-      o_RAD_got : OUT STD_LOGIC
+      o_RAD_got : OUT STD_LOGIC;
+      led1 : OUT STD_LOGIC;
+      led2 : OUT STD_LOGIC
     );
   END COMPONENT TM_packet_sender;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
@@ -126,6 +130,8 @@ BEGIN
       o_TX_byte => o_TX_byte,
       o_HK_got => o_HK_got,
       o_BF_got => o_BF_got,
-      o_RAD_got => o_RAD_got
+      o_RAD_got => o_RAD_got,
+      led1 => led1,
+      led2 => led2
     );
 END Func_test1_TM_packet_sender_0_0_arch;

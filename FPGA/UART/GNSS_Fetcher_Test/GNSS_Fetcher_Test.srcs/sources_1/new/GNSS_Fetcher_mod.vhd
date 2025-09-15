@@ -16,7 +16,9 @@ entity GNSS_Fetcher_mod is
     i_gnss_data     : in std_logic_vector(7 downto 0);
     -- Interface to the gnns sender
     o_gnss_data  : out std_logic_vector(383 downto 0);
-    o_gnss_drive : out std_logic
+    o_gnss_drive : out std_logic;
+    -- LEDS
+    led1 : out std_logic
   );
 end entity;
 
@@ -42,11 +44,13 @@ begin
   begin
   
     if(reset_n = '0') then
-    gnss_data_buf <= (others => '0');
-    o_gnss_drive <= '0';
-    state <= SEARCH;
-    ready_cnt := 0;
-    gnss_data_buf(383 downto 360) <= "010001110101000001010010"; -- GPR
+      gnss_data_buf <= (others => '0');
+      o_gnss_drive <= '0';
+      state <= SEARCH;
+      ready_cnt := 0;
+      gnss_data_buf(383 downto 352) <= "00100100010001110101000001010010"; -- $GPR
+      
+      led1 <= '0';
  
     elsif rising_edge(sysclk) then
       case state is
@@ -68,10 +72,10 @@ begin
         when CAPTURE =>
         
           if(i_RX_drive = '1') then
-            if(byte_cnt = 48) then
+            if(byte_cnt = 44) then
               state <= SEND;
             else
-              gnss_data_buf(8*(47-byte_cnt) downto (8*(47-byte_cnt) - 8)) <= i_gnss_data;
+              gnss_data_buf(8*(44-byte_cnt)-1 downto (8*(44-byte_cnt) - 8)) <= i_gnss_data;
               byte_cnt := byte_cnt + 1;
               state <= CAPTURE;
             end if;
@@ -81,6 +85,7 @@ begin
           
         when SEND =>
           o_gnss_drive <= '1';
+          led1 <= '1';
         
           state <= SEARCH;
           

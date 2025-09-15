@@ -46,7 +46,7 @@ begin
     begin
     
         if rising_edge(clk) then
-            if rst = '1' then
+            if rst = '0' then
 				SRAM_data_i <= (others => '0');	
 				RTC_data_i <= (others => '0');
 				RTC_request <= '0';
@@ -69,6 +69,8 @@ begin
 											
 					when s_RTC_idle =>
 					
+					 led1 <= led;
+					
 						I2C_read_done <= '0';							
 						if RTC_data_DV = '1' then
                             RTC_request <= '0';
@@ -81,7 +83,6 @@ begin
                     
                     when s_BF_send =>               
                         
-					    led1 <= led;
                         BF_packet <= ID & RTC_data_i & SRAM_data_i;
                         BF_packet_DV <= '1';
                         I2C_read_done <= '1';

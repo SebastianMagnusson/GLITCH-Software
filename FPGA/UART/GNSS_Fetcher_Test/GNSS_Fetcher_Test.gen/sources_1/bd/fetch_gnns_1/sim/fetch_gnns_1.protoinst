@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"fetch_gnns_1": {
+			"proto_instances": {
+			}
+		}
+	}
+}

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Sat Sep 13 10:02:21 2025
+| Date         : Mon Sep 15 13:27:16 2025
 | Host         : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command      : report_utilization -file Func_test1_BF_formatter_0_0_utilization_synth.rpt -pb Func_test1_BF_formatter_0_0_utilization_synth.pb
 | Design       : Func_test1_BF_formatter_0_0
@@ -34,8 +34,8 @@ Table of Contents
 | Slice LUTs*             |  233 |     0 |          0 |     20800 |  1.12 |
 |   LUT as Logic          |  233 |     0 |          0 |     20800 |  1.12 |
 |   LUT as Memory         |    0 |     0 |          0 |      9600 |  0.00 |
-| Slice Registers         |  453 |     0 |          0 |     41600 |  1.09 |
-|   Register as Flip Flop |  453 |     0 |          0 |     41600 |  1.09 |
+| Slice Registers         |  454 |     0 |          0 |     41600 |  1.09 |
+|   Register as Flip Flop |  454 |     0 |          0 |     41600 |  1.09 |
 |   Register as Latch     |    0 |     0 |          0 |     41600 |  0.00 |
 | F7 Muxes                |    0 |     0 |          0 |     16300 |  0.00 |
 | F8 Muxes                |    0 |     0 |          0 |      8150 |  0.00 |
@@ -60,7 +60,7 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
-| 453   |          Yes |       Reset |            - |
+| 454   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -152,11 +152,11 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  453 |        Flop & Latch |
+| FDRE     |  454 |        Flop & Latch |
 | LUT2     |  444 |                 LUT |
 | LUT5     |    5 |                 LUT |
+| LUT4     |    3 |                 LUT |
 | LUT3     |    3 |                 LUT |
-| LUT4     |    2 |                 LUT |
 | LUT1     |    2 |                 LUT |
 +----------+------+---------------------+
 

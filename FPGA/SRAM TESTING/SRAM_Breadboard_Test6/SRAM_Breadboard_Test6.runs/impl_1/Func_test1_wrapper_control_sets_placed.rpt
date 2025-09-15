@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Sat Sep 13 11:57:23 2025
+| Date         : Mon Sep 15 13:34:27 2025
 | Host         : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Func_test1_wrapper_control_sets_placed.rpt
 | Design       : Func_test1_wrapper
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    43 |
-|    Minimum number of control sets                        |    43 |
+| Total control sets                                       |    42 |
+|    Minimum number of control sets                        |    42 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   112 |
+| Unused register locations in slices containing registers |    94 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,8 +39,8 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    43 |
-| >= 0 to < 4        |     5 |
+| Total control sets |    42 |
+| >= 0 to < 4        |     4 |
 | >= 4 to < 6        |     5 |
 | >= 6 to < 8        |     3 |
 | >= 8 to < 10       |     7 |
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              33 |           15 |
-| No           | No                    | Yes                    |              52 |           14 |
-| No           | Yes                   | No                     |              11 |            8 |
-| Yes          | No                    | No                     |             140 |           30 |
-| Yes          | No                    | Yes                    |             230 |           58 |
-| Yes          | Yes                   | No                     |             726 |          128 |
+| No           | No                    | No                     |              39 |           20 |
+| No           | No                    | Yes                    |              50 |           18 |
+| No           | Yes                   | No                     |               9 |            4 |
+| Yes          | No                    | No                     |             140 |           33 |
+| Yes          | No                    | Yes                    |             230 |           66 |
+| Yes          | Yes                   | No                     |             726 |          139 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -73,49 +73,48 @@ Table of Contents
 +-------------------+--------------------------------------------------------------------+------------------------------------------------------------------+------------------+----------------+--------------+
 |    Clock Signal   |                            Enable Signal                           |                         Set/Reset Signal                         | Slice Load Count | Bel Load Count | Bels / Slice |
 +-------------------+--------------------------------------------------------------------+------------------------------------------------------------------+------------------+----------------+--------------+
-|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                2 |              2 |         1.00 |
-|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/TM_packet_sender_0/U0/o_TX_DV_i_1_n_0               |                2 |              2 |         1.00 |
-|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/BF_Data_Collector_Dr_0/U0/p_0_in                    |                1 |              3 |         3.00 |
+|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/BF_Data_Collector_Dr_0/U0/p_0_in                    |                2 |              2 |         1.00 |
+|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                1 |              2 |         2.00 |
 |  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/Write6_0/U0/write_complete_i_2_n_0                  |                1 |              3 |         3.00 |
 |  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_address[6]_i_1_n_0    |                                                                  |                1 |              3 |         3.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/busy_cnt[2]_i_1_n_0         | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                2 |              4 |         2.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/osc_cnt0__6                                |                                                                  |                1 |              4 |         4.00 |
+|  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/busy_cnt[2]_i_1_n_0         | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                3 |              4 |         1.33 |
 |  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/loop_cnt[3]_i_1_n_0                        | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                2 |              4 |         2.00 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/osc_cnt0__6                                |                                                                  |                1 |              4 |         4.00 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Write6_0/U0/FSM_onehot_state[4]_i_1_n_0               | Func_test1_i/Write6_0/U0/write_complete_i_2_n_0                  |                2 |              5 |         2.50 |
 |  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/BF_data_buf[4]_i_1_n_0                     |                                                                  |                1 |              5 |         5.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Write6_0/U0/FSM_onehot_state[4]_i_1_n_0               | Func_test1_i/Write6_0/U0/write_complete_i_2_n_0                  |                1 |              5 |         5.00 |
 |  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/FSM_onehot_state[9]_i_1_n_0 | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                2 |              6 |         3.00 |
-|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/BF_formatter_0/U0/RTC_request_i_1_n_0               |                4 |              7 |         1.75 |
+|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/BF_formatter_0/U0/RTC_request_i_1_n_0               |                3 |              7 |         2.33 |
 |  sysclk_IBUF_BUFG | Func_test1_i/UART_TXmod_0/U0/r_Clk_Count_1                         | Func_test1_i/UART_TXmod_0/U0/r_Clk_Count0                        |                2 |              7 |         3.50 |
-|  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/rtc_data[7]_i_1_n_0         | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                2 |              8 |         4.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/rtc_data[15]_i_1_n_0        | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                1 |              8 |         8.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/rtc_data[23]_i_1_n_0        | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                2 |              8 |         4.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/I2Cmod_0/U0/data_rd[7]_i_1_n_0                        | Func_test1_i/Switchmod_0/U0/led0                                 |                2 |              8 |         4.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_1_n_0            | Func_test1_i/TM_packet_sender_0/U0/o_TX_DV_i_1_n_0               |                4 |              8 |         2.00 |
+|  sysclk_IBUF_BUFG | Func_test1_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_2_n_0            | Func_test1_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_1_n_0          |                3 |              8 |         2.67 |
 |  sysclk_IBUF_BUFG | Func_test1_i/UART_TXmod_0/U0/r_TX_Data_0                           |                                                                  |                2 |              8 |         4.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/I2Cmod_0/U0/busy1                                     | Func_test1_i/Switchmod_0/U0/led0                                 |                3 |              9 |         3.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/I2Cmod_0/U0/addr_rw0                                  |                                                                  |                3 |             10 |         3.33 |
-|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/Switchmod_0/U0/led0                                 |                6 |             12 |         2.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/data_exp                                   | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                4 |             16 |         4.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/data_buf0                                  |                                                                  |                2 |             16 |         8.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/data_prev_1                                | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                3 |             16 |         5.33 |
+|  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/rtc_data[15]_i_1_n_0        | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                1 |              8 |         8.00 |
+|  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/rtc_data[7]_i_1_n_0         | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                1 |              8 |         8.00 |
+|  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/rtc_data[23]_i_1_n_0        | Func_test1_i/I2C_full_sensor_data_0/U0/o_i2c_ena_i_1_n_0         |                1 |              8 |         8.00 |
+|  sysclk_IBUF_BUFG | Func_test1_i/I2Cmod_0/U0/data_rd[7]_i_1_n_0                        | Func_test1_i/I2Cmod_0/U0/busy_i_2_n_0                            |                2 |              8 |         4.00 |
+|  sysclk_IBUF_BUFG | Func_test1_i/I2Cmod_0/U0/busy1                                     | Func_test1_i/I2Cmod_0/U0/busy_i_2_n_0                            |                3 |              9 |         3.00 |
+|  sysclk_IBUF_BUFG | Func_test1_i/I2Cmod_0/U0/addr_rw0                                  |                                                                  |                2 |             10 |         5.00 |
+|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/I2Cmod_0/U0/busy_i_2_n_0                            |                7 |             12 |         1.71 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/data_buf0                                  |                                                                  |                4 |             16 |         4.00 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/data_exp                                   | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                5 |             16 |         3.20 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/data_prev_1                                | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                4 |             16 |         4.00 |
 |  sysclk_IBUF_BUFG | Func_test1_i/Write6_0/U0/write_data_buf0                           |                                                                  |                4 |             16 |         4.00 |
+|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                5 |             16 |         3.20 |
 |  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/RW_ROUTER4_0/U0/p_0_in                              |                3 |             17 |         5.67 |
-|  sysclk_IBUF_BUFG |                                                                    | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                3 |             17 |         5.67 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/A_buf                                      | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                7 |             22 |         3.14 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/addr_cnt[21]_i_1_n_0                       | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                4 |             22 |         5.50 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/A[21]_i_1_n_0                              | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                7 |             23 |         3.29 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Write6_0/U0/write_active_0                            | Func_test1_i/Write6_0/U0/write_complete_i_2_n_0                  |                5 |             23 |         4.60 |
-|  sysclk_IBUF_BUFG | Func_test1_i/BF_formatter_0/U0/RTC_data_i_0                        | Func_test1_i/BF_formatter_0/U0/RTC_request_i_1_n_0               |                3 |             24 |         8.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/o_TX_RTC_data[23]_i_2_n_0   | Func_test1_i/I2C_full_sensor_data_0/U0/o_TX_RTC_data[23]_i_1_n_0 |                4 |             24 |         6.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/TM_packet_sender_0/U0/bit_cnt                         | Func_test1_i/TM_packet_sender_0/U0/o_TX_DV_i_1_n_0               |                8 |             33 |         4.12 |
-|  sysclk_IBUF_BUFG |                                                                    |                                                                  |               15 |             33 |         2.20 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/BF_data_buf[46]_i_1_n_0                    |                                                                  |                8 |             38 |         4.75 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Write6_0/U0/addr_cnt                                  | Func_test1_i/Write6_0/U0/write_complete_i_2_n_0                  |                7 |             38 |         5.43 |
-|  sysclk_IBUF_BUFG | Func_test1_i/Switchmod_0/U0/led0                                   |                                                                  |                8 |             40 |         5.00 |
-|  sysclk_IBUF_BUFG | Func_test1_i/BF_Data_Collector_Dr_0/U0/BF_data_buf[197]_i_1_n_0    | Func_test1_i/BF_Data_Collector_Dr_0/U0/p_0_in                    |               13 |             44 |         3.38 |
-|  sysclk_IBUF_BUFG | Func_test1_i/BF_formatter_0/U0/SRAM_data_i_1                       | Func_test1_i/BF_formatter_0/U0/RTC_request_i_1_n_0               |               29 |            182 |         6.28 |
-|  sysclk_IBUF_BUFG | Func_test1_i/TM_packet_sender_0/U0/i_BF_data_i                     | Func_test1_i/TM_packet_sender_0/U0/o_TX_DV_i_1_n_0               |               39 |            207 |         5.31 |
-|  sysclk_IBUF_BUFG | Func_test1_i/BF_formatter_0/U0/FSM_sequential_state_reg_n_0_[1]    | Func_test1_i/BF_formatter_0/U0/RTC_request_i_1_n_0               |               30 |            207 |         6.90 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/A_buf                                      | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                8 |             22 |         2.75 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/addr_cnt[21]_i_1_n_0                       | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                5 |             22 |         4.40 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/A[21]_i_1_n_0                              | Func_test1_i/Read6_0/U0/read_complete_i_2_n_0                    |                5 |             23 |         4.60 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Write6_0/U0/write_active_0                            | Func_test1_i/Write6_0/U0/write_complete_i_2_n_0                  |                7 |             23 |         3.29 |
+|  sysclk_IBUF_BUFG | Func_test1_i/I2C_full_sensor_data_0/U0/o_TX_RTC_data[23]_i_2_n_0   | Func_test1_i/I2C_full_sensor_data_0/U0/o_TX_RTC_data[23]_i_1_n_0 |                5 |             24 |         4.80 |
+|  sysclk_IBUF_BUFG | Func_test1_i/BF_formatter_0/U0/RTC_data_i_0                        | Func_test1_i/BF_formatter_0/U0/RTC_request_i_1_n_0               |                5 |             24 |         4.80 |
+|  sysclk_IBUF_BUFG | Func_test1_i/TM_packet_sender_0/U0/bit_cnt                         | Func_test1_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_1_n_0          |                7 |             33 |         4.71 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Write6_0/U0/addr_cnt                                  | Func_test1_i/Write6_0/U0/write_complete_i_2_n_0                  |                9 |             38 |         4.22 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Read6_0/U0/BF_data_buf[46]_i_1_n_0                    |                                                                  |                9 |             38 |         4.22 |
+|  sysclk_IBUF_BUFG |                                                                    |                                                                  |               20 |             39 |         1.95 |
+|  sysclk_IBUF_BUFG | Func_test1_i/Switchmod_0/U0/led0                                   |                                                                  |                9 |             40 |         4.44 |
+|  sysclk_IBUF_BUFG | Func_test1_i/BF_Data_Collector_Dr_0/U0/BF_data_buf[197]_i_1_n_0    | Func_test1_i/BF_Data_Collector_Dr_0/U0/p_0_in                    |               14 |             44 |         3.14 |
+|  sysclk_IBUF_BUFG | Func_test1_i/BF_formatter_0/U0/SRAM_data_i_1                       | Func_test1_i/BF_formatter_0/U0/RTC_request_i_1_n_0               |               32 |            182 |         5.69 |
+|  sysclk_IBUF_BUFG | Func_test1_i/BF_formatter_0/U0/FSM_sequential_state_reg_n_0_[1]    | Func_test1_i/BF_formatter_0/U0/RTC_request_i_1_n_0               |               34 |            207 |         6.09 |
+|  sysclk_IBUF_BUFG | Func_test1_i/TM_packet_sender_0/U0/i_BF_data_i                     | Func_test1_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_1_n_0          |               43 |            207 |         4.81 |
 +-------------------+--------------------------------------------------------------------+------------------------------------------------------------------+------------------+----------------+--------------+
 
 

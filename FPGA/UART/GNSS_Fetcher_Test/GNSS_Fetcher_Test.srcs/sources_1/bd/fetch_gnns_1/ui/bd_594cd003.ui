@@ -1,30 +1,41 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.727425",
-   "Default View_TopLeft":"-107,-98",
+   "Default View_ScaleFactor":"0.618837",
+   "Default View_TopLeft":"-107,-160",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace port port-id_sysclk -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
-preplace port port-id_GNSS_TX -pg 1 -lvl 0 -x 0 -y 160 -defaultsOSRD
-preplace port port-id_btn0 -pg 1 -lvl 0 -x 0 -y 280 -defaultsOSRD
-preplace port port-id_led0 -pg 1 -lvl 4 -x 990 -y 280 -defaultsOSRD
-preplace port port-id_GNSS_EN -pg 1 -lvl 4 -x 990 -y 180 -defaultsOSRD
-preplace inst Switchmod_0 -pg 1 -lvl 2 -x 450 -y 270 -defaultsOSRD
-preplace inst UART_RXmod_0 -pg 1 -lvl 1 -x 150 -y 150 -defaultsOSRD
-preplace inst GNSS_Fetcher_mod_0 -pg 1 -lvl 2 -x 450 -y 130 -defaultsOSRD
-preplace inst GNSS_Sender_0 -pg 1 -lvl 3 -x 800 -y 90 -defaultsOSRD
-preplace netloc sysclk_0_1 1 0 3 20 80 280 40 610
-preplace netloc i_RX_Serial_0_1 1 0 1 NJ 160
-preplace netloc i_signal_0_1 1 0 2 NJ 280 NJ
-preplace netloc Switchmod_0_led0 1 2 2 NJ 280 NJ
-preplace netloc Switchmod_0_o_signal 1 1 3 290 30 620 180 NJ
-preplace netloc GNSS_Fetcher_mod_0_o_gnss_drive 1 2 1 630 100n
-preplace netloc GNSS_Fetcher_mod_0_o_gnss_data 1 2 1 N 120
-preplace netloc UART_RXmod_0_o_RX_DV 1 1 1 N 140
-preplace netloc UART_RXmod_0_o_RX_byte 1 1 1 N 160
-levelinfo -pg 1 0 150 450 800 990
-pagesize -pg 1 -db -bbox -sgen -110 0 1100 340
+preplace port port-id_sysclk -pg 1 -lvl 0 -x 0 -y 300 -defaultsOSRD
+preplace port port-id_GNSS_TX -pg 1 -lvl 0 -x 0 -y 380 -defaultsOSRD
+preplace port port-id_btn0 -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
+preplace port port-id_led0 -pg 1 -lvl 6 -x 1570 -y 80 -defaultsOSRD
+preplace port port-id_GNSS_EN -pg 1 -lvl 6 -x 1570 -y 50 -defaultsOSRD
+preplace port port-id_led1 -pg 1 -lvl 6 -x 1570 -y 360 -defaultsOSRD
+preplace port port-id_uart_rxd_out -pg 1 -lvl 6 -x 1570 -y 230 -defaultsOSRD
+preplace inst Switchmod_0 -pg 1 -lvl 4 -x 1150 -y 70 -defaultsOSRD
+preplace inst UART_RXmod_0 -pg 1 -lvl 1 -x 150 -y 370 -defaultsOSRD
+preplace inst GNSS_Fetcher_mod_0 -pg 1 -lvl 2 -x 450 -y 350 -defaultsOSRD
+preplace inst GNSS_Sender_0 -pg 1 -lvl 3 -x 800 -y 340 -defaultsOSRD
+preplace inst Packet_chopper_0 -pg 1 -lvl 4 -x 1150 -y 250 -defaultsOSRD
+preplace inst UART_TXmod_0 -pg 1 -lvl 5 -x 1420 -y 230 -defaultsOSRD
+preplace netloc GNSS_Fetcher_mod_0_o_gnss_data 1 2 1 610 330n
+preplace netloc GNSS_Fetcher_mod_0_o_gnss_drive 1 2 1 N 350
+preplace netloc Switchmod_0_led0 1 4 2 NJ 80 NJ
+preplace netloc Switchmod_0_o_signal 1 1 5 290 250 620 250 980 140 1290 50 NJ
+preplace netloc UART_RXmod_0_o_RX_DV 1 1 1 N 360
+preplace netloc UART_RXmod_0_o_RX_byte 1 1 1 N 380
+preplace netloc i_RX_Serial_0_1 1 0 1 NJ 380
+preplace netloc i_signal_0_1 1 0 4 NJ 80 NJ 80 NJ 80 NJ
+preplace netloc sysclk_0_1 1 0 5 20 300 280 260 630 240 970 150 1290
+preplace netloc GNSS_Sender_0_led1 1 3 3 NJ 360 NJ 360 NJ
+preplace netloc GNSS_Sender_0_o_gnss_data 1 3 1 990 250n
+preplace netloc GNSS_Sender_0_o_gnss_drive 1 3 1 1000 270n
+preplace netloc Packet_chopper_0_o_TX_DV 1 4 1 N 230
+preplace netloc Packet_chopper_0_o_TX_byte 1 4 1 N 250
+preplace netloc UART_TXmod_0_o_TX_Done 1 3 3 1010 350 NJ 350 1550
+preplace netloc UART_TXmod_0_o_TX_Serial 1 5 1 NJ 230
+levelinfo -pg 1 0 150 450 800 1150 1420 1570
+pagesize -pg 1 -db -bbox -sgen -110 0 1700 440
 "
 }
-
+0

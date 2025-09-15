@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xB2508A90B2508A9",
+      "boundary_crc": "0x77A104703FB7F9D9",
       "device": "xc7a35tcpg236-1",
       "gen_directory": "../../../../GNSS_Fetcher_Test.gen/sources_1/bd/fetch_gnns_1",
       "name": "fetch_gnns_1",
@@ -14,7 +14,9 @@
       "Switchmod_0": "",
       "UART_RXmod_0": "",
       "GNSS_Fetcher_mod_0": "",
-      "GNSS_Sender_0": ""
+      "GNSS_Sender_0": "",
+      "Packet_chopper_0": "",
+      "UART_TXmod_0": ""
     },
     "ports": {
       "sysclk": {
@@ -30,6 +32,12 @@
         "direction": "O"
       },
       "GNSS_EN": {
+        "direction": "O"
+      },
+      "led1": {
+        "direction": "O"
+      },
+      "uart_rxd_out": {
         "direction": "O"
       }
     },
@@ -66,6 +74,11 @@
         "xci_name": "fetch_gnns_1_UART_RXmod_0_0",
         "xci_path": "ip\\fetch_gnns_1_UART_RXmod_0_0\\fetch_gnns_1_UART_RXmod_0_0.xci",
         "inst_hier_path": "UART_RXmod_0",
+        "parameters": {
+          "Baud_Rate": {
+            "value": "9600"
+          }
+        },
         "reference_info": {
           "ref_type": "hdl",
           "ref_name": "UART_RXmod",
@@ -122,6 +135,9 @@
           },
           "o_gnss_drive": {
             "direction": "O"
+          },
+          "led1": {
+            "direction": "O"
           }
         }
       },
@@ -164,6 +180,90 @@
             "direction": "O"
           }
         }
+      },
+      "Packet_chopper_0": {
+        "vlnv": "xilinx.com:module_ref:Packet_chopper:1.0",
+        "ip_revision": "1",
+        "xci_name": "fetch_gnns_1_Packet_chopper_0_0",
+        "xci_path": "ip\\fetch_gnns_1_Packet_chopper_0_0\\fetch_gnns_1_Packet_chopper_0_0.xci",
+        "inst_hier_path": "Packet_chopper_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Packet_chopper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "i_data": {
+            "direction": "I",
+            "left": "383",
+            "right": "0"
+          },
+          "i_DV": {
+            "direction": "I"
+          },
+          "i_TX_done": {
+            "direction": "I"
+          },
+          "o_TX_DV": {
+            "direction": "O"
+          },
+          "o_TX_byte": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "led2": {
+            "direction": "O"
+          }
+        }
+      },
+      "UART_TXmod_0": {
+        "vlnv": "xilinx.com:module_ref:UART_TXmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "fetch_gnns_1_UART_TXmod_0_0",
+        "xci_path": "ip\\fetch_gnns_1_UART_TXmod_0_0\\fetch_gnns_1_UART_TXmod_0_0.xci",
+        "inst_hier_path": "UART_TXmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_TXmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_TX_DV": {
+            "direction": "I"
+          },
+          "i_TX_Byte": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "o_TX_Active": {
+            "direction": "O"
+          },
+          "o_TX_Serial": {
+            "direction": "O"
+          },
+          "o_TX_Done": {
+            "direction": "O"
+          }
+        }
       }
     },
     "nets": {
@@ -179,6 +279,36 @@
           "GNSS_Sender_0/data_ready"
         ]
       },
+      "GNSS_Sender_0_led1": {
+        "ports": [
+          "GNSS_Sender_0/led1",
+          "led1"
+        ]
+      },
+      "GNSS_Sender_0_o_gnss_data": {
+        "ports": [
+          "GNSS_Sender_0/o_gnss_data",
+          "Packet_chopper_0/i_data"
+        ]
+      },
+      "GNSS_Sender_0_o_gnss_drive": {
+        "ports": [
+          "GNSS_Sender_0/o_gnss_drive",
+          "Packet_chopper_0/i_DV"
+        ]
+      },
+      "Packet_chopper_0_o_TX_DV": {
+        "ports": [
+          "Packet_chopper_0/o_TX_DV",
+          "UART_TXmod_0/i_TX_DV"
+        ]
+      },
+      "Packet_chopper_0_o_TX_byte": {
+        "ports": [
+          "Packet_chopper_0/o_TX_byte",
+          "UART_TXmod_0/i_TX_Byte"
+        ]
+      },
       "Switchmod_0_led0": {
         "ports": [
           "Switchmod_0/led0",
@@ -189,8 +319,9 @@
         "ports": [
           "Switchmod_0/o_signal",
           "GNSS_EN",
+          "GNSS_Sender_0/reset_n",
           "GNSS_Fetcher_mod_0/reset_n",
-          "GNSS_Sender_0/reset_n"
+          "Packet_chopper_0/rst"
         ]
       },
       "UART_RXmod_0_o_RX_DV": {
@@ -203,6 +334,18 @@
         "ports": [
           "UART_RXmod_0/o_RX_byte",
           "GNSS_Fetcher_mod_0/i_gnss_data"
+        ]
+      },
+      "UART_TXmod_0_o_TX_Done": {
+        "ports": [
+          "UART_TXmod_0/o_TX_Done",
+          "Packet_chopper_0/i_TX_done"
+        ]
+      },
+      "UART_TXmod_0_o_TX_Serial": {
+        "ports": [
+          "UART_TXmod_0/o_TX_Serial",
+          "uart_rxd_out"
         ]
       },
       "i_RX_Serial_0_1": {
@@ -222,8 +365,10 @@
           "sysclk",
           "UART_RXmod_0/sysclk",
           "Switchmod_0/sysclk",
+          "GNSS_Sender_0/sysclk",
           "GNSS_Fetcher_mod_0/sysclk",
-          "GNSS_Sender_0/sysclk"
+          "UART_TXmod_0/sysclk",
+          "Packet_chopper_0/clk"
         ]
       }
     }

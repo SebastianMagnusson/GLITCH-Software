@@ -272,12 +272,6 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="Func_test1_I2Cmod_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Func_test1_I2Cmod_0_0" RelGenDir="$PGENDIR/Func_test1_I2Cmod_0_0">
-      <Config>
-        <Option Name="TopModule" Val="Func_test1_I2Cmod_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="Func_test1_BF_Data_Collector_Dr_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Func_test1_BF_Data_Collector_Dr_0_0" RelGenDir="$PGENDIR/Func_test1_BF_Data_Collector_Dr_0_0">
       <Config>
         <Option Name="TopModule" Val="Func_test1_BF_Data_Collector_Dr_0_0"/>
@@ -290,9 +284,9 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="Func_test1_BF_formatter_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Func_test1_BF_formatter_0_0" RelGenDir="$PGENDIR/Func_test1_BF_formatter_0_0">
+    <FileSet Name="Func_test1_Read6_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Func_test1_Read6_0_0" RelGenDir="$PGENDIR/Func_test1_Read6_0_0">
       <Config>
-        <Option Name="TopModule" Val="Func_test1_BF_formatter_0_0"/>
+        <Option Name="TopModule" Val="Func_test1_Read6_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -302,9 +296,15 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="Func_test1_Read6_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Func_test1_Read6_0_0" RelGenDir="$PGENDIR/Func_test1_Read6_0_0">
+    <FileSet Name="Func_test1_BF_formatter_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Func_test1_BF_formatter_0_0" RelGenDir="$PGENDIR/Func_test1_BF_formatter_0_0">
       <Config>
-        <Option Name="TopModule" Val="Func_test1_Read6_0_0"/>
+        <Option Name="TopModule" Val="Func_test1_BF_formatter_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="Func_test1_I2Cmod_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Func_test1_I2Cmod_0_0" RelGenDir="$PGENDIR/Func_test1_I2Cmod_0_0">
+      <Config>
+        <Option Name="TopModule" Val="Func_test1_I2Cmod_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -340,9 +340,7 @@
     </Run>
     <Run Id="Func_test1_Write6_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_Write6_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_Write6_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_Write6_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_Write6_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_Write6_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -352,9 +350,7 @@
     </Run>
     <Run Id="Func_test1_RW_ROUTER4_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_RW_ROUTER4_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_RW_ROUTER4_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_RW_ROUTER4_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_RW_ROUTER4_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_RW_ROUTER4_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -364,9 +360,7 @@
     </Run>
     <Run Id="Func_test1_Switchmod_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_Switchmod_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_Switchmod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_Switchmod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_Switchmod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_Switchmod_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -376,21 +370,7 @@
     </Run>
     <Run Id="Func_test1_UART_TXmod_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_UART_TXmod_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_UART_TXmod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_UART_TXmod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_UART_TXmod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_UART_TXmod_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="Func_test1_I2Cmod_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_I2Cmod_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_I2Cmod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_I2Cmod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_I2Cmod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_I2Cmod_0_0_synth_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -400,9 +380,7 @@
     </Run>
     <Run Id="Func_test1_BF_Data_Collector_Dr_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_BF_Data_Collector_Dr_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_BF_Data_Collector_Dr_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_BF_Data_Collector_Dr_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_BF_Data_Collector_Dr_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_BF_Data_Collector_Dr_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -412,9 +390,27 @@
     </Run>
     <Run Id="Func_test1_I2C_full_sensor_data_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_I2C_full_sensor_data_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_I2C_full_sensor_data_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_I2C_full_sensor_data_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_I2C_full_sensor_data_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_I2C_full_sensor_data_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="Func_test1_Read6_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_Read6_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_Read6_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_Read6_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_Read6_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_Read6_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="Func_test1_TM_packet_sender_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_TM_packet_sender_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_TM_packet_sender_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_TM_packet_sender_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_TM_packet_sender_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_TM_packet_sender_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -434,19 +430,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="Func_test1_TM_packet_sender_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_TM_packet_sender_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_TM_packet_sender_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_TM_packet_sender_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_TM_packet_sender_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_TM_packet_sender_0_0_synth_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="Func_test1_Read6_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_Read6_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_Read6_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_Read6_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_Read6_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_Read6_0_0_synth_1" ParallelReportGen="true">
+    <Run Id="Func_test1_I2Cmod_0_0_synth_1" Type="Ft3:Synth" SrcSet="Func_test1_I2Cmod_0_0" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_I2Cmod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Func_test1_I2Cmod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_I2Cmod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_I2Cmod_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -478,9 +462,7 @@
     </Run>
     <Run Id="Func_test1_Write6_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_Write6_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_Write6_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_Write6_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_Write6_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -497,9 +479,7 @@
     </Run>
     <Run Id="Func_test1_RW_ROUTER4_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_RW_ROUTER4_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_RW_ROUTER4_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_RW_ROUTER4_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_RW_ROUTER4_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -516,9 +496,7 @@
     </Run>
     <Run Id="Func_test1_Switchmod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_Switchmod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_Switchmod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_Switchmod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_Switchmod_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -535,28 +513,7 @@
     </Run>
     <Run Id="Func_test1_UART_TXmod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_UART_TXmod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_UART_TXmod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_UART_TXmod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_UART_TXmod_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="Func_test1_I2Cmod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_I2Cmod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_I2Cmod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_I2Cmod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_I2Cmod_0_0_impl_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -573,9 +530,7 @@
     </Run>
     <Run Id="Func_test1_BF_Data_Collector_Dr_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_BF_Data_Collector_Dr_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_BF_Data_Collector_Dr_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_BF_Data_Collector_Dr_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_BF_Data_Collector_Dr_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -592,9 +547,41 @@
     </Run>
     <Run Id="Func_test1_I2C_full_sensor_data_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_I2C_full_sensor_data_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_I2C_full_sensor_data_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_I2C_full_sensor_data_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_I2C_full_sensor_data_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="Func_test1_Read6_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_Read6_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_Read6_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_Read6_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_Read6_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="Func_test1_TM_packet_sender_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_TM_packet_sender_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_TM_packet_sender_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_TM_packet_sender_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_TM_packet_sender_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -628,26 +615,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="Func_test1_TM_packet_sender_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_TM_packet_sender_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_TM_packet_sender_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_TM_packet_sender_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_TM_packet_sender_0_0_impl_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="Func_test1_Read6_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_Read6_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_Read6_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_Read6_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_Read6_0_0_impl_1" ParallelReportGen="true">
+    <Run Id="Func_test1_I2Cmod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="Func_test1_I2Cmod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Func_test1_I2Cmod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Func_test1_I2Cmod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/Func_test1_I2Cmod_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
           <Desc>Default settings for Implementation.</Desc>

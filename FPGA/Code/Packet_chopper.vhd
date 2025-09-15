@@ -38,7 +38,7 @@ begin
     begin
     
         if rising_edge(clk) then
-            if rst = '1' then
+            if rst = '0' then
 				i_data_i <= (others => '0');
 				o_TX_DV <= '0';
 				o_TX_byte <= (others => '0');

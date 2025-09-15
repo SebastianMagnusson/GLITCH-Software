@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Fri Sep 12 17:22:03 2025
+// Date        : Mon Sep 15 13:32:54 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim {c:/GitHub/GLITCH-Software/FPGA/SRAM
 //               TESTING/SRAM_Breadboard_Test6/SRAM_Breadboard_Test6.gen/sources_1/bd/Func_test1/ip/Func_test1_I2Cmod_0_0/Func_test1_I2Cmod_0_0_sim_netlist.v}
@@ -90,8 +90,8 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     sda_t,
     busy,
     ena,
-    sysclk,
     reset_n,
+    sysclk,
     D,
     data_wr,
     sda_i,
@@ -102,8 +102,8 @@ module Func_test1_I2Cmod_0_0_I2Cmod
   output sda_t;
   output busy;
   input ena;
-  input sysclk;
   input reset_n;
+  input sysclk;
   input [7:0]D;
   input [7:0]data_wr;
   input sda_i;
@@ -149,8 +149,9 @@ module Func_test1_I2Cmod_0_0_I2Cmod
   wire busy4_out;
   wire busy_i_1_n_0;
   wire busy_i_2_n_0;
-  wire busy_i_4_n_0;
+  wire busy_i_3_n_0;
   wire busy_i_5_n_0;
+  wire busy_i_6_n_0;
   wire [4:0]count;
   wire [4:0]count_0;
   wire data_clk__0;
@@ -296,7 +297,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
        (.I0(\FSM_onehot_state[1]_i_2_n_0 ),
         .I1(ena),
         .O(\FSM_onehot_state[4]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT4 #(
     .INIT(16'h0002)) 
     \FSM_onehot_state[5]_i_1 
@@ -321,7 +322,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
        (.I0(\FSM_onehot_state[1]_i_2_n_0 ),
         .I1(\FSM_onehot_state_reg_n_0_[7] ),
         .O(\FSM_onehot_state[6]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hFE)) 
     \FSM_onehot_state[6]_i_3 
@@ -359,7 +360,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
        (.C(sysclk),
         .CE(busy1),
         .D(\FSM_onehot_state[0]_i_1_n_0 ),
-        .PRE(reset_n),
+        .PRE(busy_i_2_n_0),
         .Q(\FSM_onehot_state_reg_n_0_[0] ));
   (* FSM_ENCODED_STATES = "slv_ack1:000001000,write:000010000,command:000000100,start:000000010,ready:000000001,mstr_ack:010000000,slv_ack2:000100000,stop:100000000,read:001000000" *) 
   FDCE #(
@@ -367,7 +368,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \FSM_onehot_state_reg[1] 
        (.C(sysclk),
         .CE(busy1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(\FSM_onehot_state[1]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[1] ));
   (* FSM_ENCODED_STATES = "slv_ack1:000001000,write:000010000,command:000000100,start:000000010,ready:000000001,mstr_ack:010000000,slv_ack2:000100000,stop:100000000,read:001000000" *) 
@@ -376,7 +377,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \FSM_onehot_state_reg[2] 
        (.C(sysclk),
         .CE(busy1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(\FSM_onehot_state[2]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[2] ));
   (* FSM_ENCODED_STATES = "slv_ack1:000001000,write:000010000,command:000000100,start:000000010,ready:000000001,mstr_ack:010000000,slv_ack2:000100000,stop:100000000,read:001000000" *) 
@@ -385,7 +386,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \FSM_onehot_state_reg[3] 
        (.C(sysclk),
         .CE(busy1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(\FSM_onehot_state[3]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[3] ));
   (* FSM_ENCODED_STATES = "slv_ack1:000001000,write:000010000,command:000000100,start:000000010,ready:000000001,mstr_ack:010000000,slv_ack2:000100000,stop:100000000,read:001000000" *) 
@@ -394,7 +395,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \FSM_onehot_state_reg[4] 
        (.C(sysclk),
         .CE(busy1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(\FSM_onehot_state[4]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[4] ));
   (* FSM_ENCODED_STATES = "slv_ack1:000001000,write:000010000,command:000000100,start:000000010,ready:000000001,mstr_ack:010000000,slv_ack2:000100000,stop:100000000,read:001000000" *) 
@@ -403,7 +404,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \FSM_onehot_state_reg[5] 
        (.C(sysclk),
         .CE(busy1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(\FSM_onehot_state[5]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[5] ));
   (* FSM_ENCODED_STATES = "slv_ack1:000001000,write:000010000,command:000000100,start:000000010,ready:000000001,mstr_ack:010000000,slv_ack2:000100000,stop:100000000,read:001000000" *) 
@@ -412,7 +413,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \FSM_onehot_state_reg[6] 
        (.C(sysclk),
         .CE(busy1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(\FSM_onehot_state[6]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[6] ));
   (* FSM_ENCODED_STATES = "slv_ack1:000001000,write:000010000,command:000000100,start:000000010,ready:000000001,mstr_ack:010000000,slv_ack2:000100000,stop:100000000,read:001000000" *) 
@@ -421,7 +422,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \FSM_onehot_state_reg[7] 
        (.C(sysclk),
         .CE(busy1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(\FSM_onehot_state[7]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[7] ));
   (* FSM_ENCODED_STATES = "slv_ack1:000001000,write:000010000,command:000000100,start:000000010,ready:000000001,mstr_ack:010000000,slv_ack2:000100000,stop:100000000,read:001000000" *) 
@@ -430,7 +431,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \FSM_onehot_state_reg[8] 
        (.C(sysclk),
         .CE(busy1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(\FSM_onehot_state[8]_i_2_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[8] ));
   LUT6 #(
@@ -454,11 +455,11 @@ module Func_test1_I2Cmod_0_0_I2Cmod
   FDCE ack_error_int_reg
        (.C(sysclk),
         .CE(1'b1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(ack_error_int_i_1_n_0),
         .Q(ack_error));
   LUT6 #(
-    .INIT(64'h0000FE0000000000)) 
+    .INIT(64'hFE00000000000000)) 
     \addr_rw[7]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[5] ),
         .I1(\FSM_onehot_state_reg_n_0_[7] ),
@@ -559,7 +560,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
        (.C(sysclk),
         .CE(1'b1),
         .D(\bit_cnt[0]_i_1_n_0 ),
-        .PRE(reset_n),
+        .PRE(busy_i_2_n_0),
         .Q(bit_cnt[0]));
   FDPE #(
     .INIT(1'b1)) 
@@ -567,7 +568,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
        (.C(sysclk),
         .CE(1'b1),
         .D(\bit_cnt[1]_i_1_n_0 ),
-        .PRE(reset_n),
+        .PRE(busy_i_2_n_0),
         .Q(bit_cnt[1]));
   FDPE #(
     .INIT(1'b1)) 
@@ -575,57 +576,62 @@ module Func_test1_I2Cmod_0_0_I2Cmod
        (.C(sysclk),
         .CE(1'b1),
         .D(\bit_cnt[2]_i_1_n_0 ),
-        .PRE(reset_n),
+        .PRE(busy_i_2_n_0),
         .Q(bit_cnt[2]));
   LUT6 #(
     .INIT(64'hFFEAFFFFFFEA0000)) 
     busy_i_1
-       (.I0(busy_i_2_n_0),
+       (.I0(busy_i_3_n_0),
         .I1(ena),
         .I2(\FSM_onehot_state_reg_n_0_[0] ),
         .I3(\FSM_onehot_state_reg_n_0_[6] ),
         .I4(busy4_out),
         .I5(busy),
         .O(busy_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT1 #(
+    .INIT(2'h1)) 
+    busy_i_2
+       (.I0(reset_n),
+        .O(busy_i_2_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
-    busy_i_2
+    busy_i_3
        (.I0(\FSM_onehot_state_reg_n_0_[2] ),
         .I1(\FSM_onehot_state_reg_n_0_[3] ),
         .I2(\FSM_onehot_state_reg_n_0_[4] ),
         .I3(\FSM_onehot_state_reg_n_0_[1] ),
-        .O(busy_i_2_n_0));
+        .O(busy_i_3_n_0));
   LUT6 #(
     .INIT(64'hAAAAAAA8AAAAAAAA)) 
-    busy_i_3
+    busy_i_4
        (.I0(busy1),
-        .I1(busy_i_4_n_0),
+        .I1(busy_i_5_n_0),
         .I2(\FSM_onehot_state_reg_n_0_[0] ),
         .I3(\FSM_onehot_state_reg_n_0_[6] ),
         .I4(\FSM_onehot_state_reg_n_0_[8] ),
-        .I5(busy_i_5_n_0),
+        .I5(busy_i_6_n_0),
         .O(busy4_out));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT2 #(
     .INIT(4'hE)) 
-    busy_i_4
+    busy_i_5
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
         .I1(\FSM_onehot_state_reg_n_0_[4] ),
-        .O(busy_i_4_n_0));
+        .O(busy_i_5_n_0));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
     .INIT(8'h1F)) 
-    busy_i_5
+    busy_i_6
        (.I0(\FSM_onehot_state_reg_n_0_[7] ),
         .I1(\FSM_onehot_state_reg_n_0_[5] ),
         .I2(ena),
-        .O(busy_i_5_n_0));
+        .O(busy_i_6_n_0));
   FDPE busy_reg
        (.C(sysclk),
         .CE(1'b1),
         .D(busy_i_1_n_0),
-        .PRE(reset_n),
+        .PRE(busy_i_2_n_0),
         .Q(busy));
   LUT6 #(
     .INIT(64'hA5A5A5A525A5A5A5)) 
@@ -682,7 +688,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \count_reg[0] 
        (.C(sysclk),
         .CE(1'b1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(count_0[0]),
         .Q(count[0]));
   FDCE #(
@@ -690,7 +696,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \count_reg[1] 
        (.C(sysclk),
         .CE(1'b1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(count_0[1]),
         .Q(count[1]));
   FDCE #(
@@ -698,7 +704,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \count_reg[2] 
        (.C(sysclk),
         .CE(1'b1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(count_0[2]),
         .Q(count[2]));
   FDCE #(
@@ -706,7 +712,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \count_reg[3] 
        (.C(sysclk),
         .CE(1'b1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(count_0[3]),
         .Q(count[3]));
   FDCE #(
@@ -714,7 +720,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     \count_reg[4] 
        (.C(sysclk),
         .CE(1'b1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(count_0[4]),
         .Q(count[4]));
   LUT6 #(
@@ -728,15 +734,15 @@ module Func_test1_I2Cmod_0_0_I2Cmod
         .I5(stretch__0),
         .O(data_clk_n_0));
   LUT3 #(
-    .INIT(8'hE2)) 
+    .INIT(8'hB8)) 
     data_clk_i_1
        (.I0(data_clk_n_0),
         .I1(reset_n),
         .I2(data_clk__0),
         .O(data_clk_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
-    .INIT(8'hE2)) 
+    .INIT(8'hB8)) 
     data_clk_prev_i_1
        (.I0(data_clk__0),
         .I1(reset_n),
@@ -767,58 +773,58 @@ module Func_test1_I2Cmod_0_0_I2Cmod
   FDCE \data_rd_reg[0] 
        (.C(sysclk),
         .CE(\data_rd[7]_i_1_n_0 ),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(data_rx[0]),
         .Q(data_rd[0]));
   FDCE \data_rd_reg[1] 
        (.C(sysclk),
         .CE(\data_rd[7]_i_1_n_0 ),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(data_rx[1]),
         .Q(data_rd[1]));
   FDCE \data_rd_reg[2] 
        (.C(sysclk),
         .CE(\data_rd[7]_i_1_n_0 ),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(data_rx[2]),
         .Q(data_rd[2]));
   FDCE \data_rd_reg[3] 
        (.C(sysclk),
         .CE(\data_rd[7]_i_1_n_0 ),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(data_rx[3]),
         .Q(data_rd[3]));
   FDCE \data_rd_reg[4] 
        (.C(sysclk),
         .CE(\data_rd[7]_i_1_n_0 ),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(data_rx[4]),
         .Q(data_rd[4]));
   FDCE \data_rd_reg[5] 
        (.C(sysclk),
         .CE(\data_rd[7]_i_1_n_0 ),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(data_rx[5]),
         .Q(data_rd[5]));
   FDCE \data_rd_reg[6] 
        (.C(sysclk),
         .CE(\data_rd[7]_i_1_n_0 ),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(data_rx[6]),
         .Q(data_rd[6]));
   FDCE \data_rd_reg[7] 
        (.C(sysclk),
         .CE(\data_rd[7]_i_1_n_0 ),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(data_rx[7]),
         .Q(data_rd[7]));
   LUT5 #(
-    .INIT(32'hFFFE0002)) 
+    .INIT(32'hFFEF0020)) 
     \data_rx[0]_i_1 
        (.I0(sda_i),
         .I1(\FSM_onehot_state[6]_i_3_n_0 ),
-        .I2(\data_rx[0]_i_2_n_0 ),
-        .I3(reset_n),
+        .I2(reset_n),
+        .I3(\data_rx[0]_i_2_n_0 ),
         .I4(data_rx[0]),
         .O(\data_rx[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
@@ -830,30 +836,30 @@ module Func_test1_I2Cmod_0_0_I2Cmod
         .I2(data_clk_prev),
         .O(\data_rx[0]_i_2_n_0 ));
   LUT5 #(
-    .INIT(32'hFFFB0008)) 
+    .INIT(32'hFFBF0080)) 
     \data_rx[1]_i_1 
        (.I0(sda_i),
         .I1(\data_rx[5]_i_2_n_0 ),
-        .I2(bit_cnt[2]),
-        .I3(reset_n),
+        .I2(reset_n),
+        .I3(bit_cnt[2]),
         .I4(data_rx[1]),
         .O(\data_rx[1]_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'hFFFB0008)) 
+    .INIT(32'hFFBF0080)) 
     \data_rx[2]_i_1 
        (.I0(sda_i),
         .I1(\data_rx[6]_i_2_n_0 ),
-        .I2(bit_cnt[2]),
-        .I3(reset_n),
+        .I2(reset_n),
+        .I3(bit_cnt[2]),
         .I4(data_rx[2]),
         .O(\data_rx[2]_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'hFFFB0008)) 
+    .INIT(32'hFFBF0080)) 
     \data_rx[3]_i_1 
        (.I0(sda_i),
         .I1(\data_rx[7]_i_2_n_0 ),
-        .I2(bit_cnt[2]),
-        .I3(reset_n),
+        .I2(reset_n),
+        .I3(bit_cnt[2]),
         .I4(data_rx[3]),
         .O(\data_rx[3]_i_1_n_0 ));
   LUT6 #(
@@ -866,21 +872,21 @@ module Func_test1_I2Cmod_0_0_I2Cmod
         .I4(\data_rx[4]_i_2_n_0 ),
         .I5(data_rx[4]),
         .O(\data_rx[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
-    .INIT(16'hFBFF)) 
+    .INIT(16'hDFFF)) 
     \data_rx[4]_i_2 
-       (.I0(reset_n),
-        .I1(data_clk_prev),
-        .I2(data_clk__0),
-        .I3(\FSM_onehot_state_reg_n_0_[6] ),
+       (.I0(data_clk_prev),
+        .I1(data_clk__0),
+        .I2(\FSM_onehot_state_reg_n_0_[6] ),
+        .I3(reset_n),
         .O(\data_rx[4]_i_2_n_0 ));
   LUT5 #(
-    .INIT(32'hEFFF2000)) 
+    .INIT(32'hBFFF8000)) 
     \data_rx[5]_i_1 
        (.I0(sda_i),
-        .I1(reset_n),
-        .I2(bit_cnt[2]),
+        .I1(bit_cnt[2]),
+        .I2(reset_n),
         .I3(\data_rx[5]_i_2_n_0 ),
         .I4(data_rx[5]),
         .O(\data_rx[5]_i_1_n_0 ));
@@ -895,11 +901,11 @@ module Func_test1_I2Cmod_0_0_I2Cmod
         .I4(\FSM_onehot_state_reg_n_0_[6] ),
         .O(\data_rx[5]_i_2_n_0 ));
   LUT5 #(
-    .INIT(32'hEFFF2000)) 
+    .INIT(32'hBFFF8000)) 
     \data_rx[6]_i_1 
        (.I0(sda_i),
-        .I1(reset_n),
-        .I2(bit_cnt[2]),
+        .I1(bit_cnt[2]),
+        .I2(reset_n),
         .I3(\data_rx[6]_i_2_n_0 ),
         .I4(data_rx[6]),
         .O(\data_rx[6]_i_1_n_0 ));
@@ -914,11 +920,11 @@ module Func_test1_I2Cmod_0_0_I2Cmod
         .I4(\FSM_onehot_state_reg_n_0_[6] ),
         .O(\data_rx[6]_i_2_n_0 ));
   LUT5 #(
-    .INIT(32'hEFFF2000)) 
+    .INIT(32'hBFFF8000)) 
     \data_rx[7]_i_1 
        (.I0(sda_i),
-        .I1(reset_n),
-        .I2(bit_cnt[2]),
+        .I1(bit_cnt[2]),
+        .I2(reset_n),
         .I3(\data_rx[7]_i_2_n_0 ),
         .I4(data_rx[7]),
         .O(\data_rx[7]_i_1_n_0 ));
@@ -1029,7 +1035,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
         .Q(data_tx[7]),
         .R(1'b0));
   LUT6 #(
-    .INIT(64'hFFFFEAAA0000EAAA)) 
+    .INIT(64'hEAAAFFFFEAAA0000)) 
     scl_clk_i_1
        (.I0(count_0[4]),
         .I1(count_0[3]),
@@ -1058,7 +1064,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     scl_ena_reg
        (.C(sysclk),
         .CE(1'b1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(scl_ena_i_1_n_0),
         .Q(scl_ena_reg_n_0));
   LUT2 #(
@@ -1216,7 +1222,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
   LUT6 #(
     .INIT(64'h4444444400044444)) 
     sda_int_i_5
-       (.I0(busy_i_2_n_0),
+       (.I0(busy_i_3_n_0),
         .I1(sda_int_i_12_n_0),
         .I2(\FSM_onehot_state_reg_n_0_[7] ),
         .I3(\FSM_onehot_state_reg_n_0_[5] ),
@@ -1257,7 +1263,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
        (.C(sysclk),
         .CE(1'b1),
         .D(sda_int_i_1_n_0),
-        .PRE(reset_n),
+        .PRE(busy_i_2_n_0),
         .Q(sda_int_reg_n_0));
   MUXF7 sda_int_reg_i_10
        (.I0(sda_int_i_17_n_0),
@@ -1299,7 +1305,7 @@ module Func_test1_I2Cmod_0_0_I2Cmod
     stretch_reg
        (.C(sysclk),
         .CE(1'b1),
-        .CLR(reset_n),
+        .CLR(busy_i_2_n_0),
         .D(stretch_i_1_n_0),
         .Q(stretch__0));
 endmodule

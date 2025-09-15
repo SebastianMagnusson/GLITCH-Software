@@ -66,7 +66,7 @@ ENTITY Func_test1_BF_formatter_0_0 IS
     I2C_read_done : OUT STD_LOGIC;
     BF_packet_DV : OUT STD_LOGIC;
     BF_packet : OUT STD_LOGIC_VECTOR(223 DOWNTO 0);
-    led2 : OUT STD_LOGIC
+    led1 : OUT STD_LOGIC
   );
 END Func_test1_BF_formatter_0_0;
 
@@ -90,7 +90,7 @@ ARCHITECTURE Func_test1_BF_formatter_0_0_arch OF Func_test1_BF_formatter_0_0 IS
       I2C_read_done : OUT STD_LOGIC;
       BF_packet_DV : OUT STD_LOGIC;
       BF_packet : OUT STD_LOGIC_VECTOR(223 DOWNTO 0);
-      led2 : OUT STD_LOGIC
+      led1 : OUT STD_LOGIC
     );
   END COMPONENT BF_formatter;
   ATTRIBUTE X_CORE_INFO : STRING;
@@ -128,6 +128,6 @@ BEGIN
       I2C_read_done => I2C_read_done,
       BF_packet_DV => BF_packet_DV,
       BF_packet => BF_packet,
-      led2 => led2
+      led1 => led1
     );
 END Func_test1_BF_formatter_0_0_arch;

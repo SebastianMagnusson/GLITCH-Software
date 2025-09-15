@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date             : Sat Sep 13 11:57:52 2025
+| Date             : Mon Sep 15 13:34:53 2025
 | Host             : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command          : report_power -file Func_test1_wrapper_power_routed.rpt -pb Func_test1_wrapper_power_summary_routed.pb -rpx Func_test1_wrapper_power_routed.rpx
 | Design           : Func_test1_wrapper
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.080        |
+| Total On-Chip Power (W)  | 0.079        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 0.008        |
@@ -53,16 +53,16 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |     2508 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      795 |     20800 |            3.82 |
-|   Register     |    <0.001 |     1192 |     41600 |            2.87 |
+| Slice Logic    |    <0.001 |     2516 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      797 |     20800 |            3.83 |
+|   Register     |    <0.001 |     1194 |     41600 |            2.87 |
 |   CARRY4       |    <0.001 |       36 |      8150 |            0.44 |
 |   F7/F8 Muxes  |    <0.001 |       29 |     32600 |            0.09 |
-|   Others       |     0.000 |       20 |       --- |             --- |
-| Signals        |    <0.001 |     1574 |       --- |             --- |
-| I/O            |     0.007 |       47 |       106 |           44.34 |
+|   Others       |     0.000 |       21 |       --- |             --- |
+| Signals        |    <0.001 |     1577 |       --- |             --- |
+| I/O            |     0.006 |       47 |       106 |           44.34 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.080 |          |           |                 |
+| Total          |     0.079 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 

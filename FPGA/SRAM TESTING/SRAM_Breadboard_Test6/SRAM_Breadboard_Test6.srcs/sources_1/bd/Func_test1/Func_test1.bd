@@ -414,7 +414,7 @@
             "left": "223",
             "right": "0"
           },
-          "led2": {
+          "led1": {
             "direction": "O"
           }
         }
@@ -600,6 +600,12 @@
           },
           "o_RAD_got": {
             "direction": "O"
+          },
+          "led1": {
+            "direction": "O"
+          },
+          "led2": {
+            "direction": "O"
           }
         }
       },
@@ -705,12 +711,6 @@
       }
     },
     "nets": {
-      "BF_Data_Collector_Dr_0_led1": {
-        "ports": [
-          "BF_Data_Collector_Dr_0/led1",
-          "led1"
-        ]
-      },
       "BF_Data_Collector_Dr_0_o_BF_data": {
         "ports": [
           "BF_Data_Collector_Dr_0/o_BF_data",
@@ -745,6 +745,12 @@
         "ports": [
           "BF_formatter_0/RTC_request",
           "I2C_full_sensor_data_0/i_BF_RTC_request"
+        ]
+      },
+      "BF_formatter_0_led1": {
+        "ports": [
+          "BF_formatter_0/led1",
+          "led1"
         ]
       },
       "DQ_i_0_1": {
@@ -885,12 +891,6 @@
           "RW_ROUTER4_0/WE_n_read"
         ]
       },
-      "Read6_0_led0": {
-        "ports": [
-          "Read6_0/led0",
-          "led0"
-        ]
-      },
       "Read6_0_o_BF_data": {
         "ports": [
           "Read6_0/o_BF_data",
@@ -908,12 +908,18 @@
           "Switchmod_0/o_signal",
           "RW_ROUTER4_0/reset_n",
           "Write6_0/reset_n",
-          "I2Cmod_0/reset_n",
           "BF_Data_Collector_Dr_0/reset_n",
           "I2C_full_sensor_data_0/rst",
+          "Read6_0/reset_n",
           "TM_packet_sender_0/rst",
           "BF_formatter_0/rst",
-          "Read6_0/reset_n"
+          "I2Cmod_0/reset_n"
+        ]
+      },
+      "TM_packet_sender_0_led1": {
+        "ports": [
+          "TM_packet_sender_0/led1",
+          "led0"
         ]
       },
       "TM_packet_sender_0_o_BF_got": {
@@ -1008,12 +1014,12 @@
           "RW_ROUTER4_0/sysclk",
           "Write6_0/sysclk",
           "UART_TXmod_0/sysclk",
-          "I2Cmod_0/sysclk",
           "BF_Data_Collector_Dr_0/sysclk",
           "I2C_full_sensor_data_0/clk",
+          "Read6_0/sysclk",
           "TM_packet_sender_0/clk",
           "BF_formatter_0/clk",
-          "Read6_0/sysclk"
+          "I2Cmod_0/sysclk"
         ]
       }
     }

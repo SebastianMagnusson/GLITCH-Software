@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Fri Sep 12 17:22:03 2025
+-- Date        : Mon Sep 15 13:32:54 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim {c:/GitHub/GLITCH-Software/FPGA/SRAM
 --               TESTING/SRAM_Breadboard_Test6/SRAM_Breadboard_Test6.gen/sources_1/bd/Func_test1/ip/Func_test1_I2Cmod_0_0/Func_test1_I2Cmod_0_0_sim_netlist.vhdl}
@@ -23,8 +23,8 @@ entity Func_test1_I2Cmod_0_0_I2Cmod is
     sda_t : out STD_LOGIC;
     busy : out STD_LOGIC;
     ena : in STD_LOGIC;
-    sysclk : in STD_LOGIC;
     reset_n : in STD_LOGIC;
+    sysclk : in STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 7 downto 0 );
     data_wr : in STD_LOGIC_VECTOR ( 7 downto 0 );
     sda_i : in STD_LOGIC;
@@ -74,8 +74,9 @@ architecture STRUCTURE of Func_test1_I2Cmod_0_0_I2Cmod is
   signal busy4_out : STD_LOGIC;
   signal busy_i_1_n_0 : STD_LOGIC;
   signal busy_i_2_n_0 : STD_LOGIC;
-  signal busy_i_4_n_0 : STD_LOGIC;
+  signal busy_i_3_n_0 : STD_LOGIC;
   signal busy_i_5_n_0 : STD_LOGIC;
+  signal busy_i_6_n_0 : STD_LOGIC;
   signal count : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal count_0 : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal \data_clk__0\ : STD_LOGIC;
@@ -133,8 +134,8 @@ architecture STRUCTURE of Func_test1_I2Cmod_0_0_I2Cmod is
   attribute SOFT_HLUTNM of \FSM_onehot_state[2]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \FSM_onehot_state[3]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \FSM_onehot_state[4]_i_2\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \FSM_onehot_state[5]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \FSM_onehot_state[6]_i_3\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \FSM_onehot_state[5]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \FSM_onehot_state[6]_i_3\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \FSM_onehot_state[7]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \FSM_onehot_state[8]_i_2\ : label is "soft_lutpair8";
   attribute FSM_ENCODED_STATES : string;
@@ -148,12 +149,12 @@ architecture STRUCTURE of Func_test1_I2Cmod_0_0_I2Cmod is
   attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[7]\ : label is "slv_ack1:000001000,write:000010000,command:000000100,start:000000010,ready:000000001,mstr_ack:010000000,slv_ack2:000100000,stop:100000000,read:001000000";
   attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[8]\ : label is "slv_ack1:000001000,write:000010000,command:000000100,start:000000010,ready:000000001,mstr_ack:010000000,slv_ack2:000100000,stop:100000000,read:001000000";
   attribute SOFT_HLUTNM of \bit_cnt[2]_i_2\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of busy_i_2 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of busy_i_4 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of busy_i_5 : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of data_clk_prev_i_1 : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of busy_i_3 : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of busy_i_5 : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of busy_i_6 : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of data_clk_prev_i_1 : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \data_rx[0]_i_2\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \data_rx[4]_i_2\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \data_rx[4]_i_2\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \data_rx[5]_i_2\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \data_rx[6]_i_2\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \data_rx[7]_i_2\ : label is "soft_lutpair3";
@@ -349,7 +350,7 @@ begin
       C => sysclk,
       CE => busy1,
       D => \FSM_onehot_state[0]_i_1_n_0\,
-      PRE => reset_n,
+      PRE => busy_i_2_n_0,
       Q => \FSM_onehot_state_reg_n_0_[0]\
     );
 \FSM_onehot_state_reg[1]\: unisim.vcomponents.FDCE
@@ -359,7 +360,7 @@ begin
         port map (
       C => sysclk,
       CE => busy1,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => \FSM_onehot_state[1]_i_1_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[1]\
     );
@@ -370,7 +371,7 @@ begin
         port map (
       C => sysclk,
       CE => busy1,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => \FSM_onehot_state[2]_i_1_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[2]\
     );
@@ -381,7 +382,7 @@ begin
         port map (
       C => sysclk,
       CE => busy1,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => \FSM_onehot_state[3]_i_1_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[3]\
     );
@@ -392,7 +393,7 @@ begin
         port map (
       C => sysclk,
       CE => busy1,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => \FSM_onehot_state[4]_i_1_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[4]\
     );
@@ -403,7 +404,7 @@ begin
         port map (
       C => sysclk,
       CE => busy1,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => \FSM_onehot_state[5]_i_1_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[5]\
     );
@@ -414,7 +415,7 @@ begin
         port map (
       C => sysclk,
       CE => busy1,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => \FSM_onehot_state[6]_i_1_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[6]\
     );
@@ -425,7 +426,7 @@ begin
         port map (
       C => sysclk,
       CE => busy1,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => \FSM_onehot_state[7]_i_1_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[7]\
     );
@@ -436,7 +437,7 @@ begin
         port map (
       C => sysclk,
       CE => busy1,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => \FSM_onehot_state[8]_i_2_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[8]\
     );
@@ -468,13 +469,13 @@ ack_error_int_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => '1',
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => ack_error_int_i_1_n_0,
       Q => \^ack_error\
     );
 \addr_rw[7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000FE0000000000"
+      INIT => X"FE00000000000000"
     )
         port map (
       I0 => \FSM_onehot_state_reg_n_0_[5]\,
@@ -606,7 +607,7 @@ ack_error_int_reg: unisim.vcomponents.FDCE
       C => sysclk,
       CE => '1',
       D => \bit_cnt[0]_i_1_n_0\,
-      PRE => reset_n,
+      PRE => busy_i_2_n_0,
       Q => bit_cnt(0)
     );
 \bit_cnt_reg[1]\: unisim.vcomponents.FDPE
@@ -617,7 +618,7 @@ ack_error_int_reg: unisim.vcomponents.FDCE
       C => sysclk,
       CE => '1',
       D => \bit_cnt[1]_i_1_n_0\,
-      PRE => reset_n,
+      PRE => busy_i_2_n_0,
       Q => bit_cnt(1)
     );
 \bit_cnt_reg[2]\: unisim.vcomponents.FDPE
@@ -628,7 +629,7 @@ ack_error_int_reg: unisim.vcomponents.FDCE
       C => sysclk,
       CE => '1',
       D => \bit_cnt[2]_i_1_n_0\,
-      PRE => reset_n,
+      PRE => busy_i_2_n_0,
       Q => bit_cnt(2)
     );
 busy_i_1: unisim.vcomponents.LUT6
@@ -636,7 +637,7 @@ busy_i_1: unisim.vcomponents.LUT6
       INIT => X"FFEAFFFFFFEA0000"
     )
         port map (
-      I0 => busy_i_2_n_0,
+      I0 => busy_i_3_n_0,
       I1 => ena,
       I2 => \FSM_onehot_state_reg_n_0_[0]\,
       I3 => \FSM_onehot_state_reg_n_0_[6]\,
@@ -644,7 +645,15 @@ busy_i_1: unisim.vcomponents.LUT6
       I5 => \^busy\,
       O => busy_i_1_n_0
     );
-busy_i_2: unisim.vcomponents.LUT4
+busy_i_2: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => reset_n,
+      O => busy_i_2_n_0
+    );
+busy_i_3: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFFE"
     )
@@ -653,31 +662,31 @@ busy_i_2: unisim.vcomponents.LUT4
       I1 => \FSM_onehot_state_reg_n_0_[3]\,
       I2 => \FSM_onehot_state_reg_n_0_[4]\,
       I3 => \FSM_onehot_state_reg_n_0_[1]\,
-      O => busy_i_2_n_0
+      O => busy_i_3_n_0
     );
-busy_i_3: unisim.vcomponents.LUT6
+busy_i_4: unisim.vcomponents.LUT6
     generic map(
       INIT => X"AAAAAAA8AAAAAAAA"
     )
         port map (
       I0 => busy1,
-      I1 => busy_i_4_n_0,
+      I1 => busy_i_5_n_0,
       I2 => \FSM_onehot_state_reg_n_0_[0]\,
       I3 => \FSM_onehot_state_reg_n_0_[6]\,
       I4 => \FSM_onehot_state_reg_n_0_[8]\,
-      I5 => busy_i_5_n_0,
+      I5 => busy_i_6_n_0,
       O => busy4_out
     );
-busy_i_4: unisim.vcomponents.LUT2
+busy_i_5: unisim.vcomponents.LUT2
     generic map(
       INIT => X"E"
     )
         port map (
       I0 => \FSM_onehot_state_reg_n_0_[1]\,
       I1 => \FSM_onehot_state_reg_n_0_[4]\,
-      O => busy_i_4_n_0
+      O => busy_i_5_n_0
     );
-busy_i_5: unisim.vcomponents.LUT3
+busy_i_6: unisim.vcomponents.LUT3
     generic map(
       INIT => X"1F"
     )
@@ -685,14 +694,14 @@ busy_i_5: unisim.vcomponents.LUT3
       I0 => \FSM_onehot_state_reg_n_0_[7]\,
       I1 => \FSM_onehot_state_reg_n_0_[5]\,
       I2 => ena,
-      O => busy_i_5_n_0
+      O => busy_i_6_n_0
     );
 busy_reg: unisim.vcomponents.FDPE
      port map (
       C => sysclk,
       CE => '1',
       D => busy_i_1_n_0,
-      PRE => reset_n,
+      PRE => busy_i_2_n_0,
       Q => \^busy\
     );
 \count[0]_i_1\: unisim.vcomponents.LUT6
@@ -767,7 +776,7 @@ busy_reg: unisim.vcomponents.FDPE
         port map (
       C => sysclk,
       CE => '1',
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => count_0(0),
       Q => count(0)
     );
@@ -778,7 +787,7 @@ busy_reg: unisim.vcomponents.FDPE
         port map (
       C => sysclk,
       CE => '1',
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => count_0(1),
       Q => count(1)
     );
@@ -789,7 +798,7 @@ busy_reg: unisim.vcomponents.FDPE
         port map (
       C => sysclk,
       CE => '1',
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => count_0(2),
       Q => count(2)
     );
@@ -800,7 +809,7 @@ busy_reg: unisim.vcomponents.FDPE
         port map (
       C => sysclk,
       CE => '1',
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => count_0(3),
       Q => count(3)
     );
@@ -811,7 +820,7 @@ busy_reg: unisim.vcomponents.FDPE
         port map (
       C => sysclk,
       CE => '1',
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => count_0(4),
       Q => count(4)
     );
@@ -830,7 +839,7 @@ data_clk: unisim.vcomponents.LUT6
     );
 data_clk_i_1: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"E2"
+      INIT => X"B8"
     )
         port map (
       I0 => data_clk_n_0,
@@ -840,7 +849,7 @@ data_clk_i_1: unisim.vcomponents.LUT3
     );
 data_clk_prev_i_1: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"E2"
+      INIT => X"B8"
     )
         port map (
       I0 => \data_clk__0\,
@@ -881,7 +890,7 @@ data_clk_reg: unisim.vcomponents.FDRE
      port map (
       C => sysclk,
       CE => \data_rd[7]_i_1_n_0\,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => data_rx(0),
       Q => data_rd(0)
     );
@@ -889,7 +898,7 @@ data_clk_reg: unisim.vcomponents.FDRE
      port map (
       C => sysclk,
       CE => \data_rd[7]_i_1_n_0\,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => data_rx(1),
       Q => data_rd(1)
     );
@@ -897,7 +906,7 @@ data_clk_reg: unisim.vcomponents.FDRE
      port map (
       C => sysclk,
       CE => \data_rd[7]_i_1_n_0\,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => data_rx(2),
       Q => data_rd(2)
     );
@@ -905,7 +914,7 @@ data_clk_reg: unisim.vcomponents.FDRE
      port map (
       C => sysclk,
       CE => \data_rd[7]_i_1_n_0\,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => data_rx(3),
       Q => data_rd(3)
     );
@@ -913,7 +922,7 @@ data_clk_reg: unisim.vcomponents.FDRE
      port map (
       C => sysclk,
       CE => \data_rd[7]_i_1_n_0\,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => data_rx(4),
       Q => data_rd(4)
     );
@@ -921,7 +930,7 @@ data_clk_reg: unisim.vcomponents.FDRE
      port map (
       C => sysclk,
       CE => \data_rd[7]_i_1_n_0\,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => data_rx(5),
       Q => data_rd(5)
     );
@@ -929,7 +938,7 @@ data_clk_reg: unisim.vcomponents.FDRE
      port map (
       C => sysclk,
       CE => \data_rd[7]_i_1_n_0\,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => data_rx(6),
       Q => data_rd(6)
     );
@@ -937,19 +946,19 @@ data_clk_reg: unisim.vcomponents.FDRE
      port map (
       C => sysclk,
       CE => \data_rd[7]_i_1_n_0\,
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => data_rx(7),
       Q => data_rd(7)
     );
 \data_rx[0]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFE0002"
+      INIT => X"FFEF0020"
     )
         port map (
       I0 => sda_i,
       I1 => \FSM_onehot_state[6]_i_3_n_0\,
-      I2 => \data_rx[0]_i_2_n_0\,
-      I3 => reset_n,
+      I2 => reset_n,
+      I3 => \data_rx[0]_i_2_n_0\,
       I4 => data_rx(0),
       O => \data_rx[0]_i_1_n_0\
     );
@@ -965,37 +974,37 @@ data_clk_reg: unisim.vcomponents.FDRE
     );
 \data_rx[1]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFB0008"
+      INIT => X"FFBF0080"
     )
         port map (
       I0 => sda_i,
       I1 => \data_rx[5]_i_2_n_0\,
-      I2 => bit_cnt(2),
-      I3 => reset_n,
+      I2 => reset_n,
+      I3 => bit_cnt(2),
       I4 => data_rx(1),
       O => \data_rx[1]_i_1_n_0\
     );
 \data_rx[2]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFB0008"
+      INIT => X"FFBF0080"
     )
         port map (
       I0 => sda_i,
       I1 => \data_rx[6]_i_2_n_0\,
-      I2 => bit_cnt(2),
-      I3 => reset_n,
+      I2 => reset_n,
+      I3 => bit_cnt(2),
       I4 => data_rx(2),
       O => \data_rx[2]_i_1_n_0\
     );
 \data_rx[3]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFB0008"
+      INIT => X"FFBF0080"
     )
         port map (
       I0 => sda_i,
       I1 => \data_rx[7]_i_2_n_0\,
-      I2 => bit_cnt(2),
-      I3 => reset_n,
+      I2 => reset_n,
+      I3 => bit_cnt(2),
       I4 => data_rx(3),
       O => \data_rx[3]_i_1_n_0\
     );
@@ -1014,23 +1023,23 @@ data_clk_reg: unisim.vcomponents.FDRE
     );
 \data_rx[4]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FBFF"
+      INIT => X"DFFF"
     )
         port map (
-      I0 => reset_n,
-      I1 => data_clk_prev,
-      I2 => \data_clk__0\,
-      I3 => \FSM_onehot_state_reg_n_0_[6]\,
+      I0 => data_clk_prev,
+      I1 => \data_clk__0\,
+      I2 => \FSM_onehot_state_reg_n_0_[6]\,
+      I3 => reset_n,
       O => \data_rx[4]_i_2_n_0\
     );
 \data_rx[5]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"EFFF2000"
+      INIT => X"BFFF8000"
     )
         port map (
       I0 => sda_i,
-      I1 => reset_n,
-      I2 => bit_cnt(2),
+      I1 => bit_cnt(2),
+      I2 => reset_n,
       I3 => \data_rx[5]_i_2_n_0\,
       I4 => data_rx(5),
       O => \data_rx[5]_i_1_n_0\
@@ -1049,12 +1058,12 @@ data_clk_reg: unisim.vcomponents.FDRE
     );
 \data_rx[6]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"EFFF2000"
+      INIT => X"BFFF8000"
     )
         port map (
       I0 => sda_i,
-      I1 => reset_n,
-      I2 => bit_cnt(2),
+      I1 => bit_cnt(2),
+      I2 => reset_n,
       I3 => \data_rx[6]_i_2_n_0\,
       I4 => data_rx(6),
       O => \data_rx[6]_i_1_n_0\
@@ -1073,12 +1082,12 @@ data_clk_reg: unisim.vcomponents.FDRE
     );
 \data_rx[7]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"EFFF2000"
+      INIT => X"BFFF8000"
     )
         port map (
       I0 => sda_i,
-      I1 => reset_n,
-      I2 => bit_cnt(2),
+      I1 => bit_cnt(2),
+      I2 => reset_n,
       I3 => \data_rx[7]_i_2_n_0\,
       I4 => data_rx(7),
       O => \data_rx[7]_i_1_n_0\
@@ -1225,7 +1234,7 @@ data_clk_reg: unisim.vcomponents.FDRE
     );
 scl_clk_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFEAAA0000EAAA"
+      INIT => X"EAAAFFFFEAAA0000"
     )
         port map (
       I0 => count_0(4),
@@ -1263,7 +1272,7 @@ scl_ena_reg: unisim.vcomponents.FDCE
         port map (
       C => sysclk,
       CE => '1',
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => scl_ena_i_1_n_0,
       Q => scl_ena_reg_n_0
     );
@@ -1470,7 +1479,7 @@ sda_int_i_5: unisim.vcomponents.LUT6
       INIT => X"4444444400044444"
     )
         port map (
-      I0 => busy_i_2_n_0,
+      I0 => busy_i_3_n_0,
       I1 => sda_int_i_12_n_0,
       I2 => \FSM_onehot_state_reg_n_0_[7]\,
       I3 => \FSM_onehot_state_reg_n_0_[5]\,
@@ -1523,7 +1532,7 @@ sda_int_reg: unisim.vcomponents.FDPE
       C => sysclk,
       CE => '1',
       D => sda_int_i_1_n_0,
-      PRE => reset_n,
+      PRE => busy_i_2_n_0,
       Q => sda_int_reg_n_0
     );
 sda_int_reg_i_10: unisim.vcomponents.MUXF7
@@ -1581,7 +1590,7 @@ stretch_reg: unisim.vcomponents.FDCE
         port map (
       C => sysclk,
       CE => '1',
-      CLR => reset_n,
+      CLR => busy_i_2_n_0,
       D => stretch_i_1_n_0,
       Q => \stretch__0\
     );

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Sep 13 11:55:15 2025" VIVADOVERSION="2024.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Sep 15 13:32:18 2025" VIVADOVERSION="2024.2">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a35t" NAME="Func_test1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -39,14 +39,14 @@
         <CONNECTION INSTANCE="Switchmod_0" PORT="i_signal"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="led0" SIGIS="undef" SIGNAME="Read6_0_led0">
+    <PORT DIR="O" NAME="led0" SIGIS="undef" SIGNAME="TM_packet_sender_0_led1">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="Read6_0" PORT="led0"/>
+        <CONNECTION INSTANCE="TM_packet_sender_0" PORT="led1"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="led1" SIGIS="undef" SIGNAME="BF_Data_Collector_Dr_0_led1">
+    <PORT DIR="O" NAME="led1" SIGIS="undef" SIGNAME="BF_formatter_0_led1">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="BF_Data_Collector_Dr_0" PORT="led1"/>
+        <CONNECTION INSTANCE="BF_formatter_0" PORT="led1"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="scl_i" SIGIS="undef" SIGNAME="External_Ports_scl_i">
@@ -85,12 +85,12 @@
         <CONNECTION INSTANCE="RW_ROUTER4_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="Write6_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="UART_TXmod_0" PORT="sysclk"/>
-        <CONNECTION INSTANCE="I2Cmod_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="BF_Data_Collector_Dr_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="I2C_full_sensor_data_0" PORT="clk"/>
+        <CONNECTION INSTANCE="Read6_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="TM_packet_sender_0" PORT="clk"/>
         <CONNECTION INSTANCE="BF_formatter_0" PORT="clk"/>
-        <CONNECTION INSTANCE="Read6_0" PORT="sysclk"/>
+        <CONNECTION INSTANCE="I2Cmod_0" PORT="sysclk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="uart_rxd_out" SIGIS="undef" SIGNAME="UART_TXmod_0_o_TX_Serial">
@@ -120,11 +120,7 @@
             <CONNECTION INSTANCE="Read6_0" PORT="o_BF_data"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="led1" SIGIS="undef" SIGNAME="BF_Data_Collector_Dr_0_led1">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="led1"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="led1" SIGIS="undef"/>
         <PORT DIR="O" LEFT="197" NAME="o_BF_data" RIGHT="0" SIGIS="undef" SIGNAME="BF_Data_Collector_Dr_0_o_BF_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="BF_formatter_0" PORT="SRAM_data"/>
@@ -207,7 +203,11 @@
             <CONNECTION INSTANCE="External_Ports" PORT="sysclk"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="led2" SIGIS="undef"/>
+        <PORT DIR="O" NAME="led1" SIGIS="undef" SIGNAME="BF_formatter_0_led1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="led1"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="Switchmod_0_o_signal">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Switchmod_0" PORT="o_signal"/>
@@ -529,11 +529,7 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="addresses_searched" SIGIS="undef"/>
-        <PORT DIR="O" NAME="led0" SIGIS="undef" SIGNAME="Read6_0_led0">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="led0"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="led0" SIGIS="undef"/>
         <PORT DIR="O" NAME="led1" SIGIS="undef"/>
         <PORT DIR="O" LEFT="46" NAME="o_BF_data" RIGHT="0" SIGIS="undef" SIGNAME="Read6_0_o_BF_data">
           <CONNECTIONS>
@@ -581,12 +577,12 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="RW_ROUTER4_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="Write6_0" PORT="reset_n"/>
-            <CONNECTION INSTANCE="I2Cmod_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="BF_Data_Collector_Dr_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="I2C_full_sensor_data_0" PORT="rst"/>
+            <CONNECTION INSTANCE="Read6_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="TM_packet_sender_0" PORT="rst"/>
             <CONNECTION INSTANCE="BF_formatter_0" PORT="rst"/>
-            <CONNECTION INSTANCE="Read6_0" PORT="reset_n"/>
+            <CONNECTION INSTANCE="I2Cmod_0" PORT="reset_n"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">
@@ -630,6 +626,12 @@
             <CONNECTION INSTANCE="UART_TXmod_0" PORT="o_TX_Done"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="led1" SIGIS="undef" SIGNAME="TM_packet_sender_0_led1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="led0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="led2" SIGIS="undef"/>
         <PORT DIR="O" NAME="o_BF_got" SIGIS="undef" SIGNAME="TM_packet_sender_0_o_BF_got">
           <CONNECTIONS>
             <CONNECTION INSTANCE="BF_formatter_0" PORT="BF_packet_got"/>

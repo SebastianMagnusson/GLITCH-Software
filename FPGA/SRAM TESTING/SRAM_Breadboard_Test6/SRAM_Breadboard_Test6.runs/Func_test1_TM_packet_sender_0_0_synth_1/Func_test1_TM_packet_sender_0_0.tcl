@@ -56,7 +56,6 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "Func_test1_TM_packet_sender_0_0_synth_1" START { ROLLUP_AUTO }
-set_param tcl.statsThreshold 360
 set_param chipscope.maxJobs 2
 set_param xicom.use_bs_reader 1
 set_param project.vivado.isBlockSynthRun true
@@ -78,7 +77,7 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib C:/GitHub/GLITCH-Software/FPGA/Code/TM_packet_sender.vhd
-read_ip -quiet {{c:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadboard_Test6/SRAM_Breadboard_Test6.srcs/sources_1/bd/Func_test1/ip/Func_test1_TM_packet_sender_0_0/Func_test1_TM_packet_sender_0_0.xci}}
+read_ip -quiet {{C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadboard_Test6/SRAM_Breadboard_Test6.srcs/sources_1/bd/Func_test1/ip/Func_test1_TM_packet_sender_0_0/Func_test1_TM_packet_sender_0_0.xci}}
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

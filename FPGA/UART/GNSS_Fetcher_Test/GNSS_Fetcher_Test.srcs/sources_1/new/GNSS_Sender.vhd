@@ -24,8 +24,8 @@ architecture rtl of GNSS_Sender is
   
   signal state : state_type := RECEIVE;
   
-  signal gnss_data_buf     : std_logic_vector(197 downto 0);
-  signal data_ready_prev : std_logic := '0';
+  signal gnss_data_buf     : std_logic_vector(383 downto 0);
+  signal data_ready_prev   : std_logic := '0';
   signal gnss_cnt          : std_logic_vector(1 downto 0);
 
 begin

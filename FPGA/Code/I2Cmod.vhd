@@ -64,7 +64,7 @@ begin
   process(sysclk, reset_n)
     variable count : integer range 0 to divider*4; -- Timing for clock generation
   begin
-    if(reset_n = '1') then                    -- Reset asserted
+    if(reset_n = '0') then                    -- Reset asserted
       stretch <= '0';
       count   := 0;
     elsif(sysclk'event and sysclk = '1') then 
@@ -101,7 +101,7 @@ begin
   -- State machine and writing to sda during scl low (data_clk rising edge)
   process(sysclk, reset_n)
   begin
-    if(reset_n = '1') then      -- Reset asserted
+    if(reset_n = '0') then      -- Reset asserted
       state         <= READY;       -- Return to initial state 
       busy          <= '1';         -- Indicate not available
       scl_ena       <= '0';         -- Sets scl high impedance (see after process)

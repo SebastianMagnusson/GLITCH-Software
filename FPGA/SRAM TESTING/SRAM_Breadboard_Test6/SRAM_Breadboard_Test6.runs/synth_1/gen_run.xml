@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1757757316" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/Func_test1_wrapper.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1757935938" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/Func_test1_wrapper.dcp">
   <File Type="PA-TCL" Name="Func_test1_wrapper.tcl"/>
   <File Type="REPORTS-TCL" Name="Func_test1_wrapper_reports.tcl"/>
   <File Type="RDS-RDS" Name="Func_test1_wrapper.vds"/>
@@ -126,10 +126,10 @@
   <BlockFileSet Type="BlockSrcs" Name="Func_test1_RW_ROUTER4_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Func_test1_Switchmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Func_test1_UART_TXmod_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="Func_test1_I2Cmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Func_test1_BF_Data_Collector_Dr_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Func_test1_I2C_full_sensor_data_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="Func_test1_BF_formatter_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="Func_test1_TM_packet_sender_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Func_test1_Read6_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="Func_test1_TM_packet_sender_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="Func_test1_BF_formatter_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="Func_test1_I2Cmod_0_0"/>
 </GenRun>

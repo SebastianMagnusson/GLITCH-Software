@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Sat Sep 13 10:04:01 2025
+-- Date        : Mon Sep 15 10:54:59 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub {c:/GitHub/GLITCH-Software/FPGA/SRAM
 --               TESTING/SRAM_Breadboard_Test6/SRAM_Breadboard_Test6.gen/sources_1/bd/Func_test1/ip/Func_test1_TM_packet_sender_0_0/Func_test1_TM_packet_sender_0_0_stub.vhdl}
@@ -28,7 +28,9 @@ entity Func_test1_TM_packet_sender_0_0 is
     o_TX_byte : out STD_LOGIC_VECTOR ( 7 downto 0 );
     o_HK_got : out STD_LOGIC;
     o_BF_got : out STD_LOGIC;
-    o_RAD_got : out STD_LOGIC
+    o_RAD_got : out STD_LOGIC;
+    led1 : out STD_LOGIC;
+    led2 : out STD_LOGIC
   );
 
   attribute CHECK_LICENSE_TYPE : string;
@@ -45,7 +47,7 @@ architecture stub of Func_test1_TM_packet_sender_0_0 is
   attribute syn_black_box : boolean;
   attribute black_box_pad_pin : string;
   attribute syn_black_box of stub : architecture is true;
-  attribute black_box_pad_pin of stub : architecture is "clk,rst,i_HK_data[471:0],i_BF_data[223:0],i_RAD_data[10007:0],i_HK_DV,i_BF_DV,i_RAD_DV,i_TX_done,o_TX_DV,o_TX_byte[7:0],o_HK_got,o_BF_got,o_RAD_got";
+  attribute black_box_pad_pin of stub : architecture is "clk,rst,i_HK_data[471:0],i_BF_data[223:0],i_RAD_data[10007:0],i_HK_DV,i_BF_DV,i_RAD_DV,i_TX_done,o_TX_DV,o_TX_byte[7:0],o_HK_got,o_BF_got,o_RAD_got,led1,led2";
   attribute x_interface_info : string;
   attribute x_interface_info of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute x_interface_mode : string;
