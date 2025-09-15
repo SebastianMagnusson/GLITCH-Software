@@ -121,7 +121,6 @@ def main():
                 rows.append(row)
                 idx += 1
 
-    # Final CSV columns: header first, then parsed fields in desired order
     fieldnames = HEADER_KEYS + parsed_cols_order
     with open(args.out, "w", newline="") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
