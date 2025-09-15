@@ -14,7 +14,8 @@ entity BF_Data_Collector_Draft1 is
     data_ready     : in  std_logic;
     i_BF_data      : in  std_logic_vector(46 downto 0);
     o_BF_data      : out std_logic_vector(197 downto 0);
-    o_BF_drive     : out std_logic
+    o_BF_drive     : out std_logic;
+    led1           : out std_logic
   );
 end entity;
 
@@ -35,11 +36,11 @@ begin
   begin
   
     if (reset_n = '0') then
-      o_BF_data       <= (others => '0');
       BF_data_buf     <= (others => '0');
       o_BF_drive      <= '0';
       data_ready_prev <= '0';
       BF_cnt          <= "00";
+      led1            <= '0';
       
     elsif rising_edge(sysclk) then
       case state is
@@ -67,6 +68,8 @@ begin
       when SEND =>             -- Stays here 1 clock cycle
         o_BF_drive <= '1';
         state      <= RECEIVE;
+        
+        led1       <= '1';
       
       when others =>
         state <= RECEIVE;

@@ -35,7 +35,10 @@ entity Read6 is
       -- 4            = Temporary or not
       -- 3  downto 0  = Number of oscilations (loops 10 times)
     o_BF_drive          : out std_logic;
-    addresses_searched  : out std_logic
+    addresses_searched  : out std_logic;
+    -- LEDS
+    led0 : out std_logic;
+    led1 : out std_logic
   );
 end entity;
 
@@ -105,8 +108,12 @@ begin
       SRAM                <= "0000"; --- SRAM 0000 is set as the default unit
       addresses_searched  <= '0';
       data_prev           <= (others => '0');
+      o_BF_drive          <= '0';
       
       state               <= READ_START;
+      
+      led0 <= '0';
+      led1 <= '0';
     
     elsif rising_edge(sysclk) then
       case state is
@@ -170,6 +177,7 @@ begin
             BF_data_buf(8 downto 5)   <= SRAM;     -- indicates which SRAM we are on
             
             state <= OSCILLATOR;
+          
           end if;
           
         when NEXT_ADDR =>
@@ -186,6 +194,8 @@ begin
           o_BF_drive <= '1';
           
           state <= NEXT_ADDR;
+          
+          led0 <= '1';
 
         when OSCILLATOR =>   
           if(loop_cnt < 9) then          -- Keep looping address

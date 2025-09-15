@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="Func_test1_BF_formatter_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadboard_Test6/SRAM_Breadboard_Test6.runs/Func_test1_BF_formatter_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="Func_test1_I2C_full_sensor_data_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadboard_Test6/SRAM_Breadboard_Test6.runs/Func_test1_I2C_full_sensor_data_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+		<Parameter Name="general.shortenLongPath" Val="true" Type="bool"/>
+	</Parameters>
+	<ProductInfo Name="vivado"/>
+</Runs>
+

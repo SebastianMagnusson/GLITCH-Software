@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Fri Sep 12 10:28:49 2025
+-- Date        : Mon Sep 15 10:43:44 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/ip/GNSS_Reader_UART_RXmod_0_0/GNSS_Reader_UART_RXmod_0_0_stub.vhdl
@@ -24,7 +24,7 @@ entity GNSS_Reader_UART_RXmod_0_0 is
   attribute CHECK_LICENSE_TYPE : string;
   attribute CHECK_LICENSE_TYPE of GNSS_Reader_UART_RXmod_0_0 : entity is "GNSS_Reader_UART_RXmod_0_0,UART_RXmod,{}";
   attribute core_generation_info : string;
-  attribute core_generation_info of GNSS_Reader_UART_RXmod_0_0 : entity is "GNSS_Reader_UART_RXmod_0_0,UART_RXmod,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=UART_RXmod,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,Clockfrequency=12000000,Baud_Rate=115200}";
+  attribute core_generation_info of GNSS_Reader_UART_RXmod_0_0 : entity is "GNSS_Reader_UART_RXmod_0_0,UART_RXmod,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=UART_RXmod,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,Clockfrequency=12000000,Baud_Rate=9600}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of GNSS_Reader_UART_RXmod_0_0 : entity is "yes";
   attribute ip_definition_source : string;

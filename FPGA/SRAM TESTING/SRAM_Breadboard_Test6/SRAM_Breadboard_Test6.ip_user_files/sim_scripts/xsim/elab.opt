@@ -1,0 +1,1 @@
+--incr --debug typical --relax --mt 2  -L xil_defaultlib -L secureip --snapshot Func_test1_wrapper xil_defaultlib.Func_test1_wrapper -log elaborate.log

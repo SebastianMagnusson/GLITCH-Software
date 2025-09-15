@@ -8,12 +8,11 @@
   **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Fri Sep 12 10:28:55 2025
+  **** Start of session at: Mon Sep 15 10:43:47 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source GNSS_Reader_wrapper.tcl -notrace
-create_project: Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 457.297 ; gain = 138.090
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
@@ -29,36 +28,36 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 15856
+INFO: [Synth 8-7075] Helper process launched with PID 21668
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1124.668 ; gain = 466.613
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1124.344 ; gain = 469.367
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'GNSS_Reader_wrapper' [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/hdl/GNSS_Reader_wrapper.vhd:27]
 INFO: [Synth 8-3491] module 'GNSS_Reader' declared at 'c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:15' bound to instance 'GNSS_Reader_i' of component 'GNSS_Reader' [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/hdl/GNSS_Reader_wrapper.vhd:40]
 INFO: [Synth 8-638] synthesizing module 'GNSS_Reader' [c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:31]
-INFO: [Synth 8-3491] module 'GNSS_Reader_Switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-22704-LAPTOP-1SQM85NC/realtime/GNSS_Reader_Switchmod_0_0_stub.vhdl:6' bound to instance 'Switchmod_0' of component 'GNSS_Reader_Switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:75]
-INFO: [Synth 8-638] synthesizing module 'GNSS_Reader_Switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-22704-LAPTOP-1SQM85NC/realtime/GNSS_Reader_Switchmod_0_0_stub.vhdl:24]
-INFO: [Synth 8-3491] module 'GNSS_Reader_UART_RXmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-22704-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_RXmod_0_0_stub.vhdl:6' bound to instance 'UART_RXmod_0' of component 'GNSS_Reader_UART_RXmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:82]
-INFO: [Synth 8-638] synthesizing module 'GNSS_Reader_UART_RXmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-22704-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_RXmod_0_0_stub.vhdl:24]
-INFO: [Synth 8-3491] module 'GNSS_Reader_UART_TXmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-22704-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_TXmod_0_0_stub.vhdl:6' bound to instance 'UART_TXmod_0' of component 'GNSS_Reader_UART_TXmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:89]
-INFO: [Synth 8-638] synthesizing module 'GNSS_Reader_UART_TXmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-22704-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_TXmod_0_0_stub.vhdl:26]
-INFO: [Synth 8-3491] module 'GNSS_Reader_UART_TXmod_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-22704-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_TXmod_1_0_stub.vhdl:6' bound to instance 'UART_TXmod_1' of component 'GNSS_Reader_UART_TXmod_1_0' [c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:98]
-INFO: [Synth 8-638] synthesizing module 'GNSS_Reader_UART_TXmod_1_0' [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-22704-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_TXmod_1_0_stub.vhdl:26]
+INFO: [Synth 8-3491] module 'GNSS_Reader_Switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-32316-LAPTOP-1SQM85NC/realtime/GNSS_Reader_Switchmod_0_0_stub.vhdl:6' bound to instance 'Switchmod_0' of component 'GNSS_Reader_Switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:75]
+INFO: [Synth 8-638] synthesizing module 'GNSS_Reader_Switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-32316-LAPTOP-1SQM85NC/realtime/GNSS_Reader_Switchmod_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'GNSS_Reader_UART_RXmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-32316-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_RXmod_0_0_stub.vhdl:6' bound to instance 'UART_RXmod_0' of component 'GNSS_Reader_UART_RXmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:82]
+INFO: [Synth 8-638] synthesizing module 'GNSS_Reader_UART_RXmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-32316-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_RXmod_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'GNSS_Reader_UART_TXmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-32316-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_TXmod_0_0_stub.vhdl:6' bound to instance 'UART_TXmod_0' of component 'GNSS_Reader_UART_TXmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:89]
+INFO: [Synth 8-638] synthesizing module 'GNSS_Reader_UART_TXmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-32316-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_TXmod_0_0_stub.vhdl:26]
+INFO: [Synth 8-3491] module 'GNSS_Reader_UART_TXmod_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-32316-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_TXmod_1_0_stub.vhdl:6' bound to instance 'UART_TXmod_1' of component 'GNSS_Reader_UART_TXmod_1_0' [c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:98]
+INFO: [Synth 8-638] synthesizing module 'GNSS_Reader_UART_TXmod_1_0' [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/.Xil/Vivado-32316-LAPTOP-1SQM85NC/realtime/GNSS_Reader_UART_TXmod_1_0_stub.vhdl:26]
 INFO: [Synth 8-256] done synthesizing module 'GNSS_Reader' (0#1) [c:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/synth/GNSS_Reader.vhd:31]
 INFO: [Synth 8-256] done synthesizing module 'GNSS_Reader_wrapper' (0#1) [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.gen/sources_1/bd/GNSS_Reader/hdl/GNSS_Reader_wrapper.vhd:27]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1229.582 ; gain = 571.527
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1229.566 ; gain = 574.590
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1229.582 ; gain = 571.527
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1229.566 ; gain = 574.590
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1229.582 ; gain = 571.527
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1229.566 ; gain = 574.590
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1229.582 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1229.566 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -82,22 +81,22 @@ Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/s
 Finished Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1229.582 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1229.566 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1229.582 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1229.566 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:51 ; elapsed = 00:00:56 . Memory (MB): peak = 1229.582 ; gain = 571.527
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1229.566 ; gain = 574.590
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:51 ; elapsed = 00:00:56 . Memory (MB): peak = 1229.582 ; gain = 571.527
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1229.566 ; gain = 574.590
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -108,10 +107,10 @@ Applied set_property KEEP_HIERARCHY = SOFT for GNSS_Reader_i/UART_RXmod_0. (cons
 Applied set_property KEEP_HIERARCHY = SOFT for GNSS_Reader_i/UART_TXmod_1. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for GNSS_Reader_i/Switchmod_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:51 ; elapsed = 00:00:56 . Memory (MB): peak = 1229.582 ; gain = 571.527
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1229.566 ; gain = 574.590
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:51 ; elapsed = 00:00:56 . Memory (MB): peak = 1229.582 ; gain = 571.527
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1229.566 ; gain = 574.590
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -134,25 +133,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:57 ; elapsed = 00:01:03 . Memory (MB): peak = 1231.855 ; gain = 573.801
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1236.328 ; gain = 581.352
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:20 ; elapsed = 00:01:27 . Memory (MB): peak = 1399.352 ; gain = 741.297
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1407.023 ; gain = 752.047
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:20 ; elapsed = 00:01:27 . Memory (MB): peak = 1399.352 ; gain = 741.297
+Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1407.023 ; gain = 752.047
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:20 ; elapsed = 00:01:27 . Memory (MB): peak = 1408.930 ; gain = 750.875
+Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1416.594 ; gain = 761.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -170,37 +169,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:33 ; elapsed = 00:01:41 . Memory (MB): peak = 1625.770 ; gain = 967.715
+Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1633.281 ; gain = 978.305
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:33 ; elapsed = 00:01:41 . Memory (MB): peak = 1625.770 ; gain = 967.715
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1633.281 ; gain = 978.305
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:33 ; elapsed = 00:01:41 . Memory (MB): peak = 1625.770 ; gain = 967.715
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1633.281 ; gain = 978.305
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:33 ; elapsed = 00:01:41 . Memory (MB): peak = 1625.770 ; gain = 967.715
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1633.281 ; gain = 978.305
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:33 ; elapsed = 00:01:41 . Memory (MB): peak = 1625.770 ; gain = 967.715
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1633.281 ; gain = 978.305
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:33 ; elapsed = 00:01:41 . Memory (MB): peak = 1625.770 ; gain = 967.715
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1633.281 ; gain = 978.305
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -228,16 +227,16 @@ Report Cell Usage:
 |6     |OBUF                            |     4|
 +------+--------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:33 ; elapsed = 00:01:41 . Memory (MB): peak = 1625.770 ; gain = 967.715
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1633.281 ; gain = 978.305
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:04 ; elapsed = 00:01:35 . Memory (MB): peak = 1625.770 ; gain = 967.715
-Synthesis Optimization Complete : Time (s): cpu = 00:01:34 ; elapsed = 00:01:42 . Memory (MB): peak = 1625.770 ; gain = 967.715
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:24 . Memory (MB): peak = 1633.281 ; gain = 978.305
+Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1633.281 ; gain = 978.305
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1625.770 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1633.281 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1625.797 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1633.281 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -245,8 +244,8 @@ Synth Design complete | Checksum: e5a2307c
 INFO: [Common 17-83] Releasing license: Synthesis
 35 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:47 ; elapsed = 00:02:08 . Memory (MB): peak = 1625.797 ; gain = 1158.719
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1625.797 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1633.281 ; gain = 1167.980
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1633.281 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/GitHub/GLITCH-Software/FPGA/UART/Read_GNSS/Read_GNSS.runs/synth_1/GNSS_Reader_wrapper.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file GNSS_Reader_wrapper_utilization_synth.rpt -pb GNSS_Reader_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Sep 12 10:31:32 2025...
+INFO: [Common 17-206] Exiting Vivado at Mon Sep 15 10:44:31 2025...

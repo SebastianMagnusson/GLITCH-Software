@@ -19,6 +19,7 @@ entity I2C_full_sensor_data_fetcher is
         i_TX_done_HK    : in  std_logic;
         i_TX_done_BF    : in  std_logic;
         i_TX_done_RAD   : in  std_logic;
+        i_TX_done_HTR   : in  std_logic;
         i_HK_RTC_request  : in std_logic;
         i_BF_RTC_request  : in std_logic;
         i_RAD_RTC_request : in std_logic;
@@ -64,7 +65,7 @@ begin
         variable conv_cnt : integer range 0 to Clockfrequency/100 := 0; -- Wait 10 ms for pressure conversion
     begin
         if rising_edge(clk) then
-            if rst = '1' then
+            if rst = '0' then
                 busy_cnt      := 0;
                 conv_cnt      := 0;
                 temp_data     <= (others => '0');

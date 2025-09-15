@@ -17,7 +17,7 @@ entity TM_packet_sender is
         clk : in std_logic;
         rst : in std_logic;
 		i_HK_data : in std_logic_vector(471 downto 0);
-		i_BF_data : in std_logic_vector(199 downto 0);
+		i_BF_data : in std_logic_vector(223 downto 0);
 		i_RAD_data : in std_logic_vector(10007 downto 0);
 		i_HK_DV : in std_logic;
 		i_BF_DV : in std_logic;
@@ -36,7 +36,7 @@ architecture rtl of TM_packet_sender is
 	signal state : state_type := s_idle;
 
 	signal i_HK_data_i : std_logic_vector(471 downto 0);
-	signal i_BF_data_i : std_logic_vector(199 downto 0);
+	signal i_BF_data_i : std_logic_vector(223 downto 0);
 	signal i_RAD_data_i : std_logic_vector(10007 downto 0);
 	
 	signal i_TX_done_prev : std_logic;
@@ -47,16 +47,17 @@ begin
     begin
     
         if rising_edge(clk) then
-            if rst = '1' then
-				i_HK_data_i <= (others => '0');
-				i_BF_data_i <= (others => '0');
-				i_RAD_data_i <= (others => '0');
-				o_TX_DV <= '0';
-				o_TX_byte <= (others => '0');
-				o_HK_got <= '0';
-				o_BF_got <= '0';
-				o_RAD_got <= '0';
-				state <= s_idle;
+            if rst = '0' then
+              i_HK_data_i <= (others => '0');
+              i_BF_data_i <= (others => '0');
+              i_RAD_data_i <= (others => '0');
+              o_TX_DV <= '0';
+              o_TX_byte <= (others => '0');
+              o_HK_got <= '0';
+              o_BF_got <= '0';
+              o_RAD_got <= '0';
+              bit_cnt <= 0;
+              state <= s_idle;
             else
 				case state is
 					when s_idle =>
@@ -102,8 +103,8 @@ begin
 					when s_send_BF_first => 
                     
                         o_TX_DV <= '1';
-                        o_TX_byte <= i_BF_data_i(199 downto 192);
-                        bit_cnt <= 191;           
+                        o_TX_byte <= i_BF_data_i(223 downto 216);
+                        bit_cnt <= 215;           
 					    state <= s_send_BF;
 					
 					when s_send_BF =>		
@@ -155,6 +156,7 @@ begin
 						o_BF_got <= '0';
 						o_RAD_got <= '0';
 						i_TX_done_prev <= '0';
+            bit_cnt <= 0;
 						state <= s_idle;
 						
 				end case;

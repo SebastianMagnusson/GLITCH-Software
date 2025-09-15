@@ -1,0 +1,231 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xB2508A90B2508A9",
+      "device": "xc7a35tcpg236-1",
+      "gen_directory": "../../../../GNSS_Fetcher_Test.gen/sources_1/bd/fetch_gnns_1",
+      "name": "fetch_gnns_1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "Switchmod_0": "",
+      "UART_RXmod_0": "",
+      "GNSS_Fetcher_mod_0": "",
+      "GNSS_Sender_0": ""
+    },
+    "ports": {
+      "sysclk": {
+        "direction": "I"
+      },
+      "GNSS_TX": {
+        "direction": "I"
+      },
+      "btn0": {
+        "direction": "I"
+      },
+      "led0": {
+        "direction": "O"
+      },
+      "GNSS_EN": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "Switchmod_0": {
+        "vlnv": "xilinx.com:module_ref:Switchmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "fetch_gnns_1_Switchmod_0_0",
+        "xci_path": "ip\\fetch_gnns_1_Switchmod_0_0\\fetch_gnns_1_Switchmod_0_0.xci",
+        "inst_hier_path": "Switchmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Switchmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_signal": {
+            "direction": "I"
+          },
+          "o_signal": {
+            "direction": "O"
+          },
+          "led0": {
+            "direction": "O"
+          }
+        }
+      },
+      "UART_RXmod_0": {
+        "vlnv": "xilinx.com:module_ref:UART_RXmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "fetch_gnns_1_UART_RXmod_0_0",
+        "xci_path": "ip\\fetch_gnns_1_UART_RXmod_0_0\\fetch_gnns_1_UART_RXmod_0_0.xci",
+        "inst_hier_path": "UART_RXmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_RXmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_RX_Serial": {
+            "direction": "I"
+          },
+          "o_RX_DV": {
+            "direction": "O"
+          },
+          "o_RX_byte": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "GNSS_Fetcher_mod_0": {
+        "vlnv": "xilinx.com:module_ref:GNSS_Fetcher_mod:1.0",
+        "ip_revision": "1",
+        "xci_name": "fetch_gnns_1_GNSS_Fetcher_mod_0_0",
+        "xci_path": "ip\\fetch_gnns_1_GNSS_Fetcher_mod_0_0\\fetch_gnns_1_GNSS_Fetcher_mod_0_0.xci",
+        "inst_hier_path": "GNSS_Fetcher_mod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "GNSS_Fetcher_mod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "reset_n": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "i_RX_drive": {
+            "direction": "I"
+          },
+          "i_gnss_data": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "o_gnss_data": {
+            "direction": "O",
+            "left": "383",
+            "right": "0"
+          },
+          "o_gnss_drive": {
+            "direction": "O"
+          }
+        }
+      },
+      "GNSS_Sender_0": {
+        "vlnv": "xilinx.com:module_ref:GNSS_Sender:1.0",
+        "ip_revision": "1",
+        "xci_name": "fetch_gnns_1_GNSS_Sender_0_0",
+        "xci_path": "ip\\fetch_gnns_1_GNSS_Sender_0_0\\fetch_gnns_1_GNSS_Sender_0_0.xci",
+        "inst_hier_path": "GNSS_Sender_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "GNSS_Sender",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "reset_n": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "data_ready": {
+            "direction": "I"
+          },
+          "i_gnss_data": {
+            "direction": "I",
+            "left": "383",
+            "right": "0"
+          },
+          "o_gnss_data": {
+            "direction": "O",
+            "left": "383",
+            "right": "0"
+          },
+          "o_gnss_drive": {
+            "direction": "O"
+          },
+          "led1": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "GNSS_Fetcher_mod_0_o_gnss_data": {
+        "ports": [
+          "GNSS_Fetcher_mod_0/o_gnss_data",
+          "GNSS_Sender_0/i_gnss_data"
+        ]
+      },
+      "GNSS_Fetcher_mod_0_o_gnss_drive": {
+        "ports": [
+          "GNSS_Fetcher_mod_0/o_gnss_drive",
+          "GNSS_Sender_0/data_ready"
+        ]
+      },
+      "Switchmod_0_led0": {
+        "ports": [
+          "Switchmod_0/led0",
+          "led0"
+        ]
+      },
+      "Switchmod_0_o_signal": {
+        "ports": [
+          "Switchmod_0/o_signal",
+          "GNSS_EN",
+          "GNSS_Fetcher_mod_0/reset_n",
+          "GNSS_Sender_0/reset_n"
+        ]
+      },
+      "UART_RXmod_0_o_RX_DV": {
+        "ports": [
+          "UART_RXmod_0/o_RX_DV",
+          "GNSS_Fetcher_mod_0/i_RX_drive"
+        ]
+      },
+      "UART_RXmod_0_o_RX_byte": {
+        "ports": [
+          "UART_RXmod_0/o_RX_byte",
+          "GNSS_Fetcher_mod_0/i_gnss_data"
+        ]
+      },
+      "i_RX_Serial_0_1": {
+        "ports": [
+          "GNSS_TX",
+          "UART_RXmod_0/i_RX_Serial"
+        ]
+      },
+      "i_signal_0_1": {
+        "ports": [
+          "btn0",
+          "Switchmod_0/i_signal"
+        ]
+      },
+      "sysclk_0_1": {
+        "ports": [
+          "sysclk",
+          "UART_RXmod_0/sysclk",
+          "Switchmod_0/sysclk",
+          "GNSS_Fetcher_mod_0/sysclk",
+          "GNSS_Sender_0/sysclk"
+        ]
+      }
+    }
+  }
+}

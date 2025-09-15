@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
---Date        : Fri Sep 12 10:26:37 2025
+--Date        : Mon Sep 15 10:43:03 2025
 --Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 --Command     : generate_target GNSS_Reader.bd
 --Design      : GNSS_Reader
