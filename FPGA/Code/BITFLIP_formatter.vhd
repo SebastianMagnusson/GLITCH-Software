@@ -25,7 +25,7 @@ entity BF_formatter is
 		I2C_read_done : out std_logic;
 		BF_packet_DV : out std_logic;
 		BF_packet : out std_logic_vector(223 downto 0);
-		led2      : out std_logic
+		led1 : out std_logic
     );
 end BF_formatter;
 
@@ -37,6 +37,8 @@ architecture rtl of BF_formatter is
 	
 	signal RTC_data_i : std_logic_vector(23 downto 0) := (others => '0');
 	
+	signal led : std_logic := '1';
+	
 	constant ID : std_logic_vector(1 downto 0) := b"01";
 	
 begin
@@ -44,20 +46,19 @@ begin
     begin
     
         if rising_edge(clk) then
-            if rst = '0' then
-              SRAM_data_i <= (others => '0');	
-              RTC_data_i <= (others => '0');
-              RTC_request <= '0';
-              I2C_read_done <= '0';
-              BF_packet_DV <= '0';
-              BF_packet <= (others => '0');
-              state <= s_SRAM_idle;
+            if rst = '1' then
+				SRAM_data_i <= (others => '0');	
+				RTC_data_i <= (others => '0');
+				RTC_request <= '0';
+				I2C_read_done <= '0';
+				BF_packet_DV <= '0';
+				BF_packet <= (others => '0');
+				state <= s_SRAM_idle;
             else
 				case state is
 					when s_SRAM_idle =>
 					
 						if SRAM_data_DV = '1' then
-	            led2 <= '1';
 							SRAM_data_i <= SRAM_data;
 							RTC_request <= '1';
 							state <= s_RTC_idle;
@@ -70,34 +71,37 @@ begin
 					
 						I2C_read_done <= '0';							
 						if RTC_data_DV = '1' then
-              RTC_request <= '0';
-              I2C_read_done <= '1';
-              RTC_data_i <= RTC_data;
-              state <= s_BF_send;              
+                            RTC_request <= '0';
+                            I2C_read_done <= '1';
+                            RTC_data_i <= RTC_data;
+                            state <= s_BF_send;              
 						else
 						    state <= s_RTC_idle;
 						end if;	
                     
-          when s_BF_send =>               
-            
-            BF_packet <= ID & RTC_data_i & SRAM_data_i;
-            BF_packet_DV <= '1';
-            I2C_read_done <= '1';
-            if BF_packet_got = '1' then                        
-                state <= s_cleanup;
+                    when s_BF_send =>               
+                        
+					    led1 <= led;
+                        BF_packet <= ID & RTC_data_i & SRAM_data_i;
+                        BF_packet_DV <= '1';
+                        I2C_read_done <= '1';
+                        if BF_packet_got = '1' then                        
+                            state <= s_cleanup;
 						else 
 						    state <= s_BF_send;
-            end if;
-                                    
-					when s_cleanup =>         
-            SRAM_data_i <= (others => '0');
-            RTC_data_i <= (others => '0');
-            RTC_request <= '0';
-            I2C_read_done <= '0';
-            BF_packet_DV <= '0';
-            BF_packet <= (others => '0');
-            
-            state <= s_SRAM_idle;		
+                        end if;
+                                      
+					when s_cleanup =>	
+													
+                        led <= not led;                                   
+                        SRAM_data_i <= (others => '0');
+                        RTC_data_i <= (others => '0');
+                        RTC_request <= '0';
+                        I2C_read_done <= '0';
+                        BF_packet_DV <= '0';
+                        BF_packet <= (others => '0');
+                        
+                        state <= s_SRAM_idle;		
 						
 				end case;
             end if;

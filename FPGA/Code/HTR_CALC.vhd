@@ -15,8 +15,8 @@ entity HTR_CALC is
 		temp_DV	   : in std_logic;
 		HTR_request		: out std_logic;
 		I2C_read_done   : out std_logic;
-		o_DV 	   : out std_logic;
-		o_byte 	   : out std_logic_vector(7 downto 0);
+		command_htr1 : out integer range 0 to 10;
+		command_htr2 : out integer range 0 to 10;
 		led1       : out std_logic
     );
 end entity;
@@ -25,10 +25,6 @@ architecture rtl of HTR_CALC is
 
 	type state_type is (IDLE, REQUEST, CONVERT, CALC, SEND, TEST, CLEAN);
 	signal state : state_type := CLEAN;
-	
-	
-	signal command_htr1 : integer range 0 to 10 := 0;
-	signal command_htr2 : integer range 0 to 10 := 0;
 	
 	signal temp_data_i : std_logic_vector(31 downto 0) := (others => '0');
 	signal temp_raw_1	   : unsigned(15 downto 0); 
@@ -41,8 +37,6 @@ architecture rtl of HTR_CALC is
     
     signal sec_cnt : integer range 0 to Clockfrequency := 0;
 	
-	signal index : std_logic := '0';
-
 begin
 
     process(clk)
@@ -53,11 +47,8 @@ begin
     begin
         if rising_edge(clk) then
             if rst = '1' then
-    
-                o_DV <= '0';
-                o_byte <= (others => '0');
+				
                 sec_cnt <= 0;
-                index <= not index;
                 temp_data_i <= (others => '0');
                 temp_raw_1 <= to_unsigned(0, 16);
                 temp_raw_2 <= to_unsigned(0, 16);
@@ -90,7 +81,7 @@ begin
 						end if;
 						
 					when CONVERT =>
-					    led1 <= '1';
+					    led1 <= '0';
 					    I2C_read_done <= '0';
 						temp_raw_1 <= unsigned(temp_data_i(15 downto 0));
 						temp_raw_2 <= unsigned(temp_data_i(31 downto 16));
@@ -101,13 +92,13 @@ begin
 					    product_1 := temp_raw_1 * C1;					    
 					    product_2 := temp_raw_2 * C1;
 					    shifted_1 := product_1(31 downto 16);
-					    shifted_2 := product_1(31 downto 16);
+					    shifted_2 := product_2(31 downto 16);
+					    temp_calculated_1 <= to_integer(shifted_1) - C2;
+					    temp_calculated_2 <= to_integer(shifted_2) - C2;
 					    state <= SEND;
 					    
 					when SEND => 
 					    led1 <= '0';
-					    temp_calculated_1 <= to_integer(shifted_1) - C2;
-					    temp_calculated_2 <= to_integer(shifted_2) - C2;
 					    
 						if temp_calculated_1 > 20*100 then
 							command_htr1 <= 0;
@@ -127,7 +118,7 @@ begin
 							command_htr1 <= 7;
 						elsif -20*100 > temp_calculated_1 and temp_calculated_1 > -25*100 then
 							command_htr1 <= 8;
-						elsif -10*100 > temp_calculated_1 and temp_calculated_1 > -30*100 then
+						elsif -25*100 > temp_calculated_1 and temp_calculated_1 > -30*100 then
 							command_htr1 <= 9;
 						elsif temp_calculated_1 < -30*100 then
 							command_htr1 <= 10;
@@ -136,7 +127,7 @@ begin
 						end if;
 						
 						if temp_calculated_2 > 20*100 then
-							command_htr2 <= 5;
+							command_htr2 <= 0;
 						elsif 20*100 > temp_calculated_2 and temp_calculated_2 > 10*100 then
 							command_htr2 <= 1;
 						elsif 10*100 > temp_calculated_2 and temp_calculated_2 > 5*100 then
@@ -153,7 +144,7 @@ begin
 							command_htr2 <= 7;
 						elsif -20*100 > temp_calculated_2 and temp_calculated_2 > -25*100 then
 							command_htr2 <= 8;
-						elsif -10*100 > temp_calculated_2 and temp_calculated_2 > -30*100 then
+						elsif -25*100 > temp_calculated_2 and temp_calculated_2 > -30*100 then
 							command_htr2 <= 9;
 						elsif temp_calculated_2 < -30*100 then
 							command_htr2 <= 10;
@@ -161,24 +152,12 @@ begin
 							command_htr2 <= 0;
 						end if;
 						
-						state <= TEST;
-								
-					when TEST =>
-					
-						o_DV <= '1';
-						if index = '0' then
-							o_byte <= std_logic_vector(to_unsigned(command_htr1, 8));
-						else 
-							o_byte <= std_logic_vector(to_unsigned(command_htr2, 8));						
-						end if;
 						state <= CLEAN;
-								
+													
 					when CLEAN =>
-						o_DV <= '0';
-						o_byte <= (others => '0');
+					
 						sec_cnt <= 0;
 						I2C_read_done <= '0';
-						index <= not index;
 						temp_data_i <= (others => '0');
 						temp_raw_1 <= to_unsigned(0, 16);
 						temp_raw_2 <= to_unsigned(0, 16);
