@@ -55,7 +55,7 @@ begin
     begin
     
         if rising_edge(clk) then
-            if rst = '1' then
+            if rst = '0' then
 				GNSS_data_i <= (others => '0');	
 				RTC_data_i <= (others => '0');	
 				RTC_request <= '0';
