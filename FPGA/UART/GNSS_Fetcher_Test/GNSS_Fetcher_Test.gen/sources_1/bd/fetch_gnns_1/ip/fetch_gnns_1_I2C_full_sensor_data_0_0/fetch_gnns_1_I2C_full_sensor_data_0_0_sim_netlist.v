@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Mon Sep 15 15:25:16 2025
+// Date        : Tue Sep 16 10:08:42 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/GitHub/GLITCH-Software/FPGA/UART/GNSS_Fetcher_Test/GNSS_Fetcher_Test.gen/sources_1/bd/fetch_gnns_1/ip/fetch_gnns_1_I2C_full_sensor_data_0_0/fetch_gnns_1_I2C_full_sensor_data_0_0_sim_netlist.v
@@ -241,7 +241,6 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
   wire [2:0]busy_cnt;
   wire \busy_cnt[0]_i_2_n_0 ;
   wire \busy_cnt[0]_i_3_n_0 ;
-  wire \busy_cnt[0]_i_4_n_0 ;
   wire \busy_cnt[1]_i_2_n_0 ;
   wire \busy_cnt[1]_i_3_n_0 ;
   wire \busy_cnt[1]_i_4_n_0 ;
@@ -333,7 +332,6 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
   wire \o_i2c_address[6]_i_2_n_0 ;
   wire \o_i2c_address[6]_i_3_n_0 ;
   wire \o_i2c_address[6]_i_4_n_0 ;
-  wire \o_i2c_address[6]_i_5_n_0 ;
   wire [2:0]o_i2c_data_wr;
   wire \o_i2c_data_wr[0]_i_1_n_0 ;
   wire \o_i2c_data_wr[0]_i_2_n_0 ;
@@ -397,7 +395,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I4(i_HK_TEMP_request),
         .I5(i_HTR_TEMP_request),
         .O(\FSM_onehot_state[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'hAAA8)) 
     \FSM_onehot_state[1]_i_1 
@@ -406,7 +404,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I2(i_BF_RTC_request),
         .I3(i_HK_RTC_request),
         .O(\FSM_onehot_state[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'hAAABAAAA)) 
     \FSM_onehot_state[2]_i_1 
@@ -416,7 +414,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I3(i_TX_done_HK),
         .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .O(\FSM_onehot_state[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'h00020000)) 
     \FSM_onehot_state[3]_i_1 
@@ -426,7 +424,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I3(i_RAD_RTC_request),
         .I4(i_HK_ALT_request),
         .O(\FSM_onehot_state[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hBA)) 
     \FSM_onehot_state[6]_i_1 
@@ -450,7 +448,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I1(i_BF_RTC_request),
         .I2(i_RAD_RTC_request),
         .O(\FSM_onehot_state[7]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'hABAA)) 
     \FSM_onehot_state[8]_i_1 
@@ -459,15 +457,14 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I2(i_TX_done_HK),
         .I3(\FSM_onehot_state_reg_n_0_[8] ),
         .O(\FSM_onehot_state[8]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF000E000A)) 
+  LUT5 #(
+    .INIT(32'hFFFF5444)) 
     \FSM_onehot_state[9]_i_1 
-       (.I0(\FSM_onehot_state_reg_n_0_[4] ),
-        .I1(\FSM_onehot_state_reg_n_0_[3] ),
-        .I2(\FSM_onehot_state[9]_i_3_n_0 ),
-        .I3(\o_i2c_address[6]_i_3_n_0 ),
-        .I4(\FSM_onehot_state[9]_i_4_n_0 ),
-        .I5(\FSM_onehot_state[9]_i_5_n_0 ),
+       (.I0(\FSM_onehot_state[9]_i_3_n_0 ),
+        .I1(\FSM_onehot_state_reg_n_0_[4] ),
+        .I2(\FSM_onehot_state_reg_n_0_[3] ),
+        .I3(\FSM_onehot_state[9]_i_4_n_0 ),
+        .I4(\FSM_onehot_state[9]_i_5_n_0 ),
         .O(\FSM_onehot_state[9]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hFFF4FF44F4F4F444)) 
@@ -479,11 +476,14 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I4(i_TX_done_HTR),
         .I5(\FSM_onehot_state_reg_n_0_[6] ),
         .O(\FSM_onehot_state[9]_i_2_n_0 ));
-  LUT2 #(
-    .INIT(4'hB)) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT4 #(
+    .INIT(16'hFFEF)) 
     \FSM_onehot_state[9]_i_3 
-       (.I0(i_busy),
-        .I1(\busy_cnt_reg_n_0_[0] ),
+       (.I0(\busy_cnt_reg_n_0_[1] ),
+        .I1(\busy_cnt_reg_n_0_[2] ),
+        .I2(\busy_cnt_reg_n_0_[0] ),
+        .I3(i_busy),
         .O(\FSM_onehot_state[9]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'hF200000000000000)) 
@@ -495,17 +495,17 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I4(conv_cnt[14]),
         .I5(conv_cnt[16]),
         .O(\FSM_onehot_state[9]_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFF4)) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'hFFFFFFE0)) 
     \FSM_onehot_state[9]_i_5 
-       (.I0(\busy_cnt[1]_i_2_n_0 ),
-        .I1(\FSM_onehot_state[9]_i_7_n_0 ),
-        .I2(\FSM_onehot_state_reg_n_0_[2] ),
-        .I3(\FSM_onehot_state_reg_n_0_[8] ),
-        .I4(\FSM_onehot_state[9]_i_8_n_0 ),
-        .I5(\FSM_onehot_state[9]_i_9_n_0 ),
+       (.I0(\FSM_onehot_state_reg_n_0_[7] ),
+        .I1(\FSM_onehot_state_reg_n_0_[5] ),
+        .I2(\FSM_onehot_state[9]_i_7_n_0 ),
+        .I3(\FSM_onehot_state[9]_i_8_n_0 ),
+        .I4(\FSM_onehot_state[9]_i_9_n_0 ),
         .O(\FSM_onehot_state[9]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'h01)) 
     \FSM_onehot_state[9]_i_6 
@@ -513,7 +513,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I1(i_TX_done_RAD),
         .I2(i_TX_done_HK),
         .O(\FSM_onehot_state[9]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'h0400)) 
     \FSM_onehot_state[9]_i_7 
@@ -522,23 +522,25 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I2(\busy_cnt_reg_n_0_[2] ),
         .I3(\busy_cnt_reg_n_0_[1] ),
         .O(\FSM_onehot_state[9]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT3 #(
-    .INIT(8'hFE)) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  LUT5 #(
+    .INIT(32'h00000008)) 
     \FSM_onehot_state[9]_i_8 
-       (.I0(\FSM_onehot_state_reg_n_0_[0] ),
-        .I1(\FSM_onehot_state_reg_n_0_[6] ),
-        .I2(\FSM_onehot_state_reg_n_0_[9] ),
+       (.I0(\FSM_onehot_state_reg_n_0_[1] ),
+        .I1(\busy_cnt_reg_n_0_[2] ),
+        .I2(\busy_cnt_reg_n_0_[1] ),
+        .I3(\busy_cnt_reg_n_0_[0] ),
+        .I4(i_busy),
         .O(\FSM_onehot_state[9]_i_8_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
-    .INIT(32'h00000008)) 
+    .INIT(32'hFFFFFFFE)) 
     \FSM_onehot_state[9]_i_9 
-       (.I0(\FSM_onehot_state_reg_n_0_[1] ),
-        .I1(\busy_cnt_reg_n_0_[2] ),
-        .I2(\busy_cnt_reg_n_0_[0] ),
-        .I3(i_busy),
-        .I4(\busy_cnt_reg_n_0_[1] ),
+       (.I0(\FSM_onehot_state_reg_n_0_[2] ),
+        .I1(\FSM_onehot_state_reg_n_0_[8] ),
+        .I2(\FSM_onehot_state_reg_n_0_[9] ),
+        .I3(\FSM_onehot_state_reg_n_0_[6] ),
+        .I4(\FSM_onehot_state_reg_n_0_[0] ),
         .O(\FSM_onehot_state[9]_i_9_n_0 ));
   (* FSM_ENCODED_STATES = "prep_alt:0000001000,alt_read:0000010000,send_temp:0100000000,temp:0010000000,idle:0000000001,rtc:0000000010,cleanup:1000000000,send_alt:0001000000,send_rtc:0000000100,alt:0000100000" *) 
   FDSE #(
@@ -640,7 +642,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I4(\busy_cnt[2]_i_6_n_0 ),
         .I5(\FSM_onehot_state_reg_n_0_[9] ),
         .O(\alt_data[15]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \alt_data[16]_i_1 
@@ -654,7 +656,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
        (.I0(\FSM_onehot_state_reg_n_0_[5] ),
         .I1(i_data_read[1]),
         .O(\alt_data[17]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \alt_data[18]_i_1 
@@ -668,7 +670,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
        (.I0(\FSM_onehot_state_reg_n_0_[5] ),
         .I1(i_data_read[3]),
         .O(\alt_data[19]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \alt_data[20]_i_1 
@@ -682,7 +684,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
        (.I0(\FSM_onehot_state_reg_n_0_[5] ),
         .I1(i_data_read[5]),
         .O(\alt_data[21]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \alt_data[22]_i_1 
@@ -693,12 +695,12 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
     .INIT(32'hAABAAAAA)) 
     \alt_data[23]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
-        .I1(\o_i2c_address[6]_i_3_n_0 ),
+        .I1(o_i2c_ena_i_4_n_0),
         .I2(\busy_cnt_reg_n_0_[0] ),
         .I3(i_busy),
         .I4(\FSM_onehot_state_reg_n_0_[5] ),
         .O(\alt_data[23]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \alt_data[23]_i_2 
@@ -711,7 +713,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
        (.I0(\FSM_onehot_state_reg_n_0_[5] ),
         .I1(\busy_cnt_reg_n_0_[1] ),
         .I2(i_busy),
-        .I3(\o_i2c_address[6]_i_4_n_0 ),
+        .I3(\o_i2c_address[6]_i_3_n_0 ),
         .I4(\busy_cnt[2]_i_6_n_0 ),
         .I5(\FSM_onehot_state_reg_n_0_[9] ),
         .O(\alt_data[7]_i_1_n_0 ));
@@ -860,76 +862,66 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .Q(alt_data[9]),
         .R(o_i2c_ena_i_1_n_0));
   LUT6 #(
-    .INIT(64'hFFAAFFAAFFAAFF2A)) 
+    .INIT(64'hFFFAFFF8FFFAFFFA)) 
     \busy_cnt[0]_i_1 
-       (.I0(\o_i2c_address[6]_i_4_n_0 ),
+       (.I0(\o_i2c_address[6]_i_3_n_0 ),
         .I1(\busy_cnt[0]_i_2_n_0 ),
-        .I2(\busy_cnt[0]_i_3_n_0 ),
-        .I3(\busy_cnt[2]_i_3_n_0 ),
+        .I2(\FSM_onehot_state_reg_n_0_[0] ),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\FSM_onehot_state_reg_n_0_[1] ),
-        .I5(\busy_cnt[0]_i_4_n_0 ),
+        .I5(\busy_cnt[0]_i_3_n_0 ),
         .O(busy_cnt[0]));
+  LUT6 #(
+    .INIT(64'h3F3F3F3F2F222F2F)) 
+    \busy_cnt[0]_i_2 
+       (.I0(o_i2c_ena_i_4_n_0),
+        .I1(\busy_cnt[2]_i_4_n_0 ),
+        .I2(\busy_cnt[2]_i_3_n_0 ),
+        .I3(\busy_cnt[2]_i_6_n_0 ),
+        .I4(\busy_cnt_reg_n_0_[1] ),
+        .I5(i_busy),
+        .O(\busy_cnt[0]_i_2_n_0 ));
   LUT5 #(
     .INIT(32'h4544FFFF)) 
-    \busy_cnt[0]_i_2 
+    \busy_cnt[0]_i_3 
        (.I0(o_i2c_ena_i_9_n_0),
         .I1(conv_cnt[13]),
         .I2(o_i2c_ena_i_8_n_0),
         .I3(conv_cnt[12]),
         .I4(\FSM_onehot_state_reg_n_0_[3] ),
-        .O(\busy_cnt[0]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT4 #(
-    .INIT(16'hAAAB)) 
-    \busy_cnt[0]_i_3 
-       (.I0(\busy_cnt[2]_i_4_n_0 ),
-        .I1(\busy_cnt_reg_n_0_[2] ),
-        .I2(i_busy),
-        .I3(\busy_cnt_reg_n_0_[1] ),
         .O(\busy_cnt[0]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT5 #(
-    .INIT(32'hFBFBFB00)) 
-    \busy_cnt[0]_i_4 
-       (.I0(i_busy),
-        .I1(\busy_cnt_reg_n_0_[1] ),
-        .I2(\busy_cnt[2]_i_6_n_0 ),
-        .I3(\FSM_onehot_state_reg_n_0_[5] ),
-        .I4(\FSM_onehot_state_reg_n_0_[7] ),
-        .O(\busy_cnt[0]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFF040F0F0)) 
     \busy_cnt[1]_i_1 
-       (.I0(\busy_cnt[1]_i_2_n_0 ),
-        .I1(\busy_cnt[1]_i_3_n_0 ),
-        .I2(\busy_cnt[1]_i_4_n_0 ),
+       (.I0(\busy_cnt[2]_i_3_n_0 ),
+        .I1(\busy_cnt[1]_i_2_n_0 ),
+        .I2(\busy_cnt[1]_i_3_n_0 ),
         .I3(\FSM_onehot_state_reg_n_0_[1] ),
         .I4(\busy_cnt[2]_i_4_n_0 ),
-        .I5(\busy_cnt[2]_i_3_n_0 ),
+        .I5(\busy_cnt[1]_i_4_n_0 ),
         .O(busy_cnt[1]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT2 #(
-    .INIT(4'h1)) 
-    \busy_cnt[1]_i_2 
-       (.I0(\FSM_onehot_state_reg_n_0_[7] ),
-        .I1(\FSM_onehot_state_reg_n_0_[5] ),
-        .O(\busy_cnt[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'hFB)) 
-    \busy_cnt[1]_i_3 
+    \busy_cnt[1]_i_2 
        (.I0(\busy_cnt_reg_n_0_[2] ),
         .I1(\busy_cnt_reg_n_0_[0] ),
         .I2(i_busy),
-        .O(\busy_cnt[1]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+        .O(\busy_cnt[1]_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'h9AAA)) 
-    \busy_cnt[1]_i_4 
+    \busy_cnt[1]_i_3 
        (.I0(\busy_cnt_reg_n_0_[1] ),
         .I1(busy_prev_reg_n_0),
         .I2(i_busy),
         .I3(\busy_cnt_reg_n_0_[0] ),
+        .O(\busy_cnt[1]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
+    \busy_cnt[1]_i_4 
+       (.I0(\FSM_onehot_state_reg_n_0_[0] ),
+        .I1(\FSM_onehot_state_reg_n_0_[2] ),
         .O(\busy_cnt[1]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
@@ -942,21 +934,21 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I5(\FSM_onehot_state_reg_n_0_[5] ),
         .O(\busy_cnt[2]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFEFFAAAAAAAA)) 
+    .INIT(64'hFFFFEFFFEEEEEEEE)) 
     \busy_cnt[2]_i_2 
-       (.I0(\busy_cnt[2]_i_3_n_0 ),
-        .I1(\FSM_onehot_state_reg_n_0_[7] ),
-        .I2(\FSM_onehot_state_reg_n_0_[5] ),
+       (.I0(\FSM_onehot_state_reg_n_0_[2] ),
+        .I1(\FSM_onehot_state_reg_n_0_[0] ),
+        .I2(\busy_cnt[2]_i_3_n_0 ),
         .I3(\busy_cnt[2]_i_4_n_0 ),
         .I4(\busy_cnt[2]_i_5_n_0 ),
         .I5(\busy_cnt[2]_i_6_n_0 ),
         .O(busy_cnt[2]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT2 #(
-    .INIT(4'hE)) 
+    .INIT(4'h1)) 
     \busy_cnt[2]_i_3 
-       (.I0(\FSM_onehot_state_reg_n_0_[0] ),
-        .I1(\FSM_onehot_state_reg_n_0_[2] ),
+       (.I0(\FSM_onehot_state_reg_n_0_[7] ),
+        .I1(\FSM_onehot_state_reg_n_0_[5] ),
         .O(\busy_cnt[2]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
@@ -964,7 +956,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(\FSM_onehot_state_reg_n_0_[4] ),
         .O(\busy_cnt[2]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'hAAA8)) 
     \busy_cnt[2]_i_5 
@@ -973,15 +965,15 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I2(i_busy),
         .I3(\busy_cnt_reg_n_0_[1] ),
         .O(\busy_cnt[2]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
-    .INIT(32'hAA6AAAAA)) 
+    .INIT(32'hAAAA6AAA)) 
     \busy_cnt[2]_i_6 
        (.I0(\busy_cnt_reg_n_0_[2] ),
-        .I1(\busy_cnt_reg_n_0_[0] ),
-        .I2(i_busy),
-        .I3(busy_prev_reg_n_0),
-        .I4(\busy_cnt_reg_n_0_[1] ),
+        .I1(\busy_cnt_reg_n_0_[1] ),
+        .I2(\busy_cnt_reg_n_0_[0] ),
+        .I3(i_busy),
+        .I4(busy_prev_reg_n_0),
         .O(\busy_cnt[2]_i_6_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
@@ -1027,129 +1019,129 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
     .INIT(4'h1)) 
     \conv_cnt[0]_i_1 
        (.I0(conv_cnt[0]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[10]_i_1 
        (.I0(conv_cnt0[10]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[11]_i_1 
        (.I0(conv_cnt0[11]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[11]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[12]_i_1 
        (.I0(conv_cnt0[12]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[12]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[13]_i_1 
        (.I0(conv_cnt0[13]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[13]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[14]_i_1 
        (.I0(conv_cnt0[14]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[14]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[15]_i_1 
        (.I0(conv_cnt0[15]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[15]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hBAAABAAAAABABAAA)) 
     \conv_cnt[16]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
-        .I1(\o_i2c_address[6]_i_3_n_0 ),
+        .I1(o_i2c_ena_i_4_n_0),
         .I2(\FSM_onehot_state_reg_n_0_[3] ),
         .I3(\busy_cnt_reg_n_0_[0] ),
         .I4(i_busy),
         .I5(busy_prev_reg_n_0),
         .O(\conv_cnt[16]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[16]_i_2 
        (.I0(conv_cnt0[16]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[16]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[1]_i_1 
        (.I0(conv_cnt0[1]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[2]_i_1 
        (.I0(conv_cnt0[2]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[3]_i_1 
        (.I0(conv_cnt0[3]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[4]_i_1 
        (.I0(conv_cnt0[4]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[5]_i_1 
        (.I0(conv_cnt0[5]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[6]_i_1 
        (.I0(conv_cnt0[6]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[7]_i_1 
        (.I0(conv_cnt0[7]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[8]_i_1 
        (.I0(conv_cnt0[8]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \conv_cnt[9]_i_1 
        (.I0(conv_cnt0[9]),
-        .I1(\busy_cnt[0]_i_2_n_0 ),
+        .I1(\busy_cnt[0]_i_3_n_0 ),
         .O(\conv_cnt[9]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
@@ -1319,7 +1311,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .D(\conv_cnt[9]_i_1_n_0 ),
         .Q(conv_cnt[9]),
         .R(o_i2c_ena_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT5 #(
     .INIT(32'hFF57AA00)) 
     led2_i_1
@@ -1505,8 +1497,8 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFF0010)) 
     o_TX_DV_BF_i_2
-       (.I0(\o_i2c_address[6]_i_4_n_0 ),
-        .I1(\busy_cnt[1]_i_4_n_0 ),
+       (.I0(\o_i2c_address[6]_i_3_n_0 ),
+        .I1(\busy_cnt[1]_i_3_n_0 ),
         .I2(\FSM_onehot_state_reg_n_0_[1] ),
         .I3(\busy_cnt[2]_i_6_n_0 ),
         .I4(\FSM_onehot_state_reg_n_0_[9] ),
@@ -1518,41 +1510,42 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .D(o_TX_DV_BF_i_1_n_0),
         .Q(o_TX_DV_BF),
         .R(o_i2c_ena_i_1_n_0));
-  LUT6 #(
-    .INIT(64'hFEFEFEFFFEFEFE00)) 
+  LUT5 #(
+    .INIT(32'hFEFFFE00)) 
     o_TX_DV_HK_i_1
        (.I0(\FSM_onehot_state_reg_n_0_[6] ),
         .I1(\FSM_onehot_state_reg_n_0_[2] ),
         .I2(\FSM_onehot_state_reg_n_0_[8] ),
         .I3(o_TX_DV_HK_i_2_n_0),
-        .I4(o_TX_DV_HK_i_3_n_0),
-        .I5(o_TX_DV_HK),
+        .I4(o_TX_DV_HK),
         .O(o_TX_DV_HK_i_1_n_0));
   LUT6 #(
-    .INIT(64'h0080000004000404)) 
+    .INIT(64'hFFABFFABFFABFFAA)) 
     o_TX_DV_HK_i_2
+       (.I0(o_TX_DV_HK_i_3_n_0),
+        .I1(\who_requested_reg_n_0_[0] ),
+        .I2(\who_requested_reg_n_0_[1] ),
+        .I3(o_TX_DV_HK_i_4_n_0),
+        .I4(\FSM_onehot_state_reg_n_0_[2] ),
+        .I5(\FSM_onehot_state_reg_n_0_[8] ),
+        .O(o_TX_DV_HK_i_2_n_0));
+  LUT6 #(
+    .INIT(64'h0080000004000404)) 
+    o_TX_DV_HK_i_3
        (.I0(\busy_cnt_reg_n_0_[2] ),
         .I1(\FSM_onehot_state_reg_n_0_[1] ),
         .I2(\busy_cnt_reg_n_0_[1] ),
         .I3(busy_prev_reg_n_0),
         .I4(i_busy),
         .I5(\busy_cnt_reg_n_0_[0] ),
-        .O(o_TX_DV_HK_i_2_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFF10)) 
-    o_TX_DV_HK_i_3
-       (.I0(\who_requested_reg_n_0_[1] ),
-        .I1(\who_requested_reg_n_0_[0] ),
-        .I2(o_TX_DV_HK_i_4_n_0),
-        .I3(\FSM_onehot_state_reg_n_0_[9] ),
-        .I4(\FSM_onehot_state_reg_n_0_[6] ),
-        .I5(\FSM_onehot_state_reg_n_0_[0] ),
         .O(o_TX_DV_HK_i_3_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  LUT3 #(
+    .INIT(8'hFE)) 
     o_TX_DV_HK_i_4
-       (.I0(\FSM_onehot_state_reg_n_0_[8] ),
-        .I1(\FSM_onehot_state_reg_n_0_[2] ),
+       (.I0(\FSM_onehot_state_reg_n_0_[0] ),
+        .I1(\FSM_onehot_state_reg_n_0_[6] ),
+        .I2(\FSM_onehot_state_reg_n_0_[9] ),
         .O(o_TX_DV_HK_i_4_n_0));
   FDRE o_TX_DV_HK_reg
        (.C(clk),
@@ -1859,7 +1852,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .D(temp_data[15]),
         .Q(o_TX_TEMP_data[15]),
         .R(\o_TX_TEMP_data[31]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hFE)) 
     \o_i2c_address[4]_i_1 
@@ -1867,7 +1860,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I1(\FSM_onehot_state_reg_n_0_[3] ),
         .I2(\FSM_onehot_state_reg_n_0_[4] ),
         .O(\o_i2c_address[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     \o_i2c_address[5]_i_1 
@@ -1880,12 +1873,12 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
     .INIT(32'hAAAA0002)) 
     \o_i2c_address[6]_i_1 
        (.I0(rst),
-        .I1(\o_i2c_address[6]_i_3_n_0 ),
-        .I2(\o_i2c_address[6]_i_4_n_0 ),
-        .I3(\o_i2c_address[6]_i_5_n_0 ),
+        .I1(o_i2c_ena_i_4_n_0),
+        .I2(\o_i2c_address[6]_i_3_n_0 ),
+        .I3(\o_i2c_address[6]_i_4_n_0 ),
         .I4(\FSM_onehot_state_reg_n_0_[9] ),
         .O(\o_i2c_address[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
     \o_i2c_address[6]_i_2 
@@ -1896,33 +1889,23 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I4(\FSM_onehot_state_reg_n_0_[5] ),
         .O(\o_i2c_address[6]_i_2_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'hFF7FAAEA)) 
-    \o_i2c_address[6]_i_3 
-       (.I0(\busy_cnt_reg_n_0_[2] ),
-        .I1(\busy_cnt_reg_n_0_[0] ),
-        .I2(i_busy),
-        .I3(busy_prev_reg_n_0),
-        .I4(\busy_cnt_reg_n_0_[1] ),
-        .O(\o_i2c_address[6]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'hA6)) 
-    \o_i2c_address[6]_i_4 
+    \o_i2c_address[6]_i_3 
        (.I0(\busy_cnt_reg_n_0_[0] ),
         .I1(i_busy),
         .I2(busy_prev_reg_n_0),
-        .O(\o_i2c_address[6]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+        .O(\o_i2c_address[6]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'h00000001)) 
-    \o_i2c_address[6]_i_5 
+    \o_i2c_address[6]_i_4 
        (.I0(\FSM_onehot_state_reg_n_0_[5] ),
         .I1(\FSM_onehot_state_reg_n_0_[3] ),
         .I2(\FSM_onehot_state_reg_n_0_[4] ),
         .I3(\FSM_onehot_state_reg_n_0_[1] ),
         .I4(\FSM_onehot_state_reg_n_0_[7] ),
-        .O(\o_i2c_address[6]_i_5_n_0 ));
+        .O(\o_i2c_address[6]_i_4_n_0 ));
   FDRE \o_i2c_address_reg[3] 
        (.C(clk),
         .CE(\o_i2c_address[6]_i_1_n_0 ),
@@ -1947,7 +1930,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .D(\o_i2c_address[6]_i_2_n_0 ),
         .Q(o_i2c_address[3]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \o_i2c_data_wr[0]_i_1 
@@ -1965,7 +1948,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I4(\FSM_onehot_state_reg_n_0_[9] ),
         .I5(\busy_cnt[2]_i_4_n_0 ),
         .O(\o_i2c_data_wr[0]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'h20000045)) 
     \o_i2c_data_wr[0]_i_3 
@@ -1975,7 +1958,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I3(\busy_cnt_reg_n_0_[0] ),
         .I4(\busy_cnt_reg_n_0_[2] ),
         .O(\o_i2c_data_wr[0]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \o_i2c_data_wr[3]_i_1 
@@ -1983,7 +1966,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I1(\o_i2c_data_wr[0]_i_2_n_0 ),
         .I2(o_i2c_data_wr[0]),
         .O(\o_i2c_data_wr[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT4 #(
     .INIT(16'hEFE0)) 
     \o_i2c_data_wr[6]_i_1 
@@ -2016,74 +1999,74 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
        (.I0(rst),
         .O(o_i2c_ena_i_1_n_0));
   LUT6 #(
-    .INIT(64'hFFFF7FFFFDDDFFDD)) 
+    .INIT(64'hAAEABBABAAAAAAAA)) 
     o_i2c_ena_i_10
-       (.I0(\FSM_onehot_state_reg_n_0_[3] ),
-        .I1(\busy_cnt_reg_n_0_[2] ),
-        .I2(\busy_cnt_reg_n_0_[0] ),
-        .I3(i_busy),
-        .I4(busy_prev_reg_n_0),
-        .I5(\busy_cnt_reg_n_0_[1] ),
+       (.I0(\FSM_onehot_state_reg_n_0_[9] ),
+        .I1(\busy_cnt_reg_n_0_[0] ),
+        .I2(i_busy),
+        .I3(busy_prev_reg_n_0),
+        .I4(\busy_cnt_reg_n_0_[1] ),
+        .I5(\FSM_onehot_state_reg_n_0_[1] ),
         .O(o_i2c_ena_i_10_n_0));
   LUT6 #(
-    .INIT(64'hEEEEEEEFEEEEEEE0)) 
+    .INIT(64'hAAAAEFFFAAAA2000)) 
     o_i2c_ena_i_2
        (.I0(o_i2c_ena_i_3_n_0),
         .I1(o_i2c_ena_i_4_n_0),
-        .I2(o_i2c_ena_i_5_n_0),
-        .I3(o_i2c_ena_i_6_n_0),
-        .I4(o_i2c_ena_i_7_n_0),
+        .I2(\FSM_onehot_state_reg_n_0_[3] ),
+        .I3(o_i2c_ena_i_5_n_0),
+        .I4(o_i2c_ena_i_6_n_0),
         .I5(o_i2c_ena),
         .O(o_i2c_ena_i_2_n_0));
   LUT6 #(
-    .INIT(64'h08000000A2AAAAAA)) 
+    .INIT(64'hFFFFFFFFF4F4F4FF)) 
     o_i2c_ena_i_3
-       (.I0(\FSM_onehot_state_reg_n_0_[1] ),
-        .I1(\busy_cnt_reg_n_0_[1] ),
-        .I2(busy_prev_reg_n_0),
-        .I3(i_busy),
-        .I4(\busy_cnt_reg_n_0_[0] ),
-        .I5(\busy_cnt_reg_n_0_[2] ),
+       (.I0(\busy_cnt[2]_i_6_n_0 ),
+        .I1(\FSM_onehot_state_reg_n_0_[1] ),
+        .I2(\busy_cnt[1]_i_4_n_0 ),
+        .I3(\busy_cnt[1]_i_3_n_0 ),
+        .I4(\busy_cnt[2]_i_3_n_0 ),
+        .I5(o_i2c_ena_i_7_n_0),
         .O(o_i2c_ena_i_3_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF1111FF1F)) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT5 #(
+    .INIT(32'hFF7FAAEA)) 
     o_i2c_ena_i_4
-       (.I0(\busy_cnt[1]_i_4_n_0 ),
-        .I1(\busy_cnt[1]_i_2_n_0 ),
-        .I2(\o_i2c_address[6]_i_4_n_0 ),
-        .I3(i_busy),
-        .I4(\busy_cnt[2]_i_4_n_0 ),
-        .I5(\busy_cnt[2]_i_3_n_0 ),
+       (.I0(\busy_cnt_reg_n_0_[2] ),
+        .I1(\busy_cnt_reg_n_0_[0] ),
+        .I2(i_busy),
+        .I3(busy_prev_reg_n_0),
+        .I4(\busy_cnt_reg_n_0_[1] ),
         .O(o_i2c_ena_i_4_n_0));
   LUT6 #(
-    .INIT(64'h000003000B0A0B0A)) 
+    .INIT(64'h00005504FFFFFFFF)) 
     o_i2c_ena_i_5
-       (.I0(\FSM_onehot_state_reg_n_0_[1] ),
-        .I1(\busy_cnt[2]_i_6_n_0 ),
-        .I2(\busy_cnt[1]_i_4_n_0 ),
-        .I3(\FSM_onehot_state_reg_n_0_[4] ),
-        .I4(i_busy),
-        .I5(\o_i2c_address[6]_i_4_n_0 ),
-        .O(o_i2c_ena_i_5_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF0000E00E)) 
-    o_i2c_ena_i_6
-       (.I0(\FSM_onehot_state_reg_n_0_[5] ),
-        .I1(\FSM_onehot_state_reg_n_0_[7] ),
-        .I2(\busy_cnt[1]_i_4_n_0 ),
-        .I3(\o_i2c_address[6]_i_4_n_0 ),
-        .I4(\busy_cnt[2]_i_6_n_0 ),
-        .I5(\FSM_onehot_state_reg_n_0_[9] ),
-        .O(o_i2c_ena_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h000000005555FF5D)) 
-    o_i2c_ena_i_7
-       (.I0(\o_i2c_address[6]_i_4_n_0 ),
+       (.I0(i_busy),
         .I1(conv_cnt[12]),
         .I2(o_i2c_ena_i_8_n_0),
         .I3(conv_cnt[13]),
         .I4(o_i2c_ena_i_9_n_0),
-        .I5(o_i2c_ena_i_10_n_0),
+        .I5(\o_i2c_address[6]_i_3_n_0 ),
+        .O(o_i2c_ena_i_5_n_0));
+  LUT6 #(
+    .INIT(64'hAAAEAAAEAFAEAAAF)) 
+    o_i2c_ena_i_6
+       (.I0(o_i2c_ena_i_10_n_0),
+        .I1(\FSM_onehot_state_reg_n_0_[4] ),
+        .I2(\busy_cnt[2]_i_6_n_0 ),
+        .I3(\busy_cnt[1]_i_3_n_0 ),
+        .I4(\o_i2c_address[6]_i_3_n_0 ),
+        .I5(\busy_cnt[2]_i_3_n_0 ),
+        .O(o_i2c_ena_i_6_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'hC0FAC8F2)) 
+    o_i2c_ena_i_7
+       (.I0(\FSM_onehot_state_reg_n_0_[4] ),
+        .I1(i_busy),
+        .I2(\FSM_onehot_state_reg_n_0_[3] ),
+        .I3(\busy_cnt_reg_n_0_[0] ),
+        .I4(busy_prev_reg_n_0),
         .O(o_i2c_ena_i_7_n_0));
   LUT6 #(
     .INIT(64'h000000005555557F)) 
@@ -2117,26 +2100,26 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I3(o_i2c_rw),
         .O(o_i2c_rw_i_1_n_0));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFE0)) 
+    .INIT(64'hFFFFFFFFFFFFFECC)) 
     o_i2c_rw_i_2
-       (.I0(\FSM_onehot_state_reg_n_0_[7] ),
-        .I1(\FSM_onehot_state_reg_n_0_[1] ),
-        .I2(\o_i2c_address[6]_i_4_n_0 ),
-        .I3(\FSM_onehot_state_reg_n_0_[6] ),
-        .I4(\FSM_onehot_state_reg_n_0_[5] ),
-        .I5(\busy_cnt[2]_i_3_n_0 ),
+       (.I0(\FSM_onehot_state_reg_n_0_[1] ),
+        .I1(\busy_cnt[1]_i_4_n_0 ),
+        .I2(\FSM_onehot_state_reg_n_0_[7] ),
+        .I3(\o_i2c_address[6]_i_3_n_0 ),
+        .I4(\FSM_onehot_state_reg_n_0_[6] ),
+        .I5(\FSM_onehot_state_reg_n_0_[5] ),
         .O(o_i2c_rw_i_2_n_0));
   LUT6 #(
     .INIT(64'h3330333230303030)) 
     o_i2c_rw_i_3
        (.I0(\busy_cnt[2]_i_4_n_0 ),
         .I1(\FSM_onehot_state_reg_n_0_[9] ),
-        .I2(\o_i2c_address[6]_i_3_n_0 ),
-        .I3(\o_i2c_address[6]_i_4_n_0 ),
+        .I2(o_i2c_ena_i_4_n_0),
+        .I3(\o_i2c_address[6]_i_3_n_0 ),
         .I4(\FSM_onehot_state_reg_n_0_[5] ),
         .I5(o_i2c_rw_i_4_n_0),
         .O(o_i2c_rw_i_3_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT2 #(
     .INIT(4'h1)) 
     o_i2c_rw_i_4
@@ -2154,54 +2137,54 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
     \rtc_data[15]_i_1 
        (.I0(\busy_cnt_reg_n_0_[1] ),
         .I1(i_busy),
-        .I2(\o_i2c_address[6]_i_4_n_0 ),
+        .I2(\o_i2c_address[6]_i_3_n_0 ),
         .I3(\busy_cnt[2]_i_6_n_0 ),
         .I4(\FSM_onehot_state_reg_n_0_[1] ),
         .I5(\FSM_onehot_state_reg_n_0_[9] ),
         .O(\rtc_data[15]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rtc_data[16]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
         .I1(i_data_read[0]),
         .O(\rtc_data[16]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rtc_data[17]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
         .I1(i_data_read[1]),
         .O(\rtc_data[17]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rtc_data[18]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
         .I1(i_data_read[2]),
         .O(\rtc_data[18]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rtc_data[19]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
         .I1(i_data_read[3]),
         .O(\rtc_data[19]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rtc_data[20]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
         .I1(i_data_read[4]),
         .O(\rtc_data[20]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rtc_data[21]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
         .I1(i_data_read[5]),
         .O(\rtc_data[21]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rtc_data[22]_i_1 
@@ -2218,7 +2201,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I4(\busy_cnt[2]_i_6_n_0 ),
         .I5(\FSM_onehot_state_reg_n_0_[9] ),
         .O(\rtc_data[23]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rtc_data[23]_i_2 
@@ -2232,8 +2215,8 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I1(i_busy),
         .I2(\busy_cnt[2]_i_6_n_0 ),
         .I3(\FSM_onehot_state_reg_n_0_[1] ),
-        .I4(\busy_cnt[1]_i_4_n_0 ),
-        .I5(\o_i2c_address[6]_i_4_n_0 ),
+        .I4(\busy_cnt[1]_i_3_n_0 ),
+        .I5(\o_i2c_address[6]_i_3_n_0 ),
         .O(\rtc_data[7]_i_1_n_0 ));
   FDRE \rtc_data_reg[0] 
        (.C(clk),
@@ -2379,35 +2362,35 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .D(\rtc_data[17]_i_1_n_0 ),
         .Q(rtc_data[9]),
         .R(o_i2c_ena_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \temp_data[10]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[7] ),
         .I1(i_data_read[2]),
         .O(\temp_data[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \temp_data[11]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[7] ),
         .I1(i_data_read[3]),
         .O(\temp_data[11]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \temp_data[12]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[7] ),
         .I1(i_data_read[4]),
         .O(\temp_data[12]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \temp_data[13]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[7] ),
         .I1(i_data_read[5]),
         .O(\temp_data[13]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \temp_data[14]_i_1 
@@ -2424,7 +2407,7 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
         .I4(\busy_cnt[2]_i_6_n_0 ),
         .I5(\FSM_onehot_state_reg_n_0_[9] ),
         .O(\temp_data[15]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \temp_data[15]_i_2 
@@ -2437,17 +2420,18 @@ module fetch_gnns_1_I2C_full_sensor_data_0_0_I2C_full_sensor_data_fetcher
        (.I0(\FSM_onehot_state_reg_n_0_[7] ),
         .I1(\busy_cnt_reg_n_0_[1] ),
         .I2(i_busy),
-        .I3(\o_i2c_address[6]_i_4_n_0 ),
+        .I3(\o_i2c_address[6]_i_3_n_0 ),
         .I4(\busy_cnt[2]_i_6_n_0 ),
         .I5(\FSM_onehot_state_reg_n_0_[9] ),
         .O(\temp_data[7]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \temp_data[8]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[7] ),
         .I1(i_data_read[0]),
         .O(\temp_data[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \temp_data[9]_i_1 

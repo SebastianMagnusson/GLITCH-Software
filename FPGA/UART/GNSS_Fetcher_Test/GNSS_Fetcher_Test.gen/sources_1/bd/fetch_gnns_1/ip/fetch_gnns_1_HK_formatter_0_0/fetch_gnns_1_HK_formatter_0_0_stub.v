@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Mon Sep 15 15:37:42 2025
+// Date        : Tue Sep 16 10:21:43 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               c:/GitHub/GLITCH-Software/FPGA/UART/GNSS_Fetcher_Test/GNSS_Fetcher_Test.gen/sources_1/bd/fetch_gnns_1/ip/fetch_gnns_1_HK_formatter_0_0/fetch_gnns_1_HK_formatter_0_0_stub.v

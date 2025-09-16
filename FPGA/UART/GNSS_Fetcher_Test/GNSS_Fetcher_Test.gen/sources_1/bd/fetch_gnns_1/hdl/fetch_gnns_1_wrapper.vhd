@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
---Date        : Mon Sep 15 15:36:49 2025
+--Date        : Tue Sep 16 10:20:23 2025
 --Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 --Command     : generate_target fetch_gnns_1_wrapper.bd
 --Design      : fetch_gnns_1_wrapper

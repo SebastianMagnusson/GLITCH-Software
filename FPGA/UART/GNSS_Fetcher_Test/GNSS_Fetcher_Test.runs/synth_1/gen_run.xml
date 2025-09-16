@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1757943424" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/fetch_gnns_1_wrapper.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1758010843" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/fetch_gnns_1_wrapper.dcp">
   <File Type="PA-TCL" Name="fetch_gnns_1_wrapper.tcl"/>
   <File Type="REPORTS-TCL" Name="fetch_gnns_1_wrapper_reports.tcl"/>
   <File Type="RDS-RDS" Name="fetch_gnns_1_wrapper.vds"/>
@@ -128,8 +128,8 @@
   <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_GNSS_Sender_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_GNSS_Fetcher_mod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_TM_packet_sender_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_I2C_full_sensor_data_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_I2Cmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_UART_TXmod_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_I2C_full_sensor_data_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_HK_formatter_0_0"/>
 </GenRun>

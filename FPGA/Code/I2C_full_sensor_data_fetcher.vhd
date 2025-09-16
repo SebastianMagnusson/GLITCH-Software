@@ -75,7 +75,7 @@ begin
                 o_TX_DV_HK    <= '0';
                 o_TX_DV_BF    <= '0';
                 o_TX_DV_RAD   <= '0';
-				o_TX_DV_HTR   <= '0';
+				        o_TX_DV_HTR   <= '0';
                 busy_prev     <= '0';
                 state         <= IDLE;
 
@@ -90,27 +90,27 @@ begin
                         o_TX_DV_HK  <= '0';
                         o_TX_DV_BF  <= '0';
                         o_TX_DV_RAD <= '0';
-						o_TX_DV_HTR <= '0';
+						            o_TX_DV_HTR <= '0';
 
                         if i_HK_RTC_request = '1' or i_RAD_RTC_request = '1' or i_BF_RTC_request = '1' then
-                            if i_BF_RTC_request = '1' then
-                                who_requested <= BF;
-                            elsif i_RAD_RTC_request = '1' then
-                                who_requested <= RAD;
-                            else 
-                                who_requested <= HK;
-                            end if;
-                            state <= RTC;
+                          if i_BF_RTC_request = '1' then
+                              who_requested <= BF;
+                          elsif i_RAD_RTC_request = '1' then
+                              who_requested <= RAD;
+                          else 
+                              who_requested <= HK;
+                          end if;
+                          state <= RTC;
 
                         elsif i_HK_ALT_request = '1' then
                             state <= PREP_ALT;
 							
                         elsif i_HK_TEMP_request = '1' or i_HTR_TEMP_request = '1' then
-							if i_HTR_TEMP_request = '1' then
-								who_requested <= HTR;
-							else 
-								who_requested <= HK;
-							end if;
+							            if i_HTR_TEMP_request = '1' then
+							            	who_requested <= HTR;
+							            else 
+							            	who_requested <= HK;
+							            end if;
                             state <= TEMP;
                         else
                             state <= IDLE;
@@ -127,9 +127,9 @@ begin
 
                         case busy_cnt is
                             when 0 =>
-                                o_i2c_ena   <= '1';
+                                o_i2c_ena     <= '1';
                                 o_i2c_address <= "1000000";
-                                o_i2c_rw    <= '0';
+                                o_i2c_rw      <= '0';
                                 o_i2c_data_wr <= "11100011";
                             when 1 =>
                                 o_i2c_rw    <= '1';
@@ -153,19 +153,19 @@ begin
                     -- =========================================================
                     when SEND_TEMP =>
 					
-						case who_requested is
-							when HK  => o_TX_DV_HK  <= '1';
-							when HTR => o_TX_DV_HTR <= '1';
-							when others => null;
-						end case;
+						          case who_requested is
+						          	when HK  => o_TX_DV_HK  <= '1';
+						          	when HTR => o_TX_DV_HTR <= '1';
+						          	when others => null;
+						          end case;
 						
-                        o_TX_TEMP_data <= temp_data & temp_data; -- Temp replicated 3x
+                      o_TX_TEMP_data <= temp_data & temp_data; -- Temp replicated 3x
 
-                        if i_TX_done_HK = '1' or i_TX_done_HTR = '1' then
-                            state <= CLEANUP;
-                        else
-                            state <= SEND_TEMP;
-                        end if;
+                      if i_TX_done_HK = '1' or i_TX_done_HTR = '1' then
+                          state <= CLEANUP;
+                      else
+                          state <= SEND_TEMP;
+                      end if;
 
                     -- =========================================================
                     -- PREPARE ALT SENSOR MEASUREMENT
@@ -213,9 +213,8 @@ begin
                                 o_i2c_rw       <= '0';                       -- Write mode
                                 o_i2c_data_wr <= "00000000";                 -- Command to read pressure data
                             when 1 =>                                    -- 1st busy high: command 1 latched
-                                -- o_i2c_ena <= '0'; REMOVED                          
+                                o_i2c_ena <= '0';                         
                                 if(i_busy = '0') then                      -- Read pressure command complete
-                                    o_i2c_ena <= '0'; -- NEW Deassert enable to stop transaction
                                     busy_cnt := 0;
                                     state <= ALT;
                                 end if;
@@ -299,11 +298,11 @@ begin
                                     rtc_data(15 downto 8) <= i_data_read;
                                 end if;
                             when 4 =>
-								o_i2c_ena <= '0';
+							                 	o_i2c_ena <= '0';
                                 if i_busy = '0' then
                                     busy_cnt := 0;
-									rtc_data(7 downto 0) <= i_data_read;
-									state <= SEND_RTC;
+									                  rtc_data(7 downto 0) <= i_data_read;
+									                  state <= SEND_RTC;
                                 end if;
                             when others =>
                                 null;
@@ -345,7 +344,7 @@ begin
                         o_TX_DV_HK    <= '0';
                         o_TX_DV_BF    <= '0';
                         o_TX_DV_RAD   <= '0';
-						o_TX_DV_HTR   <= '0';
+						            o_TX_DV_HTR   <= '0';
                         busy_prev     <= '0';
                         state         <= IDLE;
                             

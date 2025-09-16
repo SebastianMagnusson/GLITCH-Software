@@ -745,8 +745,8 @@
           "GNSS_Sender_0/reset_n",
           "GNSS_Fetcher_mod_0/reset_n",
           "TM_packet_sender_0/rst",
-          "I2C_full_sensor_data_0/rst",
           "I2Cmod_0/reset_n",
+          "I2C_full_sensor_data_0/rst",
           "HK_formatter_0/rst"
         ]
       },
@@ -824,9 +824,9 @@
           "GNSS_Sender_0/sysclk",
           "GNSS_Fetcher_mod_0/sysclk",
           "TM_packet_sender_0/clk",
-          "I2C_full_sensor_data_0/clk",
           "UART_TXmod_1/sysclk",
           "I2Cmod_0/sysclk",
+          "I2C_full_sensor_data_0/clk",
           "HK_formatter_0/clk"
         ]
       }

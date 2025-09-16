@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Sep 15 15:36:51 2025" VIVADOVERSION="2024.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Sep 16 10:20:24 2025" VIVADOVERSION="2024.2">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a35t" NAME="fetch_gnns_1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -66,9 +66,9 @@
         <CONNECTION INSTANCE="GNSS_Sender_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="GNSS_Fetcher_mod_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="TM_packet_sender_0" PORT="clk"/>
-        <CONNECTION INSTANCE="I2C_full_sensor_data_0" PORT="clk"/>
         <CONNECTION INSTANCE="UART_TXmod_1" PORT="sysclk"/>
         <CONNECTION INSTANCE="I2Cmod_0" PORT="sysclk"/>
+        <CONNECTION INSTANCE="I2C_full_sensor_data_0" PORT="clk"/>
         <CONNECTION INSTANCE="HK_formatter_0" PORT="clk"/>
       </CONNECTIONS>
     </PORT>
@@ -475,8 +475,8 @@
             <CONNECTION INSTANCE="GNSS_Sender_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="GNSS_Fetcher_mod_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="TM_packet_sender_0" PORT="rst"/>
-            <CONNECTION INSTANCE="I2C_full_sensor_data_0" PORT="rst"/>
             <CONNECTION INSTANCE="I2Cmod_0" PORT="reset_n"/>
+            <CONNECTION INSTANCE="I2C_full_sensor_data_0" PORT="rst"/>
             <CONNECTION INSTANCE="HK_formatter_0" PORT="rst"/>
           </CONNECTIONS>
         </PORT>

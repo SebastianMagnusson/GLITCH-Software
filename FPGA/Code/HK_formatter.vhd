@@ -47,6 +47,8 @@ architecture rtl of HK_formatter is
 
 	signal TEMP_data_i : std_logic_vector(31 downto 0) := (others => '0');
 	
+	signal drive_prev : std_logic := '0';
+	
 	constant ID : std_logic_vector(1 downto 0) := b"00";
 	constant padding : std_logic_vector(5 downto 0) := b"000000";
 	
@@ -56,18 +58,19 @@ begin
     
         if rising_edge(clk) then
             if rst = '0' then
-				GNSS_data_i <= (others => '0');	
-				RTC_data_i <= (others => '0');	
-				RTC_request <= '0';
-				ALT_data_i <= (others => '0');	
-				ALT_request <= '0';
-				TEMP_data_i <= (others => '0');		
-				TEMP_request <= '0';
-				I2C_read_done <= '0';
-				HK_packet_DV <= '0';
-				HK_packet <= (others => '0');
-				state <= s_GNSS_idle;
-				led1 <= '0';				
+				      GNSS_data_i   <= (others => '0');	
+				      RTC_data_i    <= (others => '0');	
+				      RTC_request   <= '0';
+				      ALT_data_i    <= (others => '0');	
+				      ALT_request   <= '0';
+				      TEMP_data_i   <= (others => '0');		
+				      TEMP_request  <= '0';
+				      I2C_read_done <= '0';
+				      HK_packet_DV  <= '0';
+				      HK_packet     <= (others => '0');
+				      state         <= s_GNSS_idle;
+				      led1          <= '0';			
+				      drive_prev    <= '0';	
             else
 				case state is
 					when s_GNSS_idle =>
@@ -82,8 +85,9 @@ begin
 						end if;							
 												
 					when s_RTC_idle =>
-					    led1 <= '1';										
-						if RTC_data_DV = '1' then
+					    led1 <= '1';
+					    drive_prev <= RTC_data_DV;										
+						if(RTC_data_DV = '1' and drive_prev = '0') then
                             RTC_request <= '0';
                             I2C_read_done <= '1';
                             RTC_data_i <= RTC_data;
@@ -96,7 +100,8 @@ begin
 						
 					when s_ALT_idle =>	
 					    led1 <= '0';			
-						if ALT_data_DV = '1' then
+					    drive_prev <= ALT_data_DV;
+						if (ALT_data_DV = '1' and drive_prev = '0') then
                             ALT_request <= '0';
                             I2C_read_done <= '1';
                             ALT_data_i <= ALT_data;                            
@@ -108,12 +113,13 @@ begin
 						end if;		
 													
 					when s_TEMP_idle =>					   
-					    led1 <= '0';											
-						if TEMP_data_DV = '1' then
-                            TEMP_request <= '0';
-                            I2C_read_done <= '1';
-                            TEMP_data_i <= TEMP_data;
-                            state <= s_HK_send;              
+					    led1 <= '0';									
+					    drive_prev <= TEMP_data_DV;		
+						if(TEMP_data_DV = '1' and drive_prev = '0') then
+                TEMP_request <= '0';
+                I2C_read_done <= '1';
+                TEMP_data_i <= TEMP_data;
+                state <= s_HK_send;              
 						else										
 						    I2C_read_done <= '0';
 						    state <= s_TEMP_idle;

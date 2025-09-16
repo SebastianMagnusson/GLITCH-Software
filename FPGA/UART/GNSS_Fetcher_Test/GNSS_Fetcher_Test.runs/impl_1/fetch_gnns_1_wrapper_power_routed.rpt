@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date             : Mon Sep 15 15:39:52 2025
+| Date             : Tue Sep 16 10:25:08 2025
 | Host             : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command          : report_power -file fetch_gnns_1_wrapper_power_routed.rpt -pb fetch_gnns_1_wrapper_power_summary_routed.pb -rpx fetch_gnns_1_wrapper_power_routed.rpx
 | Design           : fetch_gnns_1_wrapper
@@ -53,13 +53,13 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |     4551 |       --- |             --- |
-|   LUT as Logic |    <0.001 |     1260 |     20800 |            6.06 |
-|   Register     |    <0.001 |     2397 |     41600 |            5.76 |
+| Slice Logic    |    <0.001 |     4555 |       --- |             --- |
+|   LUT as Logic |    <0.001 |     1259 |     20800 |            6.05 |
+|   Register     |    <0.001 |     2398 |     41600 |            5.76 |
 |   CARRY4       |    <0.001 |       24 |      8150 |            0.29 |
 |   F7/F8 Muxes  |    <0.001 |       74 |     32600 |            0.23 |
 |   Others       |     0.000 |       19 |       --- |             --- |
-| Signals        |    <0.001 |     2890 |       --- |             --- |
+| Signals        |    <0.001 |     2895 |       --- |             --- |
 | I/O            |    <0.001 |        9 |       106 |            8.49 |
 | Static Power   |     0.072 |          |           |                 |
 | Total          |     0.074 |          |           |                 |
@@ -72,7 +72,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.011 |       0.001 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.011 |       0.002 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -142,7 +142,7 @@ Table of Contents
 | Name                 | Power (W) |
 +----------------------+-----------+
 | fetch_gnns_1_wrapper |     0.002 |
-|   fetch_gnns_1_i     |     0.001 |
+|   fetch_gnns_1_i     |     0.002 |
 +----------------------+-----------+
 
 
