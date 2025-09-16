@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="BK_HK_Combined_Test1_GNSS_Sender_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_GNSS_Sender_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_UART_RXmod_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_UART_RXmod_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_TM_packet_sender_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_TM_packet_sender_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_Switchmod_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_Switchmod_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_I2Cmod_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_I2Cmod_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_BF_Data_Collector_Dr_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_BF_Data_Collector_Dr_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_I2C_full_sensor_data_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_I2C_full_sensor_data_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_HK_formatter_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_HK_formatter_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_Write6_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_Write6_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_BF_formatter_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_BF_formatter_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_GNSS_Fetcher_mod_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_GNSS_Fetcher_mod_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_UART_TXmod_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_UART_TXmod_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_Read6_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_Read6_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="BK_HK_Combined_Test1_RW_ROUTER4_0_0_synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/BK_HK_Combined_Test1_RW_ROUTER4_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="BK_HK_Combined_Test1_GNSS_Sender_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_UART_RXmod_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_TM_packet_sender_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_Switchmod_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_I2Cmod_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_BF_Data_Collector_Dr_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_I2C_full_sensor_data_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_HK_formatter_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_Write6_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_BF_formatter_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_GNSS_Fetcher_mod_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_UART_TXmod_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_Read6_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_RW_ROUTER4_0_0_synth_1"/>
+	</Run>
+	<Run Id="impl_1" LaunchDir="C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/BF_and_HK_Test1/BF_and_HK_Test1.runs/impl_1" FlowId="Vivado_Implementation" FromStepId="init_design" ToStepId="write_bitstream">
+		<Parent Id="synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_GNSS_Sender_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_UART_RXmod_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_TM_packet_sender_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_Switchmod_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_I2Cmod_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_BF_Data_Collector_Dr_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_I2C_full_sensor_data_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_HK_formatter_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_Write6_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_BF_formatter_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_GNSS_Fetcher_mod_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_UART_TXmod_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_Read6_0_0_synth_1"/>
+		<Parent Id="BK_HK_Combined_Test1_RW_ROUTER4_0_0_synth_1"/>
+	</Run>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+		<Parameter Name="general.shortenLongPath" Val="true" Type="bool"/>
+	</Parameters>
+	<ProductInfo Name="vivado"/>
+</Runs>
+

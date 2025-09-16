@@ -23,6 +23,7 @@ entity TM_packet_sender is
 		i_BF_DV : in std_logic;
 		i_RAD_DV : in std_logic;
 		i_TX_done : in std_logic;
+		i_TX_active : in std_logic;
 		o_TX_DV: out std_logic;
 		o_TX_byte : out std_logic_vector(7 downto 0);
 		o_HK_got : out std_logic;
@@ -51,17 +52,18 @@ begin
     begin
     
         if rising_edge(clk) then
-            if rst = '0' then
-              i_HK_data_i <= (others => '0');
-              i_BF_data_i <= (others => '0');
-              i_RAD_data_i <= (others => '0');
-              o_TX_DV <= '0';
-              o_TX_byte <= (others => '0');
-              o_HK_got <= '0';
-              o_BF_got <= '0';
-              o_RAD_got <= '0';
-              bit_cnt <= 0;
-              state <= s_idle;
+            if rst = '0' then                       
+              i_HK_data_i <= (others => '0');      
+              i_BF_data_i <= (others => '0');      
+              i_RAD_data_i <= (others => '0');      
+              o_TX_DV <= '0';                      
+              o_TX_byte <= (others => '0');          
+              o_HK_got <= '0';                       
+              o_BF_got <= '0';                       
+              o_RAD_got <= '0';                      
+              bit_cnt <= 0;                         
+              state <= s_idle;                       
+              i_TX_done_prev <= '0';
             else
 				case state is
 					when s_idle =>
@@ -82,11 +84,15 @@ begin
 						end if;
 					
 					when s_send_HK_first => 	
-						o_HK_got <= '0';                    
-                        o_TX_DV <= '1';
-                        o_TX_byte <= i_HK_data_i(471 downto 464);
-                        bit_cnt <= 463;           
-					    state <= s_send_HK;
+					  if(i_TX_active /= '1') then
+						  o_HK_got <= '0';                    
+              o_TX_DV <= '1';
+              o_TX_byte <= i_HK_data_i(471 downto 464);
+              bit_cnt <= 463;           
+		  	      state <= s_send_HK;
+		  	    else
+		  	      state <= s_send_HK_first;
+		  	    end if;
 					    
 					when s_send_HK =>	
 						i_TX_done_prev <= i_TX_done;
@@ -104,12 +110,15 @@ begin
 						end if;
 										
 					when s_send_BF_first => 
-                    
-						o_BF_got <= '0';
-                        o_TX_DV <= '1';
-                        o_TX_byte <= i_BF_data_i(223 downto 216);
-                        bit_cnt <= 215;           
+            if(i_TX_active /= '1') then
+						  o_BF_got <= '0';
+              o_TX_DV <= '1';
+              o_TX_byte <= i_BF_data_i(223 downto 216);
+              bit_cnt <= 215;           
 					    state <= s_send_BF;
+					  else
+					    state <= s_send_BF_first;
+					  end if;
 					
 					when s_send_BF =>	
 					    
@@ -131,12 +140,15 @@ begin
 						end if;	
 						
 					when s_send_RAD_first => 
-                    
-						o_RAD_got <= '0';
-                        o_TX_DV <= '1';
-                        o_TX_byte <= i_RAD_data_i(10007 downto 10000);
-                        bit_cnt <= 9999;           
+            if(i_TX_active /= '1') then        
+						  o_RAD_got <= '0';
+              o_TX_DV <= '1';
+              o_TX_byte <= i_RAD_data_i(10007 downto 10000);
+              bit_cnt <= 9999;           
 					    state <= s_send_RAD;
+					  else
+					    state <= s_send_RAD_first;
+					  end if;
 						
 					when s_send_RAD =>		
 						i_TX_done_prev <= i_TX_done;
