@@ -46,9 +46,9 @@ architecture rtl of I2C_full_sensor_data_fetcher is
 
     type SM_Main is (
         IDLE, TEMP, SEND_TEMP, PREP_ALT, ALT_READ,
-        ALT, SEND_ALT, RTC, SEND_RTC, CLEANUP
+        ALT, SEND_ALT, RTC, SEND_RTC, SET_RTC, CLEANUP
     );
-    signal state : SM_Main := CLEANUP;
+    signal state : SM_Main := SET_RTC;
 
     type Who_requested_state is (HK, BF, RAD, HTR);
     signal who_requested : Who_requested_state;
@@ -63,6 +63,7 @@ begin
     process(clk)
         variable busy_cnt : integer range 0 to 5 := 0;
         variable conv_cnt : integer range 0 to Clockfrequency/100 := 0; -- Wait 10 ms for pressure conversion
+		variable start_cnt : integer range 0 to Clockfrequency/10 := 0;
     begin
         if rising_edge(clk) then
             if rst = '0' then
@@ -75,7 +76,7 @@ begin
                 o_TX_DV_HK    <= '0';
                 o_TX_DV_BF    <= '0';
                 o_TX_DV_RAD   <= '0';
-				        o_TX_DV_HTR   <= '0';
+				o_TX_DV_HTR   <= '0';
                 busy_prev     <= '0';
                 state         <= IDLE;
 
@@ -327,7 +328,47 @@ begin
                         else
                             state <= SEND_RTC;
                         end if;
-                    
+							
+                    -- =========================================================
+                    -- SET RTC TIME
+                    -- =========================================================
+                    when SET_RTC =>					
+	
+						if start_cnt < Clockfrequency/10 then
+							start_cnt := start_cnt + 1;
+						else
+						busy_prev <= i_busy;
+						if (busy_prev = '0' and i_busy = '1') then
+							busy_cnt := busy_cnt + 1;
+						end if;
+
+						case busy_cnt is
+							-- START + slave addr + pointer
+							when 0 =>
+								led2 <= '1';
+								o_i2c_ena     <= '1';
+								o_i2c_address <= "1101000";  -- 0x68
+								o_i2c_rw      <= '0';        -- write
+								o_i2c_data_wr <= "00000000"; -- pointer = 0x00
+							when 1 =>                                    --1st busy high: command 1 latched, okay to issue command 2
+								o_i2c_data_wr <= "00000000";        --start the oscillator and set seconds
+							when 2 =>                                    --2nd busy high: command 2 latched, okay to issue command 3
+							    o_i2c_data_wr <= "00000000";       --start the oscillator and set seconds
+							when 3 =>                                    --3rd busy high: command 3 latched, okay to issue command 4
+							    o_i2c_data_wr <= "00000000";      --start the oscillator and set seconds              
+							when 4 =>
+							    o_i2c_ena <= '0';
+							    led2 <= '0';
+							    if i_busy = '0' then
+									busy_cnt := 0;
+									state    <= START;
+							    end if;
+							when others =>
+								null;                
+							end case;
+						end if;     
+					
+					
                     when CLEANUP =>
                         busy_cnt      := 0;
                         conv_cnt      := 0;
