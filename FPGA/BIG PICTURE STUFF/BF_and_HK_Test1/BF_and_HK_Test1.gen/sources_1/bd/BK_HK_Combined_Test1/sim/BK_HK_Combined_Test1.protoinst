@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"BK_HK_Combined_Test1": {
+			"proto_instances": {
+			}
+		}
+	}
+}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1757941193" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/fetch_gnns_1_wrapper.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1758010843" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/fetch_gnns_1_wrapper.dcp">
   <File Type="PA-TCL" Name="fetch_gnns_1_wrapper.tcl"/>
   <File Type="REPORTS-TCL" Name="fetch_gnns_1_wrapper_reports.tcl"/>
   <File Type="RDS-RDS" Name="fetch_gnns_1_wrapper.vds"/>
@@ -35,7 +35,25 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../../Code/Packet_chopper.vhd">
+    <File Path="$PPRDIR/../../Code/HK_formatter.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/I2C_full_sensor_data_fetcher.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/I2Cmod.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/TM_packet_sender.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -57,7 +75,14 @@
     <File Path="$PSRCDIR/sources_1/imports/hdl/fetch_gnns_1_wrapper.vhd">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PGENDIR/sources_1/bd/fetch_gnns_1/hdl/fetch_gnns_1_wrapper.vhd"/>
-        <Attr Name="ImportTime" Val="1757936768"/>
+        <Attr Name="ImportTime" Val="1757942481"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/Packet_chopper.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -100,8 +125,11 @@
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_UART_RXmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_Switchmod_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_UART_TXmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_GNSS_Sender_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_GNSS_Fetcher_mod_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_Packet_chopper_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_TM_packet_sender_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_I2Cmod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_UART_TXmod_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_I2C_full_sensor_data_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="fetch_gnns_1_HK_formatter_0_0"/>
 </GenRun>

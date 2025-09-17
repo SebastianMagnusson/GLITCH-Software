@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x77A104703FB7F9D9",
+      "boundary_crc": "0x50153E06E5F0BFC9",
       "device": "xc7a35tcpg236-1",
       "gen_directory": "../../../../GNSS_Fetcher_Test.gen/sources_1/bd/fetch_gnns_1",
       "name": "fetch_gnns_1",
@@ -15,8 +15,11 @@
       "UART_RXmod_0": "",
       "GNSS_Fetcher_mod_0": "",
       "GNSS_Sender_0": "",
-      "Packet_chopper_0": "",
-      "UART_TXmod_0": ""
+      "HK_formatter_0": "",
+      "I2C_full_sensor_data_0": "",
+      "I2Cmod_0": "",
+      "TM_packet_sender_0": "",
+      "UART_TXmod_1": ""
     },
     "ports": {
       "sysclk": {
@@ -38,6 +41,24 @@
         "direction": "O"
       },
       "uart_rxd_out": {
+        "direction": "O"
+      },
+      "scl_i": {
+        "direction": "I"
+      },
+      "scl_o": {
+        "direction": "O"
+      },
+      "scl_t": {
+        "direction": "O"
+      },
+      "sda_i": {
+        "direction": "I"
+      },
+      "sda_o": {
+        "direction": "O"
+      },
+      "sda_t": {
         "direction": "O"
       }
     },
@@ -181,15 +202,15 @@
           }
         }
       },
-      "Packet_chopper_0": {
-        "vlnv": "xilinx.com:module_ref:Packet_chopper:1.0",
+      "HK_formatter_0": {
+        "vlnv": "xilinx.com:module_ref:HK_formatter:1.0",
         "ip_revision": "1",
-        "xci_name": "fetch_gnns_1_Packet_chopper_0_0",
-        "xci_path": "ip\\fetch_gnns_1_Packet_chopper_0_0\\fetch_gnns_1_Packet_chopper_0_0.xci",
-        "inst_hier_path": "Packet_chopper_0",
+        "xci_name": "fetch_gnns_1_HK_formatter_0_0",
+        "xci_path": "ip\\fetch_gnns_1_HK_formatter_0_0\\fetch_gnns_1_HK_formatter_0_0.xci",
+        "inst_hier_path": "HK_formatter_0",
         "reference_info": {
           "ref_type": "hdl",
-          "ref_name": "Packet_chopper",
+          "ref_name": "HK_formatter",
           "boundary_crc": "0x0"
         },
         "ports": {
@@ -207,12 +228,292 @@
             "type": "rst",
             "direction": "I"
           },
-          "i_data": {
+          "HK_packet_got": {
+            "direction": "I"
+          },
+          "GNSS_data_DV": {
+            "direction": "I"
+          },
+          "GNSS_data": {
             "direction": "I",
             "left": "383",
             "right": "0"
           },
-          "i_DV": {
+          "RTC_data_DV": {
+            "direction": "I"
+          },
+          "RTC_data": {
+            "direction": "I",
+            "left": "23",
+            "right": "0"
+          },
+          "RTC_request": {
+            "direction": "O"
+          },
+          "ALT_data_DV": {
+            "direction": "I"
+          },
+          "ALT_data": {
+            "direction": "I",
+            "left": "23",
+            "right": "0"
+          },
+          "ALT_request": {
+            "direction": "O"
+          },
+          "TEMP_data_DV": {
+            "direction": "I"
+          },
+          "TEMP_data": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "TEMP_request": {
+            "direction": "O"
+          },
+          "I2C_read_done": {
+            "direction": "O"
+          },
+          "HK_packet_DV": {
+            "direction": "O"
+          },
+          "HK_packet": {
+            "direction": "O",
+            "left": "471",
+            "right": "0"
+          },
+          "led1": {
+            "direction": "O"
+          }
+        }
+      },
+      "I2C_full_sensor_data_0": {
+        "vlnv": "xilinx.com:module_ref:I2C_full_sensor_data_fetcher:1.0",
+        "ip_revision": "1",
+        "xci_name": "fetch_gnns_1_I2C_full_sensor_data_0_0",
+        "xci_path": "ip\\fetch_gnns_1_I2C_full_sensor_data_0_0\\fetch_gnns_1_I2C_full_sensor_data_0_0.xci",
+        "inst_hier_path": "I2C_full_sensor_data_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "I2C_full_sensor_data_fetcher",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "i_busy": {
+            "direction": "I"
+          },
+          "i_data_read": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "i_TX_done_HK": {
+            "direction": "I"
+          },
+          "i_TX_done_BF": {
+            "direction": "I"
+          },
+          "i_TX_done_RAD": {
+            "direction": "I"
+          },
+          "i_TX_done_HTR": {
+            "direction": "I"
+          },
+          "i_HK_RTC_request": {
+            "direction": "I"
+          },
+          "i_BF_RTC_request": {
+            "direction": "I"
+          },
+          "i_RAD_RTC_request": {
+            "direction": "I"
+          },
+          "i_HK_ALT_request": {
+            "direction": "I"
+          },
+          "i_HK_TEMP_request": {
+            "direction": "I"
+          },
+          "i_HTR_TEMP_request": {
+            "direction": "I"
+          },
+          "o_i2c_ena": {
+            "direction": "O"
+          },
+          "o_i2c_address": {
+            "direction": "O",
+            "left": "6",
+            "right": "0"
+          },
+          "o_i2c_rw": {
+            "direction": "O"
+          },
+          "o_i2c_data_wr": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "o_TX_DV_HK": {
+            "direction": "O"
+          },
+          "o_TX_DV_BF": {
+            "direction": "O"
+          },
+          "o_TX_DV_RAD": {
+            "direction": "O"
+          },
+          "o_TX_DV_HTR": {
+            "direction": "O"
+          },
+          "o_TX_RTC_data": {
+            "direction": "O",
+            "left": "23",
+            "right": "0"
+          },
+          "o_TX_ALT_data": {
+            "direction": "O",
+            "left": "23",
+            "right": "0"
+          },
+          "o_TX_TEMP_data": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "led2": {
+            "direction": "O"
+          }
+        }
+      },
+      "I2Cmod_0": {
+        "vlnv": "xilinx.com:module_ref:I2Cmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "fetch_gnns_1_I2Cmod_0_0",
+        "xci_path": "ip\\fetch_gnns_1_I2Cmod_0_0\\fetch_gnns_1_I2Cmod_0_0.xci",
+        "inst_hier_path": "I2Cmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "I2Cmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sda_i": {
+            "direction": "I"
+          },
+          "sda_o": {
+            "direction": "O"
+          },
+          "sda_t": {
+            "direction": "O"
+          },
+          "scl_i": {
+            "direction": "I"
+          },
+          "scl_o": {
+            "direction": "O"
+          },
+          "scl_t": {
+            "direction": "O"
+          },
+          "sysclk": {
+            "direction": "I"
+          },
+          "reset_n": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "ena": {
+            "direction": "I"
+          },
+          "addr": {
+            "direction": "I",
+            "left": "6",
+            "right": "0"
+          },
+          "rw": {
+            "direction": "I"
+          },
+          "data_wr": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "busy": {
+            "direction": "O"
+          },
+          "data_rd": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "ack_error": {
+            "direction": "O"
+          }
+        }
+      },
+      "TM_packet_sender_0": {
+        "vlnv": "xilinx.com:module_ref:TM_packet_sender:1.0",
+        "ip_revision": "1",
+        "xci_name": "fetch_gnns_1_TM_packet_sender_0_0",
+        "xci_path": "ip\\fetch_gnns_1_TM_packet_sender_0_0\\fetch_gnns_1_TM_packet_sender_0_0.xci",
+        "inst_hier_path": "TM_packet_sender_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "TM_packet_sender",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "i_HK_data": {
+            "direction": "I",
+            "left": "471",
+            "right": "0"
+          },
+          "i_BF_data": {
+            "direction": "I",
+            "left": "223",
+            "right": "0"
+          },
+          "i_RAD_data": {
+            "direction": "I",
+            "left": "10007",
+            "right": "0"
+          },
+          "i_HK_DV": {
+            "direction": "I"
+          },
+          "i_BF_DV": {
+            "direction": "I"
+          },
+          "i_RAD_DV": {
             "direction": "I"
           },
           "i_TX_done": {
@@ -226,17 +527,29 @@
             "left": "7",
             "right": "0"
           },
+          "o_HK_got": {
+            "direction": "O"
+          },
+          "o_BF_got": {
+            "direction": "O"
+          },
+          "o_RAD_got": {
+            "direction": "O"
+          },
+          "led1": {
+            "direction": "O"
+          },
           "led2": {
             "direction": "O"
           }
         }
       },
-      "UART_TXmod_0": {
+      "UART_TXmod_1": {
         "vlnv": "xilinx.com:module_ref:UART_TXmod:1.0",
         "ip_revision": "1",
-        "xci_name": "fetch_gnns_1_UART_TXmod_0_0",
-        "xci_path": "ip\\fetch_gnns_1_UART_TXmod_0_0\\fetch_gnns_1_UART_TXmod_0_0.xci",
-        "inst_hier_path": "UART_TXmod_0",
+        "xci_name": "fetch_gnns_1_UART_TXmod_1_0",
+        "xci_path": "ip\\fetch_gnns_1_UART_TXmod_1_0\\fetch_gnns_1_UART_TXmod_1_0.xci",
+        "inst_hier_path": "UART_TXmod_1",
         "reference_info": {
           "ref_type": "hdl",
           "ref_name": "UART_TXmod",
@@ -288,25 +601,135 @@
       "GNSS_Sender_0_o_gnss_data": {
         "ports": [
           "GNSS_Sender_0/o_gnss_data",
-          "Packet_chopper_0/i_data"
+          "HK_formatter_0/GNSS_data"
         ]
       },
       "GNSS_Sender_0_o_gnss_drive": {
         "ports": [
           "GNSS_Sender_0/o_gnss_drive",
-          "Packet_chopper_0/i_DV"
+          "HK_formatter_0/GNSS_data_DV"
         ]
       },
-      "Packet_chopper_0_o_TX_DV": {
+      "HK_formatter_0_ALT_request": {
         "ports": [
-          "Packet_chopper_0/o_TX_DV",
-          "UART_TXmod_0/i_TX_DV"
+          "HK_formatter_0/ALT_request",
+          "I2C_full_sensor_data_0/i_HK_ALT_request"
         ]
       },
-      "Packet_chopper_0_o_TX_byte": {
+      "HK_formatter_0_HK_packet": {
         "ports": [
-          "Packet_chopper_0/o_TX_byte",
-          "UART_TXmod_0/i_TX_Byte"
+          "HK_formatter_0/HK_packet",
+          "TM_packet_sender_0/i_HK_data"
+        ]
+      },
+      "HK_formatter_0_HK_packet_DV": {
+        "ports": [
+          "HK_formatter_0/HK_packet_DV",
+          "TM_packet_sender_0/i_HK_DV"
+        ]
+      },
+      "HK_formatter_0_I2C_read_done": {
+        "ports": [
+          "HK_formatter_0/I2C_read_done",
+          "I2C_full_sensor_data_0/i_TX_done_HK"
+        ]
+      },
+      "HK_formatter_0_RTC_request": {
+        "ports": [
+          "HK_formatter_0/RTC_request",
+          "I2C_full_sensor_data_0/i_HK_RTC_request"
+        ]
+      },
+      "HK_formatter_0_TEMP_request": {
+        "ports": [
+          "HK_formatter_0/TEMP_request",
+          "I2C_full_sensor_data_0/i_HK_TEMP_request"
+        ]
+      },
+      "I2C_full_sensor_data_0_o_TX_ALT_data": {
+        "ports": [
+          "I2C_full_sensor_data_0/o_TX_ALT_data",
+          "HK_formatter_0/ALT_data"
+        ]
+      },
+      "I2C_full_sensor_data_0_o_TX_DV_HK": {
+        "ports": [
+          "I2C_full_sensor_data_0/o_TX_DV_HK",
+          "HK_formatter_0/RTC_data_DV",
+          "HK_formatter_0/ALT_data_DV",
+          "HK_formatter_0/TEMP_data_DV"
+        ]
+      },
+      "I2C_full_sensor_data_0_o_TX_RTC_data": {
+        "ports": [
+          "I2C_full_sensor_data_0/o_TX_RTC_data",
+          "HK_formatter_0/RTC_data"
+        ]
+      },
+      "I2C_full_sensor_data_0_o_TX_TEMP_data": {
+        "ports": [
+          "I2C_full_sensor_data_0/o_TX_TEMP_data",
+          "HK_formatter_0/TEMP_data"
+        ]
+      },
+      "I2C_full_sensor_data_0_o_i2c_address": {
+        "ports": [
+          "I2C_full_sensor_data_0/o_i2c_address",
+          "I2Cmod_0/addr"
+        ]
+      },
+      "I2C_full_sensor_data_0_o_i2c_data_wr": {
+        "ports": [
+          "I2C_full_sensor_data_0/o_i2c_data_wr",
+          "I2Cmod_0/data_wr"
+        ]
+      },
+      "I2C_full_sensor_data_0_o_i2c_ena": {
+        "ports": [
+          "I2C_full_sensor_data_0/o_i2c_ena",
+          "I2Cmod_0/ena"
+        ]
+      },
+      "I2C_full_sensor_data_0_o_i2c_rw": {
+        "ports": [
+          "I2C_full_sensor_data_0/o_i2c_rw",
+          "I2Cmod_0/rw"
+        ]
+      },
+      "I2Cmod_0_busy": {
+        "ports": [
+          "I2Cmod_0/busy",
+          "I2C_full_sensor_data_0/i_busy"
+        ]
+      },
+      "I2Cmod_0_data_rd": {
+        "ports": [
+          "I2Cmod_0/data_rd",
+          "I2C_full_sensor_data_0/i_data_read"
+        ]
+      },
+      "I2Cmod_0_scl_o": {
+        "ports": [
+          "I2Cmod_0/scl_o",
+          "scl_o"
+        ]
+      },
+      "I2Cmod_0_scl_t": {
+        "ports": [
+          "I2Cmod_0/scl_t",
+          "scl_t"
+        ]
+      },
+      "I2Cmod_0_sda_o": {
+        "ports": [
+          "I2Cmod_0/sda_o",
+          "sda_o"
+        ]
+      },
+      "I2Cmod_0_sda_t": {
+        "ports": [
+          "I2Cmod_0/sda_t",
+          "sda_t"
         ]
       },
       "Switchmod_0_led0": {
@@ -321,7 +744,28 @@
           "GNSS_EN",
           "GNSS_Sender_0/reset_n",
           "GNSS_Fetcher_mod_0/reset_n",
-          "Packet_chopper_0/rst"
+          "TM_packet_sender_0/rst",
+          "I2Cmod_0/reset_n",
+          "I2C_full_sensor_data_0/rst",
+          "HK_formatter_0/rst"
+        ]
+      },
+      "TM_packet_sender_0_o_HK_got": {
+        "ports": [
+          "TM_packet_sender_0/o_HK_got",
+          "HK_formatter_0/HK_packet_got"
+        ]
+      },
+      "TM_packet_sender_0_o_TX_DV": {
+        "ports": [
+          "TM_packet_sender_0/o_TX_DV",
+          "UART_TXmod_1/i_TX_DV"
+        ]
+      },
+      "TM_packet_sender_0_o_TX_byte": {
+        "ports": [
+          "TM_packet_sender_0/o_TX_byte",
+          "UART_TXmod_1/i_TX_Byte"
         ]
       },
       "UART_RXmod_0_o_RX_DV": {
@@ -336,15 +780,15 @@
           "GNSS_Fetcher_mod_0/i_gnss_data"
         ]
       },
-      "UART_TXmod_0_o_TX_Done": {
+      "UART_TXmod_1_o_TX_Done": {
         "ports": [
-          "UART_TXmod_0/o_TX_Done",
-          "Packet_chopper_0/i_TX_done"
+          "UART_TXmod_1/o_TX_Done",
+          "TM_packet_sender_0/i_TX_done"
         ]
       },
-      "UART_TXmod_0_o_TX_Serial": {
+      "UART_TXmod_1_o_TX_Serial": {
         "ports": [
-          "UART_TXmod_0/o_TX_Serial",
+          "UART_TXmod_1/o_TX_Serial",
           "uart_rxd_out"
         ]
       },
@@ -360,6 +804,18 @@
           "Switchmod_0/i_signal"
         ]
       },
+      "scl_i_0_1": {
+        "ports": [
+          "scl_i",
+          "I2Cmod_0/scl_i"
+        ]
+      },
+      "sda_i_0_1": {
+        "ports": [
+          "sda_i",
+          "I2Cmod_0/sda_i"
+        ]
+      },
       "sysclk_0_1": {
         "ports": [
           "sysclk",
@@ -367,8 +823,11 @@
           "Switchmod_0/sysclk",
           "GNSS_Sender_0/sysclk",
           "GNSS_Fetcher_mod_0/sysclk",
-          "UART_TXmod_0/sysclk",
-          "Packet_chopper_0/clk"
+          "TM_packet_sender_0/clk",
+          "UART_TXmod_1/sysclk",
+          "I2Cmod_0/sysclk",
+          "I2C_full_sensor_data_0/clk",
+          "HK_formatter_0/clk"
         ]
       }
     }

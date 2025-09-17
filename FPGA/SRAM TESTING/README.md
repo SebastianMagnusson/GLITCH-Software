@@ -35,3 +35,8 @@
     2. Value of the faulty address  X10
     3. Value of the fixed address   (Only one time in the end)
 
+---
+
+### `SRAM_Breadboard_Test6`
+- **Process:** This test uses a draft of the bitflip algorithm and tests it with the Bitflip formatter and RTC. This is tests the "Bitflip packet".
+- **Output:** Bitflip packet

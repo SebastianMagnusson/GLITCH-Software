@@ -18,10 +18,19 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fetch_gnns_
 # IP: bd/fetch_gnns_1/ip/fetch_gnns_1_GNSS_Sender_0_0/fetch_gnns_1_GNSS_Sender_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fetch_gnns_1_GNSS_Sender_0_0 || ORIG_REF_NAME==fetch_gnns_1_GNSS_Sender_0_0} -quiet] -quiet
 
-# IP: bd/fetch_gnns_1/ip/fetch_gnns_1_Packet_chopper_0_0/fetch_gnns_1_Packet_chopper_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fetch_gnns_1_Packet_chopper_0_0 || ORIG_REF_NAME==fetch_gnns_1_Packet_chopper_0_0} -quiet] -quiet
+# IP: bd/fetch_gnns_1/ip/fetch_gnns_1_HK_formatter_0_0/fetch_gnns_1_HK_formatter_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fetch_gnns_1_HK_formatter_0_0 || ORIG_REF_NAME==fetch_gnns_1_HK_formatter_0_0} -quiet] -quiet
 
-# IP: bd/fetch_gnns_1/ip/fetch_gnns_1_UART_TXmod_0_0/fetch_gnns_1_UART_TXmod_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fetch_gnns_1_UART_TXmod_0_0 || ORIG_REF_NAME==fetch_gnns_1_UART_TXmod_0_0} -quiet] -quiet
+# IP: bd/fetch_gnns_1/ip/fetch_gnns_1_I2C_full_sensor_data_0_0/fetch_gnns_1_I2C_full_sensor_data_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fetch_gnns_1_I2C_full_sensor_data_0_0 || ORIG_REF_NAME==fetch_gnns_1_I2C_full_sensor_data_0_0} -quiet] -quiet
+
+# IP: bd/fetch_gnns_1/ip/fetch_gnns_1_I2Cmod_0_0/fetch_gnns_1_I2Cmod_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fetch_gnns_1_I2Cmod_0_0 || ORIG_REF_NAME==fetch_gnns_1_I2Cmod_0_0} -quiet] -quiet
+
+# IP: bd/fetch_gnns_1/ip/fetch_gnns_1_TM_packet_sender_0_0/fetch_gnns_1_TM_packet_sender_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fetch_gnns_1_TM_packet_sender_0_0 || ORIG_REF_NAME==fetch_gnns_1_TM_packet_sender_0_0} -quiet] -quiet
+
+# IP: bd/fetch_gnns_1/ip/fetch_gnns_1_UART_TXmod_1_0/fetch_gnns_1_UART_TXmod_1_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==fetch_gnns_1_UART_TXmod_1_0 || ORIG_REF_NAME==fetch_gnns_1_UART_TXmod_1_0} -quiet] -quiet
 
 # XDC: c:/GitHub/GLITCH-Software/FPGA/UART/GNSS_Fetcher_Test/GNSS_Fetcher_Test.gen/sources_1/bd/fetch_gnns_1/fetch_gnns_1_ooc.xdc

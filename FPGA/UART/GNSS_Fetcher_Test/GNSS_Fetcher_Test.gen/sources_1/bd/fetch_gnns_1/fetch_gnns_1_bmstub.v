@@ -12,7 +12,13 @@ module fetch_gnns_1 (
   led0,
   GNSS_EN,
   led1,
-  uart_rxd_out
+  uart_rxd_out,
+  scl_i,
+  scl_o,
+  scl_t,
+  sda_i,
+  sda_o,
+  sda_t
 );
 
   (* X_INTERFACE_IGNORE = "true" *)
@@ -29,6 +35,18 @@ module fetch_gnns_1 (
   output led1;
   (* X_INTERFACE_IGNORE = "true" *)
   output uart_rxd_out;
+  (* X_INTERFACE_IGNORE = "true" *)
+  input scl_i;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output scl_o;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output scl_t;
+  (* X_INTERFACE_IGNORE = "true" *)
+  input sda_i;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output sda_o;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output sda_t;
 
   // stub module has no contents
 

@@ -46,9 +46,9 @@ architecture rtl of I2C_full_sensor_data_fetcher is
 
     type SM_Main is (
         IDLE, TEMP, SEND_TEMP, PREP_ALT, ALT_READ,
-        ALT, SEND_ALT, RTC, SEND_RTC, CLEANUP
+        ALT, SEND_ALT, RTC, SEND_RTC, SET_RTC, CLEANUP
     );
-    signal state : SM_Main := CLEANUP;
+    signal state : SM_Main := SET_RTC;
 
     type Who_requested_state is (HK, BF, RAD, HTR);
     signal who_requested : Who_requested_state;
@@ -63,6 +63,7 @@ begin
     process(clk)
         variable busy_cnt : integer range 0 to 5 := 0;
         variable conv_cnt : integer range 0 to Clockfrequency/100 := 0; -- Wait 10 ms for pressure conversion
+		variable start_cnt : integer range 0 to Clockfrequency/10 := 0;
     begin
         if rising_edge(clk) then
             if rst = '0' then
@@ -90,27 +91,27 @@ begin
                         o_TX_DV_HK  <= '0';
                         o_TX_DV_BF  <= '0';
                         o_TX_DV_RAD <= '0';
-						o_TX_DV_HTR <= '0';
+						            o_TX_DV_HTR <= '0';
 
                         if i_HK_RTC_request = '1' or i_RAD_RTC_request = '1' or i_BF_RTC_request = '1' then
-                            if i_BF_RTC_request = '1' then
-                                who_requested <= BF;
-                            elsif i_RAD_RTC_request = '1' then
-                                who_requested <= RAD;
-                            else 
-                                who_requested <= HK;
-                            end if;
-                            state <= RTC;
+                          if i_BF_RTC_request = '1' then
+                              who_requested <= BF;
+                          elsif i_RAD_RTC_request = '1' then
+                              who_requested <= RAD;
+                          else 
+                              who_requested <= HK;
+                          end if;
+                          state <= RTC;
 
                         elsif i_HK_ALT_request = '1' then
                             state <= PREP_ALT;
 							
                         elsif i_HK_TEMP_request = '1' or i_HTR_TEMP_request = '1' then
-							if i_HTR_TEMP_request = '1' then
-								who_requested <= HTR;
-							else 
-								who_requested <= HK;
-							end if;
+							            if i_HTR_TEMP_request = '1' then
+							            	who_requested <= HTR;
+							            else 
+							            	who_requested <= HK;
+							            end if;
                             state <= TEMP;
                         else
                             state <= IDLE;
@@ -127,9 +128,9 @@ begin
 
                         case busy_cnt is
                             when 0 =>
-                                o_i2c_ena   <= '1';
+                                o_i2c_ena     <= '1';
                                 o_i2c_address <= "1000000";
-                                o_i2c_rw    <= '0';
+                                o_i2c_rw      <= '0';
                                 o_i2c_data_wr <= "11100011";
                             when 1 =>
                                 o_i2c_rw    <= '1';
@@ -153,19 +154,19 @@ begin
                     -- =========================================================
                     when SEND_TEMP =>
 					
-						case who_requested is
-							when HK  => o_TX_DV_HK  <= '1';
-							when HTR => o_TX_DV_HTR <= '1';
-							when others => null;
-						end case;
+						          case who_requested is
+						          	when HK  => o_TX_DV_HK  <= '1';
+						          	when HTR => o_TX_DV_HTR <= '1';
+						          	when others => null;
+						          end case;
 						
-                        o_TX_TEMP_data <= temp_data & temp_data; -- Temp replicated 3x
+                      o_TX_TEMP_data <= temp_data & temp_data; -- Temp replicated 3x
 
-                        if i_TX_done_HK = '1' or i_TX_done_HTR = '1' then
-                            state <= CLEANUP;
-                        else
-                            state <= SEND_TEMP;
-                        end if;
+                      if i_TX_done_HK = '1' or i_TX_done_HTR = '1' then
+                          state <= CLEANUP;
+                      else
+                          state <= SEND_TEMP;
+                      end if;
 
                     -- =========================================================
                     -- PREPARE ALT SENSOR MEASUREMENT
@@ -213,9 +214,8 @@ begin
                                 o_i2c_rw       <= '0';                       -- Write mode
                                 o_i2c_data_wr <= "00000000";                 -- Command to read pressure data
                             when 1 =>                                    -- 1st busy high: command 1 latched
-                                -- o_i2c_ena <= '0'; REMOVED                          
+                                o_i2c_ena <= '0';                         
                                 if(i_busy = '0') then                      -- Read pressure command complete
-                                    o_i2c_ena <= '0'; -- NEW Deassert enable to stop transaction
                                     busy_cnt := 0;
                                     state <= ALT;
                                 end if;
@@ -299,11 +299,11 @@ begin
                                     rtc_data(15 downto 8) <= i_data_read;
                                 end if;
                             when 4 =>
-								o_i2c_ena <= '0';
+							                 	o_i2c_ena <= '0';
                                 if i_busy = '0' then
                                     busy_cnt := 0;
-									rtc_data(7 downto 0) <= i_data_read;
-									state <= SEND_RTC;
+									                  rtc_data(7 downto 0) <= i_data_read;
+									                  state <= SEND_RTC;
                                 end if;
                             when others =>
                                 null;
@@ -328,7 +328,47 @@ begin
                         else
                             state <= SEND_RTC;
                         end if;
-                    
+							
+                    -- =========================================================
+                    -- SET RTC TIME
+                    -- =========================================================
+                    when SET_RTC =>					
+	
+						if start_cnt < Clockfrequency/10 then
+							start_cnt := start_cnt + 1;
+						else
+						busy_prev <= i_busy;
+						if (busy_prev = '0' and i_busy = '1') then
+							busy_cnt := busy_cnt + 1;
+						end if;
+
+						case busy_cnt is
+							-- START + slave addr + pointer
+							when 0 =>
+								led2 <= '1';
+								o_i2c_ena     <= '1';
+								o_i2c_address <= "1101000";  -- 0x68
+								o_i2c_rw      <= '0';        -- write
+								o_i2c_data_wr <= "00000000"; -- pointer = 0x00
+							when 1 =>                                    --1st busy high: command 1 latched, okay to issue command 2
+								o_i2c_data_wr <= "00000000";        --start the oscillator and set seconds
+							when 2 =>                                    --2nd busy high: command 2 latched, okay to issue command 3
+							    o_i2c_data_wr <= "00000000";       --start the oscillator and set seconds
+							when 3 =>                                    --3rd busy high: command 3 latched, okay to issue command 4
+							    o_i2c_data_wr <= "00000000";      --start the oscillator and set seconds              
+							when 4 =>
+							    o_i2c_ena <= '0';
+							    led2 <= '0';
+							    if i_busy = '0' then
+									busy_cnt := 0;
+									state    <= START;
+							    end if;
+							when others =>
+								null;                
+							end case;
+						end if;     
+					
+					
                     when CLEANUP =>
                         busy_cnt      := 0;
                         conv_cnt      := 0;
@@ -345,7 +385,7 @@ begin
                         o_TX_DV_HK    <= '0';
                         o_TX_DV_BF    <= '0';
                         o_TX_DV_RAD   <= '0';
-						o_TX_DV_HTR   <= '0';
+						            o_TX_DV_HTR   <= '0';
                         busy_prev     <= '0';
                         state         <= IDLE;
                             
