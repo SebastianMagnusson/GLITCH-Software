@@ -2,11 +2,6 @@
 
 #pragma once
 
-/// @brief Takes a telemetry data buffer and formats it into the correct telemetry structure.
-/// @param uint8_t* The telemetry data buffer to be formatted.
-/// @return uint8_t*: The formatted telemetry data as a byte array.
-uint8_t* format_tm(uint8_t* data);
-
 /// @brief Unpacks a telecommand packet into its components.
 /// @param uint8_t* The telecommand packet to be unpacked.
 /// @return uint8_t*: A byte array containing the unpacked telecommand data, or NULL if the packet is invalid.

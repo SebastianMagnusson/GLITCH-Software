@@ -8,27 +8,26 @@ PACKET_TYPE_ACK  = 0b11  # Acknowledgment
 
 # Field parsing configurations
 PACKET_PARSERS = {
-    PACKET_TYPE_HK: {
+    PACKET_TYPE_HK: { # 162 bits, 21 bytes aligned
         "fields": [
             ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("internal", "uint:32", convert_temp),
-            ("external", "uint:32", convert_temp),
-            ("sensor_board", "uint:32", convert_temp),
-            ("gnss", "uint:55"),
-            ("altitude", "int:48"),
+            ("rtc", "uint:24"),
+            ("gnss", "uint:48"),
+            ("internal", "uint:16", convert_temp),
+            ("external", "uint:16", convert_temp),
+            ("altitude", "int:24"),
             ("crc", "uint:16")
         ]
     },
-    PACKET_TYPE_BF: {
+    PACKET_TYPE_BF: { # 256 bits, 32 bytes aligned
         "fields": [
             ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("bit_flip", "uint:172"),
+            ("rtc", "uint:24"),
+            ("bit_flip", "uint:198"),
             ("crc", "uint:16")
         ]
     },
-    PACKET_TYPE_ACK: {
+    PACKET_TYPE_ACK: { #
         "fields": [
             ("seq_counter", "uint:16"),
             ("rtc", "uint:17"),
@@ -36,11 +35,11 @@ PACKET_PARSERS = {
             ("crc", "uint:16")
         ]
     },
-    PACKET_TYPE_RAD: {
+    PACKET_TYPE_RAD: { # 10040 bits, 1255 bytes aligned
         "fields": [
             ("seq_counter", "uint:16"),
-            ("rtc", "uint:17"),
-            ("radiation", "uint:9984"),
+            ("rtc", "uint:24"),
+            ("radiation", "uint:9982"),
             ("crc", "uint:16")
         ]
     }

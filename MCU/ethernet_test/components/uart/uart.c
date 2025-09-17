@@ -59,7 +59,6 @@ uint8_t* uart_receive(void) {
 void uart_task(void *pvParameters)
 {
     ESP_LOGI(TAG, "Starting UART task");
-    int test = 0;
     while(1) {
         uint8_t* tc_data = buffer_retreive_tc(); 
         if (tc_data != NULL) { 
@@ -67,51 +66,58 @@ void uart_task(void *pvParameters)
             uint8_t* unpacked_tc = unpack_tc(tc_data);
             if (unpacked_tc != NULL) {
                 uart_send(unpacked_tc);
-                free(unpacked_tc); // free the allocated memory
+                free(unpacked_tc);
             }
-            
         }
-        
-        uint8_t* packet = NULL;
-        
-        if (test % 3 == 0) {
-            ESP_LOGI(TAG, "Generating HK packet (ID=%d)", CONFIG_HOUSEKEEPING_PACKET_ID);
-            packet = generate_packet(CONFIG_HOUSEKEEPING_PACKET_ID);
-        } else if (test % 3 == 1) {
-            ESP_LOGI(TAG, "Generating BF packet (ID=%d)", CONFIG_BITFLIP_PACKET_ID);
-            packet = generate_packet(CONFIG_BITFLIP_PACKET_ID);
+
+        // --- Get FPGA data from UART ---
+        uint8_t* fpga_data = uart_receive();
+        if (fpga_data == NULL) {
+            vTaskDelay(pdMS_TO_TICKS(100));
+            continue;
+        }
+
+        // Determine packet type and data_bits
+        uint8_t id = (fpga_data[0] >> 6) & 0x03;
+        int packet_size = 0, data_bits = 0;
+        if (id == CONFIG_HOUSEKEEPING_PACKET_ID) {
+            packet_size = CONFIG_HOUSEKEEPING_PACKET_SIZE;
+            data_bits = 466; // 2+24+48+32+24 (exclude FPGA padding)
+        } else if (id == CONFIG_BITFLIP_PACKET_ID) {
+            packet_size = CONFIG_BITFLIP_PACKET_SIZE;
+            data_bits = 224; // 2+24+198
+        } else if (id == CONFIG_RADIATION_PACKET_ID) {
+            packet_size = CONFIG_RADIATION_PACKET_SIZE;
+            data_bits = 10008; // 2+24+9982
         } else {
-            ESP_LOGI(TAG, "Generating RAD packet (ID=%d)", CONFIG_RADIATION_PACKET_ID);
-            packet = generate_packet(CONFIG_RADIATION_PACKET_ID);
+            ESP_LOGE(TAG, "Unknown packet ID: %d", id);
+            free(fpga_data);
+            vTaskDelay(pdMS_TO_TICKS(100));
+            continue;
         }
-        
-        if (packet == NULL) {
-            ESP_LOGE(TAG, "Failed to generate packet");
-            test++;  // Important to increment even on failure
-            vTaskDelay(pdMS_TO_TICKS(1000));
-            test++;  // Important to increment even on failure
-            vTaskDelay(pdMS_TO_TICKS(1000));
-            continue; 
+
+        uint8_t* packet = pack_tm(fpga_data, packet_size, data_bits);
+        free(fpga_data);
+
+        if (!packet) {
+            ESP_LOGE(TAG, "Failed to pack FPGA data");
+            vTaskDelay(pdMS_TO_TICKS(100));
+            continue;
         }
-        
-        
+
         ESP_LOGI(TAG, "Generated packet - First byte: 0x%02X, Bits 0-1: %d", 
                  packet[0], packet[0] & 0b00000011);
-        
+
         int priority = priority_assign(packet);
         buffer_add_tm(priority, packet);
-        
-        // Save packet to SD card if storage is enabled
+
         #ifdef CONFIG_ENABLE_SD_STORAGE
-        uint8_t packet_type = (packet[0] >> 6) & 0x03;  // Extract packet type from first byte
+        uint8_t packet_type = (packet[0] >> 6) & 0x03;
         storage_save_packet(packet, check_length(packet), packet_type);
         ESP_LOGI(TAG, "Saving packet type %d, length=%d", packet_type, check_length(packet));
         #endif
-        
-        // Free the original packet after it's been copied into the buffer
-        free(packet);
 
-        test++;
+        free(packet);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
