@@ -17,4 +17,4 @@ uint8_t* format_tc(uint8_t* data);
 /// @param int The total size of the packet to be created, in bytes.
 /// @param int The number of bits in the data buffer that are actual data (not padding).
 /// @return uint8_t*: The formatted telemetry data as a byte array.
-uint8_t* pack_tm(uint8_t* data, int packet_size, int data_bits)
+uint8_t* pack_tm(uint8_t* data, int packet_size, int data_bits);

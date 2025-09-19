@@ -28,6 +28,36 @@ def convert_temp(raw32):
     raw16 = raw32 & 0xFFFF
     return (175.72 * raw16 / 65536.0) - 46.85
 
+def rtc_str_to_seconds(rtc_str):
+    """Convert 'hh:mm:ss' string to total seconds."""
+    try:
+        hh, mm, ss = map(int, rtc_str.split(":"))
+        return hh * 3600 + mm * 60 + ss
+    except Exception:
+        return 0
+
+def convert_rtc(rtc_value):
+    try:
+        rtc_hex = f"{int(rtc_value):06x}"
+        ss = int(rtc_hex[0:2], 16)
+        mm = int(rtc_hex[2:4], 16)
+        hh = int(rtc_hex[4:6], 16)
+        return f"{hh:02}:{mm:02}:{ss:02}"
+    except Exception:
+        return str(rtc_value)
+
+def convert_gnss(value):
+    """
+    Convert a 384-bit (48-byte) GNSS field from binary to ASCII string.
+    `value` is expected to be a bytes object or an int.
+    """
+    if isinstance(value, int):
+        # Convert int to bytes (48 bytes, big-endian)
+        value = value.to_bytes(48, 'big')
+    # Remove trailing nulls or padding
+    ascii_str = value.rstrip(b'\x00').decode('ascii', errors='replace')
+    return ascii_str
+
 def calculate_packet_bits(fields):
     """Calculate total packet bits from field definitions"""
     total_bits = 2  # Start with 2 bits for packet ID

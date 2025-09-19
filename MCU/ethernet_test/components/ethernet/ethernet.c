@@ -623,7 +623,7 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
     }
 
     // FIX: Pass the entire tc_received data, not just the ID
-    buffer_add_tc(tc_received);  // Remove the & and tc_id extraction
+    buffer_add_tc(&tc_received[0]);  // Remove the & and tc_id extraction
     
     uint8_t *ack_packet = format_tc(tc_received);
     if (ack_packet == NULL) {
@@ -771,7 +771,7 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
         esp_task_wdt_reset();
         // eth_transmit(sock, generate_RAD_packet(), 2);
         // Small delay to prevent busy waiting - increased to give more time
-        vTaskDelay(pdMS_TO_TICKS(500));
+        //vTaskDelay(pdMS_TO_TICKS(500));
 
     } while (len_receive >= 0);
 

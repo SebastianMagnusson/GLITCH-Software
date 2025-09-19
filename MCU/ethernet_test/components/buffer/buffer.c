@@ -146,7 +146,6 @@ void buffer_add_tm(int priority, uint8_t* data) {
 
     // Remove the RAD packet interception - let all packets use TM buffer
     int len = check_length(data);
-
     frame_tm* new_frame = (frame_tm*)calloc(1, sizeof(frame_tm));
     if (!new_frame) {
         ESP_LOGE("Buffer", "Failed to allocate memory for frame_tm");
@@ -199,27 +198,34 @@ void buffer_add_tm(int priority, uint8_t* data) {
 }
 
 uint8_t* buffer_retreive_tm() {
-
     if (head_tm == NULL) {         
-        return (uint8_t*)NULL;
+        return NULL;
     }
 
-    // Take the first frame and remove it from the buffer
     frame_tm* frame = head_tm; 
     head_tm = head_tm->next; 
 
-    uint8_t* data = frame->data;
-    ESP_LOGI("Buffer", "TM retrieved from buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c), Byte 1: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
-             frame->data[0], 
+    int len = check_length(frame->data);
+    uint8_t* data_copy = malloc(len);
+    if (!data_copy) {
+        ESP_LOGE("Buffer", "Failed to allocate memory for TM copy");
+        free(frame->data);
+        free(frame);
+        return NULL;
+    }
+    memcpy(data_copy, frame->data, len);
+
+    ESP_LOGI("Buffer", "TM retrieved from buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c), Byte 1: 0x%02X (0b%c%c%c%c%c%c%c%c)",
+             frame->data[0],
              (frame->data[0] & 0x80) ? '1' : '0', (frame->data[0] & 0x40) ? '1' : '0', (frame->data[0] & 0x20) ? '1' : '0', (frame->data[0] & 0x10) ? '1' : '0',
              (frame->data[0] & 0x08) ? '1' : '0', (frame->data[0] & 0x04) ? '1' : '0', (frame->data[0] & 0x02) ? '1' : '0', (frame->data[0] & 0x01) ? '1' : '0',
              frame->data[1],
              (frame->data[1] & 0x80) ? '1' : '0', (frame->data[1] & 0x40) ? '1' : '0', (frame->data[1] & 0x20) ? '1' : '0', (frame->data[1] & 0x10) ? '1' : '0',
              (frame->data[1] & 0x08) ? '1' : '0', (frame->data[1] & 0x04) ? '1' : '0', (frame->data[1] & 0x02) ? '1' : '0', (frame->data[1] & 0x01) ? '1' : '0');
 
+    free(frame->data);
     free(frame);
-    return data;
-
+    return data_copy;
 }
 
 frame_tm* peek_tm(int index) {
@@ -250,7 +256,7 @@ void buffer_add_tc(uint8_t* data) {
     }
 
     // Allocate memory for the TC data copy
-    int data_length = 7; // Standard TC packet length
+    int data_length = 1; // Standard TC packet length
     uint8_t* data_copy = (uint8_t*)malloc(data_length);
     if (data_copy == NULL) {
         ESP_LOGE("Buffer", "Failed to allocate memory for TC data");

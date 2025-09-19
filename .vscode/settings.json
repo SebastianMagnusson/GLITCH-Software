@@ -5,6 +5,9 @@
         "string_view": "c",
         "vector": "c",
         "packet_generation.h": "c",
-        "stdio.h": "c"
-    }
+        "stdio.h": "c",
+        "buffer.h": "c",
+        "ethernet.h": "c"
+    },
+    "cmake.sourceDirectory": "/Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/main"
 }

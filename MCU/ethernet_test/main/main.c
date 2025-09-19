@@ -14,6 +14,7 @@
 #include "buffer.h"
 #include "uart.h"
 #include "priority.h"
+#include "storage.h"
 
 #include "ethernet.h"
 
@@ -24,6 +25,10 @@ void app_main(void)
     do {
         eth_handle = ethernet_setup();
     } while (eth_handle == NULL);
+
+    #ifdef CONFIG_ENABLE_SD_STORAGE
+        storage_init();   // mounts card and starts storage_task
+    #endif
 
     volatile int kill_flag = 0;
     volatile int reset_flag = 0;
@@ -49,5 +54,4 @@ void app_main(void)
         }
         vTaskDelay(pdMS_TO_TICKS(100)); // Yield control to other tasks
     }
-
 }
