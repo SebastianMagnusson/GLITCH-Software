@@ -186,7 +186,6 @@ ground_station/
 │   ├── logger.py             # Data logging functionality
 │   └── logs/                 # Log file directory
 ├── receiver/
-│   ├── packet_lengths.py     # Packet length definitions
 │   ├── packet_parser.py      # Packet parsing and validation
 │   └── packet_structures.py  # Packet data structures
 ├── uplink/
