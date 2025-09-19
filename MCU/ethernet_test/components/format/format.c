@@ -111,26 +111,28 @@ uint8_t* unpack_tc(uint8_t* packet) {
     if (packet == NULL) {
         return (uint8_t*)NULL;
     }
+    
+    // // 2 bytes
+    // uint16_t seq_num = packet[0] << 8 | packet[1];
 
-    // 2 bytes
-    uint16_t seq_num = packet[0] << 8 | packet[1];
+    // // 3 bits
+    // uint8_t tc = packet[2] >> 5 & 0b00000111; 
 
-    // 3 bits
-    uint8_t tc = packet[2] >> 5 & 0b00000111; 
+    // // 17 bits
+    // uint32_t rtc = ((packet[2] & 0b00011111) << 12) | 
+    //        (packet[3] << 4) |
+    //        ((packet[4] >> 4) & 0b00001111);
 
-    // 17 bits
-    uint32_t rtc = ((packet[2] & 0b00011111) << 12) | 
-           (packet[3] << 4) |
-           ((packet[4] >> 4) & 0b00001111);
-
-    uint16_t crc = (packet[4] & 0b00001111) << 12 | 
-                   (packet[5] << 4) | 
-                   ((packet[6] >> 4) & 0b00001111);
-    /*               
-    if (!is_valid_packet(rtc, crc, packet)) {
+    // uint16_t crc = (packet[4] & 0b00001111) << 12 | 
+    //                (packet[5] << 4) | 
+    //                ((packet[6] >> 4) & 0b00001111);
+    
+                  
+    //validate crc
+    if (!validate_crc_mcu(packet, CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE)) {
+        ESP_LOGE("Format", "Invalid CRC in received TC packet");
         return NULL;
     }
-    */
     // If everything is fine, create a new data array to return and stuff the data & RTC into it
     uint8_t* data = (uint8_t*)calloc((CONFIG_ACKNOWLEDGEMENT_DATA_SIZE + 7) / 8, sizeof(uint8_t));
     if (data == NULL) {

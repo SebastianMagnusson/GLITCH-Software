@@ -256,7 +256,7 @@ void buffer_add_tc(uint8_t* data) {
     }
 
     // Allocate memory for the TC data copy
-    int data_length = 1; // Standard TC packet length
+    int data_length = 7; // Standard TC packet length
     uint8_t* data_copy = (uint8_t*)malloc(data_length);
     if (data_copy == NULL) {
         ESP_LOGE("Buffer", "Failed to allocate memory for TC data");
@@ -275,7 +275,6 @@ void buffer_add_tc(uint8_t* data) {
 }
 
 uint8_t* buffer_retreive_tc() {
-    
     if (size_tc == 0) {
         return (uint8_t*)NULL; 
     }

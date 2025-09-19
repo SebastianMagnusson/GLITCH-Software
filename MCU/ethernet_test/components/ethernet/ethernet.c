@@ -623,7 +623,7 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
     }
 
     // FIX: Pass the entire tc_received data, not just the ID
-    buffer_add_tc(&tc_received[0]);  // Remove the & and tc_id extraction
+    buffer_add_tc(tc_received);  // Pass the pointer directly
     
     uint8_t *ack_packet = format_tc(tc_received);
     if (ack_packet == NULL) {

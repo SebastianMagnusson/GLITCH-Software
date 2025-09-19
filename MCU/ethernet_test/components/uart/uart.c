@@ -162,7 +162,8 @@ void uart_task(void *pvParameters)
         if (tc_data != NULL) {
             uint8_t *unpacked_tc = unpack_tc(tc_data);
             if (unpacked_tc != NULL) {
-                uart_send(unpacked_tc);
+                uint8_t tc_code = (unpacked_tc[2] >> 5) & 0b00000111;
+                uart_send(&tc_code); // Send the TC code
                 free(unpacked_tc);
             }
             free(tc_data);  // don’t leak the original
