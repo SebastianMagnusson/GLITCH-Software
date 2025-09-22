@@ -1,0 +1,46 @@
+Command: /Users/melkerstahlberg/.espressif/python_env/idf5.5_py3.13_env/bin/python /Users/melkerstahlberg/esp/v5.5/esp-idf/tools/idf_monitor.py -p /dev/tty.usbserial-11301 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/build/ethernet_test.elf /Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/build/bootloader/bootloader.elf -m '/Users/melkerstahlberg/.espressif/python_env/idf5.5_py3.13_env/bin/python' '/Users/melkerstahlberg/esp/v5.5/esp-idf/tools/idf.py' '-p' '/dev/tty.usbserial-11301'
+[0;33m--- Warning: Serial ports accessed as /dev/tty.* will hang gdb if launched.[0m
+[0;33m--- Using /dev/cu.usbserial-11301 instead...[0m
+[0;33m--- esp-idf-monitor 1.7.0 on /dev/cu.usbserial-11301 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080638: [0;33mcall_start_cpu0[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x400dbc06: [0;33methernet_setup[0m[0m at [0;32m/Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/components/ethernet/ethernet.c[0m[0m:[1;31m232[0m
+[0m--- 0x400880ab: [0;33m_esp_error_check_failed[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/esp_err.c[0m[0m:[1;31m49[0m
+[0m--- 0x40081c59: [0;33mpanic_abort[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m469[0m
+[0m--- 0x400880b5: [0;33mesp_system_abort[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4008f1fd: [0;33mabort[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/newlib/src/abort.c[0m[0m:[1;31m38[0m
+[0m--- 0x400880ab: [0;33m_esp_error_check_failed[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/esp_err.c[0m[0m:[1;31m49[0m
+[0m--- 0x400dbc06: [0;33methernet_setup[0m[0m at [0;32m/Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/components/ethernet/ethernet.c[0m[0m:[1;31m232[0m
+[0m--- 0x400daf4c: [0;33mapp_main[0m[0m at [0;32m/Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/main/main.c[0m[0m:[1;31m26[0m
+[0m--- 0x40119de8: [0;33mmain_task[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m208[0m
+[0m--- 0x40088b59: [0;33mvPortTaskWrapper[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m139[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080638: [0;33mcall_start_cpu0[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x400dbc06: [0;33methernet_setup[0m[0m at [0;32m/Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/components/ethernet/ethernet.c[0m[0m:[1;31m232[0m
+[0m--- 0x400880ab: [0;33m_esp_error_check_failed[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/esp_err.c[0m[0m:[1;31m49[0m
+[0m--- 0x40081c59: [0;33mpanic_abort[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m469[0m
+[0m--- 0x400880b5: [0;33mesp_system_abort[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4008f1fd: [0;33mabort[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/newlib/src/abort.c[0m[0m:[1;31m38[0m
+[0m--- 0x400880ab: [0;33m_esp_error_check_failed[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/esp_err.c[0m[0m:[1;31m49[0m
+[0m--- 0x400dbc06: [0;33methernet_setup[0m[0m at [0;32m/Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/components/ethernet/ethernet.c[0m[0m:[1;31m232[0m
+[0m--- 0x400daf4c: [0;33mapp_main[0m[0m at [0;32m/Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/main/main.c[0m[0m:[1;31m26[0m
+[0m--- 0x40119de8: [0;33mmain_task[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m208[0m
+[0m--- 0x40088b59: [0;33mvPortTaskWrapper[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m139[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080638: [0;33mcall_start_cpu0[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x400dbc06: [0;33methernet_setup[0m[0m at [0;32m/Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/components/ethernet/ethernet.c[0m[0m:[1;31m232[0m
+[0m--- 0x400880ab: [0;33m_esp_error_check_failed[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/esp_err.c[0m[0m:[1;31m49[0m
+[0m--- 0x40081c59: [0;33mpanic_abort[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m469[0m
+[0m--- 0x400880b5: [0;33mesp_system_abort[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4008f1fd: [0;33mabort[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/newlib/src/abort.c[0m[0m:[1;31m38[0m
+[0m--- 0x400880ab: [0;33m_esp_error_check_failed[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/esp_system/esp_err.c[0m[0m:[1;31m49[0m
+[0m--- 0x400dbc06: [0;33methernet_setup[0m[0m at [0;32m/Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/components/ethernet/ethernet.c[0m[0m:[1;31m232[0m
+[0m--- 0x400daf4c: [0;33mapp_main[0m[0m at [0;32m/Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/main/main.c[0m[0m:[1;31m26[0m
+[0m--- 0x40119de8: [0;33mmain_task[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m208[0m
+[0m--- 0x40088b59: [0;33mvPortTaskWrapper[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m139[0m
+[0m--- 0x40080400: [0;33m_invalid_pc_placeholder[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m2235[0m
+[0m--- 0x40080638: [0;33mcall_start_cpu0[0m[0m at [0;32m/Users/melkerstahlberg/esp/v5.5/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[1;31m--- Error: read failed: [Errno 6] Device not configured[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[0m

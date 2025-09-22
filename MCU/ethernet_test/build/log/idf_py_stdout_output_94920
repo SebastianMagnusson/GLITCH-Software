@@ -1,0 +1,145 @@
+Command: /Users/melkerstahlberg/.espressif/python_env/idf5.5_py3.13_env/bin/python /Users/melkerstahlberg/esp/v5.5/esp-idf/tools/idf_monitor.py -p /dev/tty.usbserial-11301 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/build/ethernet_test.elf /Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/build/bootloader/bootloader.elf -m '/Users/melkerstahlberg/.espressif/python_env/idf5.5_py3.13_env/bin/python' '/Users/melkerstahlberg/esp/v5.5/esp-idf/tools/idf.py' '-p' '/dev/tty.usbserial-11301'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x12 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6380
+ho 0 tail 12 room 4
+load:0x40078000,len:15916
+load:0x40080400,len:3860
+entry 0x40080638
+[0;32mI (29) boot: ESP-IDF v5.5-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Sep 22 2025 11:05:53[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (31) boot: chip revision: v3.1[0m
+[0;32mI (34) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (37) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=18d08h (101640) map[0m
+[0;32mI (123) esp_image: segment 1: paddr=00028d30 vaddr=3ff80000 size=00020h (    32) load[0m
+[0;32mI (123) esp_image: segment 2: paddr=00028d58 vaddr=3ffb0000 size=026f8h (  9976) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=0002b458 vaddr=40080000 size=04bc0h ( 19392) load[0m
+[0;32mI (142) esp_image: segment 4: paddr=00030020 vaddr=400d0020 size=4a66ch (304748) map[0m
+[0;32mI (247) esp_image: segment 5: paddr=0007a694 vaddr=40084bc0 size=0cb18h ( 51992) load[0m
+[0;32mI (275) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (275) boot: Disabling RNG early entropy source...[0m
+[0;32mI (286) cpu_start: Multicore app[0m
+[0;32mI (294) cpu_start: Pro cpu start user code[0m
+[0;32mI (294) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (294) app_init: Application information:[0m
+[0;32mI (294) app_init: Project name:     ethernet_test[0m
+[0;32mI (299) app_init: App version:      50acbfa-dirty[0m
+[0;32mI (303) app_init: Compile time:     Sep 22 2025 13:08:05[0m
+[0;32mI (308) app_init: ELF file SHA256:  1f8d0ec07...[0m
+[0;32mI (313) app_init: ESP-IDF:          v5.5-dirty[0m
+[0;32mI (317) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (321) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (325) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (329) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (335) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (340) heap_init: At 3FFB4068 len 0002BF98 (175 KiB): DRAM[0m
+[0;32mI (345) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (350) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (356) heap_init: At 400916D8 len 0000E928 (58 KiB): IRAM[0m
+[0;32mI (363) spi_flash: detected chip: generic[0m
+[0;32mI (365) spi_flash: flash io: dio[0m
+[0;33mW (368) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (381) main_task: Started on CPU0[0m
+[0;32mI (391) main_task: Calling app_main()[0m
+[0;32mI (421) Ethernet: esp_eth_mac_new_w5500: 0x3ffb991c[0m
+[0;32mI (421) Ethernet: esp_eth_phy_new_w5500: 0x3ffbaff0[0m
+[0;32mI (431) Ethernet: esp_eth_driver_install: 0, eth_handle: 0x3ffbb050[0m
+[0;32mI (431) esp_eth.netif.netif_glue: 00:00:00:00:00:00[0m
+[0;32mI (431) esp_eth.netif.netif_glue: ethernet attached to netif[0m
+[0;32mI (431) Ethernet: Success to set static ip: 192.168.4.2, netmask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (451) Ethernet: Ethernet Started[0m
+[0;32mI (2451) Ethernet: Ethernet Link Up[0m
+[0;32mI (2451) Ethernet: Ethernet HW Addr 00:00:00:00:00:00[0m
+[0;32mI (2451) esp_netif_handlers: eth ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (2451) Ethernet: Ethernet Got IP Address[0m
+[0;32mI (2451) Ethernet: ~~~~~~~~~~~[0m
+[0;32mI (2461) Ethernet: ETHIP:192.168.4.2[0m
+[0;32mI (2461) Ethernet: ETHMASK:255.255.255.0[0m
+[0;32mI (2461) Ethernet: ETHGW:192.168.4.1[0m
+[0;32mI (2471) Ethernet: ~~~~~~~~~~~[0m
+[0;32mI (2471) Storage: Initializing SD card storage[0m
+[1;31mE (2471) spi: spi_bus_initialize(809): SPI bus already initialized.[0m
+[0;33mW (2481) Storage: SPI bus already initialized, continuing...[0m
+[1;31mE (2691) sdmmc_sd: sdmmc_init_sd_if_cond: send_if_cond (1) returned 0x108[0m
+[1;31mE (2691) vfs_fat_sdmmc: sdmmc_card_init failed (0x108).[0m
+[1;31mE (2691) Storage: mount failed: ESP_ERR_INVALID_RESPONSE[0m
+[1;31mE (2691) spi_master: spi_master_deinit_driver(355): not all CSses freed[0m
+[0;32mI (2701) Ethernet: TCP server task started[0m
+[0;32mI (2701) Ethernet: Socket created[0m
+[0;32mI (2701) Ethernet:I (2721) UART: UART configured successfully[0m
+[0;32mI (2721) UART: UART pins set successfully to TX: 2, RX: 12[0m
+[0;32mI (2721) uart: queue free spaces: 20[0m
+[0;32mI (2721) UART: UART driver installed successfully[0m
+[0;32mI (2721) UART: Starting UART task[0m
+[0;32mI (3711) Ethernet: Socket listening[0m
+[0;32mI (4711) Ethernet: Socket listening[0m
+[0;32mI (5711) Ethernet: Socket listening[0m
+[0;32mI (6711) Ethernet: Socket listening[0m
+[0;32mI (7711) Ethernet: Socket listening[0m
+[0;32mI (8711) Ethernet: Socket listening[0m
+[0;32mI (2451) Ethernet: Ethernet Link Up[0m
+[0;32mI (2451) Ethernet: Ethernet HW Addr 00:00:00:00:00:00[0m
+[0;32mI (2451) esp_netif_handlers: eth ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (2451) Ethernet: Ethernet Got IP Address[0m
+[0;32mI (2451) Ethernet: ~~~~~~~~~~~[0m
+[0;32mI (2461) Ethernet: ETHIP:192.168.4.2[0m
+[0;32mI (2461) Ethernet: ETHMASK:255.255.255.0[0m
+[0;32mI (2461) Ethernet: ETHGW:192.168.4.1[0m
+[0;32mI (2471) Ethernet: ~~~~~~~~~~~[0m
+[0;32mI (2471) Storage: Initializing SD card storage[0m
+[1;31mE (2471) spi: spi_bus_initialize(809): SPI bus already initialized.[0m
+[0;33mW (2481) Storage: SPI bus already initialized, continuing...[0m
+[1;31mE (2691) sdmmc_sd: sdmmc_init_sd_if_cond: send_if_cond (1) returned 0x108[0m
+[1;31mE (2691) vfs_fat_sdmmc: sdmmc_card_init failed (0x108).[0m
+[1;31mE (2691) Storage: mount failed: ESP_ERR_INVALID_RESPONSE[0m
+[1;31mE (2691) spi_master: spi_master_deinit_driver(355): not all CSses freed[0m
+[0;32mI (2701) Ethernet: TCP server task started[0m
+[0;32mI (2701) Ethernet: Socket created[0m
+[1;31mE (2711) uart: uartI (2721) UART: UART configured successfully[0m
+[0;32mI (2721) UART: UART pins set successfully to TX: 2, RX: 12[0m
+[0;32mI (2721) uart: queue free spaces: 20[0m
+[0;32mI (2721) UART: UART driver installed successfully[0m
+[0;32mI (2721) UART: Starting UART task[0m
+[0;32mI (3721) Ethernet: Socket listening[0m
+[0;32mI (4721) Ethernet: Socket listening[0m
+[0;32mI (5721) Ethernet: Socket listening[0m
+[0;32mI (6721) Ethernet: Socket listening[0m
+[0;32mI (2451) Ethernet: Ethernet Link Up[0m
+[0;32mI (2451) Ethernet: Ethernet HW Addr 00:00:00:00:00:00[0m
+[0;32mI (2451) esp_netif_handlers: eth ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (2451) Ethernet: Ethernet Got IP Address[0m
+[0;32mI (2451) Ethernet: ~~~~~~~~~~~[0m
+[0;32mI (2461) Ethernet: ETHIP:192.168.4.2[0m
+[0;32mI (2461) Ethernet: ETHMASK:255.255.255.0[0m
+[0;32mI (2461) Ethernet: ETHGW:192.168.4.1[0m
+[0;32mI (2471) Ethernet: ~~~~~~~~~~~[0m
+[0;32mI (2471) Storage: Initializing SD card storage[0m
+[1;31mE (2471) spi: spi_bus_initialize(809): SPI bus already initialized.[0m
+[0;33mW (2481) Storage: SPI bus already initialized, continuing...[0m
+[1;31mE (2691) sdmmc_sd: sdmmc_init_sd_if_cond: send_if_cond (1) returned 0x108[0m
+[1;31mE (2691) vfs_fat_sdmmc: sdmmc_card_init failed (0x108).[0m
+[1;31mE (2691) Storage: mount failed: ESP_ERR_INVALID_RESPONSE[0m
+[1;31mE (2691) spi_master: spi_master_deinit_driver(355): not all CSses freed[0m
+[0;32mI (2701) Ethernet: TCP server task started[0m
+[0;32mI (2701) Ethernet: Socket created[0m
+[0;32mI (2701) Ethernet:I (2721) UART: UART configured successfully[0m
+[0;32mI (2721) UART: UART pins set successfully to TX: 2, RX: 12[0m
+[0;32mI (2721) uart: queue free spaces: 20[0m
+[0;32mI (2721) UART: UART driver installed successfully[0m
+[0;32mI (2721) UART: Starting UART task[0m
+[0;32mI (3711) Ethernet: Socket listening[0m
+[0;32mI (4711) Ethernet: Socket listening[0m

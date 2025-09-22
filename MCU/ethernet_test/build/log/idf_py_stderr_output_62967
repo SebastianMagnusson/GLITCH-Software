@@ -1,0 +1,11 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=/Users/melkerstahlberg/.espressif/python_env/idf5.5_py3.13_env/bin/python -DESP_PLATFORM=1 -DCCACHE_ENABLE=0 /Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test
+CMake Deprecation Warning at CMakeLists.txt:5 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+/var/folders/j4/1s9529mj5k5408w_b0gmr_l40000gn/T/kconfgen_tmpzm4qsj1p:76: warning: ' n' is not a valid value for the bool symbol ENABLE_SD_STORAGE (defined at /Users/melkerstahlberg/Documents/GitHub/GLITCH-Software-2/GLITCH-Software/MCU/ethernet_test/main/Kconfig:291). Assignment ignored.
