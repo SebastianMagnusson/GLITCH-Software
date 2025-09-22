@@ -10,7 +10,7 @@
     <Object name="xc7a35t_0" gui_info="">
       <Properties Property="FULL_PROBES.FILE" value=""/>
       <Properties Property="PROBES.FILE" value=""/>
-      <Properties Property="PROGRAM.HW_BITSTREAM" value="$_project_name_.runs/impl_1/BK_HK_Combined_Test1_wrapper.bit"/>
+      <Properties Property="PROGRAM.HW_BITSTREAM" value="C:/GitHub/GLITCH-Software/FPGA/SRAM TESTING/SRAM_Breadboard_Test7/SRAM_Breadboard_Test7.runs/impl_1/BF_Test2_wrapper.bit"/>
       <Properties Property="SLR.COUNT" value="1"/>
     </Object>
   </ObjectList>

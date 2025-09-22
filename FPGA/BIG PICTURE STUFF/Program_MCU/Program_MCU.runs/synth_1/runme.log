@@ -1,0 +1,312 @@
+
+*** Running vivado
+    with args -log Program_MCU_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Program_MCU_wrapper.tcl
+
+
+
+****** Vivado v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Mon Sep 22 14:13:45 2025
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source Program_MCU_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
+Command: read_checkpoint -auto_incremental -incremental {C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/utils_1/imports/synth_1/UART_RXmod.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/utils_1/imports/synth_1/UART_RXmod.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top Program_MCU_wrapper -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 4064
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1123.934 ; gain = 467.324
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'Program_MCU_wrapper' [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/hdl/Program_MCU_wrapper.vhd:25]
+INFO: [Synth 8-3491] module 'Program_MCU' declared at 'c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/synth/Program_MCU.vhd:15' bound to instance 'Program_MCU_i' of component 'Program_MCU' [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/hdl/Program_MCU_wrapper.vhd:36]
+INFO: [Synth 8-638] synthesizing module 'Program_MCU' [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/synth/Program_MCU.vhd:29]
+INFO: [Synth 8-3491] module 'Program_MCU_UART_RXmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/.Xil/Vivado-28076-LAPTOP-1SQM85NC/realtime/Program_MCU_UART_RXmod_0_0_stub.vhdl:6' bound to instance 'UART_RXmod_0' of component 'Program_MCU_UART_RXmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/synth/Program_MCU.vhd:75]
+INFO: [Synth 8-638] synthesizing module 'Program_MCU_UART_RXmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/.Xil/Vivado-28076-LAPTOP-1SQM85NC/realtime/Program_MCU_UART_RXmod_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'Program_MCU_UART_RXmod_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/.Xil/Vivado-28076-LAPTOP-1SQM85NC/realtime/Program_MCU_UART_RXmod_1_0_stub.vhdl:6' bound to instance 'UART_RXmod_1' of component 'Program_MCU_UART_RXmod_1_0' [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/synth/Program_MCU.vhd:82]
+INFO: [Synth 8-638] synthesizing module 'Program_MCU_UART_RXmod_1_0' [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/.Xil/Vivado-28076-LAPTOP-1SQM85NC/realtime/Program_MCU_UART_RXmod_1_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'Program_MCU_UART_TXmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/.Xil/Vivado-28076-LAPTOP-1SQM85NC/realtime/Program_MCU_UART_TXmod_0_0_stub.vhdl:6' bound to instance 'UART_TXmod_0' of component 'Program_MCU_UART_TXmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/synth/Program_MCU.vhd:89]
+INFO: [Synth 8-638] synthesizing module 'Program_MCU_UART_TXmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/.Xil/Vivado-28076-LAPTOP-1SQM85NC/realtime/Program_MCU_UART_TXmod_0_0_stub.vhdl:26]
+INFO: [Synth 8-3491] module 'Program_MCU_UART_TXmod_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/.Xil/Vivado-28076-LAPTOP-1SQM85NC/realtime/Program_MCU_UART_TXmod_1_0_stub.vhdl:6' bound to instance 'UART_TXmod_1' of component 'Program_MCU_UART_TXmod_1_0' [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/synth/Program_MCU.vhd:98]
+INFO: [Synth 8-638] synthesizing module 'Program_MCU_UART_TXmod_1_0' [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/.Xil/Vivado-28076-LAPTOP-1SQM85NC/realtime/Program_MCU_UART_TXmod_1_0_stub.vhdl:26]
+INFO: [Synth 8-256] done synthesizing module 'Program_MCU' (0#1) [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/synth/Program_MCU.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'Program_MCU_wrapper' (0#1) [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/hdl/Program_MCU_wrapper.vhd:25]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1227.617 ; gain = 571.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1227.617 ; gain = 571.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1227.617 ; gain = 571.008
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1227.617 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/ip/Program_MCU_UART_RXmod_0_0/Program_MCU_UART_RXmod_0_0/Program_MCU_UART_RXmod_0_0_in_context.xdc] for cell 'Program_MCU_i/UART_RXmod_0'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/ip/Program_MCU_UART_RXmod_0_0/Program_MCU_UART_RXmod_0_0/Program_MCU_UART_RXmod_0_0_in_context.xdc] for cell 'Program_MCU_i/UART_RXmod_0'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/ip/Program_MCU_UART_TXmod_0_0/Program_MCU_UART_TXmod_0_0/Program_MCU_UART_TXmod_0_0_in_context.xdc] for cell 'Program_MCU_i/UART_TXmod_0'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/ip/Program_MCU_UART_TXmod_0_0/Program_MCU_UART_TXmod_0_0/Program_MCU_UART_TXmod_0_0_in_context.xdc] for cell 'Program_MCU_i/UART_TXmod_0'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/ip/Program_MCU_UART_RXmod_1_0/Program_MCU_UART_RXmod_1_0/Program_MCU_UART_RXmod_1_0_in_context.xdc] for cell 'Program_MCU_i/UART_RXmod_1'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/ip/Program_MCU_UART_RXmod_1_0/Program_MCU_UART_RXmod_1_0/Program_MCU_UART_RXmod_1_0_in_context.xdc] for cell 'Program_MCU_i/UART_RXmod_1'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/ip/Program_MCU_UART_TXmod_1_0/Program_MCU_UART_TXmod_1_0/Program_MCU_UART_TXmod_1_0_in_context.xdc] for cell 'Program_MCU_i/UART_TXmod_1'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.gen/sources_1/bd/Program_MCU/ip/Program_MCU_UART_TXmod_1_0/Program_MCU_UART_TXmod_1_0/Program_MCU_UART_TXmod_1_0_in_context.xdc] for cell 'Program_MCU_i/UART_TXmod_1'
+Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc]
+WARNING: [Vivado 12-584] No ports matched 'led0'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:11]
+WARNING: [Vivado 12-584] No ports matched 'led1'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:12]
+WARNING: [Vivado 12-584] No ports matched 'btn0'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:20]
+WARNING: [Vivado 12-584] No ports matched 'btn1'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:21]
+WARNING: [Vivado 12-584] No ports matched 'SDA'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:54]
+WARNING: [Vivado 12-584] No ports matched 'SCL'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:55]
+WARNING: [Vivado 12-584] No ports matched 'A[0]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:58]
+WARNING: [Vivado 12-584] No ports matched 'A[1]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:59]
+WARNING: [Vivado 12-584] No ports matched 'A[2]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:60]
+WARNING: [Vivado 12-584] No ports matched 'A[3]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:61]
+WARNING: [Vivado 12-584] No ports matched 'A[4]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:62]
+WARNING: [Vivado 12-584] No ports matched 'A[5]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:63]
+WARNING: [Vivado 12-584] No ports matched 'A[6]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:64]
+WARNING: [Vivado 12-584] No ports matched 'A[7]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:65]
+WARNING: [Vivado 12-584] No ports matched 'A[8]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:66]
+WARNING: [Vivado 12-584] No ports matched 'A[9]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:67]
+WARNING: [Vivado 12-584] No ports matched 'A[10]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:70]
+WARNING: [Vivado 12-584] No ports matched 'A[11]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:71]
+WARNING: [Vivado 12-584] No ports matched 'A[12]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:72]
+WARNING: [Vivado 12-584] No ports matched 'A[13]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:73]
+WARNING: [Vivado 12-584] No ports matched 'A[14]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:74]
+WARNING: [Vivado 12-584] No ports matched 'A[15]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:75]
+WARNING: [Vivado 12-584] No ports matched 'A[16]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:76]
+WARNING: [Vivado 12-584] No ports matched 'A[17]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:79]
+WARNING: [Vivado 12-584] No ports matched 'A[18]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:80]
+WARNING: [Vivado 12-584] No ports matched 'A[19]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:81]
+WARNING: [Vivado 12-584] No ports matched 'A[20]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:82]
+WARNING: [Vivado 12-584] No ports matched 'A[21]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:83]
+WARNING: [Vivado 12-584] No ports matched 'DQ[0]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:86]
+WARNING: [Vivado 12-584] No ports matched 'DQ[1]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:87]
+WARNING: [Vivado 12-584] No ports matched 'DQ[2]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:88]
+WARNING: [Vivado 12-584] No ports matched 'DQ[3]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:89]
+WARNING: [Vivado 12-584] No ports matched 'DQ[4]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:90]
+WARNING: [Vivado 12-584] No ports matched 'DQ[5]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:91]
+WARNING: [Vivado 12-584] No ports matched 'DQ[6]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:92]
+WARNING: [Vivado 12-584] No ports matched 'DQ[7]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:93]
+WARNING: [Vivado 12-584] No ports matched 'DQ[8]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:94]
+WARNING: [Vivado 12-584] No ports matched 'DQ[9]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:95]
+WARNING: [Vivado 12-584] No ports matched 'DQ[10]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:96]
+WARNING: [Vivado 12-584] No ports matched 'DQ[11]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:97]
+WARNING: [Vivado 12-584] No ports matched 'DQ[12]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:98]
+WARNING: [Vivado 12-584] No ports matched 'DQ[13]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:99]
+WARNING: [Vivado 12-584] No ports matched 'DQ[14]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:100]
+WARNING: [Vivado 12-584] No ports matched 'DQ[15]'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:101]
+WARNING: [Vivado 12-584] No ports matched 'CE_n'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:104]
+WARNING: [Vivado 12-584] No ports matched 'uart_rx_from_mcu'. [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc:108]
+Finished Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/Program_MCU_wrapper_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/constrs_1/new/Constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Program_MCU_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Program_MCU_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1227.617 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1227.617 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1227.617 ; gain = 571.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1227.617 ; gain = 571.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for Program_MCU_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Program_MCU_i/UART_RXmod_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Program_MCU_i/UART_TXmod_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Program_MCU_i/UART_RXmod_1. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Program_MCU_i/UART_TXmod_1. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1227.617 ; gain = 571.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Preparing Guide Design
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-6895] The reference checkpoint C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.srcs/utils_1/imports/synth_1/UART_RXmod.dcp is not suitable for use with incremental synthesis for this design. Please regenerate the checkpoint for this design with -incremental_synth switch in the same Vivado session that synth_design has been run. Synthesis will continue with the default flow
+---------------------------------------------------------------------------------
+Finished Doing Graph Differ : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1227.617 ; gain = 571.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Preparing Guide Design : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1227.617 ; gain = 571.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1227.617 ; gain = 571.008
+---------------------------------------------------------------------------------
+
+
+Incremental Synthesis Report Summary:
+
+1. Incremental synthesis run: no
+
+   Reason for not running incremental synthesis : 
+
+
+INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1227.617 ; gain = 571.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1401.891 ; gain = 745.281
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1401.891 ; gain = 745.281
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1411.480 ; gain = 754.871
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1628.758 ; gain = 972.148
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1628.758 ; gain = 972.148
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1628.758 ; gain = 972.148
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1628.758 ; gain = 972.148
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1628.758 ; gain = 972.148
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1628.758 ; gain = 972.148
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+---------------------------+----------+
+|      |BlackBox name              |Instances |
++------+---------------------------+----------+
+|1     |Program_MCU_UART_RXmod_0_0 |         1|
+|2     |Program_MCU_UART_RXmod_1_0 |         1|
+|3     |Program_MCU_UART_TXmod_0_0 |         1|
+|4     |Program_MCU_UART_TXmod_1_0 |         1|
++------+---------------------------+----------+
+
+Report Cell Usage: 
++------+--------------------------------+------+
+|      |Cell                            |Count |
++------+--------------------------------+------+
+|1     |Program_MCU_UART_RXmod_0_0_bbox |     1|
+|2     |Program_MCU_UART_RXmod_1_0_bbox |     1|
+|3     |Program_MCU_UART_TXmod_0_0_bbox |     1|
+|4     |Program_MCU_UART_TXmod_1_0_bbox |     1|
+|5     |IBUF                            |     3|
+|6     |OBUF                            |     2|
++------+--------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1628.758 ; gain = 972.148
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 1 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:24 . Memory (MB): peak = 1628.758 ; gain = 972.148
+Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1628.758 ; gain = 972.148
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1628.758 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1628.758 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 4df3f711
+INFO: [Common 17-83] Releasing license: Synthesis
+32 Infos, 48 Warnings, 1 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:00:36 . Memory (MB): peak = 1628.758 ; gain = 1163.238
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1628.758 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/GitHub/GLITCH-Software/FPGA/BIG PICTURE STUFF/Program_MCU/Program_MCU.runs/synth_1/Program_MCU_wrapper.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file Program_MCU_wrapper_utilization_synth.rpt -pb Program_MCU_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Sep 22 14:14:32 2025...

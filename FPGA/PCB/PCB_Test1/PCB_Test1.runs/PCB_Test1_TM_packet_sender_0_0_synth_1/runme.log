@@ -1,0 +1,234 @@
+
+*** Running vivado
+    with args -log PCB_Test1_TM_packet_sender_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source PCB_Test1_TM_packet_sender_0_0.tcl
+
+
+
+****** Vivado v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Sun Sep 21 13:40:13 2025
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source PCB_Test1_TM_packet_sender_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 456.906 ; gain = 136.555
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
+Command: synth_design -top PCB_Test1_TM_packet_sender_0_0 -part xc7a100tcsg324-2 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 22620
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 945.711 ; gain = 470.414
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'PCB_Test1_TM_packet_sender_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1/PCB_Test1.gen/sources_1/bd/PCB_Test1/ip/PCB_Test1_TM_packet_sender_0_0/synth/PCB_Test1_TM_packet_sender_0_0.vhd:78]
+	Parameter Clockfrequency bound to: 100000000 - type: integer 
+	Parameter Baud_Rate bound to: 400000 - type: integer 
+INFO: [Synth 8-3491] module 'TM_packet_sender' declared at 'C:/GitHub/GLITCH-Software/FPGA/Code/TM_packet_sender.vhd:13' bound to instance 'U0' of component 'TM_packet_sender' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1/PCB_Test1.gen/sources_1/bd/PCB_Test1/ip/PCB_Test1_TM_packet_sender_0_0/synth/PCB_Test1_TM_packet_sender_0_0.vhd:124]
+INFO: [Synth 8-638] synthesizing module 'TM_packet_sender' [C:/GitHub/GLITCH-Software/FPGA/Code/TM_packet_sender.vhd:37]
+INFO: [Synth 8-256] done synthesizing module 'TM_packet_sender' (0#1) [C:/GitHub/GLITCH-Software/FPGA/Code/TM_packet_sender.vhd:37]
+INFO: [Synth 8-256] done synthesizing module 'PCB_Test1_TM_packet_sender_0_0' (0#1) [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1/PCB_Test1.gen/sources_1/bd/PCB_Test1/ip/PCB_Test1_TM_packet_sender_0_0/synth/PCB_Test1_TM_packet_sender_0_0.vhd:78]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1067.137 ; gain = 591.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1067.137 ; gain = 591.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1067.137 ; gain = 591.840
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a100tcsg324-2
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'TM_packet_sender'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  s_idle |                              000 |                              000
+         s_send_hk_first |                              001 |                              001
+               s_send_hk |                              010 |                              010
+         s_send_bf_first |                              011 |                              011
+               s_send_bf |                              100 |                              100
+        s_send_rad_first |                              101 |                              101
+              s_send_rad |                              110 |                              110
+                 s_clean |                              111 |                              111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'TM_packet_sender'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:22 . Memory (MB): peak = 1108.988 ; gain = 633.691
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 2     
++---Registers : 
+	            10008 Bit    Registers := 1     
+	              472 Bit    Registers := 1     
+	              224 Bit    Registers := 1     
+	               32 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   8 Input 10008 Bit        Muxes := 1     
+	   8 Input  472 Bit        Muxes := 1     
+	   8 Input  224 Bit        Muxes := 1     
+	   8 Input   32 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 1     
+	   8 Input    8 Bit        Muxes := 1     
+	   8 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 9     
+	   8 Input    1 Bit        Muxes := 19    
+	   2 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:46 ; elapsed = 00:01:56 . Memory (MB): peak = 1307.207 ; gain = 831.910
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:48 ; elapsed = 00:01:58 . Memory (MB): peak = 1316.426 ; gain = 841.129
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:49 ; elapsed = 00:02:03 . Memory (MB): peak = 1316.426 ; gain = 841.129
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:57 ; elapsed = 00:02:11 . Memory (MB): peak = 1495.090 ; gain = 1019.793
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:57 ; elapsed = 00:02:11 . Memory (MB): peak = 1495.090 ; gain = 1019.793
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:58 ; elapsed = 00:02:12 . Memory (MB): peak = 1495.090 ; gain = 1019.793
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:58 ; elapsed = 00:02:12 . Memory (MB): peak = 1495.090 ; gain = 1019.793
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:59 ; elapsed = 00:02:13 . Memory (MB): peak = 1495.090 ; gain = 1019.793
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:59 ; elapsed = 00:02:13 . Memory (MB): peak = 1495.090 ; gain = 1019.793
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |    20|
+|2     |LUT1   |    59|
+|3     |LUT2   | 10745|
+|4     |LUT3   |    55|
+|5     |LUT4   |    27|
+|6     |LUT5   |   236|
+|7     |LUT6   |  4332|
+|8     |MUXF7  |   883|
+|9     |MUXF8  |   405|
+|10    |FDRE   | 10757|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+-----------------+------+
+|      |Instance |Module           |Cells |
++------+---------+-----------------+------+
+|1     |top      |                 | 27519|
+|2     |  U0     |TM_packet_sender | 27519|
++------+---------+-----------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:59 ; elapsed = 00:02:13 . Memory (MB): peak = 1495.090 ; gain = 1019.793
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:59 ; elapsed = 00:02:14 . Memory (MB): peak = 1495.090 ; gain = 1019.793
+Synthesis Optimization Complete : Time (s): cpu = 00:00:59 ; elapsed = 00:02:14 . Memory (MB): peak = 1495.090 ; gain = 1019.793
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.325 . Memory (MB): peak = 1548.625 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1308 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'PCB_Test1_TM_packet_sender_0_0' is not ideal for floorplanning, since the cellview 'TM_packet_sender' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1684.340 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 6c31f411
+INFO: [Common 17-83] Releasing license: Synthesis
+23 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:07 ; elapsed = 00:02:27 . Memory (MB): peak = 1684.340 ; gain = 1209.152
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.112 . Memory (MB): peak = 1949.316 ; gain = 0.105
+INFO: [Common 17-1381] The checkpoint 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1/PCB_Test1.runs/PCB_Test1_TM_packet_sender_0_0_synth_1/PCB_Test1_TM_packet_sender_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 1952.535 ; gain = 268.195
+INFO: [Vivado 12-24828] Executing command : report_utilization -file PCB_Test1_TM_packet_sender_0_0_utilization_synth.rpt -pb PCB_Test1_TM_packet_sender_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Sep 21 13:43:19 2025...

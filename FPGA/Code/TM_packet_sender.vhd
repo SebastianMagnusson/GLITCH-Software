@@ -87,8 +87,8 @@ begin
 					  if(i_TX_active /= '1') then
 						  o_HK_got <= '0';                    
               o_TX_DV <= '1';
-              o_TX_byte <= i_HK_data_i(471 downto 464);
-              bit_cnt <= 463;           
+              o_TX_byte <= "01000101";
+              bit_cnt <= 471;           
 		  	      state <= s_send_HK;
 		  	    else
 		  	      state <= s_send_HK_first;
@@ -113,8 +113,8 @@ begin
             if(i_TX_active /= '1') then
 						  o_BF_got <= '0';
               o_TX_DV <= '1';
-              o_TX_byte <= i_BF_data_i(223 downto 216);
-              bit_cnt <= 215;           
+              o_TX_byte <= "01000101";
+              bit_cnt <= 223;           
 					    state <= s_send_BF;
 					  else
 					    state <= s_send_BF_first;
@@ -143,8 +143,8 @@ begin
             if(i_TX_active /= '1') then        
 						  o_RAD_got <= '0';
               o_TX_DV <= '1';
-              o_TX_byte <= i_RAD_data_i(10007 downto 10000);
-              bit_cnt <= 9999;           
+              o_TX_byte <= "01000101";
+              bit_cnt <= 10007;           
 					    state <= s_send_RAD;
 					  else
 					    state <= s_send_RAD_first;

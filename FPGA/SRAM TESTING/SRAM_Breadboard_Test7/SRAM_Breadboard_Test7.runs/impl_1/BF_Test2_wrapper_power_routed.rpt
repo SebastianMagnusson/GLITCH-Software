@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date             : Wed Sep 17 13:43:36 2025
+| Date             : Thu Sep 18 16:10:16 2025
 | Host             : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command          : report_power -file BF_Test2_wrapper_power_routed.rpt -pb BF_Test2_wrapper_power_summary_routed.pb -rpx BF_Test2_wrapper_power_routed.rpx
 | Design           : BF_Test2_wrapper
@@ -53,13 +53,13 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |     2985 |       --- |             --- |
-|   LUT as Logic |    <0.001 |     1073 |     20800 |            5.16 |
-|   CARRY4       |    <0.001 |       42 |      8150 |            0.52 |
-|   Register     |    <0.001 |     1372 |     41600 |            3.30 |
+| Slice Logic    |    <0.001 |     3103 |       --- |             --- |
+|   LUT as Logic |    <0.001 |     1121 |     20800 |            5.39 |
+|   CARRY4       |    <0.001 |       52 |      8150 |            0.64 |
+|   Register     |    <0.001 |     1412 |     41600 |            3.39 |
 |   F7/F8 Muxes  |    <0.001 |       29 |     32600 |            0.09 |
 |   Others       |     0.000 |       21 |       --- |             --- |
-| Signals        |    <0.001 |     1850 |       --- |             --- |
+| Signals        |    <0.001 |     1964 |       --- |             --- |
 | I/O            |     0.004 |       47 |       106 |           44.34 |
 | Static Power   |     0.072 |          |           |                 |
 | Total          |     0.077 |          |           |                 |

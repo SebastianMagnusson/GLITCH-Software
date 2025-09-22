@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"Fpga_and_MCU_Test1": {
+			"proto_instances": {
+			}
+		}
+	}
+}

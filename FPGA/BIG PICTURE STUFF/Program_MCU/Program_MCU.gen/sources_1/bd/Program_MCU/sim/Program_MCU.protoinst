@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"Program_MCU": {
+			"proto_instances": {
+			}
+		}
+	}
+}

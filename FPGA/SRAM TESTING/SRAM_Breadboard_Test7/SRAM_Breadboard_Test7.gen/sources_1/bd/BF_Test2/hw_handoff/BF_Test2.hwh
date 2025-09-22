@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Sep 17 13:40:34 2025" VIVADOVERSION="2024.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Sep 18 16:06:41 2025" VIVADOVERSION="2024.2">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a35t" NAME="BF_Test2" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -86,12 +86,12 @@
         <CONNECTION INSTANCE="Read7_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="BF_formatter_0" PORT="clk"/>
         <CONNECTION INSTANCE="TM_packet_sender_0" PORT="clk"/>
-        <CONNECTION INSTANCE="I2C_full_sensor_data_0" PORT="clk"/>
         <CONNECTION INSTANCE="RW_ROUTER4_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="I2Cmod_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="BF_Data_Collector_Dr_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="Pulse_Per_Second_0" PORT="sysclk"/>
         <CONNECTION INSTANCE="Write7_0" PORT="sysclk"/>
+        <CONNECTION INSTANCE="I2C_full_sensor_data_0" PORT="clk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="uart_rxd_out" SIGIS="undef" SIGNAME="UART_TXmod_0_o_TX_Serial">
@@ -615,12 +615,12 @@
             <CONNECTION INSTANCE="Read7_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="BF_formatter_0" PORT="rst"/>
             <CONNECTION INSTANCE="TM_packet_sender_0" PORT="rst"/>
-            <CONNECTION INSTANCE="I2C_full_sensor_data_0" PORT="rst"/>
             <CONNECTION INSTANCE="RW_ROUTER4_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="I2Cmod_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="BF_Data_Collector_Dr_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="Pulse_Per_Second_0" PORT="reset_n"/>
             <CONNECTION INSTANCE="Write7_0" PORT="reset_n"/>
+            <CONNECTION INSTANCE="I2C_full_sensor_data_0" PORT="rst"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">

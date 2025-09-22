@@ -361,7 +361,7 @@ begin
 							    led2 <= '0';
 							    if i_busy = '0' then
 									busy_cnt := 0;
-									state    <= START;
+									state    <= IDLE;
 							    end if;
 							when others =>
 								null;                
