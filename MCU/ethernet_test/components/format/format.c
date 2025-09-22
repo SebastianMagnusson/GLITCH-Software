@@ -18,69 +18,84 @@ int acknowledgement_sequence_number = 1;
 
 // Add this function after calculate_crc
 
+// New helper: copy bits from a bit offset in the source buffer
+void set_bits_data_offset(uint8_t *dest, size_t *dest_bit_pos, const uint8_t *src, size_t src_bit_offset, size_t nbits) {
+    for (size_t i = 0; i < nbits; ++i) {
+        size_t src_total_bit = src_bit_offset + i;
+        size_t src_byte = src_total_bit / 8;
+        size_t src_bit = 7 - (src_total_bit % 8);
+        uint8_t bit_val = (src[src_byte] >> src_bit) & 1;
+
+        size_t dest_byte = (*dest_bit_pos + i) / 8;
+        size_t dest_bit = 7 - ((*dest_bit_pos + i) % 8);
+        dest[dest_byte] |= (bit_val << dest_bit);
+    }
+    *dest_bit_pos += nbits;
+}
+
 bool validate_crc_mcu(uint8_t* packet, int total_length) {
-    if (packet == NULL || total_length < 3) {
+    if (packet == NULL) {
         return false;
     }
+
+    //first 16 bits are sequence number
+    //next 3 bits are telecommand
+    //next 5 bits are padding
+    //next 16 bits are crc
+    //total length is in bytes, so total_length*8 is in bits
+
+
     
-    // Extract CRC from last 2 bytes
-    uint16_t received_crc = (packet[total_length - 2] << 8) | packet[total_length - 1];
-    
+    // Extract received CRC (16 bits) taking padding into account
+    uint16_t received_crc = (packet[3] << 8) | packet[4];
+    ESP_LOGI("Format", "Received CRC: 0x%04X", received_crc);
+
     // Calculate CRC for all data except the CRC bytes
-    uint16_t calculated_crc = calculate_crc_bits(packet, total_length - 2);
+    uint16_t calculated_crc = calculate_crc_bits(packet, CONFIG_TC_DATA_SIZE+5);
+    ESP_LOGI("Format", "Calculated CRC: 0x%04X", calculated_crc);
     
     return received_crc == calculated_crc;
 }
 
 
 // Function to pack data manually into packets
-uint8_t* pack_tm(uint8_t* data, int packet_size, int data_size){
+uint8_t* pack_tm(uint8_t* data, int packet_size, int data_bits) {
     if (data == NULL) {
         return NULL;
     }
-    uint8_t id = data[0] & 0b00000011; 
-    uint8_t* packet = (uint8_t*)calloc(packet_size, sizeof(uint8_t));
-    if (packet == NULL) {
-        return NULL;
-    }
+
+    // 1. Read ID (first 2 bits)
+    uint8_t id = (data[0] >> 6) & 0x03;
+
+    // 2. Get sequence number for this type
     uint16_t seq_num = 0;
-    int bit_offset = 0; // Bit offset to avoid padding at the end of data
     switch (id) {
-        case 0:
-            seq_num = housekeeping_sequence_number;
-            bit_offset = 0;
-            break;
-        case 1:
-            seq_num = bitflip_sequence_number;
-            bit_offset = 0;
-            break;
-        case 2:
-            seq_num = radiation_sequence_number;
-            bit_offset = 0;
-            break;
-        default:
-            free(packet);
-            return NULL;
+        case 0: seq_num = housekeeping_sequence_number++; break;
+        case 1: seq_num = bitflip_sequence_number++; break;
+        case 2: seq_num = radiation_sequence_number++; break;
+        default: return NULL;
     }
 
-    packet[0] = id | ((seq_num << 2) & 0b11111100);
-    packet[1] = (seq_num >> 6) & 0b11111111;
-    packet[2] = (seq_num >> 14) & 0b00000011; 
+    // 3. Allocate packet buffer
+    uint8_t* packet = (uint8_t*)calloc(packet_size, sizeof(uint8_t));
+    if (!packet) return NULL;
 
-    // Include the first 6 bits of the data in third byte (The first two bits are id which shouldn't be in the data part)
-    packet[2] |= (data[0]) & 0b11111100;
+    size_t bit_pos = 0;
 
-    // Don't have to change the bit offset as the 3 bytes are complete with alignment on the data bytes intact (2+16+6 = 3 bytes).
-    int array_offset = 3;    
-    for (int i = 1; i < data_size; i++) {
-        packet[i + array_offset] = data[i];
-    }
+    // 4. Write ID (2 bits)
+    set_bits(packet, &bit_pos, id, 2);
 
-    uint16_t crc = calculate_crc_bits(packet, packet_size - 2);
-    // Place the crc into the packet with the correct bit offset (array_offset + data_size + 1 == packet_size)
-    packet[array_offset + data_size - 1] |= crc << bit_offset;
-    packet[array_offset + data_size] = crc >> (8 - bit_offset);
-    packet[array_offset + data_size + 1] = crc >> (16 - bit_offset); 
+    // 5. Write sequence number (16 bits)
+    set_bits(packet, &bit_pos, seq_num, 16);
+
+    // 6. Write the rest of the FPGA data (skip the first 2 bits)
+    set_bits_data_offset(packet, &bit_pos, data, 2, data_bits - 2);
+
+    // 7. Calculate and write CRC (16 bits)
+    uint16_t crc = calculate_crc_bits(packet, bit_pos);
+    set_bits(packet, &bit_pos, crc, 16);
+
+    // 8. Padding is handled by calloc and bit_pos logic
 
     return packet;
 }
@@ -102,103 +117,39 @@ bool is_valid_packet(uint32_t rtc, uint16_t crc, uint8_t* packet) {
     return true;
 }
 
-uint8_t* unpack_tc(uint8_t* packet) {
+uint8_t unpack_tc(uint8_t* packet) {
     if (packet == NULL) {
-        return (uint8_t*)NULL;
+        return 255;
     }
+    
+    // // 2 bytes
+    // uint16_t seq_num = packet[0] << 8 | packet[1];
 
-    // 2 bytes
-    uint16_t seq_num = packet[0] << 8 | packet[1];
+    // // 3 bits
+    // uint8_t tc = packet[2] >> 5 & 0b00000111; 
 
-    // 3 bits
-    uint8_t tc = packet[2] >> 5 & 0b00000111; 
+    // // 17 bits
+    // uint32_t rtc = ((packet[2] & 0b00011111) << 12) | 
+    //        (packet[3] << 4) |
+    //        ((packet[4] >> 4) & 0b00001111);
 
-    // 17 bits
-    uint32_t rtc = ((packet[2] & 0b00011111) << 12) | 
-           (packet[3] << 4) |
-           ((packet[4] >> 4) & 0b00001111);
-
-    uint16_t crc = (packet[4] & 0b00001111) << 12 | 
-                   (packet[5] << 4) | 
-                   ((packet[6] >> 4) & 0b00001111);
-    /*               
-    if (!is_valid_packet(rtc, crc, packet)) {
-        return NULL;
+    // uint16_t crc = (packet[4] & 0b00001111) << 12 | 
+    //                (packet[5] << 4) | 
+    //                ((packet[6] >> 4) & 0b00001111);
+    
+    // Validate CRC
+    if (!validate_crc_mcu(packet, CONFIG_TC_PACKET_SIZE)) {
+        ESP_LOGE("Format", "Invalid CRC in received TC packet");
+        return 255;
     }
-    */
     // If everything is fine, create a new data array to return and stuff the data & RTC into it
-    uint8_t* data = (uint8_t*)calloc((CONFIG_ACKNOWLEDGEMENT_DATA_SIZE + 7) / 8, sizeof(uint8_t));
-    if (data == NULL) {
-        return NULL; // Allocation failed
-    }
-
-    data[0] = packet[2];
-    data[1] = packet[3];
-    data[2] = packet[4];
+    uint8_t data = (packet[2] >> 5) & 0b00000111;
 
     return data;
 }
 
-uint8_t* format_tm(uint8_t* data) {
-    if (data == NULL) {
-        return (uint8_t*)NULL;
-    }
-
-    int telemetry_type = CHECK_BIT(data[0], 6) + CHECK_BIT(data[0], 7) * 2;
-    size_t bit_pos = 0;
-    uint8_t* packet = NULL;
-
-    if (telemetry_type == CONFIG_HOUSEKEEPING_PACKET_ID) {
-        packet = calloc(CONFIG_HOUSEKEEPING_PACKET_SIZE, sizeof(uint8_t));
-                
-        set_bits(packet, &bit_pos, CONFIG_HOUSEKEEPING_PACKET_ID, CONFIG_ID_SIZE);            // ID: 2 bits
-        set_bits(packet, &bit_pos, housekeeping_sequence_number, CONFIG_SEQ_COUNTER_SIZE);    // Seq: 16 bits
-        set_bits_data(packet, &bit_pos, data, CONFIG_HOUSEKEEPING_DATA_SIZE);                 // Data: ? bits
-        
-        size_t data_bits = bit_pos; 
-        uint16_t crc = calculate_crc_bits(packet, data_bits); 
-        
-        set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                     // CRC: 16 bits
-        ESP_LOGI("Format", "Housekeeping crc: %04X", crc);
-        housekeeping_sequence_number++;
-        
-    } else if (telemetry_type == CONFIG_BITFLIP_PACKET_ID) {
-        packet = calloc(CONFIG_BITFLIP_PACKET_SIZE, sizeof(uint8_t));
-
-        set_bits(packet, &bit_pos, CONFIG_BITFLIP_PACKET_ID, CONFIG_ID_SIZE);                // ID: 2 bits
-        set_bits(packet, &bit_pos, bitflip_sequence_number, CONFIG_SEQ_COUNTER_SIZE);        // Seq: 16 bits
-        set_bits_data(packet, &bit_pos, data, CONFIG_BITFLIP_DATA_SIZE);                     // Data: ? bits
-        
-        size_t data_bits = bit_pos; 
-        uint16_t crc = calculate_crc_bits(packet, data_bits); 
-        
-        set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                    // CRC: 16 bits
-        ESP_LOGI("Format", "Bitflip crc: %04X", crc);
-        bitflip_sequence_number++;
-        
-    } else if (telemetry_type == CONFIG_RADIATION_PACKET_ID) {
-        packet = calloc(CONFIG_RADIATION_PACKET_SIZE, sizeof(uint8_t));
-
-        set_bits(packet, &bit_pos, CONFIG_RADIATION_PACKET_ID, CONFIG_ID_SIZE);              // ID: 2 bits
-        set_bits(packet, &bit_pos, radiation_sequence_number, CONFIG_SEQ_COUNTER_SIZE);      // Seq: 16 bits
-        set_bits_data(packet, &bit_pos, data, CONFIG_RADIATION_DATA_SIZE);                   // Data: ? bits
-
-        size_t data_bits = bit_pos;
-        uint16_t crc = calculate_crc_bits(packet, data_bits);
-
-        set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                    // CRC: 16 bits
-        ESP_LOGI("Format", "Radiation crc: %04X", crc);
-        radiation_sequence_number++;
-        
-    } else {
-        return (uint8_t*)NULL;
-    }
-
-    return packet;
-}
-
-uint8_t* format_tc(uint8_t* data) {
-    if (data == NULL) {
+uint8_t* format_ack(uint8_t data) {
+    if (data == 255) {
         return NULL;
     }
 
@@ -207,7 +158,7 @@ uint8_t* format_tc(uint8_t* data) {
     size_t bit_pos = 0;
     set_bits(packet, &bit_pos, CONFIG_ACKNOWLEDGEMENT_PACKET_ID, CONFIG_ID_SIZE);            // ID: 2 bits
     set_bits(packet, &bit_pos, acknowledgement_sequence_number, CONFIG_SEQ_COUNTER_SIZE);    // Seq: 16 bits
-    set_bits_data(packet, &bit_pos, data, CONFIG_ACKNOWLEDGEMENT_DATA_SIZE);                 // Data: ? bits
+    set_bits(packet, &bit_pos, data, 3);                 // Data: 3 bits
     
     // Calculate CRC on actual data bits
     size_t data_bits = bit_pos;
@@ -215,6 +166,14 @@ uint8_t* format_tc(uint8_t* data) {
     
     set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                        // CRC: 16 bits
     ESP_LOGI("Format", "Acknowledgement crc: %04X", crc);
+    //print whole packet in binary
+    ESP_LOGI("Format", "Acknowledgement packet: ");
+    for (int i = 0; i < CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE; i++) {
+        for (int j = 7; j >= 0; j--) {
+            ESP_LOGI("Format", "%d", (packet[i] >> j) & 1);
+        }
+        ESP_LOGI("Format", " ");
+    }
     acknowledgement_sequence_number++;
     /*
     uint8_t* packet = (uint8_t*)calloc(CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE, sizeof(uint8_t));

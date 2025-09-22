@@ -37,16 +37,16 @@ void buffer_deinit(); // Function to deinitialize the buffer and free memory
 void buffer_add_tm(int priority, uint8_t* data); // Function to add tm frame to the buffer with priority
 
 /// @brief Function to add command ready to be sent to FPGA
-/// @param uint8_t*: Pointer to the data to be added to the buffer
-void buffer_add_tc(uint8_t* data); // Function to add frame to the tc buffer
+/// @param uint8_t: Data byte to be added to the buffer
+void buffer_add_tc(uint8_t data); // Function to add frame to the tc buffer
 
 /// @brief Function to retreive frames from buffer
 /// @return Ethernet frame
 uint8_t* buffer_retreive_tm(); // Function to retreive tm frames from buffer
 
 /// @brief Function to retreive command ready to be sent to FPGA
-/// @return uint8_t*: Pointer to the data to be retreived from the buffer
-uint8_t* buffer_retreive_tc(); // Function to retreive tc frames from buffer
+/// @return uint8_t: Data byte retrieved from the buffer
+uint8_t buffer_retreive_tc(); // Function to retreive tc frames from buffer
 
 /// @brief Function to retreive radiation frames from buffer
 /// @param uint8_t**: Pointer to the array where retrieved radiation data will be stored

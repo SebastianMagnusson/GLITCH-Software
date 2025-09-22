@@ -131,8 +131,16 @@ ping 192.168.4.2
 To monitor serial output from the MCU:
 
 ```bash
+# List all available serial devices
+ls /dev/tty.* /dev/cu.*
+```
+Find the device corresponding to your MCU (e.g., `/dev/tty.usbserial-114201`).
+
+Then, use a serial monitor tool. For example, with PlatformIO:
+
+```bash
 # Using PlatformIO CLI (install with 'pip install platformio' if needed)
-pio device monitor --port /dev/tty.usbserial-114201 --baud 115200
+pio device monitor --port /dev/tty.usbserial-XXXXXX --baud 115200
 ```
 
 Note: Your serial port may differ. Common formats are /dev/tty.usbserial-* or /dev/cu.usbserial-*.
@@ -178,7 +186,6 @@ ground_station/
 │   ├── logger.py             # Data logging functionality
 │   └── logs/                 # Log file directory
 ├── receiver/
-│   ├── packet_lengths.py     # Packet length definitions
 │   ├── packet_parser.py      # Packet parsing and validation
 │   └── packet_structures.py  # Packet data structures
 ├── uplink/

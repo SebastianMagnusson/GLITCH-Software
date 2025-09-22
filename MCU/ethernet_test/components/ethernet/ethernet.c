@@ -3,6 +3,8 @@
 #include "format.h"
 #include "sdkconfig.h"
 
+#include "driver/spi_master.h"
+
 #include "esp_log.h"
 #include "esp_check.h"
 #include "esp_mac.h"
@@ -63,6 +65,66 @@ static void eth_event_handler(void *arg, esp_event_base_t event_base,
         break;
     }
 
+}
+
+
+esp_eth_handle_t init_wiz550io_eth(void) {
+    static bool spi_bus_initialized = false;
+    if (!spi_bus_initialized) {
+        spi_bus_config_t buscfg = {
+            .mosi_io_num = CONFIG_ETH_PHY_SI_PIN,
+            .miso_io_num = CONFIG_ETH_PHY_SO_PIN,
+            .sclk_io_num = CONFIG_ETH_PHY_SCK_PIN,
+            .quadwp_io_num = -1,
+            .quadhd_io_num = -1,
+            .max_transfer_sz = 4096,
+        };
+        esp_err_t err = spi_bus_initialize(SPI2_HOST, &buscfg, SPI_DMA_CH_AUTO);
+        if (err != ESP_OK && err != ESP_ERR_INVALID_STATE) {
+            ESP_LOGE(TAG, "Failed to initialize SPI bus: %s", esp_err_to_name(err));
+            return NULL;
+        }
+        spi_bus_initialized = true;
+    }
+
+    // 2. Configure SPI device for W5500
+    spi_device_interface_config_t devcfg = {
+        .mode = 0,
+        .clock_speed_hz = 16 * 1000 * 1000, // 16 MHz
+        .spics_io_num = CONFIG_ETH_PHY_CS_PIN,
+        .queue_size = 20,
+    };
+
+    // 3. MAC/PHY config
+    eth_mac_config_t mac_config = ETH_MAC_DEFAULT_CONFIG();
+    eth_phy_config_t phy_config = ETH_PHY_DEFAULT_CONFIG();
+    phy_config.reset_gpio_num = -1; // Set to your reset pin, or -1 if not used
+
+    // 4. W5500 config
+    eth_w5500_config_t w5500_config = ETH_W5500_DEFAULT_CONFIG(SPI2_HOST, &devcfg);
+    w5500_config.int_gpio_num = -1; // Set to your INT pin, or -1 if not used
+    w5500_config.poll_period_ms = 100; // Polling period for link status
+
+    esp_eth_mac_t *mac = esp_eth_mac_new_w5500(&w5500_config, &mac_config);
+    ESP_LOGI(TAG, "esp_eth_mac_new_w5500: %p", mac);
+    if (!mac) { ESP_LOGE(TAG, "Failed to create W5500 MAC"); return NULL; }
+
+    esp_eth_phy_t *phy = esp_eth_phy_new_w5500(&phy_config);
+    ESP_LOGI(TAG, "esp_eth_phy_new_w5500: %p", phy);
+    if (!phy) { ESP_LOGE(TAG, "Failed to create W5500 PHY"); mac->del(mac); return NULL; }
+
+    esp_eth_config_t eth_config = ETH_DEFAULT_CONFIG(mac, phy);
+    esp_eth_handle_t eth_handle = NULL;
+    esp_err_t err = esp_eth_driver_install(&eth_config, &eth_handle);
+    ESP_LOGI(TAG, "esp_eth_driver_install: %d, eth_handle: %p", err, eth_handle);
+    if (err != ESP_OK || !eth_handle) {
+        ESP_LOGE(TAG, "Failed to install Ethernet driver: %s", esp_err_to_name(err));
+        mac->del(mac); phy->del(phy); return NULL;
+    }
+
+    // Do NOT create or attach netif here! Only do it ONCE in ethernet_setup()
+
+    return eth_handle;
 }
 
 /** Event handler for IP_EVENT_ETH_GOT_IP */
@@ -148,44 +210,45 @@ esp_err_t eth_deinit(esp_eth_handle_t *eth_handles, uint8_t eth_cnt)
 
 esp_eth_handle_t ethernet_setup(void){
 
-    esp_eth_handle_t eth_handle = eth_init(NULL, NULL); // Initialize Ethernet driver
+    esp_eth_handle_t eth_handle = init_wiz550io_eth(); // Initialize Ethernet driver
+    if (!eth_handle) return NULL;
 
-    ESP_ERROR_CHECK(esp_netif_init()); // Initialize TCP/IP network interface (should be called only once in application)
-    ESP_ERROR_CHECK(esp_event_loop_create_default()); // Create default event loop
+    // REMOVE these lines (already done in app_main):
+    // ESP_ERROR_CHECK(esp_netif_init());
+    // ESP_ERROR_CHECK(esp_event_loop_create_default());
 
-    esp_netif_config_t cfg = ESP_NETIF_DEFAULT_ETH(); // apply default network interface configuration for Ethernet
-    esp_netif_t *eth_netif = esp_netif_new(&cfg); // create network interface for Ethernet driver
+    static esp_netif_t *eth_netif = NULL;
+    if (!eth_netif) {
+        esp_netif_config_t cfg = ESP_NETIF_DEFAULT_ETH();
+        eth_netif = esp_netif_new(&cfg);
+        void *glue = esp_eth_new_netif_glue(eth_handle);
+        if (!glue) {
+            ESP_LOGE(TAG, "esp_eth_new_netif_glue returned NULL!");
+            return NULL;
+        }
+        ESP_ERROR_CHECK(esp_netif_attach(eth_netif, glue));
+    }
 
+    ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ESP_EVENT_ANY_ID, &eth_event_handler, NULL));
+    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP, &got_ip_event_handler, NULL));
 
-    ESP_ERROR_CHECK(esp_netif_attach(eth_netif, esp_eth_new_netif_glue(eth_handle))); // attach Ethernet driver to TCP/IP stack
-    ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ESP_EVENT_ANY_ID, &eth_event_handler, NULL)); // register user defined Ethernet event handlers
-    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP, &got_ip_event_handler, NULL)); // register user defined IP event handlers
-
-    // Might have to change this into the event handler for the ethernet driver so that it sets it again if it is disconnected**
-    // As in the MCU loses power and has to restart, but then the program should start from the beginning so might not be needed.    
     #if CONFIG_USE_STATIC_IP
-        // Might not be needed to stop the dhcp client if we change this into the event handler.
-        // Then it would only need to be called once at the start
         if (esp_netif_dhcpc_stop(eth_netif) != ESP_OK) {
             ESP_LOGE(TAG, "Failed to stop dhcp client");
             return NULL;
         }
-
         esp_netif_ip_info_t info_t;
         memset(&info_t, 0, sizeof(esp_netif_ip_info_t));
         info_t.ip.addr = ipaddr_addr(STATIC_IP);
         info_t.gw.addr = ipaddr_addr(STATIC_GATEWAY);
         info_t.netmask.addr = ipaddr_addr(STATIC_NETMASK);
-        
         if(esp_netif_set_ip_info(eth_netif, &info_t) != ESP_OK){
             ESP_LOGE(TAG, "Failed to set ip info");
         }
-
         ESP_LOGI(TAG, "Success to set static ip: %s, netmask: %s, gw: %s", STATIC_IP, STATIC_NETMASK, STATIC_GATEWAY);
+    #endif
 
-    #endif /* USE_STATIC_IP */
-
-    ESP_ERROR_CHECK(esp_eth_start(eth_handle)); // start Ethernet driver state machine
+    ESP_ERROR_CHECK(esp_eth_start(eth_handle));
 
     #if CONFIG_USE_STATIC_IP
         s_network_event_group = xEventGroupCreate(); // Create an event group to signal connection
@@ -223,6 +286,7 @@ esp_eth_handle_t ethernet_setup(void){
     return eth_handle;
 
 }
+
 
 /**
  * @brief Clear listen socket buffers and reset connection queue
@@ -498,49 +562,49 @@ static int drain_transmit_buffer(int sock)
     return packets_sent;
 }
 
-/**
- * @brief Initial retransmission of buffered data and setup for ongoing communication
- * @param sock Socket file descriptor
- * @return ESP_OK on success, ESP_FAIL on failure
- */
-static esp_err_t do_retransmit(const int sock)
-{
-    uint8_t rx_buffer[128];
-    int len_receive;
+// /**
+//  * @brief Initial retransmission of buffered data and setup for ongoing communication
+//  * @param sock Socket file descriptor
+//  * @return ESP_OK on success, ESP_FAIL on failure
+//  */
+// static esp_err_t do_retransmit(const int sock)
+// {
+//     uint8_t rx_buffer[128];
+//     int len_receive;
 
-    do {
-        // Send any buffered data
-        uint8_t *tc_data = buffer_retreive_tm();
-        if (tc_data != NULL) {
-            if (eth_transmit(sock, tc_data, 2) != ESP_OK) {
-                ESP_LOGE(TAG, "Failed to retransmit buffered data");
-                return ESP_FAIL;
-            }
-        }
+//     do {
+//         // Send any buffered data
+//         uint8_t *tc_data = buffer_retreive_tm();
+//         if (tc_data != NULL) {
+//             if (eth_transmit(sock, tc_data, 2) != ESP_OK) {
+//                 ESP_LOGE(TAG, "Failed to retransmit buffered data");
+//                 return ESP_FAIL;
+//             }
+//         }
 
-        // Check for any initial data from client
-        len_receive = eth_receive_data(sock, rx_buffer, sizeof(rx_buffer), MSG_DONTWAIT);
+//         // Check for any initial data from client
+//         len_receive = eth_receive_data(sock, rx_buffer, sizeof(rx_buffer), MSG_DONTWAIT);
         
-        if (len_receive < 0) {
-            // Fatal error occurred
-            ESP_LOGE(TAG, "Fatal receive error during retransmit");
-            return ESP_FAIL;
-        } else if (len_receive > 0) {
-            // Process received data
-            rx_buffer[len_receive] = 0; // Null-terminate for logging
-            ESP_LOGI(TAG, "Received %d bytes during retransmit: %s", len_receive, rx_buffer);
-            buffer_add_tc(rx_buffer);
-        }
-        // len_receive == 0 means no data available, which is normal
+//         if (len_receive < 0) {
+//             // Fatal error occurred
+//             ESP_LOGE(TAG, "Fatal receive error during retransmit");
+//             return ESP_FAIL;
+//         } else if (len_receive > 0) {
+//             // Process received data
+//             rx_buffer[len_receive] = 0; // Null-terminate for logging
+//             ESP_LOGI(TAG, "Received %d bytes during retransmit: %s", len_receive, rx_buffer);
+//             buffer_add_tc(rx_buffer);
+//         }
+//         // len_receive == 0 means no data available, which is normal
         
-        if (len_receive == 0) {
-            vTaskDelay(pdMS_TO_TICKS(10)); // Brief delay to avoid busy-waiting
-        }
+//         if (len_receive == 0) {
+//             vTaskDelay(pdMS_TO_TICKS(10)); // Brief delay to avoid busy-waiting
+//         }
         
-    } while (len_receive > 0);
+//     } while (len_receive > 0);
 
-    return ESP_OK;
-}
+//     return ESP_OK;
+// }
 
 void confirmation_task(void *pvParameters)
 {
@@ -573,14 +637,14 @@ void confirmation_task(void *pvParameters)
             vTaskDelete(NULL);
         }
 
-        uint8_t *tc_received = unpack_tc(response);
-        if (tc_received == NULL) {
+        uint8_t tc_received = unpack_tc(response);
+        if (tc_received == 255) {
             ESP_LOGE(TAG, "Failed to unpack telecommand packet, killing confirmation task");
             vTaskDelete(NULL);
         }
 
-        if (((tc_received[3] >> 1) & 0b00000011) == CONFIG_CUT_OFF_TC_ID)  {
-            uint8_t *ack_packet = format_tc(tc_received);
+        if (tc_received == CONFIG_CUT_OFF_TC_ID)  {
+            uint8_t *ack_packet = format_ack(tc_received);
             if (ack_packet != NULL) {
 
                 eth_transmit(sock, ack_packet, 2);
@@ -608,14 +672,14 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
                                             general_task_params_t *task_params,
                                             TaskHandle_t *confirmation_task_handle)
 {
-    uint8_t *tc_received = unpack_tc(rx_buffer);
-    if (tc_received == NULL) {
+    uint8_t tc_received = unpack_tc(rx_buffer);
+    if (tc_received == 255) {
         ESP_LOGE(TAG, "Failed to unpack telecommand packet");
         return ESP_FAIL;
     }
 
     // Check if the telecommand warrants a confirmation task
-    if (((tc_received[0] >> 5) & 0b00000111) == CONFIG_CUT_OFF_TC_ID) {
+    if (tc_received == CONFIG_CUT_OFF_TC_ID) {
         if (xTaskCreate(confirmation_task, "confirmation", 2048, task_params, 5, confirmation_task_handle) != pdPASS) {
             ESP_LOGE(TAG, "Failed to create confirmation task");
             return ESP_FAIL;
@@ -623,9 +687,9 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
     }
 
     // FIX: Pass the entire tc_received data, not just the ID
-    buffer_add_tc(tc_received);  // Remove the & and tc_id extraction
+    buffer_add_tc(tc_received);  // Pass the pointer directly
     
-    uint8_t *ack_packet = format_tc(tc_received);
+    uint8_t *ack_packet = format_ack(tc_received);
     if (ack_packet == NULL) {
         ESP_LOGE(TAG, "Failed to format telecommand packet for acknowledgment");
         return ESP_FAIL;
@@ -771,7 +835,7 @@ void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile in
         esp_task_wdt_reset();
         // eth_transmit(sock, generate_RAD_packet(), 2);
         // Small delay to prevent busy waiting - increased to give more time
-        vTaskDelay(pdMS_TO_TICKS(500));
+        //vTaskDelay(pdMS_TO_TICKS(500));
 
     } while (len_receive >= 0);
 

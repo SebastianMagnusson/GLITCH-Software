@@ -6,13 +6,14 @@ import pyqtgraph as pg
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, 
                             QVBoxLayout, QHBoxLayout, QLabel, QTableWidget, 
                             QTableWidgetItem, QPushButton, QGroupBox, QComboBox,
-                            QFrame)
+                            QFrame, QHeaderView)
 from PyQt5.QtCore import Qt, QTimer
 from telemetry.telemetry_manager import TelemetryManager
 from uplink.uplink_sender import send_telecommand
 from uplink.tc_types import TC_RESET, TC_SET_MODE_POWER_SAVE, TC_SET_MODE_NORMAL
 from PyQt5.QtWidgets import QMessageBox
 import config
+from utils import rtc_str_to_seconds
 
 class Dashboard(QMainWindow):
     def __init__(self, telemetry_manager):
@@ -82,7 +83,6 @@ class Dashboard(QMainWindow):
             ("RTC", "rtc"),
             ("Internal Temp", "internal"),
             ("External Temp", "external"),
-            ("Sensor Board Temp", "sensor_board"),
             ("GNSS", "gnss"),
             ("Altitude", "altitude"),
             ("Radiation", "radiation")
@@ -103,24 +103,41 @@ class Dashboard(QMainWindow):
         # Bit Flip
         self.bf_group = QGroupBox("Bit flip (BF)")
         bf_layout = QVBoxLayout(self.bf_group)
+
+        # BF summary labels stacked vertically
         self.bf_labels = {}
-        
-        bf_params = [
+        bf_summary_params = [
             ("Sequence Counter", "seq_counter"),
             ("RTC", "rtc"),
-            ("Bit Flip Data", "bit_flip")
+            ("Tot", "tot"),
+            ("Now", "now"),
         ]
-        
-        for display_name, param_key in bf_params:
+        for display_name, param_key in bf_summary_params:
             hbox = QHBoxLayout()
             key_label = QLabel(f"{display_name}:")
-            key_label.setFixedWidth(150)
+            key_label.setFixedWidth(120)
             value_label = QLabel("--")
             hbox.addWidget(key_label)
             hbox.addWidget(value_label)
             bf_layout.addLayout(hbox)
             self.bf_labels[param_key] = value_label
-        
+
+        # Table for 0,1,2,3 columns and addr/data/which/temp/osc rows
+        self.bf_row_names = ["addr", "data", "which_sram", "temp", "oscillators"]
+        self.bf_table = QTableWidget(len(self.bf_row_names), 4)
+        self.bf_table.setHorizontalHeaderLabels(["0", "1", "2", "3"])
+        self.bf_table.setVerticalHeaderLabels(["Addr", "Data", "SRAM", "Temp", "Osc"])
+        self.bf_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.bf_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.bf_table.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.bf_table.setSelectionMode(QTableWidget.NoSelection)
+        self.bf_table.setFixedWidth(260)
+        self.bf_table.setStyleSheet("font-size: 10px;")
+        for row in range(len(self.bf_row_names)):
+            for col in range(4):
+                self.bf_table.setItem(row, col, QTableWidgetItem("--"))
+        bf_layout.addWidget(self.bf_table)
+
         left_panel.addWidget(self.bf_group)
 
         # Radiation
@@ -203,12 +220,14 @@ class Dashboard(QMainWindow):
             stats_layout.addLayout(hbox)
             self.packet_counters[packet_type] = counter_label
         
-        left_panel.addWidget(stats_group)
+        
 
         # Create right panel for commands
         right_panel = QVBoxLayout()
         right_panel.setSpacing(10)
         right_panel.setAlignment(Qt.AlignTop)
+
+        right_panel.addWidget(stats_group)
         
         # Telecommands section
         cmd_group = QGroupBox("TC Uplink")
@@ -251,8 +270,7 @@ class Dashboard(QMainWindow):
         
         ack_params = [
             ("Sequence Counter", "seq_counter"),
-            ("RTC", "rtc"),
-            ("Telecommand Ack", "command_ack")
+            ("Telecommand Ack", "telecommand_ack")
         ]
         
         for display_name, param_key in ack_params:
@@ -304,7 +322,6 @@ class Dashboard(QMainWindow):
         self.time_data = np.zeros(self.max_data_points)
         self.internal_temp_data = np.zeros(self.max_data_points)
         self.external_temp_data = np.zeros(self.max_data_points)
-        self.sensor_board_temp_data = np.zeros(self.max_data_points)
         
         # Use fixed-size arrays for altitude graph
         self.alt_time_data = np.zeros(self.max_data_points)
@@ -313,7 +330,6 @@ class Dashboard(QMainWindow):
         # Track previous values for missing data points
         self.last_internal_temp = 0
         self.last_external_temp = 0
-        self.last_sensor_board_temp = 0
         self.last_altitude = 0
 
         
@@ -325,10 +341,7 @@ class Dashboard(QMainWindow):
             self.time_data, self.external_temp_data, 
             pen=pg.mkPen('b', width=2), name='External'
         )
-        self.sensor_board_line = self.temp_plot.plot(
-            self.time_data, self.sensor_board_temp_data, 
-            pen=pg.mkPen('g', width=2), name='Sensor Board'
-        )
+        
         
         temp_graph_layout.addWidget(self.temp_plot)
         graph_panel.addWidget(temp_graph_group)
@@ -367,9 +380,7 @@ class Dashboard(QMainWindow):
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_display)
         self.timer.start(1000)
-        
-        self.time_counter = 0
-        
+                
         self.max_data_points = config.MAX_DATA_POINTS_GRAPH
         
         self.connection_timeout = config.CONNECTION_TIMEOUT
@@ -384,11 +395,24 @@ class Dashboard(QMainWindow):
             if key in hk_data:
                 label.setText(str(hk_data[key]))
         
-        # Update BF
+        # Update BF Tot and Now
         bf_data = self.telemetry_manager.current_data["BF"]
         for key, label in self.bf_labels.items():
             if key in bf_data:
                 label.setText(str(bf_data[key]))
+
+        # Update BF Table
+        for col in range(4):
+            for row, field in enumerate(self.bf_row_names):
+                key = f"{field}{col}"
+                value = bf_data.get(key, "--")
+                # Show addr/data in hex, others as int
+                if field in ["addr", "data"]:
+                    try:
+                        value = hex(int(value))
+                    except Exception:
+                        pass
+                self.bf_table.setItem(row, col, QTableWidgetItem(str(value)))
 
         # Update RAD - Show statistics instead of raw data
         rad_data = self.telemetry_manager.current_data["RAD"]
@@ -441,10 +465,10 @@ class Dashboard(QMainWindow):
         self.valid_packets_label.setText(str(packet_stats["valid_packets"]))
         
         # Update graphs
-        if hk_data:
-            self.time_counter += 1 
-            self.update_temperature(hk_data)
-            self.update_altitude(hk_data)
+        if hk_data and "rtc" in hk_data:
+            rtc_seconds = rtc_str_to_seconds(hk_data["rtc"])
+            self.update_temperature(hk_data, rtc_seconds)
+            self.update_altitude(hk_data, rtc_seconds)
 
         # Update connection status
         self.update_connection_status()
@@ -483,13 +507,13 @@ class Dashboard(QMainWindow):
             self.status_label.setText("Status: Disconnected from MCU")
             self.status_circle.setStyleSheet("color: red; font-size: 14px; font-weight: bold;")
 
-    def update_altitude(self, hk_data):
+    def update_altitude(self, hk_data, rtc_seconds):
         # Shift arrays left to remove oldest data point
         self.alt_time_data[:-1] = self.alt_time_data[1:]
         self.alt_data[:-1] = self.alt_data[1:]
         
         # Add new data at the end
-        self.alt_time_data[-1] = self.time_counter
+        self.alt_time_data[-1] = rtc_seconds
         
         # Add altitude data with fallback to previous value
         if 'altitude' in hk_data:
@@ -505,15 +529,14 @@ class Dashboard(QMainWindow):
             # No data yet
             self.alt_line.setData([], [])
     
-    def update_temperature(self, hk_data):
+    def update_temperature(self, hk_data, rtc_seconds):
         # Shift arrays left to remove oldest data point
         self.time_data[:-1] = self.time_data[1:]
         self.internal_temp_data[:-1] = self.internal_temp_data[1:]
         self.external_temp_data[:-1] = self.external_temp_data[1:]
-        self.sensor_board_temp_data[:-1] = self.sensor_board_temp_data[1:]
         
         # Add new data at the end
-        self.time_data[-1] = self.time_counter
+        self.time_data[-1] = rtc_seconds
         
         # Add temperature data with fallback to previous values
         if 'internal' in hk_data:
@@ -524,9 +547,6 @@ class Dashboard(QMainWindow):
             self.last_external_temp = float(hk_data['external'])
         self.external_temp_data[-1] = self.last_external_temp
     
-        if 'sensor_board' in hk_data:
-            self.last_sensor_board_temp = float(hk_data['sensor_board'])
-        self.sensor_board_temp_data[-1] = self.last_sensor_board_temp
     
         # Update plot data - only show non-zero values (to avoid initial zeros)
         non_zero_indices = np.where(self.time_data > 0)[0]
@@ -534,12 +554,10 @@ class Dashboard(QMainWindow):
             start_idx = non_zero_indices[0]
             self.internal_line.setData(self.time_data[start_idx:], self.internal_temp_data[start_idx:])
             self.external_line.setData(self.time_data[start_idx:], self.external_temp_data[start_idx:])
-            self.sensor_board_line.setData(self.time_data[start_idx:], self.sensor_board_temp_data[start_idx:])
         else:
             # No data yet
             self.internal_line.setData([], [])
             self.external_line.setData([], [])
-            self.sensor_board_line.setData([], [])
     
     def callback_update(self, packet):
         """Called when new packet is received"""
@@ -563,7 +581,7 @@ class Dashboard(QMainWindow):
         print(f"Sending telecommand: type={command_type}, code={tc_code}, rtc={rtc}")
 
         try:
-            success = send_telecommand(self.telemetry_manager, seq, tc_code, rtc)
+            success = send_telecommand(self.telemetry_manager, seq, tc_code)
 
             self.log(success)
         except Exception as e:

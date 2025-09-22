@@ -37,4 +37,11 @@ void storage_deinit(void);
  */
 esp_err_t storage_get_stats(uint32_t* free_space, uint32_t* total_space, uint32_t* packet_count);
 
+// Non-blocking: copies 'data' and enqueues it for the background task.
+// Returns false if queue full (packet dropped).
+bool storage_enqueue_packet(const uint8_t *data, size_t length, uint8_t packet_id);
+
+// (optional) stats
+esp_err_t storage_get_stats(uint32_t* free_kb, uint32_t* total_kb, uint32_t* total_packets);
+
 #endif // STORAGE_H
