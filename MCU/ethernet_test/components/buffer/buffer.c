@@ -11,7 +11,7 @@ frame_tm* head_tm; // Head of the linked list for tm buffer
 
 // Circular array for tc buffer with max size of MAX_TC_BUFFER_SIZE
 // Curcular means that the as long as there are not more than MAX_TC_BUFFER_SIZE commands to be sent, the buffer will not overflow
-uint8_t* buffer_tc[CONFIG_MAX_TC_BUFFER_SIZE]; 
+uint8_t buffer_tc[CONFIG_MAX_TC_BUFFER_SIZE]; 
 int front_tc; 
 int size_tc; 
 
@@ -43,7 +43,7 @@ int check_length(uint8_t* data) {
 void buffer_init() {
     head_tm = NULL;
     for (int i = 0; i < CONFIG_MAX_TC_BUFFER_SIZE; i++) {
-        buffer_tc[i] = NULL; 
+        buffer_tc[i] = 255; 
     }
     front_tc = 0;
     size_tc = 0;
@@ -67,9 +67,8 @@ void buffer_deinit() {
 
     // Free any remaining TC data and reset the tc buffer
     for (int i = 0; i < CONFIG_MAX_TC_BUFFER_SIZE; i++) {
-        if (buffer_tc[i] != NULL) {
-            free(buffer_tc[i]); // Free the TC data
-            buffer_tc[i] = NULL; 
+        if (buffer_tc[i] != 255) {
+            buffer_tc[i] = 255; 
         }
     }
     front_tc = 0;
@@ -249,76 +248,50 @@ frame_tm* peek_tm(int index) {
 }
 
 
-void buffer_add_tc(uint8_t* data) {
+void buffer_add_tc(uint8_t data) {
     if (size_tc >= CONFIG_MAX_TC_BUFFER_SIZE) {        
         ESP_LOGE("Buffer", "Buffer is full, no data added");        
         return; 
     }
 
-    // Allocate memory for the TC data copy
-    int data_length = 7; // Standard TC packet length
-    uint8_t* data_copy = (uint8_t*)malloc(data_length);
-    if (data_copy == NULL) {
-        ESP_LOGE("Buffer", "Failed to allocate memory for TC data");
-        return;
-    }
-    
-    memcpy(data_copy, data, data_length);
-
     // Add the copied data to the buffer
-    buffer_tc[(front_tc + size_tc) % CONFIG_MAX_TC_BUFFER_SIZE] = data_copy; 
+    buffer_tc[(front_tc + size_tc) % CONFIG_MAX_TC_BUFFER_SIZE] = data; 
     ESP_LOGI("Buffer", "TC added to buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
-             data_copy[0], 
-             (data_copy[0] & 0x80) ? '1' : '0', (data_copy[0] & 0x40) ? '1' : '0', (data_copy[0] & 0x20) ? '1' : '0', (data_copy[0] & 0x10) ? '1' : '0',
-             (data_copy[0] & 0x08) ? '1' : '0', (data_copy[0] & 0x04) ? '1' : '0', (data_copy[0] & 0x02) ? '1' : '0', (data_copy[0] & 0x01) ? '1' : '0');
+             data, 
+             (data & 0x80) ? '1' : '0', (data & 0x40) ? '1' : '0', (data & 0x20) ? '1' : '0', (data & 0x10) ? '1' : '0',
+             (data & 0x08) ? '1' : '0', (data & 0x04) ? '1' : '0', (data & 0x02) ? '1' : '0', (data & 0x01) ? '1' : '0');
     size_tc++;
 }
 
-uint8_t* buffer_retreive_tc() {
+uint8_t buffer_retreive_tc() {
     if (size_tc == 0) {
-        return (uint8_t*)NULL; 
+        return 255; 
     }
 
     // Get the original data
-    uint8_t* original_data = buffer_tc[front_tc]; 
-    
-    // Calculate the length needed
-    int data_length = 7; // Based on your ethernet packet length
-    
-    // Create a copy for the caller
-    uint8_t* copied_data = (uint8_t*)malloc(data_length);
-    if (copied_data == NULL) {
-        ESP_LOGE("Buffer", "Failed to allocate memory for TC copy");
-        return NULL;
-    }
-    
-    memcpy(copied_data, original_data, data_length);
-    
-    // Free the original data after copying, as buffer_retreive_tc now takes ownership
-    free(original_data);
-    buffer_tc[front_tc] = NULL;
+    uint8_t original_data = buffer_tc[front_tc]; 
     
     front_tc = (front_tc + 1) % CONFIG_MAX_TC_BUFFER_SIZE;
     size_tc--; 
     
     ESP_LOGI("Buffer", "TC retrieved from buffer - Byte 0: 0x%02X (0b%c%c%c%c%c%c%c%c)", 
-             copied_data[0], 
-             (copied_data[0] & 0x80) ? '1' : '0', (copied_data[0] & 0x40) ? '1' : '0', (copied_data[0] & 0x20) ? '1' : '0', (copied_data[0] & 0x10) ? '1' : '0',
-             (copied_data[0] & 0x08) ? '1' : '0', (copied_data[0] & 0x04) ? '1' : '0', (copied_data[0] & 0x02) ? '1' : '0', (copied_data[0] & 0x01) ? '1' : '0');
-    
-    return copied_data; 
+             original_data, 
+             (original_data & 0x80) ? '1' : '0', (original_data & 0x40) ? '1' : '0', (original_data & 0x20) ? '1' : '0', (original_data & 0x10) ? '1' : '0',
+             (original_data & 0x08) ? '1' : '0', (original_data & 0x04) ? '1' : '0', (original_data & 0x02) ? '1' : '0', (original_data & 0x01) ? '1' : '0');
+
+    return original_data; 
 }
 
-uint8_t* peek_tc(int index) {
-    if (size_tc == 0) {        
-        ESP_LOGE("Buffer", "Buffer is empty, no data to retrieve"); 
-        return (uint8_t*)NULL; 
-    }
+// uint8_t* peek_tc(int index) {
+//     if (size_tc == 0) {        
+//         ESP_LOGE("Buffer", "Buffer is empty, no data to retrieve"); 
+//         return (uint8_t*)NULL; 
+//     }
 
-    if (index < 0 || index >= size_tc) {        
-        ESP_LOGE("Buffer", "Invalid index: %d", index); 
-        return (uint8_t*)NULL; 
-    }
+//     if (index < 0 || index >= size_tc) {        
+//         ESP_LOGE("Buffer", "Invalid index: %d", index); 
+//         return (uint8_t*)NULL; 
+//     }
 
-    return buffer_tc[(front_tc + index) % CONFIG_MAX_TC_BUFFER_SIZE];
-}
+//     return buffer_tc[(front_tc + index) % CONFIG_MAX_TC_BUFFER_SIZE];
+// }

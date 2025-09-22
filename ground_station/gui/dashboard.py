@@ -270,8 +270,7 @@ class Dashboard(QMainWindow):
         
         ack_params = [
             ("Sequence Counter", "seq_counter"),
-            ("RTC", "rtc"),
-            ("Telecommand Ack", "command_ack")
+            ("Telecommand Ack", "telecommand_ack")
         ]
         
         for display_name, param_key in ack_params:
@@ -582,7 +581,7 @@ class Dashboard(QMainWindow):
         print(f"Sending telecommand: type={command_type}, code={tc_code}, rtc={rtc}")
 
         try:
-            success = send_telecommand(self.telemetry_manager, seq, tc_code, rtc)
+            success = send_telecommand(self.telemetry_manager, seq, tc_code)
 
             self.log(success)
         except Exception as e:

@@ -51,7 +51,6 @@ PACKET_PARSERS = {
     PACKET_TYPE_ACK: { #
         "fields": [
             ("seq_counter", "uint:16"),
-            ("rtc", "uint:17", convert_rtc),
             ("telecommand_ack", "uint:3"),
             ("crc", "uint:16")
         ]

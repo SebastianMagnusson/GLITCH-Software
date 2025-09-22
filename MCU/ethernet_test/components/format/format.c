@@ -34,15 +34,25 @@ void set_bits_data_offset(uint8_t *dest, size_t *dest_bit_pos, const uint8_t *sr
 }
 
 bool validate_crc_mcu(uint8_t* packet, int total_length) {
-    if (packet == NULL || total_length < 3) {
+    if (packet == NULL) {
         return false;
     }
+
+    //first 16 bits are sequence number
+    //next 3 bits are telecommand
+    //next 5 bits are padding
+    //next 16 bits are crc
+    //total length is in bytes, so total_length*8 is in bits
+
+
     
-    // Extract CRC from last 2 bytes
-    uint16_t received_crc = (packet[total_length - 2] << 8) | packet[total_length - 1];
-    
+    // Extract received CRC (16 bits) taking padding into account
+    uint16_t received_crc = (packet[3] << 8) | packet[4];
+    ESP_LOGI("Format", "Received CRC: 0x%04X", received_crc);
+
     // Calculate CRC for all data except the CRC bytes
-    uint16_t calculated_crc = calculate_crc_bits(packet, total_length - 2);
+    uint16_t calculated_crc = calculate_crc_bits(packet, CONFIG_TC_DATA_SIZE+5);
+    ESP_LOGI("Format", "Calculated CRC: 0x%04X", calculated_crc);
     
     return received_crc == calculated_crc;
 }
@@ -107,9 +117,9 @@ bool is_valid_packet(uint32_t rtc, uint16_t crc, uint8_t* packet) {
     return true;
 }
 
-uint8_t* unpack_tc(uint8_t* packet) {
+uint8_t unpack_tc(uint8_t* packet) {
     if (packet == NULL) {
-        return (uint8_t*)NULL;
+        return 255;
     }
     
     // // 2 bytes
@@ -127,27 +137,19 @@ uint8_t* unpack_tc(uint8_t* packet) {
     //                (packet[5] << 4) | 
     //                ((packet[6] >> 4) & 0b00001111);
     
-                  
-    //validate crc
-    if (!validate_crc_mcu(packet, CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE)) {
+    // Validate CRC
+    if (!validate_crc_mcu(packet, CONFIG_TC_PACKET_SIZE)) {
         ESP_LOGE("Format", "Invalid CRC in received TC packet");
-        return NULL;
+        return 255;
     }
     // If everything is fine, create a new data array to return and stuff the data & RTC into it
-    uint8_t* data = (uint8_t*)calloc((CONFIG_ACKNOWLEDGEMENT_DATA_SIZE + 7) / 8, sizeof(uint8_t));
-    if (data == NULL) {
-        return NULL; // Allocation failed
-    }
-
-    data[0] = packet[2];
-    data[1] = packet[3];
-    data[2] = packet[4];
+    uint8_t data = (packet[2] >> 5) & 0b00000111;
 
     return data;
 }
 
-uint8_t* format_tc(uint8_t* data) {
-    if (data == NULL) {
+uint8_t* format_ack(uint8_t data) {
+    if (data == 255) {
         return NULL;
     }
 
@@ -156,7 +158,7 @@ uint8_t* format_tc(uint8_t* data) {
     size_t bit_pos = 0;
     set_bits(packet, &bit_pos, CONFIG_ACKNOWLEDGEMENT_PACKET_ID, CONFIG_ID_SIZE);            // ID: 2 bits
     set_bits(packet, &bit_pos, acknowledgement_sequence_number, CONFIG_SEQ_COUNTER_SIZE);    // Seq: 16 bits
-    set_bits_data(packet, &bit_pos, data, CONFIG_ACKNOWLEDGEMENT_DATA_SIZE);                 // Data: ? bits
+    set_bits(packet, &bit_pos, data, 3);                 // Data: 3 bits
     
     // Calculate CRC on actual data bits
     size_t data_bits = bit_pos;
@@ -164,6 +166,14 @@ uint8_t* format_tc(uint8_t* data) {
     
     set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                        // CRC: 16 bits
     ESP_LOGI("Format", "Acknowledgement crc: %04X", crc);
+    //print whole packet in binary
+    ESP_LOGI("Format", "Acknowledgement packet: ");
+    for (int i = 0; i < CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE; i++) {
+        for (int j = 7; j >= 0; j--) {
+            ESP_LOGI("Format", "%d", (packet[i] >> j) & 1);
+        }
+        ESP_LOGI("Format", " ");
+    }
     acknowledgement_sequence_number++;
     /*
     uint8_t* packet = (uint8_t*)calloc(CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE, sizeof(uint8_t));

@@ -127,6 +127,14 @@ config ACKNOWLEDGEMENT_DATA_SIZE
     int "Acknowledgement data size"
     default 3
 
+config TC_DATA_SIZE
+    int "Telecommand size"
+    default 19
+
+config TC_PACKET_SIZE
+    int "Telecommand packet size"
+    default 5
+
 endmenu
 
 menu "buffer size config"
@@ -156,18 +164,21 @@ config UART_NUM
 
 config TX_PIN
     int "TX pin"
-    default 1
+    default 2
 
 config RX_PIN
     int "RX pin"
-    default 3
+    default 12
 
 config UART_BUF_SIZE
     int "UART buffer size"
     default 1500
 
 endmenu
-
+#CONFIG_ETH_PHY_SI_PIN = 13
+# CONFIG_ETH_PHY_SO_PIN = 4
+# CONFIG_ETH_PHY_SCK_PIN = 14
+# CONFIG_ETH_PHY_CS_PIN = 15
 menu "ethernet config"
 
     config HOST_IP_ADDR
@@ -226,7 +237,22 @@ menu "ethernet config"
     config USE_STATIC_IP
         bool "Use static IP"
         default y
-
+    
+    config ETH_PHY_SI_PIN
+        int "ETH PHY SI GPIO pin number"
+        default 13
+    
+    config ETH_PHY_SO_PIN
+        int "ETH PHY SO GPIO pin number"
+        default 12
+    
+    config ETH_PHY_SCK_PIN
+        int "ETH PHY SCK GPIO pin number"
+        default 14
+    
+    config ETH_PHY_CS_PIN
+        int "ETH PHY CS GPIO pin number"
+        default 15
 
     
 endmenu
@@ -234,25 +260,25 @@ endmenu
 menu "Storage Configuration"
     config SD_CS_PIN
         int "SD Card CS GPIO pin number"
-        default 15
+        default 5
         help
             GPIO pin number used for SD card chip select (CS).
             
     config SD_MOSI_PIN
         int "SD Card MOSI GPIO pin number"
-        default 13
+        default 23
         help
             GPIO pin number used for SD card MOSI (Master Out Slave In).
             
     config SD_MISO_PIN
         int "SD Card MISO GPIO pin number"
-        default 4
+        default 19
         help
             GPIO pin number used for SD card MISO (Master In Slave Out).
             
     config SD_SCK_PIN
         int "SD Card SCK GPIO pin number"
-        default 14
+        default 18
         help
             GPIO pin number used for SD card SCK (Serial Clock).
             

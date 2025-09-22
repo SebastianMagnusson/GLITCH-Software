@@ -39,9 +39,10 @@ def rtc_str_to_seconds(rtc_str):
 def convert_rtc(rtc_value):
     try:
         rtc_hex = f"{int(rtc_value):06x}"
-        ss = int(rtc_hex[0:2], 16)
-        mm = int(rtc_hex[2:4], 16)
-        hh = int(rtc_hex[4:6], 16)
+        print(rtc_hex)
+        ss = int(rtc_hex[0:2])
+        mm = int(rtc_hex[2:4])
+        hh = int(rtc_hex[4:6])
         return f"{hh:02}:{mm:02}:{ss:02}"
     except Exception:
         return str(rtc_value)

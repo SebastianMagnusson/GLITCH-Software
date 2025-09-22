@@ -176,7 +176,7 @@ esp_err_t storage_init(void)
         .quadhd_io_num = -1,
         .max_transfer_sz = 4096,
     };
-    esp_err_t ret = spi_bus_initialize(SPI2_HOST, &bus_cfg, SPI_DMA_CH_AUTO);
+    esp_err_t ret = spi_bus_initialize(SPI3_HOST, &bus_cfg, SPI_DMA_CH_AUTO);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "spi_bus_initialize failed: %s", esp_err_to_name(ret));
         return ret;

@@ -21,6 +21,9 @@
 void app_main(void)
 {
     ESP_ERROR_CHECK(nvs_flash_init()); 
+    ESP_ERROR_CHECK(esp_netif_init()); // <-- Only once here
+    ESP_ERROR_CHECK(esp_event_loop_create_default()); // <-- Only once here
+
     esp_eth_handle_t eth_handle;
     do {
         eth_handle = ethernet_setup();

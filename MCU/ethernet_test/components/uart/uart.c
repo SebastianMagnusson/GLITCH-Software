@@ -158,16 +158,12 @@ void uart_task(void *pvParameters)
     ESP_LOGI(TAG, "Starting UART task");
     while (1) {
         // --- Send any pending TC packets ---
-        uint8_t *tc_data = buffer_retreive_tc();
-        if (tc_data != NULL) {
-            uint8_t *unpacked_tc = unpack_tc(tc_data);
-            if (unpacked_tc != NULL) {
-                uint8_t tc_code = (unpacked_tc[2] >> 5) & 0b00000111;
-                uart_send(&tc_code); // Send the TC code
-                free(unpacked_tc);
-            }
-            free(tc_data);  // don’t leak the original
+        uint8_t tc_data = buffer_retreive_tc();
+        if (tc_data != 255) {
+            uint8_t shifted = tc_data << 5;
+            uart_send(&shifted); // Send the TC code
         }
+        
 
         // --- Drain all available FPGA packets from UART ---
         size_t buffered_len = 0;
