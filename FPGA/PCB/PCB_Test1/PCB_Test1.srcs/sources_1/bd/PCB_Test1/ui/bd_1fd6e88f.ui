@@ -1,118 +1,118 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.264823",
-   "Default View_TopLeft":"-162,-125",
+   "Default View_ScaleFactor":"0.698872",
+   "Default View_TopLeft":"-172,461",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace port port-id_sysclk -pg 1 -lvl 0 -x 0 -y 1210 -defaultsOSRD
-preplace port port-id_SRAM1_WE -pg 1 -lvl 12 -x 3980 -y 1240 -defaultsOSRD
-preplace port port-id_SRAM1_EN -pg 1 -lvl 12 -x 3980 -y 1210 -defaultsOSRD
-preplace port port-id_sda_i -pg 1 -lvl 0 -x 0 -y 1050 -defaultsOSRD
-preplace port port-id_scl_i -pg 1 -lvl 0 -x 0 -y 1080 -defaultsOSRD
-preplace port port-id_sda_o -pg 1 -lvl 12 -x 3980 -y 870 -defaultsOSRD
-preplace port port-id_sda_t -pg 1 -lvl 12 -x 3980 -y 900 -defaultsOSRD
-preplace port port-id_scl_o -pg 1 -lvl 12 -x 3980 -y 930 -defaultsOSRD
-preplace port port-id_scl_t -pg 1 -lvl 12 -x 3980 -y 960 -defaultsOSRD
-preplace port port-id_GNSS_RX -pg 1 -lvl 0 -x 0 -y 170 -defaultsOSRD
-preplace port port-id_UART_MCU_TX -pg 1 -lvl 12 -x 3980 -y 630 -defaultsOSRD
-preplace port port-id_UART_MCU_RX -pg 1 -lvl 0 -x 0 -y 1290 -defaultsOSRD
-preplace portBus SRAM1DQ_i -pg 1 -lvl 0 -x 0 -y 890 -defaultsOSRD
-preplace portBus SRAM1DEC -pg 1 -lvl 12 -x 3980 -y 1330 -defaultsOSRD
-preplace portBus SRAM1DQ_t -pg 1 -lvl 12 -x 3980 -y 1300 -defaultsOSRD
-preplace portBus SRAM1DQ_o -pg 1 -lvl 12 -x 3980 -y 1270 -defaultsOSRD
-preplace portBus SRAM1A -pg 1 -lvl 12 -x 3980 -y 1180 -defaultsOSRD
-preplace inst BF_Data_Collector_Dr_0 -pg 1 -lvl 6 -x 1580 -y 720 -defaultsOSRD
-preplace inst BF_formatter_0 -pg 1 -lvl 7 -x 1950 -y 350 -defaultsOSRD
-preplace inst GNSS_Fetcher_mod_0 -pg 1 -lvl 7 -x 1950 -y 140 -defaultsOSRD
-preplace inst GNSS_Sender_0 -pg 1 -lvl 8 -x 2410 -y 90 -defaultsOSRD
+preplace port port-id_sysclk -pg 1 -lvl 0 -x -10 -y 1210 -defaultsOSRD
+preplace port port-id_SRAM1_WE -pg 1 -lvl 12 -x 4020 -y 1240 -defaultsOSRD
+preplace port port-id_SRAM1_EN -pg 1 -lvl 12 -x 4020 -y 1210 -defaultsOSRD
+preplace port port-id_sda_i -pg 1 -lvl 0 -x -10 -y 1050 -defaultsOSRD
+preplace port port-id_scl_i -pg 1 -lvl 0 -x -10 -y 1080 -defaultsOSRD
+preplace port port-id_sda_o -pg 1 -lvl 12 -x 4020 -y 870 -defaultsOSRD
+preplace port port-id_sda_t -pg 1 -lvl 12 -x 4020 -y 900 -defaultsOSRD
+preplace port port-id_scl_o -pg 1 -lvl 12 -x 4020 -y 930 -defaultsOSRD
+preplace port port-id_scl_t -pg 1 -lvl 12 -x 4020 -y 960 -defaultsOSRD
+preplace port port-id_GNSS_RX -pg 1 -lvl 0 -x -10 -y 170 -defaultsOSRD
+preplace port port-id_UART_MCU_TX -pg 1 -lvl 12 -x 4020 -y 630 -defaultsOSRD
+preplace port port-id_UART_MCU_RX -pg 1 -lvl 0 -x -10 -y 1290 -defaultsOSRD
+preplace portBus SRAM1DQ_i -pg 1 -lvl 0 -x -10 -y 890 -defaultsOSRD
+preplace portBus SRAM1DEC -pg 1 -lvl 12 -x 4020 -y 1330 -defaultsOSRD
+preplace portBus SRAM1DQ_t -pg 1 -lvl 12 -x 4020 -y 1300 -defaultsOSRD
+preplace portBus SRAM1DQ_o -pg 1 -lvl 12 -x 4020 -y 1270 -defaultsOSRD
+preplace portBus SRAM1A -pg 1 -lvl 12 -x 4020 -y 1180 -defaultsOSRD
+preplace inst BF_Data_Collector_Dr_0 -pg 1 -lvl 6 -x 1590 -y 720 -defaultsOSRD
+preplace inst BF_formatter_0 -pg 1 -lvl 7 -x 1960 -y 350 -defaultsOSRD
+preplace inst GNSS_Fetcher_mod_0 -pg 1 -lvl 7 -x 1960 -y 130 -defaultsOSRD
+preplace inst GNSS_Sender_0 -pg 1 -lvl 8 -x 2420 -y 90 -defaultsOSRD
 preplace inst HK_formatter_0 -pg 1 -lvl 9 -x 2910 -y 280 -defaultsOSRD
-preplace inst I2C_full_sensor_data_0 -pg 1 -lvl 8 -x 2410 -y 580 -defaultsOSRD
-preplace inst I2Cmod_0 -pg 1 -lvl 11 -x 3770 -y 940 -defaultsOSRD
-preplace inst Pulse_Per_Second_100_0 -pg 1 -lvl 5 -x 1180 -y 1140 -defaultsOSRD
-preplace inst Read1_100MHZ_0 -pg 1 -lvl 5 -x 1180 -y 860 -defaultsOSRD
-preplace inst RW_ROUTER_100MHZ_0 -pg 1 -lvl 11 -x 3770 -y 1250 -defaultsOSRD
-preplace inst Switchmod_0 -pg 1 -lvl 3 -x 590 -y 1240 -defaultsOSRD
-preplace inst TM_packet_sender_0 -pg 1 -lvl 10 -x 3310 -y 330 -defaultsOSRD
-preplace inst UART_RX_100MHZ_0 -pg 1 -lvl 6 -x 1580 -y 160 -defaultsOSRD
-preplace inst UART_TX_100MHZ_0 -pg 1 -lvl 11 -x 3770 -y 630 -defaultsOSRD
-preplace inst Write1_100MHZ_0 -pg 1 -lvl 4 -x 840 -y 1220 -defaultsOSRD
+preplace inst I2C_full_sensor_data_0 -pg 1 -lvl 8 -x 2420 -y 580 -defaultsOSRD
+preplace inst I2Cmod_0 -pg 1 -lvl 11 -x 3800 -y 940 -defaultsOSRD
+preplace inst Pulse_Per_Second_100_0 -pg 1 -lvl 5 -x 1200 -y 1140 -defaultsOSRD
+preplace inst Read1_100MHZ_0 -pg 1 -lvl 5 -x 1200 -y 860 -defaultsOSRD
+preplace inst RW_ROUTER_100MHZ_0 -pg 1 -lvl 11 -x 3800 -y 1250 -defaultsOSRD
+preplace inst Switchmod_0 -pg 1 -lvl 3 -x 610 -y 1240 -defaultsOSRD
+preplace inst TM_packet_sender_0 -pg 1 -lvl 10 -x 3320 -y 330 -defaultsOSRD
+preplace inst UART_RX_100MHZ_0 -pg 1 -lvl 6 -x 1590 -y 160 -defaultsOSRD
+preplace inst UART_TX_100MHZ_0 -pg 1 -lvl 11 -x 3800 -y 630 -defaultsOSRD
+preplace inst Write1_100MHZ_0 -pg 1 -lvl 4 -x 870 -y 1220 -defaultsOSRD
 preplace inst UART_RX_100MHZ_1 -pg 1 -lvl 1 -x 150 -y 1280 -defaultsOSRD
-preplace inst TC_distributor_0 -pg 1 -lvl 2 -x 380 -y 1280 -defaultsOSRD
-preplace netloc sysclk_0_1 1 0 11 20 1210 280 1190 480 1170 710 1100 1010 680 1360 90 1770 50 2150 190 2680 120 3120 180 3590
-preplace netloc Switchmod_0_o_signal 1 3 8 700 1090 1020 690 1370 310 1760 40 2170 200 2740 110 3130 170 3600
-preplace netloc Write1_100MHZ_0_write_complete 1 4 7 1000 1230 1340J 1200 NJ 1200 NJ 1200 NJ 1200 NJ 1200 3530
-preplace netloc Write1_100MHZ_0_A 1 4 7 980J 1210 NJ 1210 NJ 1210 NJ 1210 NJ 1210 NJ 1210 3560
-preplace netloc Write1_100MHZ_0_CE_n 1 4 7 970J 1250 NJ 1250 NJ 1250 NJ 1250 NJ 1250 NJ 1250 3600
-preplace netloc Write1_100MHZ_0_WE_n 1 4 7 NJ 1220 NJ 1220 NJ 1220 NJ 1220 NJ 1220 NJ 1220 3580
-preplace netloc Write1_100MHZ_0_DQ_o 1 4 7 NJ 1240 NJ 1240 NJ 1240 NJ 1240 NJ 1240 NJ 1240 3620
-preplace netloc Write1_100MHZ_0_DQ_t 1 4 7 NJ 1260 NJ 1260 NJ 1260 NJ 1260 NJ 1260 NJ 1260 3620
-preplace netloc Write1_100MHZ_0_decoder 1 4 7 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 3620
+preplace inst TC_distributor_0 -pg 1 -lvl 2 -x 390 -y 1280 -defaultsOSRD
+preplace netloc BF_Data_Collector_Dr_0_o_BF_data 1 6 1 1770 370n
+preplace netloc BF_Data_Collector_Dr_0_o_BF_drive 1 6 1 1750 350n
+preplace netloc BF_formatter_0_BF_packet 1 7 3 2140J 260 2640J 60 3140
+preplace netloc BF_formatter_0_BF_packet_DV 1 7 3 NJ 350 2730J 100 3110
+preplace netloc BF_formatter_0_I2C_read_done 1 7 1 2130 330n
+preplace netloc BF_formatter_0_RTC_request 1 7 1 2150 310n
 preplace netloc DQ_i_0_1 1 0 5 NJ 890 NJ 890 NJ 890 NJ 890 NJ
-preplace netloc Read1_100MHZ_0_A 1 5 6 1400J 820 NJ 820 NJ 820 NJ 820 NJ 820 3540
-preplace netloc Read1_100MHZ_0_CE_n 1 5 6 1380J 830 NJ 830 NJ 830 NJ 830 NJ 830 3520
-preplace netloc Read1_100MHZ_0_WE_n 1 5 6 1370J 890 NJ 890 NJ 890 NJ 890 NJ 890 3480
-preplace netloc Read1_100MHZ_0_DQ_t 1 5 6 1360J 860 NJ 860 NJ 860 NJ 860 NJ 860 3490
-preplace netloc Read1_100MHZ_0_DQ_o 1 5 6 NJ 850 NJ 850 NJ 850 NJ 850 NJ 850 3500
-preplace netloc Read1_100MHZ_0_decoder 1 5 6 NJ 870 NJ 870 NJ 870 NJ 870 NJ 870 3470
-preplace netloc RW_ROUTER_100MHZ_0_decoder 1 11 1 3940J 1310n
-preplace netloc RW_ROUTER_100MHZ_0_DQ_t 1 11 1 3960J 1290n
-preplace netloc RW_ROUTER_100MHZ_0_DQ_o 1 11 1 NJ 1270
-preplace netloc RW_ROUTER_100MHZ_0_WE_n 1 11 1 3940J 1240n
-preplace netloc RW_ROUTER_100MHZ_0_CE_n 1 11 1 3960J 1210n
-preplace netloc RW_ROUTER_100MHZ_0_A 1 11 1 3940J 1180n
-preplace netloc Read1_100MHZ_0_o_BF_data 1 5 1 1350 760n
-preplace netloc Read1_100MHZ_0_o_BF_drive 1 5 1 1340 720n
-preplace netloc Pulse_Per_Second_100_0_o_pulse 1 5 1 1390 740n
-preplace netloc BF_Data_Collector_Dr_0_o_BF_data 1 6 1 1740 370n
-preplace netloc BF_Data_Collector_Dr_0_o_BF_drive 1 6 1 1730 350n
-preplace netloc I2C_full_sensor_data_0_o_i2c_ena 1 8 3 2710J 550 NJ 550 3560
-preplace netloc I2C_full_sensor_data_0_o_i2c_address 1 8 3 NJ 490 3070J 520 3570
-preplace netloc I2C_full_sensor_data_0_o_i2c_rw 1 8 3 NJ 510 NJ 510 3580
-preplace netloc I2C_full_sensor_data_0_o_i2c_data_wr 1 8 3 NJ 530 NJ 530 3550
-preplace netloc I2Cmod_0_busy 1 7 5 2220 380 2730J 480 3120J 490 NJ 490 3950
-preplace netloc I2Cmod_0_data_rd 1 7 5 2230 390 2720J 540 NJ 540 NJ 540 3920
-preplace netloc sda_i_0_1 1 0 11 NJ 1050 NJ 1050 NJ 1050 NJ 1050 NJ 1050 1400J 880 NJ 880 NJ 880 NJ 880 NJ 880 3510J
-preplace netloc scl_i_0_1 1 0 11 20J 1070 NJ 1070 NJ 1070 NJ 1070 NJ 1070 1410J 900 NJ 900 NJ 900 NJ 900 NJ 900 3510J
-preplace netloc I2Cmod_0_sda_o 1 11 1 3960J 870n
-preplace netloc I2Cmod_0_sda_t 1 11 1 NJ 900
-preplace netloc I2Cmod_0_scl_o 1 11 1 3960J 920n
-preplace netloc I2Cmod_0_scl_t 1 11 1 3960J 940n
-preplace netloc BF_formatter_0_RTC_request 1 7 1 2120 310n
-preplace netloc BF_formatter_0_I2C_read_done 1 7 1 2110 330n
-preplace netloc BF_formatter_0_BF_packet 1 7 3 2130J 250 2660J 60 3140
-preplace netloc BF_formatter_0_BF_packet_DV 1 7 3 NJ 350 2690J 100 3110
-preplace netloc TM_packet_sender_0_o_BF_got 1 6 5 1780 30 2210J 180 2590J 30 NJ 30 3580
-preplace netloc I2C_full_sensor_data_0_o_TX_RTC_data 1 6 3 1790 230 NJ 230 2610
-preplace netloc I2C_full_sensor_data_0_o_TX_DV_BF 1 6 3 1780 470 2160J 370 2590
-preplace netloc i_RX_Serial_0_1 1 0 6 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ
-preplace netloc UART_RX_100MHZ_0_o_RX_byte 1 6 1 N 170
-preplace netloc UART_RX_100MHZ_0_o_RX_DV 1 6 1 N 150
-preplace netloc GNSS_Fetcher_mod_0_o_gnss_data 1 7 1 N 120
-preplace netloc GNSS_Fetcher_mod_0_o_gnss_drive 1 7 1 2130 100n
-preplace netloc GNSS_Sender_0_o_gnss_data 1 8 1 2640 70n
-preplace netloc GNSS_Sender_0_o_gnss_drive 1 8 1 2620 90n
-preplace netloc HK_formatter_0_RTC_request 1 7 3 2210 220 2670J 80 3090
-preplace netloc HK_formatter_0_I2C_read_done 1 7 3 2200 210 2650J 70 3080
-preplace netloc HK_formatter_0_TEMP_request 1 7 3 2180 260 2630J 90 3070
-preplace netloc HK_formatter_0_ALT_request 1 7 3 2190 240 2600J 50 3100
-preplace netloc HK_formatter_0_HK_packet_DV 1 9 1 3070 300n
+preplace netloc GNSS_Fetcher_mod_0_o_gnss_data 1 7 1 2180 110n
+preplace netloc GNSS_Fetcher_mod_0_o_gnss_drive 1 7 1 2140 100n
+preplace netloc GNSS_Sender_0_o_gnss_data 1 8 1 2660 70n
+preplace netloc GNSS_Sender_0_o_gnss_drive 1 8 1 2650 90n
+preplace netloc HK_formatter_0_ALT_request 1 7 3 2210 220 2630J 50 3100
 preplace netloc HK_formatter_0_HK_packet 1 9 1 3100 280n
-preplace netloc TM_packet_sender_0_o_HK_got 1 8 3 2750 40 NJ 40 3470
-preplace netloc I2C_full_sensor_data_0_o_TX_DV_HK 1 8 1 2700 280n
+preplace netloc HK_formatter_0_HK_packet_DV 1 9 1 3070 300n
+preplace netloc HK_formatter_0_I2C_read_done 1 7 3 2200 200 2670J 70 3080
+preplace netloc HK_formatter_0_RTC_request 1 7 3 2220 230 2680J 80 3090
+preplace netloc HK_formatter_0_TEMP_request 1 7 3 2180 250 2720J 90 3070
 preplace netloc I2C_full_sensor_data_0_o_TX_ALT_data 1 8 1 2740 340n
+preplace netloc I2C_full_sensor_data_0_o_TX_DV_BF 1 6 3 1780 470 2160J 370 2600
+preplace netloc I2C_full_sensor_data_0_o_TX_DV_HK 1 8 1 2610 280n
+preplace netloc I2C_full_sensor_data_0_o_TX_RTC_data 1 6 3 1790 230 2140J 240 2630
 preplace netloc I2C_full_sensor_data_0_o_TX_TEMP_data 1 8 1 2750 380n
-preplace netloc TM_packet_sender_0_o_TX_DV 1 10 1 3620 270n
-preplace netloc TM_packet_sender_0_o_TX_byte 1 10 1 3610 290n
-preplace netloc UART_TX_100MHZ_0_o_TX_Done 1 9 3 3140 480 NJ 480 3930
-preplace netloc UART_TX_100MHZ_0_o_TX_Active 1 9 3 3150 500 NJ 500 3940
-preplace netloc UART_TX_100MHZ_0_o_TX_Serial 1 11 1 NJ 630
-preplace netloc UART_RX_100MHZ_1_o_RX_DV 1 1 1 280 1270n
-preplace netloc UART_RX_100MHZ_1_o_RX_byte 1 1 1 N 1290
-preplace netloc i_RX_Serial_0_2 1 0 1 NJ 1290
+preplace netloc I2C_full_sensor_data_0_o_i2c_address 1 8 3 NJ 490 3070J 520 3580
+preplace netloc I2C_full_sensor_data_0_o_i2c_data_wr 1 8 3 NJ 530 NJ 530 3560
+preplace netloc I2C_full_sensor_data_0_o_i2c_ena 1 8 3 2620J 550 NJ 550 3570
+preplace netloc I2C_full_sensor_data_0_o_i2c_rw 1 8 3 NJ 510 NJ 510 3590
+preplace netloc I2Cmod_0_busy 1 7 5 2230 380 2700J 480 3120J 490 NJ 490 3990
+preplace netloc I2Cmod_0_data_rd 1 7 5 2240 390 2650J 540 NJ 540 NJ 540 3960
+preplace netloc I2Cmod_0_scl_o 1 11 1 4000J 920n
+preplace netloc I2Cmod_0_scl_t 1 11 1 4000J 940n
+preplace netloc I2Cmod_0_sda_o 1 11 1 4000J 870n
+preplace netloc I2Cmod_0_sda_t 1 11 1 NJ 900
+preplace netloc Pulse_Per_Second_100_0_o_pulse 1 5 1 1400 740n
+preplace netloc RW_ROUTER_100MHZ_0_A 1 11 1 3980J 1180n
+preplace netloc RW_ROUTER_100MHZ_0_CE_n 1 11 1 4000J 1210n
+preplace netloc RW_ROUTER_100MHZ_0_DQ_o 1 11 1 NJ 1270
+preplace netloc RW_ROUTER_100MHZ_0_DQ_t 1 11 1 4000J 1290n
+preplace netloc RW_ROUTER_100MHZ_0_WE_n 1 11 1 3980J 1240n
+preplace netloc RW_ROUTER_100MHZ_0_decoder 1 11 1 3980J 1310n
+preplace netloc Read1_100MHZ_0_A 1 5 6 1420J 830 1760J 820 NJ 820 NJ 820 NJ 820 3540
+preplace netloc Read1_100MHZ_0_CE_n 1 5 6 1410J 820 1750J 810 NJ 810 NJ 810 NJ 810 3550
+preplace netloc Read1_100MHZ_0_DQ_o 1 5 6 NJ 850 NJ 850 NJ 850 NJ 850 NJ 850 3510
+preplace netloc Read1_100MHZ_0_DQ_t 1 5 6 1380J 840 1780J 830 NJ 830 NJ 830 NJ 830 3520
+preplace netloc Read1_100MHZ_0_WE_n 1 5 6 1390J 890 NJ 890 NJ 890 NJ 890 NJ 890 3500
+preplace netloc Read1_100MHZ_0_decoder 1 5 6 NJ 870 NJ 870 NJ 870 NJ 870 NJ 870 3490
+preplace netloc Read1_100MHZ_0_o_BF_data 1 5 1 1370 760n
+preplace netloc Read1_100MHZ_0_o_BF_drive 1 5 1 1360 720n
+preplace netloc Switchmod_0_o_signal 1 3 8 730 1090 1040 690 1430 310 1770 40 2170 210 2710 110 3130 170 3620
 preplace netloc TC_distributor_0_cmd0 1 2 1 N 1250
-levelinfo -pg 1 0 150 380 590 840 1180 1580 1950 2410 2910 3310 3770 3980
-pagesize -pg 1 -db -bbox -sgen -160 0 4150 1450
+preplace netloc TM_packet_sender_0_o_BF_got 1 6 5 1780 30 2200J 180 2610J 30 NJ 30 3590
+preplace netloc TM_packet_sender_0_o_HK_got 1 8 3 2750 40 NJ 40 3490
+preplace netloc TM_packet_sender_0_o_TX_DV 1 10 1 3640 270n
+preplace netloc TM_packet_sender_0_o_TX_byte 1 10 1 3630 290n
+preplace netloc UART_RX_100MHZ_0_o_RX_DV 1 6 1 1750 140n
+preplace netloc UART_RX_100MHZ_0_o_RX_byte 1 6 1 1750 160n
+preplace netloc UART_RX_100MHZ_1_o_RX_DV 1 1 1 290 1270n
+preplace netloc UART_RX_100MHZ_1_o_RX_byte 1 1 1 N 1290
+preplace netloc UART_TX_100MHZ_0_o_TX_Active 1 9 3 3150 500 NJ 500 3980
+preplace netloc UART_TX_100MHZ_0_o_TX_Done 1 9 3 3140 480 NJ 480 3970
+preplace netloc UART_TX_100MHZ_0_o_TX_Serial 1 11 1 NJ 630
+preplace netloc Write1_100MHZ_0_A 1 4 7 1010J 1210 NJ 1210 NJ 1210 NJ 1210 NJ 1210 NJ 1210 3580
+preplace netloc Write1_100MHZ_0_CE_n 1 4 7 1000J 1250 NJ 1250 NJ 1250 NJ 1250 NJ 1250 NJ 1250 3610
+preplace netloc Write1_100MHZ_0_DQ_o 1 4 7 NJ 1240 NJ 1240 NJ 1240 NJ 1240 NJ 1240 NJ 1240 3630
+preplace netloc Write1_100MHZ_0_DQ_t 1 4 7 NJ 1260 NJ 1260 NJ 1260 NJ 1260 NJ 1260 NJ 1260 3630
+preplace netloc Write1_100MHZ_0_WE_n 1 4 7 NJ 1220 NJ 1220 NJ 1220 NJ 1220 NJ 1220 NJ 1220 3600
+preplace netloc Write1_100MHZ_0_decoder 1 4 7 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 3630
+preplace netloc Write1_100MHZ_0_write_complete 1 4 7 1020 1230 1360J 1200 NJ 1200 NJ 1200 NJ 1200 NJ 1200 3560
+preplace netloc i_RX_Serial_0_1 1 0 6 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ
+preplace netloc i_RX_Serial_0_2 1 0 1 NJ 1290
+preplace netloc scl_i_0_1 1 0 11 10J 1070 NJ 1070 NJ 1070 NJ 1070 NJ 1070 1420J 900 NJ 900 NJ 900 NJ 900 NJ 900 3530J
+preplace netloc sda_i_0_1 1 0 11 NJ 1050 NJ 1050 NJ 1050 NJ 1050 NJ 1050 1410J 880 NJ 880 NJ 880 NJ 880 NJ 880 3530J
+preplace netloc sysclk_0_1 1 0 11 10 1210 290 1190 490 1170 740 1100 1030 680 1370 90 1760 220 2190 190 2700 120 3120 180 3610
+levelinfo -pg 1 -10 150 390 610 870 1200 1590 1960 2420 2910 3320 3800 4020
+pagesize -pg 1 -db -bbox -sgen -170 0 4190 1450
 "
 }
-
+0

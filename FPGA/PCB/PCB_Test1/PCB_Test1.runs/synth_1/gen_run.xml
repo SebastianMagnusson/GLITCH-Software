@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-2" LaunchTime="1758455992" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/PCB_Test1_wrapper.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-2" LaunchTime="1758630027" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/PCB_Test1_wrapper.dcp">
   <File Type="PA-TCL" Name="PCB_Test1_wrapper.tcl"/>
   <File Type="REPORTS-TCL" Name="PCB_Test1_wrapper_reports.tcl"/>
   <File Type="RDS-RDS" Name="PCB_Test1_wrapper.vds"/>
@@ -144,6 +144,7 @@
       </FileInfo>
     </File>
     <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/Constraints.xdc"/>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>
   </FileSet>

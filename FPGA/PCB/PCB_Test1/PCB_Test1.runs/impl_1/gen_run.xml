@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-2" LaunchTime="1758455992">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-2" LaunchTime="1758630030">
   <File Type="PA-TCL" Name="PCB_Test1_wrapper.tcl"/>
   <File Type="REPORTS-TCL" Name="PCB_Test1_wrapper_reports.tcl"/>
   <File Type="INIT-TIMING" Name="PCB_Test1_wrapper_timing_summary_init.rpt"/>
@@ -219,6 +219,7 @@
       </FileInfo>
     </File>
     <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/Constraints.xdc"/>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>
   </FileSet>
@@ -248,7 +249,9 @@
     <Step Id="phys_opt_design"/>
     <Step Id="route_design"/>
     <Step Id="post_route_phys_opt_design"/>
-    <Step Id="write_bitstream"/>
+    <Step Id="write_bitstream">
+      <Option Id="BinFile">1</Option>
+    </Step>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="PCB_Test1_Pulse_Per_Second_100_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="PCB_Test1_HK_formatter_0_0"/>

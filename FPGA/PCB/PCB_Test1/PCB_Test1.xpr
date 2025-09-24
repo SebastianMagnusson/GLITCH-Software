@@ -275,10 +275,12 @@
         </FileInfo>
       </File>
       <Config>
+        <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/Constraints.xdc"/>
         <Option Name="ConstrsType" Val="XDC"/>
       </Config>
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
+      <Filter Type="Srcs"/>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="PCB_Test1_wrapper"/>
@@ -447,9 +449,7 @@
     </Run>
     <Run Id="PCB_Test1_Switchmod_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_Switchmod_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_Switchmod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_Switchmod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_Switchmod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_Switchmod_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -459,9 +459,7 @@
     </Run>
     <Run Id="PCB_Test1_BF_Data_Collector_Dr_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_BF_Data_Collector_Dr_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_BF_Data_Collector_Dr_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_BF_Data_Collector_Dr_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_BF_Data_Collector_Dr_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_BF_Data_Collector_Dr_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -471,9 +469,7 @@
     </Run>
     <Run Id="PCB_Test1_UART_RX_100MHZ_1_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_UART_RX_100MHZ_1_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_UART_RX_100MHZ_1_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_UART_RX_100MHZ_1_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_RX_100MHZ_1_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_RX_100MHZ_1_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -483,9 +479,7 @@
     </Run>
     <Run Id="PCB_Test1_GNSS_Sender_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_GNSS_Sender_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_GNSS_Sender_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_GNSS_Sender_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_GNSS_Sender_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_GNSS_Sender_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -495,9 +489,7 @@
     </Run>
     <Run Id="PCB_Test1_TM_packet_sender_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_TM_packet_sender_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_TM_packet_sender_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_TM_packet_sender_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_TM_packet_sender_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_TM_packet_sender_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -507,9 +499,7 @@
     </Run>
     <Run Id="PCB_Test1_Write1_100MHZ_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_Write1_100MHZ_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_Write1_100MHZ_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_Write1_100MHZ_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_Write1_100MHZ_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_Write1_100MHZ_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -519,9 +509,7 @@
     </Run>
     <Run Id="PCB_Test1_I2C_full_sensor_data_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_I2C_full_sensor_data_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_I2C_full_sensor_data_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_I2C_full_sensor_data_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_I2C_full_sensor_data_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_I2C_full_sensor_data_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -531,9 +519,7 @@
     </Run>
     <Run Id="PCB_Test1_GNSS_Fetcher_mod_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_GNSS_Fetcher_mod_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_GNSS_Fetcher_mod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_GNSS_Fetcher_mod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_GNSS_Fetcher_mod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_GNSS_Fetcher_mod_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -543,9 +529,7 @@
     </Run>
     <Run Id="PCB_Test1_RW_ROUTER_100MHZ_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_RW_ROUTER_100MHZ_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_RW_ROUTER_100MHZ_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_RW_ROUTER_100MHZ_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_RW_ROUTER_100MHZ_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_RW_ROUTER_100MHZ_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -555,9 +539,7 @@
     </Run>
     <Run Id="PCB_Test1_TC_distributor_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_TC_distributor_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_TC_distributor_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_TC_distributor_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_TC_distributor_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_TC_distributor_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -567,9 +549,7 @@
     </Run>
     <Run Id="PCB_Test1_HK_formatter_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_HK_formatter_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_HK_formatter_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_HK_formatter_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_HK_formatter_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_HK_formatter_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -579,9 +559,7 @@
     </Run>
     <Run Id="PCB_Test1_UART_RX_100MHZ_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_UART_RX_100MHZ_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_UART_RX_100MHZ_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_UART_RX_100MHZ_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_RX_100MHZ_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_RX_100MHZ_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -591,9 +569,7 @@
     </Run>
     <Run Id="PCB_Test1_UART_TX_100MHZ_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_UART_TX_100MHZ_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_UART_TX_100MHZ_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_UART_TX_100MHZ_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_TX_100MHZ_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_TX_100MHZ_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -603,9 +579,7 @@
     </Run>
     <Run Id="PCB_Test1_I2Cmod_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_I2Cmod_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_I2Cmod_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_I2Cmod_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_I2Cmod_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_I2Cmod_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -615,9 +589,7 @@
     </Run>
     <Run Id="PCB_Test1_Pulse_Per_Second_100_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_Pulse_Per_Second_100_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_Pulse_Per_Second_100_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_Pulse_Per_Second_100_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_Pulse_Per_Second_100_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_Pulse_Per_Second_100_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -627,9 +599,7 @@
     </Run>
     <Run Id="PCB_Test1_BF_formatter_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_BF_formatter_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_BF_formatter_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_BF_formatter_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_BF_formatter_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_BF_formatter_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -639,9 +609,7 @@
     </Run>
     <Run Id="PCB_Test1_Read1_100MHZ_0_0_synth_1" Type="Ft3:Synth" SrcSet="PCB_Test1_Read1_100MHZ_0_0" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_Read1_100MHZ_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/PCB_Test1_Read1_100MHZ_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_Read1_100MHZ_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_Read1_100MHZ_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -662,7 +630,9 @@
         <Step Id="phys_opt_design"/>
         <Step Id="route_design"/>
         <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
+        <Step Id="write_bitstream">
+          <Option Id="BinFile">1</Option>
+        </Step>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
@@ -671,9 +641,7 @@
     </Run>
     <Run Id="PCB_Test1_Switchmod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_Switchmod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_Switchmod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_Switchmod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_Switchmod_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -690,9 +658,7 @@
     </Run>
     <Run Id="PCB_Test1_BF_Data_Collector_Dr_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_BF_Data_Collector_Dr_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_BF_Data_Collector_Dr_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_BF_Data_Collector_Dr_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_BF_Data_Collector_Dr_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -709,9 +675,7 @@
     </Run>
     <Run Id="PCB_Test1_UART_RX_100MHZ_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_UART_RX_100MHZ_1_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_UART_RX_100MHZ_1_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_RX_100MHZ_1_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_RX_100MHZ_1_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -728,9 +692,7 @@
     </Run>
     <Run Id="PCB_Test1_GNSS_Sender_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_GNSS_Sender_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_GNSS_Sender_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_GNSS_Sender_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_GNSS_Sender_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -747,9 +709,7 @@
     </Run>
     <Run Id="PCB_Test1_TM_packet_sender_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_TM_packet_sender_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_TM_packet_sender_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_TM_packet_sender_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_TM_packet_sender_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -766,9 +726,7 @@
     </Run>
     <Run Id="PCB_Test1_Write1_100MHZ_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_Write1_100MHZ_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_Write1_100MHZ_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_Write1_100MHZ_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_Write1_100MHZ_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -785,9 +743,7 @@
     </Run>
     <Run Id="PCB_Test1_I2C_full_sensor_data_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_I2C_full_sensor_data_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_I2C_full_sensor_data_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_I2C_full_sensor_data_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_I2C_full_sensor_data_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -804,9 +760,7 @@
     </Run>
     <Run Id="PCB_Test1_GNSS_Fetcher_mod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_GNSS_Fetcher_mod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_GNSS_Fetcher_mod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_GNSS_Fetcher_mod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_GNSS_Fetcher_mod_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -823,9 +777,7 @@
     </Run>
     <Run Id="PCB_Test1_RW_ROUTER_100MHZ_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_RW_ROUTER_100MHZ_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_RW_ROUTER_100MHZ_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_RW_ROUTER_100MHZ_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_RW_ROUTER_100MHZ_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -842,9 +794,7 @@
     </Run>
     <Run Id="PCB_Test1_TC_distributor_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_TC_distributor_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_TC_distributor_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_TC_distributor_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_TC_distributor_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -861,9 +811,7 @@
     </Run>
     <Run Id="PCB_Test1_HK_formatter_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_HK_formatter_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_HK_formatter_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_HK_formatter_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_HK_formatter_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -880,9 +828,7 @@
     </Run>
     <Run Id="PCB_Test1_UART_RX_100MHZ_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_UART_RX_100MHZ_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_UART_RX_100MHZ_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_RX_100MHZ_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_RX_100MHZ_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -899,9 +845,7 @@
     </Run>
     <Run Id="PCB_Test1_UART_TX_100MHZ_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_UART_TX_100MHZ_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_UART_TX_100MHZ_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_TX_100MHZ_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_UART_TX_100MHZ_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -918,9 +862,7 @@
     </Run>
     <Run Id="PCB_Test1_I2Cmod_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_I2Cmod_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_I2Cmod_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_I2Cmod_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_I2Cmod_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -937,9 +879,7 @@
     </Run>
     <Run Id="PCB_Test1_Pulse_Per_Second_100_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_Pulse_Per_Second_100_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_Pulse_Per_Second_100_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_Pulse_Per_Second_100_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_Pulse_Per_Second_100_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -956,9 +896,7 @@
     </Run>
     <Run Id="PCB_Test1_BF_formatter_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_BF_formatter_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_BF_formatter_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_BF_formatter_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_BF_formatter_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -975,9 +913,7 @@
     </Run>
     <Run Id="PCB_Test1_Read1_100MHZ_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-2" ConstrsSet="PCB_Test1_Read1_100MHZ_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="PCB_Test1_Read1_100MHZ_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/PCB_Test1_Read1_100MHZ_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/PCB_Test1_Read1_100MHZ_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
