@@ -22,7 +22,7 @@ TYPE_NAMES = {0: "HK", 1: "BF", 2: "RAD", 3: "ACK"}
 HEADER_KEYS = [
     "file", "index", "type_id", "type",
     "seq", "time_us", "time_s", "time_hms",
-    "length", "offset_header"
+    "length", "offset_header", "packet_bin"  # <-- Add here
 ]
 
 def parsed_field_order_for_type(pkt_type: int):
@@ -86,6 +86,10 @@ def main():
                     break
                 offset += packet_len
 
+                # Combine header and payload for full packet
+                full_packet = hdr + payload
+                packet_bin_str = ''.join(f'{byte:08b}' for byte in full_packet)
+
                 # Decode with your parser
                 try:
                     parsed = parse(payload) or {}
@@ -116,6 +120,7 @@ def main():
                     "time_hms": str(timedelta(seconds=t_s)),
                     "length": packet_len,
                     "offset_header": offset_header,
+                    "packet_bin": packet_bin_str,  # <-- Add this line
                 }
                 row.update(parsed)
                 rows.append(row)

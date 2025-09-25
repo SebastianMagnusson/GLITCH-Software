@@ -38,8 +38,9 @@ def rtc_str_to_seconds(rtc_str):
 
 def convert_rtc(rtc_value):
     try:
-        rtc_hex = f"{int(rtc_value):06x}"
-        print(rtc_hex)
+        print("rtc (bin) = " + bin(int(rtc_value)))
+        rtc_hex = f"{int(rtc_value-(2**23)):06x}"
+        print("rtc (hex) = 0x" + rtc_hex)
         ss = int(rtc_hex[0:2])
         mm = int(rtc_hex[2:4])
         hh = int(rtc_hex[4:6])

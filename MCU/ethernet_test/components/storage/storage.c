@@ -183,7 +183,7 @@ esp_err_t storage_init(void)
     }
 
     sdmmc_host_t host = SDSPI_HOST_DEFAULT();
-    host.slot = SPI2_HOST;
+    host.slot = SPI3_HOST;
     host.max_freq_khz = 400;
 
     sdspi_device_config_t dev_cfg = SDSPI_DEVICE_CONFIG_DEFAULT();
@@ -200,7 +200,7 @@ esp_err_t storage_init(void)
     ret = esp_vfs_fat_sdspi_mount(base_path, &host, &dev_cfg, &mnt_cfg, &c);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "mount failed: %s", esp_err_to_name(ret));
-        spi_bus_free(SPI2_HOST);
+        spi_bus_free(SPI3_HOST);
         storage_ready = false;
         return ret;
     }
@@ -254,7 +254,7 @@ void storage_deinit(void)
         esp_vfs_fat_sdcard_unmount(base_path, card);
         card = NULL;
     }
-    spi_bus_free(SPI2_HOST);
+    spi_bus_free(SPI3_HOST);
     storage_ready = false;
 }
 

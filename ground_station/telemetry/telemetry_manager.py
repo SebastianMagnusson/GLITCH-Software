@@ -74,10 +74,14 @@ class TelemetryManager:
                     if not data:
                         print("Connection closed by MCU")
                         break
-                    
+
+                    # Print complete packet in binary
+                    packet_bin_str = ''.join(format(byte, '08b') for byte in data)
+                    print(f"Full packet (binary): {packet_bin_str}")
+
                     # Increment total received packets
                     self.packet_stats["total_received"] += 1
-                        
+
                     parsed = parse(data)
                     if parsed:
                         print(f"Received packet: {parsed}")
@@ -85,7 +89,7 @@ class TelemetryManager:
                         self.logger.log(parsed)
                         self.update(parsed)
                     else:
-                        print(f"Received corrupt packet - raw data: {''.join(format(byte, '08b') for byte in data)}")
+                        print(f"Received corrupt packet - raw data: {packet_bin_str}")
                         self.packet_stats["corrupt_packets"] += 1
                         self.logger.log_corrupt_packet(data)
                         

@@ -164,11 +164,11 @@ config UART_NUM
 
 config TX_PIN
     int "TX pin"
-    default 2
+    default 9
 
 config RX_PIN
     int "RX pin"
-    default 12
+    default 10
 
 config UART_BUF_SIZE
     int "UART buffer size"

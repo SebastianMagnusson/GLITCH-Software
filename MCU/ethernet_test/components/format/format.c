@@ -167,13 +167,7 @@ uint8_t* format_ack(uint8_t data) {
     set_bits(packet, &bit_pos, crc, CONFIG_CRC_SIZE);                                        // CRC: 16 bits
     ESP_LOGI("Format", "Acknowledgement crc: %04X", crc);
     //print whole packet in binary
-    ESP_LOGI("Format", "Acknowledgement packet: ");
-    for (int i = 0; i < CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE; i++) {
-        for (int j = 7; j >= 0; j--) {
-            ESP_LOGI("Format", "%d", (packet[i] >> j) & 1);
-        }
-        ESP_LOGI("Format", " ");
-    }
+    
     acknowledgement_sequence_number++;
     /*
     uint8_t* packet = (uint8_t*)calloc(CONFIG_ACKNOWLEDGEMENT_PACKET_SIZE, sizeof(uint8_t));
