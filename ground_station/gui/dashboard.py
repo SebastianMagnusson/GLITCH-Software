@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget,
 from PyQt5.QtCore import Qt, QTimer
 from telemetry.telemetry_manager import TelemetryManager
 from uplink.uplink_sender import send_telecommand
-from uplink.tc_types import TC_RESET, TC_SET_MODE_POWER_SAVE, TC_SET_MODE_NORMAL
+from uplink.tc_types import TC_RESET, TC_SET_MODE_POWER_SAVE, TC_SET_MODE_NORMAL, TC_SEND_HELLO, TC_SET_RTC, TC_CLEAR_SD, TC_CUT_OFF
 from PyQt5.QtWidgets import QMessageBox
 import config
 from utils import rtc_str_to_seconds
@@ -236,7 +236,7 @@ class Dashboard(QMainWindow):
         hbox = QHBoxLayout()
         hbox.addWidget(QLabel("Command Type:"))
         self.cmd_type_combo = QComboBox()
-        self.cmd_type_combo.addItems(["RESET", "CHANGE MODE"])
+        self.cmd_type_combo.addItems(["RESET", "CHANGE MODE","SEND HELLO","SET RTC","CLEAR SD","CUTOFF"])
         hbox.addWidget(self.cmd_type_combo)
         cmd_layout.addLayout(hbox)
 
@@ -245,7 +245,7 @@ class Dashboard(QMainWindow):
         self.mode_options.setAlignment(Qt.AlignLeft)
         self.mode_options.addWidget(QLabel("Mode:"))
         self.mode_combo = QComboBox()
-        self.mode_combo.addItems(["NOMINAL", "POWER SAVING"])
+        self.mode_combo.addItems(["NORMAL", "POWER SAVING"])
         self.mode_options.addWidget(self.mode_combo)
         self.mode_options_widget.setVisible(False)
         cmd_layout.addWidget(self.mode_options_widget)
@@ -575,8 +575,16 @@ class Dashboard(QMainWindow):
         elif command_type == "CHANGE MODE":
             mode = self.mode_combo.currentText()
             tc_code = TC_SET_MODE_POWER_SAVE if mode == "POWER SAVING" else TC_SET_MODE_NORMAL
+        elif command_type == "SAY HELLO":
+            tc_code = TC_SEND_HELLO
+        elif command_type == "SET RTC":
+            tc_code = TC_SET_RTC
+        elif command_type == "CLEAR SD":
+            tc_code = TC_CLEAR_SD
+        elif command_type == "CUT OFF":
+            tc_code = TC_CUT_OFF
         else:
-            tc_code = 0
+            tc_code = 0 
 
         print(f"Sending telecommand: type={command_type}, code={tc_code}, rtc={rtc}")
 

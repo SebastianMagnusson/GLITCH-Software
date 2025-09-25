@@ -121,11 +121,11 @@ config RADIATION_DATA_SIZE
 
 config ACKNOWLEDGEMENT_PACKET_SIZE
     int "Acknowledgement packet size"
-    default 8
+    default 6
 
 config ACKNOWLEDGEMENT_DATA_SIZE
     int "Acknowledgement data size"
-    default 3
+    default 42
 
 config TC_DATA_SIZE
     int "Telecommand size"

@@ -143,7 +143,7 @@ uint8_t unpack_tc(uint8_t* packet) {
         return 255;
     }
     // If everything is fine, create a new data array to return and stuff the data & RTC into it
-    uint8_t data = (packet[2] >> 5) & 0b00000111;
+    uint8_t data = packet[2];
 
     return data;
 }
@@ -158,7 +158,7 @@ uint8_t* format_ack(uint8_t data) {
     size_t bit_pos = 0;
     set_bits(packet, &bit_pos, CONFIG_ACKNOWLEDGEMENT_PACKET_ID, CONFIG_ID_SIZE);            // ID: 2 bits
     set_bits(packet, &bit_pos, acknowledgement_sequence_number, CONFIG_SEQ_COUNTER_SIZE);    // Seq: 16 bits
-    set_bits(packet, &bit_pos, data, 3);                 // Data: 3 bits
+    set_bits(packet, &bit_pos, data, 8);                 // Data: 8 bits
     
     // Calculate CRC on actual data bits
     size_t data_bits = bit_pos;

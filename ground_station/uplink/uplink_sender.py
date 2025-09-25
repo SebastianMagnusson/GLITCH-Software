@@ -4,7 +4,7 @@ from utils import calc_crc
 def build_telecommand(seq, tc_code):
     packet = BitArray()
     packet.append(f"uint:16={seq}")    # 16 bits
-    packet.append(f"uint:3={tc_code}") # 3 bits  
+    packet.append(f"uint:8={tc_code}") # 8 bits
     packet.append(f"uint:16=0")        # 16 bits placeholder for CRC
     
     current_length = len(packet)
@@ -23,6 +23,8 @@ def build_telecommand(seq, tc_code):
     # TODO: Verify CRC calculation
     packet_bytes[-2] = (crc >> 8) & 0xFF  # High byte
     packet_bytes[-1] = crc & 0xFF         # Low byte
+
+    
     
     return bytes(packet_bytes)
 

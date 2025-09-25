@@ -160,7 +160,7 @@ void uart_task(void *pvParameters)
         // --- Send any pending TC packets ---
         uint8_t tc_data = buffer_retreive_tc();
         if (tc_data != 255) {
-            uint8_t shifted = tc_data << 5;
+            uint8_t shifted = tc_data; 
             uart_send(&shifted); // Send the TC code
         }
         
