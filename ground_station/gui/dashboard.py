@@ -20,7 +20,7 @@ class Dashboard(QMainWindow):
         super().__init__()
         
         self.uplink_seq_counter = 0
-        self.last_packet_time = None  # Add this line
+        self.last_packet_time = None  
         
         # Configure dark theme for graphs
         pg.setConfigOption('background', '#393939')
@@ -339,7 +339,7 @@ class Dashboard(QMainWindow):
         )
         self.external_line = self.temp_plot.plot(
             self.time_data, self.external_temp_data, 
-            pen=pg.mkPen('b', width=2), name='External'
+            pen=pg.mkPen('g', width=2), name='External'
         )
         
         
@@ -368,10 +368,26 @@ class Dashboard(QMainWindow):
         alt_graph_layout.addWidget(self.alt_plot)
         graph_panel.addWidget(alt_graph_group)
         
-        # Add all panels to content layout
-        content_layout.addLayout(left_panel, 1)
-        content_layout.addLayout(right_panel, 1)
-        content_layout.addLayout(graph_panel, 2)
+
+        # Set fixed widths for left and right panels
+        left_panel_widget = QWidget()
+        left_panel_widget.setLayout(left_panel)
+        left_panel_widget.setFixedWidth(500)  # Set your desired width
+
+        right_panel_widget = QWidget()
+        right_panel_widget.setLayout(right_panel)
+        right_panel_widget.setFixedWidth(300)  # Set your desired width
+
+        graph_panel_widget = QWidget()
+        graph_panel_widget.setLayout(graph_panel)
+        graph_panel_widget.setMinimumWidth(600)
+        # No fixed width, will expand
+
+        
+
+        content_layout.addWidget(left_panel_widget)
+        content_layout.addWidget(right_panel_widget)
+        content_layout.addWidget(graph_panel_widget, stretch=2)
         
         # Add content layout to main layout
         main_layout.addLayout(content_layout)
@@ -454,7 +470,7 @@ class Dashboard(QMainWindow):
         # Update packet type counters
         total_valid_packets = 0
         for packet_type in ["HK", "BF", "ACK", "RAD"]:
-            count = len(self.telemetry_manager.history[packet_type])
+            count = self.telemetry_manager.packet_type_counts[packet_type]
             self.packet_counters[packet_type].setText(str(count))
             total_valid_packets += count
         

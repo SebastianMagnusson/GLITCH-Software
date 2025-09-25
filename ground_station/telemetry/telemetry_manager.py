@@ -33,6 +33,13 @@ class TelemetryManager:
             "corrupt_packets": 0,
             "lost_packets": 0
         }
+
+        self.packet_type_counts = {
+            "HK": 0,
+            "BF": 0,
+            "RAD": 0,
+            "ACK": 0
+        }
     
     def register_callback(self, callback):
         self.callbacks.append(callback)
@@ -118,6 +125,10 @@ class TelemetryManager:
         for key, value in processed_packet.items():
             if isinstance(value, float):
                 processed_packet[key] = round(value, 2)
+
+        if packet_type in self.packet_type_counts:
+            self.packet_type_counts[packet_type] += 1
+
         
         self.current_data[packet_type] = processed_packet
         

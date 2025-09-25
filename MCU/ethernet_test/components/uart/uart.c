@@ -44,8 +44,9 @@ char* bytes_to_bin_string(const uint8_t* data, int length) {
 }
 
 void uart_send(uint8_t* message) {
-    ESP_LOGI(TAG, "Sending message: %s, length :%d", message, check_length(message)); 
-    uart_write_bytes(UART_NUM, message, 1); 
+    ESP_LOGI(TAG, "Sending message (hex): %s", message);
+    int res = uart_write_bytes(UART_NUM, message, 1); 
+    ESP_LOGI(TAG, "Result: %d", res);
 }
 
 uint8_t* uart_receive(void) {
@@ -160,8 +161,7 @@ void uart_task(void *pvParameters)
         // --- Send any pending TC packets ---
         uint8_t tc_data = buffer_retreive_tc();
         if (tc_data != 255) {
-            uint8_t shifted = tc_data; 
-            uart_send(&shifted); // Send the TC code
+            uart_send(&tc_data); // Send the TC code
         }
         
 
