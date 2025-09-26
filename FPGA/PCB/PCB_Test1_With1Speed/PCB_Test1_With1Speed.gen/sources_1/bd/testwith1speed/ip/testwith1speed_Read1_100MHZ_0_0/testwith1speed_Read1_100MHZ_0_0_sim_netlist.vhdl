@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Tue Sep 23 16:01:12 2025
+-- Date        : Thu Sep 25 14:38:57 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Read1_100MHZ_0_0/testwith1speed_Read1_100MHZ_0_0_sim_netlist.vhdl
@@ -26,6 +26,7 @@ entity testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ is
     o_BF_drive : out STD_LOGIC;
     WE_n : out STD_LOGIC;
     led0 : out STD_LOGIC;
+    led1 : out STD_LOGIC;
     reset_n : in STD_LOGIC;
     sysclk : in STD_LOGIC;
     DQ_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
@@ -111,6 +112,8 @@ architecture STRUCTURE of testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ is
   signal in5 : STD_LOGIC;
   signal \^led0\ : STD_LOGIC;
   signal led0_i_1_n_0 : STD_LOGIC;
+  signal \^led1\ : STD_LOGIC;
+  signal led1_i_1_n_0 : STD_LOGIC;
   signal loop_cnt : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \loop_cnt[1]_i_1_n_0\ : STD_LOGIC;
   signal \loop_cnt[3]_i_1_n_0\ : STD_LOGIC;
@@ -172,7 +175,6 @@ architecture STRUCTURE of testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ is
   signal wait_count : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \wait_count[0]_i_1_n_0\ : STD_LOGIC;
   signal \wait_count[1]_i_1_n_0\ : STD_LOGIC;
-  signal \wait_count[1]_i_2_n_0\ : STD_LOGIC;
   signal \wait_count[2]_i_1_n_0\ : STD_LOGIC;
   signal \wait_count[3]_i_1_n_0\ : STD_LOGIC;
   signal \wait_count[4]_i_1_n_0\ : STD_LOGIC;
@@ -182,6 +184,7 @@ architecture STRUCTURE of testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ is
   signal \wait_count[7]_i_1_n_0\ : STD_LOGIC;
   signal \wait_count[7]_i_2_n_0\ : STD_LOGIC;
   signal \wait_count[7]_i_3_n_0\ : STD_LOGIC;
+  signal \wait_count[7]_i_4_n_0\ : STD_LOGIC;
   signal write_active : STD_LOGIC;
   signal write_active_0 : STD_LOGIC;
   signal write_active_i_1_n_0 : STD_LOGIC;
@@ -216,35 +219,36 @@ architecture STRUCTURE of testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ is
   attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[8]\ : label is "next_addr:01000000000,data_validation:00000001000,read_capture:00000000100,done:10000000000,read:00000000010,read_start:00000000001,write_fix_finish:00100000000,write_fix_start:00001000000,write_fix:00010000000,oscillator:00000100000,send_to_fetcher:00000010000";
   attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[9]\ : label is "next_addr:01000000000,data_validation:00000001000,read_capture:00000000100,done:10000000000,read:00000000010,read_start:00000000001,write_fix_finish:00100000000,write_fix_start:00001000000,write_fix:00010000000,oscillator:00000100000,send_to_fetcher:00000010000";
   attribute SOFT_HLUTNM of \addr_cnt[0]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \addr_cnt[10]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \addr_cnt[11]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \addr_cnt[12]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \addr_cnt[13]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \addr_cnt[14]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \addr_cnt[15]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \addr_cnt[16]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \addr_cnt[17]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \addr_cnt[18]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \addr_cnt[19]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \addr_cnt[20]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \addr_cnt[21]_i_2\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \addr_cnt[2]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \addr_cnt[3]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \addr_cnt[4]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \addr_cnt[5]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \addr_cnt[6]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \addr_cnt[7]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \addr_cnt[8]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \addr_cnt[9]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \addr_cnt[10]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \addr_cnt[11]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \addr_cnt[12]_i_1\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \addr_cnt[13]_i_1\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \addr_cnt[14]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \addr_cnt[15]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \addr_cnt[16]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \addr_cnt[17]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \addr_cnt[18]_i_1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \addr_cnt[19]_i_1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \addr_cnt[20]_i_1\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \addr_cnt[21]_i_2\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \addr_cnt[2]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \addr_cnt[3]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \addr_cnt[4]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \addr_cnt[5]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \addr_cnt[6]_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \addr_cnt[7]_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \addr_cnt[8]_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \addr_cnt[9]_i_1\ : label is "soft_lutpair20";
   attribute SOFT_HLUTNM of bitflip_flag_i_3 : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of data_rewritten_flag_i_1 : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of led1_i_1 : label is "soft_lutpair12";
   attribute SOFT_HLUTNM of \loop_cnt[0]_i_1\ : label is "soft_lutpair10";
   attribute SOFT_HLUTNM of \loop_cnt[1]_i_1\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \loop_cnt[2]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \loop_cnt[3]_i_2\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \loop_cnt[2]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \loop_cnt[3]_i_2\ : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of o_BF_drive_i_1 : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \osc_cnt[0]_i_1\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \osc_cnt[1]_i_1\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \osc_cnt[0]_i_1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \osc_cnt[1]_i_1\ : label is "soft_lutpair13";
   attribute SOFT_HLUTNM of \osc_cnt[2]_i_1\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \osc_cnt[3]_i_2\ : label is "soft_lutpair5";
   attribute ADDER_THRESHOLD : integer;
@@ -254,8 +258,9 @@ architecture STRUCTURE of testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ is
   attribute ADDER_THRESHOLD of \plusOp_carry__2\ : label is 35;
   attribute ADDER_THRESHOLD of \plusOp_carry__3\ : label is 35;
   attribute ADDER_THRESHOLD of \plusOp_carry__4\ : label is 35;
-  attribute SOFT_HLUTNM of \wait_count[2]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \wait_count[3]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of read_complete_i_1 : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \wait_count[2]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \wait_count[3]_i_1\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \wait_count[6]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \wait_count[7]_i_2\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of write_active_i_1 : label is "soft_lutpair9";
@@ -264,6 +269,7 @@ begin
   WE_n <= \^we_n\;
   addresses_searched <= \^addresses_searched\;
   led0 <= \^led0\;
+  led1 <= \^led1\;
   o_BF_drive <= \^o_bf_drive\;
 \A[21]_i_1\: unisim.vcomponents.LUT2
     generic map(
@@ -1240,15 +1246,14 @@ CE_n_reg: unisim.vcomponents.FDPE
       I1 => \FSM_onehot_state[10]_i_7_n_0\,
       O => \FSM_onehot_state[10]_i_2_n_0\
     );
-\FSM_onehot_state[10]_i_3\: unisim.vcomponents.LUT4
+\FSM_onehot_state[10]_i_3\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"02AA"
+      INIT => X"07"
     )
         port map (
-      I0 => \wait_count[1]_i_2_n_0\,
-      I1 => wait_count(0),
-      I2 => wait_count(1),
-      I3 => wait_count(2),
+      I0 => wait_count(2),
+      I1 => wait_count(1),
+      I2 => \wait_count[7]_i_3_n_0\,
       O => \FSM_onehot_state[10]_i_3_n_0\
     );
 \FSM_onehot_state[10]_i_4\: unisim.vcomponents.LUT3
@@ -1274,14 +1279,15 @@ CE_n_reg: unisim.vcomponents.FDPE
       I5 => data_prev_1,
       O => \FSM_onehot_state[10]_i_5_n_0\
     );
-\FSM_onehot_state[10]_i_6\: unisim.vcomponents.LUT3
+\FSM_onehot_state[10]_i_6\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"EF"
+      INIT => X"FFEA"
     )
         port map (
-      I0 => wait_count(2),
-      I1 => wait_count(1),
-      I2 => \wait_count[1]_i_2_n_0\,
+      I0 => \wait_count[7]_i_3_n_0\,
+      I1 => wait_count(0),
+      I2 => wait_count(1),
+      I3 => wait_count(2),
       O => \FSM_onehot_state[10]_i_6_n_0\
     );
 \FSM_onehot_state[10]_i_7\: unisim.vcomponents.LUT5
@@ -2611,6 +2617,23 @@ led0_reg: unisim.vcomponents.FDCE
       D => led0_i_1_n_0,
       Q => \^led0\
     );
+led1_i_1: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"E"
+    )
+        port map (
+      I0 => \FSM_onehot_state_reg_n_0_[10]\,
+      I1 => \^led1\,
+      O => led1_i_1_n_0
+    );
+led1_reg: unisim.vcomponents.FDCE
+     port map (
+      C => sysclk,
+      CE => '1',
+      CLR => read_complete_i_2_n_0,
+      D => led1_i_1_n_0,
+      Q => \^led1\
+    );
 \loop_cnt[0]_i_1\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"2"
@@ -2783,10 +2806,10 @@ osc_cnt0_carry_i_1: unisim.vcomponents.LUT6
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => in17(18),
-      I1 => data_prev(9),
-      I2 => in17(19),
-      I3 => data_prev(10),
+      I0 => in17(19),
+      I1 => data_prev(10),
+      I2 => in17(18),
+      I3 => data_prev(9),
       I4 => data_prev(11),
       I5 => in17(20),
       O => osc_cnt0_carry_i_1_n_0
@@ -2809,10 +2832,10 @@ osc_cnt0_carry_i_3: unisim.vcomponents.LUT6
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => in17(13),
-      I1 => data_prev(4),
-      I2 => in17(12),
-      I3 => data_prev(3),
+      I0 => in17(12),
+      I1 => data_prev(3),
+      I2 => in17(13),
+      I3 => data_prev(4),
       I4 => data_prev(5),
       I5 => in17(14),
       O => osc_cnt0_carry_i_3_n_0
@@ -3063,12 +3086,12 @@ state1_carry: unisim.vcomponents.CARRY4
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => \^dq_o\(13),
-      I1 => in17(22),
+      I0 => \^dq_o\(12),
+      I1 => in17(21),
       I2 => in17(23),
       I3 => \^dq_o\(14),
-      I4 => in17(21),
-      I5 => \^dq_o\(12),
+      I4 => in17(22),
+      I5 => \^dq_o\(13),
       O => \state1_carry__0_i_2_n_0\
     );
 state1_carry_i_1: unisim.vcomponents.LUT6
@@ -3123,43 +3146,30 @@ state1_carry_i_4: unisim.vcomponents.LUT6
       I5 => \^dq_o\(1),
       O => state1_carry_i_4_n_0
     );
-\wait_count[0]_i_1\: unisim.vcomponents.LUT6
+\wait_count[0]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"5555555500000040"
+      INIT => X"0F0F0002"
     )
         port map (
-      I0 => wait_count(0),
-      I1 => \FSM_onehot_state_reg_n_0_[7]\,
-      I2 => \wait_count[1]_i_2_n_0\,
-      I3 => wait_count(1),
-      I4 => wait_count(2),
-      I5 => \FSM_onehot_state_reg_n_0_[1]\,
+      I0 => \FSM_onehot_state_reg_n_0_[7]\,
+      I1 => wait_count(2),
+      I2 => wait_count(0),
+      I3 => \wait_count[7]_i_3_n_0\,
+      I4 => \FSM_onehot_state_reg_n_0_[1]\,
       O => \wait_count[0]_i_1_n_0\
     );
 \wait_count[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"55AA55AA00000080"
+      INIT => X"0FF00FF000000220"
     )
         port map (
-      I0 => wait_count(0),
-      I1 => \FSM_onehot_state_reg_n_0_[7]\,
-      I2 => \wait_count[1]_i_2_n_0\,
-      I3 => wait_count(1),
-      I4 => wait_count(2),
+      I0 => \FSM_onehot_state_reg_n_0_[7]\,
+      I1 => wait_count(2),
+      I2 => wait_count(1),
+      I3 => wait_count(0),
+      I4 => \wait_count[7]_i_3_n_0\,
       I5 => \FSM_onehot_state_reg_n_0_[1]\,
       O => \wait_count[1]_i_1_n_0\
-    );
-\wait_count[1]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00000001"
-    )
-        port map (
-      I0 => wait_count(3),
-      I1 => wait_count(5),
-      I2 => wait_count(4),
-      I3 => wait_count(7),
-      I4 => wait_count(6),
-      O => \wait_count[1]_i_2_n_0\
     );
 \wait_count[2]_i_1\: unisim.vcomponents.LUT4
     generic map(
@@ -3197,26 +3207,26 @@ state1_carry_i_4: unisim.vcomponents.LUT6
       I5 => wait_count(4),
       O => \wait_count[4]_i_1_n_0\
     );
-\wait_count[5]_i_1\: unisim.vcomponents.LUT3
+\wait_count[5]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"82"
+      INIT => X"A2AAAAAA08000000"
     )
         port map (
       I0 => \FSM_onehot_state_reg_n_0_[1]\,
-      I1 => \wait_count[5]_i_2_n_0\,
-      I2 => wait_count(5),
-      O => \wait_count[5]_i_1_n_0\
-    );
-\wait_count[5]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"7FFFFFFF"
-    )
-        port map (
-      I0 => wait_count(3),
-      I1 => wait_count(1),
-      I2 => wait_count(0),
+      I1 => wait_count(3),
+      I2 => \wait_count[5]_i_2_n_0\,
       I3 => wait_count(2),
       I4 => wait_count(4),
+      I5 => wait_count(5),
+      O => \wait_count[5]_i_1_n_0\
+    );
+\wait_count[5]_i_2\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"7"
+    )
+        port map (
+      I0 => wait_count(0),
+      I1 => wait_count(1),
       O => \wait_count[5]_i_2_n_0\
     );
 \wait_count[6]_i_1\: unisim.vcomponents.LUT3
@@ -3225,20 +3235,21 @@ state1_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       I0 => \FSM_onehot_state_reg_n_0_[1]\,
-      I1 => \wait_count[7]_i_3_n_0\,
+      I1 => \wait_count[7]_i_4_n_0\,
       I2 => wait_count(6),
       O => \wait_count[6]_i_1_n_0\
     );
-\wait_count[7]_i_1\: unisim.vcomponents.LUT5
+\wait_count[7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFF8"
+      INIT => X"FFFFFFFFFFFF002A"
     )
         port map (
       I0 => \FSM_onehot_state_reg_n_0_[1]\,
-      I1 => \FSM_onehot_state[10]_i_3_n_0\,
-      I2 => write_active_0,
-      I3 => A_buf,
-      I4 => \FSM_onehot_state_reg_n_0_[7]\,
+      I1 => wait_count(2),
+      I2 => wait_count(1),
+      I3 => \wait_count[7]_i_3_n_0\,
+      I4 => \A[21]_i_1_n_0\,
+      I5 => \FSM_onehot_state_reg_n_0_[7]\,
       O => \wait_count[7]_i_1_n_0\
     );
 \wait_count[7]_i_2\: unisim.vcomponents.LUT4
@@ -3246,13 +3257,25 @@ state1_carry_i_4: unisim.vcomponents.LUT6
       INIT => X"7800"
     )
         port map (
-      I0 => \wait_count[7]_i_3_n_0\,
+      I0 => \wait_count[7]_i_4_n_0\,
       I1 => wait_count(6),
       I2 => wait_count(7),
       I3 => \FSM_onehot_state_reg_n_0_[1]\,
       O => \wait_count[7]_i_2_n_0\
     );
-\wait_count[7]_i_3\: unisim.vcomponents.LUT6
+\wait_count[7]_i_3\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFFFFFE"
+    )
+        port map (
+      I0 => wait_count(3),
+      I1 => wait_count(5),
+      I2 => wait_count(4),
+      I3 => wait_count(7),
+      I4 => wait_count(6),
+      O => \wait_count[7]_i_3_n_0\
+    );
+\wait_count[7]_i_4\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"8000000000000000"
     )
@@ -3263,7 +3286,7 @@ state1_carry_i_4: unisim.vcomponents.LUT6
       I3 => wait_count(0),
       I4 => wait_count(1),
       I5 => wait_count(3),
-      O => \wait_count[7]_i_3_n_0\
+      O => \wait_count[7]_i_4_n_0\
     );
 \wait_count_reg[0]\: unisim.vcomponents.FDCE
     generic map(
@@ -3440,7 +3463,6 @@ begin
   decoder(2) <= \<const0>\;
   decoder(1) <= \<const0>\;
   decoder(0) <= \<const0>\;
-  led1 <= \<const0>\;
   o_BF_data(46 downto 9) <= \^o_bf_data\(46 downto 9);
   o_BF_data(8) <= \<const0>\;
   o_BF_data(7) <= \<const0>\;
@@ -3462,6 +3484,7 @@ U0: entity work.testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
       WE_n => WE_n,
       addresses_searched => \^addresses_searched\,
       led0 => led0,
+      led1 => led1,
       o_BF_data(42 downto 5) => \^o_bf_data\(46 downto 9),
       o_BF_data(4 downto 0) => \^o_bf_data\(4 downto 0),
       o_BF_drive => o_BF_drive,

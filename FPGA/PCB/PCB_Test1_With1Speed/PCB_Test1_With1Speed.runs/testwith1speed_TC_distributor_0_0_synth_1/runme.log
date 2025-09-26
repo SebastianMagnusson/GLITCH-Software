@@ -8,12 +8,12 @@
   **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Wed Sep 24 07:47:08 2025
+  **** Start of session at: Thu Sep 25 16:46:51 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source testwith1speed_TC_distributor_0_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 457.828 ; gain = 137.535
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 457.371 ; gain = 138.262
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
@@ -26,33 +26,33 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 11860
+INFO: [Synth 8-7075] Helper process launched with PID 36520
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 945.727 ; gain = 472.547
+Starting Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 944.914 ; gain = 472.910
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_TC_distributor_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_TC_distributor_0_0/synth/testwith1speed_TC_distributor_0_0.vhd:69]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_TC_distributor_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_TC_distributor_0_0/synth/testwith1speed_TC_distributor_0_0.vhd:73]
 	Parameter Clockfrequency bound to: 100000000 - type: integer 
-	Parameter Baud_Rate bound to: 400000 - type: integer 
-INFO: [Synth 8-3491] module 'TC_distributor' declared at 'C:/GitHub/GLITCH-Software/FPGA/Code/TC_Distributor.vhd:12' bound to instance 'U0' of component 'TC_distributor' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_TC_distributor_0_0/synth/testwith1speed_TC_distributor_0_0.vhd:106]
-INFO: [Synth 8-638] synthesizing module 'TC_distributor' [C:/GitHub/GLITCH-Software/FPGA/Code/TC_Distributor.vhd:29]
-INFO: [Synth 8-256] done synthesizing module 'TC_distributor' (0#1) [C:/GitHub/GLITCH-Software/FPGA/Code/TC_Distributor.vhd:29]
-INFO: [Synth 8-256] done synthesizing module 'testwith1speed_TC_distributor_0_0' (0#1) [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_TC_distributor_0_0/synth/testwith1speed_TC_distributor_0_0.vhd:69]
+INFO: [Synth 8-3491] module 'TC_distributor' declared at 'C:/GitHub/GLITCH-Software/FPGA/Code/TC_Distributor.vhd:12' bound to instance 'U0' of component 'TC_distributor' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_TC_distributor_0_0/synth/testwith1speed_TC_distributor_0_0.vhd:113]
+INFO: [Synth 8-638] synthesizing module 'TC_distributor' [C:/GitHub/GLITCH-Software/FPGA/Code/TC_Distributor.vhd:32]
+INFO: [Synth 8-256] done synthesizing module 'TC_distributor' (0#1) [C:/GitHub/GLITCH-Software/FPGA/Code/TC_Distributor.vhd:32]
+INFO: [Synth 8-256] done synthesizing module 'testwith1speed_TC_distributor_0_0' (0#1) [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_TC_distributor_0_0/synth/testwith1speed_TC_distributor_0_0.vhd:73]
+WARNING: [Synth 8-7129] Port rst in module TC_distributor is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1050.988 ; gain = 577.809
+Finished Synthesize : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1052.375 ; gain = 580.371
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1050.988 ; gain = 577.809
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1052.375 ; gain = 580.371
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1050.988 ; gain = 577.809
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1052.375 ; gain = 580.371
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1050.988 ; gain = 577.809
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1052.375 ; gain = 580.371
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
@@ -61,11 +61,10 @@ Start RTL Component Statistics
 Detailed RTL Component Info : 
 +---Registers : 
 	                8 Bit    Registers := 1     
-	                1 Bit    Registers := 5     
+	                1 Bit    Registers := 10    
 +---Muxes : 
 	   2 Input    8 Bit        Muxes := 2     
 	   2 Input    1 Bit        Muxes := 4     
-	   3 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -83,21 +82,22 @@ No constraint files found.
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port rst in module testwith1speed_TC_distributor_0_0 is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:39 . Memory (MB): peak = 1239.492 ; gain = 766.312
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1249.480 ; gain = 777.477
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:39 . Memory (MB): peak = 1245.281 ; gain = 772.102
+Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1249.480 ; gain = 777.477
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:39 . Memory (MB): peak = 1245.281 ; gain = 772.102
+Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1249.480 ; gain = 777.477
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -115,37 +115,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:46 . Memory (MB): peak = 1446.617 ; gain = 973.438
+Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1446.715 ; gain = 974.711
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:46 . Memory (MB): peak = 1446.617 ; gain = 973.438
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1446.715 ; gain = 974.711
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:46 . Memory (MB): peak = 1446.617 ; gain = 973.438
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1446.715 ; gain = 974.711
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:46 . Memory (MB): peak = 1446.617 ; gain = 973.438
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1446.715 ; gain = 974.711
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:46 . Memory (MB): peak = 1446.617 ; gain = 973.438
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1446.715 ; gain = 974.711
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:46 . Memory (MB): peak = 1446.617 ; gain = 973.438
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1446.715 ; gain = 974.711
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -158,45 +158,49 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-----+------+
-|      |Cell |Count |
-+------+-----+------+
-|1     |LUT2 |     2|
-|2     |LUT3 |     8|
-|3     |LUT4 |     4|
-|4     |LUT6 |     1|
-|5     |FDRE |    13|
-+------+-----+------+
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |     7|
+|2     |LUT1   |     2|
+|3     |LUT2   |     3|
+|4     |LUT4   |    13|
+|5     |LUT5   |     4|
+|6     |LUT6   |    10|
+|7     |FDRE   |    45|
++------+-------+------+
 
 Report Instance Areas: 
 +------+---------+---------------+------+
 |      |Instance |Module         |Cells |
 +------+---------+---------------+------+
-|1     |top      |               |    28|
-|2     |  U0     |TC_distributor |    28|
+|1     |top      |               |    84|
+|2     |  U0     |TC_distributor |    84|
 +------+---------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:46 . Memory (MB): peak = 1446.617 ; gain = 973.438
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1446.715 ; gain = 974.711
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:46 . Memory (MB): peak = 1446.617 ; gain = 973.438
-Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:46 . Memory (MB): peak = 1446.617 ; gain = 973.438
+Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1446.715 ; gain = 974.711
+Synthesis Optimization Complete : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1446.715 ; gain = 974.711
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1461.680 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1461.738 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 7 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1571.508 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1572.766 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: a419beae
+Synth Design complete | Checksum: fe05e990
 INFO: [Common 17-83] Releasing license: Synthesis
-19 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+21 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:00:54 . Memory (MB): peak = 1571.508 ; gain = 1099.484
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1572.766 ; gain = 1100.871
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1869.551 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1861.133 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/testwith1speed_TC_distributor_0_0_synth_1/testwith1speed_TC_distributor_0_0.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1869.605 ; gain = 298.098
+write_checkpoint: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1861.133 ; gain = 288.367
 INFO: [Vivado 12-24828] Executing command : report_utilization -file testwith1speed_TC_distributor_0_0_utilization_synth.rpt -pb testwith1speed_TC_distributor_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Sep 24 07:48:44 2025...
+INFO: [Common 17-206] Exiting Vivado at Thu Sep 25 16:47:29 2025...

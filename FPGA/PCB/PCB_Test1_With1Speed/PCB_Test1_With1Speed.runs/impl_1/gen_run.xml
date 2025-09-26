@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1758692824">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1758811607">
   <File Type="PA-TCL" Name="testwith1speed_wrapper.tcl"/>
   <File Type="REPORTS-TCL" Name="testwith1speed_wrapper_reports.tcl"/>
   <File Type="INIT-TIMING" Name="testwith1speed_wrapper_timing_summary_init.rpt"/>
@@ -182,6 +182,24 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/HTR_controller.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/HTR_CALC.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/RESTART_mod.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/bd/testwith1speed/testwith1speed.bd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -192,7 +210,14 @@
     <File Path="$PSRCDIR/sources_1/imports/hdl/testwith1speed_wrapper.vhd">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PGENDIR/sources_1/bd/testwith1speed/hdl/testwith1speed_wrapper.vhd"/>
-        <Attr Name="ImportTime" Val="1758635666"/>
+        <Attr Name="ImportTime" Val="1758803780"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/I2C_full_sensor_testversion.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -241,23 +266,29 @@
     <Step Id="phys_opt_design"/>
     <Step Id="route_design"/>
     <Step Id="post_route_phys_opt_design"/>
-    <Step Id="write_bitstream"/>
+    <Step Id="write_bitstream">
+      <Option Id="BinFile">1</Option>
+    </Step>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_GNSS_Sender_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="testwith1speed_UART_TX_100MHZ_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_UART_RX_100MHZ_1_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_GNSS_Fetcher_mod_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_I2C_full_sensor_data_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="testwith1speed_Switchmod_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_TC_distributor_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_UART_RX_100MHZ_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="testwith1speed_BF_formatter_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_Pulse_Per_Second_100_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_HK_formatter_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_Read1_100MHZ_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="testwith1speed_RW_ROUTER_100MHZ_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_Write1_100MHZ_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="testwith1speed_BF_Data_Collector_Dr_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_HTR_CALC_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_HK_formatter_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_Pulse_Per_Second_100_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="testwith1speed_I2Cmod_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="testwith1speed_TM_packet_sender_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_GNSS_Sender_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_UART_RX_100MHZ_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_UART_RX_100MHZ_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_GNSS_Fetcher_mod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_HTR_controller_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_HTR_controller_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_I2C_full_sensor_data_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_RESTART_mod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_Read1_100MHZ_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_Write1_100MHZ_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="testwith1speed_TC_distributor_0_0"/>
 </GenRun>

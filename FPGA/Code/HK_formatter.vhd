@@ -74,7 +74,6 @@ begin
             else
 				case state is
 					when s_GNSS_idle =>
-					    led1 <= '0';
 						if GNSS_data_DV = '1' then
 							GNSS_data_i <= GNSS_data;
 							RTC_request <= '1';
@@ -99,7 +98,6 @@ begin
 						end if;				
 						
 					when s_ALT_idle =>	
-					    led1 <= '0';			
 					    drive_prev <= ALT_data_DV;
 						if (ALT_data_DV = '1' and drive_prev = '0') then
                             ALT_request <= '0';
@@ -112,8 +110,7 @@ begin
 						    state <= s_ALT_idle;
 						end if;		
 													
-					when s_TEMP_idle =>					   
-					    led1 <= '0';									
+					when s_TEMP_idle =>					 				
 					    drive_prev <= TEMP_data_DV;		
 						if(TEMP_data_DV = '1' and drive_prev = '0') then
                 TEMP_request <= '0';

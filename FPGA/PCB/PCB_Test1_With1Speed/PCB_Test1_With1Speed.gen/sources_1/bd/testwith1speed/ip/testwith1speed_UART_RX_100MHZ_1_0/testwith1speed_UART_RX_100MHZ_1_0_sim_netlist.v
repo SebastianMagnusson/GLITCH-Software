@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Wed Sep 24 07:48:43 2025
+// Date        : Wed Sep 24 16:15:42 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_UART_RX_100MHZ_1_0/testwith1speed_UART_RX_100MHZ_1_0_sim_netlist.v
@@ -20,22 +20,28 @@ module testwith1speed_UART_RX_100MHZ_1_0
    (sysclk,
     i_RX_Serial,
     o_RX_DV,
-    o_RX_byte);
+    o_RX_byte,
+    led0);
   input sysclk;
   input i_RX_Serial;
   output o_RX_DV;
   output [7:0]o_RX_byte;
+  output led0;
 
+  wire \<const1> ;
   wire i_RX_Serial;
   wire o_RX_DV;
   wire [7:0]o_RX_byte;
   wire sysclk;
 
+  assign led0 = \<const1> ;
   testwith1speed_UART_RX_100MHZ_1_0_UART_RX_100MHZ U0
        (.i_RX_Serial(i_RX_Serial),
         .o_RX_DV(o_RX_DV),
         .o_RX_byte(o_RX_byte),
         .sysclk(sysclk));
+  VCC VCC
+       (.P(\<const1> ));
 endmodule
 
 (* ORIG_REF_NAME = "UART_RX_100MHZ" *) 

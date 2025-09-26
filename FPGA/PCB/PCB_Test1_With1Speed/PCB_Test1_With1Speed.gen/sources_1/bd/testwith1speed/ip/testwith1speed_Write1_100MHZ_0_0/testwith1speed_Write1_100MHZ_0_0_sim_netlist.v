@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Tue Sep 23 16:02:24 2025
+// Date        : Thu Sep 25 14:38:58 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Write1_100MHZ_0_0/testwith1speed_Write1_100MHZ_0_0_sim_netlist.v
@@ -401,14 +401,15 @@ module testwith1speed_Write1_100MHZ_0_0_Write1_100MHZ
     \DQ_t[0]_INST_0 
        (.I0(write_active),
         .O(DQ_t));
-  LUT5 #(
-    .INIT(32'hFFFFFFEA)) 
+  LUT6 #(
+    .INIT(64'hFFFEFEFEFEFEFEFE)) 
     \FSM_onehot_state[4]_i_1 
        (.I0(write_active_0),
-        .I1(\wait_count_reg_n_0_[1] ),
-        .I2(\FSM_onehot_state_reg_n_0_[1] ),
-        .I3(\FSM_onehot_state_reg_n_0_[3] ),
-        .I4(\FSM_onehot_state_reg_n_0_[2] ),
+        .I1(\FSM_onehot_state_reg_n_0_[2] ),
+        .I2(\FSM_onehot_state_reg_n_0_[3] ),
+        .I3(\wait_count_reg_n_0_[0] ),
+        .I4(\wait_count_reg_n_0_[1] ),
+        .I5(\FSM_onehot_state_reg_n_0_[1] ),
         .O(\FSM_onehot_state[4]_i_1_n_0 ));
   LUT2 #(
     .INIT(4'h2)) 
@@ -1310,17 +1311,16 @@ module testwith1speed_Write1_100MHZ_0_0_Write1_100MHZ
         .D(p_1_in[9]),
         .Q(\addr_cnt_reg_n_0_[9] ));
   (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT4 #(
-    .INIT(16'h0350)) 
+  LUT3 #(
+    .INIT(8'h1C)) 
     \wait_count[0]_i_1 
-       (.I0(\wait_count_reg_n_0_[1] ),
-        .I1(write_active_0),
-        .I2(\FSM_onehot_state_reg_n_0_[1] ),
-        .I3(\wait_count_reg_n_0_[0] ),
+       (.I0(write_active_0),
+        .I1(\FSM_onehot_state_reg_n_0_[1] ),
+        .I2(\wait_count_reg_n_0_[0] ),
         .O(\wait_count[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
-    .INIT(16'h03A0)) 
+    .INIT(16'h53A0)) 
     \wait_count[1]_i_1 
        (.I0(\wait_count_reg_n_0_[0] ),
         .I1(write_active_0),

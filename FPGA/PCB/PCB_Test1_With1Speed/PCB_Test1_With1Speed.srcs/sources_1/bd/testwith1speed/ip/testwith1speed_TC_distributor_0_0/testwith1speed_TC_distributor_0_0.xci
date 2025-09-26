@@ -9,12 +9,10 @@
     "parameters": {
       "component_parameters": {
         "Clockfrequency": [ { "value": "100000000", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "Baud_Rate": [ { "value": "400000", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "testwith1speed_TC_distributor_0_0", "resolve_type": "user", "usage": "all" } ]
       },
       "model_parameters": {
-        "Clockfrequency": [ { "value": "100000000", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "Baud_Rate": [ { "value": "400000", "resolve_type": "generated", "format": "long", "usage": "all" } ]
+        "Clockfrequency": [ { "value": "100000000", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "artix7" } ],
@@ -49,7 +47,11 @@
         "cmd0": [ { "direction": "out" } ],
         "cmd1": [ { "direction": "out" } ],
         "cmd2": [ { "direction": "out" } ],
-        "cmd3": [ { "direction": "out" } ]
+        "cmd3": [ { "direction": "out" } ],
+        "cmd4": [ { "direction": "out" } ],
+        "cmd5": [ { "direction": "out" } ],
+        "cmd6": [ { "direction": "out" } ],
+        "led0": [ { "direction": "out" } ]
       },
       "interfaces": {
         "rst": {
@@ -70,10 +72,10 @@
           "mode": "slave",
           "parameters": {
             "ASSOCIATED_RESET": [ { "value": "rst", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
-            "FREQ_HZ": [ { "value": "100000000", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
+            "FREQ_HZ": [ { "value": "12000000", "value_src": "ip_propagated", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "FREQ_TOLERANCE_HZ": [ { "value": "0", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
-            "PHASE": [ { "value": "0.0", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "float", "is_ips_inferred": true, "is_static_object": false } ],
-            "CLK_DOMAIN": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
+            "PHASE": [ { "value": "0.0", "value_src": "ip_propagated", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "float", "is_ips_inferred": true, "is_static_object": false } ],
+            "CLK_DOMAIN": [ { "value": "/clk_wiz_0_clk_out1", "value_src": "ip_propagated", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "ASSOCIATED_BUSIF": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "ASSOCIATED_PORT": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "INSERT_VIP": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "simulation.rtl", "is_ips_inferred": true, "is_static_object": false } ]

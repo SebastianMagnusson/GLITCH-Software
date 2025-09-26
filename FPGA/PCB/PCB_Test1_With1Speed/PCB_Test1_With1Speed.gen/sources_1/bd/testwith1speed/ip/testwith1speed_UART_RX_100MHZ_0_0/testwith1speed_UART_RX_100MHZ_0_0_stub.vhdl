@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Tue Sep 23 16:00:03 2025
+-- Date        : Wed Sep 24 16:15:48 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_UART_RX_100MHZ_0_0/testwith1speed_UART_RX_100MHZ_0_0_stub.vhdl
@@ -18,7 +18,8 @@ entity testwith1speed_UART_RX_100MHZ_0_0 is
     sysclk : in STD_LOGIC;
     i_RX_Serial : in STD_LOGIC;
     o_RX_DV : out STD_LOGIC;
-    o_RX_byte : out STD_LOGIC_VECTOR ( 7 downto 0 )
+    o_RX_byte : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    led0 : out STD_LOGIC
   );
 
   attribute CHECK_LICENSE_TYPE : string;
@@ -35,7 +36,7 @@ architecture stub of testwith1speed_UART_RX_100MHZ_0_0 is
   attribute syn_black_box : boolean;
   attribute black_box_pad_pin : string;
   attribute syn_black_box of stub : architecture is true;
-  attribute black_box_pad_pin of stub : architecture is "sysclk,i_RX_Serial,o_RX_DV,o_RX_byte[7:0]";
+  attribute black_box_pad_pin of stub : architecture is "sysclk,i_RX_Serial,o_RX_DV,o_RX_byte[7:0],led0";
   attribute x_core_info : string;
   attribute x_core_info of stub : architecture is "UART_RX_100MHZ,Vivado 2024.2";
 begin

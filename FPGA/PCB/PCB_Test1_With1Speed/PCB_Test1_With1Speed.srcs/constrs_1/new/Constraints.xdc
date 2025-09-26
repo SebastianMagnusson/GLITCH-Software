@@ -432,7 +432,7 @@ set_property SLEW FAST [get_ports { \
   SRAM2DEC[*] SRAM2A[*] SRAM2_WE SRAM1_WE SRAM1A[*] SRAM1DQ[*] \
   SD_MISO SD_MOSI SD_SCK SD_CS SD_DET \
   UART_MCU_RX UART_MCU_TX \
-  P515 P519 P523 P527 P530 P533 P534 P537 P538 P539 \
+  led0 led1 led2 led3 P530 P533 P534 P537 P538 P539 \
   P541 P542 P543 P553 P554 P557 P561 \
 }]
 set_property IOSTANDARD LVCMOS33 [get_ports { \
@@ -440,7 +440,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports { \
   SRAM2DEC[*] SRAM2A[*] SRAM2_WE SRAM1_WE SRAM1A[*] SRAM1DQ[*] \
   SD_MISO SD_MOSI SD_SCK SD_CS SD_DET \
   UART_MCU_RX UART_MCU_TX \
-  P515 P519 P523 P527 P530 P533 P534 P537 P538 P539 \
+  led0 led1 led2 led3 P530 P533 P534 P537 P538 P539 \
   P541 P542 P543 P553 P554 P557 P561 \
 }]
 
@@ -448,19 +448,19 @@ set_property PACKAGE_PIN B16 [get_ports {HEATER_1}]
 set_property PACKAGE_PIN B17 [get_ports {SRAM2DEC[2]}]
 set_property PACKAGE_PIN D14 [get_ports {HEATER_2}]
 set_property PACKAGE_PIN C14 [get_ports {SRAM2DEC[1]}]
-set_property PACKAGE_PIN C16 [get_ports {P515}]
+set_property PACKAGE_PIN C16 [get_ports {led0}]
 set_property PACKAGE_PIN C17 [get_ports {SRAM2DEC[0]}]
 set_property PACKAGE_PIN H14 [get_ports {SRAM2A[2]}]
 set_property PACKAGE_PIN G14 [get_ports {SRAM2A[1]}]
-set_property PACKAGE_PIN T8 [get_ports {P519}]
+set_property PACKAGE_PIN T8 [get_ports {led1}]
 set_property PACKAGE_PIN J5 [get_ports {GNSS_FIX}]
 set_property PACKAGE_PIN E15 [get_ports {SRAM2A[4]}]
 set_property PACKAGE_PIN E16 [get_ports {SRAM2A[3]}]
-set_property PACKAGE_PIN E17 [get_ports {P523}]
+set_property PACKAGE_PIN E17 [get_ports {led2}]
 set_property PACKAGE_PIN D17 [get_ports {GNSS_TX}]
 set_property PACKAGE_PIN F15 [get_ports {SRAM2A[6]}]
 set_property PACKAGE_PIN F16 [get_ports {SRAM2A[5]}]
-set_property PACKAGE_PIN J14 [get_ports {P527}]
+set_property PACKAGE_PIN J14 [get_ports {led3}]
 set_property PACKAGE_PIN H15 [get_ports {GNSS_RX}]
 set_property PACKAGE_PIN H17 [get_ports {SRAM2_WE}]
 set_property PACKAGE_PIN G17 [get_ports {P530}]

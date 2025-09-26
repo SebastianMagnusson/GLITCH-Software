@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Wed Sep 24 07:48:43 2025
+// Date        : Thu Sep 25 12:36:04 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_I2C_full_sensor_data_0_0/testwith1speed_I2C_full_sensor_data_0_0_stub.v
@@ -23,7 +23,7 @@ module testwith1speed_I2C_full_sensor_data_0_0(clk, rst, i_busy, i_data_read, i_
   o_TX_RTC_data, o_TX_ALT_data, o_TX_TEMP_data, led2)
 /* synthesis syn_black_box black_box_pad_pin="rst,i_busy,i_data_read[7:0],i_TX_done_HK,i_TX_done_BF,i_TX_done_RAD,i_TX_done_HTR,i_HK_RTC_request,i_BF_RTC_request,i_RAD_RTC_request,i_HK_ALT_request,i_HK_TEMP_request,i_HTR_TEMP_request,o_i2c_ena,o_i2c_address[6:0],o_i2c_rw,o_i2c_data_wr[7:0],o_TX_DV_HK,o_TX_DV_BF,o_TX_DV_RAD,o_TX_DV_HTR,o_TX_RTC_data[23:0],o_TX_ALT_data[23:0],o_TX_TEMP_data[31:0],led2" */
 /* synthesis syn_force_seq_prim="clk" */;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 clk CLK" *) (* x_interface_mode = "slave clk" *) (* x_interface_parameter = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, INSERT_VIP 0" *) input clk /* synthesis syn_isclock = 1 */;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 clk CLK" *) (* x_interface_mode = "slave clk" *) (* x_interface_parameter = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 12000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *) input clk /* synthesis syn_isclock = 1 */;
   (* x_interface_info = "xilinx.com:signal:reset:1.0 rst RST" *) (* x_interface_mode = "slave rst" *) (* x_interface_parameter = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst;
   input i_busy;
   input [7:0]i_data_read;

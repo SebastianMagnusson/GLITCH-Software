@@ -58,7 +58,8 @@ ENTITY testwith1speed_UART_RX_100MHZ_1_0 IS
     sysclk : IN STD_LOGIC;
     i_RX_Serial : IN STD_LOGIC;
     o_RX_DV : OUT STD_LOGIC;
-    o_RX_byte : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+    o_RX_byte : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+    led0 : OUT STD_LOGIC
   );
 END testwith1speed_UART_RX_100MHZ_1_0;
 
@@ -74,7 +75,8 @@ ARCHITECTURE testwith1speed_UART_RX_100MHZ_1_0_arch OF testwith1speed_UART_RX_10
       sysclk : IN STD_LOGIC;
       i_RX_Serial : IN STD_LOGIC;
       o_RX_DV : OUT STD_LOGIC;
-      o_RX_byte : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+      o_RX_byte : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      led0 : OUT STD_LOGIC
     );
   END COMPONENT UART_RX_100MHZ;
   ATTRIBUTE X_CORE_INFO : STRING;
@@ -95,6 +97,7 @@ BEGIN
       sysclk => sysclk,
       i_RX_Serial => i_RX_Serial,
       o_RX_DV => o_RX_DV,
-      o_RX_byte => o_RX_byte
+      o_RX_byte => o_RX_byte,
+      led0 => led0
     );
 END testwith1speed_UART_RX_100MHZ_1_0_arch;

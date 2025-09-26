@@ -8,7 +8,7 @@
 module testwith1speed (
   sysclk,
   SRAM1DQ_i,
-  GNSS_RX,
+  GNSS_TX,
   sda_i,
   scl_i,
   sda_o,
@@ -22,7 +22,13 @@ module testwith1speed (
   SRAM1_WE,
   SRAM1DQ_o,
   SRAM1DQ_t,
-  SRAM1DEC
+  SRAM1DEC,
+  led0,
+  led1,
+  led2,
+  led3,
+  HEATER_1,
+  HEATER_2
 );
 
   (* X_INTERFACE_IGNORE = "true" *)
@@ -30,7 +36,7 @@ module testwith1speed (
   (* X_INTERFACE_IGNORE = "true" *)
   input [15:0]SRAM1DQ_i;
   (* X_INTERFACE_IGNORE = "true" *)
-  input GNSS_RX;
+  input GNSS_TX;
   (* X_INTERFACE_IGNORE = "true" *)
   input sda_i;
   (* X_INTERFACE_IGNORE = "true" *)
@@ -59,6 +65,18 @@ module testwith1speed (
   output [15:0]SRAM1DQ_t;
   (* X_INTERFACE_IGNORE = "true" *)
   output [2:0]SRAM1DEC;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output led0;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output led1;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output led2;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output led3;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output HEATER_1;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output HEATER_2;
 
   // stub module has no contents
 

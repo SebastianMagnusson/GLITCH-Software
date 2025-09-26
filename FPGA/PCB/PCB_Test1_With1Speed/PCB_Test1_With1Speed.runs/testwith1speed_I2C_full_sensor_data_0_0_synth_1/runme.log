@@ -8,12 +8,11 @@
   **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Wed Sep 24 07:47:08 2025
+  **** Start of session at: Thu Sep 25 12:35:15 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source testwith1speed_I2C_full_sensor_data_0_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 456.652 ; gain = 137.477
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
@@ -26,9 +25,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 29284
+INFO: [Synth 8-7075] Helper process launched with PID 10704
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 946.066 ; gain = 473.539
+Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 946.184 ; gain = 474.941
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'testwith1speed_I2C_full_sensor_data_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_I2C_full_sensor_data_0_0/synth/testwith1speed_I2C_full_sensor_data_0_0.vhd:87]
 	Parameter Clockfrequency bound to: 100000000 - type: integer 
@@ -37,38 +36,37 @@ INFO: [Synth 8-638] synthesizing module 'I2C_full_sensor_data_fetcher' [C:/GitHu
 INFO: [Synth 8-256] done synthesizing module 'I2C_full_sensor_data_fetcher' (0#1) [C:/GitHub/GLITCH-Software/FPGA/Code/I2C_full_sensor_data_fetcher.vhd:45]
 INFO: [Synth 8-256] done synthesizing module 'testwith1speed_I2C_full_sensor_data_0_0' (0#1) [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_I2C_full_sensor_data_0_0/synth/testwith1speed_I2C_full_sensor_data_0_0.vhd:87]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1057.031 ; gain = 584.504
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1057.637 ; gain = 586.395
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1057.031 ; gain = 584.504
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1057.637 ; gain = 586.395
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
----------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1057.031 ; gain = 584.504
----------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1057.637 ; gain = 586.395
+---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'I2C_full_sensor_data_fetcher'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                 set_rtc |                             0000 |                             1001
-                    idle |                             0001 |                             0000
-                     rtc |                             0010 |                             0111
-                send_rtc |                             0011 |                             1000
-                prep_alt |                             0100 |                             0011
-                alt_read |                             0101 |                             0100
-                     alt |                             0110 |                             0101
-                send_alt |                             0111 |                             0110
-                    temp |                             1000 |                             0001
-               send_temp |                             1001 |                             0010
-                 cleanup |                             1010 |                             1010
+                 set_rtc |                       0000000001 |                             1000
+                 cleanup |                       0000000010 |                             1001
+                    idle |                       0000000100 |                             0000
+                     rtc |                       0000001000 |                             0110
+                send_rtc |                       0000010000 |                             0111
+                prep_alt |                       0000100000 |                             0011
+                     alt |                       0001000000 |                             0100
+                send_alt |                       0010000000 |                             0101
+                    temp |                       0100000000 |                             0001
+               send_temp |                       1000000000 |                             0010
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'I2C_full_sensor_data_fetcher'
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'I2C_full_sensor_data_fetcher'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1057.031 ; gain = 584.504
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1057.637 ; gain = 586.395
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
@@ -76,10 +74,12 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
+	   2 Input   26 Bit       Adders := 1     
 	   2 Input   20 Bit       Adders := 1     
 	   2 Input    3 Bit       Adders := 1     
 +---Registers : 
 	               32 Bit    Registers := 1     
+	               26 Bit    Registers := 1     
 	               24 Bit    Registers := 4     
 	               20 Bit    Registers := 1     
 	               16 Bit    Registers := 1     
@@ -89,30 +89,30 @@ Detailed RTL Component Info :
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 8     
 +---Muxes : 
-	  11 Input   32 Bit        Muxes := 1     
-	   4 Input   24 Bit        Muxes := 1     
-	   2 Input   24 Bit        Muxes := 1     
+	  10 Input   32 Bit        Muxes := 1     
+	  10 Input   26 Bit        Muxes := 1     
 	   6 Input   24 Bit        Muxes := 1     
-	  11 Input   24 Bit        Muxes := 6     
+	  10 Input   24 Bit        Muxes := 6     
 	   2 Input   20 Bit        Muxes := 1     
-	  11 Input   20 Bit        Muxes := 1     
+	  10 Input   20 Bit        Muxes := 1     
 	   2 Input   16 Bit        Muxes := 1     
 	   4 Input   16 Bit        Muxes := 1     
-	  11 Input   16 Bit        Muxes := 2     
-	  11 Input    8 Bit        Muxes := 1     
-	  11 Input    7 Bit        Muxes := 1     
-	  11 Input    4 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 7     
-	   2 Input    3 Bit        Muxes := 5     
+	  10 Input   16 Bit        Muxes := 2     
+	  10 Input   10 Bit        Muxes := 1     
+	   2 Input   10 Bit        Muxes := 6     
+	   6 Input    8 Bit        Muxes := 1     
+	  10 Input    8 Bit        Muxes := 1     
+	  10 Input    7 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 3     
 	   4 Input    3 Bit        Muxes := 1     
 	   7 Input    3 Bit        Muxes := 1     
-	  11 Input    3 Bit        Muxes := 1     
+	  10 Input    3 Bit        Muxes := 1     
 	   4 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 23    
+	   2 Input    1 Bit        Muxes := 17    
 	   4 Input    1 Bit        Muxes := 8     
-	   6 Input    1 Bit        Muxes := 6     
+	   6 Input    1 Bit        Muxes := 7     
 	   3 Input    1 Bit        Muxes := 2     
-	  11 Input    1 Bit        Muxes := 25    
+	  10 Input    1 Bit        Muxes := 22    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -131,20 +131,20 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:40 . Memory (MB): peak = 1251.422 ; gain = 778.895
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:25 . Memory (MB): peak = 1254.344 ; gain = 783.102
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:40 . Memory (MB): peak = 1251.422 ; gain = 778.895
+Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:25 . Memory (MB): peak = 1254.344 ; gain = 783.102
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:40 . Memory (MB): peak = 1259.684 ; gain = 787.156
+Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:25 . Memory (MB): peak = 1262.215 ; gain = 790.973
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -162,37 +162,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 1446.242 ; gain = 973.715
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:29 . Memory (MB): peak = 1449.098 ; gain = 977.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 1446.242 ; gain = 973.715
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:29 . Memory (MB): peak = 1449.098 ; gain = 977.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 1446.242 ; gain = 973.715
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:29 . Memory (MB): peak = 1449.098 ; gain = 977.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 1446.242 ; gain = 973.715
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:29 . Memory (MB): peak = 1449.098 ; gain = 977.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 1446.242 ; gain = 973.715
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:29 . Memory (MB): peak = 1449.098 ; gain = 977.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 1446.242 ; gain = 973.715
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:29 . Memory (MB): peak = 1449.098 ; gain = 977.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -208,49 +208,48 @@ Report Cell Usage:
 +------+-------+------+
 |      |Cell   |Count |
 +------+-------+------+
-|1     |CARRY4 |    11|
-|2     |LUT1   |     3|
-|3     |LUT2   |    20|
-|4     |LUT3   |    40|
-|5     |LUT4   |    13|
-|6     |LUT5   |    30|
-|7     |LUT6   |    50|
-|8     |MUXF7  |     1|
-|9     |FDRE   |   195|
-|10    |FDSE   |     1|
+|1     |CARRY4 |    12|
+|2     |LUT1   |     1|
+|3     |LUT2   |    55|
+|4     |LUT3   |    34|
+|5     |LUT4   |    14|
+|6     |LUT5   |    20|
+|7     |LUT6   |    33|
+|8     |FDRE   |   204|
+|9     |FDSE   |     1|
 +------+-------+------+
 
 Report Instance Areas: 
 +------+---------+-----------------------------+------+
 |      |Instance |Module                       |Cells |
 +------+---------+-----------------------------+------+
-|1     |top      |                             |   364|
-|2     |  U0     |I2C_full_sensor_data_fetcher |   364|
+|1     |top      |                             |   374|
+|2     |  U0     |I2C_full_sensor_data_fetcher |   374|
 +------+---------+-----------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 1446.242 ; gain = 973.715
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:29 . Memory (MB): peak = 1449.098 ; gain = 977.855
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 1446.242 ; gain = 973.715
-Synthesis Optimization Complete : Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 1446.242 ; gain = 973.715
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:29 . Memory (MB): peak = 1449.098 ; gain = 977.855
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:29 . Memory (MB): peak = 1449.098 ; gain = 977.855
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1461.301 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1463.152 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 12 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1572.723 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1574.988 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: eec93c53
+Synth Design complete | Checksum: 4fbeca62
 INFO: [Common 17-83] Releasing license: Synthesis
 23 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:54 . Memory (MB): peak = 1572.723 ; gain = 1100.301
+synth_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:33 . Memory (MB): peak = 1574.988 ; gain = 1103.879
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.047 . Memory (MB): peak = 1869.543 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1883.664 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/testwith1speed_I2C_full_sensor_data_0_0_synth_1/testwith1speed_I2C_full_sensor_data_0_0.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1869.543 ; gain = 296.820
+write_checkpoint: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1883.691 ; gain = 308.703
 INFO: [Vivado 12-24828] Executing command : report_utilization -file testwith1speed_I2C_full_sensor_data_0_0_utilization_synth.rpt -pb testwith1speed_I2C_full_sensor_data_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Sep 24 07:48:44 2025...
+INFO: [Common 17-206] Exiting Vivado at Thu Sep 25 12:36:04 2025...

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Wed Sep 24 07:51:39 2025
+| Date         : Thu Sep 25 16:48:35 2025
 | Host         : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command      : report_utilization -file testwith1speed_wrapper_utilization_synth.rpt -pb testwith1speed_wrapper_utilization_synth.pb
 | Design       : testwith1speed_wrapper
@@ -93,7 +93,7 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   49 |     0 |          0 |       210 | 23.33 |
+| Bonded IOB                  |   55 |     0 |          0 |       210 | 26.19 |
 | Bonded IPADs                |    0 |     0 |          0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         6 |  0.00 |
 | PHASER_REF                  |    0 |     0 |          0 |         6 |  0.00 |
@@ -149,7 +149,7 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| OBUF     |   28 |                  IO |
+| OBUF     |   34 |                  IO |
 | IBUF     |   21 |                  IO |
 | OBUFT    |   18 |                  IO |
 +----------+------+---------------------+
@@ -170,9 +170,13 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 | testwith1speed_Switchmod_0_0            |    1 |
 | testwith1speed_Read1_100MHZ_0_0         |    1 |
 | testwith1speed_RW_ROUTER_100MHZ_0_0     |    1 |
+| testwith1speed_RESTART_mod_0_0          |    1 |
 | testwith1speed_Pulse_Per_Second_100_0_0 |    1 |
 | testwith1speed_I2Cmod_0_0               |    1 |
 | testwith1speed_I2C_full_sensor_data_0_0 |    1 |
+| testwith1speed_HTR_controller_1_0       |    1 |
+| testwith1speed_HTR_controller_0_0       |    1 |
+| testwith1speed_HTR_CALC_0_0             |    1 |
 | testwith1speed_HK_formatter_0_0         |    1 |
 | testwith1speed_GNSS_Sender_0_0          |    1 |
 | testwith1speed_GNSS_Fetcher_mod_0_0     |    1 |

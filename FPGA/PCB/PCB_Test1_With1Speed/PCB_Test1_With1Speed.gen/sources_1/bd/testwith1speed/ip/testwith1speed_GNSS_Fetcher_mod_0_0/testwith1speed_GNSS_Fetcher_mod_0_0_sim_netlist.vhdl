@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Tue Sep 23 15:58:28 2025
+-- Date        : Wed Sep 24 16:16:00 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_GNSS_Fetcher_mod_0_0/testwith1speed_GNSS_Fetcher_mod_0_0_sim_netlist.vhdl
@@ -20,25 +20,24 @@ entity testwith1speed_GNSS_Fetcher_mod_0_0_GNSS_Fetcher_mod is
     o_gnss_data : out STD_LOGIC_VECTOR ( 351 downto 0 );
     o_gnss_drive : out STD_LOGIC;
     led1 : out STD_LOGIC;
-    sysclk : in STD_LOGIC;
-    i_gnss_data : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    reset_n : in STD_LOGIC;
     i_RX_drive : in STD_LOGIC;
-    reset_n : in STD_LOGIC
+    sysclk : in STD_LOGIC;
+    i_gnss_data : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of testwith1speed_GNSS_Fetcher_mod_0_0_GNSS_Fetcher_mod : entity is "GNSS_Fetcher_mod";
 end testwith1speed_GNSS_Fetcher_mod_0_0_GNSS_Fetcher_mod;
 
 architecture STRUCTURE of testwith1speed_GNSS_Fetcher_mod_0_0_GNSS_Fetcher_mod is
-  signal \FSM_onehot_state[0]_i_1_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[1]_i_1_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[1]_i_2_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[1]_i_3_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[1]_i_4_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[2]_i_1_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state_reg_n_0_[0]\ : STD_LOGIC;
-  signal \FSM_onehot_state_reg_n_0_[1]\ : STD_LOGIC;
-  signal \FSM_onehot_state_reg_n_0_[2]\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_2_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_3_n_0\ : STD_LOGIC;
+  signal RX_prev_C_i_1_n_0 : STD_LOGIC;
+  signal RX_prev_reg_C_n_0 : STD_LOGIC;
+  signal RX_prev_reg_LDC_i_1_n_0 : STD_LOGIC;
+  signal RX_prev_reg_LDC_i_2_n_0 : STD_LOGIC;
+  signal RX_prev_reg_LDC_n_0 : STD_LOGIC;
+  signal RX_prev_reg_P_n_0 : STD_LOGIC;
   signal byte_cnt0 : STD_LOGIC;
   signal \byte_cnt[0]_i_1_n_0\ : STD_LOGIC;
   signal \byte_cnt[1]_i_1_n_0\ : STD_LOGIC;
@@ -47,7 +46,6 @@ architecture STRUCTURE of testwith1speed_GNSS_Fetcher_mod_0_0_GNSS_Fetcher_mod i
   signal \byte_cnt[4]_i_1_n_0\ : STD_LOGIC;
   signal \byte_cnt[5]_i_2_n_0\ : STD_LOGIC;
   signal \byte_cnt[5]_i_3_n_0\ : STD_LOGIC;
-  signal \byte_cnt[5]_i_4_n_0\ : STD_LOGIC;
   signal \byte_cnt_reg_n_0_[0]\ : STD_LOGIC;
   signal \byte_cnt_reg_n_0_[1]\ : STD_LOGIC;
   signal \byte_cnt_reg_n_0_[2]\ : STD_LOGIC;
@@ -98,6 +96,7 @@ architecture STRUCTURE of testwith1speed_GNSS_Fetcher_mod_0_0_GNSS_Fetcher_mod i
   signal \gnss_data_buf[351]_i_1_n_0\ : STD_LOGIC;
   signal \gnss_data_buf[351]_i_2_n_0\ : STD_LOGIC;
   signal \gnss_data_buf[351]_i_3_n_0\ : STD_LOGIC;
+  signal \gnss_data_buf[351]_i_4_n_0\ : STD_LOGIC;
   signal \gnss_data_buf[39]_i_1_n_0\ : STD_LOGIC;
   signal \gnss_data_buf[47]_i_1_n_0\ : STD_LOGIC;
   signal \gnss_data_buf[55]_i_1_n_0\ : STD_LOGIC;
@@ -113,131 +112,88 @@ architecture STRUCTURE of testwith1speed_GNSS_Fetcher_mod_0_0_GNSS_Fetcher_mod i
   signal \gnss_data_buf[95]_i_2_n_0\ : STD_LOGIC;
   signal \^led1\ : STD_LOGIC;
   signal led1_i_1_n_0 : STD_LOGIC;
+  signal led1_i_2_n_0 : STD_LOGIC;
+  signal led1_i_3_n_0 : STD_LOGIC;
   signal \^o_gnss_drive\ : STD_LOGIC;
   signal o_gnss_drive_i_1_n_0 : STD_LOGIC;
+  signal state : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal \state__0\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FSM_onehot_state[2]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_2\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_3\ : label is "soft_lutpair9";
   attribute FSM_ENCODED_STATES : string;
-  attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[0]\ : label is "search:001,capture:010,send:100";
-  attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[1]\ : label is "search:001,capture:010,send:100";
-  attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[2]\ : label is "search:001,capture:010,send:100";
-  attribute SOFT_HLUTNM of \byte_cnt[0]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \byte_cnt[1]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \byte_cnt[2]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \byte_cnt[3]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \byte_cnt[5]_i_3\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \gnss_data_buf[183]_i_2\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \gnss_data_buf[191]_i_2\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \gnss_data_buf[215]_i_2\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \gnss_data_buf[223]_i_2\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \gnss_data_buf[311]_i_2\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \gnss_data_buf[319]_i_2\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \gnss_data_buf[343]_i_2\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \gnss_data_buf[351]_i_3\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \gnss_data_buf[55]_i_2\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \gnss_data_buf[63]_i_2\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \gnss_data_buf[87]_i_2\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \gnss_data_buf[95]_i_2\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of led1_i_1 : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of o_gnss_drive_i_1 : label is "soft_lutpair9";
+  attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[0]\ : label is "search:00,capture:01,send:10";
+  attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[1]\ : label is "search:00,capture:01,send:10";
+  attribute XILINX_LEGACY_PRIM : string;
+  attribute XILINX_LEGACY_PRIM of RX_prev_reg_LDC : label is "LDC";
+  attribute XILINX_TRANSFORM_PINMAP : string;
+  attribute XILINX_TRANSFORM_PINMAP of RX_prev_reg_LDC : label is "VCC:GE";
+  attribute SOFT_HLUTNM of \byte_cnt[0]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \byte_cnt[1]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \byte_cnt[2]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \byte_cnt[3]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \byte_cnt[5]_i_3\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \gnss_data_buf[183]_i_2\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \gnss_data_buf[191]_i_2\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \gnss_data_buf[215]_i_2\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \gnss_data_buf[223]_i_2\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \gnss_data_buf[311]_i_2\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \gnss_data_buf[319]_i_2\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \gnss_data_buf[343]_i_2\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \gnss_data_buf[351]_i_4\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \gnss_data_buf[55]_i_2\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \gnss_data_buf[63]_i_2\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \gnss_data_buf[87]_i_2\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \gnss_data_buf[95]_i_2\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of o_gnss_drive_i_1 : label is "soft_lutpair8";
 begin
   led1 <= \^led1\;
   o_gnss_drive <= \^o_gnss_drive\;
-\FSM_onehot_state[0]_i_1\: unisim.vcomponents.LUT4
+\FSM_sequential_state[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFA8"
+      INIT => X"FF40FF40FF40EA40"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[0]\,
-      I1 => \FSM_onehot_state[1]_i_3_n_0\,
-      I2 => \FSM_onehot_state[1]_i_2_n_0\,
-      I3 => \FSM_onehot_state_reg_n_0_[2]\,
-      O => \FSM_onehot_state[0]_i_1_n_0\
+      I0 => \gnss_data_buf[351]_i_3_n_0\,
+      I1 => led1_i_2_n_0,
+      I2 => led1_i_3_n_0,
+      I3 => \FSM_sequential_state[0]_i_2_n_0\,
+      I4 => \gnss_data_buf[63]_i_2_n_0\,
+      I5 => \FSM_sequential_state[0]_i_3_n_0\,
+      O => \state__0\(0)
     );
-\FSM_onehot_state[1]_i_1\: unisim.vcomponents.LUT6
+\FSM_sequential_state[0]_i_2\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"FFFF000C555D000C"
+      INIT => X"2"
     )
         port map (
-      I0 => i_RX_drive,
-      I1 => \FSM_onehot_state_reg_n_0_[0]\,
-      I2 => \FSM_onehot_state[1]_i_2_n_0\,
-      I3 => \FSM_onehot_state[1]_i_3_n_0\,
-      I4 => \FSM_onehot_state_reg_n_0_[1]\,
-      I5 => \FSM_onehot_state[1]_i_4_n_0\,
-      O => \FSM_onehot_state[1]_i_1_n_0\
+      I0 => state(0),
+      I1 => state(1),
+      O => \FSM_sequential_state[0]_i_2_n_0\
     );
-\FSM_onehot_state[1]_i_2\: unisim.vcomponents.LUT4
+\FSM_sequential_state[0]_i_3\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"FFDF"
-    )
-        port map (
-      I0 => i_gnss_data(4),
-      I1 => i_gnss_data(3),
-      I2 => i_gnss_data(6),
-      I3 => i_gnss_data(5),
-      O => \FSM_onehot_state[1]_i_2_n_0\
-    );
-\FSM_onehot_state[1]_i_3\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFEFFF"
-    )
-        port map (
-      I0 => i_gnss_data(0),
-      I1 => i_gnss_data(7),
-      I2 => i_RX_drive,
-      I3 => i_gnss_data(1),
-      I4 => i_gnss_data(2),
-      O => \FSM_onehot_state[1]_i_3_n_0\
-    );
-\FSM_onehot_state[1]_i_4\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFFFBFFFFFF"
-    )
-        port map (
-      I0 => \byte_cnt_reg_n_0_[0]\,
-      I1 => \byte_cnt_reg_n_0_[2]\,
-      I2 => \byte_cnt_reg_n_0_[4]\,
-      I3 => \byte_cnt_reg_n_0_[5]\,
-      I4 => \byte_cnt_reg_n_0_[3]\,
-      I5 => \byte_cnt_reg_n_0_[1]\,
-      O => \FSM_onehot_state[1]_i_4_n_0\
-    );
-\FSM_onehot_state[2]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00004000"
+      INIT => X"B"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[63]_i_2_n_0\,
-      O => \FSM_onehot_state[2]_i_1_n_0\
+      O => \FSM_sequential_state[0]_i_3_n_0\
     );
-\FSM_onehot_state_reg[0]\: unisim.vcomponents.FDPE
+\FSM_sequential_state[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => '1'
+      INIT => X"0000000000000400"
     )
         port map (
-      C => sysclk,
-      CE => '1',
-      D => \FSM_onehot_state[0]_i_1_n_0\,
-      PRE => \gnss_data_buf[351]_i_2_n_0\,
-      Q => \FSM_onehot_state_reg_n_0_[0]\
+      I0 => \byte_cnt_reg_n_0_[1]\,
+      I1 => \byte_cnt_reg_n_0_[3]\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[63]_i_2_n_0\,
+      O => \state__0\(1)
     );
-\FSM_onehot_state_reg[1]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => sysclk,
-      CE => '1',
-      CLR => \gnss_data_buf[351]_i_2_n_0\,
-      D => \FSM_onehot_state[1]_i_1_n_0\,
-      Q => \FSM_onehot_state_reg_n_0_[1]\
-    );
-\FSM_onehot_state_reg[2]\: unisim.vcomponents.FDCE
+\FSM_sequential_state_reg[0]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
@@ -245,25 +201,93 @@ begin
       C => sysclk,
       CE => '1',
       CLR => \gnss_data_buf[351]_i_2_n_0\,
-      D => \FSM_onehot_state[2]_i_1_n_0\,
-      Q => \FSM_onehot_state_reg_n_0_[2]\
+      D => \state__0\(0),
+      Q => state(0)
+    );
+\FSM_sequential_state_reg[1]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => sysclk,
+      CE => '1',
+      CLR => \gnss_data_buf[351]_i_2_n_0\,
+      D => \state__0\(1),
+      Q => state(1)
+    );
+RX_prev_C_i_1: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8FFB800"
+    )
+        port map (
+      I0 => RX_prev_reg_P_n_0,
+      I1 => RX_prev_reg_LDC_n_0,
+      I2 => RX_prev_reg_C_n_0,
+      I3 => state(1),
+      I4 => i_RX_drive,
+      O => RX_prev_C_i_1_n_0
+    );
+RX_prev_reg_C: unisim.vcomponents.FDCE
+     port map (
+      C => sysclk,
+      CE => '1',
+      CLR => RX_prev_reg_LDC_i_2_n_0,
+      D => RX_prev_C_i_1_n_0,
+      Q => RX_prev_reg_C_n_0
+    );
+RX_prev_reg_LDC: unisim.vcomponents.LDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      CLR => RX_prev_reg_LDC_i_2_n_0,
+      D => '1',
+      G => RX_prev_reg_LDC_i_1_n_0,
+      GE => '1',
+      Q => RX_prev_reg_LDC_n_0
+    );
+RX_prev_reg_LDC_i_1: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"2"
+    )
+        port map (
+      I0 => i_RX_drive,
+      I1 => reset_n,
+      O => RX_prev_reg_LDC_i_1_n_0
+    );
+RX_prev_reg_LDC_i_2: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => reset_n,
+      I1 => i_RX_drive,
+      O => RX_prev_reg_LDC_i_2_n_0
+    );
+RX_prev_reg_P: unisim.vcomponents.FDPE
+     port map (
+      C => sysclk,
+      CE => '1',
+      D => RX_prev_C_i_1_n_0,
+      PRE => RX_prev_reg_LDC_i_1_n_0,
+      Q => RX_prev_reg_P_n_0
     );
 \byte_cnt[0]_i_1\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"2"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[1]\,
+      I0 => state(0),
       I1 => \byte_cnt_reg_n_0_[0]\,
       O => \byte_cnt[0]_i_1_n_0\
     );
 \byte_cnt[1]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"48"
+      INIT => X"28"
     )
         port map (
-      I0 => \byte_cnt_reg_n_0_[0]\,
-      I1 => \FSM_onehot_state_reg_n_0_[1]\,
+      I0 => state(0),
+      I1 => \byte_cnt_reg_n_0_[0]\,
       I2 => \byte_cnt_reg_n_0_[1]\,
       O => \byte_cnt[1]_i_1_n_0\
     );
@@ -274,20 +298,20 @@ begin
         port map (
       I0 => \byte_cnt_reg_n_0_[0]\,
       I1 => \byte_cnt_reg_n_0_[1]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
+      I2 => state(0),
       I3 => \byte_cnt_reg_n_0_[2]\,
       O => \byte_cnt[2]_i_1_n_0\
     );
 \byte_cnt[3]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"7F800000"
+      INIT => X"4CCC8000"
     )
         port map (
-      I0 => \byte_cnt_reg_n_0_[2]\,
-      I1 => \byte_cnt_reg_n_0_[0]\,
-      I2 => \byte_cnt_reg_n_0_[1]\,
-      I3 => \byte_cnt_reg_n_0_[3]\,
-      I4 => \FSM_onehot_state_reg_n_0_[1]\,
+      I0 => \byte_cnt_reg_n_0_[1]\,
+      I1 => state(0),
+      I2 => \byte_cnt_reg_n_0_[2]\,
+      I3 => \byte_cnt_reg_n_0_[0]\,
+      I4 => \byte_cnt_reg_n_0_[3]\,
       O => \byte_cnt[3]_i_1_n_0\
     );
 \byte_cnt[4]_i_1\: unisim.vcomponents.LUT6
@@ -299,21 +323,21 @@ begin
       I1 => \byte_cnt_reg_n_0_[3]\,
       I2 => \byte_cnt_reg_n_0_[1]\,
       I3 => \byte_cnt_reg_n_0_[0]\,
-      I4 => \FSM_onehot_state_reg_n_0_[1]\,
+      I4 => \FSM_sequential_state[0]_i_2_n_0\,
       I5 => \byte_cnt_reg_n_0_[4]\,
       O => \byte_cnt[4]_i_1_n_0\
     );
 \byte_cnt[5]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FEAAAAAA00000000"
+      INIT => X"0404040444444404"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[0]\,
-      I1 => \gnss_data_buf[63]_i_2_n_0\,
-      I2 => \byte_cnt[5]_i_3_n_0\,
-      I3 => i_RX_drive,
-      I4 => \FSM_onehot_state_reg_n_0_[1]\,
-      I5 => reset_n,
+      I0 => state(1),
+      I1 => reset_n,
+      I2 => state(0),
+      I3 => \FSM_sequential_state[0]_i_3_n_0\,
+      I4 => \gnss_data_buf[63]_i_2_n_0\,
+      I5 => \gnss_data_buf[351]_i_3_n_0\,
       O => byte_cnt0
     );
 \byte_cnt[5]_i_2\: unisim.vcomponents.LUT6
@@ -325,27 +349,18 @@ begin
       I1 => \byte_cnt_reg_n_0_[0]\,
       I2 => \byte_cnt_reg_n_0_[4]\,
       I3 => \byte_cnt_reg_n_0_[2]\,
-      I4 => \FSM_onehot_state_reg_n_0_[1]\,
-      I5 => \byte_cnt[5]_i_4_n_0\,
+      I4 => \FSM_sequential_state[0]_i_2_n_0\,
+      I5 => \byte_cnt[5]_i_3_n_0\,
       O => \byte_cnt[5]_i_2_n_0\
     );
 \byte_cnt[5]_i_3\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"B"
-    )
-        port map (
-      I0 => \byte_cnt_reg_n_0_[1]\,
-      I1 => \byte_cnt_reg_n_0_[3]\,
-      O => \byte_cnt[5]_i_3_n_0\
-    );
-\byte_cnt[5]_i_4\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"7"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      O => \byte_cnt[5]_i_4_n_0\
+      O => \byte_cnt[5]_i_3_n_0\
     );
 \byte_cnt_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -413,148 +428,160 @@ begin
       Q => \byte_cnt_reg_n_0_[5]\,
       R => '0'
     );
-\gnss_data_buf[103]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[103]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80000000"
+      INIT => X"0000080000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[183]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[183]_i_2_n_0\,
       O => \gnss_data_buf[103]_i_1_n_0\
     );
-\gnss_data_buf[111]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[111]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80000000"
+      INIT => X"0000080000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[191]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[191]_i_2_n_0\,
       O => \gnss_data_buf[111]_i_1_n_0\
     );
-\gnss_data_buf[119]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[119]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"40000000"
+      INIT => X"0000040000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[183]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[183]_i_2_n_0\,
       O => \gnss_data_buf[119]_i_1_n_0\
     );
-\gnss_data_buf[127]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[127]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"40000000"
+      INIT => X"0000040000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[191]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[191]_i_2_n_0\,
       O => \gnss_data_buf[127]_i_1_n_0\
     );
-\gnss_data_buf[135]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[135]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80000000"
+      INIT => X"0000080000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[215]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[215]_i_2_n_0\,
       O => \gnss_data_buf[135]_i_1_n_0\
     );
-\gnss_data_buf[143]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[143]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80000000"
+      INIT => X"0000080000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[223]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[223]_i_2_n_0\,
       O => \gnss_data_buf[143]_i_1_n_0\
     );
-\gnss_data_buf[151]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[151]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"40000000"
+      INIT => X"0000040000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[215]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[215]_i_2_n_0\,
       O => \gnss_data_buf[151]_i_1_n_0\
     );
-\gnss_data_buf[159]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[159]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"40000000"
+      INIT => X"0000040000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[223]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[223]_i_2_n_0\,
       O => \gnss_data_buf[159]_i_1_n_0\
     );
-\gnss_data_buf[15]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[15]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80000000"
+      INIT => X"0000080000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[95]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[95]_i_2_n_0\,
       O => \gnss_data_buf[15]_i_1_n_0\
     );
-\gnss_data_buf[167]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[167]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[183]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[183]_i_2_n_0\,
       O => \gnss_data_buf[167]_i_1_n_0\
     );
-\gnss_data_buf[175]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[175]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[191]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[191]_i_2_n_0\,
       O => \gnss_data_buf[175]_i_1_n_0\
     );
-\gnss_data_buf[183]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[183]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[183]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[183]_i_2_n_0\,
       O => \gnss_data_buf[183]_i_1_n_0\
     );
 \gnss_data_buf[183]_i_2\: unisim.vcomponents.LUT4
@@ -568,16 +595,17 @@ begin
       I3 => \byte_cnt_reg_n_0_[2]\,
       O => \gnss_data_buf[183]_i_2_n_0\
     );
-\gnss_data_buf[191]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[191]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[191]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[191]_i_2_n_0\,
       O => \gnss_data_buf[191]_i_1_n_0\
     );
 \gnss_data_buf[191]_i_2\: unisim.vcomponents.LUT4
@@ -591,40 +619,43 @@ begin
       I3 => \byte_cnt_reg_n_0_[2]\,
       O => \gnss_data_buf[191]_i_2_n_0\
     );
-\gnss_data_buf[199]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[199]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[215]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[215]_i_2_n_0\,
       O => \gnss_data_buf[199]_i_1_n_0\
     );
-\gnss_data_buf[207]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[207]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[223]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[223]_i_2_n_0\,
       O => \gnss_data_buf[207]_i_1_n_0\
     );
-\gnss_data_buf[215]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[215]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[215]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[215]_i_2_n_0\,
       O => \gnss_data_buf[215]_i_1_n_0\
     );
 \gnss_data_buf[215]_i_2\: unisim.vcomponents.LUT4
@@ -638,16 +669,17 @@ begin
       I3 => \byte_cnt_reg_n_0_[0]\,
       O => \gnss_data_buf[215]_i_2_n_0\
     );
-\gnss_data_buf[223]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[223]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[223]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[223]_i_2_n_0\,
       O => \gnss_data_buf[223]_i_1_n_0\
     );
 \gnss_data_buf[223]_i_2\: unisim.vcomponents.LUT4
@@ -661,148 +693,160 @@ begin
       I3 => \byte_cnt_reg_n_0_[0]\,
       O => \gnss_data_buf[223]_i_2_n_0\
     );
-\gnss_data_buf[231]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[231]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80000000"
+      INIT => X"0000080000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[311]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[311]_i_2_n_0\,
       O => \gnss_data_buf[231]_i_1_n_0\
     );
-\gnss_data_buf[239]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[239]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80000000"
+      INIT => X"0000080000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[319]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[319]_i_2_n_0\,
       O => \gnss_data_buf[239]_i_1_n_0\
     );
-\gnss_data_buf[23]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[23]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"40000000"
+      INIT => X"0000040000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[87]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[87]_i_2_n_0\,
       O => \gnss_data_buf[23]_i_1_n_0\
     );
-\gnss_data_buf[247]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[247]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"40000000"
+      INIT => X"0000040000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[311]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[311]_i_2_n_0\,
       O => \gnss_data_buf[247]_i_1_n_0\
     );
-\gnss_data_buf[255]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[255]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"40000000"
+      INIT => X"0000040000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[319]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[319]_i_2_n_0\,
       O => \gnss_data_buf[255]_i_1_n_0\
     );
-\gnss_data_buf[263]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[263]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80000000"
+      INIT => X"0000080000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[343]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[343]_i_2_n_0\,
       O => \gnss_data_buf[263]_i_1_n_0\
     );
-\gnss_data_buf[271]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[271]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80000000"
+      INIT => X"0000080000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
+      I2 => state(1),
+      I3 => state(0),
       I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[351]_i_4_n_0\,
       O => \gnss_data_buf[271]_i_1_n_0\
     );
-\gnss_data_buf[279]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[279]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"40000000"
+      INIT => X"0000040000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[343]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[343]_i_2_n_0\,
       O => \gnss_data_buf[279]_i_1_n_0\
     );
-\gnss_data_buf[287]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[287]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"40000000"
+      INIT => X"0000040000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
+      I2 => state(1),
+      I3 => state(0),
       I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[351]_i_4_n_0\,
       O => \gnss_data_buf[287]_i_1_n_0\
     );
-\gnss_data_buf[295]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[295]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[311]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[311]_i_2_n_0\,
       O => \gnss_data_buf[295]_i_1_n_0\
     );
-\gnss_data_buf[303]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[303]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[319]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[319]_i_2_n_0\,
       O => \gnss_data_buf[303]_i_1_n_0\
     );
-\gnss_data_buf[311]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[311]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[311]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[311]_i_2_n_0\,
       O => \gnss_data_buf[311]_i_1_n_0\
     );
 \gnss_data_buf[311]_i_2\: unisim.vcomponents.LUT4
@@ -816,16 +860,17 @@ begin
       I3 => \byte_cnt_reg_n_0_[4]\,
       O => \gnss_data_buf[311]_i_2_n_0\
     );
-\gnss_data_buf[319]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[319]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[319]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[319]_i_2_n_0\,
       O => \gnss_data_buf[319]_i_1_n_0\
     );
 \gnss_data_buf[319]_i_2\: unisim.vcomponents.LUT4
@@ -839,52 +884,56 @@ begin
       I3 => \byte_cnt_reg_n_0_[4]\,
       O => \gnss_data_buf[319]_i_2_n_0\
     );
-\gnss_data_buf[31]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[31]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"40000000"
+      INIT => X"0000040000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[95]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[95]_i_2_n_0\,
       O => \gnss_data_buf[31]_i_1_n_0\
     );
-\gnss_data_buf[327]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[327]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[343]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[343]_i_2_n_0\,
       O => \gnss_data_buf[327]_i_1_n_0\
     );
-\gnss_data_buf[335]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[335]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
+      I2 => state(1),
+      I3 => state(0),
       I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[351]_i_4_n_0\,
       O => \gnss_data_buf[335]_i_1_n_0\
     );
-\gnss_data_buf[343]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[343]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[343]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[343]_i_2_n_0\,
       O => \gnss_data_buf[343]_i_1_n_0\
     );
 \gnss_data_buf[343]_i_2\: unisim.vcomponents.LUT4
@@ -898,16 +947,17 @@ begin
       I3 => \byte_cnt_reg_n_0_[0]\,
       O => \gnss_data_buf[343]_i_2_n_0\
     );
-\gnss_data_buf[351]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[351]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
+      I2 => state(1),
+      I3 => state(0),
       I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[351]_i_4_n_0\,
       O => \gnss_data_buf[351]_i_1_n_0\
     );
 \gnss_data_buf[351]_i_2\: unisim.vcomponents.LUT1
@@ -920,6 +970,17 @@ begin
     );
 \gnss_data_buf[351]_i_3\: unisim.vcomponents.LUT4
     generic map(
+      INIT => X"E2FF"
+    )
+        port map (
+      I0 => RX_prev_reg_C_n_0,
+      I1 => RX_prev_reg_LDC_n_0,
+      I2 => RX_prev_reg_P_n_0,
+      I3 => i_RX_drive,
+      O => \gnss_data_buf[351]_i_3_n_0\
+    );
+\gnss_data_buf[351]_i_4\: unisim.vcomponents.LUT4
+    generic map(
       INIT => X"0001"
     )
         port map (
@@ -927,42 +988,45 @@ begin
       I1 => \byte_cnt_reg_n_0_[0]\,
       I2 => \byte_cnt_reg_n_0_[4]\,
       I3 => \byte_cnt_reg_n_0_[2]\,
-      O => \gnss_data_buf[351]_i_3_n_0\
+      O => \gnss_data_buf[351]_i_4_n_0\
     );
-\gnss_data_buf[39]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[39]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[55]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[55]_i_2_n_0\,
       O => \gnss_data_buf[39]_i_1_n_0\
     );
-\gnss_data_buf[47]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[47]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00002000"
+      INIT => X"0000000000000200"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[63]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[63]_i_2_n_0\,
       O => \gnss_data_buf[47]_i_1_n_0\
     );
-\gnss_data_buf[55]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[55]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[55]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[55]_i_2_n_0\,
       O => \gnss_data_buf[55]_i_1_n_0\
     );
 \gnss_data_buf[55]_i_2\: unisim.vcomponents.LUT4
@@ -976,16 +1040,17 @@ begin
       I3 => \byte_cnt_reg_n_0_[2]\,
       O => \gnss_data_buf[55]_i_2_n_0\
     );
-\gnss_data_buf[63]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[63]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00001000"
+      INIT => X"0000000000000100"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[63]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[63]_i_2_n_0\,
       O => \gnss_data_buf[63]_i_1_n_0\
     );
 \gnss_data_buf[63]_i_2\: unisim.vcomponents.LUT4
@@ -999,52 +1064,56 @@ begin
       I3 => \byte_cnt_reg_n_0_[0]\,
       O => \gnss_data_buf[63]_i_2_n_0\
     );
-\gnss_data_buf[71]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[71]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[87]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[87]_i_2_n_0\,
       O => \gnss_data_buf[71]_i_1_n_0\
     );
-\gnss_data_buf[79]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[79]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20000000"
+      INIT => X"0000020000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[95]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[95]_i_2_n_0\,
       O => \gnss_data_buf[79]_i_1_n_0\
     );
-\gnss_data_buf[7]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80000000"
+      INIT => X"0000080000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[87]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[87]_i_2_n_0\,
       O => \gnss_data_buf[7]_i_1_n_0\
     );
-\gnss_data_buf[87]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[87]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[87]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[87]_i_2_n_0\,
       O => \gnss_data_buf[87]_i_1_n_0\
     );
 \gnss_data_buf[87]_i_2\: unisim.vcomponents.LUT4
@@ -1058,16 +1127,17 @@ begin
       I3 => \byte_cnt_reg_n_0_[0]\,
       O => \gnss_data_buf[87]_i_2_n_0\
     );
-\gnss_data_buf[95]_i_1\: unisim.vcomponents.LUT5
+\gnss_data_buf[95]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"10000000"
+      INIT => X"0000010000000000"
     )
         port map (
       I0 => \byte_cnt_reg_n_0_[1]\,
       I1 => \byte_cnt_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => i_RX_drive,
-      I4 => \gnss_data_buf[95]_i_2_n_0\,
+      I2 => state(1),
+      I3 => state(0),
+      I4 => \gnss_data_buf[351]_i_3_n_0\,
+      I5 => \gnss_data_buf[95]_i_2_n_0\,
       O => \gnss_data_buf[95]_i_1_n_0\
     );
 \gnss_data_buf[95]_i_2\: unisim.vcomponents.LUT4
@@ -3897,14 +3967,40 @@ begin
       D => i_gnss_data(1),
       Q => o_gnss_data(9)
     );
-led1_i_1: unisim.vcomponents.LUT2
+led1_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E"
+      INIT => X"FF40"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[2]\,
-      I1 => \^led1\,
+      I0 => \gnss_data_buf[351]_i_3_n_0\,
+      I1 => led1_i_2_n_0,
+      I2 => led1_i_3_n_0,
+      I3 => \^led1\,
       O => led1_i_1_n_0
+    );
+led1_i_2: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0004"
+    )
+        port map (
+      I0 => i_gnss_data(0),
+      I1 => i_gnss_data(1),
+      I2 => i_gnss_data(3),
+      I3 => i_gnss_data(2),
+      O => led1_i_2_n_0
+    );
+led1_i_3: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000000000020"
+    )
+        port map (
+      I0 => i_gnss_data(6),
+      I1 => i_gnss_data(7),
+      I2 => i_gnss_data(4),
+      I3 => i_gnss_data(5),
+      I4 => state(1),
+      I5 => state(0),
+      O => led1_i_3_n_0
     );
 led1_reg: unisim.vcomponents.FDCE
      port map (
@@ -3916,12 +4012,12 @@ led1_reg: unisim.vcomponents.FDCE
     );
 o_gnss_drive_i_1: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"DC"
+      INIT => X"B8"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[0]\,
-      I1 => \FSM_onehot_state_reg_n_0_[2]\,
-      I2 => \^o_gnss_drive\,
+      I0 => \^o_gnss_drive\,
+      I1 => state(0),
+      I2 => state(1),
       O => o_gnss_drive_i_1_n_0
     );
 o_gnss_drive_reg: unisim.vcomponents.FDCE

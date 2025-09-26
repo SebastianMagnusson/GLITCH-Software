@@ -75,8 +75,8 @@ architecture rtl of Read1_100MHZ is
     signal A_buf               : std_logic_vector(ADDR_WIDTH-1 downto 0); -- Address buffer
     
     -- Convert to cycles (integer math, rounded up, by itself, so really rounded down)
-    constant TAA_CYCLES : integer := 6; --(TAA_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
-    constant TWP_CYCLES : integer := 3; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
+    constant TAA_CYCLES : integer := 7; --(TAA_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
+    constant TWP_CYCLES : integer := 4; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
     
     signal BF_data_buf : std_logic_vector(46 downto 0) := (others => '0'); 
     signal SRAM        : std_logic_vector(3 downto 0)  := (others => '0'); -- Indicate which SRAM
@@ -244,6 +244,8 @@ begin
           addr_cnt           <=  (others => '0'); -- Reset address counter 
           read_complete      <= '1';     
           addresses_searched <= '1';
+          
+          led1 <= '1';
           
           state <= READ_START;                     -- Restart from address 1 (when more SRAM, restart go to next unit here i guess)
 

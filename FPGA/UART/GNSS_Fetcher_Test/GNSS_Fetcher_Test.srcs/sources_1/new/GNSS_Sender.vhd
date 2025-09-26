@@ -40,6 +40,7 @@ begin
       data_ready_prev   <= '0';
       gnss_cnt          <= "00";
       led1              <= '0';
+      state             <= RECEIVE;
       
     elsif rising_edge(sysclk) then
       case state is

@@ -13,7 +13,9 @@ entity UART_RX_100MHZ is
   Port(sysclk      : in  std_logic;
        i_RX_Serial : in  std_logic;
        o_RX_DV     : out std_logic;
-       o_RX_byte   : out std_logic_vector(7 downto 0));
+       o_RX_byte   : out std_logic_vector(7 downto 0);
+       led0        : out std_logic
+       );
 end UART_RX_100MHZ;
 
 architecture rtl of UART_RX_100MHZ is
@@ -114,6 +116,8 @@ begin
         when s_Cleanup =>
           r_SM_Main <= s_Idle;
           r_RX_DV   <= '0';
+          
+          led0 <= '1';
           
         -- If state is undefined (for error handling)
         when others =>

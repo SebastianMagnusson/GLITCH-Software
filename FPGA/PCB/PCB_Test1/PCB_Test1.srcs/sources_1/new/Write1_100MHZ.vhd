@@ -56,7 +56,7 @@ architecture rtl of Write1_100MHZ is
     
     -- Convert to cycles (integer math, rounded up)
     --constant TAA_CYCLES : integer := 1; --(TAA_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
-    constant TWP_CYCLES : integer := 3; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
+    constant TWP_CYCLES : integer := 4; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
     --constant TOHZ_CYCLES: integer := 1; -- output disable to high-Z
 
 begin

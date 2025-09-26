@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date             : Wed Sep 24 07:53:07 2025
+| Date             : Thu Sep 25 16:50:10 2025
 | Host             : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command          : report_power -file testwith1speed_wrapper_power_routed.rpt -pb testwith1speed_wrapper_power_summary_routed.pb -rpx testwith1speed_wrapper_power_routed.rpx
 | Design           : testwith1speed_wrapper
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 27.214 (Junction temp exceeded!) |
+| Total On-Chip Power (W)  | 44.005 (Junction temp exceeded!) |
 | Design Power Budget (W)  | Unspecified*                     |
 | Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 26.418                           |
+| Dynamic (W)              | 43.208                           |
 | Device Static (W)        | 0.797                            |
 | Effective TJA (C/W)      | 4.6                              |
 | Max Ambient (C)          | 0.0                              |
@@ -52,17 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     1.667 |     7287 |       --- |             --- |
-|   LUT as Logic |     1.473 |     2278 |     63400 |            3.59 |
-|   CARRY4       |     0.130 |       58 |     15850 |            0.37 |
-|   Register     |     0.054 |     3655 |    126800 |            2.88 |
+| Slice Logic    |     5.849 |     7899 |       --- |             --- |
+|   LUT as Logic |     5.251 |     2512 |     63400 |            3.96 |
+|   Register     |     0.430 |     3860 |    126800 |            3.04 |
+|   CARRY4       |     0.152 |      116 |     15850 |            0.73 |
+|   F7/F8 Muxes  |     0.010 |      104 |     63400 |            0.16 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
-|   F7/F8 Muxes  |     0.003 |      105 |     63400 |            0.17 |
-|   Others       |     0.000 |       33 |       --- |             --- |
-| Signals        |     2.024 |     4580 |       --- |             --- |
-| I/O            |    22.727 |       49 |       210 |           23.33 |
+|   Others       |     0.000 |       49 |       --- |             --- |
+| Signals        |     7.534 |     4997 |       --- |             --- |
+| DSPs           |    <0.001 |        2 |       240 |            0.83 |
+| I/O            |    29.825 |       55 |       210 |           26.19 |
 | Static Power   |     0.797 |          |           |                 |
-| Total          |    27.214 |          |           |                 |
+| Total          |    44.005 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,9 +73,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     4.344 |       3.781 |      0.563 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.922 |       0.829 |      0.093 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     6.411 |       6.407 |      0.004 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |    14.037 |      13.474 |      0.563 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     1.182 |       1.090 |      0.093 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     8.420 |       8.416 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -139,52 +140,66 @@ Table of Contents
 +----------------------------+-----------+
 | Name                       | Power (W) |
 +----------------------------+-----------+
-| testwith1speed_wrapper     |    26.418 |
-|   gen_iobuf[0].iobuf_inst  |     0.840 |
-|   gen_iobuf[10].iobuf_inst |     1.022 |
+| testwith1speed_wrapper     |    43.208 |
+|   gen_iobuf[0].iobuf_inst  |     0.838 |
+|   gen_iobuf[10].iobuf_inst |     1.020 |
 |   gen_iobuf[11].iobuf_inst |     1.022 |
 |   gen_iobuf[12].iobuf_inst |     0.824 |
-|   gen_iobuf[13].iobuf_inst |     0.825 |
-|   gen_iobuf[14].iobuf_inst |     1.009 |
-|   gen_iobuf[15].iobuf_inst |     1.010 |
-|   gen_iobuf[1].iobuf_inst  |     0.837 |
-|   gen_iobuf[2].iobuf_inst  |     1.021 |
+|   gen_iobuf[13].iobuf_inst |     0.824 |
+|   gen_iobuf[14].iobuf_inst |     1.008 |
+|   gen_iobuf[15].iobuf_inst |     1.009 |
+|   gen_iobuf[1].iobuf_inst  |     0.835 |
+|   gen_iobuf[2].iobuf_inst  |     1.020 |
 |   gen_iobuf[3].iobuf_inst  |     1.022 |
 |   gen_iobuf[4].iobuf_inst  |     0.824 |
-|   gen_iobuf[5].iobuf_inst  |     0.825 |
-|   gen_iobuf[6].iobuf_inst  |     1.009 |
-|   gen_iobuf[7].iobuf_inst  |     0.825 |
-|   gen_iobuf[8].iobuf_inst  |     0.839 |
+|   gen_iobuf[5].iobuf_inst  |     0.824 |
+|   gen_iobuf[6].iobuf_inst  |     1.008 |
+|   gen_iobuf[7].iobuf_inst  |     0.824 |
+|   gen_iobuf[8].iobuf_inst  |     0.837 |
 |   gen_iobuf[9].iobuf_inst  |     0.840 |
-|   testwith1speed_i         |     3.348 |
-|     BF_Data_Collector_Dr_0 |     0.171 |
-|       U0                   |     0.171 |
-|     BF_formatter_0         |     0.200 |
-|       U0                   |     0.200 |
-|     GNSS_Fetcher_mod_0     |     0.051 |
-|       U0                   |     0.051 |
-|     HK_formatter_0         |     0.115 |
-|       U0                   |     0.115 |
-|     I2C_full_sensor_data_0 |     0.458 |
-|       U0                   |     0.458 |
-|     I2Cmod_0               |     0.216 |
-|       U0                   |     0.216 |
-|     Pulse_Per_Second_100_0 |     0.102 |
-|       U0                   |     0.102 |
-|     RW_ROUTER_100MHZ_0     |     0.467 |
-|       U0                   |     0.467 |
-|     TC_distributor_0       |     0.003 |
-|       U0                   |     0.003 |
-|     TM_packet_sender_0     |     0.885 |
-|       U0                   |     0.885 |
-|     UART_RX_100MHZ_0       |     0.085 |
-|       U0                   |     0.085 |
-|     UART_RX_100MHZ_1       |     0.201 |
-|       U0                   |     0.201 |
-|     UART_TX_100MHZ_0       |     0.088 |
-|       U0                   |     0.088 |
-|     Write1_100MHZ_0        |     0.308 |
-|       U0                   |     0.308 |
+|   testwith1speed_i         |    13.055 |
+|     BF_Data_Collector_Dr_0 |     0.571 |
+|       U0                   |     0.571 |
+|     BF_formatter_0         |     0.778 |
+|       U0                   |     0.778 |
+|     GNSS_Fetcher_mod_0     |     0.922 |
+|       U0                   |     0.922 |
+|     GNSS_Sender_0          |     0.710 |
+|       U0                   |     0.710 |
+|     HK_formatter_0         |     2.043 |
+|       U0                   |     2.043 |
+|     HTR_CALC_0             |     0.190 |
+|       U0                   |     0.190 |
+|     HTR_controller_0       |     0.078 |
+|       U0                   |     0.078 |
+|     HTR_controller_1       |     0.081 |
+|       U0                   |     0.081 |
+|     I2C_full_sensor_data_0 |     0.791 |
+|       U0                   |     0.791 |
+|     I2Cmod_0               |     0.536 |
+|       U0                   |     0.536 |
+|     Pulse_Per_Second_100_0 |     0.199 |
+|       U0                   |     0.199 |
+|     RESTART_mod_0          |     0.025 |
+|       U0                   |     0.025 |
+|     RW_ROUTER_100MHZ_0     |     0.685 |
+|       U0                   |     0.685 |
+|     Read1_100MHZ_0         |     0.104 |
+|       U0                   |     0.104 |
+|     Switchmod_0            |     0.139 |
+|       U0                   |     0.139 |
+|     TC_distributor_0       |     0.118 |
+|       U0                   |     0.118 |
+|     TM_packet_sender_0     |     3.755 |
+|       U0                   |     3.755 |
+|     UART_RX_100MHZ_0       |     0.107 |
+|       U0                   |     0.107 |
+|     UART_RX_100MHZ_1       |     0.208 |
+|       U0                   |     0.208 |
+|     UART_TX_100MHZ_0       |     0.179 |
+|       U0                   |     0.179 |
+|     Write1_100MHZ_0        |     0.838 |
+|       U0                   |     0.838 |
 +----------------------------+-----------+
 
 

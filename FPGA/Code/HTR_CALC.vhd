@@ -7,7 +7,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity HTR_CALC is
-	generic (Clockfrequency : integer := 12*1000000);
+	generic (Clockfrequency : integer := 100*1000000);
     port (
         clk        : in std_logic;
         rst        : in std_logic;
@@ -15,15 +15,15 @@ entity HTR_CALC is
 		temp_DV	   : in std_logic;
 		HTR_request		: out std_logic;
 		I2C_read_done   : out std_logic;
-		command_htr1 : out integer range 0 to 10;
-		command_htr2 : out integer range 0 to 10;
+		command_htr1 : out integer;
+		command_htr2 : out integer;
 		led1       : out std_logic
     );
 end entity;
 
 architecture rtl of HTR_CALC is
 
-	type state_type is (IDLE, REQUEST, CONVERT, CALC, SEND, TEST, CLEAN);
+	type state_type is (IDLE, REQUEST, CONVERT, CALC, SEND, CLEAN);
 	signal state : state_type := CLEAN;
 	
 	signal temp_data_i : std_logic_vector(31 downto 0) := (others => '0');
@@ -46,7 +46,7 @@ begin
 		variable shifted_2 : unsigned(15 downto 0);
     begin
         if rising_edge(clk) then
-            if rst = '1' then
+            if rst = '0' then
 				
                 sec_cnt <= 0;
                 temp_data_i <= (others => '0');
@@ -102,25 +102,7 @@ begin
 					    
 						if temp_calculated_1 > 20*100 then
 							command_htr1 <= 0;
-						elsif 20*100 > temp_calculated_1 and temp_calculated_1 > 10*100 then
-							command_htr1 <= 1;
-						elsif 10*100 > temp_calculated_1 and temp_calculated_1 > 5*100 then
-							command_htr1 <= 2;
-						elsif 5*100 > temp_calculated_1 and temp_calculated_1 > 0*100 then
-							command_htr1 <= 3;
-						elsif 0*100 > temp_calculated_1 and temp_calculated_1 > -5*100 then
-							command_htr1 <= 4;
-						elsif -5*100 > temp_calculated_1 and temp_calculated_1 > -10*100 then
-							command_htr1 <= 5;
-						elsif -10*100 > temp_calculated_1 and temp_calculated_1 > -15*100 then
-							command_htr1 <= 6;
-						elsif -15*100 > temp_calculated_1 and temp_calculated_1 > -20*100 then
-							command_htr1 <= 7;
-						elsif -20*100 > temp_calculated_1 and temp_calculated_1 > -25*100 then
-							command_htr1 <= 8;
-						elsif -25*100 > temp_calculated_1 and temp_calculated_1 > -30*100 then
-							command_htr1 <= 9;
-						elsif temp_calculated_1 < -30*100 then
+						elsif 20*100 > temp_calculated_1 then
 							command_htr1 <= 10;
 						else
 							command_htr1 <= 0;
@@ -128,25 +110,7 @@ begin
 						
 						if temp_calculated_2 > 20*100 then
 							command_htr2 <= 0;
-						elsif 20*100 > temp_calculated_2 and temp_calculated_2 > 10*100 then
-							command_htr2 <= 1;
-						elsif 10*100 > temp_calculated_2 and temp_calculated_2 > 5*100 then
-							command_htr2 <= 2;
-						elsif 5*100 > temp_calculated_2 and temp_calculated_2 > 0*100 then
-							command_htr2 <= 3;
-						elsif 0*100 > temp_calculated_2 and temp_calculated_2 > -5*100 then
-							command_htr2 <= 4;
-						elsif -5*100 > temp_calculated_2 and temp_calculated_2 > -10*100 then
-							command_htr2 <= 5;
-						elsif -10*100 > temp_calculated_2 and temp_calculated_2 > -15*100 then
-							command_htr2 <= 6;
-						elsif -15*100 > temp_calculated_2 and temp_calculated_2 > -20*100 then
-							command_htr2 <= 7;
-						elsif -20*100 > temp_calculated_2 and temp_calculated_2 > -25*100 then
-							command_htr2 <= 8;
-						elsif -25*100 > temp_calculated_2 and temp_calculated_2 > -30*100 then
-							command_htr2 <= 9;
-						elsif temp_calculated_2 < -30*100 then
+						elsif 20*100 > temp_calculated_2 then
 							command_htr2 <= 10;
 						else
 							command_htr2 <= 0;

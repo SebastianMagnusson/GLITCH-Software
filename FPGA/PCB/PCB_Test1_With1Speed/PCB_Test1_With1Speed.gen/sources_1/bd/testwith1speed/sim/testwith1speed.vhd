@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
---Date        : Wed Sep 24 07:46:49 2025
+--Date        : Thu Sep 25 16:46:45 2025
 --Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 --Command     : generate_target testwith1speed.bd
 --Design      : testwith1speed
@@ -14,7 +14,9 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity testwith1speed is
   port (
-    GNSS_RX : in STD_LOGIC;
+    GNSS_TX : in STD_LOGIC;
+    HEATER_1 : out STD_LOGIC;
+    HEATER_2 : out STD_LOGIC;
     SRAM1A : out STD_LOGIC_VECTOR ( 21 downto 0 );
     SRAM1DEC : out STD_LOGIC_VECTOR ( 2 downto 0 );
     SRAM1DQ_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
@@ -24,6 +26,10 @@ entity testwith1speed is
     SRAM1_WE : out STD_LOGIC;
     UART_MCU_RX : in STD_LOGIC;
     UART_MCU_TX : out STD_LOGIC;
+    led0 : out STD_LOGIC;
+    led1 : out STD_LOGIC;
+    led2 : out STD_LOGIC;
+    led3 : out STD_LOGIC;
     scl_i : in STD_LOGIC;
     scl_o : out STD_LOGIC;
     scl_t : out STD_LOGIC;
@@ -33,7 +39,7 @@ entity testwith1speed is
     sysclk : in STD_LOGIC
   );
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of testwith1speed : entity is "testwith1speed,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=testwith1speed,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=17,numReposBlks=17,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=17,numPkgbdBlks=0,bdsource=USER,synth_mode=Hierarchical}";
+  attribute CORE_GENERATION_INFO of testwith1speed : entity is "testwith1speed,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=testwith1speed,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=21,numReposBlks=21,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=21,numPkgbdBlks=0,bdsource=USER,synth_mode=Hierarchical}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of testwith1speed : entity is "testwith1speed.hwdef";
 end testwith1speed;
@@ -244,7 +250,11 @@ architecture STRUCTURE of testwith1speed is
     cmd0 : out STD_LOGIC;
     cmd1 : out STD_LOGIC;
     cmd2 : out STD_LOGIC;
-    cmd3 : out STD_LOGIC
+    cmd3 : out STD_LOGIC;
+    cmd4 : out STD_LOGIC;
+    cmd5 : out STD_LOGIC;
+    cmd6 : out STD_LOGIC;
+    led0 : out STD_LOGIC
   );
   end component testwith1speed_TC_distributor_0_0;
   component testwith1speed_TM_packet_sender_0_0 is
@@ -283,7 +293,8 @@ architecture STRUCTURE of testwith1speed is
     sysclk : in STD_LOGIC;
     i_RX_Serial : in STD_LOGIC;
     o_RX_DV : out STD_LOGIC;
-    o_RX_byte : out STD_LOGIC_VECTOR ( 7 downto 0 )
+    o_RX_byte : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    led0 : out STD_LOGIC
   );
   end component testwith1speed_UART_RX_100MHZ_0_0;
   component testwith1speed_UART_RX_100MHZ_1_0 is
@@ -291,9 +302,49 @@ architecture STRUCTURE of testwith1speed is
     sysclk : in STD_LOGIC;
     i_RX_Serial : in STD_LOGIC;
     o_RX_DV : out STD_LOGIC;
-    o_RX_byte : out STD_LOGIC_VECTOR ( 7 downto 0 )
+    o_RX_byte : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    led0 : out STD_LOGIC
   );
   end component testwith1speed_UART_RX_100MHZ_1_0;
+  component testwith1speed_HTR_CALC_0_0 is
+  port (
+    clk : in STD_LOGIC;
+    rst : in STD_LOGIC;
+    temp_data : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    temp_DV : in STD_LOGIC;
+    HTR_request : out STD_LOGIC;
+    I2C_read_done : out STD_LOGIC;
+    command_htr1 : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    command_htr2 : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    led1 : out STD_LOGIC
+  );
+  end component testwith1speed_HTR_CALC_0_0;
+  component testwith1speed_HTR_controller_0_0 is
+  port (
+    clk : in STD_LOGIC;
+    rst : in STD_LOGIC;
+    HTR_DUTY : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    nmos_out : out STD_LOGIC;
+    diag_out : out STD_LOGIC
+  );
+  end component testwith1speed_HTR_controller_0_0;
+  component testwith1speed_HTR_controller_1_0 is
+  port (
+    clk : in STD_LOGIC;
+    rst : in STD_LOGIC;
+    HTR_DUTY : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    nmos_out : out STD_LOGIC;
+    diag_out : out STD_LOGIC
+  );
+  end component testwith1speed_HTR_controller_1_0;
+  component testwith1speed_RESTART_mod_0_0 is
+  port (
+    clk : in STD_LOGIC;
+    reboot_trigger : in STD_LOGIC;
+    led0 : out STD_LOGIC;
+    led1 : out STD_LOGIC
+  );
+  end component testwith1speed_RESTART_mod_0_0;
   signal BF_Data_Collector_Dr_0_o_BF_data : STD_LOGIC_VECTOR ( 197 downto 0 );
   signal BF_Data_Collector_Dr_0_o_BF_drive : STD_LOGIC;
   signal BF_formatter_0_BF_packet : STD_LOGIC_VECTOR ( 223 downto 0 );
@@ -310,9 +361,14 @@ architecture STRUCTURE of testwith1speed is
   signal HK_formatter_0_I2C_read_done : STD_LOGIC;
   signal HK_formatter_0_RTC_request : STD_LOGIC;
   signal HK_formatter_0_TEMP_request : STD_LOGIC;
+  signal HTR_CALC_0_HTR_request : STD_LOGIC;
+  signal HTR_CALC_0_I2C_read_done : STD_LOGIC;
+  signal HTR_CALC_0_command_htr1 : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal HTR_CALC_0_command_htr2 : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal I2C_full_sensor_data_0_o_TX_ALT_data : STD_LOGIC_VECTOR ( 23 downto 0 );
   signal I2C_full_sensor_data_0_o_TX_DV_BF : STD_LOGIC;
   signal I2C_full_sensor_data_0_o_TX_DV_HK : STD_LOGIC;
+  signal I2C_full_sensor_data_0_o_TX_DV_HTR : STD_LOGIC;
   signal I2C_full_sensor_data_0_o_TX_RTC_data : STD_LOGIC_VECTOR ( 23 downto 0 );
   signal I2C_full_sensor_data_0_o_TX_TEMP_data : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal I2C_full_sensor_data_0_o_i2c_address : STD_LOGIC_VECTOR ( 6 downto 0 );
@@ -332,6 +388,7 @@ architecture STRUCTURE of testwith1speed is
   signal Read1_100MHZ_0_o_BF_drive : STD_LOGIC;
   signal Switchmod_0_o_signal : STD_LOGIC;
   signal TC_distributor_0_cmd0 : STD_LOGIC;
+  signal TC_distributor_0_cmd2 : STD_LOGIC;
   signal TM_packet_sender_0_o_BF_got : STD_LOGIC;
   signal TM_packet_sender_0_o_HK_got : STD_LOGIC;
   signal TM_packet_sender_0_o_TX_DV : STD_LOGIC;
@@ -351,26 +408,31 @@ architecture STRUCTURE of testwith1speed is
   signal Write1_100MHZ_0_write_complete : STD_LOGIC;
   signal NLW_BF_Data_Collector_Dr_0_led1_UNCONNECTED : STD_LOGIC;
   signal NLW_BF_formatter_0_led1_UNCONNECTED : STD_LOGIC;
-  signal NLW_GNSS_Fetcher_mod_0_led1_UNCONNECTED : STD_LOGIC;
   signal NLW_GNSS_Sender_0_led1_UNCONNECTED : STD_LOGIC;
   signal NLW_HK_formatter_0_led1_UNCONNECTED : STD_LOGIC;
+  signal NLW_HTR_CALC_0_led1_UNCONNECTED : STD_LOGIC;
+  signal NLW_HTR_controller_0_diag_out_UNCONNECTED : STD_LOGIC;
+  signal NLW_HTR_controller_1_diag_out_UNCONNECTED : STD_LOGIC;
   signal NLW_I2C_full_sensor_data_0_led2_UNCONNECTED : STD_LOGIC;
-  signal NLW_I2C_full_sensor_data_0_o_TX_DV_HTR_UNCONNECTED : STD_LOGIC;
   signal NLW_I2C_full_sensor_data_0_o_TX_DV_RAD_UNCONNECTED : STD_LOGIC;
   signal NLW_I2Cmod_0_ack_error_UNCONNECTED : STD_LOGIC;
   signal NLW_Pulse_Per_Second_100_0_led0_UNCONNECTED : STD_LOGIC;
+  signal NLW_RESTART_mod_0_led0_UNCONNECTED : STD_LOGIC;
+  signal NLW_RESTART_mod_0_led1_UNCONNECTED : STD_LOGIC;
   signal NLW_RW_ROUTER_100MHZ_0_led1_UNCONNECTED : STD_LOGIC;
   signal NLW_Read1_100MHZ_0_addresses_searched_UNCONNECTED : STD_LOGIC;
   signal NLW_Read1_100MHZ_0_led0_UNCONNECTED : STD_LOGIC;
-  signal NLW_Read1_100MHZ_0_led1_UNCONNECTED : STD_LOGIC;
   signal NLW_Read1_100MHZ_0_read_complete_UNCONNECTED : STD_LOGIC;
-  signal NLW_Switchmod_0_led0_UNCONNECTED : STD_LOGIC;
   signal NLW_TC_distributor_0_cmd1_UNCONNECTED : STD_LOGIC;
-  signal NLW_TC_distributor_0_cmd2_UNCONNECTED : STD_LOGIC;
   signal NLW_TC_distributor_0_cmd3_UNCONNECTED : STD_LOGIC;
+  signal NLW_TC_distributor_0_cmd4_UNCONNECTED : STD_LOGIC;
+  signal NLW_TC_distributor_0_cmd5_UNCONNECTED : STD_LOGIC;
+  signal NLW_TC_distributor_0_cmd6_UNCONNECTED : STD_LOGIC;
   signal NLW_TM_packet_sender_0_led1_UNCONNECTED : STD_LOGIC;
   signal NLW_TM_packet_sender_0_led2_UNCONNECTED : STD_LOGIC;
   signal NLW_TM_packet_sender_0_o_RAD_got_UNCONNECTED : STD_LOGIC;
+  signal NLW_UART_RX_100MHZ_0_led0_UNCONNECTED : STD_LOGIC;
+  signal NLW_UART_RX_100MHZ_1_led0_UNCONNECTED : STD_LOGIC;
 begin
 BF_Data_Collector_Dr_0: component testwith1speed_BF_Data_Collector_Dr_0_0
      port map (
@@ -402,7 +464,7 @@ GNSS_Fetcher_mod_0: component testwith1speed_GNSS_Fetcher_mod_0_0
      port map (
       i_RX_drive => UART_RX_100MHZ_1_o_RX_DV,
       i_gnss_data(7 downto 0) => UART_RX_100MHZ_1_o_RX_byte(7 downto 0),
-      led1 => NLW_GNSS_Fetcher_mod_0_led1_UNCONNECTED,
+      led1 => led2,
       o_gnss_data(383 downto 0) => GNSS_Fetcher_mod_0_o_gnss_data(383 downto 0),
       o_gnss_drive => GNSS_Fetcher_mod_0_o_gnss_drive,
       reset_n => Switchmod_0_o_signal,
@@ -439,6 +501,34 @@ HK_formatter_0: component testwith1speed_HK_formatter_0_0
       led1 => NLW_HK_formatter_0_led1_UNCONNECTED,
       rst => Switchmod_0_o_signal
     );
+HTR_CALC_0: component testwith1speed_HTR_CALC_0_0
+     port map (
+      HTR_request => HTR_CALC_0_HTR_request,
+      I2C_read_done => HTR_CALC_0_I2C_read_done,
+      clk => sysclk,
+      command_htr1(31 downto 0) => HTR_CALC_0_command_htr1(31 downto 0),
+      command_htr2(31 downto 0) => HTR_CALC_0_command_htr2(31 downto 0),
+      led1 => NLW_HTR_CALC_0_led1_UNCONNECTED,
+      rst => Switchmod_0_o_signal,
+      temp_DV => I2C_full_sensor_data_0_o_TX_DV_HTR,
+      temp_data(31 downto 0) => I2C_full_sensor_data_0_o_TX_TEMP_data(31 downto 0)
+    );
+HTR_controller_0: component testwith1speed_HTR_controller_0_0
+     port map (
+      HTR_DUTY(31 downto 0) => HTR_CALC_0_command_htr1(31 downto 0),
+      clk => sysclk,
+      diag_out => NLW_HTR_controller_0_diag_out_UNCONNECTED,
+      nmos_out => HEATER_1,
+      rst => Switchmod_0_o_signal
+    );
+HTR_controller_1: component testwith1speed_HTR_controller_1_0
+     port map (
+      HTR_DUTY(31 downto 0) => HTR_CALC_0_command_htr2(31 downto 0),
+      clk => sysclk,
+      diag_out => NLW_HTR_controller_1_diag_out_UNCONNECTED,
+      nmos_out => HEATER_2,
+      rst => Switchmod_0_o_signal
+    );
 I2C_full_sensor_data_0: component testwith1speed_I2C_full_sensor_data_0_0
      port map (
       clk => sysclk,
@@ -446,11 +536,11 @@ I2C_full_sensor_data_0: component testwith1speed_I2C_full_sensor_data_0_0
       i_HK_ALT_request => HK_formatter_0_ALT_request,
       i_HK_RTC_request => HK_formatter_0_RTC_request,
       i_HK_TEMP_request => HK_formatter_0_TEMP_request,
-      i_HTR_TEMP_request => '0',
+      i_HTR_TEMP_request => HTR_CALC_0_HTR_request,
       i_RAD_RTC_request => '0',
       i_TX_done_BF => BF_formatter_0_I2C_read_done,
       i_TX_done_HK => HK_formatter_0_I2C_read_done,
-      i_TX_done_HTR => '0',
+      i_TX_done_HTR => HTR_CALC_0_I2C_read_done,
       i_TX_done_RAD => '0',
       i_busy => I2Cmod_0_busy,
       i_data_read(7 downto 0) => I2Cmod_0_data_rd(7 downto 0),
@@ -458,7 +548,7 @@ I2C_full_sensor_data_0: component testwith1speed_I2C_full_sensor_data_0_0
       o_TX_ALT_data(23 downto 0) => I2C_full_sensor_data_0_o_TX_ALT_data(23 downto 0),
       o_TX_DV_BF => I2C_full_sensor_data_0_o_TX_DV_BF,
       o_TX_DV_HK => I2C_full_sensor_data_0_o_TX_DV_HK,
-      o_TX_DV_HTR => NLW_I2C_full_sensor_data_0_o_TX_DV_HTR_UNCONNECTED,
+      o_TX_DV_HTR => I2C_full_sensor_data_0_o_TX_DV_HTR,
       o_TX_DV_RAD => NLW_I2C_full_sensor_data_0_o_TX_DV_RAD_UNCONNECTED,
       o_TX_RTC_data(23 downto 0) => I2C_full_sensor_data_0_o_TX_RTC_data(23 downto 0),
       o_TX_TEMP_data(31 downto 0) => I2C_full_sensor_data_0_o_TX_TEMP_data(31 downto 0),
@@ -492,6 +582,13 @@ Pulse_Per_Second_100_0: component testwith1speed_Pulse_Per_Second_100_0_0
       o_pulse => Pulse_Per_Second_100_0_o_pulse,
       reset_n => Switchmod_0_o_signal,
       sysclk => sysclk
+    );
+RESTART_mod_0: component testwith1speed_RESTART_mod_0_0
+     port map (
+      clk => sysclk,
+      led0 => NLW_RESTART_mod_0_led0_UNCONNECTED,
+      led1 => NLW_RESTART_mod_0_led1_UNCONNECTED,
+      reboot_trigger => TC_distributor_0_cmd0
     );
 RW_ROUTER_100MHZ_0: component testwith1speed_RW_ROUTER_100MHZ_0_0
      port map (
@@ -529,7 +626,7 @@ Read1_100MHZ_0: component testwith1speed_Read1_100MHZ_0_0
       addresses_searched => NLW_Read1_100MHZ_0_addresses_searched_UNCONNECTED,
       decoder(2 downto 0) => Read1_100MHZ_0_decoder(2 downto 0),
       led0 => NLW_Read1_100MHZ_0_led0_UNCONNECTED,
-      led1 => NLW_Read1_100MHZ_0_led1_UNCONNECTED,
+      led1 => led1,
       o_BF_data(46 downto 0) => Read1_100MHZ_0_o_BF_data(46 downto 0),
       o_BF_drive => Read1_100MHZ_0_o_BF_drive,
       read_complete => NLW_Read1_100MHZ_0_read_complete_UNCONNECTED,
@@ -539,8 +636,8 @@ Read1_100MHZ_0: component testwith1speed_Read1_100MHZ_0_0
     );
 Switchmod_0: component testwith1speed_Switchmod_0_0
      port map (
-      i_signal => TC_distributor_0_cmd0,
-      led0 => NLW_Switchmod_0_led0_UNCONNECTED,
+      i_signal => TC_distributor_0_cmd2,
+      led0 => led0,
       o_signal => Switchmod_0_o_signal,
       sysclk => sysclk
     );
@@ -551,9 +648,13 @@ TC_distributor_0: component testwith1speed_TC_distributor_0_0
       clk => sysclk,
       cmd0 => TC_distributor_0_cmd0,
       cmd1 => NLW_TC_distributor_0_cmd1_UNCONNECTED,
-      cmd2 => NLW_TC_distributor_0_cmd2_UNCONNECTED,
+      cmd2 => TC_distributor_0_cmd2,
       cmd3 => NLW_TC_distributor_0_cmd3_UNCONNECTED,
-      rst => Switchmod_0_o_signal
+      cmd4 => NLW_TC_distributor_0_cmd4_UNCONNECTED,
+      cmd5 => NLW_TC_distributor_0_cmd5_UNCONNECTED,
+      cmd6 => NLW_TC_distributor_0_cmd6_UNCONNECTED,
+      led0 => led3,
+      rst => '0'
     );
 TM_packet_sender_0: component testwith1speed_TM_packet_sender_0_0
      port map (
@@ -578,13 +679,15 @@ TM_packet_sender_0: component testwith1speed_TM_packet_sender_0_0
 UART_RX_100MHZ_0: component testwith1speed_UART_RX_100MHZ_0_0
      port map (
       i_RX_Serial => UART_MCU_RX,
+      led0 => NLW_UART_RX_100MHZ_0_led0_UNCONNECTED,
       o_RX_DV => UART_RX_100MHZ_0_o_RX_DV,
       o_RX_byte(7 downto 0) => UART_RX_100MHZ_0_o_RX_byte(7 downto 0),
       sysclk => sysclk
     );
 UART_RX_100MHZ_1: component testwith1speed_UART_RX_100MHZ_1_0
      port map (
-      i_RX_Serial => GNSS_RX,
+      i_RX_Serial => GNSS_TX,
+      led0 => NLW_UART_RX_100MHZ_1_led0_UNCONNECTED,
       o_RX_DV => UART_RX_100MHZ_1_o_RX_DV,
       o_RX_byte(7 downto 0) => UART_RX_100MHZ_1_o_RX_byte(7 downto 0),
       sysclk => sysclk

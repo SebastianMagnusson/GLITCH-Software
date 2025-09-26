@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Tue Sep 23 16:02:24 2025
+-- Date        : Thu Sep 25 14:38:58 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Write1_100MHZ_0_0/testwith1speed_Write1_100MHZ_0_0_sim_netlist.vhdl
@@ -442,16 +442,17 @@ CE_n_reg: unisim.vcomponents.FDPE
       I0 => write_active,
       O => DQ_t(0)
     );
-\FSM_onehot_state[4]_i_1\: unisim.vcomponents.LUT5
+\FSM_onehot_state[4]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFEA"
+      INIT => X"FFFEFEFEFEFEFEFE"
     )
         port map (
       I0 => write_active_0,
-      I1 => \wait_count_reg_n_0_[1]\,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => \FSM_onehot_state_reg_n_0_[3]\,
-      I4 => \FSM_onehot_state_reg_n_0_[2]\,
+      I1 => \FSM_onehot_state_reg_n_0_[2]\,
+      I2 => \FSM_onehot_state_reg_n_0_[3]\,
+      I3 => \wait_count_reg_n_0_[0]\,
+      I4 => \wait_count_reg_n_0_[1]\,
+      I5 => \FSM_onehot_state_reg_n_0_[1]\,
       O => \FSM_onehot_state[4]_i_1_n_0\
     );
 \FSM_onehot_state[4]_i_2\: unisim.vcomponents.LUT2
@@ -1642,20 +1643,19 @@ WE_n_reg: unisim.vcomponents.FDPE
       D => p_1_in(9),
       Q => \addr_cnt_reg_n_0_[9]\
     );
-\wait_count[0]_i_1\: unisim.vcomponents.LUT4
+\wait_count[0]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"0350"
+      INIT => X"1C"
     )
         port map (
-      I0 => \wait_count_reg_n_0_[1]\,
-      I1 => write_active_0,
-      I2 => \FSM_onehot_state_reg_n_0_[1]\,
-      I3 => \wait_count_reg_n_0_[0]\,
+      I0 => write_active_0,
+      I1 => \FSM_onehot_state_reg_n_0_[1]\,
+      I2 => \wait_count_reg_n_0_[0]\,
       O => \wait_count[0]_i_1_n_0\
     );
 \wait_count[1]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"03A0"
+      INIT => X"53A0"
     )
         port map (
       I0 => \wait_count_reg_n_0_[0]\,

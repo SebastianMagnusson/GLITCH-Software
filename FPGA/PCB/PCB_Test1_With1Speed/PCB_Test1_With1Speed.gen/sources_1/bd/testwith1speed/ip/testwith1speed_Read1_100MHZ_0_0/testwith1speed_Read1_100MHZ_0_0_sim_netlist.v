@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Tue Sep 23 16:01:12 2025
+// Date        : Thu Sep 25 14:38:57 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Read1_100MHZ_0_0/testwith1speed_Read1_100MHZ_0_0_sim_netlist.v
@@ -59,6 +59,7 @@ module testwith1speed_Read1_100MHZ_0_0
   wire WE_n;
   wire addresses_searched;
   wire led0;
+  wire led1;
   wire [46:0]\^o_BF_data ;
   wire o_BF_drive;
   wire reset_n;
@@ -84,7 +85,6 @@ module testwith1speed_Read1_100MHZ_0_0
   assign decoder[2] = \<const0> ;
   assign decoder[1] = \<const0> ;
   assign decoder[0] = \<const0> ;
-  assign led1 = \<const0> ;
   assign o_BF_data[46:9] = \^o_BF_data [46:9];
   assign o_BF_data[8] = \<const0> ;
   assign o_BF_data[7] = \<const0> ;
@@ -103,6 +103,7 @@ module testwith1speed_Read1_100MHZ_0_0
         .WE_n(WE_n),
         .addresses_searched(addresses_searched),
         .led0(led0),
+        .led1(led1),
         .o_BF_data({\^o_BF_data [46:9],\^o_BF_data [4:0]}),
         .o_BF_drive(o_BF_drive),
         .reset_n(reset_n),
@@ -121,6 +122,7 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
     o_BF_drive,
     WE_n,
     led0,
+    led1,
     reset_n,
     sysclk,
     DQ_i,
@@ -134,6 +136,7 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
   output o_BF_drive;
   output WE_n;
   output led0;
+  output led1;
   input reset_n;
   input sysclk;
   input [15:0]DQ_i;
@@ -218,6 +221,8 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
   wire in5;
   wire led0;
   wire led0_i_1_n_0;
+  wire led1;
+  wire led1_i_1_n_0;
   wire [3:0]loop_cnt;
   wire \loop_cnt[1]_i_1_n_0 ;
   wire \loop_cnt[3]_i_1_n_0 ;
@@ -282,7 +287,6 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
   wire [7:0]wait_count;
   wire \wait_count[0]_i_1_n_0 ;
   wire \wait_count[1]_i_1_n_0 ;
-  wire \wait_count[1]_i_2_n_0 ;
   wire \wait_count[2]_i_1_n_0 ;
   wire \wait_count[3]_i_1_n_0 ;
   wire \wait_count[4]_i_1_n_0 ;
@@ -292,6 +296,7 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
   wire \wait_count[7]_i_1_n_0 ;
   wire \wait_count[7]_i_2_n_0 ;
   wire \wait_count[7]_i_3_n_0 ;
+  wire \wait_count[7]_i_4_n_0 ;
   wire write_active;
   wire write_active_0;
   wire write_active_i_1_n_0;
@@ -1026,13 +1031,12 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
         .I1(\FSM_onehot_state[10]_i_7_n_0 ),
         .O(\FSM_onehot_state[10]_i_2_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT4 #(
-    .INIT(16'h02AA)) 
+  LUT3 #(
+    .INIT(8'h07)) 
     \FSM_onehot_state[10]_i_3 
-       (.I0(\wait_count[1]_i_2_n_0 ),
-        .I1(wait_count[0]),
-        .I2(wait_count[1]),
-        .I3(wait_count[2]),
+       (.I0(wait_count[2]),
+        .I1(wait_count[1]),
+        .I2(\wait_count[7]_i_3_n_0 ),
         .O(\FSM_onehot_state[10]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
@@ -1053,12 +1057,13 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
         .I5(data_prev_1),
         .O(\FSM_onehot_state[10]_i_5_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT3 #(
-    .INIT(8'hEF)) 
+  LUT4 #(
+    .INIT(16'hFFEA)) 
     \FSM_onehot_state[10]_i_6 
-       (.I0(wait_count[2]),
-        .I1(wait_count[1]),
-        .I2(\wait_count[1]_i_2_n_0 ),
+       (.I0(\wait_count[7]_i_3_n_0 ),
+        .I1(wait_count[0]),
+        .I2(wait_count[1]),
+        .I3(wait_count[2]),
         .O(\FSM_onehot_state[10]_i_6_n_0 ));
   LUT5 #(
     .INIT(32'h00000002)) 
@@ -1248,70 +1253,70 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
        (.I0(data_exp),
         .I1(addr_cnt[0]),
         .O(\addr_cnt[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[10]_i_1 
        (.I0(data_exp),
         .I1(in21[10]),
         .O(\addr_cnt[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[11]_i_1 
        (.I0(data_exp),
         .I1(in21[11]),
         .O(\addr_cnt[11]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[12]_i_1 
        (.I0(data_exp),
         .I1(in21[12]),
         .O(\addr_cnt[12]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[13]_i_1 
        (.I0(data_exp),
         .I1(in21[13]),
         .O(\addr_cnt[13]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[14]_i_1 
        (.I0(data_exp),
         .I1(in21[14]),
         .O(\addr_cnt[14]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[15]_i_1 
        (.I0(data_exp),
         .I1(in21[15]),
         .O(\addr_cnt[15]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[16]_i_1 
        (.I0(data_exp),
         .I1(in21[16]),
         .O(\addr_cnt[16]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[17]_i_1 
        (.I0(data_exp),
         .I1(in21[17]),
         .O(\addr_cnt[17]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[18]_i_1 
        (.I0(data_exp),
         .I1(in21[18]),
         .O(\addr_cnt[18]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[19]_i_1 
@@ -1324,7 +1329,7 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
        (.I0(data_exp),
         .I1(in21[1]),
         .O(\addr_cnt[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[20]_i_1 
@@ -1337,63 +1342,63 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
        (.I0(\FSM_onehot_state_reg_n_0_[10] ),
         .I1(data_exp),
         .O(\addr_cnt[21]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[21]_i_2 
        (.I0(data_exp),
         .I1(in21[21]),
         .O(\addr_cnt[21]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[2]_i_1 
        (.I0(data_exp),
         .I1(in21[2]),
         .O(\addr_cnt[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[3]_i_1 
        (.I0(data_exp),
         .I1(in21[3]),
         .O(\addr_cnt[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[4]_i_1 
        (.I0(data_exp),
         .I1(in21[4]),
         .O(\addr_cnt[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[5]_i_1 
        (.I0(data_exp),
         .I1(in21[5]),
         .O(\addr_cnt[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[6]_i_1 
        (.I0(data_exp),
         .I1(in21[6]),
         .O(\addr_cnt[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[7]_i_1 
        (.I0(data_exp),
         .I1(in21[7]),
         .O(\addr_cnt[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[8]_i_1 
        (.I0(data_exp),
         .I1(in21[8]),
         .O(\addr_cnt[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[9]_i_1 
@@ -2041,6 +2046,19 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
         .CLR(read_complete_i_2_n_0),
         .D(led0_i_1_n_0),
         .Q(led0));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
+    led1_i_1
+       (.I0(\FSM_onehot_state_reg_n_0_[10] ),
+        .I1(led1),
+        .O(led1_i_1_n_0));
+  FDCE led1_reg
+       (.C(sysclk),
+        .CE(1'b1),
+        .CLR(read_complete_i_2_n_0),
+        .D(led1_i_1_n_0),
+        .Q(led1));
   (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT2 #(
     .INIT(4'h2)) 
@@ -2056,7 +2074,7 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
         .I1(\loop_cnt_reg_n_0_[0] ),
         .I2(\FSM_onehot_state_reg_n_0_[5] ),
         .O(\loop_cnt[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'h2A80)) 
     \loop_cnt[2]_i_1 
@@ -2074,7 +2092,7 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
         .I3(data_prev_1),
         .I4(data_rewritten_flag_reg_n_0),
         .O(\loop_cnt[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'h2AAA8000)) 
     \loop_cnt[3]_i_2 
@@ -2164,10 +2182,10 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     osc_cnt0_carry_i_1
-       (.I0(in17[18]),
-        .I1(data_prev[9]),
-        .I2(in17[19]),
-        .I3(data_prev[10]),
+       (.I0(in17[19]),
+        .I1(data_prev[10]),
+        .I2(in17[18]),
+        .I3(data_prev[9]),
         .I4(data_prev[11]),
         .I5(in17[20]),
         .O(osc_cnt0_carry_i_1_n_0));
@@ -2184,10 +2202,10 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     osc_cnt0_carry_i_3
-       (.I0(in17[13]),
-        .I1(data_prev[4]),
-        .I2(in17[12]),
-        .I3(data_prev[3]),
+       (.I0(in17[12]),
+        .I1(data_prev[3]),
+        .I2(in17[13]),
+        .I3(data_prev[4]),
         .I4(data_prev[5]),
         .I5(in17[14]),
         .O(osc_cnt0_carry_i_3_n_0));
@@ -2201,13 +2219,13 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
         .I4(data_prev[2]),
         .I5(in17[11]),
         .O(osc_cnt0_carry_i_4_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \osc_cnt[0]_i_1 
        (.I0(osc_cnt_reg[0]),
         .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \osc_cnt[1]_i_1 
@@ -2320,6 +2338,7 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({NLW_plusOp_carry__4_O_UNCONNECTED[3:1],in21[21]}),
         .S({1'b0,1'b0,1'b0,addr_cnt[21]}));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'hDC)) 
     read_complete_i_1
@@ -2361,12 +2380,12 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     state1_carry__0_i_2
-       (.I0(DQ_o[13]),
-        .I1(in17[22]),
+       (.I0(DQ_o[12]),
+        .I1(in17[21]),
         .I2(in17[23]),
         .I3(DQ_o[14]),
-        .I4(in17[21]),
-        .I5(DQ_o[12]),
+        .I4(in17[22]),
+        .I5(DQ_o[13]),
         .O(state1_carry__0_i_2_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
@@ -2408,36 +2427,26 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
         .I4(in17[10]),
         .I5(DQ_o[1]),
         .O(state1_carry_i_4_n_0));
-  LUT6 #(
-    .INIT(64'h5555555500000040)) 
+  LUT5 #(
+    .INIT(32'h0F0F0002)) 
     \wait_count[0]_i_1 
-       (.I0(wait_count[0]),
-        .I1(\FSM_onehot_state_reg_n_0_[7] ),
-        .I2(\wait_count[1]_i_2_n_0 ),
-        .I3(wait_count[1]),
-        .I4(wait_count[2]),
-        .I5(\FSM_onehot_state_reg_n_0_[1] ),
+       (.I0(\FSM_onehot_state_reg_n_0_[7] ),
+        .I1(wait_count[2]),
+        .I2(wait_count[0]),
+        .I3(\wait_count[7]_i_3_n_0 ),
+        .I4(\FSM_onehot_state_reg_n_0_[1] ),
         .O(\wait_count[0]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h55AA55AA00000080)) 
+    .INIT(64'h0FF00FF000000220)) 
     \wait_count[1]_i_1 
-       (.I0(wait_count[0]),
-        .I1(\FSM_onehot_state_reg_n_0_[7] ),
-        .I2(\wait_count[1]_i_2_n_0 ),
-        .I3(wait_count[1]),
-        .I4(wait_count[2]),
+       (.I0(\FSM_onehot_state_reg_n_0_[7] ),
+        .I1(wait_count[2]),
+        .I2(wait_count[1]),
+        .I3(wait_count[0]),
+        .I4(\wait_count[7]_i_3_n_0 ),
         .I5(\FSM_onehot_state_reg_n_0_[1] ),
         .O(\wait_count[1]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'h00000001)) 
-    \wait_count[1]_i_2 
-       (.I0(wait_count[3]),
-        .I1(wait_count[5]),
-        .I2(wait_count[4]),
-        .I3(wait_count[7]),
-        .I4(wait_count[6]),
-        .O(\wait_count[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'h2A80)) 
     \wait_count[2]_i_1 
@@ -2446,7 +2455,7 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
         .I2(wait_count[1]),
         .I3(wait_count[2]),
         .O(\wait_count[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'h2AAA8000)) 
     \wait_count[3]_i_1 
@@ -2466,58 +2475,68 @@ module testwith1speed_Read1_100MHZ_0_0_Read1_100MHZ
         .I4(wait_count[3]),
         .I5(wait_count[4]),
         .O(\wait_count[4]_i_1_n_0 ));
-  LUT3 #(
-    .INIT(8'h82)) 
+  LUT6 #(
+    .INIT(64'hA2AAAAAA08000000)) 
     \wait_count[5]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
-        .I1(\wait_count[5]_i_2_n_0 ),
-        .I2(wait_count[5]),
-        .O(\wait_count[5]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'h7FFFFFFF)) 
-    \wait_count[5]_i_2 
-       (.I0(wait_count[3]),
-        .I1(wait_count[1]),
-        .I2(wait_count[0]),
+        .I1(wait_count[3]),
+        .I2(\wait_count[5]_i_2_n_0 ),
         .I3(wait_count[2]),
         .I4(wait_count[4]),
+        .I5(wait_count[5]),
+        .O(\wait_count[5]_i_1_n_0 ));
+  LUT2 #(
+    .INIT(4'h7)) 
+    \wait_count[5]_i_2 
+       (.I0(wait_count[0]),
+        .I1(wait_count[1]),
         .O(\wait_count[5]_i_2_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'h28)) 
     \wait_count[6]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
-        .I1(\wait_count[7]_i_3_n_0 ),
+        .I1(\wait_count[7]_i_4_n_0 ),
         .I2(wait_count[6]),
         .O(\wait_count[6]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFFFF8)) 
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFF002A)) 
     \wait_count[7]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[1] ),
-        .I1(\FSM_onehot_state[10]_i_3_n_0 ),
-        .I2(write_active_0),
-        .I3(A_buf),
-        .I4(\FSM_onehot_state_reg_n_0_[7] ),
+        .I1(wait_count[2]),
+        .I2(wait_count[1]),
+        .I3(\wait_count[7]_i_3_n_0 ),
+        .I4(\A[21]_i_1_n_0 ),
+        .I5(\FSM_onehot_state_reg_n_0_[7] ),
         .O(\wait_count[7]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
     .INIT(16'h7800)) 
     \wait_count[7]_i_2 
-       (.I0(\wait_count[7]_i_3_n_0 ),
+       (.I0(\wait_count[7]_i_4_n_0 ),
         .I1(wait_count[6]),
         .I2(wait_count[7]),
         .I3(\FSM_onehot_state_reg_n_0_[1] ),
         .O(\wait_count[7]_i_2_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFFFFFFE)) 
+    \wait_count[7]_i_3 
+       (.I0(wait_count[3]),
+        .I1(wait_count[5]),
+        .I2(wait_count[4]),
+        .I3(wait_count[7]),
+        .I4(wait_count[6]),
+        .O(\wait_count[7]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h8000000000000000)) 
-    \wait_count[7]_i_3 
+    \wait_count[7]_i_4 
        (.I0(wait_count[5]),
         .I1(wait_count[4]),
         .I2(wait_count[2]),
         .I3(wait_count[0]),
         .I4(wait_count[1]),
         .I5(wait_count[3]),
-        .O(\wait_count[7]_i_3_n_0 ));
+        .O(\wait_count[7]_i_4_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
     \wait_count_reg[0] 

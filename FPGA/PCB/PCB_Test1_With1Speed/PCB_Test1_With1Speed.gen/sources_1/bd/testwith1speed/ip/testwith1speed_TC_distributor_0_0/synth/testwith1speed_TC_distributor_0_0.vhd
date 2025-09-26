@@ -62,7 +62,11 @@ ENTITY testwith1speed_TC_distributor_0_0 IS
     cmd0 : OUT STD_LOGIC;
     cmd1 : OUT STD_LOGIC;
     cmd2 : OUT STD_LOGIC;
-    cmd3 : OUT STD_LOGIC
+    cmd3 : OUT STD_LOGIC;
+    cmd4 : OUT STD_LOGIC;
+    cmd5 : OUT STD_LOGIC;
+    cmd6 : OUT STD_LOGIC;
+    led0 : OUT STD_LOGIC
   );
 END testwith1speed_TC_distributor_0_0;
 
@@ -71,8 +75,7 @@ ARCHITECTURE testwith1speed_TC_distributor_0_0_arch OF testwith1speed_TC_distrib
   ATTRIBUTE DowngradeIPIdentifiedWarnings OF testwith1speed_TC_distributor_0_0_arch: ARCHITECTURE IS "yes";
   COMPONENT TC_distributor IS
     GENERIC (
-      Clockfrequency : INTEGER;
-      Baud_Rate : INTEGER
+      Clockfrequency : INTEGER
     );
     PORT (
       clk : IN STD_LOGIC;
@@ -82,7 +85,11 @@ ARCHITECTURE testwith1speed_TC_distributor_0_0_arch OF testwith1speed_TC_distrib
       cmd0 : OUT STD_LOGIC;
       cmd1 : OUT STD_LOGIC;
       cmd2 : OUT STD_LOGIC;
-      cmd3 : OUT STD_LOGIC
+      cmd3 : OUT STD_LOGIC;
+      cmd4 : OUT STD_LOGIC;
+      cmd5 : OUT STD_LOGIC;
+      cmd6 : OUT STD_LOGIC;
+      led0 : OUT STD_LOGIC
     );
   END COMPONENT TC_distributor;
   ATTRIBUTE X_CORE_INFO : STRING;
@@ -90,7 +97,7 @@ ARCHITECTURE testwith1speed_TC_distributor_0_0_arch OF testwith1speed_TC_distrib
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF testwith1speed_TC_distributor_0_0_arch : ARCHITECTURE IS "testwith1speed_TC_distributor_0_0,TC_distributor,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF testwith1speed_TC_distributor_0_0_arch: ARCHITECTURE IS "testwith1speed_TC_distributor_0_0,TC_distributor,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=TC_distributor,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,Clockfrequency=100000000,Baud_Rate=400000}";
+  ATTRIBUTE CORE_GENERATION_INFO OF testwith1speed_TC_distributor_0_0_arch: ARCHITECTURE IS "testwith1speed_TC_distributor_0_0,TC_distributor,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=TC_distributor,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,Clockfrequency=100000000}";
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
   ATTRIBUTE IP_DEFINITION_SOURCE OF testwith1speed_TC_distributor_0_0_arch: ARCHITECTURE IS "module_ref";
   ATTRIBUTE X_INTERFACE_INFO : STRING;
@@ -98,15 +105,14 @@ ARCHITECTURE testwith1speed_TC_distributor_0_0_arch OF testwith1speed_TC_distrib
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
   ATTRIBUTE X_INTERFACE_INFO OF clk: SIGNAL IS "xilinx.com:signal:clock:1.0 clk CLK";
   ATTRIBUTE X_INTERFACE_MODE OF clk: SIGNAL IS "slave clk";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF clk: SIGNAL IS "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF clk: SIGNAL IS "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 12000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF rst: SIGNAL IS "xilinx.com:signal:reset:1.0 rst RST";
   ATTRIBUTE X_INTERFACE_MODE OF rst: SIGNAL IS "slave rst";
   ATTRIBUTE X_INTERFACE_PARAMETER OF rst: SIGNAL IS "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0";
 BEGIN
   U0 : TC_distributor
     GENERIC MAP (
-      Clockfrequency => 100000000,
-      Baud_Rate => 400000
+      Clockfrequency => 100000000
     )
     PORT MAP (
       clk => clk,
@@ -116,6 +122,10 @@ BEGIN
       cmd0 => cmd0,
       cmd1 => cmd1,
       cmd2 => cmd2,
-      cmd3 => cmd3
+      cmd3 => cmd3,
+      cmd4 => cmd4,
+      cmd5 => cmd5,
+      cmd6 => cmd6,
+      led0 => led0
     );
 END testwith1speed_TC_distributor_0_0_arch;

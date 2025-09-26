@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Tue Sep 23 15:58:17 2025
+-- Date        : Wed Sep 24 16:14:10 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_GNSS_Sender_0_0/testwith1speed_GNSS_Sender_0_0_sim_netlist.vhdl
@@ -21,9 +21,9 @@ entity testwith1speed_GNSS_Sender_0_0_GNSS_Sender is
     o_gnss_drive : out STD_LOGIC;
     led1 : out STD_LOGIC;
     data_ready : in STD_LOGIC;
-    reset_n : in STD_LOGIC;
+    sysclk : in STD_LOGIC;
     i_gnss_data : in STD_LOGIC_VECTOR ( 383 downto 0 );
-    sysclk : in STD_LOGIC
+    reset_n : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of testwith1speed_GNSS_Sender_0_0_GNSS_Sender : entity is "GNSS_Sender";
@@ -33,11 +33,10 @@ architecture STRUCTURE of testwith1speed_GNSS_Sender_0_0_GNSS_Sender is
   signal data_ready_prev : STD_LOGIC;
   signal data_ready_prev_i_1_n_0 : STD_LOGIC;
   signal \gnss_data_buf[383]_i_1_n_0\ : STD_LOGIC;
+  signal \gnss_data_buf[383]_i_2_n_0\ : STD_LOGIC;
   signal \^led1\ : STD_LOGIC;
   signal led1_i_1_n_0 : STD_LOGIC;
-  signal p_0_in : STD_LOGIC;
   signal state : STD_LOGIC;
-  signal state_i_1_n_0 : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
   attribute SOFT_HLUTNM of data_ready_prev_i_1 : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of led1_i_1 : label is "soft_lutpair0";
@@ -60,7 +59,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
         port map (
       C => sysclk,
       CE => '1',
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => data_ready_prev_i_1_n_0,
       Q => data_ready_prev
     );
@@ -80,13 +79,13 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => reset_n,
-      O => p_0_in
+      O => \gnss_data_buf[383]_i_2_n_0\
     );
 \gnss_data_buf_reg[0]\: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(0),
       Q => o_gnss_data(0)
     );
@@ -94,7 +93,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(100),
       Q => o_gnss_data(100)
     );
@@ -102,7 +101,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(101),
       Q => o_gnss_data(101)
     );
@@ -110,7 +109,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(102),
       Q => o_gnss_data(102)
     );
@@ -118,7 +117,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(103),
       Q => o_gnss_data(103)
     );
@@ -126,7 +125,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(104),
       Q => o_gnss_data(104)
     );
@@ -134,7 +133,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(105),
       Q => o_gnss_data(105)
     );
@@ -142,7 +141,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(106),
       Q => o_gnss_data(106)
     );
@@ -150,7 +149,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(107),
       Q => o_gnss_data(107)
     );
@@ -158,7 +157,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(108),
       Q => o_gnss_data(108)
     );
@@ -166,7 +165,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(109),
       Q => o_gnss_data(109)
     );
@@ -174,7 +173,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(10),
       Q => o_gnss_data(10)
     );
@@ -182,7 +181,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(110),
       Q => o_gnss_data(110)
     );
@@ -190,7 +189,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(111),
       Q => o_gnss_data(111)
     );
@@ -198,7 +197,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(112),
       Q => o_gnss_data(112)
     );
@@ -206,7 +205,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(113),
       Q => o_gnss_data(113)
     );
@@ -214,7 +213,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(114),
       Q => o_gnss_data(114)
     );
@@ -222,7 +221,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(115),
       Q => o_gnss_data(115)
     );
@@ -230,7 +229,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(116),
       Q => o_gnss_data(116)
     );
@@ -238,7 +237,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(117),
       Q => o_gnss_data(117)
     );
@@ -246,7 +245,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(118),
       Q => o_gnss_data(118)
     );
@@ -254,7 +253,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(119),
       Q => o_gnss_data(119)
     );
@@ -262,7 +261,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(11),
       Q => o_gnss_data(11)
     );
@@ -270,7 +269,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(120),
       Q => o_gnss_data(120)
     );
@@ -278,7 +277,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(121),
       Q => o_gnss_data(121)
     );
@@ -286,7 +285,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(122),
       Q => o_gnss_data(122)
     );
@@ -294,7 +293,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(123),
       Q => o_gnss_data(123)
     );
@@ -302,7 +301,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(124),
       Q => o_gnss_data(124)
     );
@@ -310,7 +309,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(125),
       Q => o_gnss_data(125)
     );
@@ -318,7 +317,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(126),
       Q => o_gnss_data(126)
     );
@@ -326,7 +325,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(127),
       Q => o_gnss_data(127)
     );
@@ -334,7 +333,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(128),
       Q => o_gnss_data(128)
     );
@@ -342,7 +341,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(129),
       Q => o_gnss_data(129)
     );
@@ -350,7 +349,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(12),
       Q => o_gnss_data(12)
     );
@@ -358,7 +357,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(130),
       Q => o_gnss_data(130)
     );
@@ -366,7 +365,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(131),
       Q => o_gnss_data(131)
     );
@@ -374,7 +373,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(132),
       Q => o_gnss_data(132)
     );
@@ -382,7 +381,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(133),
       Q => o_gnss_data(133)
     );
@@ -390,7 +389,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(134),
       Q => o_gnss_data(134)
     );
@@ -398,7 +397,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(135),
       Q => o_gnss_data(135)
     );
@@ -406,7 +405,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(136),
       Q => o_gnss_data(136)
     );
@@ -414,7 +413,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(137),
       Q => o_gnss_data(137)
     );
@@ -422,7 +421,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(138),
       Q => o_gnss_data(138)
     );
@@ -430,7 +429,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(139),
       Q => o_gnss_data(139)
     );
@@ -438,7 +437,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(13),
       Q => o_gnss_data(13)
     );
@@ -446,7 +445,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(140),
       Q => o_gnss_data(140)
     );
@@ -454,7 +453,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(141),
       Q => o_gnss_data(141)
     );
@@ -462,7 +461,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(142),
       Q => o_gnss_data(142)
     );
@@ -470,7 +469,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(143),
       Q => o_gnss_data(143)
     );
@@ -478,7 +477,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(144),
       Q => o_gnss_data(144)
     );
@@ -486,7 +485,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(145),
       Q => o_gnss_data(145)
     );
@@ -494,7 +493,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(146),
       Q => o_gnss_data(146)
     );
@@ -502,7 +501,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(147),
       Q => o_gnss_data(147)
     );
@@ -510,7 +509,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(148),
       Q => o_gnss_data(148)
     );
@@ -518,7 +517,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(149),
       Q => o_gnss_data(149)
     );
@@ -526,7 +525,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(14),
       Q => o_gnss_data(14)
     );
@@ -534,7 +533,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(150),
       Q => o_gnss_data(150)
     );
@@ -542,7 +541,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(151),
       Q => o_gnss_data(151)
     );
@@ -550,7 +549,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(152),
       Q => o_gnss_data(152)
     );
@@ -558,7 +557,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(153),
       Q => o_gnss_data(153)
     );
@@ -566,7 +565,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(154),
       Q => o_gnss_data(154)
     );
@@ -574,7 +573,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(155),
       Q => o_gnss_data(155)
     );
@@ -582,7 +581,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(156),
       Q => o_gnss_data(156)
     );
@@ -590,7 +589,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(157),
       Q => o_gnss_data(157)
     );
@@ -598,7 +597,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(158),
       Q => o_gnss_data(158)
     );
@@ -606,7 +605,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(159),
       Q => o_gnss_data(159)
     );
@@ -614,7 +613,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(15),
       Q => o_gnss_data(15)
     );
@@ -622,7 +621,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(160),
       Q => o_gnss_data(160)
     );
@@ -630,7 +629,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(161),
       Q => o_gnss_data(161)
     );
@@ -638,7 +637,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(162),
       Q => o_gnss_data(162)
     );
@@ -646,7 +645,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(163),
       Q => o_gnss_data(163)
     );
@@ -654,7 +653,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(164),
       Q => o_gnss_data(164)
     );
@@ -662,7 +661,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(165),
       Q => o_gnss_data(165)
     );
@@ -670,7 +669,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(166),
       Q => o_gnss_data(166)
     );
@@ -678,7 +677,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(167),
       Q => o_gnss_data(167)
     );
@@ -686,7 +685,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(168),
       Q => o_gnss_data(168)
     );
@@ -694,7 +693,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(169),
       Q => o_gnss_data(169)
     );
@@ -702,7 +701,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(16),
       Q => o_gnss_data(16)
     );
@@ -710,7 +709,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(170),
       Q => o_gnss_data(170)
     );
@@ -718,7 +717,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(171),
       Q => o_gnss_data(171)
     );
@@ -726,7 +725,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(172),
       Q => o_gnss_data(172)
     );
@@ -734,7 +733,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(173),
       Q => o_gnss_data(173)
     );
@@ -742,7 +741,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(174),
       Q => o_gnss_data(174)
     );
@@ -750,7 +749,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(175),
       Q => o_gnss_data(175)
     );
@@ -758,7 +757,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(176),
       Q => o_gnss_data(176)
     );
@@ -766,7 +765,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(177),
       Q => o_gnss_data(177)
     );
@@ -774,7 +773,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(178),
       Q => o_gnss_data(178)
     );
@@ -782,7 +781,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(179),
       Q => o_gnss_data(179)
     );
@@ -790,7 +789,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(17),
       Q => o_gnss_data(17)
     );
@@ -798,7 +797,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(180),
       Q => o_gnss_data(180)
     );
@@ -806,7 +805,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(181),
       Q => o_gnss_data(181)
     );
@@ -814,7 +813,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(182),
       Q => o_gnss_data(182)
     );
@@ -822,7 +821,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(183),
       Q => o_gnss_data(183)
     );
@@ -830,7 +829,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(184),
       Q => o_gnss_data(184)
     );
@@ -838,7 +837,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(185),
       Q => o_gnss_data(185)
     );
@@ -846,7 +845,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(186),
       Q => o_gnss_data(186)
     );
@@ -854,7 +853,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(187),
       Q => o_gnss_data(187)
     );
@@ -862,7 +861,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(188),
       Q => o_gnss_data(188)
     );
@@ -870,7 +869,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(189),
       Q => o_gnss_data(189)
     );
@@ -878,7 +877,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(18),
       Q => o_gnss_data(18)
     );
@@ -886,7 +885,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(190),
       Q => o_gnss_data(190)
     );
@@ -894,7 +893,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(191),
       Q => o_gnss_data(191)
     );
@@ -902,7 +901,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(192),
       Q => o_gnss_data(192)
     );
@@ -910,7 +909,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(193),
       Q => o_gnss_data(193)
     );
@@ -918,7 +917,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(194),
       Q => o_gnss_data(194)
     );
@@ -926,7 +925,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(195),
       Q => o_gnss_data(195)
     );
@@ -934,7 +933,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(196),
       Q => o_gnss_data(196)
     );
@@ -942,7 +941,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(197),
       Q => o_gnss_data(197)
     );
@@ -950,7 +949,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(198),
       Q => o_gnss_data(198)
     );
@@ -958,7 +957,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(199),
       Q => o_gnss_data(199)
     );
@@ -966,7 +965,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(19),
       Q => o_gnss_data(19)
     );
@@ -974,7 +973,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(1),
       Q => o_gnss_data(1)
     );
@@ -982,7 +981,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(200),
       Q => o_gnss_data(200)
     );
@@ -990,7 +989,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(201),
       Q => o_gnss_data(201)
     );
@@ -998,7 +997,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(202),
       Q => o_gnss_data(202)
     );
@@ -1006,7 +1005,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(203),
       Q => o_gnss_data(203)
     );
@@ -1014,7 +1013,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(204),
       Q => o_gnss_data(204)
     );
@@ -1022,7 +1021,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(205),
       Q => o_gnss_data(205)
     );
@@ -1030,7 +1029,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(206),
       Q => o_gnss_data(206)
     );
@@ -1038,7 +1037,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(207),
       Q => o_gnss_data(207)
     );
@@ -1046,7 +1045,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(208),
       Q => o_gnss_data(208)
     );
@@ -1054,7 +1053,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(209),
       Q => o_gnss_data(209)
     );
@@ -1062,7 +1061,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(20),
       Q => o_gnss_data(20)
     );
@@ -1070,7 +1069,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(210),
       Q => o_gnss_data(210)
     );
@@ -1078,7 +1077,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(211),
       Q => o_gnss_data(211)
     );
@@ -1086,7 +1085,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(212),
       Q => o_gnss_data(212)
     );
@@ -1094,7 +1093,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(213),
       Q => o_gnss_data(213)
     );
@@ -1102,7 +1101,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(214),
       Q => o_gnss_data(214)
     );
@@ -1110,7 +1109,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(215),
       Q => o_gnss_data(215)
     );
@@ -1118,7 +1117,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(216),
       Q => o_gnss_data(216)
     );
@@ -1126,7 +1125,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(217),
       Q => o_gnss_data(217)
     );
@@ -1134,7 +1133,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(218),
       Q => o_gnss_data(218)
     );
@@ -1142,7 +1141,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(219),
       Q => o_gnss_data(219)
     );
@@ -1150,7 +1149,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(21),
       Q => o_gnss_data(21)
     );
@@ -1158,7 +1157,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(220),
       Q => o_gnss_data(220)
     );
@@ -1166,7 +1165,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(221),
       Q => o_gnss_data(221)
     );
@@ -1174,7 +1173,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(222),
       Q => o_gnss_data(222)
     );
@@ -1182,7 +1181,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(223),
       Q => o_gnss_data(223)
     );
@@ -1190,7 +1189,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(224),
       Q => o_gnss_data(224)
     );
@@ -1198,7 +1197,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(225),
       Q => o_gnss_data(225)
     );
@@ -1206,7 +1205,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(226),
       Q => o_gnss_data(226)
     );
@@ -1214,7 +1213,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(227),
       Q => o_gnss_data(227)
     );
@@ -1222,7 +1221,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(228),
       Q => o_gnss_data(228)
     );
@@ -1230,7 +1229,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(229),
       Q => o_gnss_data(229)
     );
@@ -1238,7 +1237,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(22),
       Q => o_gnss_data(22)
     );
@@ -1246,7 +1245,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(230),
       Q => o_gnss_data(230)
     );
@@ -1254,7 +1253,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(231),
       Q => o_gnss_data(231)
     );
@@ -1262,7 +1261,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(232),
       Q => o_gnss_data(232)
     );
@@ -1270,7 +1269,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(233),
       Q => o_gnss_data(233)
     );
@@ -1278,7 +1277,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(234),
       Q => o_gnss_data(234)
     );
@@ -1286,7 +1285,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(235),
       Q => o_gnss_data(235)
     );
@@ -1294,7 +1293,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(236),
       Q => o_gnss_data(236)
     );
@@ -1302,7 +1301,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(237),
       Q => o_gnss_data(237)
     );
@@ -1310,7 +1309,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(238),
       Q => o_gnss_data(238)
     );
@@ -1318,7 +1317,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(239),
       Q => o_gnss_data(239)
     );
@@ -1326,7 +1325,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(23),
       Q => o_gnss_data(23)
     );
@@ -1334,7 +1333,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(240),
       Q => o_gnss_data(240)
     );
@@ -1342,7 +1341,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(241),
       Q => o_gnss_data(241)
     );
@@ -1350,7 +1349,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(242),
       Q => o_gnss_data(242)
     );
@@ -1358,7 +1357,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(243),
       Q => o_gnss_data(243)
     );
@@ -1366,7 +1365,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(244),
       Q => o_gnss_data(244)
     );
@@ -1374,7 +1373,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(245),
       Q => o_gnss_data(245)
     );
@@ -1382,7 +1381,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(246),
       Q => o_gnss_data(246)
     );
@@ -1390,7 +1389,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(247),
       Q => o_gnss_data(247)
     );
@@ -1398,7 +1397,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(248),
       Q => o_gnss_data(248)
     );
@@ -1406,7 +1405,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(249),
       Q => o_gnss_data(249)
     );
@@ -1414,7 +1413,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(24),
       Q => o_gnss_data(24)
     );
@@ -1422,7 +1421,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(250),
       Q => o_gnss_data(250)
     );
@@ -1430,7 +1429,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(251),
       Q => o_gnss_data(251)
     );
@@ -1438,7 +1437,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(252),
       Q => o_gnss_data(252)
     );
@@ -1446,7 +1445,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(253),
       Q => o_gnss_data(253)
     );
@@ -1454,7 +1453,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(254),
       Q => o_gnss_data(254)
     );
@@ -1462,7 +1461,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(255),
       Q => o_gnss_data(255)
     );
@@ -1470,7 +1469,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(256),
       Q => o_gnss_data(256)
     );
@@ -1478,7 +1477,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(257),
       Q => o_gnss_data(257)
     );
@@ -1486,7 +1485,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(258),
       Q => o_gnss_data(258)
     );
@@ -1494,7 +1493,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(259),
       Q => o_gnss_data(259)
     );
@@ -1502,7 +1501,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(25),
       Q => o_gnss_data(25)
     );
@@ -1510,7 +1509,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(260),
       Q => o_gnss_data(260)
     );
@@ -1518,7 +1517,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(261),
       Q => o_gnss_data(261)
     );
@@ -1526,7 +1525,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(262),
       Q => o_gnss_data(262)
     );
@@ -1534,7 +1533,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(263),
       Q => o_gnss_data(263)
     );
@@ -1542,7 +1541,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(264),
       Q => o_gnss_data(264)
     );
@@ -1550,7 +1549,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(265),
       Q => o_gnss_data(265)
     );
@@ -1558,7 +1557,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(266),
       Q => o_gnss_data(266)
     );
@@ -1566,7 +1565,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(267),
       Q => o_gnss_data(267)
     );
@@ -1574,7 +1573,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(268),
       Q => o_gnss_data(268)
     );
@@ -1582,7 +1581,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(269),
       Q => o_gnss_data(269)
     );
@@ -1590,7 +1589,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(26),
       Q => o_gnss_data(26)
     );
@@ -1598,7 +1597,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(270),
       Q => o_gnss_data(270)
     );
@@ -1606,7 +1605,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(271),
       Q => o_gnss_data(271)
     );
@@ -1614,7 +1613,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(272),
       Q => o_gnss_data(272)
     );
@@ -1622,7 +1621,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(273),
       Q => o_gnss_data(273)
     );
@@ -1630,7 +1629,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(274),
       Q => o_gnss_data(274)
     );
@@ -1638,7 +1637,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(275),
       Q => o_gnss_data(275)
     );
@@ -1646,7 +1645,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(276),
       Q => o_gnss_data(276)
     );
@@ -1654,7 +1653,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(277),
       Q => o_gnss_data(277)
     );
@@ -1662,7 +1661,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(278),
       Q => o_gnss_data(278)
     );
@@ -1670,7 +1669,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(279),
       Q => o_gnss_data(279)
     );
@@ -1678,7 +1677,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(27),
       Q => o_gnss_data(27)
     );
@@ -1686,7 +1685,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(280),
       Q => o_gnss_data(280)
     );
@@ -1694,7 +1693,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(281),
       Q => o_gnss_data(281)
     );
@@ -1702,7 +1701,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(282),
       Q => o_gnss_data(282)
     );
@@ -1710,7 +1709,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(283),
       Q => o_gnss_data(283)
     );
@@ -1718,7 +1717,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(284),
       Q => o_gnss_data(284)
     );
@@ -1726,7 +1725,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(285),
       Q => o_gnss_data(285)
     );
@@ -1734,7 +1733,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(286),
       Q => o_gnss_data(286)
     );
@@ -1742,7 +1741,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(287),
       Q => o_gnss_data(287)
     );
@@ -1750,7 +1749,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(288),
       Q => o_gnss_data(288)
     );
@@ -1758,7 +1757,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(289),
       Q => o_gnss_data(289)
     );
@@ -1766,7 +1765,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(28),
       Q => o_gnss_data(28)
     );
@@ -1774,7 +1773,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(290),
       Q => o_gnss_data(290)
     );
@@ -1782,7 +1781,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(291),
       Q => o_gnss_data(291)
     );
@@ -1790,7 +1789,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(292),
       Q => o_gnss_data(292)
     );
@@ -1798,7 +1797,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(293),
       Q => o_gnss_data(293)
     );
@@ -1806,7 +1805,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(294),
       Q => o_gnss_data(294)
     );
@@ -1814,7 +1813,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(295),
       Q => o_gnss_data(295)
     );
@@ -1822,7 +1821,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(296),
       Q => o_gnss_data(296)
     );
@@ -1830,7 +1829,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(297),
       Q => o_gnss_data(297)
     );
@@ -1838,7 +1837,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(298),
       Q => o_gnss_data(298)
     );
@@ -1846,7 +1845,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(299),
       Q => o_gnss_data(299)
     );
@@ -1854,7 +1853,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(29),
       Q => o_gnss_data(29)
     );
@@ -1862,7 +1861,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(2),
       Q => o_gnss_data(2)
     );
@@ -1870,7 +1869,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(300),
       Q => o_gnss_data(300)
     );
@@ -1878,7 +1877,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(301),
       Q => o_gnss_data(301)
     );
@@ -1886,7 +1885,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(302),
       Q => o_gnss_data(302)
     );
@@ -1894,7 +1893,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(303),
       Q => o_gnss_data(303)
     );
@@ -1902,7 +1901,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(304),
       Q => o_gnss_data(304)
     );
@@ -1910,7 +1909,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(305),
       Q => o_gnss_data(305)
     );
@@ -1918,7 +1917,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(306),
       Q => o_gnss_data(306)
     );
@@ -1926,7 +1925,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(307),
       Q => o_gnss_data(307)
     );
@@ -1934,7 +1933,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(308),
       Q => o_gnss_data(308)
     );
@@ -1942,7 +1941,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(309),
       Q => o_gnss_data(309)
     );
@@ -1950,7 +1949,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(30),
       Q => o_gnss_data(30)
     );
@@ -1958,7 +1957,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(310),
       Q => o_gnss_data(310)
     );
@@ -1966,7 +1965,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(311),
       Q => o_gnss_data(311)
     );
@@ -1974,7 +1973,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(312),
       Q => o_gnss_data(312)
     );
@@ -1982,7 +1981,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(313),
       Q => o_gnss_data(313)
     );
@@ -1990,7 +1989,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(314),
       Q => o_gnss_data(314)
     );
@@ -1998,7 +1997,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(315),
       Q => o_gnss_data(315)
     );
@@ -2006,7 +2005,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(316),
       Q => o_gnss_data(316)
     );
@@ -2014,7 +2013,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(317),
       Q => o_gnss_data(317)
     );
@@ -2022,7 +2021,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(318),
       Q => o_gnss_data(318)
     );
@@ -2030,7 +2029,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(319),
       Q => o_gnss_data(319)
     );
@@ -2038,7 +2037,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(31),
       Q => o_gnss_data(31)
     );
@@ -2046,7 +2045,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(320),
       Q => o_gnss_data(320)
     );
@@ -2054,7 +2053,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(321),
       Q => o_gnss_data(321)
     );
@@ -2062,7 +2061,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(322),
       Q => o_gnss_data(322)
     );
@@ -2070,7 +2069,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(323),
       Q => o_gnss_data(323)
     );
@@ -2078,7 +2077,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(324),
       Q => o_gnss_data(324)
     );
@@ -2086,7 +2085,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(325),
       Q => o_gnss_data(325)
     );
@@ -2094,7 +2093,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(326),
       Q => o_gnss_data(326)
     );
@@ -2102,7 +2101,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(327),
       Q => o_gnss_data(327)
     );
@@ -2110,7 +2109,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(328),
       Q => o_gnss_data(328)
     );
@@ -2118,7 +2117,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(329),
       Q => o_gnss_data(329)
     );
@@ -2126,7 +2125,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(32),
       Q => o_gnss_data(32)
     );
@@ -2134,7 +2133,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(330),
       Q => o_gnss_data(330)
     );
@@ -2142,7 +2141,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(331),
       Q => o_gnss_data(331)
     );
@@ -2150,7 +2149,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(332),
       Q => o_gnss_data(332)
     );
@@ -2158,7 +2157,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(333),
       Q => o_gnss_data(333)
     );
@@ -2166,7 +2165,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(334),
       Q => o_gnss_data(334)
     );
@@ -2174,7 +2173,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(335),
       Q => o_gnss_data(335)
     );
@@ -2182,7 +2181,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(336),
       Q => o_gnss_data(336)
     );
@@ -2190,7 +2189,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(337),
       Q => o_gnss_data(337)
     );
@@ -2198,7 +2197,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(338),
       Q => o_gnss_data(338)
     );
@@ -2206,7 +2205,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(339),
       Q => o_gnss_data(339)
     );
@@ -2214,7 +2213,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(33),
       Q => o_gnss_data(33)
     );
@@ -2222,7 +2221,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(340),
       Q => o_gnss_data(340)
     );
@@ -2230,7 +2229,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(341),
       Q => o_gnss_data(341)
     );
@@ -2238,7 +2237,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(342),
       Q => o_gnss_data(342)
     );
@@ -2246,7 +2245,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(343),
       Q => o_gnss_data(343)
     );
@@ -2254,7 +2253,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(344),
       Q => o_gnss_data(344)
     );
@@ -2262,7 +2261,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(345),
       Q => o_gnss_data(345)
     );
@@ -2270,7 +2269,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(346),
       Q => o_gnss_data(346)
     );
@@ -2278,7 +2277,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(347),
       Q => o_gnss_data(347)
     );
@@ -2286,7 +2285,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(348),
       Q => o_gnss_data(348)
     );
@@ -2294,7 +2293,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(349),
       Q => o_gnss_data(349)
     );
@@ -2302,7 +2301,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(34),
       Q => o_gnss_data(34)
     );
@@ -2310,7 +2309,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(350),
       Q => o_gnss_data(350)
     );
@@ -2318,7 +2317,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(351),
       Q => o_gnss_data(351)
     );
@@ -2326,7 +2325,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(352),
       Q => o_gnss_data(352)
     );
@@ -2334,7 +2333,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(353),
       Q => o_gnss_data(353)
     );
@@ -2342,7 +2341,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(354),
       Q => o_gnss_data(354)
     );
@@ -2350,7 +2349,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(355),
       Q => o_gnss_data(355)
     );
@@ -2358,7 +2357,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(356),
       Q => o_gnss_data(356)
     );
@@ -2366,7 +2365,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(357),
       Q => o_gnss_data(357)
     );
@@ -2374,7 +2373,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(358),
       Q => o_gnss_data(358)
     );
@@ -2382,7 +2381,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(359),
       Q => o_gnss_data(359)
     );
@@ -2390,7 +2389,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(35),
       Q => o_gnss_data(35)
     );
@@ -2398,7 +2397,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(360),
       Q => o_gnss_data(360)
     );
@@ -2406,7 +2405,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(361),
       Q => o_gnss_data(361)
     );
@@ -2414,7 +2413,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(362),
       Q => o_gnss_data(362)
     );
@@ -2422,7 +2421,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(363),
       Q => o_gnss_data(363)
     );
@@ -2430,7 +2429,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(364),
       Q => o_gnss_data(364)
     );
@@ -2438,7 +2437,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(365),
       Q => o_gnss_data(365)
     );
@@ -2446,7 +2445,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(366),
       Q => o_gnss_data(366)
     );
@@ -2454,7 +2453,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(367),
       Q => o_gnss_data(367)
     );
@@ -2462,7 +2461,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(368),
       Q => o_gnss_data(368)
     );
@@ -2470,7 +2469,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(369),
       Q => o_gnss_data(369)
     );
@@ -2478,7 +2477,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(36),
       Q => o_gnss_data(36)
     );
@@ -2486,7 +2485,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(370),
       Q => o_gnss_data(370)
     );
@@ -2494,7 +2493,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(371),
       Q => o_gnss_data(371)
     );
@@ -2502,7 +2501,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(372),
       Q => o_gnss_data(372)
     );
@@ -2510,7 +2509,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(373),
       Q => o_gnss_data(373)
     );
@@ -2518,7 +2517,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(374),
       Q => o_gnss_data(374)
     );
@@ -2526,7 +2525,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(375),
       Q => o_gnss_data(375)
     );
@@ -2534,7 +2533,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(376),
       Q => o_gnss_data(376)
     );
@@ -2542,7 +2541,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(377),
       Q => o_gnss_data(377)
     );
@@ -2550,7 +2549,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(378),
       Q => o_gnss_data(378)
     );
@@ -2558,7 +2557,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(379),
       Q => o_gnss_data(379)
     );
@@ -2566,7 +2565,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(37),
       Q => o_gnss_data(37)
     );
@@ -2574,7 +2573,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(380),
       Q => o_gnss_data(380)
     );
@@ -2582,7 +2581,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(381),
       Q => o_gnss_data(381)
     );
@@ -2590,7 +2589,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(382),
       Q => o_gnss_data(382)
     );
@@ -2598,7 +2597,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(383),
       Q => o_gnss_data(383)
     );
@@ -2606,7 +2605,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(38),
       Q => o_gnss_data(38)
     );
@@ -2614,7 +2613,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(39),
       Q => o_gnss_data(39)
     );
@@ -2622,7 +2621,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(3),
       Q => o_gnss_data(3)
     );
@@ -2630,7 +2629,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(40),
       Q => o_gnss_data(40)
     );
@@ -2638,7 +2637,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(41),
       Q => o_gnss_data(41)
     );
@@ -2646,7 +2645,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(42),
       Q => o_gnss_data(42)
     );
@@ -2654,7 +2653,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(43),
       Q => o_gnss_data(43)
     );
@@ -2662,7 +2661,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(44),
       Q => o_gnss_data(44)
     );
@@ -2670,7 +2669,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(45),
       Q => o_gnss_data(45)
     );
@@ -2678,7 +2677,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(46),
       Q => o_gnss_data(46)
     );
@@ -2686,7 +2685,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(47),
       Q => o_gnss_data(47)
     );
@@ -2694,7 +2693,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(48),
       Q => o_gnss_data(48)
     );
@@ -2702,7 +2701,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(49),
       Q => o_gnss_data(49)
     );
@@ -2710,7 +2709,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(4),
       Q => o_gnss_data(4)
     );
@@ -2718,7 +2717,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(50),
       Q => o_gnss_data(50)
     );
@@ -2726,7 +2725,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(51),
       Q => o_gnss_data(51)
     );
@@ -2734,7 +2733,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(52),
       Q => o_gnss_data(52)
     );
@@ -2742,7 +2741,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(53),
       Q => o_gnss_data(53)
     );
@@ -2750,7 +2749,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(54),
       Q => o_gnss_data(54)
     );
@@ -2758,7 +2757,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(55),
       Q => o_gnss_data(55)
     );
@@ -2766,7 +2765,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(56),
       Q => o_gnss_data(56)
     );
@@ -2774,7 +2773,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(57),
       Q => o_gnss_data(57)
     );
@@ -2782,7 +2781,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(58),
       Q => o_gnss_data(58)
     );
@@ -2790,7 +2789,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(59),
       Q => o_gnss_data(59)
     );
@@ -2798,7 +2797,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(5),
       Q => o_gnss_data(5)
     );
@@ -2806,7 +2805,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(60),
       Q => o_gnss_data(60)
     );
@@ -2814,7 +2813,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(61),
       Q => o_gnss_data(61)
     );
@@ -2822,7 +2821,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(62),
       Q => o_gnss_data(62)
     );
@@ -2830,7 +2829,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(63),
       Q => o_gnss_data(63)
     );
@@ -2838,7 +2837,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(64),
       Q => o_gnss_data(64)
     );
@@ -2846,7 +2845,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(65),
       Q => o_gnss_data(65)
     );
@@ -2854,7 +2853,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(66),
       Q => o_gnss_data(66)
     );
@@ -2862,7 +2861,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(67),
       Q => o_gnss_data(67)
     );
@@ -2870,7 +2869,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(68),
       Q => o_gnss_data(68)
     );
@@ -2878,7 +2877,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(69),
       Q => o_gnss_data(69)
     );
@@ -2886,7 +2885,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(6),
       Q => o_gnss_data(6)
     );
@@ -2894,7 +2893,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(70),
       Q => o_gnss_data(70)
     );
@@ -2902,7 +2901,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(71),
       Q => o_gnss_data(71)
     );
@@ -2910,7 +2909,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(72),
       Q => o_gnss_data(72)
     );
@@ -2918,7 +2917,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(73),
       Q => o_gnss_data(73)
     );
@@ -2926,7 +2925,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(74),
       Q => o_gnss_data(74)
     );
@@ -2934,7 +2933,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(75),
       Q => o_gnss_data(75)
     );
@@ -2942,7 +2941,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(76),
       Q => o_gnss_data(76)
     );
@@ -2950,7 +2949,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(77),
       Q => o_gnss_data(77)
     );
@@ -2958,7 +2957,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(78),
       Q => o_gnss_data(78)
     );
@@ -2966,7 +2965,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(79),
       Q => o_gnss_data(79)
     );
@@ -2974,7 +2973,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(7),
       Q => o_gnss_data(7)
     );
@@ -2982,7 +2981,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(80),
       Q => o_gnss_data(80)
     );
@@ -2990,7 +2989,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(81),
       Q => o_gnss_data(81)
     );
@@ -2998,7 +2997,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(82),
       Q => o_gnss_data(82)
     );
@@ -3006,7 +3005,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(83),
       Q => o_gnss_data(83)
     );
@@ -3014,7 +3013,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(84),
       Q => o_gnss_data(84)
     );
@@ -3022,7 +3021,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(85),
       Q => o_gnss_data(85)
     );
@@ -3030,7 +3029,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(86),
       Q => o_gnss_data(86)
     );
@@ -3038,7 +3037,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(87),
       Q => o_gnss_data(87)
     );
@@ -3046,7 +3045,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(88),
       Q => o_gnss_data(88)
     );
@@ -3054,7 +3053,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(89),
       Q => o_gnss_data(89)
     );
@@ -3062,7 +3061,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(8),
       Q => o_gnss_data(8)
     );
@@ -3070,7 +3069,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(90),
       Q => o_gnss_data(90)
     );
@@ -3078,7 +3077,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(91),
       Q => o_gnss_data(91)
     );
@@ -3086,7 +3085,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(92),
       Q => o_gnss_data(92)
     );
@@ -3094,7 +3093,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(93),
       Q => o_gnss_data(93)
     );
@@ -3102,7 +3101,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(94),
       Q => o_gnss_data(94)
     );
@@ -3110,7 +3109,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(95),
       Q => o_gnss_data(95)
     );
@@ -3118,7 +3117,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(96),
       Q => o_gnss_data(96)
     );
@@ -3126,7 +3125,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(97),
       Q => o_gnss_data(97)
     );
@@ -3134,7 +3133,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(98),
       Q => o_gnss_data(98)
     );
@@ -3142,7 +3141,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(99),
       Q => o_gnss_data(99)
     );
@@ -3150,7 +3149,7 @@ data_ready_prev_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => \gnss_data_buf[383]_i_1_n_0\,
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => i_gnss_data(9),
       Q => o_gnss_data(9)
     );
@@ -3167,7 +3166,7 @@ led1_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => '1',
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => led1_i_1_n_0,
       Q => \^led1\
     );
@@ -3175,31 +3174,20 @@ o_gnss_drive_reg: unisim.vcomponents.FDCE
      port map (
       C => sysclk,
       CE => '1',
-      CLR => p_0_in,
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
       D => state,
       Q => o_gnss_drive
     );
-state_i_1: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"04F0"
-    )
-        port map (
-      I0 => data_ready_prev,
-      I1 => data_ready,
-      I2 => state,
-      I3 => reset_n,
-      O => state_i_1_n_0
-    );
-state_reg: unisim.vcomponents.FDRE
+state_reg: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => sysclk,
       CE => '1',
-      D => state_i_1_n_0,
-      Q => state,
-      R => '0'
+      CLR => \gnss_data_buf[383]_i_2_n_0\,
+      D => \gnss_data_buf[383]_i_1_n_0\,
+      Q => state
     );
 end STRUCTURE;
 library IEEE;

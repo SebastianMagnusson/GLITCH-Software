@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Tue Sep 23 16:00:03 2025
+-- Date        : Wed Sep 24 16:15:48 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_UART_RX_100MHZ_0_0/testwith1speed_UART_RX_100MHZ_0_0_sim_netlist.vhdl
@@ -939,7 +939,8 @@ entity testwith1speed_UART_RX_100MHZ_0_0 is
     sysclk : in STD_LOGIC;
     i_RX_Serial : in STD_LOGIC;
     o_RX_DV : out STD_LOGIC;
-    o_RX_byte : out STD_LOGIC_VECTOR ( 7 downto 0 )
+    o_RX_byte : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    led0 : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of testwith1speed_UART_RX_100MHZ_0_0 : entity is true;
@@ -954,12 +955,18 @@ entity testwith1speed_UART_RX_100MHZ_0_0 is
 end testwith1speed_UART_RX_100MHZ_0_0;
 
 architecture STRUCTURE of testwith1speed_UART_RX_100MHZ_0_0 is
+  signal \<const1>\ : STD_LOGIC;
 begin
+  led0 <= \<const1>\;
 U0: entity work.testwith1speed_UART_RX_100MHZ_0_0_UART_RX_100MHZ
      port map (
       i_RX_Serial => i_RX_Serial,
       o_RX_DV => o_RX_DV,
       o_RX_byte(7 downto 0) => o_RX_byte(7 downto 0),
       sysclk => sysclk
+    );
+VCC: unisim.vcomponents.VCC
+     port map (
+      P => \<const1>\
     );
 end STRUCTURE;

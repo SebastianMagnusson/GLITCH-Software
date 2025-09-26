@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Tue Sep 23 16:02:24 2025
+| Date         : Thu Sep 25 14:38:58 2025
 | Host         : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command      : report_utilization -file testwith1speed_Write1_100MHZ_0_0_utilization_synth.rpt -pb testwith1speed_Write1_100MHZ_0_0_utilization_synth.pb
 | Design       : testwith1speed_Write1_100MHZ_0_0
@@ -150,12 +150,12 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
 | FDCE     |   60 |        Flop & Latch |
-| LUT6     |   38 |                 LUT |
-| LUT5     |   36 |                 LUT |
+| LUT6     |   39 |                 LUT |
+| LUT5     |   35 |                 LUT |
 | FDRE     |   16 |        Flop & Latch |
-| LUT4     |   13 |                 LUT |
-| LUT3     |   13 |                 LUT |
+| LUT3     |   14 |                 LUT |
 | LUT2     |   13 |                 LUT |
+| LUT4     |   12 |                 LUT |
 | FDPE     |   11 |        Flop & Latch |
 | CARRY4   |    6 |          CarryLogic |
 | LUT1     |    3 |                 LUT |
