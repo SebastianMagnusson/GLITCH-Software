@@ -59,7 +59,7 @@ PACKET_PARSERS = {
         "fields": [
             ("seq_counter", "uint:16"),
             ("rtc", "uint:24", convert_rtc),
-            ("radiation", "uint:9982"),
+            ("radiation", "uint:4984"),
             ("crc", "uint:16")
         ]
     }

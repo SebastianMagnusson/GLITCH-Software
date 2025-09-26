@@ -144,6 +144,11 @@ void buffer_add_tm(int priority, uint8_t* data) {
     }
 
     // Remove the RAD packet interception - let all packets use TM buffer
+    if (priority == 0){
+        buffer_add_rad(data);
+        return;
+    }
+
     int len = check_length(data);
     frame_tm* new_frame = (frame_tm*)calloc(1, sizeof(frame_tm));
     if (!new_frame) {

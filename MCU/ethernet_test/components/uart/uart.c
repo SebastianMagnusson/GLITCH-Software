@@ -83,7 +83,7 @@ uint8_t* uart_receive(void) {
     } else if (id == CONFIG_BITFLIP_PACKET_ID) {
         tm_length = 224 / 8; // 28 bytes
     } else if (id == CONFIG_RADIATION_PACKET_ID) {
-        tm_length = 10008 / 8; // 1251 bytes
+        tm_length = 5016 / 8; // 1251 bytes
     } else {
         ESP_LOGE(TAG, "Unknown packet ID: %d", id);
         return NULL;
@@ -150,6 +150,8 @@ uint8_t* uart_receive(void) {
         }
     }
 
+    ESP_LOGI(TAG, "Received data 0x%02X", header);
+
     return full_data;
 }
 
@@ -184,7 +186,7 @@ void uart_task(void *pvParameters)
                 data_bits = 224;
             } else if (id == CONFIG_RADIATION_PACKET_ID) {
                 packet_size = CONFIG_RADIATION_PACKET_SIZE;
-                data_bits = 10008;
+                data_bits = 5010;
             } else {
                 ESP_LOGE(TAG, "Unknown packet ID: %d", id);
                 free(fpga_data);
@@ -198,7 +200,7 @@ void uart_task(void *pvParameters)
                 ESP_LOGE(TAG, "Failed to pack FPGA data");
                 break;
             }
-
+            
             int priority = priority_assign(packet);
             buffer_add_tm(priority, packet);
 
@@ -238,7 +240,6 @@ uint8_t* concatenate_data(uint8_t* data1, uint8_t* data2, int length) {
 
 void uart_init(void) {
 
-    uart_flush(UART_NUM); // Flush the UART buffer to clear any existing data
 
     // Configure the UART parameters
     uart_config_t uart_config = {
@@ -277,6 +278,7 @@ void uart_init(void) {
     } else {
         ESP_LOGE(TAG, "Failed to install UART driver");
     }
+    uart_flush(UART_NUM); // Flush the UART buffer to clear any existing data
 
     
     // Increase stack size from 2048 to 4096 to handle radiation packets

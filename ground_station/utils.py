@@ -23,9 +23,8 @@ def calc_crc(data_bytes: bytes, data_bits: int) -> int:
     
     return crc
 
-def convert_temp(raw32):
+def convert_temp(raw16):
     """Convert raw temperature reading to Celsius"""
-    raw16 = raw32 & 0xFFFF
     return (175.72 * raw16 / 65536.0) - 46.85
 
 def rtc_str_to_seconds(rtc_str):
