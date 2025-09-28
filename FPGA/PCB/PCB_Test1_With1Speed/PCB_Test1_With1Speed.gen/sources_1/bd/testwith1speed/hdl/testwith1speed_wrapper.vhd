@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
---Date        : Thu Sep 25 16:46:45 2025
+--Date        : Sun Sep 28 10:04:11 2025
 --Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 --Command     : generate_target testwith1speed_wrapper.bd
 --Design      : testwith1speed_wrapper
@@ -26,6 +26,7 @@ entity testwith1speed_wrapper is
     SRAM1_WE : out STD_LOGIC;
     UART_MCU_RX : in STD_LOGIC;
     UART_MCU_TX : out STD_LOGIC;
+    UART_RAD_RX : in STD_LOGIC;
     led0 : out STD_LOGIC;
     led1 : out STD_LOGIC;
     led2 : out STD_LOGIC;
@@ -65,7 +66,8 @@ architecture STRUCTURE of testwith1speed_wrapper is
     led2 : out STD_LOGIC;
     led3 : out STD_LOGIC;
     HEATER_1 : out STD_LOGIC;
-    HEATER_2 : out STD_LOGIC
+    HEATER_2 : out STD_LOGIC;
+    UART_RAD_RX : in STD_LOGIC
   );
   end component testwith1speed;
 begin
@@ -83,6 +85,7 @@ testwith1speed_i: component testwith1speed
       SRAM1_WE => SRAM1_WE,
       UART_MCU_RX => UART_MCU_RX,
       UART_MCU_TX => UART_MCU_TX,
+      UART_RAD_RX => UART_RAD_RX,
       led0 => led0,
       led1 => led1,
       led2 => led2,

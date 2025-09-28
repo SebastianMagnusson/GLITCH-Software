@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Sep 28 14:04:51 2025" VIVADOVERSION="2024.2">
+
+  <SYSTEMINFO ARCH="artix7" DEVICE="7a100t" NAME="simple_PCB_test" PACKAGE="csg324" SPEEDGRADE="-1"/>
+
+  <EXTERNALPORTS>
+    <PORT DIR="O" LEFT="21" NAME="SRAM1A" RIGHT="0" SIGIS="undef" SIGNAME="SRAM_controller_0_A">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SRAM_controller_0" PORT="A"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="2" NAME="SRAM1DEC" RIGHT="0" SIGIS="undef" SIGNAME="SRAM_controller_0_dec">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SRAM_controller_0" PORT="dec"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="15" NAME="SRAM1DQ_i" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_SRAM1DQ_i">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SRAM_controller_0" PORT="DQ_i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="15" NAME="SRAM1DQ_o" RIGHT="0" SIGIS="undef" SIGNAME="SRAM_controller_0_DQ_o">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SRAM_controller_0" PORT="DQ_o"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="15" NAME="SRAM1DQ_t" RIGHT="0" SIGIS="undef" SIGNAME="SRAM_controller_0_DQ_t">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SRAM_controller_0" PORT="DQ_t"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="SRAM1_EN" SIGIS="undef" SIGNAME="SRAM_controller_0_CE_n">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SRAM_controller_0" PORT="CE_n"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="SRAM1_WE" SIGIS="undef" SIGNAME="SRAM_controller_0_WE_n">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SRAM_controller_0" PORT="WE_n"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="UART_MCU_RX" SIGIS="undef" SIGNAME="External_Ports_UART_MCU_RX">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="UART_RX_100MHZ_0" PORT="i_RX_Serial"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="UART_MCU_TX" SIGIS="undef" SIGNAME="UART_TX_100MHZ_0_o_TX_Serial">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="UART_TX_100MHZ_0" PORT="o_TX_Serial"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="led0" SIGIS="undef" SIGNAME="Switchmod_0_led0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Switchmod_0" PORT="led0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Switchmod_0" PORT="sysclk"/>
+        <CONNECTION INSTANCE="TC_distributor_0" PORT="clk"/>
+        <CONNECTION INSTANCE="UART_TX_100MHZ_0" PORT="sysclk"/>
+        <CONNECTION INSTANCE="TM_packet_sender_0" PORT="clk"/>
+        <CONNECTION INSTANCE="UART_RX_100MHZ_0" PORT="sysclk"/>
+        <CONNECTION INSTANCE="Switchmod_1" PORT="sysclk"/>
+        <CONNECTION INSTANCE="SRAM_controller_0" PORT="sysclk"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES/>
+
+  <MODULES>
+    <MODULE COREREVISION="1" FULLNAME="/SRAM_controller_0" HWVERSION="1.0" INSTANCE="SRAM_controller_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="SRAM_controller" VLNV="xilinx.com:module_ref:SRAM_controller:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="ADDR_WIDTH" VALUE="22"/>
+        <PARAMETER NAME="CLK_FREQ" VALUE="100000000"/>
+        <PARAMETER NAME="DATA_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="Component_Name" VALUE="simple_PCB_test_SRAM_controller_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="21" NAME="A" RIGHT="0" SIGIS="undef" SIGNAME="SRAM_controller_0_A">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SRAM1A"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="223" NAME="BF_packet" RIGHT="0" SIGIS="undef" SIGNAME="SRAM_controller_0_BF_packet">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TM_packet_sender_0" PORT="i_BF_data"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="CE_n" SIGIS="undef" SIGNAME="SRAM_controller_0_CE_n">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SRAM1_EN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="DQ_i" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_SRAM1DQ_i">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SRAM1DQ_i"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="DQ_o" RIGHT="0" SIGIS="undef" SIGNAME="SRAM_controller_0_DQ_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SRAM1DQ_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="DQ_t" RIGHT="0" SIGIS="undef" SIGNAME="SRAM_controller_0_DQ_t">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SRAM1DQ_t"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="WE_n" SIGIS="undef" SIGNAME="SRAM_controller_0_WE_n">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SRAM1_WE"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="dec" RIGHT="0" SIGIS="undef" SIGNAME="SRAM_controller_0_dec">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SRAM1DEC"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="o_BF_drive" SIGIS="undef" SIGNAME="SRAM_controller_0_o_BF_drive">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TM_packet_sender_0" PORT="i_BF_DV"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="reset_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="Switchmod_1_o_signal">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Switchmod_1" PORT="o_signal"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sysclk"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Switchmod_0" HWVERSION="1.0" INSTANCE="Switchmod_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Switchmod" VLNV="xilinx.com:module_ref:Switchmod:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="simple_PCB_test_Switchmod_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="i_signal" SIGIS="undef" SIGNAME="TC_distributor_0_cmd2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TC_distributor_0" PORT="cmd2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="led0" SIGIS="undef" SIGNAME="Switchmod_0_led0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="led0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="o_signal" SIGIS="undef" SIGNAME="Switchmod_0_o_signal">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TM_packet_sender_0" PORT="rst"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sysclk"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Switchmod_1" HWVERSION="1.0" INSTANCE="Switchmod_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Switchmod" VLNV="xilinx.com:module_ref:Switchmod:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="simple_PCB_test_Switchmod_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="i_signal" SIGIS="undef" SIGNAME="TC_distributor_0_cmd0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TC_distributor_0" PORT="cmd0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="led0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="o_signal" SIGIS="undef" SIGNAME="Switchmod_1_o_signal">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="SRAM_controller_0" PORT="reset_n"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sysclk"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/TC_distributor_0" HWVERSION="1.0" INSTANCE="TC_distributor_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="TC_distributor" VLNV="xilinx.com:module_ref:TC_distributor:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Clockfrequency" VALUE="100000000"/>
+        <PARAMETER NAME="Component_Name" VALUE="simple_PCB_test_TC_distributor_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="7" NAME="TC" RIGHT="0" SIGIS="undef" SIGNAME="UART_RX_100MHZ_0_o_RX_byte">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="UART_RX_100MHZ_0" PORT="o_RX_byte"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="TC_DV" SIGIS="undef" SIGNAME="UART_RX_100MHZ_0_o_RX_DV">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="UART_RX_100MHZ_0" PORT="o_RX_DV"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_sysclk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sysclk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="cmd0" SIGIS="undef" SIGNAME="TC_distributor_0_cmd0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Switchmod_1" PORT="i_signal"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="cmd1" SIGIS="undef"/>
+        <PORT DIR="O" NAME="cmd2" SIGIS="undef" SIGNAME="TC_distributor_0_cmd2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Switchmod_0" PORT="i_signal"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="cmd3" SIGIS="undef"/>
+        <PORT DIR="O" NAME="cmd4" SIGIS="undef"/>
+        <PORT DIR="O" NAME="cmd5" SIGIS="undef"/>
+        <PORT DIR="O" NAME="cmd6" SIGIS="undef"/>
+        <PORT DIR="O" NAME="led0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst"/>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/TM_packet_sender_0" HWVERSION="1.0" INSTANCE="TM_packet_sender_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="TM_packet_sender" VLNV="xilinx.com:module_ref:TM_packet_sender:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Baud_Rate" VALUE="400000"/>
+        <PARAMETER NAME="Clockfrequency" VALUE="12000000"/>
+        <PARAMETER NAME="Component_Name" VALUE="simple_PCB_test_TM_packet_sender_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_sysclk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sysclk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="i_BF_DV" SIGIS="undef" SIGNAME="SRAM_controller_0_o_BF_drive">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="SRAM_controller_0" PORT="o_BF_drive"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="223" NAME="i_BF_data" RIGHT="0" SIGIS="undef" SIGNAME="SRAM_controller_0_BF_packet">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="SRAM_controller_0" PORT="BF_packet"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="i_HK_DV" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="471" NAME="i_HK_data" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="i_RAD_DV" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="5015" NAME="i_RAD_data" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="i_TX_active" SIGIS="undef" SIGNAME="UART_TX_100MHZ_0_o_TX_Active">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="UART_TX_100MHZ_0" PORT="o_TX_Active"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="i_TX_done" SIGIS="undef" SIGNAME="UART_TX_100MHZ_0_o_TX_Done">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="UART_TX_100MHZ_0" PORT="o_TX_Done"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="led1" SIGIS="undef"/>
+        <PORT DIR="O" NAME="led2" SIGIS="undef"/>
+        <PORT DIR="O" NAME="o_BF_got" SIGIS="undef"/>
+        <PORT DIR="O" NAME="o_HK_got" SIGIS="undef"/>
+        <PORT DIR="O" NAME="o_RAD_got" SIGIS="undef"/>
+        <PORT DIR="O" NAME="o_TX_DV" SIGIS="undef" SIGNAME="TM_packet_sender_0_o_TX_DV">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="UART_TX_100MHZ_0" PORT="i_TX_DV"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="o_TX_byte" RIGHT="0" SIGIS="undef" SIGNAME="TM_packet_sender_0_o_TX_byte">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="UART_TX_100MHZ_0" PORT="i_TX_Byte"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="Switchmod_0_o_signal">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Switchmod_0" PORT="o_signal"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/UART_RX_100MHZ_0" HWVERSION="1.0" INSTANCE="UART_RX_100MHZ_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="UART_RX_100MHZ" VLNV="xilinx.com:module_ref:UART_RX_100MHZ:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Baud_Rate" VALUE="115200"/>
+        <PARAMETER NAME="Clockfrequency" VALUE="100000000"/>
+        <PARAMETER NAME="Component_Name" VALUE="simple_PCB_test_UART_RX_100MHZ_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="i_RX_Serial" SIGIS="undef" SIGNAME="External_Ports_UART_MCU_RX">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="UART_MCU_RX"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="led0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="o_RX_DV" SIGIS="undef" SIGNAME="UART_RX_100MHZ_0_o_RX_DV">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TC_distributor_0" PORT="TC_DV"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="o_RX_byte" RIGHT="0" SIGIS="undef" SIGNAME="UART_RX_100MHZ_0_o_RX_byte">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TC_distributor_0" PORT="TC"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sysclk"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/UART_TX_100MHZ_0" HWVERSION="1.0" INSTANCE="UART_TX_100MHZ_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="UART_TX_100MHZ" VLNV="xilinx.com:module_ref:UART_TX_100MHZ:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Baud_Rate" VALUE="115200"/>
+        <PARAMETER NAME="Clockfrequency" VALUE="100000000"/>
+        <PARAMETER NAME="Component_Name" VALUE="simple_PCB_test_UART_TX_100MHZ_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="7" NAME="i_TX_Byte" RIGHT="0" SIGIS="undef" SIGNAME="TM_packet_sender_0_o_TX_byte">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TM_packet_sender_0" PORT="o_TX_byte"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="i_TX_DV" SIGIS="undef" SIGNAME="TM_packet_sender_0_o_TX_DV">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TM_packet_sender_0" PORT="o_TX_DV"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="o_TX_Active" SIGIS="undef" SIGNAME="UART_TX_100MHZ_0_o_TX_Active">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TM_packet_sender_0" PORT="i_TX_active"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="o_TX_Done" SIGIS="undef" SIGNAME="UART_TX_100MHZ_0_o_TX_Done">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TM_packet_sender_0" PORT="i_TX_done"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="o_TX_Serial" SIGIS="undef" SIGNAME="UART_TX_100MHZ_0_o_TX_Serial">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="UART_MCU_TX"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sysclk" SIGIS="undef" SIGNAME="External_Ports_sysclk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sysclk"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

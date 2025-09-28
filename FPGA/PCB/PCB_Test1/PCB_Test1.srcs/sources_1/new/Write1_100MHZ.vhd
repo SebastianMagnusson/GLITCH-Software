@@ -56,7 +56,7 @@ architecture rtl of Write1_100MHZ is
     
     -- Convert to cycles (integer math, rounded up)
     --constant TAA_CYCLES : integer := 1; --(TAA_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
-    constant TWP_CYCLES : integer := 4; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
+    constant TWP_CYCLES : integer := 9; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
     --constant TOHZ_CYCLES: integer := 1; -- output disable to high-Z
 
 begin
@@ -74,7 +74,7 @@ begin
       addr_cnt       <= (others => '0'); -- Counts adresses    
       write_data     <= "1010101010101010";     
       write_complete <= '0';
-      decoder        <= "000";
+      decoder        <= "001";
       state          <= WRITE_START;
       
     elsif rising_edge(sysclk) then
@@ -144,6 +144,8 @@ begin
         
         when DONE =>
           write_complete <= '1';
+          
+          state <= DONE;
         
         when others =>
           state <= WRITE_START;

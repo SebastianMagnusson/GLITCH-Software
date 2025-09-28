@@ -129,7 +129,7 @@ begin
           CE_n         <= '1';
           state        <= TURNAROUND;
 
-        -- Wait one cycle before enabling read to avoid bus contention
+        -- Wait cycles before enabling read to avoid bus contention
         when TURNAROUND =>
           if wait_count < TOHZ_CYCLES-1 then
             wait_count <= wait_count + 1;

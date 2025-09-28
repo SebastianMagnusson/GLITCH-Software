@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"simple_PCB_test": {
+			"proto_instances": {
+			}
+		}
+	}
+}

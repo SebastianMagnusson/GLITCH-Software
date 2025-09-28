@@ -1,0 +1,534 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xA7BD93FAD97A82AB",
+      "device": "xc7a100tcsg324-1",
+      "gen_directory": "../../../../PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test",
+      "name": "simple_PCB_test",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "SRAM_controller_0": "",
+      "Switchmod_0": "",
+      "TC_distributor_0": "",
+      "TM_packet_sender_0": "",
+      "UART_TX_100MHZ_0": "",
+      "UART_RX_100MHZ_0": "",
+      "Switchmod_1": ""
+    },
+    "ports": {
+      "sysclk": {
+        "direction": "I"
+      },
+      "UART_MCU_TX": {
+        "direction": "O"
+      },
+      "SRAM1DQ_i": {
+        "direction": "I",
+        "left": "15",
+        "right": "0"
+      },
+      "SRAM1A": {
+        "direction": "O",
+        "left": "21",
+        "right": "0"
+      },
+      "SRAM1DQ_o": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
+      },
+      "SRAM1DQ_t": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
+      },
+      "SRAM1DEC": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "SRAM1_EN": {
+        "direction": "O"
+      },
+      "SRAM1_WE": {
+        "direction": "O"
+      },
+      "UART_MCU_RX": {
+        "direction": "I"
+      },
+      "led0": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "SRAM_controller_0": {
+        "vlnv": "xilinx.com:module_ref:SRAM_controller:1.0",
+        "ip_revision": "1",
+        "xci_name": "simple_PCB_test_SRAM_controller_0_0",
+        "xci_path": "ip\\simple_PCB_test_SRAM_controller_0_0\\simple_PCB_test_SRAM_controller_0_0.xci",
+        "inst_hier_path": "SRAM_controller_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "SRAM_controller",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "reset_n": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "o_BF_drive": {
+            "direction": "O"
+          },
+          "A": {
+            "direction": "O",
+            "left": "21",
+            "right": "0"
+          },
+          "DQ_i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "DQ_o": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "DQ_t": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "dec": {
+            "direction": "O",
+            "left": "2",
+            "right": "0"
+          },
+          "CE_n": {
+            "direction": "O"
+          },
+          "WE_n": {
+            "direction": "O"
+          },
+          "BF_packet": {
+            "direction": "O",
+            "left": "223",
+            "right": "0"
+          }
+        }
+      },
+      "Switchmod_0": {
+        "vlnv": "xilinx.com:module_ref:Switchmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "simple_PCB_test_Switchmod_0_0",
+        "xci_path": "ip\\simple_PCB_test_Switchmod_0_0\\simple_PCB_test_Switchmod_0_0.xci",
+        "inst_hier_path": "Switchmod_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Switchmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_signal": {
+            "direction": "I"
+          },
+          "o_signal": {
+            "direction": "O"
+          },
+          "led0": {
+            "direction": "O"
+          }
+        }
+      },
+      "TC_distributor_0": {
+        "vlnv": "xilinx.com:module_ref:TC_distributor:1.0",
+        "ip_revision": "1",
+        "xci_name": "simple_PCB_test_TC_distributor_0_0",
+        "xci_path": "ip\\simple_PCB_test_TC_distributor_0_0\\simple_PCB_test_TC_distributor_0_0.xci",
+        "inst_hier_path": "TC_distributor_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "TC_distributor",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "TC": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "TC_DV": {
+            "direction": "I"
+          },
+          "cmd0": {
+            "direction": "O"
+          },
+          "cmd1": {
+            "direction": "O"
+          },
+          "cmd2": {
+            "direction": "O"
+          },
+          "cmd3": {
+            "direction": "O"
+          },
+          "cmd4": {
+            "direction": "O"
+          },
+          "cmd5": {
+            "direction": "O"
+          },
+          "cmd6": {
+            "direction": "O"
+          },
+          "led0": {
+            "direction": "O"
+          }
+        }
+      },
+      "TM_packet_sender_0": {
+        "vlnv": "xilinx.com:module_ref:TM_packet_sender:1.0",
+        "ip_revision": "1",
+        "xci_name": "simple_PCB_test_TM_packet_sender_0_0",
+        "xci_path": "ip\\simple_PCB_test_TM_packet_sender_0_0\\simple_PCB_test_TM_packet_sender_0_0.xci",
+        "inst_hier_path": "TM_packet_sender_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "TM_packet_sender",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "i_HK_data": {
+            "direction": "I",
+            "left": "471",
+            "right": "0"
+          },
+          "i_BF_data": {
+            "direction": "I",
+            "left": "223",
+            "right": "0"
+          },
+          "i_RAD_data": {
+            "direction": "I",
+            "left": "5015",
+            "right": "0"
+          },
+          "i_HK_DV": {
+            "direction": "I"
+          },
+          "i_BF_DV": {
+            "direction": "I"
+          },
+          "i_RAD_DV": {
+            "direction": "I"
+          },
+          "i_TX_done": {
+            "direction": "I"
+          },
+          "i_TX_active": {
+            "direction": "I"
+          },
+          "o_TX_DV": {
+            "direction": "O"
+          },
+          "o_TX_byte": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "o_HK_got": {
+            "direction": "O"
+          },
+          "o_BF_got": {
+            "direction": "O"
+          },
+          "o_RAD_got": {
+            "direction": "O"
+          },
+          "led1": {
+            "direction": "O"
+          },
+          "led2": {
+            "direction": "O"
+          }
+        }
+      },
+      "UART_TX_100MHZ_0": {
+        "vlnv": "xilinx.com:module_ref:UART_TX_100MHZ:1.0",
+        "ip_revision": "1",
+        "xci_name": "simple_PCB_test_UART_TX_100MHZ_0_0",
+        "xci_path": "ip\\simple_PCB_test_UART_TX_100MHZ_0_0\\simple_PCB_test_UART_TX_100MHZ_0_0.xci",
+        "inst_hier_path": "UART_TX_100MHZ_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_TX_100MHZ",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_TX_DV": {
+            "direction": "I"
+          },
+          "i_TX_Byte": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "o_TX_Active": {
+            "direction": "O"
+          },
+          "o_TX_Serial": {
+            "direction": "O"
+          },
+          "o_TX_Done": {
+            "direction": "O"
+          }
+        }
+      },
+      "UART_RX_100MHZ_0": {
+        "vlnv": "xilinx.com:module_ref:UART_RX_100MHZ:1.0",
+        "ip_revision": "1",
+        "xci_name": "simple_PCB_test_UART_RX_100MHZ_0_0",
+        "xci_path": "ip\\simple_PCB_test_UART_RX_100MHZ_0_0\\simple_PCB_test_UART_RX_100MHZ_0_0.xci",
+        "inst_hier_path": "UART_RX_100MHZ_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "UART_RX_100MHZ",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_RX_Serial": {
+            "direction": "I"
+          },
+          "o_RX_DV": {
+            "direction": "O"
+          },
+          "o_RX_byte": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "led0": {
+            "direction": "O"
+          }
+        }
+      },
+      "Switchmod_1": {
+        "vlnv": "xilinx.com:module_ref:Switchmod:1.0",
+        "ip_revision": "1",
+        "xci_name": "simple_PCB_test_Switchmod_1_0",
+        "xci_path": "ip\\simple_PCB_test_Switchmod_1_0\\simple_PCB_test_Switchmod_1_0.xci",
+        "inst_hier_path": "Switchmod_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Switchmod",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "sysclk": {
+            "direction": "I"
+          },
+          "i_signal": {
+            "direction": "I"
+          },
+          "o_signal": {
+            "direction": "O"
+          },
+          "led0": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "DQ_i_0_1": {
+        "ports": [
+          "SRAM1DQ_i",
+          "SRAM_controller_0/DQ_i"
+        ]
+      },
+      "SRAM_controller_0_A": {
+        "ports": [
+          "SRAM_controller_0/A",
+          "SRAM1A"
+        ]
+      },
+      "SRAM_controller_0_BF_packet": {
+        "ports": [
+          "SRAM_controller_0/BF_packet",
+          "TM_packet_sender_0/i_BF_data"
+        ]
+      },
+      "SRAM_controller_0_CE_n": {
+        "ports": [
+          "SRAM_controller_0/CE_n",
+          "SRAM1_EN"
+        ]
+      },
+      "SRAM_controller_0_DQ_o": {
+        "ports": [
+          "SRAM_controller_0/DQ_o",
+          "SRAM1DQ_o"
+        ]
+      },
+      "SRAM_controller_0_DQ_t": {
+        "ports": [
+          "SRAM_controller_0/DQ_t",
+          "SRAM1DQ_t"
+        ]
+      },
+      "SRAM_controller_0_WE_n": {
+        "ports": [
+          "SRAM_controller_0/WE_n",
+          "SRAM1_WE"
+        ]
+      },
+      "SRAM_controller_0_dec": {
+        "ports": [
+          "SRAM_controller_0/dec",
+          "SRAM1DEC"
+        ]
+      },
+      "SRAM_controller_0_o_BF_drive": {
+        "ports": [
+          "SRAM_controller_0/o_BF_drive",
+          "TM_packet_sender_0/i_BF_DV"
+        ]
+      },
+      "Switchmod_0_led0": {
+        "ports": [
+          "Switchmod_0/led0",
+          "led0"
+        ]
+      },
+      "Switchmod_0_o_signal": {
+        "ports": [
+          "Switchmod_0/o_signal",
+          "TM_packet_sender_0/rst"
+        ]
+      },
+      "Switchmod_1_o_signal": {
+        "ports": [
+          "Switchmod_1/o_signal",
+          "SRAM_controller_0/reset_n"
+        ]
+      },
+      "TC_distributor_0_cmd0": {
+        "ports": [
+          "TC_distributor_0/cmd0",
+          "Switchmod_1/i_signal"
+        ]
+      },
+      "TC_distributor_0_cmd2": {
+        "ports": [
+          "TC_distributor_0/cmd2",
+          "Switchmod_0/i_signal"
+        ]
+      },
+      "TM_packet_sender_0_o_TX_DV": {
+        "ports": [
+          "TM_packet_sender_0/o_TX_DV",
+          "UART_TX_100MHZ_0/i_TX_DV"
+        ]
+      },
+      "TM_packet_sender_0_o_TX_byte": {
+        "ports": [
+          "TM_packet_sender_0/o_TX_byte",
+          "UART_TX_100MHZ_0/i_TX_Byte"
+        ]
+      },
+      "UART_RX_100MHZ_0_o_RX_DV": {
+        "ports": [
+          "UART_RX_100MHZ_0/o_RX_DV",
+          "TC_distributor_0/TC_DV"
+        ]
+      },
+      "UART_RX_100MHZ_0_o_RX_byte": {
+        "ports": [
+          "UART_RX_100MHZ_0/o_RX_byte",
+          "TC_distributor_0/TC"
+        ]
+      },
+      "UART_TX_100MHZ_0_o_TX_Active": {
+        "ports": [
+          "UART_TX_100MHZ_0/o_TX_Active",
+          "TM_packet_sender_0/i_TX_active"
+        ]
+      },
+      "UART_TX_100MHZ_0_o_TX_Done": {
+        "ports": [
+          "UART_TX_100MHZ_0/o_TX_Done",
+          "TM_packet_sender_0/i_TX_done"
+        ]
+      },
+      "UART_TX_100MHZ_0_o_TX_Serial": {
+        "ports": [
+          "UART_TX_100MHZ_0/o_TX_Serial",
+          "UART_MCU_TX"
+        ]
+      },
+      "i_RX_Serial_0_1": {
+        "ports": [
+          "UART_MCU_RX",
+          "UART_RX_100MHZ_0/i_RX_Serial"
+        ]
+      },
+      "sysclk_0_1": {
+        "ports": [
+          "sysclk",
+          "Switchmod_0/sysclk",
+          "TC_distributor_0/clk",
+          "UART_TX_100MHZ_0/sysclk",
+          "TM_packet_sender_0/clk",
+          "UART_RX_100MHZ_0/sysclk",
+          "Switchmod_1/sysclk",
+          "SRAM_controller_0/sysclk"
+        ]
+      }
+    }
+  }
+}

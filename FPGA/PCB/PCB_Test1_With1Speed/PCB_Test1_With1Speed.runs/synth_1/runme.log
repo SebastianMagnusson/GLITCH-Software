@@ -8,11 +8,12 @@
   **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Thu Sep 25 16:47:36 2025
+  **** Start of session at: Sun Sep 28 10:05:51 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source testwith1speed_wrapper.tcl -notrace
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 458.465 ; gain = 138.750
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
@@ -28,90 +29,94 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 32712
+INFO: [Synth 8-7075] Helper process launched with PID 21512
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1148.414 ; gain = 469.023
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1147.105 ; gain = 468.148
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_wrapper' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:37]
-INFO: [Synth 8-3491] module 'testwith1speed' declared at 'c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:15' bound to instance 'testwith1speed_i' of component 'testwith1speed' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:82]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:47]
-INFO: [Synth 8-3491] module 'testwith1speed_BF_Data_Collector_Dr_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_BF_Data_Collector_Dr_0_0_stub.vhdl:6' bound to instance 'BF_Data_Collector_Dr_0' of component 'testwith1speed_BF_Data_Collector_Dr_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:437]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_BF_Data_Collector_Dr_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_BF_Data_Collector_Dr_0_0_stub.vhdl:28]
-INFO: [Synth 8-3491] module 'testwith1speed_BF_formatter_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_BF_formatter_0_0_stub.vhdl:6' bound to instance 'BF_formatter_0' of component 'testwith1speed_BF_formatter_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:448]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_BF_formatter_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_BF_formatter_0_0_stub.vhdl:32]
-INFO: [Synth 8-3491] module 'testwith1speed_GNSS_Fetcher_mod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_GNSS_Fetcher_mod_0_0_stub.vhdl:6' bound to instance 'GNSS_Fetcher_mod_0' of component 'testwith1speed_GNSS_Fetcher_mod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:463]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_GNSS_Fetcher_mod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_GNSS_Fetcher_mod_0_0_stub.vhdl:27]
-INFO: [Synth 8-3491] module 'testwith1speed_GNSS_Sender_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_GNSS_Sender_0_0_stub.vhdl:6' bound to instance 'GNSS_Sender_0' of component 'testwith1speed_GNSS_Sender_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:473]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_GNSS_Sender_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_GNSS_Sender_0_0_stub.vhdl:27]
-INFO: [Synth 8-3491] module 'testwith1speed_HK_formatter_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_HK_formatter_0_0_stub.vhdl:6' bound to instance 'HK_formatter_0' of component 'testwith1speed_HK_formatter_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:483]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_HK_formatter_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_HK_formatter_0_0_stub.vhdl:38]
-INFO: [Synth 8-3491] module 'testwith1speed_HTR_CALC_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_CALC_0_0_stub.vhdl:6' bound to instance 'HTR_CALC_0' of component 'testwith1speed_HTR_CALC_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:504]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_HTR_CALC_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_CALC_0_0_stub.vhdl:29]
-INFO: [Synth 8-3491] module 'testwith1speed_HTR_controller_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_controller_0_0_stub.vhdl:6' bound to instance 'HTR_controller_0' of component 'testwith1speed_HTR_controller_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:516]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_HTR_controller_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_controller_0_0_stub.vhdl:25]
-INFO: [Synth 8-3491] module 'testwith1speed_HTR_controller_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_controller_1_0_stub.vhdl:6' bound to instance 'HTR_controller_1' of component 'testwith1speed_HTR_controller_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:524]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_HTR_controller_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_controller_1_0_stub.vhdl:25]
-INFO: [Synth 8-3491] module 'testwith1speed_I2C_full_sensor_data_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_I2C_full_sensor_data_0_0_stub.vhdl:6' bound to instance 'I2C_full_sensor_data_0' of component 'testwith1speed_I2C_full_sensor_data_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:532]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_I2C_full_sensor_data_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_I2C_full_sensor_data_0_0_stub.vhdl:46]
-INFO: [Synth 8-3491] module 'testwith1speed_I2Cmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_I2Cmod_0_0_stub.vhdl:6' bound to instance 'I2Cmod_0' of component 'testwith1speed_I2Cmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:561]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_I2Cmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_I2Cmod_0_0_stub.vhdl:35]
-INFO: [Synth 8-3491] module 'testwith1speed_Pulse_Per_Second_100_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_Pulse_Per_Second_100_0_0_stub.vhdl:6' bound to instance 'Pulse_Per_Second_100_0' of component 'testwith1speed_Pulse_Per_Second_100_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:579]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_Pulse_Per_Second_100_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_Pulse_Per_Second_100_0_0_stub.vhdl:24]
-INFO: [Synth 8-3491] module 'testwith1speed_RESTART_mod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_RESTART_mod_0_0_stub.vhdl:6' bound to instance 'RESTART_mod_0' of component 'testwith1speed_RESTART_mod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:586]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_RESTART_mod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_RESTART_mod_0_0_stub.vhdl:24]
-INFO: [Synth 8-3491] module 'testwith1speed_RW_ROUTER_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_RW_ROUTER_100MHZ_0_0_stub.vhdl:6' bound to instance 'RW_ROUTER_100MHZ_0' of component 'testwith1speed_RW_ROUTER_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:593]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_RW_ROUTER_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_RW_ROUTER_100MHZ_0_0_stub.vhdl:42]
-INFO: [Synth 8-3491] module 'testwith1speed_Read1_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_Read1_100MHZ_0_0_stub.vhdl:6' bound to instance 'Read1_100MHZ_0' of component 'testwith1speed_Read1_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:618]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_Read1_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_Read1_100MHZ_0_0_stub.vhdl:36]
-INFO: [Synth 8-3491] module 'testwith1speed_Switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_Switchmod_0_0_stub.vhdl:6' bound to instance 'Switchmod_0' of component 'testwith1speed_Switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:637]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_Switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_Switchmod_0_0_stub.vhdl:24]
-INFO: [Synth 8-3491] module 'testwith1speed_TC_distributor_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_TC_distributor_0_0_stub.vhdl:6' bound to instance 'TC_distributor_0' of component 'testwith1speed_TC_distributor_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:644]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_TC_distributor_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_TC_distributor_0_0_stub.vhdl:32]
-INFO: [Synth 8-3491] module 'testwith1speed_TM_packet_sender_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_TM_packet_sender_0_0_stub.vhdl:6' bound to instance 'TM_packet_sender_0' of component 'testwith1speed_TM_packet_sender_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:659]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_TM_packet_sender_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_TM_packet_sender_0_0_stub.vhdl:37]
-INFO: [Synth 8-3491] module 'testwith1speed_UART_RX_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_RX_100MHZ_0_0_stub.vhdl:6' bound to instance 'UART_RX_100MHZ_0' of component 'testwith1speed_UART_RX_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:679]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_UART_RX_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_RX_100MHZ_0_0_stub.vhdl:25]
-INFO: [Synth 8-3491] module 'testwith1speed_UART_RX_100MHZ_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_RX_100MHZ_1_0_stub.vhdl:6' bound to instance 'UART_RX_100MHZ_1' of component 'testwith1speed_UART_RX_100MHZ_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:687]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_UART_RX_100MHZ_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_RX_100MHZ_1_0_stub.vhdl:25]
-INFO: [Synth 8-3491] module 'testwith1speed_UART_TX_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_TX_100MHZ_0_0_stub.vhdl:6' bound to instance 'UART_TX_100MHZ_0' of component 'testwith1speed_UART_TX_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:695]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_UART_TX_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_TX_100MHZ_0_0_stub.vhdl:26]
-INFO: [Synth 8-3491] module 'testwith1speed_Write1_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_Write1_100MHZ_0_0_stub.vhdl:6' bound to instance 'Write1_100MHZ_0' of component 'testwith1speed_Write1_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:704]
-INFO: [Synth 8-638] synthesizing module 'testwith1speed_Write1_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-17432-LAPTOP-1SQM85NC/realtime/testwith1speed_Write1_100MHZ_0_0_stub.vhdl:29]
-INFO: [Synth 8-256] done synthesizing module 'testwith1speed' (0#1) [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:47]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:111]
-INFO: [Synth 8-113] binding component instance 'SDA_iobuf' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:121]
-INFO: [Synth 8-113] binding component instance 'SCL_iobuf' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:130]
-INFO: [Synth 8-256] done synthesizing module 'testwith1speed_wrapper' (0#1) [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:37]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_wrapper' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:38]
+INFO: [Synth 8-3491] module 'testwith1speed' declared at 'c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:15' bound to instance 'testwith1speed_i' of component 'testwith1speed' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:84]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:48]
+INFO: [Synth 8-3491] module 'testwith1speed_BF_Data_Collector_Dr_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_BF_Data_Collector_Dr_0_0_stub.vhdl:6' bound to instance 'BF_Data_Collector_Dr_0' of component 'testwith1speed_BF_Data_Collector_Dr_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:478]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_BF_Data_Collector_Dr_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_BF_Data_Collector_Dr_0_0_stub.vhdl:28]
+INFO: [Synth 8-3491] module 'testwith1speed_BF_formatter_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_BF_formatter_0_0_stub.vhdl:6' bound to instance 'BF_formatter_0' of component 'testwith1speed_BF_formatter_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:489]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_BF_formatter_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_BF_formatter_0_0_stub.vhdl:32]
+INFO: [Synth 8-3491] module 'testwith1speed_GNSS_Fetcher_mod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_GNSS_Fetcher_mod_0_0_stub.vhdl:6' bound to instance 'GNSS_Fetcher_mod_0' of component 'testwith1speed_GNSS_Fetcher_mod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:504]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_GNSS_Fetcher_mod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_GNSS_Fetcher_mod_0_0_stub.vhdl:27]
+INFO: [Synth 8-3491] module 'testwith1speed_GNSS_Sender_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_GNSS_Sender_0_0_stub.vhdl:6' bound to instance 'GNSS_Sender_0' of component 'testwith1speed_GNSS_Sender_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:514]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_GNSS_Sender_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_GNSS_Sender_0_0_stub.vhdl:27]
+INFO: [Synth 8-3491] module 'testwith1speed_HK_formatter_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_HK_formatter_0_0_stub.vhdl:6' bound to instance 'HK_formatter_0' of component 'testwith1speed_HK_formatter_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:524]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_HK_formatter_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_HK_formatter_0_0_stub.vhdl:38]
+INFO: [Synth 8-3491] module 'testwith1speed_HTR_CALC_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_CALC_0_0_stub.vhdl:6' bound to instance 'HTR_CALC_0' of component 'testwith1speed_HTR_CALC_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:545]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_HTR_CALC_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_CALC_0_0_stub.vhdl:29]
+INFO: [Synth 8-3491] module 'testwith1speed_HTR_controller_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_controller_0_0_stub.vhdl:6' bound to instance 'HTR_controller_0' of component 'testwith1speed_HTR_controller_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:557]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_HTR_controller_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_controller_0_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'testwith1speed_HTR_controller_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_controller_1_0_stub.vhdl:6' bound to instance 'HTR_controller_1' of component 'testwith1speed_HTR_controller_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:565]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_HTR_controller_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_HTR_controller_1_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'testwith1speed_I2C_full_sensor_data_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_I2C_full_sensor_data_0_0_stub.vhdl:6' bound to instance 'I2C_full_sensor_data_0' of component 'testwith1speed_I2C_full_sensor_data_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:573]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_I2C_full_sensor_data_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_I2C_full_sensor_data_0_0_stub.vhdl:46]
+INFO: [Synth 8-3491] module 'testwith1speed_I2Cmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_I2Cmod_0_0_stub.vhdl:6' bound to instance 'I2Cmod_0' of component 'testwith1speed_I2Cmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:602]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_I2Cmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_I2Cmod_0_0_stub.vhdl:35]
+INFO: [Synth 8-3491] module 'testwith1speed_Pulse_Per_Second_100_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_Pulse_Per_Second_100_0_0_stub.vhdl:6' bound to instance 'Pulse_Per_Second_100_0' of component 'testwith1speed_Pulse_Per_Second_100_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:620]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_Pulse_Per_Second_100_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_Pulse_Per_Second_100_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'testwith1speed_RAD_formatter_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_RAD_formatter_0_0_stub.vhdl:6' bound to instance 'RAD_formatter_0' of component 'testwith1speed_RAD_formatter_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:627]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_RAD_formatter_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_RAD_formatter_0_0_stub.vhdl:34]
+INFO: [Synth 8-3491] module 'testwith1speed_RESTART_mod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_RESTART_mod_0_0_stub.vhdl:6' bound to instance 'RESTART_mod_0' of component 'testwith1speed_RESTART_mod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:644]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_RESTART_mod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_RESTART_mod_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'testwith1speed_RW_ROUTER_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_RW_ROUTER_100MHZ_0_0_stub.vhdl:6' bound to instance 'RW_ROUTER_100MHZ_0' of component 'testwith1speed_RW_ROUTER_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:651]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_RW_ROUTER_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_RW_ROUTER_100MHZ_0_0_stub.vhdl:42]
+INFO: [Synth 8-3491] module 'testwith1speed_Read1_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_Read1_100MHZ_0_0_stub.vhdl:6' bound to instance 'Read1_100MHZ_0' of component 'testwith1speed_Read1_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:676]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_Read1_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_Read1_100MHZ_0_0_stub.vhdl:37]
+INFO: [Synth 8-3491] module 'testwith1speed_Switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_Switchmod_0_0_stub.vhdl:6' bound to instance 'Switchmod_0' of component 'testwith1speed_Switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:696]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_Switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_Switchmod_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'testwith1speed_TC_distributor_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_TC_distributor_0_0_stub.vhdl:6' bound to instance 'TC_distributor_0' of component 'testwith1speed_TC_distributor_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:703]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_TC_distributor_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_TC_distributor_0_0_stub.vhdl:32]
+INFO: [Synth 8-3491] module 'testwith1speed_TM_packet_sender_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_TM_packet_sender_0_0_stub.vhdl:6' bound to instance 'TM_packet_sender_0' of component 'testwith1speed_TM_packet_sender_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:718]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_TM_packet_sender_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_TM_packet_sender_0_0_stub.vhdl:37]
+INFO: [Synth 8-3491] module 'testwith1speed_UART_RX_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_RX_100MHZ_0_0_stub.vhdl:6' bound to instance 'UART_RX_100MHZ_0' of component 'testwith1speed_UART_RX_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:738]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_UART_RX_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_RX_100MHZ_0_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'testwith1speed_UART_RX_100MHZ_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_RX_100MHZ_1_0_stub.vhdl:6' bound to instance 'UART_RX_100MHZ_1' of component 'testwith1speed_UART_RX_100MHZ_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:746]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_UART_RX_100MHZ_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_RX_100MHZ_1_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'testwith1speed_UART_RX_100MHZ_2_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_RX_100MHZ_2_0_stub.vhdl:6' bound to instance 'UART_RX_100MHZ_2' of component 'testwith1speed_UART_RX_100MHZ_2_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:754]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_UART_RX_100MHZ_2_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_RX_100MHZ_2_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'testwith1speed_UART_TX_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_TX_100MHZ_0_0_stub.vhdl:6' bound to instance 'UART_TX_100MHZ_0' of component 'testwith1speed_UART_TX_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:762]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_UART_TX_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_UART_TX_100MHZ_0_0_stub.vhdl:26]
+INFO: [Synth 8-3491] module 'testwith1speed_Write_without_fail_1_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_Write_without_fail_1_0_0_stub.vhdl:6' bound to instance 'Write_without_fail_1_0' of component 'testwith1speed_Write_without_fail_1_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:771]
+INFO: [Synth 8-638] synthesizing module 'testwith1speed_Write_without_fail_1_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/.Xil/Vivado-26924-LAPTOP-1SQM85NC/realtime/testwith1speed_Write_without_fail_1_0_0_stub.vhdl:30]
+INFO: [Synth 8-256] done synthesizing module 'testwith1speed' (0#1) [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/synth/testwith1speed.vhd:48]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:114]
+INFO: [Synth 8-113] binding component instance 'SDA_iobuf' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:124]
+INFO: [Synth 8-113] binding component instance 'SCL_iobuf' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:133]
+INFO: [Synth 8-256] done synthesizing module 'testwith1speed_wrapper' (0#1) [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/imports/hdl/testwith1speed_wrapper.vhd:38]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1259.859 ; gain = 580.469
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1263.977 ; gain = 585.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1259.859 ; gain = 580.469
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1263.977 ; gain = 585.020
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1259.859 ; gain = 580.469
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1263.977 ; gain = 585.020
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 1259.859 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.086 . Memory (MB): peak = 1263.977 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 18 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -136,8 +141,6 @@ Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Te
 Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Read1_100MHZ_0_0/testwith1speed_Read1_100MHZ_0_0/testwith1speed_Read1_100MHZ_0_0_in_context.xdc] for cell 'testwith1speed_i/Read1_100MHZ_0'
 Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_RW_ROUTER_100MHZ_0_0/testwith1speed_RW_ROUTER_100MHZ_0_0/testwith1speed_RW_ROUTER_100MHZ_0_0_in_context.xdc] for cell 'testwith1speed_i/RW_ROUTER_100MHZ_0'
 Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_RW_ROUTER_100MHZ_0_0/testwith1speed_RW_ROUTER_100MHZ_0_0/testwith1speed_RW_ROUTER_100MHZ_0_0_in_context.xdc] for cell 'testwith1speed_i/RW_ROUTER_100MHZ_0'
-Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Write1_100MHZ_0_0/testwith1speed_Write1_100MHZ_0_0/testwith1speed_Write1_100MHZ_0_0_in_context.xdc] for cell 'testwith1speed_i/Write1_100MHZ_0'
-Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Write1_100MHZ_0_0/testwith1speed_Write1_100MHZ_0_0/testwith1speed_Write1_100MHZ_0_0_in_context.xdc] for cell 'testwith1speed_i/Write1_100MHZ_0'
 Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Switchmod_0_0/testwith1speed_Switchmod_0_0/testwith1speed_Switchmod_0_0_in_context.xdc] for cell 'testwith1speed_i/Switchmod_0'
 Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Switchmod_0_0/testwith1speed_Switchmod_0_0/testwith1speed_Switchmod_0_0_in_context.xdc] for cell 'testwith1speed_i/Switchmod_0'
 Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_TC_distributor_0_0/testwith1speed_TC_distributor_0_0/testwith1speed_TC_distributor_0_0_in_context.xdc] for cell 'testwith1speed_i/TC_distributor_0'
@@ -158,6 +161,12 @@ Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Te
 Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_HTR_controller_1_0/testwith1speed_HTR_controller_1_0/testwith1speed_HTR_controller_1_0_in_context.xdc] for cell 'testwith1speed_i/HTR_controller_1'
 Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_RESTART_mod_0_0/testwith1speed_RESTART_mod_0_0/testwith1speed_RESTART_mod_0_0_in_context.xdc] for cell 'testwith1speed_i/RESTART_mod_0'
 Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_RESTART_mod_0_0/testwith1speed_RESTART_mod_0_0/testwith1speed_RESTART_mod_0_0_in_context.xdc] for cell 'testwith1speed_i/RESTART_mod_0'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_UART_RX_100MHZ_2_0/testwith1speed_UART_RX_100MHZ_2_0/testwith1speed_UART_RX_100MHZ_2_0_in_context.xdc] for cell 'testwith1speed_i/UART_RX_100MHZ_2'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_UART_RX_100MHZ_2_0/testwith1speed_UART_RX_100MHZ_2_0/testwith1speed_UART_RX_100MHZ_2_0_in_context.xdc] for cell 'testwith1speed_i/UART_RX_100MHZ_2'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_RAD_formatter_0_0/testwith1speed_RAD_formatter_0_0/testwith1speed_RAD_formatter_0_0_in_context.xdc] for cell 'testwith1speed_i/RAD_formatter_0'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_RAD_formatter_0_0/testwith1speed_RAD_formatter_0_0/testwith1speed_RAD_formatter_0_0_in_context.xdc] for cell 'testwith1speed_i/RAD_formatter_0'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Write_without_fail_1_0_0/testwith1speed_Write_without_fail_1_0_0/testwith1speed_Write_without_fail_1_0_0_in_context.xdc] for cell 'testwith1speed_i/Write_without_fail_1_0'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Write_without_fail_1_0_0/testwith1speed_Write_without_fail_1_0_0/testwith1speed_Write_without_fail_1_0_0_in_context.xdc] for cell 'testwith1speed_i/Write_without_fail_1_0'
 Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/constrs_1/new/Constraints.xdc]
 WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[0]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/constrs_1/new/Constraints.xdc:18]
 WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[0]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/constrs_1/new/Constraints.xdc:19]
@@ -260,6 +269,7 @@ WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[2]'. [C:/GitHub/GLITCH-Soft
 WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[2]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/constrs_1/new/Constraints.xdc:170]
 WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[2]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/constrs_1/new/Constraints.xdc:171]
 INFO: [Common 17-14] Message 'Vivado 12-584' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/constrs_1/new/Constraints.xdc:171]
+WARNING: [Vivado 12-4702] SLEW is not a supported property on input port(s). Setting is ignored. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/constrs_1/new/Constraints.xdc:339]
 WARNING: [Vivado 12-4702] SLEW is not a supported property on input port(s). Setting is ignored. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/constrs_1/new/Constraints.xdc:430]
 WARNING: [Vivado 12-4702] SLEW is not a supported property on input port(s). Setting is ignored. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/constrs_1/new/Constraints.xdc:430]
 Finished Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/constrs_1/new/Constraints.xdc]
@@ -270,23 +280,23 @@ Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Te
 Finished Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1310.578 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1324.441 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 18 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 18 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1310.578 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1324.441 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1310.578 ; gain = 631.188
+Finished Constraint Validation : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1324.441 ; gain = 645.484
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1310.578 ; gain = 631.188
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1324.441 ; gain = 645.484
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -302,7 +312,6 @@ Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/I2Cmod_0. (const
 Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/Pulse_Per_Second_100_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/Read1_100MHZ_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/RW_ROUTER_100MHZ_0. (constraint file  auto generated constraint).
-Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/Write1_100MHZ_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/Switchmod_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/TC_distributor_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/TM_packet_sender_0. (constraint file  auto generated constraint).
@@ -313,11 +322,14 @@ Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/HTR_CALC_0. (con
 Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/HTR_controller_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/HTR_controller_1. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/RESTART_mod_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/UART_RX_100MHZ_2. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/RAD_formatter_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for testwith1speed_i/Write_without_fail_1_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1310.578 ; gain = 631.188
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 1324.441 ; gain = 645.484
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1310.578 ; gain = 631.188
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 1324.441 ; gain = 645.484
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -340,25 +352,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1310.578 ; gain = 631.188
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:35 . Memory (MB): peak = 1324.441 ; gain = 645.484
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1428.820 ; gain = 749.430
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:44 ; elapsed = 00:00:47 . Memory (MB): peak = 1432.961 ; gain = 754.004
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1429.602 ; gain = 750.211
+Finished Timing Optimization : Time (s): cpu = 00:00:44 ; elapsed = 00:00:47 . Memory (MB): peak = 1433.805 ; gain = 754.848
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1442.934 ; gain = 763.543
+Finished Technology Mapping : Time (s): cpu = 00:00:44 ; elapsed = 00:00:47 . Memory (MB): peak = 1450.266 ; gain = 771.309
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -376,37 +388,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 1656.461 ; gain = 977.070
+Finished IO Insertion : Time (s): cpu = 00:00:51 ; elapsed = 00:00:55 . Memory (MB): peak = 1662.012 ; gain = 983.055
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 1656.461 ; gain = 977.070
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:51 ; elapsed = 00:00:55 . Memory (MB): peak = 1662.012 ; gain = 983.055
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1656.461 ; gain = 977.070
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:51 ; elapsed = 00:00:55 . Memory (MB): peak = 1662.012 ; gain = 983.055
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1656.461 ; gain = 977.070
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:52 ; elapsed = 00:00:55 . Memory (MB): peak = 1662.012 ; gain = 983.055
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1656.461 ; gain = 977.070
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:52 ; elapsed = 00:00:55 . Memory (MB): peak = 1662.012 ; gain = 983.055
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1656.461 ; gain = 977.070
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:52 ; elapsed = 00:00:55 . Memory (MB): peak = 1662.012 ; gain = 983.055
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -427,16 +439,18 @@ Report BlackBoxes:
 |9     |testwith1speed_I2C_full_sensor_data_0_0 |         1|
 |10    |testwith1speed_I2Cmod_0_0               |         1|
 |11    |testwith1speed_Pulse_Per_Second_100_0_0 |         1|
-|12    |testwith1speed_RESTART_mod_0_0          |         1|
-|13    |testwith1speed_RW_ROUTER_100MHZ_0_0     |         1|
-|14    |testwith1speed_Read1_100MHZ_0_0         |         1|
-|15    |testwith1speed_Switchmod_0_0            |         1|
-|16    |testwith1speed_TC_distributor_0_0       |         1|
-|17    |testwith1speed_TM_packet_sender_0_0     |         1|
-|18    |testwith1speed_UART_RX_100MHZ_0_0       |         1|
-|19    |testwith1speed_UART_RX_100MHZ_1_0       |         1|
-|20    |testwith1speed_UART_TX_100MHZ_0_0       |         1|
-|21    |testwith1speed_Write1_100MHZ_0_0        |         1|
+|12    |testwith1speed_RAD_formatter_0_0        |         1|
+|13    |testwith1speed_RESTART_mod_0_0          |         1|
+|14    |testwith1speed_RW_ROUTER_100MHZ_0_0     |         1|
+|15    |testwith1speed_Read1_100MHZ_0_0         |         1|
+|16    |testwith1speed_Switchmod_0_0            |         1|
+|17    |testwith1speed_TC_distributor_0_0       |         1|
+|18    |testwith1speed_TM_packet_sender_0_0     |         1|
+|19    |testwith1speed_UART_RX_100MHZ_0_0       |         1|
+|20    |testwith1speed_UART_RX_100MHZ_1_0       |         1|
+|21    |testwith1speed_UART_RX_100MHZ_2_0       |         1|
+|22    |testwith1speed_UART_TX_100MHZ_0_0       |         1|
+|23    |testwith1speed_Write_without_fail_1_0_0 |         1|
 +------+----------------------------------------+----------+
 
 Report Cell Usage: 
@@ -454,43 +468,45 @@ Report Cell Usage:
 |9     |testwith1speed_I2C_full_sensor_data_0_0_bbox |     1|
 |10    |testwith1speed_I2Cmod_0_0_bbox               |     1|
 |11    |testwith1speed_Pulse_Per_Second_100_0_0_bbox |     1|
-|12    |testwith1speed_RESTART_mod_0_0_bbox          |     1|
-|13    |testwith1speed_RW_ROUTER_100MHZ_0_0_bbox     |     1|
-|14    |testwith1speed_Read1_100MHZ_0_0_bbox         |     1|
-|15    |testwith1speed_Switchmod_0_0_bbox            |     1|
-|16    |testwith1speed_TC_distributor_0_0_bbox       |     1|
-|17    |testwith1speed_TM_packet_sender_0_0_bbox     |     1|
-|18    |testwith1speed_UART_RX_100MHZ_0_0_bbox       |     1|
-|19    |testwith1speed_UART_RX_100MHZ_1_0_bbox       |     1|
-|20    |testwith1speed_UART_TX_100MHZ_0_0_bbox       |     1|
-|21    |testwith1speed_Write1_100MHZ_0_0_bbox        |     1|
-|22    |IBUF                                         |     3|
-|23    |IOBUF                                        |    18|
-|24    |OBUF                                         |    34|
+|12    |testwith1speed_RAD_formatter_0_0_bbox        |     1|
+|13    |testwith1speed_RESTART_mod_0_0_bbox          |     1|
+|14    |testwith1speed_RW_ROUTER_100MHZ_0_0_bbox     |     1|
+|15    |testwith1speed_Read1_100MHZ_0_0_bbox         |     1|
+|16    |testwith1speed_Switchmod_0_0_bbox            |     1|
+|17    |testwith1speed_TC_distributor_0_0_bbox       |     1|
+|18    |testwith1speed_TM_packet_sender_0_0_bbox     |     1|
+|19    |testwith1speed_UART_RX_100MHZ_0_0_bbox       |     1|
+|20    |testwith1speed_UART_RX_100MHZ_1_0_bbox       |     1|
+|21    |testwith1speed_UART_RX_100MHZ_2_0_bbox       |     1|
+|22    |testwith1speed_UART_TX_100MHZ_0_0_bbox       |     1|
+|23    |testwith1speed_Write_without_fail_1_0_0_bbox |     1|
+|24    |IBUF                                         |     4|
+|25    |IOBUF                                        |    18|
+|26    |OBUF                                         |    34|
 +------+---------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1656.461 ; gain = 977.070
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:52 ; elapsed = 00:00:55 . Memory (MB): peak = 1662.012 ; gain = 983.055
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:26 . Memory (MB): peak = 1656.461 ; gain = 926.352
-Synthesis Optimization Complete : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1656.461 ; gain = 977.070
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:37 ; elapsed = 00:00:51 . Memory (MB): peak = 1662.012 ; gain = 922.590
+Synthesis Optimization Complete : Time (s): cpu = 00:00:52 ; elapsed = 00:00:55 . Memory (MB): peak = 1662.012 ; gain = 983.055
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 1656.461 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.090 . Memory (MB): peak = 1662.012 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 18 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1669.309 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1674.832 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 18 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 18 instances
 
-Synth Design complete | Checksum: fa6e4726
+Synth Design complete | Checksum: 24866a25
 INFO: [Common 17-83] Releasing license: Synthesis
-92 Infos, 104 Warnings, 0 Critical Warnings and 0 Errors encountered.
+96 Infos, 105 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:48 . Memory (MB): peak = 1669.309 ; gain = 1200.336
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1669.309 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:02 ; elapsed = 00:01:33 . Memory (MB): peak = 1674.832 ; gain = 1206.141
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1674.832 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.runs/synth_1/testwith1speed_wrapper.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file testwith1speed_wrapper_utilization_synth.rpt -pb testwith1speed_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Sep 25 16:48:35 2025...
+INFO: [Common 17-206] Exiting Vivado at Sun Sep 28 10:07:45 2025...

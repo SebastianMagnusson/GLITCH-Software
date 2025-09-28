@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Wed Sep 24 16:15:44 2025
+// Date        : Fri Sep 26 10:42:34 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_TM_packet_sender_0_0/testwith1speed_TM_packet_sender_0_0_stub.v
@@ -19,13 +19,13 @@
 module testwith1speed_TM_packet_sender_0_0(clk, rst, i_HK_data, i_BF_data, i_RAD_data, 
   i_HK_DV, i_BF_DV, i_RAD_DV, i_TX_done, i_TX_active, o_TX_DV, o_TX_byte, o_HK_got, o_BF_got, 
   o_RAD_got, led1, led2)
-/* synthesis syn_black_box black_box_pad_pin="rst,i_HK_data[471:0],i_BF_data[223:0],i_RAD_data[10007:0],i_HK_DV,i_BF_DV,i_RAD_DV,i_TX_done,i_TX_active,o_TX_DV,o_TX_byte[7:0],o_HK_got,o_BF_got,o_RAD_got,led1,led2" */
+/* synthesis syn_black_box black_box_pad_pin="rst,i_HK_data[471:0],i_BF_data[223:0],i_RAD_data[5015:0],i_HK_DV,i_BF_DV,i_RAD_DV,i_TX_done,i_TX_active,o_TX_DV,o_TX_byte[7:0],o_HK_got,o_BF_got,o_RAD_got,led1,led2" */
 /* synthesis syn_force_seq_prim="clk" */;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 clk CLK" *) (* x_interface_mode = "slave clk" *) (* x_interface_parameter = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, INSERT_VIP 0" *) input clk /* synthesis syn_isclock = 1 */;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 clk CLK" *) (* x_interface_mode = "slave clk" *) (* x_interface_parameter = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 12000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *) input clk /* synthesis syn_isclock = 1 */;
   (* x_interface_info = "xilinx.com:signal:reset:1.0 rst RST" *) (* x_interface_mode = "slave rst" *) (* x_interface_parameter = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst;
   input [471:0]i_HK_data;
   input [223:0]i_BF_data;
-  input [10007:0]i_RAD_data;
+  input [5015:0]i_RAD_data;
   input i_HK_DV;
   input i_BF_DV;
   input i_RAD_DV;

@@ -46,7 +46,7 @@
         "rst": [ { "direction": "in" } ],
         "i_HK_data": [ { "direction": "in", "size_left": "471", "size_right": "0" } ],
         "i_BF_data": [ { "direction": "in", "size_left": "223", "size_right": "0" } ],
-        "i_RAD_data": [ { "direction": "in", "size_left": "10007", "size_right": "0" } ],
+        "i_RAD_data": [ { "direction": "in", "size_left": "5015", "size_right": "0" } ],
         "i_HK_DV": [ { "direction": "in" } ],
         "i_BF_DV": [ { "direction": "in" } ],
         "i_RAD_DV": [ { "direction": "in" } ],

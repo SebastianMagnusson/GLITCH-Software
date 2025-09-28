@@ -1,0 +1,396 @@
+
+*** Running vivado
+    with args -log simple_PCB_test_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source simple_PCB_test_wrapper.tcl
+
+
+
+****** Vivado v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Sun Sep 28 14:06:05 2025
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source simple_PCB_test_wrapper.tcl -notrace
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 457.828 ; gain = 139.406
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
+Command: read_checkpoint -auto_incremental -incremental C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/utils_1/imports/synth_1/simple_PCB_test_wrapper.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/utils_1/imports/synth_1/simple_PCB_test_wrapper.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top simple_PCB_test_wrapper -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 11480
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1143.445 ; gain = 468.586
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'simple_PCB_test_wrapper' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:29]
+INFO: [Synth 8-3491] module 'simple_PCB_test' declared at 'c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/synth/simple_PCB_test.vhd:15' bound to instance 'simple_PCB_test_i' of component 'simple_PCB_test' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:52]
+INFO: [Synth 8-638] synthesizing module 'simple_PCB_test' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/synth/simple_PCB_test.vhd:35]
+INFO: [Synth 8-3491] module 'simple_PCB_test_SRAM_controller_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_SRAM_controller_0_0_stub.vhdl:6' bound to instance 'SRAM_controller_0' of component 'simple_PCB_test_SRAM_controller_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/synth/simple_PCB_test.vhd:149]
+INFO: [Synth 8-638] synthesizing module 'simple_PCB_test_SRAM_controller_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_SRAM_controller_0_0_stub.vhdl:31]
+INFO: [Synth 8-3491] module 'simple_PCB_test_Switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_Switchmod_0_0_stub.vhdl:6' bound to instance 'Switchmod_0' of component 'simple_PCB_test_Switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/synth/simple_PCB_test.vhd:163]
+INFO: [Synth 8-638] synthesizing module 'simple_PCB_test_Switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_Switchmod_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'simple_PCB_test_Switchmod_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_Switchmod_1_0_stub.vhdl:6' bound to instance 'Switchmod_1' of component 'simple_PCB_test_Switchmod_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/synth/simple_PCB_test.vhd:170]
+INFO: [Synth 8-638] synthesizing module 'simple_PCB_test_Switchmod_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_Switchmod_1_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'simple_PCB_test_TC_distributor_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_TC_distributor_0_0_stub.vhdl:6' bound to instance 'TC_distributor_0' of component 'simple_PCB_test_TC_distributor_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/synth/simple_PCB_test.vhd:177]
+INFO: [Synth 8-638] synthesizing module 'simple_PCB_test_TC_distributor_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_TC_distributor_0_0_stub.vhdl:32]
+INFO: [Synth 8-3491] module 'simple_PCB_test_TM_packet_sender_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_TM_packet_sender_0_0_stub.vhdl:6' bound to instance 'TM_packet_sender_0' of component 'simple_PCB_test_TM_packet_sender_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/synth/simple_PCB_test.vhd:192]
+INFO: [Synth 8-638] synthesizing module 'simple_PCB_test_TM_packet_sender_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_TM_packet_sender_0_0_stub.vhdl:37]
+INFO: [Synth 8-3491] module 'simple_PCB_test_UART_RX_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_UART_RX_100MHZ_0_0_stub.vhdl:6' bound to instance 'UART_RX_100MHZ_0' of component 'simple_PCB_test_UART_RX_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/synth/simple_PCB_test.vhd:212]
+INFO: [Synth 8-638] synthesizing module 'simple_PCB_test_UART_RX_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_UART_RX_100MHZ_0_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'simple_PCB_test_UART_TX_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_UART_TX_100MHZ_0_0_stub.vhdl:6' bound to instance 'UART_TX_100MHZ_0' of component 'simple_PCB_test_UART_TX_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/synth/simple_PCB_test.vhd:220]
+INFO: [Synth 8-638] synthesizing module 'simple_PCB_test_UART_TX_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/.Xil/Vivado-16868-LAPTOP-1SQM85NC/realtime/simple_PCB_test_UART_TX_100MHZ_0_0_stub.vhdl:26]
+INFO: [Synth 8-256] done synthesizing module 'simple_PCB_test' (0#1) [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/synth/simple_PCB_test.vhd:35]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:69]
+INFO: [Synth 8-256] done synthesizing module 'simple_PCB_test_wrapper' (0#1) [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/sources_1/imports/hdl/simple_PCB_test_wrapper.vhd:29]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1251.266 ; gain = 576.406
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1251.266 ; gain = 576.406
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1251.266 ; gain = 576.406
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1251.266 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 16 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_SRAM_controller_0_0/simple_PCB_test_SRAM_controller_0_0/simple_PCB_test_SRAM_controller_0_0_in_context.xdc] for cell 'simple_PCB_test_i/SRAM_controller_0'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_SRAM_controller_0_0/simple_PCB_test_SRAM_controller_0_0/simple_PCB_test_SRAM_controller_0_0_in_context.xdc] for cell 'simple_PCB_test_i/SRAM_controller_0'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_Switchmod_0_0/simple_PCB_test_Switchmod_0_0/simple_PCB_test_Switchmod_0_0_in_context.xdc] for cell 'simple_PCB_test_i/Switchmod_0'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_Switchmod_0_0/simple_PCB_test_Switchmod_0_0/simple_PCB_test_Switchmod_0_0_in_context.xdc] for cell 'simple_PCB_test_i/Switchmod_0'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_TC_distributor_0_0/simple_PCB_test_TC_distributor_0_0/simple_PCB_test_TC_distributor_0_0_in_context.xdc] for cell 'simple_PCB_test_i/TC_distributor_0'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_TC_distributor_0_0/simple_PCB_test_TC_distributor_0_0/simple_PCB_test_TC_distributor_0_0_in_context.xdc] for cell 'simple_PCB_test_i/TC_distributor_0'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_TM_packet_sender_0_0/simple_PCB_test_TM_packet_sender_0_0/simple_PCB_test_TM_packet_sender_0_0_in_context.xdc] for cell 'simple_PCB_test_i/TM_packet_sender_0'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_TM_packet_sender_0_0/simple_PCB_test_TM_packet_sender_0_0/simple_PCB_test_TM_packet_sender_0_0_in_context.xdc] for cell 'simple_PCB_test_i/TM_packet_sender_0'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_UART_TX_100MHZ_0_0/simple_PCB_test_UART_TX_100MHZ_0_0/simple_PCB_test_UART_TX_100MHZ_0_0_in_context.xdc] for cell 'simple_PCB_test_i/UART_TX_100MHZ_0'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_UART_TX_100MHZ_0_0/simple_PCB_test_UART_TX_100MHZ_0_0/simple_PCB_test_UART_TX_100MHZ_0_0_in_context.xdc] for cell 'simple_PCB_test_i/UART_TX_100MHZ_0'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_UART_RX_100MHZ_0_0/simple_PCB_test_UART_RX_100MHZ_0_0/simple_PCB_test_UART_RX_100MHZ_0_0_in_context.xdc] for cell 'simple_PCB_test_i/UART_RX_100MHZ_0'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_UART_RX_100MHZ_0_0/simple_PCB_test_UART_RX_100MHZ_0_0/simple_PCB_test_UART_RX_100MHZ_0_0_in_context.xdc] for cell 'simple_PCB_test_i/UART_RX_100MHZ_0'
+Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_Switchmod_1_0/simple_PCB_test_Switchmod_1_0/simple_PCB_test_Switchmod_1_0_in_context.xdc] for cell 'simple_PCB_test_i/Switchmod_1'
+Finished Parsing XDC File [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.gen/sources_1/bd/simple_PCB_test/ip/simple_PCB_test_Switchmod_1_0/simple_PCB_test_Switchmod_1_0/simple_PCB_test_Switchmod_1_0_in_context.xdc] for cell 'simple_PCB_test_i/Switchmod_1'
+Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[0]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:18]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[0]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:19]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[0]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:20]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[0]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:21]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[1]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:24]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[1]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:25]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[1]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:26]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[1]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:27]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[2]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:30]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[2]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:31]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[2]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:32]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[2]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:33]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[3]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:36]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[3]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:37]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[3]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:38]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[3]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:39]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[4]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:42]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[4]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:43]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[4]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:44]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[4]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:45]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[5]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:48]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[5]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:49]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[5]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:50]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[5]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:51]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[6]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:54]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[6]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:55]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[6]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:56]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[6]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:57]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[7]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:60]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[7]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:61]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[7]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:62]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[7]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:63]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[8]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:66]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[8]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:67]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[8]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:68]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[8]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:69]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[9]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:72]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[9]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:73]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[9]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:74]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[9]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:75]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[10]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:78]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[10]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:79]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[10]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:80]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[10]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:81]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[11]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:84]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[11]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:85]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[11]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:86]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[11]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:87]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[12]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:90]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[12]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:91]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[12]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:92]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[12]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:93]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[13]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:96]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[13]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:97]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[13]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:98]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[13]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:99]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[14]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:102]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[14]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:103]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[14]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:104]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[14]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:105]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[15]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:108]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[15]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:109]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[15]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:110]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_dq[15]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:111]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[13]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:114]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[13]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:115]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[13]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:116]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[12]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:119]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[12]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:120]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[12]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:121]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[11]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:124]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[11]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:125]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[11]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:126]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[10]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:129]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[10]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:130]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[10]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:131]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[9]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:134]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[9]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:135]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[9]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:136]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[8]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:139]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[8]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:140]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[8]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:141]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[7]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:144]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[7]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:145]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[7]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:146]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[6]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:149]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[6]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:150]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[6]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:151]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[5]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:154]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[5]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:155]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[5]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:156]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[4]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:159]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[4]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:160]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[4]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:161]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[3]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:164]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[3]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:165]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[3]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:166]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[2]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:169]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[2]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:170]
+WARNING: [Vivado 12-584] No ports matched 'ddr3_addr[2]'. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:171]
+INFO: [Common 17-14] Message 'Vivado 12-584' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:171]
+WARNING: [Vivado 12-4702] SLEW is not a supported property on input port(s). Setting is ignored. [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc:430]
+Finished Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/simple_PCB_test_wrapper_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.srcs/constrs_1/new/Constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/simple_PCB_test_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/simple_PCB_test_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1304.246 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 16 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 16 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1304.246 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1304.246 ; gain = 629.387
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1304.246 ; gain = 629.387
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for simple_PCB_test_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for simple_PCB_test_i/SRAM_controller_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for simple_PCB_test_i/Switchmod_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for simple_PCB_test_i/TC_distributor_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for simple_PCB_test_i/TM_packet_sender_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for simple_PCB_test_i/UART_TX_100MHZ_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for simple_PCB_test_i/UART_RX_100MHZ_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for simple_PCB_test_i/Switchmod_1. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1304.246 ; gain = 629.387
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1304.246 ; gain = 629.387
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1304.246 ; gain = 629.387
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1425.105 ; gain = 750.246
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1425.332 ; gain = 750.473
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1435.777 ; gain = 760.918
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1651.281 ; gain = 976.422
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1651.281 ; gain = 976.422
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1651.281 ; gain = 976.422
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1651.281 ; gain = 976.422
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1651.281 ; gain = 976.422
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1651.281 ; gain = 976.422
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+-------------------------------------+----------+
+|      |BlackBox name                        |Instances |
++------+-------------------------------------+----------+
+|1     |simple_PCB_test_SRAM_controller_0_0  |         1|
+|2     |simple_PCB_test_Switchmod_0_0        |         1|
+|3     |simple_PCB_test_Switchmod_1_0        |         1|
+|4     |simple_PCB_test_TC_distributor_0_0   |         1|
+|5     |simple_PCB_test_TM_packet_sender_0_0 |         1|
+|6     |simple_PCB_test_UART_RX_100MHZ_0_0   |         1|
+|7     |simple_PCB_test_UART_TX_100MHZ_0_0   |         1|
++------+-------------------------------------+----------+
+
+Report Cell Usage: 
++------+------------------------------------------+------+
+|      |Cell                                      |Count |
++------+------------------------------------------+------+
+|1     |simple_PCB_test_SRAM_controller_0_0_bbox  |     1|
+|2     |simple_PCB_test_Switchmod_0_0_bbox        |     1|
+|3     |simple_PCB_test_Switchmod_1_0_bbox        |     1|
+|4     |simple_PCB_test_TC_distributor_0_0_bbox   |     1|
+|5     |simple_PCB_test_TM_packet_sender_0_0_bbox |     1|
+|6     |simple_PCB_test_UART_RX_100MHZ_0_0_bbox   |     1|
+|7     |simple_PCB_test_UART_TX_100MHZ_0_0_bbox   |     1|
+|8     |IBUF                                      |     2|
+|9     |IOBUF                                     |    16|
+|10    |OBUF                                      |    29|
++------+------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1651.281 ; gain = 976.422
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:40 . Memory (MB): peak = 1651.281 ; gain = 923.441
+Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1651.281 ; gain = 976.422
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 1651.281 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 16 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1664.105 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 16 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 16 instances
+
+Synth Design complete | Checksum: 7b32555
+INFO: [Common 17-83] Releasing license: Synthesis
+62 Infos, 103 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:01:03 . Memory (MB): peak = 1664.105 ; gain = 1197.395
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1664.105 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_simple_SRAM_test/PCB_simple_SRAM_test.runs/synth_1/simple_PCB_test_wrapper.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file simple_PCB_test_wrapper_utilization_synth.rpt -pb simple_PCB_test_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Sep 28 14:07:24 2025...

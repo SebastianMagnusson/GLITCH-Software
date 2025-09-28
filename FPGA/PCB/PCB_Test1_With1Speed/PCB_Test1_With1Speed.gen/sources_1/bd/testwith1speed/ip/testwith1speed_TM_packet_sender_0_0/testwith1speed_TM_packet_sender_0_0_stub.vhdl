@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Wed Sep 24 16:15:44 2025
+-- Date        : Fri Sep 26 10:42:34 2025
 -- Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_TM_packet_sender_0_0/testwith1speed_TM_packet_sender_0_0_stub.vhdl
@@ -19,7 +19,7 @@ entity testwith1speed_TM_packet_sender_0_0 is
     rst : in STD_LOGIC;
     i_HK_data : in STD_LOGIC_VECTOR ( 471 downto 0 );
     i_BF_data : in STD_LOGIC_VECTOR ( 223 downto 0 );
-    i_RAD_data : in STD_LOGIC_VECTOR ( 10007 downto 0 );
+    i_RAD_data : in STD_LOGIC_VECTOR ( 5015 downto 0 );
     i_HK_DV : in STD_LOGIC;
     i_BF_DV : in STD_LOGIC;
     i_RAD_DV : in STD_LOGIC;
@@ -48,13 +48,13 @@ architecture stub of testwith1speed_TM_packet_sender_0_0 is
   attribute syn_black_box : boolean;
   attribute black_box_pad_pin : string;
   attribute syn_black_box of stub : architecture is true;
-  attribute black_box_pad_pin of stub : architecture is "clk,rst,i_HK_data[471:0],i_BF_data[223:0],i_RAD_data[10007:0],i_HK_DV,i_BF_DV,i_RAD_DV,i_TX_done,i_TX_active,o_TX_DV,o_TX_byte[7:0],o_HK_got,o_BF_got,o_RAD_got,led1,led2";
+  attribute black_box_pad_pin of stub : architecture is "clk,rst,i_HK_data[471:0],i_BF_data[223:0],i_RAD_data[5015:0],i_HK_DV,i_BF_DV,i_RAD_DV,i_TX_done,i_TX_active,o_TX_DV,o_TX_byte[7:0],o_HK_got,o_BF_got,o_RAD_got,led1,led2";
   attribute x_interface_info : string;
   attribute x_interface_info of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute x_interface_mode : string;
   attribute x_interface_mode of clk : signal is "slave clk";
   attribute x_interface_parameter : string;
-  attribute x_interface_parameter of clk : signal is "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, INSERT_VIP 0";
+  attribute x_interface_parameter of clk : signal is "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 12000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0";
   attribute x_interface_info of rst : signal is "xilinx.com:signal:reset:1.0 rst RST";
   attribute x_interface_mode of rst : signal is "slave rst";
   attribute x_interface_parameter of rst : signal is "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0";

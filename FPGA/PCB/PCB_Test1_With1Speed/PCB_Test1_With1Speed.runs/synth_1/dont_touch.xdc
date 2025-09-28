@@ -36,9 +36,6 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==testwith1sp
 # IP: bd/testwith1speed/ip/testwith1speed_RW_ROUTER_100MHZ_0_0/testwith1speed_RW_ROUTER_100MHZ_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==testwith1speed_RW_ROUTER_100MHZ_0_0 || ORIG_REF_NAME==testwith1speed_RW_ROUTER_100MHZ_0_0} -quiet] -quiet
 
-# IP: bd/testwith1speed/ip/testwith1speed_Write1_100MHZ_0_0/testwith1speed_Write1_100MHZ_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==testwith1speed_Write1_100MHZ_0_0 || ORIG_REF_NAME==testwith1speed_Write1_100MHZ_0_0} -quiet] -quiet
-
 # IP: bd/testwith1speed/ip/testwith1speed_Switchmod_0_0/testwith1speed_Switchmod_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==testwith1speed_Switchmod_0_0 || ORIG_REF_NAME==testwith1speed_Switchmod_0_0} -quiet] -quiet
 
@@ -68,5 +65,14 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==testwith1sp
 
 # IP: bd/testwith1speed/ip/testwith1speed_RESTART_mod_0_0/testwith1speed_RESTART_mod_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==testwith1speed_RESTART_mod_0_0 || ORIG_REF_NAME==testwith1speed_RESTART_mod_0_0} -quiet] -quiet
+
+# IP: bd/testwith1speed/ip/testwith1speed_RAD_formatter_0_0/testwith1speed_RAD_formatter_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==testwith1speed_RAD_formatter_0_0 || ORIG_REF_NAME==testwith1speed_RAD_formatter_0_0} -quiet] -quiet
+
+# IP: bd/testwith1speed/ip/testwith1speed_UART_RX_100MHZ_2_0/testwith1speed_UART_RX_100MHZ_2_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==testwith1speed_UART_RX_100MHZ_2_0 || ORIG_REF_NAME==testwith1speed_UART_RX_100MHZ_2_0} -quiet] -quiet
+
+# IP: bd/testwith1speed/ip/testwith1speed_Write_without_fail_1_0_0/testwith1speed_Write_without_fail_1_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==testwith1speed_Write_without_fail_1_0_0 || ORIG_REF_NAME==testwith1speed_Write_without_fail_1_0_0} -quiet] -quiet
 
 # XDC: c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/testwith1speed_ooc.xdc

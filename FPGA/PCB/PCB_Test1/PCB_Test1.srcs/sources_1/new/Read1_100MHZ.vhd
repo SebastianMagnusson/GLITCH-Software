@@ -41,7 +41,8 @@ entity Read1_100MHZ is
     addresses_searched  : out std_logic;
     -- LEDS
     led0 : out std_logic;
-    led1 : out std_logic
+    led1 : out std_logic;
+    led2 : out std_logic
   );
 end entity;
 
@@ -75,13 +76,16 @@ architecture rtl of Read1_100MHZ is
     signal A_buf               : std_logic_vector(ADDR_WIDTH-1 downto 0); -- Address buffer
     
     -- Convert to cycles (integer math, rounded up, by itself, so really rounded down)
-    constant TAA_CYCLES : integer := 7; --(TAA_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
-    constant TWP_CYCLES : integer := 4; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
+    constant TAA_CYCLES : integer := 15; --(TAA_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
+    constant TWP_CYCLES : integer := 15; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
     
     signal BF_data_buf : std_logic_vector(46 downto 0) := (others => '0'); 
     signal SRAM        : std_logic_vector(3 downto 0)  := (others => '0'); -- Indicate which SRAM
     signal oscilations : std_logic_vector(3 downto 0)  := (others => '0'); -- Amount of oscilations
     signal data_prev   : std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0'); -- Keeps track of previous read data
+    
+    signal wait_aftwr_count   : integer range 0 to 255 := 0;
+    signal wait_aftre_count  : integer range 0 to 255 := 0;
 
 begin
 
@@ -96,7 +100,7 @@ begin
     if(reset_n = '0') then
       A                   <= (others => '0'); -- Adress
       A_buf               <= (others => '0'); -- Adress_buffer
-      CE_n                <= '1';             -- Select chip   (not selected)     
+      CE_n                <= '0';             -- Select chip   (not selected)     
       WE_n                <= '1';             -- Enable write  (not enabled)    
       wait_count          <= 0;               -- Used for timing  
       addr_cnt            <= (others => '0'); -- Counts adresses 
@@ -108,17 +112,22 @@ begin
       bitflip_flag        <= '0';
       data_rewritten_flag <= '0';
       
+      wait_aftwr_count <= 0;
+      wait_aftre_count <= 0;
+      
+      
       SRAM                <= "0000"; --- SRAM 0000 is set as the default unit
       addresses_searched  <= '0';
       data_prev           <= (others => '0');
       o_BF_drive          <= '0';
       
-      decoder             <= "000";
+      decoder             <= "010";
       
       state               <= READ_START;
       
       led0 <= '0';
       led1 <= '0';
+      led2 <= '0';
     
     elsif rising_edge(sysclk) then
       case state is
@@ -126,13 +135,16 @@ begin
         when READ_START =>
           A                   <= std_logic_vector(addr_cnt);
           A_buf               <= std_logic_vector(addr_cnt);
-          CE_n                <= '0';
+          CE_n                <= '1';
           WE_n                <= '1';
           wait_count          <= 0;
           read_complete       <= '0';
           write_active        <= '0';             -- Drives DQ
           o_BF_drive          <= '0';
           addresses_searched  <= '0';
+          
+          wait_aftwr_count <= 0;
+          wait_aftre_count <= 0;
           
           if(write_complete = '1') then -- Checks if write is complete
             state <= READ;
@@ -150,7 +162,14 @@ begin
         -- Capture data and finish
         when READ_CAPTURE =>
           data_buf <= DQ_i; 
-          state    <= DATA_VALIDATION;
+          
+          if(wait_aftre_count < 11) then               
+            wait_aftre_count <= wait_aftre_count + 1;  
+            state <= READ_CAPTURE;                 
+          else                                         
+            wait_aftre_count <= 0;                     
+            state <= DATA_VALIDATION;                       
+          end if;            
           
         when DATA_VALIDATION =>
           data_prev <= data_buf;
@@ -170,8 +189,9 @@ begin
             
             state <= OSCILLATOR;
             
-          elsif(data_buf = data_exp) then -- Data is correct
+          elsif(data_buf = "1010101010101010" or data_buf = "0101010101010101" or data_buf = "0000000000000000") then -- Data is correct --
               state <= NEXT_ADDR;
+              led2 <= '1';
           else                            -- Bitflip detected, start looping and save some data
             bitflip_flag <= '1';
             loop_cnt     := 0;
@@ -183,11 +203,19 @@ begin
             state <= OSCILLATOR;
           
           end if;
-          
+         
         when NEXT_ADDR =>
           o_BF_drive <= '0';
           addr_cnt   <= addr_cnt + 1;   -- This and data_exp may only be changed here otherwise there will be major bug
-          data_exp   <= not data_exp;   -- Expected data osscialtes
+          --data_exp   <= not data_exp;   -- Expected data osscialtes
+          
+          if(A_buf(0) = '0') then
+            data_exp <= "1010101010101010";
+          end if;
+          if(A_buf(0) = '1') then
+            data_exp <= "0101010101010101";
+          end if;
+          
           if (addr_cnt = (unsigned'(ADDR_WIDTH-1 downto 0 => '1'))) then -- All addresses done
             state <= DONE;
           else                                -- Continue looping                   
@@ -217,10 +245,11 @@ begin
           
         when WRITE_FIX_START =>
           A              <= std_logic_vector(addr_cnt);
-          CE_n           <= '0';             -- Select chip
+          CE_n           <= '1';             -- Select chip
           WE_n           <= '0';             -- Enable write
           write_active   <= '1';             -- Drives DQ
           wait_count     <= 0;               -- Used for timing
+          osc_cnt        := 0;
    
           data_rewritten_flag <= '1';
           
@@ -238,10 +267,19 @@ begin
           WE_n         <= '1';  -- Finish write pulse
           write_active <= '0';  -- Release DQ bus
           
-          state <= READ_START;
+          if(wait_aftwr_count < 11) then               
+            wait_aftwr_count <= wait_aftwr_count + 1;  
+            state <= WRITE_FIX_FINISH;                     
+          else                                         
+            wait_aftwr_count <= 0;                     
+            state <= READ_START;                        
+          end if;                                      
+
+          --state <= READ_START;
           
         when DONE =>
           addr_cnt           <=  (others => '0'); -- Reset address counter 
+          data_exp            <= "1010101010101010"; -- First expected data
           read_complete      <= '1';     
           addresses_searched <= '1';
           

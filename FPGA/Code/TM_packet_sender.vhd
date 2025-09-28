@@ -18,7 +18,7 @@ entity TM_packet_sender is
         rst : in std_logic;
 		i_HK_data : in std_logic_vector(471 downto 0);
 		i_BF_data : in std_logic_vector(223 downto 0);
-		i_RAD_data : in std_logic_vector(10007 downto 0);
+		i_RAD_data : in std_logic_vector(5015 downto 0);
 		i_HK_DV : in std_logic;
 		i_BF_DV : in std_logic;
 		i_RAD_DV : in std_logic;
@@ -40,7 +40,7 @@ architecture rtl of TM_packet_sender is
 
 	signal i_HK_data_i : std_logic_vector(471 downto 0);
 	signal i_BF_data_i : std_logic_vector(223 downto 0);
-	signal i_RAD_data_i : std_logic_vector(10007 downto 0);
+	signal i_RAD_data_i : std_logic_vector(5015 downto 0);
 	
 	signal i_TX_done_prev : std_logic;
 	signal bit_cnt : integer := 0;
@@ -144,7 +144,7 @@ begin
 						  o_RAD_got <= '0';
               o_TX_DV <= '1';
               o_TX_byte <= "01000101";
-              bit_cnt <= 10007;           
+              bit_cnt <= 5015;           
 					    state <= s_send_RAD;
 					  else
 					    state <= s_send_RAD_first;

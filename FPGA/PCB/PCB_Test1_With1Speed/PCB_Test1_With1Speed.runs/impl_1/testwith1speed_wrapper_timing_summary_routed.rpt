@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Thu Sep 25 16:50:08 2025
+| Date         : Sun Sep 28 10:16:43 2025
 | Host         : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file testwith1speed_wrapper_timing_summary_routed.rpt -pb testwith1speed_wrapper_timing_summary_routed.pb -rpx testwith1speed_wrapper_timing_summary_routed.rpx -warn_on_violation
 | Design       : testwith1speed_wrapper
@@ -56,12 +56,12 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (3864)
+1. checking no_clock (18931)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (11131)
-5. checking no_input_delay (20)
-6. checking no_output_delay (49)
+4. checking unconstrained_internal_endpoints (51338)
+5. checking no_input_delay (21)
+6. checking no_output_delay (50)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
 9. checking loops (0)
@@ -69,9 +69,9 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (3864)
----------------------------
- There are 3862 register/latch pins with no clock driven by root clock pin: sysclk (HIGH)
+1. checking no_clock (18931)
+----------------------------
+ There are 18929 register/latch pins with no clock driven by root clock pin: sysclk (HIGH)
 
  There is 1 register/latch pin with no clock driven by root clock pin: testwith1speed_i/Switchmod_0/U0/o_signal_reg/Q (HIGH)
 
@@ -88,23 +88,23 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (11131)
+4. checking unconstrained_internal_endpoints (51338)
 ----------------------------------------------------
- There are 11131 pins that are not constrained for maximum delay. (HIGH)
+ There are 51338 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (20)
+5. checking no_input_delay (21)
 -------------------------------
- There are 20 input ports with no input delay specified. (HIGH)
+ There are 21 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
-6. checking no_output_delay (49)
+6. checking no_output_delay (50)
 --------------------------------
- There are 49 ports with no output delay specified. (HIGH)
+ There are 50 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -149,7 +149,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                11180          inf        0.000                      0                11180           NA           NA                      NA                    NA  
+        inf        0.000                      0                51388          inf        0.000                      0                51388           NA           NA                      NA                    NA  
 
 
 There are no user specified timing constraints.
@@ -218,387 +218,321 @@ Path Group:  (none)
 From Clock:  
   To Clock:  
 
-Max Delay         11180 Endpoints
-Min Delay         11180 Endpoints
+Max Delay         51388 Endpoints
+Min Delay         51388 Endpoints
 --------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
+  Source:                 testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]/D
+  Destination:            testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[1800]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        12.812ns  (logic 3.092ns (24.133%)  route 9.720ns (75.867%))
-  Logic Levels:           10  (CARRY4=2 FDRE=1 LUT5=1 LUT6=3 MUXF7=2 MUXF8=1)
+  Data Path Delay:        37.672ns  (logic 1.899ns (5.041%)  route 35.773ns (94.959%))
+  Logic Levels:           7  (CARRY4=2 FDRE=1 LUT1=1 LUT2=1 LUT5=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X30Y65         FDRE                         0.000     0.000 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
-    SLICE_X30Y65         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/Q
-                         net (fo=2, routed)           0.825     1.343    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg_n_0_[1]
-    SLICE_X29Y65         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.656     1.999 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14/CO[3]
-                         net (fo=1, routed)           0.000     1.999    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14_n_0
-    SLICE_X29Y66         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     2.333 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8/O[1]
-                         net (fo=218, routed)         5.553     7.886    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8_n_6
-    SLICE_X46Y70         LUT6 (Prop_lut6_I2_O)        0.303     8.189 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_390/O
-                         net (fo=1, routed)           0.000     8.189    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_390_n_0
-    SLICE_X46Y70         MUXF7 (Prop_muxf7_I1_O)      0.214     8.403 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_181/O
-                         net (fo=1, routed)           0.000     8.403    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_181_n_0
-    SLICE_X46Y70         MUXF8 (Prop_muxf8_I1_O)      0.088     8.491 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_73/O
-                         net (fo=3, routed)           0.959     9.450    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_73_n_0
-    SLICE_X46Y66         LUT6 (Prop_lut6_I5_O)        0.319     9.769 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_26/O
-                         net (fo=2, routed)           1.432    11.201    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_26_n_0
-    SLICE_X35Y65         LUT6 (Prop_lut6_I0_O)        0.124    11.325 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_9/O
-                         net (fo=1, routed)           0.000    11.325    testwith1speed_i/TM_packet_sender_0/U0/p_0_out[7]
-    SLICE_X35Y65         MUXF7 (Prop_muxf7_I0_O)      0.238    11.563 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_5/O
-                         net (fo=1, routed)           0.951    12.514    testwith1speed_i/TM_packet_sender_0/U0/in15[7]
-    SLICE_X33Y67         LUT5 (Prop_lut5_I0_O)        0.298    12.812 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_3/O
-                         net (fo=1, routed)           0.000    12.812    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_3_n_0
-    SLICE_X33Y67         FDRE                                         r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]/D
+    SLICE_X10Y56         FDRE                         0.000     0.000 r  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
+    SLICE_X10Y56         FDRE (Prop_fdre_C_Q)         0.518     0.518 f  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/Q
+                         net (fo=5, routed)           0.718     1.236    testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[3]
+    SLICE_X12Y56         LUT1 (Prop_lut1_I0_O)        0.124     1.360 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9/O
+                         net (fo=1, routed)           0.000     1.360    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9_n_0
+    SLICE_X12Y56         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     1.740 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     1.740    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4_n_0
+    SLICE_X12Y57         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323     2.063 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[1]
+                         net (fo=1496, routed)       18.943    21.006    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_6
+    SLICE_X76Y31         LUT2 (Prop_lut2_I1_O)        0.306    21.312 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4/O
+                         net (fo=820, routed)        15.073    36.386    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4_n_0
+    SLICE_X30Y56         LUT6 (Prop_lut6_I1_O)        0.124    36.510 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1800]_i_2/O
+                         net (fo=1, routed)           1.038    37.548    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1800]_i_2_n_0
+    SLICE_X30Y55         LUT5 (Prop_lut5_I0_O)        0.124    37.672 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1800]_i_1/O
+                         net (fo=1, routed)           0.000    37.672    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1800]_i_1_n_0
+    SLICE_X30Y55         FDRE                                         r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[1800]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
+  Source:                 testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[4]/D
+  Destination:            testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[1825]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        12.445ns  (logic 3.092ns (24.845%)  route 9.353ns (75.155%))
-  Logic Levels:           10  (CARRY4=2 FDRE=1 LUT5=1 LUT6=3 MUXF7=2 MUXF8=1)
+  Data Path Delay:        37.391ns  (logic 1.899ns (5.079%)  route 35.492ns (94.921%))
+  Logic Levels:           7  (CARRY4=2 FDRE=1 LUT1=1 LUT2=1 LUT5=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X30Y65         FDRE                         0.000     0.000 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
-    SLICE_X30Y65         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/Q
-                         net (fo=2, routed)           0.825     1.343    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg_n_0_[1]
-    SLICE_X29Y65         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.656     1.999 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14/CO[3]
-                         net (fo=1, routed)           0.000     1.999    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14_n_0
-    SLICE_X29Y66         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     2.333 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8/O[1]
-                         net (fo=218, routed)         5.553     7.886    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8_n_6
-    SLICE_X46Y70         LUT6 (Prop_lut6_I2_O)        0.303     8.189 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_390/O
-                         net (fo=1, routed)           0.000     8.189    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_390_n_0
-    SLICE_X46Y70         MUXF7 (Prop_muxf7_I1_O)      0.214     8.403 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_181/O
-                         net (fo=1, routed)           0.000     8.403    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_181_n_0
-    SLICE_X46Y70         MUXF8 (Prop_muxf8_I1_O)      0.088     8.491 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_73/O
-                         net (fo=3, routed)           0.959     9.450    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_73_n_0
-    SLICE_X46Y66         LUT6 (Prop_lut6_I1_O)        0.319     9.769 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[5]_i_13/O
-                         net (fo=4, routed)           1.207    10.976    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[5]_i_13_n_0
-    SLICE_X33Y65         LUT6 (Prop_lut6_I5_O)        0.124    11.100 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[4]_i_5/O
-                         net (fo=1, routed)           0.000    11.100    testwith1speed_i/TM_packet_sender_0/U0/p_0_out[4]
-    SLICE_X33Y65         MUXF7 (Prop_muxf7_I0_O)      0.238    11.338 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[4]_i_2/O
-                         net (fo=1, routed)           0.809    12.147    testwith1speed_i/TM_packet_sender_0/U0/in15[4]
-    SLICE_X31Y65         LUT5 (Prop_lut5_I0_O)        0.298    12.445 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[4]_i_1/O
-                         net (fo=1, routed)           0.000    12.445    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[4]_i_1_n_0
-    SLICE_X31Y65         FDRE                                         r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[4]/D
+    SLICE_X10Y56         FDRE                         0.000     0.000 r  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
+    SLICE_X10Y56         FDRE (Prop_fdre_C_Q)         0.518     0.518 f  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/Q
+                         net (fo=5, routed)           0.718     1.236    testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[3]
+    SLICE_X12Y56         LUT1 (Prop_lut1_I0_O)        0.124     1.360 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9/O
+                         net (fo=1, routed)           0.000     1.360    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9_n_0
+    SLICE_X12Y56         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     1.740 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     1.740    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4_n_0
+    SLICE_X12Y57         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323     2.063 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[1]
+                         net (fo=1496, routed)       18.943    21.006    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_6
+    SLICE_X76Y31         LUT2 (Prop_lut2_I1_O)        0.306    21.312 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4/O
+                         net (fo=820, routed)        14.934    36.246    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4_n_0
+    SLICE_X42Y57         LUT6 (Prop_lut6_I2_O)        0.124    36.370 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1825]_i_2/O
+                         net (fo=1, routed)           0.897    37.267    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1825]_i_2_n_0
+    SLICE_X42Y57         LUT5 (Prop_lut5_I0_O)        0.124    37.391 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1825]_i_1/O
+                         net (fo=1, routed)           0.000    37.391    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1825]_i_1_n_0
+    SLICE_X42Y57         FDRE                                         r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[1825]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
+  Source:                 testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[5]/D
+  Destination:            testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[1070]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        12.245ns  (logic 3.073ns (25.095%)  route 9.172ns (74.905%))
-  Logic Levels:           10  (CARRY4=2 FDRE=1 LUT5=1 LUT6=3 MUXF7=2 MUXF8=1)
+  Data Path Delay:        37.091ns  (logic 1.899ns (5.120%)  route 35.192ns (94.880%))
+  Logic Levels:           7  (CARRY4=2 FDRE=1 LUT1=1 LUT2=1 LUT5=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X30Y65         FDRE                         0.000     0.000 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
-    SLICE_X30Y65         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/Q
-                         net (fo=2, routed)           0.825     1.343    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg_n_0_[1]
-    SLICE_X29Y65         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.656     1.999 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14/CO[3]
-                         net (fo=1, routed)           0.000     1.999    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14_n_0
-    SLICE_X29Y66         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     2.333 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8/O[1]
-                         net (fo=218, routed)         5.325     7.658    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8_n_6
-    SLICE_X47Y70         LUT6 (Prop_lut6_I2_O)        0.303     7.961 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_418/O
-                         net (fo=1, routed)           0.000     7.961    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_418_n_0
-    SLICE_X47Y70         MUXF7 (Prop_muxf7_I1_O)      0.217     8.178 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_215/O
-                         net (fo=1, routed)           0.000     8.178    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_215_n_0
-    SLICE_X47Y70         MUXF8 (Prop_muxf8_I1_O)      0.094     8.272 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_85/O
-                         net (fo=3, routed)           1.117     9.389    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_85_n_0
-    SLICE_X47Y66         LUT6 (Prop_lut6_I5_O)        0.316     9.705 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_29/O
-                         net (fo=3, routed)           1.075    10.780    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_29_n_0
-    SLICE_X35Y65         LUT6 (Prop_lut6_I3_O)        0.124    10.904 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[5]_i_5/O
-                         net (fo=1, routed)           0.000    10.904    testwith1speed_i/TM_packet_sender_0/U0/p_0_out[5]
-    SLICE_X35Y65         MUXF7 (Prop_muxf7_I0_O)      0.212    11.116 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[5]_i_2/O
-                         net (fo=1, routed)           0.830    11.946    testwith1speed_i/TM_packet_sender_0/U0/in15[5]
-    SLICE_X32Y64         LUT5 (Prop_lut5_I0_O)        0.299    12.245 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[5]_i_1/O
-                         net (fo=1, routed)           0.000    12.245    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[5]_i_1_n_0
-    SLICE_X32Y64         FDRE                                         r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[5]/D
+    SLICE_X10Y56         FDRE                         0.000     0.000 r  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
+    SLICE_X10Y56         FDRE (Prop_fdre_C_Q)         0.518     0.518 f  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/Q
+                         net (fo=5, routed)           0.718     1.236    testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[3]
+    SLICE_X12Y56         LUT1 (Prop_lut1_I0_O)        0.124     1.360 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9/O
+                         net (fo=1, routed)           0.000     1.360    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9_n_0
+    SLICE_X12Y56         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     1.740 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     1.740    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4_n_0
+    SLICE_X12Y57         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323     2.063 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[1]
+                         net (fo=1496, routed)       18.943    21.006    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_6
+    SLICE_X76Y31         LUT2 (Prop_lut2_I1_O)        0.306    21.312 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4/O
+                         net (fo=820, routed)        15.098    36.410    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4_n_0
+    SLICE_X47Y75         LUT6 (Prop_lut6_I1_O)        0.124    36.534 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1070]_i_2/O
+                         net (fo=1, routed)           0.433    36.967    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1070]_i_2_n_0
+    SLICE_X47Y75         LUT5 (Prop_lut5_I0_O)        0.124    37.091 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1070]_i_1/O
+                         net (fo=1, routed)           0.000    37.091    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1070]_i_1_n_0
+    SLICE_X47Y75         FDRE                                         r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[1070]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
+  Source:                 testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[1]/D
+  Destination:            testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[2332]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        12.236ns  (logic 2.699ns (22.057%)  route 9.537ns (77.943%))
-  Logic Levels:           9  (CARRY4=2 FDRE=1 LUT4=1 LUT5=1 LUT6=3 MUXF7=1)
+  Data Path Delay:        37.089ns  (logic 1.899ns (5.120%)  route 35.190ns (94.880%))
+  Logic Levels:           7  (CARRY4=2 FDRE=1 LUT1=1 LUT2=1 LUT5=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X30Y65         FDRE                         0.000     0.000 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
-    SLICE_X30Y65         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/Q
-                         net (fo=2, routed)           0.825     1.343    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg_n_0_[1]
-    SLICE_X29Y65         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.656     1.999 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14/CO[3]
-                         net (fo=1, routed)           0.000     1.999    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14_n_0
-    SLICE_X29Y66         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     2.333 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8/O[1]
-                         net (fo=218, routed)         5.286     7.618    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8_n_6
-    SLICE_X33Y72         LUT4 (Prop_lut4_I1_O)        0.303     7.921 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_224/O
-                         net (fo=3, routed)           1.178     9.099    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_224_n_0
-    SLICE_X33Y68         LUT6 (Prop_lut6_I0_O)        0.124     9.223 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[1]_i_28/O
-                         net (fo=1, routed)           0.430     9.653    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[1]_i_28_n_0
-    SLICE_X32Y67         LUT6 (Prop_lut6_I5_O)        0.124     9.777 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[1]_i_14/O
-                         net (fo=1, routed)           1.009    10.786    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[1]_i_14_n_0
-    SLICE_X32Y65         LUT6 (Prop_lut6_I1_O)        0.124    10.910 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[1]_i_6/O
-                         net (fo=1, routed)           0.000    10.910    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[1]_i_6_n_0
-    SLICE_X32Y65         MUXF7 (Prop_muxf7_I1_O)      0.217    11.127 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[1]_i_2/O
-                         net (fo=1, routed)           0.810    11.937    testwith1speed_i/TM_packet_sender_0/U0/in15[1]
-    SLICE_X31Y66         LUT5 (Prop_lut5_I0_O)        0.299    12.236 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[1]_i_1/O
-                         net (fo=1, routed)           0.000    12.236    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[1]_i_1_n_0
-    SLICE_X31Y66         FDRE                                         r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[1]/D
+    SLICE_X10Y56         FDRE                         0.000     0.000 r  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
+    SLICE_X10Y56         FDRE (Prop_fdre_C_Q)         0.518     0.518 f  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/Q
+                         net (fo=5, routed)           0.718     1.236    testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[3]
+    SLICE_X12Y56         LUT1 (Prop_lut1_I0_O)        0.124     1.360 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9/O
+                         net (fo=1, routed)           0.000     1.360    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9_n_0
+    SLICE_X12Y56         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     1.740 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     1.740    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4_n_0
+    SLICE_X12Y57         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323     2.063 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[1]
+                         net (fo=1496, routed)       18.943    21.006    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_6
+    SLICE_X76Y31         LUT2 (Prop_lut2_I1_O)        0.306    21.312 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4/O
+                         net (fo=820, routed)        14.519    35.831    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4_n_0
+    SLICE_X3Y0           LUT6 (Prop_lut6_I1_O)        0.124    35.955 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[2332]_i_2/O
+                         net (fo=1, routed)           1.010    36.965    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[2332]_i_2_n_0
+    SLICE_X3Y1           LUT5 (Prop_lut5_I0_O)        0.124    37.089 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[2332]_i_1/O
+                         net (fo=1, routed)           0.000    37.089    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[2332]_i_1_n_0
+    SLICE_X3Y1           FDRE                                         r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[2332]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
+  Source:                 testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[2]/D
+  Destination:            testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4426]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        12.236ns  (logic 2.892ns (23.635%)  route 9.344ns (76.365%))
-  Logic Levels:           10  (CARRY4=2 FDRE=1 LUT6=4 MUXF7=2 MUXF8=1)
+  Data Path Delay:        37.011ns  (logic 1.784ns (4.820%)  route 35.227ns (95.180%))
+  Logic Levels:           7  (CARRY4=2 FDRE=1 LUT1=1 LUT2=1 LUT5=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X30Y65         FDRE                         0.000     0.000 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
-    SLICE_X30Y65         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/Q
-                         net (fo=2, routed)           0.825     1.343    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg_n_0_[1]
-    SLICE_X29Y65         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.656     1.999 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14/CO[3]
-                         net (fo=1, routed)           0.000     1.999    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14_n_0
-    SLICE_X29Y66         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     2.333 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8/O[1]
-                         net (fo=218, routed)         5.553     7.886    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8_n_6
-    SLICE_X46Y70         LUT6 (Prop_lut6_I2_O)        0.303     8.189 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_390/O
-                         net (fo=1, routed)           0.000     8.189    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_390_n_0
-    SLICE_X46Y70         MUXF7 (Prop_muxf7_I1_O)      0.214     8.403 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_181/O
-                         net (fo=1, routed)           0.000     8.403    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_181_n_0
-    SLICE_X46Y70         MUXF8 (Prop_muxf8_I1_O)      0.088     8.491 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_73/O
-                         net (fo=3, routed)           0.959     9.450    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_73_n_0
-    SLICE_X46Y66         LUT6 (Prop_lut6_I1_O)        0.319     9.769 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[5]_i_13/O
-                         net (fo=4, routed)           1.370    11.139    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[5]_i_13_n_0
-    SLICE_X32Y65         LUT6 (Prop_lut6_I3_O)        0.124    11.263 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[2]_i_4/O
-                         net (fo=1, routed)           0.637    11.900    testwith1speed_i/TM_packet_sender_0/U0/p_0_out[2]
-    SLICE_X32Y66         LUT6 (Prop_lut6_I1_O)        0.124    12.024 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[2]_i_2/O
-                         net (fo=1, routed)           0.000    12.024    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[2]_i_2_n_0
-    SLICE_X32Y66         MUXF7 (Prop_muxf7_I0_O)      0.212    12.236 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[2]_i_1/O
-                         net (fo=1, routed)           0.000    12.236    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[2]_i_1_n_0
-    SLICE_X32Y66         FDRE                                         r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[2]/D
+    SLICE_X10Y56         FDRE                         0.000     0.000 r  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
+    SLICE_X10Y56         FDRE (Prop_fdre_C_Q)         0.518     0.518 f  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/Q
+                         net (fo=5, routed)           0.718     1.236    testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[3]
+    SLICE_X12Y56         LUT1 (Prop_lut1_I0_O)        0.124     1.360 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9/O
+                         net (fo=1, routed)           0.000     1.360    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9_n_0
+    SLICE_X12Y56         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     1.740 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     1.740    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4_n_0
+    SLICE_X12Y57         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     1.959 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[0]
+                         net (fo=2745, routed)       20.221    22.180    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_7
+    SLICE_X78Y35         LUT2 (Prop_lut2_I0_O)        0.295    22.475 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4943]_i_4/O
+                         net (fo=317, routed)        13.835    36.311    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4943]_i_4_n_0
+    SLICE_X2Y40          LUT6 (Prop_lut6_I3_O)        0.124    36.435 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4426]_i_2/O
+                         net (fo=1, routed)           0.452    36.887    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4426]_i_2_n_0
+    SLICE_X2Y40          LUT5 (Prop_lut5_I0_O)        0.124    37.011 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4426]_i_1/O
+                         net (fo=1, routed)           0.000    37.011    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4426]_i_1_n_0
+    SLICE_X2Y40          FDRE                                         r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4426]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
+  Source:                 testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[3]/D
+  Destination:            testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[2234]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        12.207ns  (logic 3.067ns (25.125%)  route 9.140ns (74.875%))
-  Logic Levels:           10  (CARRY4=2 FDRE=1 LUT5=1 LUT6=3 MUXF7=2 MUXF8=1)
+  Data Path Delay:        36.973ns  (logic 1.784ns (4.825%)  route 35.189ns (95.175%))
+  Logic Levels:           7  (CARRY4=2 FDRE=1 LUT1=1 LUT2=1 LUT5=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X30Y65         FDRE                         0.000     0.000 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
-    SLICE_X30Y65         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/Q
-                         net (fo=2, routed)           0.825     1.343    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg_n_0_[1]
-    SLICE_X29Y65         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.656     1.999 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14/CO[3]
-                         net (fo=1, routed)           0.000     1.999    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14_n_0
-    SLICE_X29Y66         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     2.333 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8/O[1]
-                         net (fo=218, routed)         5.553     7.886    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8_n_6
-    SLICE_X46Y70         LUT6 (Prop_lut6_I2_O)        0.303     8.189 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_390/O
-                         net (fo=1, routed)           0.000     8.189    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_390_n_0
-    SLICE_X46Y70         MUXF7 (Prop_muxf7_I1_O)      0.214     8.403 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_181/O
-                         net (fo=1, routed)           0.000     8.403    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_181_n_0
-    SLICE_X46Y70         MUXF8 (Prop_muxf8_I1_O)      0.088     8.491 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_73/O
-                         net (fo=3, routed)           0.959     9.450    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_73_n_0
-    SLICE_X46Y66         LUT6 (Prop_lut6_I1_O)        0.319     9.769 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[5]_i_13/O
-                         net (fo=4, routed)           1.166    10.935    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[5]_i_13_n_0
-    SLICE_X33Y65         LUT6 (Prop_lut6_I0_O)        0.124    11.059 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[3]_i_5/O
-                         net (fo=1, routed)           0.000    11.059    testwith1speed_i/TM_packet_sender_0/U0/p_0_out[3]
-    SLICE_X33Y65         MUXF7 (Prop_muxf7_I0_O)      0.212    11.271 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[3]_i_2/O
-                         net (fo=1, routed)           0.637    11.908    testwith1speed_i/TM_packet_sender_0/U0/in15[3]
-    SLICE_X31Y65         LUT5 (Prop_lut5_I0_O)        0.299    12.207 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[3]_i_1/O
-                         net (fo=1, routed)           0.000    12.207    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[3]_i_1_n_0
-    SLICE_X31Y65         FDRE                                         r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[3]/D
+    SLICE_X10Y56         FDRE                         0.000     0.000 r  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
+    SLICE_X10Y56         FDRE (Prop_fdre_C_Q)         0.518     0.518 f  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/Q
+                         net (fo=5, routed)           0.718     1.236    testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[3]
+    SLICE_X12Y56         LUT1 (Prop_lut1_I0_O)        0.124     1.360 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9/O
+                         net (fo=1, routed)           0.000     1.360    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9_n_0
+    SLICE_X12Y56         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     1.740 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     1.740    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4_n_0
+    SLICE_X12Y57         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     1.959 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[0]
+                         net (fo=2745, routed)       21.270    23.229    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_7
+    SLICE_X79Y43         LUT2 (Prop_lut2_I0_O)        0.295    23.524 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4983]_i_6/O
+                         net (fo=308, routed)        12.556    36.080    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4983]_i_6_n_0
+    SLICE_X33Y9          LUT6 (Prop_lut6_I3_O)        0.124    36.204 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[2234]_i_2/O
+                         net (fo=1, routed)           0.645    36.849    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[2234]_i_2_n_0
+    SLICE_X33Y9          LUT5 (Prop_lut5_I0_O)        0.124    36.973 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[2234]_i_1/O
+                         net (fo=1, routed)           0.000    36.973    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[2234]_i_1_n_0
+    SLICE_X33Y9          FDRE                                         r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[2234]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
+  Source:                 testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[0]/D
+  Destination:            testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[1547]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        12.135ns  (logic 2.893ns (23.840%)  route 9.242ns (76.160%))
-  Logic Levels:           10  (CARRY4=2 FDRE=1 LUT6=4 MUXF7=2 MUXF8=1)
+  Data Path Delay:        36.948ns  (logic 1.899ns (5.140%)  route 35.049ns (94.860%))
+  Logic Levels:           7  (CARRY4=2 FDRE=1 LUT1=1 LUT2=1 LUT5=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X30Y65         FDRE                         0.000     0.000 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
-    SLICE_X30Y65         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/Q
-                         net (fo=2, routed)           0.825     1.343    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg_n_0_[1]
-    SLICE_X29Y65         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.656     1.999 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14/CO[3]
-                         net (fo=1, routed)           0.000     1.999    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14_n_0
-    SLICE_X29Y66         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     2.333 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8/O[1]
-                         net (fo=218, routed)         5.080     7.413    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8_n_6
-    SLICE_X52Y70         LUT6 (Prop_lut6_I2_O)        0.303     7.716 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_393/O
-                         net (fo=1, routed)           0.000     7.716    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_393_n_0
-    SLICE_X52Y70         MUXF7 (Prop_muxf7_I0_O)      0.212     7.928 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_187/O
-                         net (fo=1, routed)           0.000     7.928    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_187_n_0
-    SLICE_X52Y70         MUXF8 (Prop_muxf8_I1_O)      0.094     8.022 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_75/O
-                         net (fo=2, routed)           1.175     9.196    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_75_n_0
-    SLICE_X46Y65         LUT6 (Prop_lut6_I3_O)        0.316     9.512 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[3]_i_12/O
-                         net (fo=4, routed)           1.374    10.886    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[3]_i_12_n_0
-    SLICE_X32Y65         LUT6 (Prop_lut6_I3_O)        0.124    11.010 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[0]_i_4/O
-                         net (fo=1, routed)           0.788    11.799    testwith1speed_i/TM_packet_sender_0/U0/p_0_out[0]
-    SLICE_X31Y65         LUT6 (Prop_lut6_I1_O)        0.124    11.923 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[0]_i_2/O
-                         net (fo=1, routed)           0.000    11.923    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[0]_i_2_n_0
-    SLICE_X31Y65         MUXF7 (Prop_muxf7_I0_O)      0.212    12.135 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[0]_i_1/O
-                         net (fo=1, routed)           0.000    12.135    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[0]_i_1_n_0
-    SLICE_X31Y65         FDRE                                         r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[0]/D
+    SLICE_X10Y56         FDRE                         0.000     0.000 r  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
+    SLICE_X10Y56         FDRE (Prop_fdre_C_Q)         0.518     0.518 f  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/Q
+                         net (fo=5, routed)           0.718     1.236    testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[3]
+    SLICE_X12Y56         LUT1 (Prop_lut1_I0_O)        0.124     1.360 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9/O
+                         net (fo=1, routed)           0.000     1.360    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9_n_0
+    SLICE_X12Y56         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     1.740 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     1.740    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4_n_0
+    SLICE_X12Y57         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323     2.063 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[1]
+                         net (fo=1496, routed)       18.943    21.006    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_6
+    SLICE_X76Y31         LUT2 (Prop_lut2_I1_O)        0.306    21.312 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4/O
+                         net (fo=820, routed)        14.462    35.774    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4_n_0
+    SLICE_X46Y77         LUT6 (Prop_lut6_I1_O)        0.124    35.898 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1547]_i_2/O
+                         net (fo=1, routed)           0.926    36.824    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1547]_i_2_n_0
+    SLICE_X46Y77         LUT5 (Prop_lut5_I0_O)        0.124    36.948 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1547]_i_1/O
+                         net (fo=1, routed)           0.000    36.948    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[1547]_i_1_n_0
+    SLICE_X46Y77         FDRE                                         r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[1547]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
+  Source:                 testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[6]/D
+  Destination:            testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[3118]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        12.101ns  (logic 2.936ns (24.262%)  route 9.165ns (75.738%))
-  Logic Levels:           10  (CARRY4=2 FDRE=1 LUT6=4 MUXF7=2 MUXF8=1)
+  Data Path Delay:        36.904ns  (logic 1.899ns (5.146%)  route 35.005ns (94.854%))
+  Logic Levels:           7  (CARRY4=2 FDRE=1 LUT1=1 LUT2=1 LUT5=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X30Y65         FDRE                         0.000     0.000 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
-    SLICE_X30Y65         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/Q
-                         net (fo=2, routed)           0.825     1.343    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg_n_0_[1]
-    SLICE_X29Y65         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.656     1.999 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14/CO[3]
-                         net (fo=1, routed)           0.000     1.999    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14_n_0
-    SLICE_X29Y66         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     2.333 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8/O[1]
-                         net (fo=218, routed)         5.069     7.402    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8_n_6
-    SLICE_X53Y70         LUT6 (Prop_lut6_I2_O)        0.303     7.705 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_408/O
-                         net (fo=1, routed)           0.000     7.705    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[7]_i_408_n_0
-    SLICE_X53Y70         MUXF7 (Prop_muxf7_I1_O)      0.245     7.950 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_202/O
-                         net (fo=1, routed)           0.000     7.950    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_202_n_0
-    SLICE_X53Y70         MUXF8 (Prop_muxf8_I0_O)      0.104     8.054 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_81/O
-                         net (fo=3, routed)           1.222     9.276    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_81_n_0
-    SLICE_X42Y65         LUT6 (Prop_lut6_I1_O)        0.316     9.592 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[6]_i_10/O
-                         net (fo=4, routed)           1.242    10.834    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[6]_i_10_n_0
-    SLICE_X35Y64         LUT6 (Prop_lut6_I1_O)        0.124    10.958 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[6]_i_4/O
-                         net (fo=1, routed)           0.807    11.765    testwith1speed_i/TM_packet_sender_0/U0/p_0_out[6]
-    SLICE_X32Y64         LUT6 (Prop_lut6_I1_O)        0.124    11.889 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[6]_i_2/O
-                         net (fo=1, routed)           0.000    11.889    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte[6]_i_2_n_0
-    SLICE_X32Y64         MUXF7 (Prop_muxf7_I0_O)      0.212    12.101 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[6]_i_1/O
-                         net (fo=1, routed)           0.000    12.101    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[6]_i_1_n_0
-    SLICE_X32Y64         FDRE                                         r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[6]/D
+    SLICE_X10Y56         FDRE                         0.000     0.000 r  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
+    SLICE_X10Y56         FDRE (Prop_fdre_C_Q)         0.518     0.518 f  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/Q
+                         net (fo=5, routed)           0.718     1.236    testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[3]
+    SLICE_X12Y56         LUT1 (Prop_lut1_I0_O)        0.124     1.360 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9/O
+                         net (fo=1, routed)           0.000     1.360    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9_n_0
+    SLICE_X12Y56         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     1.740 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     1.740    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4_n_0
+    SLICE_X12Y57         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323     2.063 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[1]
+                         net (fo=1496, routed)       18.943    21.006    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_6
+    SLICE_X76Y31         LUT2 (Prop_lut2_I1_O)        0.306    21.312 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4/O
+                         net (fo=820, routed)        14.892    36.204    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4926]_i_4_n_0
+    SLICE_X46Y75         LUT6 (Prop_lut6_I1_O)        0.124    36.328 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[3118]_i_2/O
+                         net (fo=1, routed)           0.452    36.780    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[3118]_i_2_n_0
+    SLICE_X46Y75         LUT5 (Prop_lut5_I0_O)        0.124    36.904 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[3118]_i_1/O
+                         net (fo=1, routed)           0.000    36.904    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[3118]_i_1_n_0
+    SLICE_X46Y75         FDRE                                         r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[3118]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
+  Source:                 testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[15]/CE
+  Destination:            testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4282]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        10.162ns  (logic 3.316ns (32.632%)  route 6.846ns (67.368%))
-  Logic Levels:           10  (CARRY4=6 FDRE=1 LUT2=1 LUT3=1 LUT5=1)
+  Data Path Delay:        36.896ns  (logic 1.784ns (4.835%)  route 35.112ns (95.165%))
+  Logic Levels:           7  (CARRY4=2 FDRE=1 LUT1=1 LUT2=1 LUT5=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X30Y65         FDRE                         0.000     0.000 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
-    SLICE_X30Y65         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/Q
-                         net (fo=2, routed)           0.825     1.343    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg_n_0_[1]
-    SLICE_X29Y65         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.656     1.999 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14/CO[3]
-                         net (fo=1, routed)           0.000     1.999    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14_n_0
-    SLICE_X29Y66         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     2.333 f  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8/O[1]
-                         net (fo=218, routed)         3.841     6.173    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8_n_6
-    SLICE_X30Y67         LUT2 (Prop_lut2_I0_O)        0.303     6.476 r  testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state[2]_i_32/O
-                         net (fo=1, routed)           0.000     6.476    testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state[2]_i_32_n_0
-    SLICE_X30Y67         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.380     6.856 r  testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_19/CO[3]
-                         net (fo=1, routed)           0.000     6.856    testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_19_n_0
-    SLICE_X30Y68         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     6.973 r  testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_10/CO[3]
-                         net (fo=1, routed)           0.000     6.973    testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_10_n_0
-    SLICE_X30Y69         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.090 r  testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_5/CO[3]
-                         net (fo=1, routed)           0.000     7.090    testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_5_n_0
-    SLICE_X30Y70         CARRY4 (Prop_carry4_CI_CO[2])
-                                                      0.229     7.319 f  testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_4/CO[2]
-                         net (fo=2, routed)           0.639     7.958    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt1
-    SLICE_X31Y71         LUT3 (Prop_lut3_I2_O)        0.336     8.294 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt[31]_i_3/O
-                         net (fo=1, routed)           0.433     8.727    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt[31]_i_3_n_0
-    SLICE_X31Y71         LUT5 (Prop_lut5_I2_O)        0.326     9.053 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt[31]_i_1/O
-                         net (fo=33, routed)          1.108    10.162    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt
-    SLICE_X15Y68         FDRE                                         r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[15]/CE
+    SLICE_X10Y56         FDRE                         0.000     0.000 r  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
+    SLICE_X10Y56         FDRE (Prop_fdre_C_Q)         0.518     0.518 f  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/Q
+                         net (fo=5, routed)           0.718     1.236    testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[3]
+    SLICE_X12Y56         LUT1 (Prop_lut1_I0_O)        0.124     1.360 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9/O
+                         net (fo=1, routed)           0.000     1.360    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9_n_0
+    SLICE_X12Y56         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     1.740 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     1.740    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4_n_0
+    SLICE_X12Y57         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     1.959 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[0]
+                         net (fo=2745, routed)       21.270    23.229    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_7
+    SLICE_X79Y43         LUT2 (Prop_lut2_I0_O)        0.295    23.524 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4983]_i_6/O
+                         net (fo=308, routed)        12.691    36.215    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4983]_i_6_n_0
+    SLICE_X33Y8          LUT6 (Prop_lut6_I3_O)        0.124    36.339 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4282]_i_2/O
+                         net (fo=1, routed)           0.433    36.772    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4282]_i_2_n_0
+    SLICE_X33Y8          LUT5 (Prop_lut5_I0_O)        0.124    36.896 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4282]_i_1/O
+                         net (fo=1, routed)           0.000    36.896    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4282]_i_1_n_0
+    SLICE_X33Y8          FDRE                                         r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4282]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
+  Source:                 testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[16]/CE
+  Destination:            testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[588]/D
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        10.162ns  (logic 3.316ns (32.632%)  route 6.846ns (67.368%))
-  Logic Levels:           10  (CARRY4=6 FDRE=1 LUT2=1 LUT3=1 LUT5=1)
+  Data Path Delay:        36.871ns  (logic 1.784ns (4.838%)  route 35.087ns (95.162%))
+  Logic Levels:           7  (CARRY4=2 FDRE=1 LUT1=1 LUT2=1 LUT5=1 LUT6=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X30Y65         FDRE                         0.000     0.000 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/C
-    SLICE_X30Y65         FDRE (Prop_fdre_C_Q)         0.518     0.518 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[1]/Q
-                         net (fo=2, routed)           0.825     1.343    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg_n_0_[1]
-    SLICE_X29Y65         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.656     1.999 r  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14/CO[3]
-                         net (fo=1, routed)           0.000     1.999    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_14_n_0
-    SLICE_X29Y66         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     2.333 f  testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8/O[1]
-                         net (fo=218, routed)         3.841     6.173    testwith1speed_i/TM_packet_sender_0/U0/o_TX_byte_reg[7]_i_8_n_6
-    SLICE_X30Y67         LUT2 (Prop_lut2_I0_O)        0.303     6.476 r  testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state[2]_i_32/O
-                         net (fo=1, routed)           0.000     6.476    testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state[2]_i_32_n_0
-    SLICE_X30Y67         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.380     6.856 r  testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_19/CO[3]
-                         net (fo=1, routed)           0.000     6.856    testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_19_n_0
-    SLICE_X30Y68         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     6.973 r  testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_10/CO[3]
-                         net (fo=1, routed)           0.000     6.973    testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_10_n_0
-    SLICE_X30Y69         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117     7.090 r  testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_5/CO[3]
-                         net (fo=1, routed)           0.000     7.090    testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_5_n_0
-    SLICE_X30Y70         CARRY4 (Prop_carry4_CI_CO[2])
-                                                      0.229     7.319 f  testwith1speed_i/TM_packet_sender_0/U0/FSM_sequential_state_reg[2]_i_4/CO[2]
-                         net (fo=2, routed)           0.639     7.958    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt1
-    SLICE_X31Y71         LUT3 (Prop_lut3_I2_O)        0.336     8.294 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt[31]_i_3/O
-                         net (fo=1, routed)           0.433     8.727    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt[31]_i_3_n_0
-    SLICE_X31Y71         LUT5 (Prop_lut5_I2_O)        0.326     9.053 r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt[31]_i_1/O
-                         net (fo=33, routed)          1.108    10.162    testwith1speed_i/TM_packet_sender_0/U0/bit_cnt
-    SLICE_X15Y68         FDRE                                         r  testwith1speed_i/TM_packet_sender_0/U0/bit_cnt_reg[16]/CE
+    SLICE_X10Y56         FDRE                         0.000     0.000 r  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/C
+    SLICE_X10Y56         FDRE (Prop_fdre_C_Q)         0.518     0.518 f  testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[3]/Q
+                         net (fo=5, routed)           0.718     1.236    testwith1speed_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[3]
+    SLICE_X12Y56         LUT1 (Prop_lut1_I0_O)        0.124     1.360 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9/O
+                         net (fo=1, routed)           0.000     1.360    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4974]_i_9_n_0
+    SLICE_X12Y56         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     1.740 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     1.740    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4974]_i_4_n_0
+    SLICE_X12Y57         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     1.959 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[0]
+                         net (fo=2745, routed)       20.221    22.180    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_7
+    SLICE_X78Y35         LUT2 (Prop_lut2_I0_O)        0.295    22.475 f  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4943]_i_4/O
+                         net (fo=317, routed)        13.715    36.190    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[4943]_i_4_n_0
+    SLICE_X3Y33          LUT6 (Prop_lut6_I3_O)        0.124    36.314 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[588]_i_2/O
+                         net (fo=1, routed)           0.433    36.747    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[588]_i_2_n_0
+    SLICE_X3Y33          LUT5 (Prop_lut5_I0_O)        0.124    36.871 r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[588]_i_1/O
+                         net (fo=1, routed)           0.000    36.871    testwith1speed_i/RAD_formatter_0/U0/RAD_data_i[588]_i_1_n_0
+    SLICE_X3Y33          FDRE                                         r  testwith1speed_i/RAD_formatter_0/U0/RAD_data_i_reg[588]/D
   -------------------------------------------------------------------    -------------------
 
 
@@ -608,37 +542,105 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[185]/C
+  Source:                 testwith1speed_i/Read1_100MHZ_0/U0/A_buf_reg[7]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[185]/D
+  Destination:            testwith1speed_i/Read1_100MHZ_0/U0/BF_data_buf_reg[32]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.216ns  (logic 0.164ns (75.889%)  route 0.052ns (24.111%))
+  Data Path Delay:        0.187ns  (logic 0.128ns (68.470%)  route 0.059ns (31.530%))
   Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X42Y69         FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[185]/C
-    SLICE_X42Y69         FDCE (Prop_fdce_C_Q)         0.164     0.164 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[185]/Q
-                         net (fo=1, routed)           0.052     0.216    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[185]
-    SLICE_X43Y69         FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[185]/D
+    SLICE_X4Y63          FDCE                         0.000     0.000 r  testwith1speed_i/Read1_100MHZ_0/U0/A_buf_reg[7]/C
+    SLICE_X4Y63          FDCE (Prop_fdce_C_Q)         0.128     0.128 r  testwith1speed_i/Read1_100MHZ_0/U0/A_buf_reg[7]/Q
+                         net (fo=1, routed)           0.059     0.187    testwith1speed_i/Read1_100MHZ_0/U0/in22[32]
+    SLICE_X5Y63          FDRE                                         r  testwith1speed_i/Read1_100MHZ_0/U0/BF_data_buf_reg[32]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/Read1_100MHZ_0/U0/osc_cnt_reg[3]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/Read1_100MHZ_0/U0/BF_data_buf_reg[3]/D
+  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[5]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[5]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.218ns  (logic 0.128ns (58.799%)  route 0.090ns (41.201%))
-  Logic Levels:           1  (FDRE=1)
+  Data Path Delay:        0.187ns  (logic 0.128ns (68.397%)  route 0.059ns (31.603%))
+  Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X15Y53         FDRE                         0.000     0.000 r  testwith1speed_i/Read1_100MHZ_0/U0/osc_cnt_reg[3]/C
-    SLICE_X15Y53         FDRE (Prop_fdre_C_Q)         0.128     0.128 r  testwith1speed_i/Read1_100MHZ_0/U0/osc_cnt_reg[3]/Q
-                         net (fo=3, routed)           0.090     0.218    testwith1speed_i/Read1_100MHZ_0/U0/osc_cnt_reg[3]
-    SLICE_X14Y53         FDRE                                         r  testwith1speed_i/Read1_100MHZ_0/U0/BF_data_buf_reg[3]/D
+    SLICE_X31Y94         FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[5]/C
+    SLICE_X31Y94         FDCE (Prop_fdce_C_Q)         0.128     0.128 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[5]/Q
+                         net (fo=1, routed)           0.059     0.187    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[5]
+    SLICE_X30Y94         FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[5]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[6]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[6]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.187ns  (logic 0.128ns (68.352%)  route 0.059ns (31.648%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X31Y94         FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[6]/C
+    SLICE_X31Y94         FDCE (Prop_fdce_C_Q)         0.128     0.128 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[6]/Q
+                         net (fo=1, routed)           0.059     0.187    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[6]
+    SLICE_X30Y94         FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[189]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[189]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.192ns  (logic 0.141ns (73.465%)  route 0.051ns (26.535%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X28Y99         FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[189]/C
+    SLICE_X28Y99         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[189]/Q
+                         net (fo=1, routed)           0.051     0.192    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[189]
+    SLICE_X29Y99         FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[189]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[2]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[2]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.193ns  (logic 0.141ns (73.018%)  route 0.052ns (26.982%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X31Y94         FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[2]/C
+    SLICE_X31Y94         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[2]/Q
+                         net (fo=1, routed)           0.052     0.193    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[2]
+    SLICE_X30Y94         FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[114]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[114]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.215ns  (logic 0.164ns (76.242%)  route 0.051ns (23.758%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X2Y89          FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[114]/C
+    SLICE_X2Y89          FDCE (Prop_fdce_C_Q)         0.164     0.164 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[114]/Q
+                         net (fo=1, routed)           0.051     0.215    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[114]
+    SLICE_X3Y89          FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[114]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -647,136 +649,66 @@ Slack:                    inf
   Destination:            testwith1speed_i/Pulse_Per_Second_100_0/U0/o_pulse_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.219ns  (logic 0.141ns (64.352%)  route 0.078ns (35.648%))
+  Data Path Delay:        0.220ns  (logic 0.141ns (64.051%)  route 0.079ns (35.949%))
   Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X3Y60          FDCE                         0.000     0.000 r  testwith1speed_i/Pulse_Per_Second_100_0/U0/state_reg/C
-    SLICE_X3Y60          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  testwith1speed_i/Pulse_Per_Second_100_0/U0/state_reg/Q
-                         net (fo=3, routed)           0.078     0.219    testwith1speed_i/Pulse_Per_Second_100_0/U0/state
-    SLICE_X3Y60          FDCE                                         r  testwith1speed_i/Pulse_Per_Second_100_0/U0/o_pulse_reg/D
+    SLICE_X5Y76          FDCE                         0.000     0.000 r  testwith1speed_i/Pulse_Per_Second_100_0/U0/state_reg/C
+    SLICE_X5Y76          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  testwith1speed_i/Pulse_Per_Second_100_0/U0/state_reg/Q
+                         net (fo=3, routed)           0.079     0.220    testwith1speed_i/Pulse_Per_Second_100_0/U0/state
+    SLICE_X5Y76          FDCE                                         r  testwith1speed_i/Pulse_Per_Second_100_0/U0/o_pulse_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[230]/C
+  Source:                 testwith1speed_i/Read1_100MHZ_0/U0/A_buf_reg[9]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[230]/D
+  Destination:            testwith1speed_i/Read1_100MHZ_0/U0/BF_data_buf_reg[34]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.228ns  (logic 0.128ns (56.159%)  route 0.100ns (43.841%))
+  Data Path Delay:        0.235ns  (logic 0.128ns (54.475%)  route 0.107ns (45.525%))
   Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X35Y75         FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[230]/C
-    SLICE_X35Y75         FDCE (Prop_fdce_C_Q)         0.128     0.128 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[230]/Q
-                         net (fo=1, routed)           0.100     0.228    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[230]
-    SLICE_X37Y75         FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[230]/D
+    SLICE_X4Y63          FDCE                         0.000     0.000 r  testwith1speed_i/Read1_100MHZ_0/U0/A_buf_reg[9]/C
+    SLICE_X4Y63          FDCE (Prop_fdce_C_Q)         0.128     0.128 r  testwith1speed_i/Read1_100MHZ_0/U0/A_buf_reg[9]/Q
+                         net (fo=1, routed)           0.107     0.235    testwith1speed_i/Read1_100MHZ_0/U0/in22[34]
+    SLICE_X7Y63          FDRE                                         r  testwith1speed_i/Read1_100MHZ_0/U0/BF_data_buf_reg[34]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[174]/C
+  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[35]/C
                             (rising edge-triggered cell FDCE)
-  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[174]/D
+  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[35]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.231ns  (logic 0.128ns (55.495%)  route 0.103ns (44.505%))
+  Data Path Delay:        0.236ns  (logic 0.141ns (59.702%)  route 0.095ns (40.298%))
   Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X53Y68         FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[174]/C
-    SLICE_X53Y68         FDCE (Prop_fdce_C_Q)         0.128     0.128 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[174]/Q
-                         net (fo=1, routed)           0.103     0.231    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[174]
-    SLICE_X55Y67         FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[174]/D
+    SLICE_X7Y85          FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[35]/C
+    SLICE_X7Y85          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[35]/Q
+                         net (fo=1, routed)           0.095     0.236    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[35]
+    SLICE_X5Y85          FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[35]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[175]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[175]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.231ns  (logic 0.128ns (55.495%)  route 0.103ns (44.505%))
-  Logic Levels:           1  (FDCE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X53Y68         FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[175]/C
-    SLICE_X53Y68         FDCE (Prop_fdce_C_Q)         0.128     0.128 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[175]/Q
-                         net (fo=1, routed)           0.103     0.231    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[175]
-    SLICE_X55Y67         FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[175]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 testwith1speed_i/Read1_100MHZ_0/U0/A_buf_reg[17]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            testwith1speed_i/Read1_100MHZ_0/U0/BF_data_buf_reg[42]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.233ns  (logic 0.128ns (55.026%)  route 0.105ns (44.974%))
-  Logic Levels:           1  (FDCE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X5Y66          FDCE                         0.000     0.000 r  testwith1speed_i/Read1_100MHZ_0/U0/A_buf_reg[17]/C
-    SLICE_X5Y66          FDCE (Prop_fdce_C_Q)         0.128     0.128 r  testwith1speed_i/Read1_100MHZ_0/U0/A_buf_reg[17]/Q
-                         net (fo=1, routed)           0.105     0.233    testwith1speed_i/Read1_100MHZ_0/U0/in17[42]
-    SLICE_X6Y66          FDRE                                         r  testwith1speed_i/Read1_100MHZ_0/U0/BF_data_buf_reg[42]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[107]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[107]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.236ns  (logic 0.141ns (59.641%)  route 0.095ns (40.359%))
-  Logic Levels:           1  (FDCE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X45Y68         FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[107]/C
-    SLICE_X45Y68         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[107]/Q
-                         net (fo=1, routed)           0.095     0.236    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[107]
-    SLICE_X43Y69         FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[107]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 testwith1speed_i/Write1_100MHZ_0/U0/write_data_buf_reg[11]/C
+  Source:                 testwith1speed_i/Read1_100MHZ_0/U0/data_buf_reg[13]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            testwith1speed_i/Write1_100MHZ_0/U0/write_data_reg[11]/D
+  Destination:            testwith1speed_i/Read1_100MHZ_0/U0/data_prev_reg[13]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.238ns  (logic 0.186ns (78.117%)  route 0.052ns (21.883%))
-  Logic Levels:           2  (FDRE=1 LUT5=1)
+  Data Path Delay:        0.237ns  (logic 0.164ns (69.140%)  route 0.073ns (30.860%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X9Y74          FDRE                         0.000     0.000 r  testwith1speed_i/Write1_100MHZ_0/U0/write_data_buf_reg[11]/C
-    SLICE_X9Y74          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  testwith1speed_i/Write1_100MHZ_0/U0/write_data_buf_reg[11]/Q
-                         net (fo=1, routed)           0.052     0.193    testwith1speed_i/Write1_100MHZ_0/U0/write_data_buf[11]
-    SLICE_X8Y74          LUT5 (Prop_lut5_I3_O)        0.045     0.238 r  testwith1speed_i/Write1_100MHZ_0/U0/write_data[11]_i_1/O
-                         net (fo=1, routed)           0.000     0.238    testwith1speed_i/Write1_100MHZ_0/U0/write_data[11]_i_1_n_0
-    SLICE_X8Y74          FDPE                                         r  testwith1speed_i/Write1_100MHZ_0/U0/write_data_reg[11]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[180]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[180]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.240ns  (logic 0.141ns (58.708%)  route 0.099ns (41.292%))
-  Logic Levels:           1  (FDCE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X53Y59         FDCE                         0.000     0.000 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[180]/C
-    SLICE_X53Y59         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  testwith1speed_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[180]/Q
-                         net (fo=1, routed)           0.099     0.240    testwith1speed_i/GNSS_Sender_0/U0/i_gnss_data[180]
-    SLICE_X54Y59         FDCE                                         r  testwith1speed_i/GNSS_Sender_0/U0/gnss_data_buf_reg[180]/D
+    SLICE_X2Y72          FDRE                         0.000     0.000 r  testwith1speed_i/Read1_100MHZ_0/U0/data_buf_reg[13]/C
+    SLICE_X2Y72          FDRE (Prop_fdre_C_Q)         0.164     0.164 r  testwith1speed_i/Read1_100MHZ_0/U0/data_buf_reg[13]/Q
+                         net (fo=6, routed)           0.073     0.237    testwith1speed_i/Read1_100MHZ_0/U0/in22[22]
+    SLICE_X3Y72          FDCE                                         r  testwith1speed_i/Read1_100MHZ_0/U0/data_prev_reg[13]/D
   -------------------------------------------------------------------    -------------------
 
 

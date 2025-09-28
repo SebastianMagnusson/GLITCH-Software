@@ -1,0 +1,53 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.32944",
+   "Default View_TopLeft":"973,14",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace port port-id_sysclk -pg 1 -lvl 0 -x -10 -y 70 -defaultsOSRD
+preplace port port-id_UART_MCU_TX -pg 1 -lvl 6 -x 1460 -y 120 -defaultsOSRD
+preplace port port-id_SRAM1_EN -pg 1 -lvl 6 -x 1460 -y 510 -defaultsOSRD
+preplace port port-id_SRAM1_WE -pg 1 -lvl 6 -x 1460 -y 540 -defaultsOSRD
+preplace port port-id_UART_MCU_RX -pg 1 -lvl 0 -x -10 -y 160 -defaultsOSRD
+preplace port port-id_led0 -pg 1 -lvl 6 -x 1460 -y -10 -defaultsOSRD
+preplace portBus SRAM1DQ_i -pg 1 -lvl 0 -x -10 -y 490 -defaultsOSRD
+preplace portBus SRAM1A -pg 1 -lvl 6 -x 1460 -y 390 -defaultsOSRD
+preplace portBus SRAM1DQ_o -pg 1 -lvl 6 -x 1460 -y 420 -defaultsOSRD
+preplace portBus SRAM1DQ_t -pg 1 -lvl 6 -x 1460 -y 450 -defaultsOSRD
+preplace portBus SRAM1DEC -pg 1 -lvl 6 -x 1460 -y 480 -defaultsOSRD
+preplace inst SRAM_controller_0 -pg 1 -lvl 5 -x 1260 -y 470 -defaultsOSRD
+preplace inst Switchmod_0 -pg 1 -lvl 3 -x 620 -y 80 -defaultsOSRD
+preplace inst TC_distributor_0 -pg 1 -lvl 2 -x 390 -y 140 -defaultsOSRD
+preplace inst TM_packet_sender_0 -pg 1 -lvl 4 -x 950 -y 160 -defaultsOSRD
+preplace inst UART_TX_100MHZ_0 -pg 1 -lvl 5 -x 1260 -y 100 -defaultsOSRD
+preplace inst UART_RX_100MHZ_0 -pg 1 -lvl 1 -x 150 -y 150 -defaultsOSRD
+preplace inst Switchmod_1 -pg 1 -lvl 3 -x 620 -y 200 -defaultsOSRD
+preplace netloc DQ_i_0_1 1 0 5 NJ 490 NJ 490 NJ 490 NJ 490 NJ
+preplace netloc SRAM_controller_0_A 1 5 1 1410J 390n
+preplace netloc SRAM_controller_0_BF_packet 1 3 3 760 600 NJ 600 1400
+preplace netloc SRAM_controller_0_CE_n 1 5 1 1420J 500n
+preplace netloc SRAM_controller_0_DQ_o 1 5 1 1420J 420n
+preplace netloc SRAM_controller_0_DQ_t 1 5 1 1400J 450n
+preplace netloc SRAM_controller_0_WE_n 1 5 1 1420J 520n
+preplace netloc SRAM_controller_0_dec 1 5 1 NJ 480
+preplace netloc SRAM_controller_0_o_BF_drive 1 3 3 780 310 NJ 310 1400
+preplace netloc Switchmod_0_o_signal 1 3 1 740 70n
+preplace netloc TC_distributor_0_cmd2 1 2 1 500 90n
+preplace netloc TM_packet_sender_0_o_TX_DV 1 4 1 N 100
+preplace netloc TM_packet_sender_0_o_TX_byte 1 4 1 N 120
+preplace netloc UART_RX_100MHZ_0_o_RX_DV 1 1 1 280 130n
+preplace netloc UART_RX_100MHZ_0_o_RX_byte 1 1 1 N 150
+preplace netloc UART_TX_100MHZ_0_o_TX_Active 1 3 3 770 -10 NJ -10 1400
+preplace netloc UART_TX_100MHZ_0_o_TX_Done 1 3 3 790 0 NJ 0 1410
+preplace netloc UART_TX_100MHZ_0_o_TX_Serial 1 5 1 1420J 100n
+preplace netloc i_RX_Serial_0_1 1 0 1 NJ 160
+preplace netloc sysclk_0_1 1 0 5 20 70 290 10 510 10 760 10 1120
+preplace netloc TC_distributor_0_cmd0 1 2 1 490 70n
+preplace netloc Switchmod_1_o_signal 1 3 2 730J 470 N
+preplace netloc Switchmod_0_led0 1 3 3 730J -20 NJ -20 1410J
+levelinfo -pg 1 -10 150 390 620 950 1260 1460
+pagesize -pg 1 -db -bbox -sgen -170 -30 1630 610
+"
+}
+0

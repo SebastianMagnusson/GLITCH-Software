@@ -59,7 +59,8 @@
         "o_BF_drive": [ { "direction": "out" } ],
         "addresses_searched": [ { "direction": "out" } ],
         "led0": [ { "direction": "out" } ],
-        "led1": [ { "direction": "out" } ]
+        "led1": [ { "direction": "out" } ],
+        "led2": [ { "direction": "out" } ]
       },
       "interfaces": {
         "reset_n": {
