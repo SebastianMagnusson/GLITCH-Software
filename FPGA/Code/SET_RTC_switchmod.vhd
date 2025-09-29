@@ -7,15 +7,15 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity Switchmod is
+entity SET_RTC_switchmod is
   Port (sysclk   : in std_logic;
         CMD5 : in std_logic;
 		SET_RTC_done : in std_logic;
         SET_RTC_request  : out std_logic := '0';
         led0      : out std_logic := '0');
-end Switchmod;
+end SET_RTC_switchmod;
 
-architecture rtl of Switchmod is
+architecture rtl of SET_RTC_switchmod is
 
   type SM_State is (HIGH, LOW);
   signal State : SM_State := LOW;

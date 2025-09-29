@@ -7,15 +7,15 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity Switchmod is
+entity SAY_HEY_switchmod is
   Port (sysclk   : in std_logic;
         CMD6 : in std_logic;
 		SAY_HEY_done : in std_logic;
         SAY_HEY_request  : out std_logic := '0';
         led0      : out std_logic := '0');
-end Switchmod;
+end SAY_HEY_switchmod;
 
-architecture rtl of Switchmod is
+architecture rtl of SAY_HEY_switchmod is
 
   type SM_State is (HIGH, LOW);
   signal State : SM_State := LOW;
