@@ -81,7 +81,8 @@ begin
                 o_TX_DV_HK    <= '0';
                 o_TX_DV_BF    <= '0';
                 o_TX_DV_RAD   <= '0';
-				        o_TX_DV_HTR   <= '0';
+				o_TX_DV_HTR   <= '0';
+				o_SET_RTC_done<= '0';
                 busy_prev     <= '0';
                 state         <= SET_RTC;
                 led2 <= '0';
