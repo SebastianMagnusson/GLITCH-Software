@@ -26,6 +26,7 @@ entity I2C_full_sensor_data_fetcher is
         i_HK_ALT_request  : in std_logic;
         i_HK_TEMP_request : in std_logic;
 		i_HTR_TEMP_request : in std_logic;
+		i_SET_RTC_request : in std_logic;
 
         o_i2c_ena      : out std_logic;
         o_i2c_address  : out std_logic_vector(6 downto 0);
@@ -35,6 +36,7 @@ entity I2C_full_sensor_data_fetcher is
         o_TX_DV_BF     : out std_logic;
         o_TX_DV_RAD    : out std_logic;
 		o_TX_DV_HTR	   : out std_logic;
+		o_SET_RTC_done : out std_logic;
         o_TX_RTC_data  : out std_logic_vector(23 downto 0);
         o_TX_ALT_data  : out std_logic_vector(23 downto 0);
         o_TX_TEMP_data : out std_logic_vector(31 downto 0);
@@ -94,31 +96,30 @@ begin
                         o_TX_DV_HK  <= '0';
                         o_TX_DV_BF  <= '0';
                         o_TX_DV_RAD <= '0';
-						            o_TX_DV_HTR <= '0';
-						            
-						            start_cnt   := 0;
-						            waiting_cnt := 0;
-
-                        if i_HK_RTC_request = '1' or i_RAD_RTC_request = '1' or i_BF_RTC_request = '1' then
-                          if i_BF_RTC_request = '1' then
-                              who_requested <= BF;
-                          elsif i_RAD_RTC_request = '1' then
-                              who_requested <= RAD;
-                          else 
-                              who_requested <= HK;
-                          end if;
-                          state <= RTC;
-
-                        elsif i_HK_ALT_request = '1' then
-                            state <= PREP_ALT;
-							
-                        elsif i_HK_TEMP_request = '1' or i_HTR_TEMP_request = '1' then
-							            if i_HTR_TEMP_request = '1' then
-							            	who_requested <= HTR;
-							            else 
-							            	who_requested <= HK;
-							            end if;
-                            state <= TEMP;
+						o_TX_DV_HTR <= '0';
+						
+						start_cnt   := 0;
+						waiting_cnt := 0;
+						
+						if i_SET_RTC_request = '1' then
+							state <= SET_RTC;
+						elsif i_HK_RTC_request = '1' then
+							who_requested <= HK;
+							state <= RTC;
+						elsif i_BF_RTC_request = '1' then
+							who_requested <= BF;
+							state <= RTC;
+						elsif i_HK_ALT_request = '1' then
+							state <= PREP_ALT;
+						elsif i_HK_TEMP_request = '1' then
+							who_requested <= HK;
+							state <= TEMP;
+						elsif i_HTR_TEMP_request = '1' then
+							who_requested <= HTR;
+							state <= TEMP;
+						elsif i_RAD_RTC_request = '1' then
+							who_requested <= RAD;
+							state <= RTC;
                         else
                             state <= IDLE;
                         end if;
@@ -376,40 +377,41 @@ begin
                     -- =========================================================
                     when SET_RTC =>					
 	
-						          if start_cnt < Clockfrequency/2 then
-						          	start_cnt := start_cnt + 1;
-						          else
-						            busy_prev <= i_busy;
-						            if (busy_prev = '0' and i_busy = '1') then
-						            	busy_cnt := busy_cnt + 1;
-						            end if;
+						if start_cnt < Clockfrequency/2 then
+							start_cnt := start_cnt + 1;
+						else
+						  busy_prev <= i_busy;
+						  if (busy_prev = '0' and i_busy = '1') then
+						  	busy_cnt := busy_cnt + 1;
+						  end if;
 
-						            case busy_cnt is
-						            	-- START + slave addr + pointer
-						            	when 0 =>
-						            		o_i2c_ena     <= '1';
-						            		-- o_i2c_address <= "1101000";  -- 0x68 Dev board address
-						            		o_i2c_address <= "1101111";  -- PCB address
-						            		o_i2c_rw      <= '0';        -- write
-						            		o_i2c_data_wr <= "00000000"; -- pointer = 0x00
-						            	when 1 =>                                    --1st busy high: command 1 latched, okay to issue command 2
-						            		led2 <= '1';
-						            		o_i2c_data_wr <= "10000000";        --start the oscillator and set seconds
-						            	when 2 =>                                    --2nd busy high: command 2 latched, okay to issue command 3
-						            	    o_i2c_data_wr <= "00000000";       --start the oscillator and set seconds
-						            	when 3 =>                                    --3rd busy high: command 3 latched, okay to issue command 4
-						            	    o_i2c_data_wr <= "00000000";      --start the oscillator and set seconds              
-						            	when 4 =>
-						            	    o_i2c_ena <= '0';
-						            	    if i_busy = '0' then
-						            			  busy_cnt := 0;
-						            			  state    <= CLEANUP;
-						                  end if;						      
-							           when others =>
-								           null; 
-								                 	         
-							          end case;
-						          end if;     
+						  case busy_cnt is
+						  	-- START + slave addr + pointer
+						  	when 0 =>
+						  		o_i2c_ena     <= '1';
+						  		-- o_i2c_address <= "1101000";  -- 0x68 Dev board address
+						  		o_i2c_address <= "1101111";  -- PCB address
+						  		o_i2c_rw      <= '0';        -- write
+						  		o_i2c_data_wr <= "00000000"; -- pointer = 0x00
+						  	when 1 =>                                    --1st busy high: command 1 latched, okay to issue command 2
+						  		led2 <= '1';
+						  		o_i2c_data_wr <= "10000000";        --start the oscillator and set seconds
+						  	when 2 =>                                    --2nd busy high: command 2 latched, okay to issue command 3
+						  	    o_i2c_data_wr <= "00000000";       --start the oscillator and set seconds
+						  	when 3 =>                                    --3rd busy high: command 3 latched, okay to issue command 4
+						  	    o_i2c_data_wr <= "00000000";      --start the oscillator and set seconds              
+						  	when 4 =>
+						  	    o_i2c_ena <= '0';
+						  	    if i_busy = '0' then
+									o_SET_RTC_done <= '1';
+						  			busy_cnt := 0;
+						  			state    <= CLEANUP;
+						        end if;						      
+						     when others =>
+						         null; 
+						               	         
+						    end case;
+						end if;     
 					
 					
                     when CLEANUP =>
@@ -428,7 +430,8 @@ begin
                         o_TX_DV_HK    <= '0';
                         o_TX_DV_BF    <= '0';
                         o_TX_DV_RAD   <= '0';
-						            o_TX_DV_HTR   <= '0';
+						o_TX_DV_HTR   <= '0';
+						o_SET_RTC_done <= '0';
                         busy_prev     <= '0';
                         state         <= IDLE;
                             
