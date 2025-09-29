@@ -84,6 +84,8 @@ uint8_t* uart_receive(void) {
         tm_length = 224 / 8; // 28 bytes
     } else if (id == CONFIG_RADIATION_PACKET_ID) {
         tm_length = 5016 / 8; // 1251 bytes
+    } else if (id == 3) {
+        tm_length = 1; // 1 byte
     } else {
         ESP_LOGE(TAG, "Unknown packet ID: %d", id);
         return NULL;
@@ -187,6 +189,14 @@ void uart_task(void *pvParameters)
             } else if (id == CONFIG_RADIATION_PACKET_ID) {
                 packet_size = CONFIG_RADIATION_PACKET_SIZE;
                 data_bits = 5010;
+            } else if (id == 3) {
+                uint8_t *ack_packet = format_ack(fpga_data[0]);
+                free(fpga_data);
+                if (ack_packet) {
+                    buffer_add_tm(3, ack_packet);
+                    free(ack_packet);
+                }
+                continue;
             } else {
                 ESP_LOGE(TAG, "Unknown packet ID: %d", id);
                 free(fpga_data);

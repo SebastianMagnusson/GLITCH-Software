@@ -591,7 +591,7 @@ class Dashboard(QMainWindow):
         elif command_type == "CHANGE MODE":
             mode = self.mode_combo.currentText()
             tc_code = TC_SET_MODE_POWER_SAVE if mode == "POWER SAVING" else TC_SET_MODE_NORMAL
-        elif command_type == "SAY HELLO":
+        elif command_type == "SEND HELLO":
             tc_code = TC_SEND_HELLO
         elif command_type == "SET RTC":
             tc_code = TC_SET_RTC
