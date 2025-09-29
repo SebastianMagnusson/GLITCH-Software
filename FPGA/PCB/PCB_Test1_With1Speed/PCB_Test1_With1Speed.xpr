@@ -205,7 +205,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/Write_Correct_100MHZ.vhd">
+      <File Path="$PPRDIR/../PCB_Test1/PCB_Test1.srcs/sources_1/new/Write1_100MHZ.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -259,6 +259,9 @@
         <CompFileExtendedInfo CompFileName="testwith1speed.bd" FileRelPathName="ip/testwith1speed_RW_ROUTER_100MHZ_0_0/testwith1speed_RW_ROUTER_100MHZ_0_0.xci">
           <Proxy FileSetName="testwith1speed_RW_ROUTER_100MHZ_0_0"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="testwith1speed.bd" FileRelPathName="ip/testwith1speed_Read1_100MHZ_0_0/testwith1speed_Read1_100MHZ_0_0.xci">
+          <Proxy FileSetName="testwith1speed_Read1_100MHZ_0_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="testwith1speed.bd" FileRelPathName="ip/testwith1speed_Switchmod_0_0/testwith1speed_Switchmod_0_0.xci">
           <Proxy FileSetName="testwith1speed_Switchmod_0_0"/>
         </CompFileExtendedInfo>
@@ -280,6 +283,9 @@
         <CompFileExtendedInfo CompFileName="testwith1speed.bd" FileRelPathName="ip/testwith1speed_UART_TX_100MHZ_0_0/testwith1speed_UART_TX_100MHZ_0_0.xci">
           <Proxy FileSetName="testwith1speed_UART_TX_100MHZ_0_0"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="testwith1speed.bd" FileRelPathName="ip/testwith1speed_Write1_100MHZ_0_0/testwith1speed_Write1_100MHZ_0_0.xci">
+          <Proxy FileSetName="testwith1speed_Write1_100MHZ_0_0"/>
+        </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/imports/hdl/testwith1speed_wrapper.vhd">
         <FileInfo>
@@ -289,14 +295,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/Write_without_fail_100MHZ.vhd">
+      <File Path="$PSRCDIR/sources_1/new/Write_Correct_100MHZ.vhd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../PCB_Test1/PCB_Test1.srcs/sources_1/new/Write1_100MHZ.vhd">
+      <File Path="$PSRCDIR/sources_1/new/Write_without_fail_100MHZ.vhd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -377,12 +383,6 @@
     <FileSet Name="testwith1speed_BF_formatter_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/testwith1speed_BF_formatter_0_0" RelGenDir="$PGENDIR/testwith1speed_BF_formatter_0_0">
       <Config>
         <Option Name="TopModule" Val="testwith1speed_BF_formatter_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="testwith1speed_RW_ROUTER_100MHZ_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/testwith1speed_RW_ROUTER_100MHZ_0_0" RelGenDir="$PGENDIR/testwith1speed_RW_ROUTER_100MHZ_0_0">
-      <Config>
-        <Option Name="TopModule" Val="testwith1speed_RW_ROUTER_100MHZ_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -488,6 +488,24 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
+    <FileSet Name="testwith1speed_Write1_100MHZ_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/testwith1speed_Write1_100MHZ_0_0" RelGenDir="$PGENDIR/testwith1speed_Write1_100MHZ_0_0">
+      <Config>
+        <Option Name="TopModule" Val="testwith1speed_Write1_100MHZ_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="testwith1speed_RW_ROUTER_100MHZ_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/testwith1speed_RW_ROUTER_100MHZ_0_0" RelGenDir="$PGENDIR/testwith1speed_RW_ROUTER_100MHZ_0_0">
+      <Config>
+        <Option Name="TopModule" Val="testwith1speed_RW_ROUTER_100MHZ_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="testwith1speed_Read1_100MHZ_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/testwith1speed_Read1_100MHZ_0_0" RelGenDir="$PGENDIR/testwith1speed_Read1_100MHZ_0_0">
+      <Config>
+        <Option Name="TopModule" Val="testwith1speed_Read1_100MHZ_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
   </FileSets>
   <Simulators>
     <Simulator Name="XSim">
@@ -539,16 +557,6 @@
       <RQSFiles/>
     </Run>
     <Run Id="testwith1speed_BF_formatter_0_0_synth_1" Type="Ft3:Synth" SrcSet="testwith1speed_BF_formatter_0_0" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_BF_formatter_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/testwith1speed_BF_formatter_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_BF_formatter_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_BF_formatter_0_0_synth_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="testwith1speed_RW_ROUTER_100MHZ_0_0_synth_1" Type="Ft3:Synth" SrcSet="testwith1speed_RW_ROUTER_100MHZ_0_0" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_RW_ROUTER_100MHZ_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/testwith1speed_RW_ROUTER_100MHZ_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_RW_ROUTER_100MHZ_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_RW_ROUTER_100MHZ_0_0_synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
@@ -728,6 +736,42 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
+    <Run Id="testwith1speed_Write1_100MHZ_0_0_synth_1" Type="Ft3:Synth" SrcSet="testwith1speed_Write1_100MHZ_0_0" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_Write1_100MHZ_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/testwith1speed_Write1_100MHZ_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_Write1_100MHZ_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_Write1_100MHZ_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="testwith1speed_RW_ROUTER_100MHZ_0_0_synth_1" Type="Ft3:Synth" SrcSet="testwith1speed_RW_ROUTER_100MHZ_0_0" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_RW_ROUTER_100MHZ_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/testwith1speed_RW_ROUTER_100MHZ_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_RW_ROUTER_100MHZ_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_RW_ROUTER_100MHZ_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="testwith1speed_Read1_100MHZ_0_0_synth_1" Type="Ft3:Synth" SrcSet="testwith1speed_Read1_100MHZ_0_0" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_Read1_100MHZ_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/testwith1speed_Read1_100MHZ_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_Read1_100MHZ_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_Read1_100MHZ_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
     <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1" LaunchOptions="-jobs 4 " AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
@@ -783,23 +827,6 @@
       <RQSFiles/>
     </Run>
     <Run Id="testwith1speed_BF_formatter_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_BF_formatter_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="testwith1speed_BF_formatter_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_BF_formatter_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_BF_formatter_0_0_impl_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="testwith1speed_RW_ROUTER_100MHZ_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_RW_ROUTER_100MHZ_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="testwith1speed_RW_ROUTER_100MHZ_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_RW_ROUTER_100MHZ_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_RW_ROUTER_100MHZ_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
@@ -1091,6 +1118,63 @@
     <Run Id="testwith1speed_RAD_formatter_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_RAD_formatter_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="testwith1speed_RAD_formatter_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_RAD_formatter_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_RAD_formatter_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="testwith1speed_Write1_100MHZ_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_Write1_100MHZ_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="testwith1speed_Write1_100MHZ_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_Write1_100MHZ_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_Write1_100MHZ_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="testwith1speed_RW_ROUTER_100MHZ_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_RW_ROUTER_100MHZ_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="testwith1speed_RW_ROUTER_100MHZ_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_RW_ROUTER_100MHZ_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_RW_ROUTER_100MHZ_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="testwith1speed_Read1_100MHZ_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="testwith1speed_Read1_100MHZ_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="testwith1speed_Read1_100MHZ_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/testwith1speed_Read1_100MHZ_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/testwith1speed_Read1_100MHZ_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

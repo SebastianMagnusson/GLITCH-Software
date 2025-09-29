@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Fri Sep 26 10:17:25 2025
+// Date        : Sun Sep 28 15:47:40 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_Test1_With1Speed/PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_UART_RX_100MHZ_2_0/testwith1speed_UART_RX_100MHZ_2_0_stub.v
@@ -14,7 +14,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* CHECK_LICENSE_TYPE = "testwith1speed_UART_RX_100MHZ_2_0,UART_RX_100MHZ,{}" *) (* core_generation_info = "testwith1speed_UART_RX_100MHZ_2_0,UART_RX_100MHZ,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=UART_RX_100MHZ,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,Clockfrequency=100000000,Baud_Rate=500000}" *) (* downgradeipidentifiedwarnings = "yes" *) 
+(* CHECK_LICENSE_TYPE = "testwith1speed_UART_RX_100MHZ_2_0,UART_RX_100MHZ,{}" *) (* core_generation_info = "testwith1speed_UART_RX_100MHZ_2_0,UART_RX_100MHZ,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=UART_RX_100MHZ,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,Clockfrequency=100000000,Baud_Rate=115200}" *) (* downgradeipidentifiedwarnings = "yes" *) 
 (* ip_definition_source = "module_ref" *) (* x_core_info = "UART_RX_100MHZ,Vivado 2024.2" *) 
 module testwith1speed_UART_RX_100MHZ_2_0(sysclk, i_RX_Serial, o_RX_DV, o_RX_byte, led0)
 /* synthesis syn_black_box black_box_pad_pin="i_RX_Serial,o_RX_DV,o_RX_byte[7:0],led0" */

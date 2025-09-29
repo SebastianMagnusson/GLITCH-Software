@@ -7,7 +7,8 @@
       "name": "testwith1speed",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2024.2"
+      "tool_version": "2024.2",
+      "validated": "true"
     },
     "design_tree": {
       "BF_Data_Collector_Dr_0": "",
@@ -32,11 +33,25 @@
       "RESTART_mod_0": "",
       "UART_RX_100MHZ_2": "",
       "RAD_formatter_0": "",
-      "Write_Correct_100MHZ_0": ""
+      "Write1_100MHZ_0": ""
     },
     "ports": {
       "sysclk": {
-        "direction": "I"
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "/clk_wiz_0_clk_out1",
+            "value_src": "ip_prop"
+          },
+          "FREQ_HZ": {
+            "value": "12000000",
+            "value_src": "ip_prop"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "ip_prop"
+          }
+        }
       },
       "SRAM1DQ_i": {
         "direction": "I",
@@ -736,7 +751,21 @@
         },
         "ports": {
           "sysclk": {
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              },
+              "FREQ_HZ": {
+                "value": "12000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              }
+            }
           },
           "reset_n": {
             "type": "rst",
@@ -816,16 +845,16 @@
           "sysclk": {
             "direction": "I",
             "parameters": {
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              },
               "FREQ_HZ": {
                 "value": "12000000",
                 "value_src": "ip_prop"
               },
               "PHASE": {
                 "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
                 "value_src": "ip_prop"
               }
             }
@@ -1504,7 +1533,7 @@
         "inst_hier_path": "UART_RX_100MHZ_2",
         "parameters": {
           "Baud_Rate": {
-            "value": "500000"
+            "value": "115200"
           }
         },
         "reference_info": {
@@ -1628,20 +1657,34 @@
           }
         }
       },
-      "Write_Correct_100MHZ_0": {
-        "vlnv": "xilinx.com:module_ref:Write_Correct_100MHZ:1.0",
+      "Write1_100MHZ_0": {
+        "vlnv": "xilinx.com:module_ref:Write1_100MHZ:1.0",
         "ip_revision": "1",
-        "xci_name": "testwith1speed_Write_Correct_100MHZ_0_0",
-        "xci_path": "ip\\testwith1speed_Write_Correct_100MHZ_0_0\\testwith1speed_Write_Correct_100MHZ_0_0.xci",
-        "inst_hier_path": "Write_Correct_100MHZ_0",
+        "xci_name": "testwith1speed_Write1_100MHZ_0_0",
+        "xci_path": "ip\\testwith1speed_Write1_100MHZ_0_0\\testwith1speed_Write1_100MHZ_0_0.xci",
+        "inst_hier_path": "Write1_100MHZ_0",
         "reference_info": {
           "ref_type": "hdl",
-          "ref_name": "Write_Correct_100MHZ",
+          "ref_name": "Write1_100MHZ",
           "boundary_crc": "0x0"
         },
         "ports": {
           "sysclk": {
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              },
+              "FREQ_HZ": {
+                "value": "12000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              }
+            }
           },
           "reset_n": {
             "type": "rst",
@@ -2070,7 +2113,6 @@
           "BF_Data_Collector_Dr_0/reset_n",
           "BF_formatter_0/rst",
           "I2Cmod_0/reset_n",
-          "RW_ROUTER_100MHZ_0/reset_n",
           "HK_formatter_0/rst",
           "GNSS_Sender_0/reset_n",
           "GNSS_Fetcher_mod_0/reset_n",
@@ -2080,8 +2122,9 @@
           "HTR_CALC_0/rst",
           "TM_packet_sender_0/rst",
           "RAD_formatter_0/rst",
-          "Read1_100MHZ_0/reset_n",
-          "Write_Correct_100MHZ_0/reset_n"
+          "RW_ROUTER_100MHZ_0/reset_n",
+          "Write1_100MHZ_0/reset_n",
+          "Read1_100MHZ_0/reset_n"
         ]
       },
       "TC_distributor_0_cmd0": {
@@ -2180,47 +2223,47 @@
           "UART_MCU_TX"
         ]
       },
-      "Write1_100MHZ_0_write_complete": {
+      "Write1_100MHZ_0_A": {
         "ports": [
-          "Write_Correct_100MHZ_0/write_complete",
-          "RW_ROUTER_100MHZ_0/Toggle",
-          "Read1_100MHZ_0/write_complete"
-        ]
-      },
-      "Write_Correct_100MHZ_0_A": {
-        "ports": [
-          "Write_Correct_100MHZ_0/A",
+          "Write1_100MHZ_0/A",
           "RW_ROUTER_100MHZ_0/A_write"
         ]
       },
-      "Write_Correct_100MHZ_0_CE_n": {
+      "Write1_100MHZ_0_CE_n": {
         "ports": [
-          "Write_Correct_100MHZ_0/CE_n",
+          "Write1_100MHZ_0/CE_n",
           "RW_ROUTER_100MHZ_0/CE_n_write"
         ]
       },
-      "Write_Correct_100MHZ_0_DQ_o": {
+      "Write1_100MHZ_0_DQ_o": {
         "ports": [
-          "Write_Correct_100MHZ_0/DQ_o",
+          "Write1_100MHZ_0/DQ_o",
           "RW_ROUTER_100MHZ_0/DQ_o_write"
         ]
       },
-      "Write_Correct_100MHZ_0_DQ_t": {
+      "Write1_100MHZ_0_DQ_t": {
         "ports": [
-          "Write_Correct_100MHZ_0/DQ_t",
+          "Write1_100MHZ_0/DQ_t",
           "RW_ROUTER_100MHZ_0/DQ_t_write"
         ]
       },
-      "Write_Correct_100MHZ_0_WE_n": {
+      "Write1_100MHZ_0_WE_n": {
         "ports": [
-          "Write_Correct_100MHZ_0/WE_n",
+          "Write1_100MHZ_0/WE_n",
           "RW_ROUTER_100MHZ_0/WE_n_write"
         ]
       },
-      "Write_Correct_100MHZ_0_decoder": {
+      "Write1_100MHZ_0_decoder": {
         "ports": [
-          "Write_Correct_100MHZ_0/decoder",
+          "Write1_100MHZ_0/decoder",
           "RW_ROUTER_100MHZ_0/decoder_write"
+        ]
+      },
+      "Write1_100MHZ_0_write_complete": {
+        "ports": [
+          "Write1_100MHZ_0/write_complete",
+          "RW_ROUTER_100MHZ_0/Toggle",
+          "Read1_100MHZ_0/write_complete"
         ]
       },
       "i_RX_Serial_0_1": {
@@ -2258,7 +2301,6 @@
           "sysclk",
           "Switchmod_0/sysclk",
           "UART_TX_100MHZ_0/sysclk",
-          "RW_ROUTER_100MHZ_0/sysclk",
           "Pulse_Per_Second_100_0/sysclk",
           "BF_Data_Collector_Dr_0/sysclk",
           "BF_formatter_0/clk",
@@ -2277,8 +2319,9 @@
           "UART_RX_100MHZ_2/sysclk",
           "TM_packet_sender_0/clk",
           "RAD_formatter_0/clk",
-          "Read1_100MHZ_0/sysclk",
-          "Write_Correct_100MHZ_0/sysclk"
+          "RW_ROUTER_100MHZ_0/sysclk",
+          "Write1_100MHZ_0/sysclk",
+          "Read1_100MHZ_0/sysclk"
         ]
       }
     }

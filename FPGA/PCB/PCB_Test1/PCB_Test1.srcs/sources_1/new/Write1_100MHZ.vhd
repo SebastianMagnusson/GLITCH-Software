@@ -56,8 +56,10 @@ architecture rtl of Write1_100MHZ is
     
     -- Convert to cycles (integer math, rounded up)
     --constant TAA_CYCLES : integer := 1; --(TAA_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
-    constant TWP_CYCLES : integer := 9; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
+    constant TWP_CYCLES : integer := 15; --(TWP_NS + CLK_PERIOD_NS - 1) / CLK_PERIOD_NS;
     --constant TOHZ_CYCLES: integer := 1; -- output disable to high-Z
+    
+    signal A_buf : std_logic_vector(ADDR_WIDTH-1 downto 0) := (others => '0');
 
 begin
 
@@ -67,7 +69,8 @@ begin
   
     if (reset_n = '0') then
       A              <= (others => '0'); -- Adress
-      CE_n           <= '1';             -- Select chip   (not selected)     
+      A_buf          <= (others => '0');
+      CE_n           <= '0';             -- Select chip   (not selected)     
       WE_n           <= '1';             -- Enable write  (not enabled)    
       wait_count     <= 0;               -- Used for timing   
       write_active   <= '0';             -- Drives DQ   
@@ -82,7 +85,8 @@ begin
       
         when WRITE_START =>
           A              <= std_logic_vector(addr_cnt);
-          CE_n           <= '0';             -- Select chip
+          A_buf          <= std_logic_vector(addr_cnt);
+          CE_n           <= '1';             -- Select chip
           WE_n           <= '0';             -- Enable write
           write_active   <= '1';             -- Drives DQ
           wait_count     <= 0;               -- Used for timing
@@ -105,32 +109,32 @@ begin
           state <= NEXT_ADDR;
     
         when NEXT_ADDR =>
-          if(addr_cnt = "1000010010000000101010") then    -- Random address to give wrong value (the one after this is the one changed)
+          if(A_buf = "1000010010000000101010") then    -- Random address to give wrong value (the one after this is the one changed)
             addr_cnt   <= addr_cnt + 1;
             write_data <= "1100110001001100";       -- Data written to address
             write_data_buf <= write_data;
             state <= WRITE_START;
-          elsif(addr_cnt = "1010001011111000101000") then    -- Random address to give wrong value (the one after this is the one changed)
+          elsif(A_buf = "1010001011111000101000") then    -- Random address to give wrong value (the one after this is the one changed)
             addr_cnt   <= addr_cnt + 1;
             write_data <= "1100110001001100";       -- Data written to address
             write_data_buf <= write_data;
             state <= WRITE_START;
-          elsif(addr_cnt = "1010101111111000101000") then    -- Random address to give wrong value (the one after this is the one changed)
+          elsif(A_buf = "1010101111111000101000") then    -- Random address to give wrong value (the one after this is the one changed)
             addr_cnt   <= addr_cnt + 1;
             write_data <= "1100110001001100";       -- Data written to address
             write_data_buf <= write_data;
             state <= WRITE_START;
-          elsif(addr_cnt = "1111111110101010101010") then    -- Random address to give wrong value (the one after this is the one changed)
+          elsif(A_buf = "1111111110101010101010") then    -- Random address to give wrong value (the one after this is the one changed)
             addr_cnt   <= addr_cnt + 1;
             write_data <= "1100110001001100";       -- Data written to address
             write_data_buf <= write_data;
             state <= WRITE_START;
-          elsif(addr_cnt = "1111111111010101010100") then    -- Random address to give wrong value (the one after this is the one changed)
+          elsif(A_buf = "1111111111010101010100") then    -- Random address to give wrong value (the one after this is the one changed)
             addr_cnt   <= addr_cnt + 1;
             write_data <= "1100110001001100";       -- Data written to address
             write_data_buf <= write_data;
             state <= WRITE_START;
-          elsif(addr_cnt = "1000010010000000101011" or addr_cnt = "1010001011111000101001" or addr_cnt = "1010101111111000101001" or addr_cnt = "1111111110101010101011" or addr_cnt = "1111111111010101010101") then -- Return to regular pattern
+          elsif(A_buf = "1000010010000000101011" or A_buf = "1010001011111000101001" or A_buf = "1010101111111000101001" or A_buf = "1111111110101010101011" or A_buf = "1111111111010101010101") then -- Return to regular pattern
             addr_cnt   <= addr_cnt + 1;
             write_data <= write_data_buf;
             state <= WRITE_START;

@@ -43,8 +43,10 @@ end RW_ROUTER_100MHZ;
 
 architecture rtl of RW_ROUTER_100MHZ is
 
-  type SM_State is (WRITE, READ);
+  type SM_State is (WRITE, READ, TURNOVER);
   signal state : SM_State := WRITE;
+  
+  signal cnt : integer range 0 to 255;
 
 begin
 
@@ -53,9 +55,10 @@ begin
   begin
   
     if(reset_n ='0') then
-      led1 <= '0';
-      DQ_t <= (others => '1'); -- High Impedence
+      led1  <= '0';
+      DQ_t  <= (others => '1'); -- High Impedence
       state <= WRITE;
+      cnt   <= 0;
       
     elsif rising_edge(sysclk) then
       
@@ -70,9 +73,18 @@ begin
           DQ_t <= DQ_t_write;
           decoder <= decoder_write;
           if(Toggle = '1') then
-            state <= READ;
+            state <= TURNOVER;
           else
             state <= WRITE;
+          end if;
+          
+        when TURNOVER =>
+          if(cnt < 11) then
+            cnt   <= cnt + 1;
+            state <= TURNOVER;
+          else
+            cnt   <= 0;
+            state <= READ;
           end if;
         
         when READ =>

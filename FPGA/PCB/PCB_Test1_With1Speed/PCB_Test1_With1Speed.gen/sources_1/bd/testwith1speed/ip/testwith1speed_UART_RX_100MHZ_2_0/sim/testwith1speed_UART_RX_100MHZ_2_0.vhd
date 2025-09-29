@@ -83,7 +83,7 @@ BEGIN
   U0 : UART_RX_100MHZ
     GENERIC MAP (
       Clockfrequency => 100000000,
-      Baud_Rate => 500000
+      Baud_Rate => 115200
     )
     PORT MAP (
       sysclk => sysclk,

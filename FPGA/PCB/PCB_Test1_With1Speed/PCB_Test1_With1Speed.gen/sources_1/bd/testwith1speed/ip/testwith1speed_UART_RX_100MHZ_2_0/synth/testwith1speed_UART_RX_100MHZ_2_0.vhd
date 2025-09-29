@@ -84,14 +84,14 @@ ARCHITECTURE testwith1speed_UART_RX_100MHZ_2_0_arch OF testwith1speed_UART_RX_10
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF testwith1speed_UART_RX_100MHZ_2_0_arch : ARCHITECTURE IS "testwith1speed_UART_RX_100MHZ_2_0,UART_RX_100MHZ,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF testwith1speed_UART_RX_100MHZ_2_0_arch: ARCHITECTURE IS "testwith1speed_UART_RX_100MHZ_2_0,UART_RX_100MHZ,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=UART_RX_100MHZ,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,Clockfrequency=100000000,Baud_Rate=500000}";
+  ATTRIBUTE CORE_GENERATION_INFO OF testwith1speed_UART_RX_100MHZ_2_0_arch: ARCHITECTURE IS "testwith1speed_UART_RX_100MHZ_2_0,UART_RX_100MHZ,{x_ipProduct=Vivado 2024.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=UART_RX_100MHZ,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=VHDL,Clockfrequency=100000000,Baud_Rate=115200}";
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
   ATTRIBUTE IP_DEFINITION_SOURCE OF testwith1speed_UART_RX_100MHZ_2_0_arch: ARCHITECTURE IS "module_ref";
 BEGIN
   U0 : UART_RX_100MHZ
     GENERIC MAP (
       Clockfrequency => 100000000,
-      Baud_Rate => 500000
+      Baud_Rate => 115200
     )
     PORT MAP (
       sysclk => sysclk,

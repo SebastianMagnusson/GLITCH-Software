@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Sun Sep 28 10:09:15 2025
+| Date         : Sun Sep 28 15:49:33 2025
 | Host         : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 | Command      : report_drc -file testwith1speed_wrapper_drc_opted.rpt -pb testwith1speed_wrapper_drc_opted.pb -rpx testwith1speed_wrapper_drc_opted.rpx
 | Design       : testwith1speed_wrapper
@@ -24,12 +24,13 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max checks: <unlimited>
-             Checks found: 4
+             Checks found: 20
 +--------+----------+------------------------+--------+
 | Rule   | Severity | Description            | Checks |
 +--------+----------+------------------------+--------+
 | DPOP-1 | Warning  | PREG Output pipelining | 2      |
 | DPOP-2 | Warning  | MREG Output pipelining | 2      |
+| IOSR-1 | Warning  | IOB set reset sharing  | 16     |
 +--------+----------+------------------------+--------+
 
 2. REPORT DETAILS
@@ -52,6 +53,102 @@ Related violations: <none>
 DPOP-2#2 Warning
 MREG Output pipelining  
 DSP testwith1speed_i/HTR_CALC_0/U0/multOp__0 multiplier stage testwith1speed_i/HTR_CALC_0/U0/multOp__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+IOSR-1#1 Warning
+IOB set reset sharing  
+IO SRAM1DQ[0] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#2 Warning
+IOB set reset sharing  
+IO SRAM1DQ[10] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#3 Warning
+IOB set reset sharing  
+IO SRAM1DQ[11] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#4 Warning
+IOB set reset sharing  
+IO SRAM1DQ[12] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#5 Warning
+IOB set reset sharing  
+IO SRAM1DQ[13] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#6 Warning
+IOB set reset sharing  
+IO SRAM1DQ[14] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#7 Warning
+IOB set reset sharing  
+IO SRAM1DQ[15] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#8 Warning
+IOB set reset sharing  
+IO SRAM1DQ[1] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#9 Warning
+IOB set reset sharing  
+IO SRAM1DQ[2] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#10 Warning
+IOB set reset sharing  
+IO SRAM1DQ[3] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#11 Warning
+IOB set reset sharing  
+IO SRAM1DQ[4] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#12 Warning
+IOB set reset sharing  
+IO SRAM1DQ[5] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#13 Warning
+IOB set reset sharing  
+IO SRAM1DQ[6] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#14 Warning
+IOB set reset sharing  
+IO SRAM1DQ[7] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#15 Warning
+IOB set reset sharing  
+IO SRAM1DQ[8] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#16 Warning
+IOB set reset sharing  
+IO SRAM1DQ[9] connects to flops which have these testwith1speed_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+testwith1speed_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
 Related violations: <none>
 
 

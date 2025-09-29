@@ -1,18 +1,18 @@
 {
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
-    "xci_name": "testwith1speed_Write_Correct_100MHZ_0_0",
-    "cell_name": "Write_Correct_100MHZ_0",
-    "component_reference": "xilinx.com:module_ref:Write_Correct_100MHZ:1.0",
+    "xci_name": "testwith1speed_Write1_100MHZ_0_0",
+    "cell_name": "Write1_100MHZ_0",
+    "component_reference": "xilinx.com:module_ref:Write1_100MHZ:1.0",
     "ip_revision": "1",
-    "gen_directory": "../../../../../../PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Write_Correct_100MHZ_0_0",
+    "gen_directory": "../../../../../../PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Write1_100MHZ_0_0",
     "parameters": {
       "component_parameters": {
         "ADDR_WIDTH": [ { "value": "22", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "DATA_WIDTH": [ { "value": "16", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "CLK_FREQ": [ { "value": "100000000", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "SRAM_BLOCK": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "Component_Name": [ { "value": "testwith1speed_Write_Correct_100MHZ_0_0", "resolve_type": "user", "usage": "all" } ]
+        "Component_Name": [ { "value": "testwith1speed_Write1_100MHZ_0_0", "resolve_type": "user", "usage": "all" } ]
       },
       "model_parameters": {
         "ADDR_WIDTH": [ { "value": "22", "resolve_type": "generated", "format": "long", "usage": "all" } ],
@@ -37,7 +37,7 @@
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "1" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Write_Correct_100MHZ_0_0" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../PCB_Test1_With1Speed.gen/sources_1/bd/testwith1speed/ip/testwith1speed_Write1_100MHZ_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2024.2" } ],
