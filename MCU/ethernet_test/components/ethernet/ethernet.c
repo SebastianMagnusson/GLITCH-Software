@@ -685,12 +685,14 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
             ESP_LOGE(TAG, "Failed to create confirmation task");
             return ESP_FAIL;
         }
+        return ESP_OK;
     } else if (tc_received == CONFIG_CLEAR_SD_TC_ID) {
         // Clear the SD card data
-        if (clear_sd_card_data() != ESP_OK) {
+        if (storage_clear_all_data() != ESP_OK) {
             ESP_LOGE(TAG, "Failed to clear SD card data");
             return ESP_FAIL;
         }
+        return ESP_OK;
     }
 
     // FIX: Pass the entire tc_received data, not just the ID
