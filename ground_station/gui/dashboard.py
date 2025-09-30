@@ -236,7 +236,7 @@ class Dashboard(QMainWindow):
         hbox = QHBoxLayout()
         hbox.addWidget(QLabel("Command Type:"))
         self.cmd_type_combo = QComboBox()
-        self.cmd_type_combo.addItems(["RESET", "CHANGE MODE","SEND HELLO","SET RTC","CLEAR SD","CUTOFF"])
+        self.cmd_type_combo.addItems(["RESET", "CHANGE MODE","SEND HELLO","SET RTC","CLEAR SD","CUT OFF"])
         hbox.addWidget(self.cmd_type_combo)
         cmd_layout.addLayout(hbox)
 

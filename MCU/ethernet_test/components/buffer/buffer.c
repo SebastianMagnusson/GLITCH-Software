@@ -229,6 +229,15 @@ uint8_t* buffer_retreive_tm() {
 
     free(frame->data);
     free(frame);
+    // Print size of buffer after retrieval
+    int count = 0;
+    frame_tm* temp = head_tm;
+    while (temp != NULL) {
+        count++;
+        temp = temp->next;
+    }
+    ESP_LOGI("Buffer", "TM buffer size after retrieval: %d", count);
+    
     return data_copy;
 }
 

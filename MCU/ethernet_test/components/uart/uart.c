@@ -174,7 +174,7 @@ void uart_task(void *pvParameters)
         uart_get_buffered_data_len(UART_NUM, &buffered_len);
 
         uint8_t *fpga_data = uart_receive();
-        if (!fpga_data) break;
+        if (!fpga_data) continue;;
 
         // Determine packet type and size
         uint8_t id = (fpga_data[0] >> 6) & 0x03;

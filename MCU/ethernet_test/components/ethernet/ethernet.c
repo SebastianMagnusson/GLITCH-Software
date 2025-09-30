@@ -429,37 +429,16 @@ esp_err_t eth_transmit(int sock, uint8_t *message, int max_retries)
     }
 
     for (int retry = 0; retry <= max_retries; retry++) {
-        
-        /* Might need to use an alternative transmission method in order to be able to decide padding and other parameters
-       But probably not since we should add the padding manually in the format_tm function, depending on the 
-        ret = esp_eth_transmit_vargs(eth_handle, message, length); 
-        */
-        // Alternative transmission method
-        // Keep this in mind for datarate testing
-        // send() can return less bytes than supplied length.
-        // Walk-around for robust implementation.
-        // Have to check bitrate on this as it might add a big padding overhead
-        /*
-        int to_write = len;
-        while (to_write > 0) {
-            int written = send(sock, rx_buffer + (len - to_write), to_write, 0);
-            if (written < 0) {
-                ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
-                // Failed to retransmit, giving up
-                return;
-            }
-            to_write -= written;
-        } 
-        */
-
         int len_sent = send(sock, message, length, 0);
-        
+
         if (len_sent > 0) {
             if (len_sent == length) {
+                ESP_LOGI(TAG, "Transmission successful: sent %d bytes", len_sent);
                 return ESP_OK; // Complete transmission successful
             } else {
                 ESP_LOGW(TAG, "Partial transmission: sent %d of %zu bytes", len_sent, length);
                 // Could implement partial send handling here if needed
+                ESP_LOGI(TAG, "Transmission successful (partial): sent %d bytes", len_sent);
                 return ESP_OK; // Return success for partial send
             }
         } else {
