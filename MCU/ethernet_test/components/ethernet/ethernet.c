@@ -1,6 +1,7 @@
 #include "ethernet.h"
 #include "buffer.h"
 #include "format.h"
+#include "storage.h"
 #include "sdkconfig.h"
 
 #include "driver/spi_master.h"
@@ -682,6 +683,12 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
     if (tc_received == CONFIG_CUT_OFF_TC_ID) {
         if (xTaskCreate(confirmation_task, "confirmation", 2048, task_params, 5, confirmation_task_handle) != pdPASS) {
             ESP_LOGE(TAG, "Failed to create confirmation task");
+            return ESP_FAIL;
+        }
+    } else if (tc_received == CONFIG_CLEAR_SD_TC_ID) {
+        // Clear the SD card data
+        if (clear_sd_card_data() != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to clear SD card data");
             return ESP_FAIL;
         }
     }

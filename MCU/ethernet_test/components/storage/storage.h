@@ -44,4 +44,9 @@ bool storage_enqueue_packet(const uint8_t *data, size_t length, uint8_t packet_i
 // (optional) stats
 esp_err_t storage_get_stats(uint32_t* free_kb, uint32_t* total_kb, uint32_t* total_packets);
 
+/**
+ * Clear all stored data on the SD card
+ */
+esp_err_t storage_clear_all_data(void);
+
 #endif // STORAGE_H

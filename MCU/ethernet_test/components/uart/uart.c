@@ -173,58 +173,57 @@ void uart_task(void *pvParameters)
         size_t buffered_len = 0;
         uart_get_buffered_data_len(UART_NUM, &buffered_len);
 
-        while (buffered_len >= 224/8) {
-            uint8_t *fpga_data = uart_receive();
-            if (!fpga_data) break;
+        uint8_t *fpga_data = uart_receive();
+        if (!fpga_data) break;
 
-            // Determine packet type and size
-            uint8_t id = (fpga_data[0] >> 6) & 0x03;
-            int packet_size = 0, data_bits = 0;
-            if (id == CONFIG_HOUSEKEEPING_PACKET_ID) {
-                packet_size = CONFIG_HOUSEKEEPING_PACKET_SIZE;
-                data_bits = 466;
-            } else if (id == CONFIG_BITFLIP_PACKET_ID) {
-                packet_size = CONFIG_BITFLIP_PACKET_SIZE;
-                data_bits = 224;
-            } else if (id == CONFIG_RADIATION_PACKET_ID) {
-                packet_size = CONFIG_RADIATION_PACKET_SIZE;
-                data_bits = 5010;
-            } else if (id == 3) {
-                uint8_t *ack_packet = format_ack(fpga_data[0]);
-                free(fpga_data);
-                if (ack_packet) {
-                    buffer_add_tm(3, ack_packet);
-                    free(ack_packet);
-                }
-                continue;
-            } else {
-                ESP_LOGE(TAG, "Unknown packet ID: %d", id);
-                free(fpga_data);
-                break;
-            }
-
-            uint8_t *packet = pack_tm(fpga_data, packet_size, data_bits);
+        // Determine packet type and size
+        uint8_t id = (fpga_data[0] >> 6) & 0x03;
+        int packet_size = 0, data_bits = 0;
+        if (id == CONFIG_HOUSEKEEPING_PACKET_ID) {
+            packet_size = CONFIG_HOUSEKEEPING_PACKET_SIZE;
+            data_bits = 466;
+        } else if (id == CONFIG_BITFLIP_PACKET_ID) {
+            packet_size = CONFIG_BITFLIP_PACKET_SIZE;
+            data_bits = 224;
+        } else if (id == CONFIG_RADIATION_PACKET_ID) {
+            packet_size = CONFIG_RADIATION_PACKET_SIZE;
+            data_bits = 5010;
+        } else if (id == 3) {
+            uint8_t *ack_packet = format_ack(fpga_data[0]);
             free(fpga_data);
-
-            if (!packet) {
-                ESP_LOGE(TAG, "Failed to pack FPGA data");
-                break;
+            if (ack_packet) {
+                buffer_add_tm(3, ack_packet);
+                free(ack_packet);
             }
-            
-            int priority = priority_assign(packet);
-            buffer_add_tm(priority, packet);
-
-            // Initialize storage if enabled
-            #ifdef CONFIG_ENABLE_SD_STORAGE
-                uint8_t packet_type = (packet[0] >> 6) & 0x03;
-                storage_enqueue_packet(packet, check_length(packet), packet_type);  // <- async
-            #endif
-
-            free(packet);
-
-            // update RX buffer length after consuming a packet
-            uart_get_buffered_data_len(UART_NUM, &buffered_len);
+            continue;
+        } else {
+            ESP_LOGE(TAG, "Unknown packet ID: %d", id);
+            free(fpga_data);
+            break;
         }
+
+        uint8_t *packet = pack_tm(fpga_data, packet_size, data_bits);
+        free(fpga_data);
+
+        if (!packet) {
+            ESP_LOGE(TAG, "Failed to pack FPGA data");
+            break;
+        }
+        
+        int priority = priority_assign(packet);
+        buffer_add_tm(priority, packet);
+
+        // Initialize storage if enabled
+        #ifdef CONFIG_ENABLE_SD_STORAGE
+            uint8_t packet_type = (packet[0] >> 6) & 0x03;
+            storage_enqueue_packet(packet, check_length(packet), packet_type);  // <- async
+        #endif
+
+        free(packet);
+
+        // update RX buffer length after consuming a packet
+        uart_get_buffered_data_len(UART_NUM, &buffered_len);
+    
 
         // --- Yield to other tasks ---
         vTaskDelay(pdMS_TO_TICKS(10));

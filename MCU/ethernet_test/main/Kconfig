@@ -44,9 +44,14 @@ config ACKNOWLEDGEMENT_PACKET_ID
     int "Acknowledgement task ID"
     default 3
 
+config CLEAR_SD_TC_ID
+    int "Clear SD card telecommand ID"
+    default 51
+
+
 config CUT_OFF_TC_ID
     int "Cut-off telecommand ID"
-    default 3
+    default 27
 
 endmenu
 

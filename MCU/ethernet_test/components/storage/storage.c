@@ -271,3 +271,29 @@ esp_err_t storage_get_stats(uint32_t* free_kb, uint32_t* total_kb, uint32_t* tot
     if (total_packets) *total_packets = s_packets;
     return ESP_OK;
 }
+
+esp_err_t storage_clear_all_data(void)
+{
+    if (!storage_ready) return ESP_ERR_INVALID_STATE;
+
+    close_files();
+
+    for (int i = 0; i < PACKET_TYPES_COUNT; i++) {
+        int res = unlink(filenames[i]);
+        if (res != 0 && errno != ENOENT) {
+            ESP_LOGE(TAG, "Failed to delete %s: errno=%d (%s)", filenames[i], errno, strerror(errno));
+            return ESP_FAIL;
+        }
+        ESP_LOGI(TAG, "Deleted %s", filenames[i]);
+    }
+
+    s_seq = 0;
+    s_packets = 0;
+
+    if (open_files_once() != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to reopen files after clearing");
+        return ESP_FAIL;
+    }
+
+    return ESP_OK;
+}

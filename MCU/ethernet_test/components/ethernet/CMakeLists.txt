@@ -1,3 +1,3 @@
 idf_component_register(SRCS "ethernet.c"
-                       PRIV_REQUIRES esp_driver_gpio esp_eth esp_netif esp_event buffer format packet_generation esp_eth
+                       PRIV_REQUIRES esp_driver_gpio esp_eth esp_netif esp_event buffer format packet_generation storage esp_eth
                        INCLUDE_DIRS ".")
