@@ -49,15 +49,35 @@ def convert_rtc(rtc_value):
 
 def convert_gnss(value):
     """
-    Convert a 384-bit (48-byte) GNSS field from binary to ASCII string.
-    `value` is expected to be a bytes object or an int.
+    Convert a 384-bit (48-byte) GNSS field from binary to ASCII string,
+    and extract decimal GPS coordinates as a single string.
     """
     if isinstance(value, int):
-        # Convert int to bytes (48 bytes, big-endian)
         value = value.to_bytes(48, 'big')
-    # Remove trailing nulls or padding
     ascii_str = value.rstrip(b'\x00').decode('ascii', errors='replace')
-    return ascii_str
+    # Example: $GPRMC,141502.000,A,6750.4288,N,02024.6432,E,0.0
+    parts = ascii_str.split(',')
+    if len(parts) >= 7:
+        # Latitude: ddmm.mmmm,N/S
+        lat_raw = parts[3]
+        lat_dir = parts[4]
+        lon_raw = parts[5]
+        lon_dir = parts[6]
+        try:
+            lat_deg = int(lat_raw[:2])
+            lat_min = float(lat_raw[2:])
+            lat = lat_deg + lat_min / 60.0
+            if lat_dir == 'S':
+                lat = -lat
+            lon_deg = int(lon_raw[:3])
+            lon_min = float(lon_raw[3:])
+            lon = lon_deg + lon_min / 60.0
+            if lon_dir == 'W':
+                lon = -lon
+            return f"{lat:.6f},{lon:.6f}"
+        except Exception:
+            pass
+    return str(lat_dir)+str(lon_dir)
 
 def calculate_packet_bits(fields):
     """Calculate total packet bits from field definitions"""

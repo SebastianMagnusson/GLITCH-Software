@@ -18,6 +18,8 @@
 
 #include "ethernet.h"
 
+TaskHandle_t tcp_server_handle = NULL;
+
 void app_main(void)
 {
     ESP_ERROR_CHECK(nvs_flash_init()); 
@@ -41,7 +43,7 @@ void app_main(void)
         .reset_flag = &reset_flag
     };
 
-    xTaskCreate(tcp_server_task, "tcp_server", 4096, &server_params, 5, NULL);
+    xTaskCreate(tcp_server_task, "tcp_server", 4096, &server_params, 5, &tcp_server_handle);
 
     uart_init();
     buffer_init();
@@ -52,9 +54,29 @@ void app_main(void)
             reset_flag = 0;
         } else if (kill_flag) {
             buffer_deinit();
+
+            // Wait for TCP server task to exit
+            if (tcp_server_handle) {
+                for (int i = 0; i < 20; ++i) {
+                    if (eTaskGetState(tcp_server_handle) == eDeleted) {
+                        tcp_server_handle = NULL;
+                        break;
+                    }
+                    vTaskDelay(pdMS_TO_TICKS(100));
+                }
+            }
+
+            // Now deinit Ethernet
+            eth_deinit(&eth_handle, 1);
+
+            // Now deinit storage
+            #ifdef CONFIG_ENABLE_SD_STORAGE
+                storage_deinit();
+            #endif
+
             uart_deinit();
             break;
         }
-        vTaskDelay(pdMS_TO_TICKS(100)); // Yield control to other tasks
+        vTaskDelay(pdMS_TO_TICKS(100));
     }
 }

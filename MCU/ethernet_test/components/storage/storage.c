@@ -67,6 +67,7 @@ static const char *filenames[] = {
 
 /* keep open */
 static FILE *s_files[PACKET_TYPES_COUNT] = {0};
+static volatile bool s_shutdown = false;
 
 static esp_err_t open_files_once(void)
 {
@@ -106,6 +107,7 @@ static void storage_task(void *arg)
     uint32_t since_flush = 0;
 
     for (;;) {
+        if (s_shutdown) break;
         storage_msg_t m;
         if (!xQueueReceive(s_q, &m, pdMS_TO_TICKS(100))) {
             /* idle flush */
@@ -160,6 +162,9 @@ static void storage_task(void *arg)
             since_flush = 0;
         }
     }
+    close_files();
+    ESP_LOGI(TAG, "storage task terminated");
+    vTaskDelete(NULL);
 }
 
 /* ---------- public API ---------- */
@@ -249,13 +254,21 @@ bool storage_enqueue_packet(const uint8_t *data, size_t length, uint8_t packet_i
 
 void storage_deinit(void)
 {
-    close_files();
+    s_shutdown = true;
+    if (s_task) {
+        // Wait for the task to exit
+        while (eTaskGetState(s_task) != eDeleted) {
+            vTaskDelay(pdMS_TO_TICKS(10));
+        }
+        s_task = NULL;
+    }
     if (card) {
         esp_vfs_fat_sdcard_unmount(base_path, card);
         card = NULL;
     }
     spi_bus_free(SPI3_HOST);
     storage_ready = false;
+    s_shutdown = false; // Reset for next init
 }
 
 esp_err_t storage_get_stats(uint32_t* free_kb, uint32_t* total_kb, uint32_t* total_packets)

@@ -37,6 +37,9 @@
 
 static EventGroupHandle_t s_network_event_group;    // Event group to signal connection status
 static const char *TAG = "Ethernet";
+static esp_netif_t *eth_netif = NULL;
+static void *eth_glue = NULL; // <-- Add this line
+
 
 /** Event handler for Ethernet events */
 static void eth_event_handler(void *arg, esp_event_base_t event_base,
@@ -194,9 +197,25 @@ esp_err_t eth_deinit(esp_eth_handle_t *eth_handles, uint8_t eth_cnt)
         esp_eth_mac_t *mac = NULL;
         esp_eth_phy_t *phy = NULL;
         if (eth_handles[i] != NULL) {
+            esp_err_t err = esp_eth_stop(eth_handles[i]);
+            if (err != ESP_OK) {
+                ESP_LOGE(TAG, "esp_eth_stop failed: %s", esp_err_to_name(err));
+            } else {
+                ESP_LOGI(TAG, "Ethernet %p stopped", eth_handles[i]);
+                vTaskDelay(pdMS_TO_TICKS(2000));
+            }
+            // --- Free glue before destroying netif ---
+            if (eth_glue) {
+                esp_eth_del_netif_glue(eth_glue);
+                eth_glue = NULL;
+            }
+            if (eth_netif) {
+                esp_netif_destroy(eth_netif);
+                eth_netif = NULL;
+            }
+            esp_eth_driver_uninstall(eth_handles[i]);
             esp_eth_get_mac_instance(eth_handles[i], &mac);
             esp_eth_get_phy_instance(eth_handles[i], &phy);
-            ESP_RETURN_ON_ERROR(esp_eth_driver_uninstall(eth_handles[i]), TAG, "Ethernet %p uninstall failed", eth_handles[i]);
         }
         if (mac != NULL) {
             mac->del(mac);
@@ -205,7 +224,6 @@ esp_err_t eth_deinit(esp_eth_handle_t *eth_handles, uint8_t eth_cnt)
             phy->del(phy);
         }
     }
-    free(eth_handles);
     return ESP_OK;
 }
 
@@ -214,21 +232,19 @@ esp_eth_handle_t ethernet_setup(void){
     esp_eth_handle_t eth_handle = init_wiz550io_eth(); // Initialize Ethernet driver
     if (!eth_handle) return NULL;
 
-    // REMOVE these lines (already done in app_main):
-    // ESP_ERROR_CHECK(esp_netif_init());
-    // ESP_ERROR_CHECK(esp_event_loop_create_default());
-
-    static esp_netif_t *eth_netif = NULL;
     if (!eth_netif) {
         esp_netif_config_t cfg = ESP_NETIF_DEFAULT_ETH();
         eth_netif = esp_netif_new(&cfg);
-        void *glue = esp_eth_new_netif_glue(eth_handle);
-        if (!glue) {
+        eth_glue = esp_eth_new_netif_glue(eth_handle); // <-- Store glue pointer
+        if (!eth_glue) {
             ESP_LOGE(TAG, "esp_eth_new_netif_glue returned NULL!");
             return NULL;
         }
-        ESP_ERROR_CHECK(esp_netif_attach(eth_netif, glue));
+        ESP_ERROR_CHECK(esp_netif_attach(eth_netif, eth_glue));
     }
+
+    esp_event_handler_unregister(ETH_EVENT, ESP_EVENT_ANY_ID, &eth_event_handler);
+    esp_event_handler_unregister(IP_EVENT, IP_EVENT_ETH_GOT_IP, &got_ip_event_handler);
 
     ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ESP_EVENT_ANY_ID, &eth_event_handler, NULL));
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP, &got_ip_event_handler, NULL));
@@ -592,7 +608,6 @@ void confirmation_task(void *pvParameters)
     int sock = params->sock;
     volatile int *kill_flag = params->kill_flag;
     
-    int len;
     uint8_t response[128];
 
     // Use select() to wait for data with a 5-second timeout
@@ -609,10 +624,9 @@ void confirmation_task(void *pvParameters)
     
     if (ready > 0) {
         // Data is available, safe to call recv without blocking
-        len = eth_receive_data(sock, response, sizeof(response), MSG_DONTWAIT);
+        int len = recv(sock, response, sizeof(response) - 1, 0);
         
         if (len <= 0) {
-            // No data or error, kill task
             ESP_LOGW(TAG, "No data received or recv error, killing confirmation task");
             vTaskDelete(NULL);
         }
@@ -626,17 +640,26 @@ void confirmation_task(void *pvParameters)
         if (tc_received == CONFIG_CUT_OFF_TC_ID)  {
             uint8_t *ack_packet = format_ack(tc_received);
             if (ack_packet != NULL) {
-
-                eth_transmit(sock, ack_packet, 2);
+                if (eth_transmit(sock, ack_packet, 2) != ESP_OK) {
+                    ESP_LOGE(TAG, "Failed to send ACK packet");
+                }
+                free(ack_packet);
 
                 buffer_add_tc(tc_received);
-
-                // Set the kill flag
+                vTaskDelay(pdMS_TO_TICKS(100));
+                drain_transmit_buffer(sock);
+                ESP_LOGI(TAG, "Cut-off telecommand processed, shutting down server");
+                close(sock);
                 *kill_flag = 1;
             }
         }
+    } else if (ready == 0) {
+        ESP_LOGW(TAG, "Timeout waiting for confirmation data");
+    } else {
+        ESP_LOGE(TAG, "select() error: errno %d", errno);
     }
 
+    ESP_LOGI(TAG, "Confirmation task exiting");
     vTaskDelete(NULL);
 }
 
@@ -660,7 +683,7 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
 
     // Check if the telecommand warrants a confirmation task
     if (tc_received == CONFIG_CUT_OFF_TC_ID) {
-        if (xTaskCreate(confirmation_task, "confirmation", 2048, task_params, 5, confirmation_task_handle) != pdPASS) {
+        if (xTaskCreate(confirmation_task, "confirmation", 4096, task_params, 5, confirmation_task_handle) != pdPASS) {
             ESP_LOGE(TAG, "Failed to create confirmation task");
             return ESP_FAIL;
         }
@@ -723,113 +746,6 @@ static esp_err_t clear_socket_buffers(int sock)
 
     ESP_LOGI(TAG, "Drained %d bytes from socket buffers", total_drained);
     return ESP_OK;
-}
-
-/**
- * @brief Handle client connection and data exchange
- * @param sock Client socket
- * @param eth_handle Ethernet handle
- * @param server_kill_flag Pointer to server kill flag
- * @return ESP_OK on normal completion, ESP_FAIL on error
- */
-void handle_client_connection(int sock, esp_eth_handle_t eth_handle, volatile int *server_kill_flag)
-{
-    // Configure socket keepalive
-    if (configure_socket_keepalive(sock) != ESP_OK) {
-        ESP_LOGW(TAG, "Failed to configure keepalive options");
-    }
-
-    // Initial retransmission of any buffered data
-    /* Can remove
-    if (do_retransmit(sock) != ESP_OK) {
-        ESP_LOGE(TAG, "Initial retransmission failed");
-        return;
-    }
-    */
-    // Create a task-specific kill flag for confirmation task
-    volatile int confirmation_kill_flag = 0;
-    
-    // Set up task parameters for confirmation task
-    general_task_params_t task_params = {
-        .sock = sock,
-        .kill_flag = &confirmation_kill_flag
-    };
-    
-    TaskHandle_t confirmation_task_handle = NULL;
-    uint8_t rx_buffer[CONFIG_ETH_BUFFER_SIZE];
-    int len_receive;
-
-    // Main communication loop
-    do {
-        // Send any pending data from transmit buffer
-        uint8_t *tm_packet = buffer_retreive_tm(); 
-        if (tm_packet != NULL) {
-            /*
-            if (tm_packet[3] == 0b00000011) {
-                xTaskCreate(radiation_sending_task, "radiation_sending", 2048, &task_params, 5, NULL);
-            }
-            */
-            if (eth_transmit(sock, tm_packet, 2) != ESP_OK) {
-                ESP_LOGE(TAG, "Transmission failed, closing connection");
-                break;
-            }
-        }
-
-        // Receive data from client (non-blocking)
-        len_receive = eth_receive_data(sock, rx_buffer, sizeof(rx_buffer), MSG_DONTWAIT);
-        ESP_LOGD(TAG, "Received %d bytes from client", len_receive);
-
-
-        // Check if confirmation task has completed
-        if (confirmation_kill_flag && confirmation_task_handle != NULL) {
-            ESP_LOGI(TAG, "Confirmation task completed, shutting down server");
-            
-            // Set server kill flag
-            *server_kill_flag = 1;
-            confirmation_task_handle = NULL;
-
-            // Drain any remaining data in transmit buffer
-            if (drain_transmit_buffer(sock) < 0) {
-                ESP_LOGE(TAG, "Failed to drain transmit buffer");
-            }
-
-            // Cleanup and exit
-            shutdown(sock, 0);
-            close(sock);
-            eth_deinit(eth_handle, 1);
-            vTaskDelete(NULL);
-        }
-
-        // Process received data
-        if (len_receive > 0) {
-            // Add debugging: log the received data
-            ESP_LOGI(TAG, "Received %d bytes. Raw data:", len_receive);
-            for (int i = 0; i < len_receive && i < 16; i++) {
-                ESP_LOGI(TAG, "  byte[%d]: 0x%02X", i, rx_buffer[i]);
-            }
-            
-            if (process_received_telecommand(rx_buffer, sock, &task_params, &confirmation_task_handle) != ESP_OK) {
-                ESP_LOGW(TAG, "Failed to process telecommand, continuing...");
-            }
-
-        } else if (len_receive < 0) {
-            // Fatal error occurred
-            ESP_LOGE(TAG, "Fatal receive error, closing connection");
-            break;
-        }
-        // len_receive == 0 means no data available (EAGAIN/EWOULDBLOCK), continue loop
-
-        // Feed the watchdog to prevent timeout
-        esp_task_wdt_reset();
-        // eth_transmit(sock, generate_RAD_packet(), 2);
-        // Small delay to prevent busy waiting - increased to give more time
-        //vTaskDelay(pdMS_TO_TICKS(500));
-
-    } while (len_receive >= 0);
-
-    clear_socket_buffers(sock);
-
-    return;
 }
 
 void tcp_server_task(void *pvParameters)
@@ -990,7 +906,9 @@ void tcp_server_task(void *pvParameters)
     }
     
     close(listen_sock);
-    *reset_flag = 1;
+    if (!*server_kill_flag) {
+        *reset_flag = 1;
+    }
     ESP_LOGI(TAG, "TCP server task exiting");
     vTaskDelete(NULL);
 }

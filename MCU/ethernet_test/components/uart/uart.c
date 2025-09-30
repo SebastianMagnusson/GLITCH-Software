@@ -17,6 +17,9 @@
 static const char *TAG = "UART";
 QueueHandle_t uart0_queue;
 
+static volatile bool uart_shutdown = false;
+static TaskHandle_t uart_task_handle = NULL;
+
 char* bytes_to_bin_string(const uint8_t* data, int length) {
     if (data == NULL || length <= 0) {
         return NULL;
@@ -161,20 +164,19 @@ uint8_t* uart_receive(void) {
 void uart_task(void *pvParameters)
 {
     ESP_LOGI(TAG, "Starting UART task");
-    while (1) {
+    while (!uart_shutdown) {
         // --- Send any pending TC packets ---
         uint8_t tc_data = buffer_retreive_tc();
         if (tc_data != 255) {
             uart_send(&tc_data); // Send the TC code
         }
-        
 
         // --- Drain all available FPGA packets from UART ---
         size_t buffered_len = 0;
         uart_get_buffered_data_len(UART_NUM, &buffered_len);
 
         uint8_t *fpga_data = uart_receive();
-        if (!fpga_data) continue;;
+        if (!fpga_data) continue;
 
         // Determine packet type and size
         uint8_t id = (fpga_data[0] >> 6) & 0x03;
@@ -228,24 +230,9 @@ void uart_task(void *pvParameters)
         // --- Yield to other tasks ---
         vTaskDelay(pdMS_TO_TICKS(10));
     }
+    ESP_LOGI(TAG, "UART task exiting");
+    vTaskDelete(NULL);
 }
-
-// Function to concatenate two data strings (might not be in use, delete at own risk)
-/*
-uint8_t* concatenate_data(uint8_t* data1, uint8_t* data2, int length) {
-    
-    uint8_t* concatenated_data = (uint8_t*)malloc(length);
-    if (!concatenated_data) {
-        ESP_LOGE(TAG, "Failed to allocate memory for concatenated data");
-        return (uint8_t*)NULL; 
-    }
-
-    memcpy(concatenated_data, data1, 1);
-    memcpy(concatenated_data + 1, data2, length - 1);
-
-    return concatenated_data; 
-}
-*/
 
 void uart_init(void) {
 
@@ -291,10 +278,23 @@ void uart_init(void) {
 
     
     // Increase stack size from 2048 to 4096 to handle radiation packets
-    xTaskCreate(&uart_task, "uart_task", 4096, NULL, 10, NULL);
+    uart_shutdown = false;
+    xTaskCreate(&uart_task, "uart_task", 4096, NULL, 10, &uart_task_handle);
 }
 
 void uart_deinit(void) {
+    uart_shutdown = true;
+    // Wait for the task to exit
+    if (uart_task_handle) {
+        // Wait up to 100ms for the task to exit
+        for (int i = 0; i < 10; ++i) {
+            if (eTaskGetState(uart_task_handle) == eDeleted) {
+                uart_task_handle = NULL;
+                break;
+            }
+            vTaskDelay(pdMS_TO_TICKS(10));
+        }
+    }
     uart_driver_delete(UART_NUM);
 
     #ifdef CONFIG_ENABLE_SD_STORAGE

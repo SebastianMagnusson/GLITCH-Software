@@ -44,3 +44,5 @@ esp_err_t eth_transmit(const int sock, uint8_t *message, int max_retries);
 /// @param max_retries Maximum number of retry attempts
 /// @return ESP_OK on success, ESP_FAIL on failure
 esp_err_t eth_transmit_robust(int sock, uint8_t *message, int max_retries);
+
+esp_err_t eth_deinit(esp_eth_handle_t *eth_handles, uint8_t eth_cnt);

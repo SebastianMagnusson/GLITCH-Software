@@ -16,5 +16,5 @@ MAX_LOG_ENTRIES = 100
 LOGS_DIR = "storage/logs"
 
 # Packet settings
-MAX_DATA_POINTS_GRAPH = 100
+MAX_DATA_POINTS_GRAPH = 500
 
