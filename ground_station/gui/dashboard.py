@@ -314,6 +314,9 @@ class Dashboard(QMainWindow):
         self.temp_plot.setLabel('bottom', 'Time', units='s')
         self.temp_plot.showGrid(x=True, y=True)
         self.temp_plot.addLegend()
+
+        self.temp_plot.setYRange(-30, 40, padding=0)
+        self.temp_plot.enableAutoRange(axis='y', enable=True)
         
         # Create temperature data arrays
         self.max_data_points = 300  # 5 minutes at 1 sample per second
