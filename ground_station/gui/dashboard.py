@@ -84,7 +84,6 @@ class Dashboard(QMainWindow):
             ("Sequence Counter", "seq_counter"), 
             ("RTC", "rtc"),
             ("Internal Temp", "internal"),
-            ("External Temp", "external"),
             ("GNSS", "gnss"),
             ("Altitude", "altitude"),
             ("Radiation", "radiation")
@@ -317,8 +316,8 @@ class Dashboard(QMainWindow):
         self.temp_plot.showGrid(x=True, y=True)
         self.temp_plot.addLegend()
 
-        self.temp_plot.setYRange(-30, 40, padding=0)
-        self.temp_plot.enableAutoRange(axis='y', enable=True)
+        self.temp_plot.setYRange(-40, 50, padding=0)
+        #self.temp_plot.enableAutoRange(axis='y', enable=True)
         
         # Create temperature data arrays
         self.max_data_points = 300  # 5 minutes at 1 sample per second
@@ -326,7 +325,6 @@ class Dashboard(QMainWindow):
         # Use fixed-size arrays for temperature graph
         self.time_data = np.zeros(self.max_data_points)
         self.internal_temp_data = np.zeros(self.max_data_points)
-        self.external_temp_data = np.zeros(self.max_data_points)
         
         # Use fixed-size arrays for altitude graph
         self.alt_time_data = np.zeros(self.max_data_points)
@@ -334,18 +332,14 @@ class Dashboard(QMainWindow):
         
         # Track previous values for missing data points
         self.last_internal_temp = 0
-        self.last_external_temp = 0
         self.last_altitude = 0
 
         
         self.internal_line = self.temp_plot.plot(
             self.time_data, self.internal_temp_data, 
-            pen=pg.mkPen('r', width=2), name='Internal'
+            pen=pg.mkPen('g', width=2), name='Internal'
         )
-        self.external_line = self.temp_plot.plot(
-            self.time_data, self.external_temp_data, 
-            pen=pg.mkPen('g', width=2), name='External'
-        )
+
         
         
         temp_graph_layout.addWidget(self.temp_plot)
@@ -568,7 +562,6 @@ class Dashboard(QMainWindow):
             # Shift arrays left to remove oldest data point
             self.time_data[:-1] = self.time_data[1:]
             self.internal_temp_data[:-1] = self.internal_temp_data[1:]
-            self.external_temp_data[:-1] = self.external_temp_data[1:]
             
             # Add new data at the end
             self.time_data[-1] = rtc_seconds
@@ -578,9 +571,7 @@ class Dashboard(QMainWindow):
                 self.last_internal_temp = float(hk_data['internal'])
             self.internal_temp_data[-1] = self.last_internal_temp
         
-            if 'external' in hk_data:
-                self.last_external_temp = float(hk_data['external'])
-            self.external_temp_data[-1] = self.last_external_temp
+            
         
         
             # Update plot data - only show non-zero values (to avoid initial zeros)
@@ -588,11 +579,9 @@ class Dashboard(QMainWindow):
             if len(non_zero_indices) > 0:
                 start_idx = non_zero_indices[0]
                 self.internal_line.setData(self.time_data[start_idx:], self.internal_temp_data[start_idx:])
-                self.external_line.setData(self.time_data[start_idx:], self.external_temp_data[start_idx:])
             else:
                 # No data yet
                 self.internal_line.setData([], [])
-                self.external_line.setData([], [])
         except Exception as e:
             print(f"Error updating temperature graph: {e}")
     
