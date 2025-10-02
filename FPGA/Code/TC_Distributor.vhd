@@ -25,7 +25,7 @@ entity TC_distributor is
         cmd4  : out std_logic;
         cmd5  : out std_logic;
         cmd6  : out std_logic;
-        led0  : out std_logic
+        led0  : out std_logic := '0'
     );
 end TC_distributor;
 
@@ -43,9 +43,9 @@ architecture rtl of TC_distributor is
     constant CMD0_lookup : std_logic_vector(0 to 7) := x"AA";
     constant CMD1_lookup : std_logic_vector(0 to 7) := x"55";
     constant CMD2_lookup : std_logic_vector(0 to 7) := x"CC";
-    constant CMD3_lookup : std_logic_vector(0 to 7) := x"33";
+    constant CMD3_lookup : std_logic_vector(0 to 7) := x"E4";
     constant CMD4_lookup : std_logic_vector(0 to 7) := x"94";
-    constant CMD5_lookup : std_logic_vector(0 to 7) := x"E4";
+    constant CMD5_lookup : std_logic_vector(0 to 7) := x"33";
     constant CMD6_lookup : std_logic_vector(0 to 7) := x"1B";
 
 begin
@@ -58,7 +58,6 @@ begin
 
               if(wait_cnt < Clockfrequency-1) then
                 wait_cnt := wait_cnt + 1;
-                led0 <= '0';
                 
                 cmd0 <= '0';
                 cmd1 <= '0';
@@ -68,7 +67,6 @@ begin
                 cmd5 <= '0';
                 cmd6 <= '0';
               else
-                led0 <= '1';
                 case state is
 
                     
@@ -104,6 +102,7 @@ begin
                             wait_cnt := 0;
                         elsif TC_i = CMD3_lookup then
                             cmd3 <= '1';
+                            led0 <= '1';
                             wait_cnt := 0;
                         elsif TC_i = CMD4_lookup then
                             cmd4 <= '1';

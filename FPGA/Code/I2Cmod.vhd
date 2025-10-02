@@ -35,7 +35,8 @@ entity I2Cmod is
        data_wr   : in std_logic_vector(7 downto 0);   -- Data to write to slave
        busy      : out std_logic;                     -- Indicates transaction in progress
        data_rd   : out std_logic_vector(7 downto 0);  -- Data read from slave
-       ack_error : out std_logic);                 -- Flag if improper acknowledge from slave       
+       ack_error : out std_logic;
+       led0      : out std_logic);                 -- Flag if improper acknowledge from slave       
 end I2Cmod;
 
 architecture rtl of I2Cmod is
@@ -104,6 +105,7 @@ begin
     if(reset_n = '0') then      -- Reset asserted
       state         <= READY;       -- Return to initial state 
       busy          <= '1';         -- Indicate not available
+      led0          <= '1';
       scl_ena       <= '0';         -- Sets scl high impedance (see after process)
       sda_int       <= '1';         -- Sets sda high impedance (see after process)
       ack_error_int <= '0';         -- Clear acknowledge error flag
@@ -117,16 +119,19 @@ begin
           when READY =>             -- Idle state
             if(ena = '1') then      -- Transaction requested
               busy    <= '1';       -- Flag busy
+              led0    <= '1';
               addr_rw <= addr & rw; -- Collect requested slave address and command
               data_tx <= data_wr;   -- Collect requested data to write
               state   <= START;     -- Go to start bit
             else                    -- Remain idle
               busy  <= '0';         -- Unflag busy
+              led0  <= '0';
               state <= READY;       -- Remain idle
             end if;                
           
           when START =>                  -- Start bit of transaction
             busy    <= '1';              -- Resume busy if continuous mode
+            led0    <= '1';
             sda_int <= addr_rw(bit_cnt); -- Set first address bit to bus
             state   <= COMMAND;          -- Go to command
             
@@ -152,6 +157,7 @@ begin
             
           when WRITE =>                      -- Write byte of transaction
             busy <= '1';                     -- Resume busy if continuous mode
+            led0 <= '1';
             if(bit_cnt = 0) then             -- Write byte transmit finished
               sda_int <= '1';                -- Release sda for slave acknowledge
               bit_cnt <= 7;                  -- Reset bit counter for "byte" states
@@ -164,6 +170,7 @@ begin
             
           when READ =>                                   -- Read byte of transaction
             busy <= '1';                                 -- Resume busy if continuous mode
+            led0 <= '1';
             if(bit_cnt = 0) then                         -- Read byte receive finished
               if(ena = '1' and addr_rw = addr & rw) then -- Continuing with another read at the same address
                 sda_int <= '0';                           -- Acknowledge the byte has been received
@@ -181,6 +188,7 @@ begin
           when SLV_ACK2 =>                   -- Slave acknowledge bit (write)
             if(ena = '1') then               -- Continue transaction
               busy    <= '0';                -- Continue is accepted
+              led0    <= '0';
               addr_rw <= addr & rw;          -- Collect requested slave address and command
               data_tx <= data_wr;            -- Collect requested data to write
               if(addr_rw = addr & rw) then   -- Continue transaction with another write
@@ -196,6 +204,7 @@ begin
           when MSTR_ACK =>                 -- Master acknowledge bit after a read
             if(ena = '1') then             -- Continue transaction
               busy <= '0';                 -- Continue is accepted and data received is available on bus
+              led0 <= '0';
               addr_rw <= addr & rw;        -- Collect requested slave address and command
               data_tx <= data_wr;          -- Collect requested data to write
               if(addr_rw = addr & rw) then -- Continue transaction with another read
@@ -210,6 +219,7 @@ begin
             
           when STOP =>    
             busy  <= '0';
+            led0  <= '0';
             state <= READY;     
         end case;
         

@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"PCB_All_SRAM": {
+			"proto_instances": {
+			}
+		}
+	}
+}

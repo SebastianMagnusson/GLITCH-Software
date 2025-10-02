@@ -10,14 +10,14 @@ entity HTR_CALC is
 	generic (Clockfrequency : integer := 100*1000000);
     port (
         clk        : in std_logic;
-        rst        : in std_logic;
-		temp_data  : in std_logic_vector(31 downto 0);
-		temp_DV	   : in std_logic;
-		HTR_request		: out std_logic;
-		I2C_read_done   : out std_logic;
-		command_htr1 : out integer;
-		command_htr2 : out integer;
-		led1       : out std_logic
+        HTR_rst    : in std_logic;
+		    temp_data  : in std_logic_vector(31 downto 0);
+		    temp_DV	   : in std_logic;
+		    HTR_request		  : out std_logic;
+		    I2C_read_done   : out std_logic;
+		    command_htr1    : out integer;
+		    command_htr2    : out integer;
+		    led1            : out std_logic
     );
 end entity;
 
@@ -46,7 +46,7 @@ begin
 		variable shifted_2 : unsigned(15 downto 0);
     begin
         if rising_edge(clk) then
-            if rst = '0' then
+            if HTR_rst = '0' then
 				
                 sec_cnt <= 0;
                 temp_data_i <= (others => '0');
@@ -54,6 +54,10 @@ begin
                 temp_raw_2 <= to_unsigned(0, 16);
                 temp_calculated_1 <= 0;
                 temp_calculated_2 <= 0;
+                
+                command_htr1 <= 0;
+                command_htr2 <= 0;
+                
                 state <= IDLE;
                 
             else

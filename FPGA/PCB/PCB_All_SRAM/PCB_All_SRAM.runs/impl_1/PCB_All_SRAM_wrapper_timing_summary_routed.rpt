@@ -1,0 +1,687 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Wed Oct  1 14:41:58 2025
+| Host         : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
+| Command      : report_timing_summary -max_paths 10 -report_unconstrained -file PCB_All_SRAM_wrapper_timing_summary_routed.rpt -pb PCB_All_SRAM_wrapper_timing_summary_routed.pb -rpx PCB_All_SRAM_wrapper_timing_summary_routed.rpx -warn_on_violation
+| Design       : PCB_All_SRAM_wrapper
+| Device       : 7a100t-csg324
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+  Merge Timing Exceptions                    :  Yes
+  Inter-SLR Compensation                     :  Conservative
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+------------------------------------------------------------------------------------------------
+| Report Methodology
+| ------------------
+------------------------------------------------------------------------------------------------
+
+Rule       Severity          Description                     Violations  
+---------  ----------------  ------------------------------  ----------  
+TIMING-17  Critical Warning  Non-clocked sequential cell     1000        
+LUTAR-1    Warning           LUT drives async reset alert    2           
+TIMING-20  Warning           Non-clocked latch               1           
+LATCH-1    Advisory          Existing latches in the design  1           
+
+Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock (19377)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (52566)
+5. checking no_input_delay (37)
+6. checking no_output_delay (95)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (0)
+10. checking partial_input_delay (0)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
+
+1. checking no_clock (19377)
+----------------------------
+ There are 19375 register/latch pins with no clock driven by root clock pin: sysclk (HIGH)
+
+ There is 1 register/latch pin with no clock driven by root clock pin: PCB_All_SRAM_i/Mode_control_0/U0/o_signal_reg/Q (HIGH)
+
+ There is 1 register/latch pin with no clock driven by root clock pin: PCB_All_SRAM_i/UART_RX_100MHZ_0/U0/r_RX_DV_reg/Q (HIGH)
+
+
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints (52566)
+----------------------------------------------------
+ There are 52566 pins that are not constrained for maximum delay. (HIGH)
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay (37)
+-------------------------------
+ There are 37 input ports with no input delay specified. (HIGH)
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay (95)
+--------------------------------
+ There are 95 ports with no output delay specified. (HIGH)
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops (0)
+---------------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay (0)
+------------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+        inf        0.000                      0                52661          inf        0.000                      0                52661           NA           NA                      NA                    NA  
+
+
+There are no user specified timing constraints.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| User Ignored Path Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+
+
+------------------------------------------------------------------------------------------------
+| Unconstrained Path Table
+| ------------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+(none)                                    
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  
+
+Max Delay         52661 Endpoints
+Min Delay         52661 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4103]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        48.605ns  (logic 2.403ns (4.944%)  route 46.202ns (95.056%))
+  Logic Levels:           6  (CARRY4=1 FDSE=1 LUT4=2 LUT5=1 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X80Y156        FDSE                         0.000     0.000 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+    SLICE_X80Y156        FDSE (Prop_fdse_C_Q)         0.478     0.478 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/Q
+                         net (fo=19, routed)          1.271     1.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[6]
+    SLICE_X80Y159        CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.782     2.531 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[3]
+                         net (fo=4332, routed)       37.139    39.670    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_4
+    SLICE_X57Y130        LUT6 (Prop_lut6_I0_O)        0.307    39.977 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4613]_i_7/O
+                         net (fo=21, routed)          3.892    43.869    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4613]_i_7_n_0
+    SLICE_X63Y171        LUT4 (Prop_lut4_I2_O)        0.150    44.019 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4103]_i_4/O
+                         net (fo=5, routed)           2.252    46.271    PCB_All_SRAM_i/RAD_formatter_0/U0/p_1_in[4103]
+    SLICE_X61Y138        LUT4 (Prop_lut4_I2_O)        0.354    46.625 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4103]_i_3/O
+                         net (fo=1, routed)           1.647    48.273    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4103]_i_3_n_0
+    SLICE_X63Y115        LUT5 (Prop_lut5_I2_O)        0.332    48.605 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4103]_i_1/O
+                         net (fo=1, routed)           0.000    48.605    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4103]_i_1_n_0
+    SLICE_X63Y115        FDRE                                         r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4103]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4102]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        48.324ns  (logic 2.167ns (4.484%)  route 46.157ns (95.516%))
+  Logic Levels:           6  (CARRY4=1 FDSE=1 LUT4=1 LUT5=1 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X80Y156        FDSE                         0.000     0.000 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+    SLICE_X80Y156        FDSE (Prop_fdse_C_Q)         0.478     0.478 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/Q
+                         net (fo=19, routed)          1.271     1.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[6]
+    SLICE_X80Y159        CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.782     2.531 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[3]
+                         net (fo=4332, routed)       37.139    39.670    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_4
+    SLICE_X57Y130        LUT6 (Prop_lut6_I0_O)        0.307    39.977 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4613]_i_7/O
+                         net (fo=21, routed)          3.892    43.869    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4613]_i_7_n_0
+    SLICE_X63Y171        LUT4 (Prop_lut4_I2_O)        0.150    44.019 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4103]_i_4/O
+                         net (fo=5, routed)           2.627    46.646    PCB_All_SRAM_i/RAD_formatter_0/U0/p_1_in[4103]
+    SLICE_X63Y137        LUT6 (Prop_lut6_I2_O)        0.326    46.972 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4102]_i_3/O
+                         net (fo=1, routed)           1.228    48.200    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4102]_i_3_n_0
+    SLICE_X63Y119        LUT5 (Prop_lut5_I2_O)        0.124    48.324 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4102]_i_1/O
+                         net (fo=1, routed)           0.000    48.324    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4102]_i_1_n_0
+    SLICE_X63Y119        FDRE                                         r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4102]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4099]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        47.098ns  (logic 2.167ns (4.601%)  route 44.931ns (95.399%))
+  Logic Levels:           6  (CARRY4=1 FDSE=1 LUT4=1 LUT5=1 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X80Y156        FDSE                         0.000     0.000 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+    SLICE_X80Y156        FDSE (Prop_fdse_C_Q)         0.478     0.478 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/Q
+                         net (fo=19, routed)          1.271     1.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[6]
+    SLICE_X80Y159        CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.782     2.531 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[3]
+                         net (fo=4332, routed)       37.139    39.670    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_4
+    SLICE_X57Y130        LUT6 (Prop_lut6_I0_O)        0.307    39.977 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4613]_i_7/O
+                         net (fo=21, routed)          3.892    43.869    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4613]_i_7_n_0
+    SLICE_X63Y171        LUT4 (Prop_lut4_I2_O)        0.150    44.019 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4103]_i_4/O
+                         net (fo=5, routed)           2.464    46.483    PCB_All_SRAM_i/RAD_formatter_0/U0/p_1_in[4103]
+    SLICE_X62Y138        LUT6 (Prop_lut6_I2_O)        0.326    46.809 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4099]_i_3/O
+                         net (fo=1, routed)           0.165    46.974    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4099]_i_3_n_0
+    SLICE_X62Y138        LUT5 (Prop_lut5_I2_O)        0.124    47.098 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4099]_i_1/O
+                         net (fo=1, routed)           0.000    47.098    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4099]_i_1_n_0
+    SLICE_X62Y138        FDRE                                         r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4099]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[3845]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        46.697ns  (logic 1.939ns (4.152%)  route 44.758ns (95.848%))
+  Logic Levels:           6  (CARRY4=1 FDSE=1 LUT5=2 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X80Y156        FDSE                         0.000     0.000 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+    SLICE_X80Y156        FDSE (Prop_fdse_C_Q)         0.478     0.478 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/Q
+                         net (fo=19, routed)          1.271     1.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[6]
+    SLICE_X80Y159        CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.782     2.531 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[3]
+                         net (fo=4332, routed)       37.277    39.808    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_4
+    SLICE_X54Y127        LUT6 (Prop_lut6_I5_O)        0.307    40.115 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4871]_i_6/O
+                         net (fo=32, routed)          4.634    44.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4871]_i_6_n_0
+    SLICE_X56Y181        LUT6 (Prop_lut6_I5_O)        0.124    44.873 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[3845]_i_4/O
+                         net (fo=2, routed)           0.626    45.499    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[3845]_i_4_n_0
+    SLICE_X57Y181        LUT5 (Prop_lut5_I3_O)        0.124    45.623 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[3845]_i_3/O
+                         net (fo=1, routed)           0.951    46.573    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[3845]_i_3_n_0
+    SLICE_X58Y181        LUT5 (Prop_lut5_I2_O)        0.124    46.697 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[3845]_i_1/O
+                         net (fo=1, routed)           0.000    46.697    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[3845]_i_1_n_0
+    SLICE_X58Y181        FDRE                                         r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[3845]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[1029]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        46.684ns  (logic 1.939ns (4.153%)  route 44.745ns (95.846%))
+  Logic Levels:           6  (CARRY4=1 FDSE=1 LUT5=2 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X80Y156        FDSE                         0.000     0.000 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+    SLICE_X80Y156        FDSE (Prop_fdse_C_Q)         0.478     0.478 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/Q
+                         net (fo=19, routed)          1.271     1.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[6]
+    SLICE_X80Y159        CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.782     2.531 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[3]
+                         net (fo=4332, routed)       37.139    39.670    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_4
+    SLICE_X57Y130        LUT6 (Prop_lut6_I0_O)        0.307    39.977 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4613]_i_7/O
+                         net (fo=21, routed)          4.395    44.372    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4613]_i_7_n_0
+    SLICE_X66Y181        LUT6 (Prop_lut6_I1_O)        0.124    44.496 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[3077]_i_4/O
+                         net (fo=2, routed)           0.961    45.457    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[3077]_i_4_n_0
+    SLICE_X66Y182        LUT5 (Prop_lut5_I3_O)        0.124    45.581 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1029]_i_3/O
+                         net (fo=1, routed)           0.978    46.560    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1029]_i_3_n_0
+    SLICE_X65Y182        LUT5 (Prop_lut5_I2_O)        0.124    46.684 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1029]_i_1/O
+                         net (fo=1, routed)           0.000    46.684    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1029]_i_1_n_0
+    SLICE_X65Y182        FDRE                                         r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[1029]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4096]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        46.593ns  (logic 2.167ns (4.651%)  route 44.426ns (95.349%))
+  Logic Levels:           6  (CARRY4=1 FDSE=1 LUT4=1 LUT5=1 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X80Y156        FDSE                         0.000     0.000 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+    SLICE_X80Y156        FDSE (Prop_fdse_C_Q)         0.478     0.478 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/Q
+                         net (fo=19, routed)          1.271     1.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[6]
+    SLICE_X80Y159        CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.782     2.531 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[3]
+                         net (fo=4332, routed)       37.139    39.670    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_4
+    SLICE_X57Y130        LUT6 (Prop_lut6_I0_O)        0.307    39.977 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4613]_i_7/O
+                         net (fo=21, routed)          3.892    43.869    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4613]_i_7_n_0
+    SLICE_X63Y171        LUT4 (Prop_lut4_I2_O)        0.150    44.019 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4103]_i_4/O
+                         net (fo=5, routed)           1.304    45.323    PCB_All_SRAM_i/RAD_formatter_0/U0/p_1_in[4103]
+    SLICE_X62Y162        LUT6 (Prop_lut6_I2_O)        0.326    45.649 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4096]_i_3/O
+                         net (fo=1, routed)           0.820    46.469    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4096]_i_3_n_0
+    SLICE_X62Y162        LUT5 (Prop_lut5_I2_O)        0.124    46.593 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4096]_i_1/O
+                         net (fo=1, routed)           0.000    46.593    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4096]_i_1_n_0
+    SLICE_X62Y162        FDRE                                         r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4096]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[773]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        46.530ns  (logic 1.939ns (4.167%)  route 44.591ns (95.833%))
+  Logic Levels:           6  (CARRY4=1 FDSE=1 LUT5=2 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X80Y156        FDSE                         0.000     0.000 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+    SLICE_X80Y156        FDSE (Prop_fdse_C_Q)         0.478     0.478 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/Q
+                         net (fo=19, routed)          1.271     1.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[6]
+    SLICE_X80Y159        CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.782     2.531 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[3]
+                         net (fo=4332, routed)       37.277    39.808    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_4
+    SLICE_X54Y127        LUT6 (Prop_lut6_I5_O)        0.307    40.115 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4871]_i_6/O
+                         net (fo=32, routed)          4.214    44.329    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4871]_i_6_n_0
+    SLICE_X53Y181        LUT6 (Prop_lut6_I5_O)        0.124    44.453 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4869]_i_7/O
+                         net (fo=3, routed)           1.168    45.621    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4869]_i_7_n_0
+    SLICE_X52Y183        LUT5 (Prop_lut5_I3_O)        0.124    45.745 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[773]_i_3/O
+                         net (fo=1, routed)           0.661    46.406    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[773]_i_3_n_0
+    SLICE_X52Y183        LUT5 (Prop_lut5_I2_O)        0.124    46.530 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[773]_i_1/O
+                         net (fo=1, routed)           0.000    46.530    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[773]_i_1_n_0
+    SLICE_X52Y183        FDRE                                         r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[773]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[772]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        46.422ns  (logic 2.167ns (4.668%)  route 44.255ns (95.332%))
+  Logic Levels:           6  (CARRY4=1 FDSE=1 LUT5=3 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X80Y156        FDSE                         0.000     0.000 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+    SLICE_X80Y156        FDSE (Prop_fdse_C_Q)         0.478     0.478 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/Q
+                         net (fo=19, routed)          1.271     1.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[6]
+    SLICE_X80Y159        CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.782     2.531 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[3]
+                         net (fo=4332, routed)       37.277    39.808    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_4
+    SLICE_X54Y127        LUT6 (Prop_lut6_I5_O)        0.307    40.115 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4871]_i_6/O
+                         net (fo=32, routed)          4.176    44.291    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4871]_i_6_n_0
+    SLICE_X51Y183        LUT5 (Prop_lut5_I4_O)        0.150    44.441 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4868]_i_7/O
+                         net (fo=3, routed)           0.884    45.325    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4868]_i_7_n_0
+    SLICE_X51Y185        LUT5 (Prop_lut5_I3_O)        0.326    45.651 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[772]_i_3/O
+                         net (fo=1, routed)           0.647    46.298    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[772]_i_3_n_0
+    SLICE_X51Y185        LUT5 (Prop_lut5_I2_O)        0.124    46.422 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[772]_i_1/O
+                         net (fo=1, routed)           0.000    46.422    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[772]_i_1_n_0
+    SLICE_X51Y185        FDRE                                         r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[772]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[1797]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        46.391ns  (logic 1.939ns (4.180%)  route 44.452ns (95.820%))
+  Logic Levels:           6  (CARRY4=1 FDSE=1 LUT5=2 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X80Y156        FDSE                         0.000     0.000 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+    SLICE_X80Y156        FDSE (Prop_fdse_C_Q)         0.478     0.478 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/Q
+                         net (fo=19, routed)          1.271     1.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[6]
+    SLICE_X80Y159        CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.782     2.531 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[3]
+                         net (fo=4332, routed)       37.277    39.808    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_4
+    SLICE_X54Y127        LUT6 (Prop_lut6_I5_O)        0.307    40.115 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4871]_i_6/O
+                         net (fo=32, routed)          4.634    44.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4871]_i_6_n_0
+    SLICE_X56Y181        LUT6 (Prop_lut6_I5_O)        0.124    44.873 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[3845]_i_4/O
+                         net (fo=2, routed)           0.773    45.646    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[3845]_i_4_n_0
+    SLICE_X56Y181        LUT5 (Prop_lut5_I3_O)        0.124    45.770 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1797]_i_3/O
+                         net (fo=1, routed)           0.496    46.267    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1797]_i_3_n_0
+    SLICE_X56Y181        LUT5 (Prop_lut5_I2_O)        0.124    46.391 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1797]_i_1/O
+                         net (fo=1, routed)           0.000    46.391    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1797]_i_1_n_0
+    SLICE_X56Y181        FDRE                                         r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[1797]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+                            (rising edge-triggered cell FDSE)
+  Destination:            PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[1536]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        46.331ns  (logic 1.939ns (4.185%)  route 44.392ns (95.815%))
+  Logic Levels:           6  (CARRY4=1 FDSE=1 LUT2=1 LUT5=2 LUT6=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X80Y156        FDSE                         0.000     0.000 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/C
+    SLICE_X80Y156        FDSE (Prop_fdse_C_Q)         0.478     0.478 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg[6]/Q
+                         net (fo=19, routed)          1.271     1.749    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_bit_cnt_reg_n_0_[6]
+    SLICE_X80Y159        CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.782     2.531 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5/O[3]
+                         net (fo=4332, routed)       35.302    37.833    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[4983]_i_5_n_4
+    SLICE_X41Y122        LUT2 (Prop_lut2_I0_O)        0.307    38.140 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4607]_i_4/O
+                         net (fo=147, routed)         5.788    43.928    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4607]_i_4_n_0
+    SLICE_X63Y158        LUT6 (Prop_lut6_I0_O)        0.124    44.052 f  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4608]_i_5/O
+                         net (fo=9, routed)           1.866    45.918    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[4608]_i_5_n_0
+    SLICE_X62Y170        LUT5 (Prop_lut5_I3_O)        0.124    46.042 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1536]_i_2/O
+                         net (fo=1, routed)           0.165    46.207    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1536]_i_2_n_0
+    SLICE_X62Y170        LUT5 (Prop_lut5_I0_O)        0.124    46.331 r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1536]_i_1/O
+                         net (fo=1, routed)           0.000    46.331    PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i[1536]_i_1_n_0
+    SLICE_X62Y170        FDRE                                         r  PCB_All_SRAM_i/RAD_formatter_0/U0/RAD_data_i_reg[1536]/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[246]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[246]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.187ns  (logic 0.128ns (68.470%)  route 0.059ns (31.530%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X32Y104        FDCE                         0.000     0.000 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[246]/C
+    SLICE_X32Y104        FDCE (Prop_fdce_C_Q)         0.128     0.128 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[246]/Q
+                         net (fo=1, routed)           0.059     0.187    PCB_All_SRAM_i/GNSS_Sender_0/U0/i_gnss_data[246]
+    SLICE_X33Y104        FDCE                                         r  PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[246]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[294]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[294]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.187ns  (logic 0.128ns (68.470%)  route 0.059ns (31.530%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X39Y105        FDCE                         0.000     0.000 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[294]/C
+    SLICE_X39Y105        FDCE (Prop_fdce_C_Q)         0.128     0.128 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[294]/Q
+                         net (fo=1, routed)           0.059     0.187    PCB_All_SRAM_i/GNSS_Sender_0/U0/i_gnss_data[294]
+    SLICE_X38Y105        FDCE                                         r  PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[294]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[295]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[295]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.187ns  (logic 0.128ns (68.470%)  route 0.059ns (31.530%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X39Y105        FDCE                         0.000     0.000 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[295]/C
+    SLICE_X39Y105        FDCE (Prop_fdce_C_Q)         0.128     0.128 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[295]/Q
+                         net (fo=1, routed)           0.059     0.187    PCB_All_SRAM_i/GNSS_Sender_0/U0/i_gnss_data[295]
+    SLICE_X38Y105        FDCE                                         r  PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[295]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[268]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[268]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.187ns  (logic 0.128ns (68.397%)  route 0.059ns (31.603%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X43Y105        FDCE                         0.000     0.000 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[268]/C
+    SLICE_X43Y105        FDCE (Prop_fdce_C_Q)         0.128     0.128 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[268]/Q
+                         net (fo=1, routed)           0.059     0.187    PCB_All_SRAM_i/GNSS_Sender_0/U0/i_gnss_data[268]
+    SLICE_X42Y105        FDCE                                         r  PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[268]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[350]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[350]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.187ns  (logic 0.128ns (68.397%)  route 0.059ns (31.603%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y99         FDCE                         0.000     0.000 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[350]/C
+    SLICE_X52Y99         FDCE (Prop_fdce_C_Q)         0.128     0.128 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[350]/Q
+                         net (fo=1, routed)           0.059     0.187    PCB_All_SRAM_i/GNSS_Sender_0/U0/i_gnss_data[350]
+    SLICE_X53Y99         FDCE                                         r  PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[350]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[247]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[247]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.190ns  (logic 0.128ns (67.540%)  route 0.062ns (32.460%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X32Y104        FDCE                         0.000     0.000 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[247]/C
+    SLICE_X32Y104        FDCE (Prop_fdce_C_Q)         0.128     0.128 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[247]/Q
+                         net (fo=1, routed)           0.062     0.190    PCB_All_SRAM_i/GNSS_Sender_0/U0/i_gnss_data[247]
+    SLICE_X33Y104        FDCE                                         r  PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[247]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[351]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[351]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.192ns  (logic 0.128ns (66.728%)  route 0.064ns (33.272%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y99         FDCE                         0.000     0.000 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[351]/C
+    SLICE_X52Y99         FDCE (Prop_fdce_C_Q)         0.128     0.128 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[351]/Q
+                         net (fo=1, routed)           0.064     0.192    PCB_All_SRAM_i/GNSS_Sender_0/U0/i_gnss_data[351]
+    SLICE_X53Y99         FDCE                                         r  PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[351]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[137]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[137]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.195ns  (logic 0.141ns (72.269%)  route 0.054ns (27.731%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X55Y98         FDCE                         0.000     0.000 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[137]/C
+    SLICE_X55Y98         FDCE (Prop_fdce_C_Q)         0.141     0.141 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[137]/Q
+                         net (fo=1, routed)           0.054     0.195    PCB_All_SRAM_i/GNSS_Sender_0/U0/i_gnss_data[137]
+    SLICE_X54Y98         FDCE                                         r  PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[137]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[234]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[234]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.195ns  (logic 0.141ns (72.269%)  route 0.054ns (27.731%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X47Y105        FDCE                         0.000     0.000 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[234]/C
+    SLICE_X47Y105        FDCE (Prop_fdce_C_Q)         0.141     0.141 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[234]/Q
+                         net (fo=1, routed)           0.054     0.195    PCB_All_SRAM_i/GNSS_Sender_0/U0/i_gnss_data[234]
+    SLICE_X46Y105        FDCE                                         r  PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[234]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[251]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[251]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.199ns  (logic 0.141ns (70.737%)  route 0.058ns (29.263%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y100        FDCE                         0.000     0.000 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[251]/C
+    SLICE_X53Y100        FDCE (Prop_fdce_C_Q)         0.141     0.141 r  PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/gnss_data_buf_reg[251]/Q
+                         net (fo=1, routed)           0.058     0.199    PCB_All_SRAM_i/GNSS_Sender_0/U0/i_gnss_data[251]
+    SLICE_X52Y100        FDCE                                         r  PCB_All_SRAM_i/GNSS_Sender_0/U0/gnss_data_buf_reg[251]/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+

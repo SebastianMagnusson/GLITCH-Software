@@ -40,16 +40,16 @@ entity I2C_full_sensor_data_fetcher is
         o_TX_RTC_data  : out std_logic_vector(23 downto 0);
         o_TX_ALT_data  : out std_logic_vector(23 downto 0);
         o_TX_TEMP_data : out std_logic_vector(31 downto 0);
-        led2 : out std_logic
+        led1 : out std_logic;
+        led2 : out std_logic;
+        led3 : out std_logic
     );
 end I2C_full_sensor_data_fetcher;
 
 architecture rtl of I2C_full_sensor_data_fetcher is
 
     type SM_Main is (
-        IDLE, TEMP, SEND_TEMP, PREP_ALT,
-        ALT, SEND_ALT, RTC, SEND_RTC, SET_RTC, CLEANUP
-    );
+        IDLE, TEMP, SEND_TEMP, RTC, SEND_RTC, SET_RTC, CLEANUP);
     signal state : SM_Main := SET_RTC;
 
     type Who_requested_state is (HK, BF, RAD, HTR);
@@ -81,11 +81,13 @@ begin
                 o_TX_DV_HK    <= '0';
                 o_TX_DV_BF    <= '0';
                 o_TX_DV_RAD   <= '0';
-				o_TX_DV_HTR   <= '0';
-				o_SET_RTC_done<= '0';
+				        o_TX_DV_HTR   <= '0';
+				        o_SET_RTC_done<= '0';
                 busy_prev     <= '0';
-                state         <= SET_RTC;
+                state         <= IDLE;
                 led2 <= '0';
+                led1 <= '0';
+                led3 <= '0';
 
             else
                 case state is
@@ -97,7 +99,7 @@ begin
                         o_TX_DV_HK  <= '0';
                         o_TX_DV_BF  <= '0';
                         o_TX_DV_RAD <= '0';
-						o_TX_DV_HTR <= '0';
+						            o_TX_DV_HTR <= '0';
 						
 						start_cnt   := 0;
 						waiting_cnt := 0;
@@ -111,7 +113,9 @@ begin
 							who_requested <= BF;
 							state <= RTC;
 						elsif i_HK_ALT_request = '1' then
-							state <= PREP_ALT;
+							o_TX_DV_HK    <= '1';        
+							o_TX_ALT_data <= "000000010000111100101100";
+							state         <= CLEANUP;   
 						elsif i_HK_TEMP_request = '1' then
 							who_requested <= HK;
 							state <= TEMP;
@@ -129,6 +133,7 @@ begin
                     -- TEMP SENSOR DATA FETCH
                     -- =========================================================
                     when TEMP =>
+                        led3 <= '1';
                         busy_prev <= i_busy;
                         if busy_prev = '0' and i_busy = '1' then
                             busy_cnt := busy_cnt + 1;
@@ -169,155 +174,99 @@ begin
 						          end case;
 						
                       o_TX_TEMP_data <= temp_data & temp_data; -- Temp replicated 3x
+                      state <= CLEANUP;
 
-                      if i_TX_done_HK = '1' or i_TX_done_HTR = '1' then
-                          state <= CLEANUP;
-                      else
-                          state <= SEND_TEMP;
-                      end if;
+                      -- if i_TX_done_HK = '1' or i_TX_done_HTR = '1' then
+                      --     state <= CLEANUP;
+                      -- else
+                      --     state <= SEND_TEMP;
+                      -- end if;
 
                     -- =========================================================
                     -- PREPARE ALT SENSOR MEASUREMENT
                     -- =========================================================
-                    when PREP_ALT =>
-                        busy_prev <= i_busy;
-                        if busy_prev = '0' and i_busy = '1' then
-                            busy_cnt := busy_cnt + 1;
-                        end if;
-
-                        case busy_cnt is
-                            when 0 =>
-                                o_i2c_ena     <= '1';
-                                o_i2c_address <= "1110111";
-                                o_i2c_rw      <= '0';
-                                o_i2c_data_wr <= "01001000";
-                            when 1 =>
-                                if conv_cnt < Clockfrequency/100 then
-                                    conv_cnt := conv_cnt + 1;
-                                else
-                                    conv_cnt := 0;
-                                    if i_busy = '0' then
-                                        o_i2c_ena <= '0';
-                                        busy_cnt := 0;
-                                        --state <= ALT_READ;
-                                        state <= ALT;
-                                    end if;
-                                end if;
-                            when others =>
-                                null;
-                        end case;
-                    
-                    -- =========================================================
-                    -- READ ALT PRESSURE MEASUREMENT
-                    -- =========================================================
-         --           when ALT_READ =>
-         --               busy_prev <= i_busy;
-         --               if(busy_prev = '0' and i_busy = '1') then -- Busy just went high
-         --                   busy_cnt := busy_cnt + 1;
-         --               end if;
-         --               -- Case for which command we are currently on according to i2c protocol
-         --               case busy_cnt is
-         --                   when 0 =>                                    -- No command latched in i2c master
-         --                       o_i2c_ena     <= '1';                        -- Initiate transaction
-         --                       o_i2c_address <= "1110111";                  -- Altitude sensor i2c address
-         --                       o_i2c_rw       <= '0';                       -- Write mode
-         --                       o_i2c_data_wr <= "00000000";                 -- Command to read pressure data
-         --                   when 1 =>                                    -- 1st busy high: command 1 latched
-         --                       o_i2c_ena <= '0';                         
-         --                       if(i_busy = '0') then                      -- Read pressure command complete
-         --                           busy_cnt := 0;
-         --                           state <= ALT;
-         --                       end if;
-         --                   when OTHERS =>
-         --                       NULL;
-         --               end case;
-         --               
-         --           -- =========================================================
-         --           -- READ ALT SENSOR MEASUREMENT
-         --           -- =========================================================    
-         --           when ALT =>
-         --               busy_prev <= i_busy;
-         --               if(busy_prev = '0' and i_busy = '1') then -- Busy just went high
-         --                   busy_cnt := busy_cnt + 1;
-         --               end if;
-         --               -- Case for which command we are currently on according to i2c protocol
-         --               case busy_cnt is
-         --                   when 0 =>                                    -- No command latched in i2c master
-         --                       o_i2c_ena     <= '1';                        -- Initiate transaction
-         --                       o_i2c_address <= "1110111";                  -- Altimeter sensor i2c address
-         --                       o_i2c_rw      <= '1';                        -- Read mode
-         --                   when 1 =>                                    -- 1st command latched in, safe to issue command 2
-         --                       if(i_busy = '0') then                        -- 1st byte of data ready
-         --                           alt_data(23 downto 16) <= i_data_read;     -- Save first byte
-         --                       end if;
-         --                   when 2 =>                                    -- 2nd command latched in, 
-         --                       if(i_busy = '0') then                        -- 2nd byte of data ready
-         --                           alt_data(15 downto 8) <= i_data_read;      -- Save second byte
-         --                       end if;
-         --                   when 3 =>                                    -- 3rd command latched in, 
-         --                       o_i2c_ena <= '0';                            -- Deassert enable to stop transaction 
-         --                       if(i_busy = '0') then                        -- 3rd byte of data ready
-         --                           busy_cnt := 0;                             -- Reset busy counter
-         --                           alt_data(7 downto 0) <= i_data_read;       -- Save last byte 
-         --                           
-         --                           state <= SEND_ALT;                         -- Move SEND_ALT
-         --                       end if;
-         --                   when OTHERS =>
-         --                       NULL;
-         --               end case;
-         
-                          when ALT =>                                                                                 
-                            busy_prev <= i_busy;                                                                         
-                            if(busy_prev = '0' and i_busy = '1') then -- Busy just went high                             
-                                busy_cnt := busy_cnt + 1;                                                                
-                            end if;                                                                                      
-                            -- Case for which command we are currently on according to i2c protocol                      
-                            case busy_cnt is                                                                             
-                                when 0 =>                                    -- No command latched in i2c master         
-                                    o_i2c_ena     <= '1';                        -- Initiate transaction                 
-                                    o_i2c_address <= "1110111";                  -- Altitude sensor i2c address          
-                                    o_i2c_rw       <= '0';                       -- Write mode                           
-                                    o_i2c_data_wr <= "00000000";                 -- Command to read pressure data      
-                                  when 1 =>
-                                    o_i2c_rw       <= '1';                                                                                                 
-                                  when 2 =>                                    -- 1st command latched in, safe to issue command 2 
-                                      if(i_busy = '0') then                        -- 1st byte of data ready                      
-                                          alt_data(23 downto 16) <= i_data_read;     -- Save first byte                           
-                                      end if;                                                                                     
-                                  when 3 =>                                    -- 2nd command latched in,                         
-                                      if(i_busy = '0') then                        -- 2nd byte of data ready                      
-                                          alt_data(15 downto 8) <= i_data_read;      -- Save second byte                          
-                                      end if;                                                                                     
-                                  when 4 =>                                    -- 3rd command latched in,                         
-                                      o_i2c_ena <= '0';                            -- Deassert enable to stop transaction         
-                                      if(i_busy = '0') then                        -- 3rd byte of data ready                      
-                                          busy_cnt := 0;                             -- Reset busy counter                        
-                                          alt_data(7 downto 0) <= i_data_read;       -- Save last byte                            
-         
-                                          state <= SEND_ALT;                         -- Move SEND_ALT                             
-                                      end if;                                                                                     
-                                  when OTHERS =>                                                                                  
-                                      NULL;                                                                                       
-                              end case;                                                                                           
-   
-                    -- =========================================================
-                    -- SEND ALT DATA
-                    -- =========================================================
-                    when SEND_ALT =>
-                        o_TX_DV_HK <= '1';
-                        o_TX_ALT_data <= alt_data;
-
-                        if i_TX_done_HK = '1' then
-                            state <= CLEANUP;
-                        else
-                            state <= SEND_ALT;
-                        end if;
-
+                    --when PREP_ALT =>
+                    --    led1 <= '1';
+                    --    busy_prev <= i_busy;
+                    --    if busy_prev = '0' and i_busy = '1' then
+                    --        busy_cnt := busy_cnt + 1;
+                    --    end if;
+                    --
+                    --    case busy_cnt is
+                    --        when 0 =>
+                    --            o_i2c_ena     <= '1';
+                    --            o_i2c_address <= "1110111";
+                    --            o_i2c_rw      <= '0';
+                    --            o_i2c_data_wr <= "01001000";
+                    --        when 1 =>
+                    --            if conv_cnt < Clockfrequency/100 then
+                    --                conv_cnt := conv_cnt + 1;
+                    --            else
+                    --                conv_cnt := 0;
+                    --                if i_busy = '0' then
+                    --                    o_i2c_ena <= '0';
+                    --                    busy_cnt := 0;
+                    --                    --state <= ALT_READ;
+                    --                    state <= ALT;
+                    --                end if;
+                    --            end if;
+                    --        when others =>
+                    --            null;
+                    --    end case;
+                    --
+                    --      when ALT =>
+                    --        led2 <= '1';                                                                                 
+                    --        busy_prev <= i_busy;                                                                         
+                    --        if(busy_prev = '0' and i_busy = '1') then -- Busy just went high                             
+                    --            busy_cnt := busy_cnt + 1;                                                                
+                    --        end if;                                                                                      
+                    --        -- Case for which command we are currently on according to i2c protocol                      
+                    --        case busy_cnt is                                                                             
+                    --            when 0 =>                                    -- No command latched in i2c master         
+                    --                o_i2c_ena     <= '1';                        -- Initiate transaction                 
+                    --                o_i2c_address <= "1110111";                  -- Altitude sensor i2c address          
+                    --                o_i2c_rw       <= '0';                       -- Write mode                           
+                    --                o_i2c_data_wr <= "00000000";                 -- Command to read pressure data      
+                    --              when 1 =>
+                    --                o_i2c_rw       <= '1';                                                                                                 
+                    --              when 2 =>                                    -- 1st command latched in, safe to issue command 2 
+                    --                  if(i_busy = '0') then                        -- 1st byte of data ready                      
+                    --                      alt_data(23 downto 16) <= i_data_read;     -- Save first byte                           
+                    --                  end if;                                                                                     
+                    --              when 3 =>                                    -- 2nd command latched in,                         
+                    --                  if(i_busy = '0') then                        -- 2nd byte of data ready                      
+                    --                      alt_data(15 downto 8) <= i_data_read;      -- Save second byte                          
+                    --                  end if;                                                                                     
+                    --              when 4 =>                                    -- 3rd command latched in,                         
+                    --                  o_i2c_ena <= '0';                            -- Deassert enable to stop transaction         
+                    --                  if(i_busy = '0') then                        -- 3rd byte of data ready                      
+                    --                      busy_cnt := 0;                             -- Reset busy counter                        
+                    --                      alt_data(7 downto 0) <= i_data_read;       -- Save last byte                            
+                    --
+                    --                      state <= SEND_ALT;                         -- Move SEND_ALT                             
+                    --                  end if;                                                                                     
+                    --              when OTHERS =>                                                                                  
+                    --                  NULL;                                                                                       
+                    --          end case;                                                                                           
+                    --
+                    ---- =========================================================
+                    ---- SEND ALT DATA
+                    ---- =========================================================
+                    --when SEND_ALT =>
+                    --    o_TX_DV_HK <= '1';
+                    --    o_TX_ALT_data <= alt_data;
+                    --    state <= CLEANUP;
+                    --    
+                    --    -- if i_TX_done_HK = '1' then
+                    --    --     state <= CLEANUP;
+                    --    -- else
+                    --    --     state <= SEND_ALT;
+                    --    -- end if;
+                    --
                     -- =========================================================
                     -- RTC DATA FETCH
                     -- =========================================================
                     when RTC =>
-                    
                         busy_prev <= i_busy;
                         if busy_prev = '0' and i_busy = '1' then
                             busy_cnt := busy_cnt + 1;
@@ -366,12 +315,13 @@ begin
                         end case;
 
                         o_TX_RTC_data <= rtc_data;
+                        state <= CLEANUP;
 
-                        if i_TX_done_HK = '1' or i_TX_done_RAD = '1' or i_TX_done_BF = '1' then
-                            state <= CLEANUP;
-                        else
-                            state <= SEND_RTC;
-                        end if;
+                        -- if i_TX_done_HK = '1' or i_TX_done_RAD = '1' or i_TX_done_BF = '1' then
+                        --     state <= CLEANUP;
+                        -- else
+                        --     state <= SEND_RTC;
+                        -- end if;
 							
                     -- =========================================================
                     -- SET RTC TIME
@@ -395,7 +345,6 @@ begin
 						  		o_i2c_rw      <= '0';        -- write
 						  		o_i2c_data_wr <= "00000000"; -- pointer = 0x00
 						  	when 1 =>                                    --1st busy high: command 1 latched, okay to issue command 2
-						  		led2 <= '1';
 						  		o_i2c_data_wr <= "10000000";        --start the oscillator and set seconds
 						  	when 2 =>                                    --2nd busy high: command 2 latched, okay to issue command 3
 						  	    o_i2c_data_wr <= "00000000";       --start the oscillator and set seconds
@@ -404,7 +353,7 @@ begin
 						  	when 4 =>
 						  	    o_i2c_ena <= '0';
 						  	    if i_busy = '0' then
-									o_SET_RTC_done <= '1';
+									  o_SET_RTC_done <= '1';
 						  			busy_cnt := 0;
 						  			state    <= CLEANUP;
 						        end if;						      
@@ -431,10 +380,14 @@ begin
                         o_TX_DV_HK    <= '0';
                         o_TX_DV_BF    <= '0';
                         o_TX_DV_RAD   <= '0';
-						o_TX_DV_HTR   <= '0';
-						o_SET_RTC_done <= '0';
+						            o_TX_DV_HTR   <= '0';
+						            o_SET_RTC_done <= '0';
                         busy_prev     <= '0';
                         state         <= IDLE;
+                        
+                        led1 <= '0';
+                        led2 <= '0';
+                        led3 <= '0';
                             
                     when others =>
                         state <= CLEANUP;

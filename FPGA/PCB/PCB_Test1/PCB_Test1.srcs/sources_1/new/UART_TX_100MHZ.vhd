@@ -15,7 +15,8 @@ entity UART_TX_100MHZ is
        i_TX_Byte   : in  std_logic_vector(7 downto 0);
        o_TX_Active : out std_logic;
        o_TX_Serial : out std_logic;
-       o_TX_Done   : out std_logic);
+       o_TX_Done   : out std_logic;
+       led0        : out std_logic);
 end UART_TX_100MHZ;
 
 architecture rtl of UART_TX_100MHZ is
@@ -42,6 +43,8 @@ p_UART_TX : process (sysclk)
           r_TX_Done   <= '0';
           r_Clk_Count <= 0;
           r_Bit_Index <= 0;
+          
+          led0 <= '0';
  
           if i_TX_DV = '1' then       -- Transmission detected, saves data byte in temp vector
             r_TX_Data <= i_TX_Byte;
@@ -54,6 +57,8 @@ p_UART_TX : process (sysclk)
         when s_TX_Start_Bit =>
           o_TX_Active <= '1';   -- Output tells system that transmission is happening
           o_TX_Serial <= '0';
+          
+          led0 <= '1';
  
           -- Wait CLKS_PER_BIT-1 clock cycles for start bit to finish
           if r_Clk_Count < CLKS_PER_BIT-1 then
@@ -103,6 +108,8 @@ p_UART_TX : process (sysclk)
           o_TX_Active <= '0';
           r_TX_Done   <= '1';
           r_SM_Main   <= s_Idle;
+          
+          led0 <= '0';
  
         -- If state is undefined (for error handling)
         when others =>

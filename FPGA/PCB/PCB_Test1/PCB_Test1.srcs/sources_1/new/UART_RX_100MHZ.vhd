@@ -14,7 +14,7 @@ entity UART_RX_100MHZ is
        i_RX_Serial : in  std_logic;
        o_RX_DV     : out std_logic;
        o_RX_byte   : out std_logic_vector(7 downto 0);
-       led0        : out std_logic
+       led0        : out std_logic := '0'
        );
 end UART_RX_100MHZ;
 
@@ -107,6 +107,8 @@ begin
             r_RX_DV     <= '1';
             r_Clk_Count <= 0;
             r_SM_Main   <= s_Cleanup;
+            
+            led0 <= '1';
           end if;
           
         -- Resets stuff (stays here 1 clk cycle). 
@@ -117,7 +119,6 @@ begin
           r_SM_Main <= s_Idle;
           r_RX_DV   <= '0';
           
-          led0 <= '1';
           
         -- If state is undefined (for error handling)
         when others =>

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1759322261" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/PCB_All_SRAM_wrapper.dcp">
+  <File Type="PA-TCL" Name="PCB_All_SRAM_wrapper.tcl"/>
+  <File Type="REPORTS-TCL" Name="PCB_All_SRAM_wrapper_reports.tcl"/>
+  <File Type="RDS-RDS" Name="PCB_All_SRAM_wrapper.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="PCB_All_SRAM_wrapper_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="PCB_All_SRAM_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="PCB_All_SRAM_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="PCB_All_SRAM_wrapper.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="PCB_All_SRAM_wrapper_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="PCB_All_SRAM_wrapper_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../../Code/BITFLIP_formatter.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../UART/GNSS_Fetcher_Test/GNSS_Fetcher_Test.srcs/sources_1/new/GNSS_Fetcher_mod.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../UART/GNSS_Fetcher_Test/GNSS_Fetcher_Test.srcs/sources_1/new/GNSS_Sender.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/HK_formatter.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/HTR_CALC.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/I2C_full_sensor_data_fetcher.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/I2Cmod.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/Mode_control.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../PCB_Test1/PCB_Test1.srcs/sources_1/new/Pulse_Per_Second_100MHZ.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/RAD_formatter.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Read_8SRAM_100MHZ.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/new/RESTART_mod.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../PCB_Test1/PCB_Test1.srcs/sources_1/new/RW_ROUTER_100MHZ.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/SAY_HEY_switchmod.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/SET_RTC_switchmod.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/TC_Distributor.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Code/TM_packet_sender.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../PCB_Test1/PCB_Test1.srcs/sources_1/new/UART_RX_100MHZ.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../PCB_Test1/PCB_Test1.srcs/sources_1/new/UART_TX_100MHZ.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Write_8SRAM_100MHZ.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../SRAM TESTING/SRAM_Breadboard_Test7/SRAM_Breadboard_Test7.srcs/sources_1/new/BF_Data_Collector_Draft2.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Pulse_WithDelay_Per_Second.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/I2C_HTR_TEMP.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/HTR_ROUTER.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/I2C_HTR_ROUTER.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/HTR_controller_new.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/PCB_All_SRAM/PCB_All_SRAM.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/hdl/PCB_All_SRAM_wrapper.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PGENDIR/sources_1/bd/PCB_All_SRAM/hdl/PCB_All_SRAM_wrapper.vhd"/>
+        <Attr Name="ImportTime" Val="1759162925"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../PCB_Test1_With1Speed/PCB_Test1_With1Speed.srcs/sources_1/new/HTR_controller.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../UART/Read_GNSS/Read_GNSS.srcs/sources_1/new/Switchmod.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="PCB_All_SRAM_wrapper"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/Constraints.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/PCB_All_SRAM_wrapper.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_BF_formatter_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_I2C_HTR_TEMP_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_GNSS_Fetcher_mod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_SAY_HEY_switchmod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_I2C_HTR_ROUTER_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_SET_RTC_switchmod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_RESTART_mod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_Write_8SRAM_100MHZ_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_RW_ROUTER_100MHZ_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_Mode_control_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_GNSS_Sender_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_HTR_CALC_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_HK_formatter_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_Pulse_Per_Second_100_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_Write_8SRAM_100MHZ_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_RW_ROUTER_100MHZ_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_TC_distributor_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_TM_packet_sender_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_UART_RX_100MHZ_2_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_UART_TX_100MHZ_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_Read_8SRAM_100MHZ_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_I2Cmod_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_I2C_full_sensor_data_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_Read_8SRAM_100MHZ_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_Pulse_WithDelay_Per_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_HTR_ROUTER_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_UART_RX_100MHZ_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_HTR_controller_new_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_UART_RX_100MHZ_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_HTR_controller_new_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_BF_Data_Collector_Dr_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="PCB_All_SRAM_RAD_formatter_0_0"/>
+</GenRun>

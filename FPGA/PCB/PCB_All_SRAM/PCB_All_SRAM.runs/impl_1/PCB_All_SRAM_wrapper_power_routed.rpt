@@ -1,0 +1,243 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date             : Wed Oct  1 14:42:06 2025
+| Host             : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
+| Command          : report_power -file PCB_All_SRAM_wrapper_power_routed.rpt -pb PCB_All_SRAM_wrapper_power_summary_routed.pb -rpx PCB_All_SRAM_wrapper_power_routed.rpx
+| Design           : PCB_All_SRAM_wrapper
+| Device           : xc7a100tcsg324-1
+| Design State     : routed
+| Grade            : commercial
+| Process          : typical
+| Characterization : Production
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Power Report
+
+Table of Contents
+-----------------
+1. Summary
+1.1 On-Chip Components
+1.2 Power Supply Summary
+1.3 Confidence Level
+2. Settings
+2.1 Environment
+2.2 Clock Constraints
+3. Detailed Reports
+3.1 By Hierarchy
+
+1. Summary
+----------
+
++--------------------------+----------------------------------+
+| Total On-Chip Power (W)  | 48.582 (Junction temp exceeded!) |
+| Design Power Budget (W)  | Unspecified*                     |
+| Power Budget Margin (W)  | NA                               |
+| Dynamic (W)              | 47.785                           |
+| Device Static (W)        | 0.797                            |
+| Effective TJA (C/W)      | 4.6                              |
+| Max Ambient (C)          | 0.0                              |
+| Junction Temperature (C) | 125.0                            |
+| Confidence Level         | Low                              |
+| Setting File             | ---                              |
+| Simulation Activity File | ---                              |
+| Design Nets Matched      | NA                               |
++--------------------------+----------------------------------+
+* Specify Design Power Budget using, set_operating_conditions -design_power_budget <value in Watts>
+
+
+1.1 On-Chip Components
+----------------------
+
++----------------+-----------+----------+-----------+-----------------+
+| On-Chip        | Power (W) | Used     | Available | Utilization (%) |
++----------------+-----------+----------+-----------+-----------------+
+| Slice Logic    |    19.946 |    54214 |       --- |             --- |
+|   LUT as Logic |    19.418 |    26657 |     63400 |           42.05 |
+|   F7/F8 Muxes  |     0.253 |      760 |     63400 |            1.20 |
+|   CARRY4       |     0.161 |      141 |     15850 |            0.89 |
+|   Register     |     0.108 |    19373 |    126800 |           15.28 |
+|   BUFG         |     0.006 |        1 |        32 |            3.13 |
+|   Others       |     0.000 |       67 |       --- |             --- |
+| Signals        |    22.847 |    34727 |       --- |             --- |
+| DSPs           |    <0.001 |        2 |       240 |            0.83 |
+| I/O            |     4.992 |       99 |       210 |           47.14 |
+| Static Power   |     0.797 |          |           |                 |
+| Total          |    48.582 |          |           |                 |
++----------------+-----------+----------+-----------+-----------------+
+
+
+1.2 Power Supply Summary
+------------------------
+
++-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
+| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
++-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
+| Vccint    |       1.000 |    43.382 |      42.819 |      0.563 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.275 |       0.182 |      0.093 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     1.409 |       1.405 |      0.004 |       NA    | Unspecified | NA         |
+| Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.018 |       0.000 |      0.018 |       NA    | Unspecified | NA         |
+| MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
++-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
+
+
+1.3 Confidence Level
+--------------------
+
++-----------------------------+------------+--------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| User Input Data             | Confidence | Details                                                | Action                                                                                                             |
++-----------------------------+------------+--------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| Design implementation state | High       | Design is routed                                       |                                                                                                                    |
+| Clock nodes activity        | Low        | User specified less than 75% of clocks                 | Provide missing clock activity with a constraint file, simulation results or by editing the "By Clock Domain" view |
+| I/O nodes activity          | Low        | More than 75% of inputs are missing user specification | Provide missing input activity with simulation results or by editing the "By Resource Type -> I/Os" view           |
+| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes         | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views         |
+| Device models               | High       | Device models are Production                           |                                                                                                                    |
+|                             |            |                                                        |                                                                                                                    |
+| Overall confidence level    | Low        |                                                        |                                                                                                                    |
++-----------------------------+------------+--------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+
+
+2. Settings
+-----------
+
+2.1 Environment
+---------------
+
++-----------------------+--------------------------+
+| Ambient Temp (C)      | 25.0                     |
+| ThetaJA (C/W)         | 4.6                      |
+| Airflow (LFM)         | 250                      |
+| Heat Sink             | medium (Medium Profile)  |
+| ThetaSA (C/W)         | 4.6                      |
+| Board Selection       | medium (10"x10")         |
+| # of Board Layers     | 12to15 (12 to 15 Layers) |
+| Board Temperature (C) | 25.0                     |
++-----------------------+--------------------------+
+
+
+2.2 Clock Constraints
+---------------------
+
++-------+--------+-----------------+
+| Clock | Domain | Constraint (ns) |
++-------+--------+-----------------+
+
+
+3. Detailed Reports
+-------------------
+
+3.1 By Hierarchy
+----------------
+
++-----------------------------+-----------+
+| Name                        | Power (W) |
++-----------------------------+-----------+
+| PCB_All_SRAM_wrapper        |    47.785 |
+|   PCB_All_SRAM_i            |    41.674 |
+|     BF_Data_Collector_Dr_0  |     0.095 |
+|       U0                    |     0.095 |
+|     BF_formatter_0          |     0.077 |
+|       U0                    |     0.077 |
+|     GNSS_Fetcher_mod_0      |     0.036 |
+|       U0                    |     0.036 |
+|     GNSS_Sender_0           |     0.005 |
+|       U0                    |     0.005 |
+|     HK_formatter_0          |     0.051 |
+|       U0                    |     0.051 |
+|     HTR_CALC_0              |     0.026 |
+|       U0                    |     0.026 |
+|     HTR_ROUTER_0            |     0.002 |
+|       U0                    |     0.002 |
+|     HTR_controller_new_0    |     0.059 |
+|       U0                    |     0.059 |
+|     HTR_controller_new_1    |     0.069 |
+|       U0                    |     0.069 |
+|     I2C_HTR_ROUTER_0        |     0.014 |
+|       U0                    |     0.014 |
+|     I2C_HTR_TEMP_0          |     0.005 |
+|       U0                    |     0.005 |
+|     I2C_full_sensor_data_0  |     0.145 |
+|       U0                    |     0.145 |
+|     I2Cmod_0                |     0.255 |
+|       U0                    |     0.255 |
+|     Mode_control_0          |     0.004 |
+|       U0                    |     0.004 |
+|     Pulse_Per_Second_100_0  |     0.052 |
+|       U0                    |     0.052 |
+|     Pulse_WithDelay_Per_0   |     0.030 |
+|       U0                    |     0.030 |
+|     RAD_formatter_0         |     6.290 |
+|       U0                    |     6.290 |
+|     RESTART_mod_0           |     0.005 |
+|       U0                    |     0.005 |
+|     RW_ROUTER_100MHZ_0      |     0.013 |
+|       U0                    |     0.013 |
+|     RW_ROUTER_100MHZ_1      |     0.013 |
+|       U0                    |     0.013 |
+|     Read_8SRAM_100MHZ_0     |     0.243 |
+|       U0                    |     0.243 |
+|     Read_8SRAM_100MHZ_1     |     0.220 |
+|       U0                    |     0.220 |
+|     SAY_HEY_switchmod_0     |     0.009 |
+|       U0                    |     0.009 |
+|     SET_RTC_switchmod_0     |     0.010 |
+|       U0                    |     0.010 |
+|     TC_distributor_0        |     0.150 |
+|       U0                    |     0.150 |
+|     TM_packet_sender_0      |    33.065 |
+|       U0                    |    33.065 |
+|     UART_RX_100MHZ_0        |     0.220 |
+|       U0                    |     0.220 |
+|     UART_RX_100MHZ_1        |     0.186 |
+|       U0                    |     0.186 |
+|     UART_RX_100MHZ_2        |     0.102 |
+|       U0                    |     0.102 |
+|     UART_TX_100MHZ_0        |     0.163 |
+|       U0                    |     0.163 |
+|     Write_8SRAM_100MHZ_0    |     0.033 |
+|       U0                    |     0.033 |
+|     Write_8SRAM_100MHZ_1    |     0.027 |
+|       U0                    |     0.027 |
+|   gen_iobuf0[0].iobuf_inst  |     0.010 |
+|   gen_iobuf0[10].iobuf_inst |     0.010 |
+|   gen_iobuf0[11].iobuf_inst |     0.109 |
+|   gen_iobuf0[12].iobuf_inst |     0.010 |
+|   gen_iobuf0[13].iobuf_inst |     0.109 |
+|   gen_iobuf0[14].iobuf_inst |     0.010 |
+|   gen_iobuf0[15].iobuf_inst |     0.109 |
+|   gen_iobuf0[1].iobuf_inst  |     0.109 |
+|   gen_iobuf0[2].iobuf_inst  |     0.010 |
+|   gen_iobuf0[3].iobuf_inst  |     0.109 |
+|   gen_iobuf0[4].iobuf_inst  |     0.010 |
+|   gen_iobuf0[5].iobuf_inst  |     0.109 |
+|   gen_iobuf0[6].iobuf_inst  |     0.010 |
+|   gen_iobuf0[7].iobuf_inst  |     0.109 |
+|   gen_iobuf0[8].iobuf_inst  |     0.010 |
+|   gen_iobuf0[9].iobuf_inst  |     0.109 |
+|   gen_iobuf1[0].iobuf_inst  |     0.010 |
+|   gen_iobuf1[10].iobuf_inst |     0.010 |
+|   gen_iobuf1[11].iobuf_inst |     0.109 |
+|   gen_iobuf1[12].iobuf_inst |     0.010 |
+|   gen_iobuf1[13].iobuf_inst |     0.108 |
+|   gen_iobuf1[14].iobuf_inst |     0.010 |
+|   gen_iobuf1[15].iobuf_inst |     0.108 |
+|   gen_iobuf1[1].iobuf_inst  |     0.109 |
+|   gen_iobuf1[2].iobuf_inst  |     0.010 |
+|   gen_iobuf1[3].iobuf_inst  |     0.109 |
+|   gen_iobuf1[4].iobuf_inst  |     0.010 |
+|   gen_iobuf1[5].iobuf_inst  |     0.108 |
+|   gen_iobuf1[6].iobuf_inst  |     0.010 |
+|   gen_iobuf1[7].iobuf_inst  |     0.108 |
+|   gen_iobuf1[8].iobuf_inst  |     0.010 |
+|   gen_iobuf1[9].iobuf_inst  |     0.109 |
++-----------------------------+-----------+
+
+

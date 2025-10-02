@@ -1,0 +1,221 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.689208",
+   "Default View_TopLeft":"-171,374",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace port port-id_sysclk -pg 1 -lvl 0 -x -10 -y 1880 -defaultsOSRD
+preplace port port-id_UART_MCU_RX -pg 1 -lvl 0 -x -10 -y 1910 -defaultsOSRD
+preplace port port-id_SRAM1_EN -pg 1 -lvl 14 -x 5390 -y 550 -defaultsOSRD
+preplace port port-id_SRAM1_WE -pg 1 -lvl 14 -x 5390 -y 580 -defaultsOSRD
+preplace port port-id_led1 -pg 1 -lvl 14 -x 5390 -y 1570 -defaultsOSRD
+preplace port port-id_GNSS_TX -pg 1 -lvl 0 -x -10 -y 1600 -defaultsOSRD
+preplace port port-id_sda_i -pg 1 -lvl 0 -x -10 -y 2340 -defaultsOSRD
+preplace port port-id_scl_i -pg 1 -lvl 0 -x -10 -y 2370 -defaultsOSRD
+preplace port port-id_sda_o -pg 1 -lvl 14 -x 5390 -y 2160 -defaultsOSRD
+preplace port port-id_sda_t -pg 1 -lvl 14 -x 5390 -y 2190 -defaultsOSRD
+preplace port port-id_scl_o -pg 1 -lvl 14 -x 5390 -y 2220 -defaultsOSRD
+preplace port port-id_scl_t -pg 1 -lvl 14 -x 5390 -y 2250 -defaultsOSRD
+preplace port port-id_UART_RAD_TX -pg 1 -lvl 0 -x -10 -y 730 -defaultsOSRD
+preplace port port-id_UART_MCU_TX -pg 1 -lvl 14 -x 5390 -y 1260 -defaultsOSRD
+preplace port port-id_HEATER_1 -pg 1 -lvl 14 -x 5390 -y 1770 -defaultsOSRD
+preplace port port-id_HEATER_2 -pg 1 -lvl 14 -x 5390 -y 1910 -defaultsOSRD
+preplace port port-id_led0 -pg 1 -lvl 14 -x 5390 -y 2000 -defaultsOSRD
+preplace port port-id_SRAM2_EN -pg 1 -lvl 14 -x 5390 -y 170 -defaultsOSRD
+preplace port port-id_SRAM2_WE -pg 1 -lvl 14 -x 5390 -y 200 -defaultsOSRD
+preplace port port-id_led2 -pg 1 -lvl 14 -x 5390 -y 1600 -defaultsOSRD
+preplace port port-id_led3 -pg 1 -lvl 14 -x 5390 -y 1630 -defaultsOSRD
+preplace portBus SRAM1A -pg 1 -lvl 14 -x 5390 -y 520 -defaultsOSRD
+preplace portBus SRAM1DQ_o -pg 1 -lvl 14 -x 5390 -y 610 -defaultsOSRD
+preplace portBus SRAM1DQ_t -pg 1 -lvl 14 -x 5390 -y 640 -defaultsOSRD
+preplace portBus SRAM1DEC -pg 1 -lvl 14 -x 5390 -y 670 -defaultsOSRD
+preplace portBus SRAM1DQ_i -pg 1 -lvl 0 -x -10 -y 580 -defaultsOSRD
+preplace portBus SRAM2DQ_i -pg 1 -lvl 0 -x -10 -y 960 -defaultsOSRD
+preplace portBus SRAM2A -pg 1 -lvl 14 -x 5390 -y 140 -defaultsOSRD
+preplace portBus SRAM2DQ_o -pg 1 -lvl 14 -x 5390 -y 230 -defaultsOSRD
+preplace portBus SRAM2DQ_t -pg 1 -lvl 14 -x 5390 -y 260 -defaultsOSRD
+preplace portBus SRAM2DEC -pg 1 -lvl 14 -x 5390 -y 290 -defaultsOSRD
+preplace inst BF_formatter_0 -pg 1 -lvl 7 -x 2250 -y 1330 -defaultsOSRD
+preplace inst GNSS_Fetcher_mod_0 -pg 1 -lvl 7 -x 2250 -y 1560 -defaultsOSRD
+preplace inst GNSS_Sender_0 -pg 1 -lvl 8 -x 2710 -y 1560 -defaultsOSRD
+preplace inst HK_formatter_0 -pg 1 -lvl 9 -x 3310 -y 1500 -defaultsOSRD
+preplace inst HTR_CALC_0 -pg 1 -lvl 12 -x 4740 -y 1870 -defaultsOSRD
+preplace inst I2C_full_sensor_data_0 -pg 1 -lvl 10 -x 3840 -y 1480 -defaultsOSRD
+preplace inst I2Cmod_0 -pg 1 -lvl 13 -x 5180 -y 2250 -defaultsOSRD
+preplace inst Mode_control_0 -pg 1 -lvl 3 -x 680 -y 1870 -defaultsOSRD
+preplace inst Pulse_Per_Second_100_0 -pg 1 -lvl 5 -x 1310 -y 1160 -defaultsOSRD
+preplace inst RAD_formatter_0 -pg 1 -lvl 7 -x 2250 -y 890 -defaultsOSRD
+preplace inst Read_8SRAM_100MHZ_0 -pg 1 -lvl 5 -x 1310 -y 550 -defaultsOSRD
+preplace inst RESTART_mod_0 -pg 1 -lvl 3 -x 680 -y 2010 -defaultsOSRD
+preplace inst RW_ROUTER_100MHZ_0 -pg 1 -lvl 13 -x 5180 -y 580 -defaultsOSRD
+preplace inst SAY_HEY_switchmod_0 -pg 1 -lvl 7 -x 2250 -y 1730 -defaultsOSRD
+preplace inst SET_RTC_switchmod_0 -pg 1 -lvl 9 -x 3310 -y 1790 -defaultsOSRD
+preplace inst TC_distributor_0 -pg 1 -lvl 2 -x 400 -y 1850 -defaultsOSRD
+preplace inst TM_packet_sender_0 -pg 1 -lvl 8 -x 2710 -y 1080 -defaultsOSRD
+preplace inst UART_RX_100MHZ_0 -pg 1 -lvl 6 -x 1800 -y 1590 -defaultsOSRD
+preplace inst UART_RX_100MHZ_1 -pg 1 -lvl 1 -x 150 -y 1900 -defaultsOSRD
+preplace inst UART_TX_100MHZ_0 -pg 1 -lvl 7 -x 2250 -y 1110 -defaultsOSRD
+preplace inst Write_8SRAM_100MHZ_0 -pg 1 -lvl 4 -x 950 -y 380 -defaultsOSRD
+preplace inst BF_Data_Collector_Dr_0 -pg 1 -lvl 6 -x 1800 -y 1030 -defaultsOSRD
+preplace inst UART_RX_100MHZ_2 -pg 1 -lvl 6 -x 1800 -y 830 -defaultsOSRD
+preplace inst Read_8SRAM_100MHZ_1 -pg 1 -lvl 5 -x 1310 -y 930 -defaultsOSRD
+preplace inst Write_8SRAM_100MHZ_1 -pg 1 -lvl 4 -x 950 -y 160 -defaultsOSRD
+preplace inst RW_ROUTER_100MHZ_1 -pg 1 -lvl 13 -x 5180 -y 200 -defaultsOSRD
+preplace inst Pulse_WithDelay_Per_0 -pg 1 -lvl 8 -x 2710 -y 1400 -defaultsOSRD
+preplace inst I2C_HTR_TEMP_0 -pg 1 -lvl 8 -x 2710 -y 2050 -defaultsOSRD
+preplace inst HTR_ROUTER_0 -pg 1 -lvl 11 -x 4340 -y 1790 -defaultsOSRD
+preplace inst I2C_HTR_ROUTER_0 -pg 1 -lvl 9 -x 3310 -y 2130 -defaultsOSRD
+preplace inst HTR_controller_new_0 -pg 1 -lvl 13 -x 5180 -y 1720 -defaultsOSRD
+preplace inst HTR_controller_new_1 -pg 1 -lvl 13 -x 5180 -y 1860 -defaultsOSRD
+preplace netloc BF_Data_Collector_Dr_0_o_BF_data 1 6 1 1970 1010n
+preplace netloc BF_Data_Collector_Dr_0_o_BF_drive 1 6 1 1960 1030n
+preplace netloc BF_formatter_0_BF_packet 1 7 1 2450 1040n
+preplace netloc BF_formatter_0_BF_packet_DV 1 7 1 2460 1100n
+preplace netloc BF_formatter_0_I2C_read_done 1 7 3 NJ 1310 NJ 1310 3630
+preplace netloc BF_formatter_0_RTC_request 1 7 3 NJ 1290 NJ 1290 3610
+preplace netloc DQ_i_0_1 1 0 5 NJ 580 NJ 580 NJ 580 NJ 580 NJ
+preplace netloc DQ_i_0_2 1 0 5 NJ 960 NJ 960 NJ 960 NJ 960 NJ
+preplace netloc GNSS_Fetcher_mod_0_o_gnss_data 1 7 1 2430 1540n
+preplace netloc GNSS_Fetcher_mod_0_o_gnss_drive 1 7 1 2410 1560n
+preplace netloc GNSS_Sender_0_o_gnss_data 1 8 1 3000 1490n
+preplace netloc GNSS_Sender_0_o_gnss_drive 1 8 1 2990 1470n
+preplace netloc HK_formatter_0_ALT_request 1 9 1 3560 1460n
+preplace netloc HK_formatter_0_HK_packet 1 7 3 2530 890 NJ 890 3520
+preplace netloc HK_formatter_0_HK_packet_DV 1 7 3 2520 880 NJ 880 3510
+preplace netloc HK_formatter_0_I2C_read_done 1 9 1 3550 1420n
+preplace netloc HK_formatter_0_RTC_request 1 9 1 3600 1440n
+preplace netloc HK_formatter_0_TEMP_request 1 9 1 3530 1480n
+preplace netloc HTR_CALC_0_HTR_request 1 10 3 4140 1610 NJ 1610 4900
+preplace netloc HTR_CALC_0_I2C_read_done 1 10 3 4150 1620 NJ 1620 4910
+preplace netloc HTR_CALC_0_command_htr1 1 12 1 4990 1740n
+preplace netloc HTR_CALC_0_command_htr2 1 12 1 5030 1880n
+preplace netloc HTR_ROUTER_0_HTR_request_heater 1 7 5 2500 1680 NJ 1680 NJ 1680 4080J 1630 4560
+preplace netloc HTR_ROUTER_0_HTR_request_normal 1 9 3 3660 1690 4090J 1640 4530
+preplace netloc HTR_ROUTER_0_I2C_read_done_heater 1 7 5 2530 1910 NJ 1910 NJ 1910 4110J 1930 4530
+preplace netloc HTR_ROUTER_0_I2C_read_done_normal 1 9 3 3660 1280 NJ 1280 4540
+preplace netloc HTR_ROUTER_0_temp_DV 1 11 1 4560 1830n
+preplace netloc HTR_ROUTER_0_temp_data 1 11 1 4550 1850n
+preplace netloc HTR_controller_new_0_nmos_out 1 13 1 5360 1710n
+preplace netloc HTR_controller_new_1_nmos_out 1 13 1 5330 1850n
+preplace netloc I2C_HTR_ROUTER_0_i_busy_heater 1 7 3 2510 1890 NJ 1890 3510
+preplace netloc I2C_HTR_ROUTER_0_i_busy_normal 1 9 1 3540 1380n
+preplace netloc I2C_HTR_ROUTER_0_i_data_read_heater 1 7 3 2520 1900 NJ 1900 3520
+preplace netloc I2C_HTR_ROUTER_0_i_data_read_normal 1 9 1 3590 1400n
+preplace netloc I2C_HTR_ROUTER_0_o_i2c_address 1 9 4 NJ 2100 NJ 2100 NJ 2100 4920
+preplace netloc I2C_HTR_ROUTER_0_o_i2c_data_wr 1 9 4 NJ 2140 NJ 2140 NJ 2140 4900
+preplace netloc I2C_HTR_ROUTER_0_o_i2c_ena 1 9 4 NJ 2080 NJ 2080 NJ 2080 4930
+preplace netloc I2C_HTR_ROUTER_0_o_i2c_rw 1 9 4 NJ 2120 NJ 2120 NJ 2120 4910
+preplace netloc I2C_HTR_ROUTER_0_reset_i2c 1 9 4 NJ 2060 NJ 2060 NJ 2060 4940
+preplace netloc I2C_HTR_TEMP_0_o_TX_DV_HTR 1 8 3 2960J 1870 NJ 1870 N
+preplace netloc I2C_HTR_TEMP_0_o_TX_TEMP_data 1 8 3 2970J 1950 NJ 1950 4040
+preplace netloc I2C_HTR_TEMP_0_o_i2c_address 1 8 1 2910 1990n
+preplace netloc I2C_HTR_TEMP_0_o_i2c_data_wr 1 8 1 2890 2030n
+preplace netloc I2C_HTR_TEMP_0_o_i2c_ena 1 8 1 2920 1970n
+preplace netloc I2C_HTR_TEMP_0_o_i2c_rw 1 8 1 2900 2010n
+preplace netloc I2C_full_sensor_data_0_o_SET_RTC_done 1 8 3 3080 1700 NJ 1700 4020
+preplace netloc I2C_full_sensor_data_0_o_TX_ALT_data 1 8 3 3050 1210 NJ 1210 4110
+preplace netloc I2C_full_sensor_data_0_o_TX_DV_BF 1 6 5 2090 1210 2410J 1240 3040J 1250 NJ 1250 4050
+preplace netloc I2C_full_sensor_data_0_o_TX_DV_HK 1 8 3 3110 1270 NJ 1270 4030
+preplace netloc I2C_full_sensor_data_0_o_TX_DV_HTR 1 10 1 4120 1480n
+preplace netloc I2C_full_sensor_data_0_o_TX_DV_RAD 1 6 5 2090 750 NJ 750 NJ 750 NJ 750 4080
+preplace netloc I2C_full_sensor_data_0_o_TX_RTC_data 1 6 5 2060 1200 2420J 1250 3010 1260 NJ 1260 4040
+preplace netloc I2C_full_sensor_data_0_o_TX_TEMP_data 1 8 3 3110 1670 3530J 1740 4110
+preplace netloc I2C_full_sensor_data_0_o_i2c_address 1 8 3 3060 1240 NJ 1240 4060
+preplace netloc I2C_full_sensor_data_0_o_i2c_data_wr 1 8 3 3090 1710 3510J 1720 4060
+preplace netloc I2C_full_sensor_data_0_o_i2c_ena 1 8 3 3070 1220 NJ 1220 4020
+preplace netloc I2C_full_sensor_data_0_o_i2c_rw 1 8 3 3050 1690 3520J 1730 4070
+preplace netloc I2Cmod_0_busy 1 8 6 3100 1930 NJ 1930 4080J 1950 4560J 1980 NJ 1980 5330
+preplace netloc I2Cmod_0_data_rd 1 8 6 3110 1940 NJ 1940 4050J 1960 4550J 1990 NJ 1990 5340
+preplace netloc I2Cmod_0_scl_o 1 13 1 NJ 2220
+preplace netloc I2Cmod_0_scl_t 1 13 1 5360J 2240n
+preplace netloc I2Cmod_0_sda_o 1 13 1 5360J 2160n
+preplace netloc I2Cmod_0_sda_t 1 13 1 5360J 2190n
+preplace netloc Mode_control_0_led0 1 3 11 820J 1870 NJ 1870 NJ 1870 NJ 1870 NJ 1870 2950J 1880 3530J 1960 4030J 1970 4540J 2000 NJ 2000 NJ
+preplace netloc Mode_control_0_o_signal 1 3 10 810 540 1080 740 1640 740 2020 1010 2510 1470 2980 1320 3650 1230 4130 410 NJ 410 5030
+preplace netloc Net 1 3 10 810J 1880 NJ 1880 NJ 1880 NJ 1880 2420 1880 2940 1920 NJ 1920 4130 1940 4580 1970 5010
+preplace netloc Pulse_Per_Second_100_0_o_pulse 1 5 1 1640 1050n
+preplace netloc Pulse_WithDelay_Per_0_o_pulse 1 8 1 2990 1390n
+preplace netloc RAD_formatter_0_I2C_read_done 1 7 3 NJ 850 NJ 850 3640
+preplace netloc RAD_formatter_0_RAD_packet 1 7 1 2490 890n
+preplace netloc RAD_formatter_0_RAD_packet_DV 1 7 1 2500 870n
+preplace netloc RAD_formatter_0_RTC_request 1 7 3 2490 840 NJ 840 3620J
+preplace netloc RAD_formatter_0_led0 1 7 7 2410J 900 NJ 900 NJ 900 NJ 900 NJ 900 NJ 900 5330
+preplace netloc RAD_formatter_0_led2 1 7 7 2420J 910 NJ 910 NJ 910 NJ 910 NJ 910 NJ 910 5350
+preplace netloc RW_ROUTER_100MHZ_0_A 1 13 1 5330J 520n
+preplace netloc RW_ROUTER_100MHZ_0_CE_n 1 13 1 5360J 550n
+preplace netloc RW_ROUTER_100MHZ_0_DQ_o 1 13 1 5330J 600n
+preplace netloc RW_ROUTER_100MHZ_0_DQ_t 1 13 1 5360J 620n
+preplace netloc RW_ROUTER_100MHZ_0_WE_n 1 13 1 NJ 580
+preplace netloc RW_ROUTER_100MHZ_0_decoder 1 13 1 5330J 640n
+preplace netloc RW_ROUTER_100MHZ_1_A 1 13 1 5360J 140n
+preplace netloc RW_ROUTER_100MHZ_1_CE_n 1 13 1 5360J 170n
+preplace netloc RW_ROUTER_100MHZ_1_DQ_o 1 13 1 5360J 220n
+preplace netloc RW_ROUTER_100MHZ_1_DQ_t 1 13 1 5360J 240n
+preplace netloc RW_ROUTER_100MHZ_1_WE_n 1 13 1 NJ 200
+preplace netloc RW_ROUTER_100MHZ_1_decoder 1 13 1 5330J 260n
+preplace netloc Read_8SRAM_100MHZ_0_A 1 5 8 1620 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ 620 NJ
+preplace netloc Read_8SRAM_100MHZ_0_CE_n 1 5 8 1600 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ 640 NJ
+preplace netloc Read_8SRAM_100MHZ_0_DQ_o 1 5 8 1530 690 NJ 690 NJ 690 NJ 690 NJ 690 NJ 690 NJ 690 4910J
+preplace netloc Read_8SRAM_100MHZ_0_DQ_t 1 5 8 1550 680 NJ 680 NJ 680 NJ 680 NJ 680 NJ 680 NJ 680 NJ
+preplace netloc Read_8SRAM_100MHZ_0_WE_n 1 5 8 1570 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ 660 NJ
+preplace netloc Read_8SRAM_100MHZ_0_decoder 1 5 8 1510 700 NJ 700 NJ 700 NJ 700 NJ 700 NJ 700 NJ 700 4900J
+preplace netloc Read_8SRAM_100MHZ_0_o_BF_data 1 5 1 1490 570n
+preplace netloc Read_8SRAM_100MHZ_0_o_BF_drive 1 5 1 1500 590n
+preplace netloc Read_8SRAM_100MHZ_1_A 1 5 8 1520J 290 NJ 290 NJ 290 NJ 290 NJ 290 NJ 290 NJ 290 4900
+preplace netloc Read_8SRAM_100MHZ_1_CE_n 1 5 8 1540J 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 4910
+preplace netloc Read_8SRAM_100MHZ_1_DQ_o 1 5 8 1610J 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 4940
+preplace netloc Read_8SRAM_100MHZ_1_DQ_t 1 5 8 1590J 320 NJ 320 NJ 320 NJ 320 NJ 320 NJ 320 NJ 320 4930
+preplace netloc Read_8SRAM_100MHZ_1_WE_n 1 5 8 1560J 310 NJ 310 NJ 310 NJ 310 NJ 310 NJ 310 NJ 310 4920
+preplace netloc Read_8SRAM_100MHZ_1_decoder 1 5 8 1630J 340 NJ 340 NJ 340 NJ 340 NJ 340 NJ 340 NJ 340 N
+preplace netloc Read_8SRAM_100MHZ_1_o_BF_data 1 5 1 1470 950n
+preplace netloc Read_8SRAM_100MHZ_1_o_BF_drive 1 5 1 1480 970n
+preplace netloc SAY_HEY_switchmod_0_SAY_HEY_request 1 7 1 2490 1140n
+preplace netloc SET_RTC_switchmod_0_SET_RTC_request 1 9 1 3640 1620n
+preplace netloc TC_distributor_0_cmd0 1 2 1 510 1780n
+preplace netloc TC_distributor_0_cmd1 1 2 1 540 1800n
+preplace netloc TC_distributor_0_cmd2 1 2 1 500 1820n
+preplace netloc TC_distributor_0_cmd3 1 2 5 530 1730 NJ 1730 NJ 1730 NJ 1730 NJ
+preplace netloc TC_distributor_0_cmd4 1 2 7 520 1670 NJ 1670 NJ 1670 NJ 1670 2020J 1650 NJ 1650 2930J
+preplace netloc TC_distributor_0_cmd6 1 2 1 N 1900
+preplace netloc TM_packet_sender_0_o_BF_got 1 6 3 2050 770 NJ 770 2890
+preplace netloc TM_packet_sender_0_o_HEY_got 1 6 3 2040 710 NJ 710 3000
+preplace netloc TM_packet_sender_0_o_HK_got 1 8 1 3030 1050n
+preplace netloc TM_packet_sender_0_o_RAD_got 1 6 3 2060 720 NJ 720 2970
+preplace netloc TM_packet_sender_0_o_TX_DV 1 6 3 2080 740 NJ 740 2930
+preplace netloc TM_packet_sender_0_o_TX_byte 1 6 3 2070 730 NJ 730 2940
+preplace netloc UART_RX_100MHZ_0_o_RX_DV 1 6 1 N 1570
+preplace netloc UART_RX_100MHZ_0_o_RX_byte 1 6 1 N 1590
+preplace netloc UART_RX_100MHZ_1_o_RX_DV 1 1 1 N 1880
+preplace netloc UART_RX_100MHZ_1_o_RX_byte 1 1 1 300 1860n
+preplace netloc UART_RX_100MHZ_2_led0 1 6 8 2010 760 NJ 760 NJ 760 NJ 760 4110J 780 NJ 780 NJ 780 5360J
+preplace netloc UART_RX_100MHZ_2_o_RX_DV 1 6 1 2030 810n
+preplace netloc UART_RX_100MHZ_2_o_RX_byte 1 6 1 1960 830n
+preplace netloc UART_TX_100MHZ_0_o_TX_Active 1 7 1 2440 1080n
+preplace netloc UART_TX_100MHZ_0_o_TX_Done 1 7 1 2410 1120n
+preplace netloc UART_TX_100MHZ_0_o_TX_Serial 1 7 7 2430J 920 NJ 920 NJ 920 NJ 920 NJ 920 NJ 920 5340J
+preplace netloc Write_8SRAM_100MHZ_0_A 1 4 9 1080J 330 1600J 350 NJ 350 NJ 350 NJ 350 NJ 350 NJ 350 NJ 350 5020
+preplace netloc Write_8SRAM_100MHZ_0_CE_n 1 4 9 1110J 340 1530J 360 NJ 360 NJ 360 NJ 360 NJ 360 NJ 360 NJ 360 5010
+preplace netloc Write_8SRAM_100MHZ_0_DQ_o 1 4 9 1130J 350 1500J 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 4990
+preplace netloc Write_8SRAM_100MHZ_0_DQ_t 1 4 9 1140J 360 1470J 420 NJ 420 NJ 420 NJ 420 NJ 420 NJ 420 NJ 420 4900
+preplace netloc Write_8SRAM_100MHZ_0_WE_n 1 4 9 1100J 320 1570J 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 4980
+preplace netloc Write_8SRAM_100MHZ_0_decoder 1 4 9 1150J 370 1490J 390 NJ 390 NJ 390 NJ 390 NJ 390 NJ 390 NJ 390 4920
+preplace netloc Write_8SRAM_100MHZ_0_write_complete 1 4 9 1090 310 1510J 400 NJ 400 NJ 400 NJ 400 NJ 400 NJ 400 NJ 400 5000
+preplace netloc Write_8SRAM_100MHZ_1_A 1 4 9 N 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ
+preplace netloc Write_8SRAM_100MHZ_1_CE_n 1 4 9 N 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ
+preplace netloc Write_8SRAM_100MHZ_1_DQ_o 1 4 9 N 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ
+preplace netloc Write_8SRAM_100MHZ_1_DQ_t 1 4 9 N 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ
+preplace netloc Write_8SRAM_100MHZ_1_WE_n 1 4 9 N 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ
+preplace netloc Write_8SRAM_100MHZ_1_decoder 1 4 9 N 220 NJ 220 NJ 220 NJ 220 NJ 220 NJ 220 NJ 220 NJ 220 NJ
+preplace netloc Write_8SRAM_100MHZ_1_write_complete 1 4 9 1120 100 NJ 100 NJ 100 NJ 100 NJ 100 NJ 100 NJ 100 NJ 100 NJ
+preplace netloc i_RX_Serial_0_1 1 0 1 NJ 1910
+preplace netloc i_RX_Serial_0_2 1 0 6 NJ 1600 NJ 1600 NJ 1600 NJ 1600 NJ 1600 NJ
+preplace netloc i_RX_Serial_0_3 1 0 6 NJ 730 NJ 730 NJ 730 NJ 730 NJ 730 1510J
+preplace netloc scl_i_0_1 1 0 13 NJ 2370 NJ 2370 NJ 2370 NJ 2370 NJ 2370 NJ 2370 NJ 2370 NJ 2370 NJ 2370 3660J 2200 NJ 2200 NJ 2200 NJ
+preplace netloc sda_i_0_1 1 0 13 NJ 2340 NJ 2340 NJ 2340 NJ 2340 NJ 2340 NJ 2340 NJ 2340 NJ 2340 NJ 2340 3640J 2180 NJ 2180 NJ 2180 NJ
+preplace netloc sysclk_0_1 1 0 13 20 1820 290 1980 550 520 820 520 1100 750 1580 750 2000 1020 2480 1330 3020 1330 3580 1710 4100 1650 4580 1650 4970
+levelinfo -pg 1 -10 150 400 680 950 1310 1800 2250 2710 3310 3840 4340 4740 5180 5390
+pagesize -pg 1 -db -bbox -sgen -170 -10 5560 2400
+"
+}
+0

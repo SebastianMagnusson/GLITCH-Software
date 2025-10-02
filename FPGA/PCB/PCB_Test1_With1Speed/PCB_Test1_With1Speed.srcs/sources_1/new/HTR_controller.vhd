@@ -10,7 +10,7 @@ use ieee.numeric_std.all;
 entity HTR_controller is
     port (
         clk        : in  std_logic;
-        rst        : in  std_logic;
+        HTR_rst        : in  std_logic;
         HTR_DUTY   : in  integer;
         nmos_out   : out std_logic;
         diag_out   : out std_logic
@@ -26,7 +26,7 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-            if rst = '0' then
+            if HTR_rst = '0' then
                 counter   <= 0;
             else
                 if counter = 9 then

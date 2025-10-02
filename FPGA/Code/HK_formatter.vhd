@@ -16,6 +16,7 @@ entity HK_formatter is
     Port ( 
         clk : in std_logic;
         rst : in std_logic;
+        start_pulse : in std_logic;
 		HK_packet_got : in std_logic;
 		GNSS_data_DV : in std_logic;
 		GNSS_data : in std_logic_vector(383 downto 0);
@@ -74,7 +75,7 @@ begin
             else
 				case state is
 					when s_GNSS_idle =>
-						if GNSS_data_DV = '1' then
+						if start_pulse = '1' then
 							GNSS_data_i <= GNSS_data;
 							RTC_request <= '1';
 							state <= s_RTC_idle;

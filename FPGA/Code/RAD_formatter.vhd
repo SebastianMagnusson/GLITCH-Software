@@ -67,15 +67,15 @@ begin
             else
 				case state is
 					when s_RAD_idle =>
-						led1 <= '1';
-						drive_prev <= RAD_data_DV;
             if RAD_bit_cnt > 0 then
-              if RAD_data_DV = '1' and drive_prev = '0' then
+              drive_prev <= RAD_data_DV;
+              if RAD_data_DV = '1' then --and drive_prev = '0' then
                 led2 <= '1';
                 RAD_data_i(RAD_bit_cnt downto (RAD_bit_cnt-7)) <= RAD_data;
                 RAD_bit_cnt <= RAD_bit_cnt - 8;
                 state <= s_RAD_idle;							
-              else 				
+              else 	
+                led1 <= '1';			
                 RAD_packet_DV <= '0';
                 state <= s_RAD_idle;
               end if;

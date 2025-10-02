@@ -44,7 +44,7 @@ architecture rtl of TM_packet_sender is
 	signal i_BF_data_i : std_logic_vector(223 downto 0);
 	signal i_RAD_data_i : std_logic_vector(5015 downto 0);
 	
-	constant HEY : std_logic_vector(7 downto 0) := "11101010";
+	constant HEY : std_logic_vector(7 downto 0) := x"E4";
 	
 	signal i_TX_done_prev : std_logic;
 	signal bit_cnt : integer := 0;
@@ -56,167 +56,178 @@ begin
     begin
     
         if rising_edge(clk) then
-            if rst = '0' then                       
-                i_HK_data_i <= (others => '0');      
-                i_BF_data_i <= (others => '0');      
-                i_RAD_data_i <= (others => '0');      
-                o_TX_DV <= '0';                      
-                o_TX_byte <= (others => '0');          
-                o_HK_got <= '0';                       
-                o_BF_got <= '0';                       
-                o_RAD_got <= '0';   
-				o_HEY_got <= '0';
-                bit_cnt <= 0;                         
-                state <= s_idle;                       
-                i_TX_done_prev <= '0';
-            else
-				case state is
-					when s_idle =>
-						if i_HEY_DV = '1' then
-							o_HEY_got <= '1';
-							state <= s_send_HEY_first;
-						elsif i_HK_DV = '1' then
-							i_HK_data_i <= i_HK_data;
-							o_HK_got <= '1';
-							state <= s_send_HK_first;
-						elsif i_BF_DV = '1' then
-							i_BF_data_i <= i_BF_data;
-							o_BF_got <= '1';
-							state <= s_send_BF_first;
-						elsif i_RAD_DV = '1' then
-							i_RAD_data_i <= i_RAD_data;
-							o_RAD_got <= '1';
-							state <= s_send_RAD_first;
-						else
-							state <= s_idle;
-						end if;
+          
+          if rst = '0' then                       
+            i_HK_data_i <= (others => '0');      
+            i_BF_data_i <= (others => '0');      
+            i_RAD_data_i <= (others => '0');      
+            o_TX_DV <= '0';                      
+            o_TX_byte <= (others => '0');          
+            o_HK_got <= '0';                       
+            o_BF_got <= '0';                       
+            o_RAD_got <= '0';   
+				    o_HEY_got <= '0';
+            bit_cnt <= 0;                         
+            state <= s_idle;                       
+            i_TX_done_prev <= '0';
+            led1 <= '0';
+          else
+				    case state is
+				    
+					  when s_idle =>
+					    bit_cnt <= 0;
+						  if i_HEY_DV = '1' then
+							  o_HEY_got <= '1';
+							  state     <= s_send_HEY_first;
+						  elsif i_HK_DV = '1' then
+							  i_HK_data_i <= i_HK_data;
+							  o_HK_got    <= '1';
+							  state <= s_send_HK_first;
+						  elsif i_BF_DV = '1' then
+							  i_BF_data_i <= i_BF_data;
+							  o_BF_got    <= '1';
+							  state <= s_send_BF_first;
+						  elsif i_RAD_DV = '1' then
+							  i_RAD_data_i <= i_RAD_data;
+							  o_RAD_got    <= '1';
+							  state <= s_send_RAD_first;
+						  else
+							  state <= s_idle;
+						  end if;
 					
-					when s_send_HK_first => 	
-					  if(i_TX_active /= '1') then
-						  o_HK_got <= '0';                    
-				    o_TX_DV <= '1';
-				    o_TX_byte <= "01000101";
-				    bit_cnt <= 471;           
-		  	        state <= s_send_HK;
-		  	    else
+					  when s_send_HK_first => 	
+					    if(i_TX_active /= '1') then
+					  	  o_HK_got  <= '0';                    
+				        o_TX_DV   <= '1';
+				        o_TX_byte <= "01000101";
+				        bit_cnt   <= 471;           
+		  	        state     <= s_send_HK;
+		  	      else
 		  	        state <= s_send_HK_first;
-		  	    end if;
-					    
-					when s_send_HK =>	
-						i_TX_done_prev <= i_TX_done;
-						if i_TX_done = '1' and i_TX_done_prev = '0' then
-							o_TX_DV <= '1';
-							o_TX_byte <= i_HK_data_i(bit_cnt downto bit_cnt-7);
-							i_TX_done_prev <= '1';
-							if bit_cnt-7 <= 0 then
-								state <= s_clean;
-							else 
-								bit_cnt <= bit_cnt-8;
-							end if;
-						else
-							o_TX_DV <= '0';
-						end if;
-										
-					when s_send_BF_first => 
-            if(i_TX_active /= '1') then
-						  o_BF_got <= '0';
-              o_TX_DV <= '1';
-              o_TX_byte <= "01000101";
-              bit_cnt <= 223;           
-					    state <= s_send_BF;
-					  else
-					    state <= s_send_BF_first;
-					  end if;
-					
-					when s_send_BF =>	
-					    
-					    led1 <= led;	
-						i_TX_done_prev <= i_TX_done;
-						if i_TX_done = '1' and i_TX_done_prev = '0' then
-						    led1 <= led;    
-							o_TX_DV <= '1';
-							o_TX_byte <= i_BF_data_i(bit_cnt downto bit_cnt-7);
-							i_TX_done_prev <= '1';
-							if bit_cnt-7 <= 0 then
-							    led2 <= led;
-								state <= s_clean;
-							else 
-								bit_cnt <= bit_cnt-8;
-							end if;
-						else
-							o_TX_DV <= '0';
-						end if;	
-						
-					when s_send_RAD_first => 
-						if(i_TX_active /= '1') then        
-						    o_RAD_got <= '0';
-						    o_TX_DV <= '1';
-						    o_TX_byte <= "01000101";
-						    bit_cnt <= 5015;           
-							state <= s_send_RAD;
+		  	      end if;
+					      
+					  when s_send_HK =>	
+					  	i_TX_done_prev <= i_TX_done;
+					  	if i_TX_done = '1' and i_TX_done_prev = '0' then
+					  		o_TX_DV <= '1';
+					  		o_TX_byte <= i_HK_data_i(bit_cnt downto bit_cnt-7);
+					  		i_TX_done_prev <= '1';
+					  		if bit_cnt-7 <= 0 then
+					  			state <= s_clean;
+					  		else 
+					  		  state   <= s_send_HK;
+					  			bit_cnt <= bit_cnt-8;
+					  		end if;
+					  	else
+					  	  state   <= s_send_HK;
+					  		o_TX_DV <= '0';
+					  	end if;
+					  					
+					  when s_send_BF_first => 
+              if(i_TX_active /= '1') then
+					  	  o_BF_got <= '0';
+                o_TX_DV <= '1';
+                o_TX_byte <= "01000101";
+                bit_cnt <= 223;           
+					      state <= s_send_BF;
 					    else
-							state <= s_send_RAD_first;
+					      state <= s_send_BF_first;
 					    end if;
-						
-					when s_send_RAD =>		
-						i_TX_done_prev <= i_TX_done;
-						if i_TX_done = '1' and i_TX_done_prev = '0' then
-							o_TX_DV <= '1';
-							o_TX_byte <= i_RAD_data_i(bit_cnt downto bit_cnt-7);
-							i_TX_done_prev <= '1';
-							if bit_cnt-7 <= 0 then
-								state <= s_clean;
-							else 
-								bit_cnt <= bit_cnt-8;
-							end if;
-						else
-							o_TX_DV <= '0';
-						end if;	
-					
-					when s_send_HEY_first =>
-						if(i_TX_active /= '1') then        
-						    o_HEY_got <= '0';
-						    o_TX_DV <= '1';
-						    o_TX_byte <= "01000101";
-							bit_cnt <= 7;
-							state <= s_send_HEY;
+					  
+					  when s_send_BF =>	
+					      
+					  	i_TX_done_prev <= i_TX_done;
+					  	if i_TX_done = '1' and i_TX_done_prev = '0' then
+					  		o_TX_DV <= '1';
+					  		o_TX_byte <= i_BF_data_i(bit_cnt downto bit_cnt-7);
+					  		i_TX_done_prev <= '1';
+					  		if bit_cnt-7 <= 0 then
+					  		  led2  <= led;
+					  			state <= s_clean;
+					  		else 
+					  		  state   <= s_send_BF;
+					  			bit_cnt <= bit_cnt-8;
+					  		end if;
+					  	else
+					  	  state   <= s_send_BF;
+					  		o_TX_DV <= '0';
+					  	end if;	
+					  	
+					  when s_send_RAD_first => 
+					  	if(i_TX_active /= '1') then        
+					  	    o_RAD_got <= '0';
+					  	    o_TX_DV <= '1';
+					  	    o_TX_byte <= "01000101";
+					  	    bit_cnt <= 5015;           
+					  		state <= s_send_RAD;
+					      else
+					  		state <= s_send_RAD_first;
+					      end if;
+					  	
+					  when s_send_RAD =>		
+					  	i_TX_done_prev <= i_TX_done;
+					  	if i_TX_done = '1' and i_TX_done_prev = '0' then
+					  		o_TX_DV <= '1';
+					  		o_TX_byte <= i_RAD_data_i(bit_cnt downto bit_cnt-7);
+					  		i_TX_done_prev <= '1';
+					  		if bit_cnt-7 <= 0 then
+					  			state <= s_clean;
+					  		else 
+					  		  state   <= s_send_RAD;
+					  			bit_cnt <= bit_cnt-8;
+					  		end if;
+					  	else
+					  	  state   <= s_send_RAD;
+					  		o_TX_DV <= '0';
+					  	end if;	
+					  
+					  when s_send_HEY_first =>
+					  	if(i_TX_active /= '1') then        
+					  	  o_HEY_got <= '0';
+					  	  o_TX_DV   <= '1';
+				        o_TX_byte <= "01000101";
+					  		bit_cnt   <= 7;
+					  		state     <= s_send_HEY;
 					    else
-							state <= s_send_HEY_first;
+					  		state <= s_send_HEY_first;
 					    end if;
-						
-					when s_send_HEY =>
-						i_TX_done_prev <= i_TX_done;
-						if i_TX_done = '1' and i_TX_done_prev = '0' then
-							o_TX_DV <= '1';
-							o_TX_byte <= HEY;
-							i_TX_done_prev <= '1';
-							if bit_cnt-7 <= 0 then
-								state <= s_clean;
-							else 
-								bit_cnt <= bit_cnt-8;
-							end if;
-						else
-							o_TX_DV <= '0';
-						end if;	
-											
-					when s_clean =>		
-					    
-					    led <= not led;				
-						i_HK_data_i <= (others => '0');
-						i_BF_data_i <= (others => '0');
-						i_RAD_data_i <= (others => '0');
-						o_TX_DV <= '0';
-						o_TX_byte <= (others => '0');
-						o_HK_got <= '0';
-						o_BF_got <= '0';
-						o_RAD_got <= '0';
-						o_HEY_got <= '0';
-						i_TX_done_prev <= '0';
-						bit_cnt <= 0;
-						state <= s_idle;
-						
-				end case;
-            end if;
+					  	
+					  when s_send_HEY =>
+					    led1 <= '1';
+					  	i_TX_done_prev <= i_TX_done;
+					  	if i_TX_done = '1' and i_TX_done_prev = '0' then
+					  		o_TX_DV <= '1';
+					  		o_TX_byte <= HEY;
+					  		i_TX_done_prev <= '1';
+					  		if bit_cnt-7 <= 0 then
+					  			state <= s_clean;
+					  		else 
+					  		  state   <= s_send_HEY;
+					  			bit_cnt <= bit_cnt-8;
+					  		end if;
+					  	else
+					  	  state   <= s_send_HEY;
+					  		o_TX_DV <= '0';
+					  	end if;	
+					  						
+					  when s_clean =>		
+					      
+					      led <= not led;				
+					  	i_HK_data_i <= (others => '0');
+					  	i_BF_data_i <= (others => '0');
+					  	i_RAD_data_i <= (others => '0');
+					  	o_TX_DV <= '0';
+					  	o_TX_byte <= (others => '0');
+					  	o_HK_got <= '0';
+					  	o_BF_got <= '0';
+					  	o_RAD_got <= '0';
+					  	o_HEY_got <= '0';
+					  	i_TX_done_prev <= '0';
+					  	bit_cnt <= 0;
+					  	state <= s_idle;
+					  	
+				  end case;
+          end if;
         else
             null;    
         end if;        

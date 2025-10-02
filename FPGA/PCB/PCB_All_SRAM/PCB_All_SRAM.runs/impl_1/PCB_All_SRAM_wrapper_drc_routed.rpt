@@ -1,0 +1,369 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Wed Oct  1 14:41:45 2025
+| Host         : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
+| Command      : report_drc -file PCB_All_SRAM_wrapper_drc_routed.rpt -pb PCB_All_SRAM_wrapper_drc_routed.pb -rpx PCB_All_SRAM_wrapper_drc_routed.rpx
+| Design       : PCB_All_SRAM_wrapper
+| Device       : xc7a100tcsg324-1
+| Speed File   : -1
+| Design State : Fully Routed
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max checks: <unlimited>
+             Checks found: 58
++----------+----------+----------------------------+--------+
+| Rule     | Severity | Description                | Checks |
++----------+----------+----------------------------+--------+
+| DPOP-1   | Warning  | PREG Output pipelining     | 2      |
+| DPOP-2   | Warning  | MREG Output pipelining     | 2      |
+| IOSR-1   | Warning  | IOB set reset sharing      | 32     |
+| PDRC-132 | Warning  | SLICE_PairEqSame_A6A5_WARN | 3      |
+| PDRC-134 | Warning  | SLICE_PairEqSame_B6B5_WARN | 4      |
+| PDRC-136 | Warning  | SLICE_PairEqSame_C6C5_WARN | 4      |
+| PDRC-138 | Warning  | SLICE_PairEqSame_D6D5_WARN | 2      |
+| PDRC-140 | Warning  | SLICE_PairEqSame_A6A5_WARN | 3      |
+| PDRC-142 | Warning  | SLICE_PairEqSame_B6B5_WARN | 1      |
+| PDRC-144 | Warning  | SLICE_PairEqSame_C6C5_WARN | 2      |
+| PDRC-146 | Warning  | SLICE_PairEqSame_D6D5_WARN | 2      |
+| PDRC-153 | Warning  | Gated clock check          | 1      |
++----------+----------+----------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+DPOP-1#1 Warning
+PREG Output pipelining  
+DSP PCB_All_SRAM_i/HTR_CALC_0/U0/multOp output PCB_All_SRAM_i/HTR_CALC_0/U0/multOp/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#2 Warning
+PREG Output pipelining  
+DSP PCB_All_SRAM_i/HTR_CALC_0/U0/multOp__0 output PCB_All_SRAM_i/HTR_CALC_0/U0/multOp__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-2#1 Warning
+MREG Output pipelining  
+DSP PCB_All_SRAM_i/HTR_CALC_0/U0/multOp multiplier stage PCB_All_SRAM_i/HTR_CALC_0/U0/multOp/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#2 Warning
+MREG Output pipelining  
+DSP PCB_All_SRAM_i/HTR_CALC_0/U0/multOp__0 multiplier stage PCB_All_SRAM_i/HTR_CALC_0/U0/multOp__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+IOSR-1#1 Warning
+IOB set reset sharing  
+IO SRAM1DQ[0] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#2 Warning
+IOB set reset sharing  
+IO SRAM1DQ[10] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#3 Warning
+IOB set reset sharing  
+IO SRAM1DQ[11] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#4 Warning
+IOB set reset sharing  
+IO SRAM1DQ[12] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#5 Warning
+IOB set reset sharing  
+IO SRAM1DQ[13] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#6 Warning
+IOB set reset sharing  
+IO SRAM1DQ[14] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#7 Warning
+IOB set reset sharing  
+IO SRAM1DQ[15] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#8 Warning
+IOB set reset sharing  
+IO SRAM1DQ[1] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#9 Warning
+IOB set reset sharing  
+IO SRAM1DQ[2] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#10 Warning
+IOB set reset sharing  
+IO SRAM1DQ[3] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#11 Warning
+IOB set reset sharing  
+IO SRAM1DQ[4] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#12 Warning
+IOB set reset sharing  
+IO SRAM1DQ[5] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#13 Warning
+IOB set reset sharing  
+IO SRAM1DQ[6] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#14 Warning
+IOB set reset sharing  
+IO SRAM1DQ[7] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#15 Warning
+IOB set reset sharing  
+IO SRAM1DQ[8] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#16 Warning
+IOB set reset sharing  
+IO SRAM1DQ[9] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_0/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#17 Warning
+IOB set reset sharing  
+IO SRAM2DQ[0] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#18 Warning
+IOB set reset sharing  
+IO SRAM2DQ[10] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#19 Warning
+IOB set reset sharing  
+IO SRAM2DQ[11] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#20 Warning
+IOB set reset sharing  
+IO SRAM2DQ[12] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#21 Warning
+IOB set reset sharing  
+IO SRAM2DQ[13] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#22 Warning
+IOB set reset sharing  
+IO SRAM2DQ[14] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#23 Warning
+IOB set reset sharing  
+IO SRAM2DQ[15] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#24 Warning
+IOB set reset sharing  
+IO SRAM2DQ[1] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#25 Warning
+IOB set reset sharing  
+IO SRAM2DQ[2] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#26 Warning
+IOB set reset sharing  
+IO SRAM2DQ[3] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#27 Warning
+IOB set reset sharing  
+IO SRAM2DQ[4] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#28 Warning
+IOB set reset sharing  
+IO SRAM2DQ[5] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#29 Warning
+IOB set reset sharing  
+IO SRAM2DQ[6] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#30 Warning
+IOB set reset sharing  
+IO SRAM2DQ[7] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#31 Warning
+IOB set reset sharing  
+IO SRAM2DQ[8] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#32 Warning
+IOB set reset sharing  
+IO SRAM2DQ[9] connects to flops which have these PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/A[21]_i_1_n_0
+PCB_All_SRAM_i/RW_ROUTER_100MHZ_1/U0/led1_i_2_n_0 set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+PDRC-132#1 Warning
+SLICE_PairEqSame_A6A5_WARN  
+Luts A6LUT and A5LUT in use in site SLICE_X7Y102 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-132#2 Warning
+SLICE_PairEqSame_A6A5_WARN  
+Luts A6LUT and A5LUT in use in site SLICE_X7Y103 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-132#3 Warning
+SLICE_PairEqSame_A6A5_WARN  
+Luts A6LUT and A5LUT in use in site SLICE_X7Y104 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-134#1 Warning
+SLICE_PairEqSame_B6B5_WARN  
+Luts B6LUT and B5LUT in use in site SLICE_X4Y126 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-134#2 Warning
+SLICE_PairEqSame_B6B5_WARN  
+Luts B6LUT and B5LUT in use in site SLICE_X5Y122 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-134#3 Warning
+SLICE_PairEqSame_B6B5_WARN  
+Luts B6LUT and B5LUT in use in site SLICE_X7Y102 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-134#4 Warning
+SLICE_PairEqSame_B6B5_WARN  
+Luts B6LUT and B5LUT in use in site SLICE_X7Y103 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-136#1 Warning
+SLICE_PairEqSame_C6C5_WARN  
+Luts C6LUT and C5LUT in use in site SLICE_X40Y93 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-136#2 Warning
+SLICE_PairEqSame_C6C5_WARN  
+Luts C6LUT and C5LUT in use in site SLICE_X4Y112 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-136#3 Warning
+SLICE_PairEqSame_C6C5_WARN  
+Luts C6LUT and C5LUT in use in site SLICE_X4Y126 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-136#4 Warning
+SLICE_PairEqSame_C6C5_WARN  
+Luts C6LUT and C5LUT in use in site SLICE_X5Y122 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-138#1 Warning
+SLICE_PairEqSame_D6D5_WARN  
+Luts D6LUT and D5LUT in use in site SLICE_X4Y112 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-138#2 Warning
+SLICE_PairEqSame_D6D5_WARN  
+Luts D6LUT and D5LUT in use in site SLICE_X4Y126 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-140#1 Warning
+SLICE_PairEqSame_A6A5_WARN  
+Luts A6LUT and A5LUT in use in site SLICE_X6Y103 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-140#2 Warning
+SLICE_PairEqSame_A6A5_WARN  
+Luts A6LUT and A5LUT in use in site SLICE_X8Y101 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-140#3 Warning
+SLICE_PairEqSame_A6A5_WARN  
+Luts A6LUT and A5LUT in use in site SLICE_X8Y102 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-142#1 Warning
+SLICE_PairEqSame_B6B5_WARN  
+Luts B6LUT and B5LUT in use in site SLICE_X8Y101 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-144#1 Warning
+SLICE_PairEqSame_C6C5_WARN  
+Luts C6LUT and C5LUT in use in site SLICE_X12Y97 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-144#2 Warning
+SLICE_PairEqSame_C6C5_WARN  
+Luts C6LUT and C5LUT in use in site SLICE_X8Y126 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-146#1 Warning
+SLICE_PairEqSame_D6D5_WARN  
+Luts D6LUT and D5LUT in use in site SLICE_X12Y97 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-146#2 Warning
+SLICE_PairEqSame_D6D5_WARN  
+Luts D6LUT and D5LUT in use in site SLICE_X8Y126 with different equations without A6 pin connected to Global Logic High.
+Related violations: <none>
+
+PDRC-153#1 Warning
+Gated clock check  
+Net PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/RX_prev_reg_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/RX_prev_reg_LDC_i_1/O, cell PCB_All_SRAM_i/GNSS_Fetcher_mod_0/U0/RX_prev_reg_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+
