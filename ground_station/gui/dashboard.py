@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget,
                             QVBoxLayout, QHBoxLayout, QLabel, QTableWidget, 
                             QTableWidgetItem, QPushButton, QGroupBox, QComboBox,
                             QFrame, QHeaderView)
-from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QObject
 from telemetry.telemetry_manager import TelemetryManager
 from uplink.uplink_sender import send_telecommand
 from uplink.tc_types import TC_RESET, TC_SET_MODE_POWER_SAVE, TC_SET_MODE_NORMAL, TC_SEND_HELLO, TC_SET_RTC, TC_CLEAR_SD, TC_CUT_OFF
@@ -16,6 +16,8 @@ import config
 from utils import rtc_str_to_seconds
 
 class Dashboard(QMainWindow):
+    packet_received_signal = pyqtSignal(dict)
+    
     def __init__(self, telemetry_manager):
         super().__init__()
         
@@ -375,17 +377,15 @@ class Dashboard(QMainWindow):
         # Set fixed widths for left and right panels
         left_panel_widget = QWidget()
         left_panel_widget.setLayout(left_panel)
-        left_panel_widget.setFixedWidth(500)  # Set your desired width
+        left_panel_widget.setFixedWidth(500)  
 
         right_panel_widget = QWidget()
         right_panel_widget.setLayout(right_panel)
-        right_panel_widget.setFixedWidth(300)  # Set your desired width
+        right_panel_widget.setFixedWidth(300)  
 
         graph_panel_widget = QWidget()
         graph_panel_widget.setLayout(graph_panel)
         graph_panel_widget.setMinimumWidth(600)
-        # No fixed width, will expand
-
         
 
         content_layout.addWidget(left_panel_widget)
@@ -398,99 +398,111 @@ class Dashboard(QMainWindow):
         # Setup refresh timer
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_display)
-        self.timer.start(1000)
+        self.timer.start(1000)  
                 
         self.max_data_points = config.MAX_DATA_POINTS_GRAPH
         
         self.connection_timeout = config.CONNECTION_TIMEOUT
+        
+        # Connect signal for thread-safe updates
+        self.packet_received_signal.connect(self.on_packet_received)
     
         # Register callback after all attributes are initialized
         self.telemetry_manager.register_callback(self.callback_update)
+        
+        # Flag to prevent update conflicts
+        self.updating = False
     
     def update_display(self):
-        # Update HK
-        hk_data = self.telemetry_manager.current_data["HK"]
-        for key, label in self.hk_labels.items():
-            if key in hk_data:
-                label.setText(str(hk_data[key]))
+        # Prevent concurrent updates
+        if self.updating:
+            return
+            
+        self.updating = True
         
-        # Update BF Tot and Now
-        bf_data = self.telemetry_manager.current_data["BF"]
-        for key, label in self.bf_labels.items():
-            if key in bf_data:
-                label.setText(str(bf_data[key]))
+        try:
+            # Update HK
+            hk_data = self.telemetry_manager.current_data["HK"]
+            for key, label in self.hk_labels.items():
+                if key in hk_data:
+                    label.setText(str(hk_data[key]))
+            
+            # Update BF Tot and Now
+            bf_data = self.telemetry_manager.current_data["BF"]
+            for key, label in self.bf_labels.items():
+                if key in bf_data:
+                    label.setText(str(bf_data[key]))
 
-        # Update BF Table
-        for col in range(4):
-            for row, field in enumerate(self.bf_row_names):
-                key = f"{field}{col}"
-                value = bf_data.get(key, "--")
-                # Show addr/data in hex, others as int
-                if field in ["addr", "data"]:
-                    try:
-                        value = hex(int(value))
-                    except Exception:
-                        pass
-                self.bf_table.setItem(row, col, QTableWidgetItem(str(value)))
+            # Update BF Table
+            for col in range(4):
+                for row, field in enumerate(self.bf_row_names):
+                    key = f"{field}{col}"
+                    value = bf_data.get(key, "--")
+                    # Show addr/data in hex, others as int
+                    if field in ["addr", "data"]:
+                        try:
+                            value = hex(int(value))
+                        except Exception:
+                            pass
+                    self.bf_table.setItem(row, col, QTableWidgetItem(str(value)))
 
-        # Update RAD - Show statistics instead of raw data
-        rad_data = self.telemetry_manager.current_data["RAD"]
-        for key, label in self.rad_labels.items():
-            if key in rad_data:
-                if key == "radiation":
-                    # Skip - we'll handle this separately
-                    continue
-                elif key == "radiation_size":
-                    # Show bit count
-                    if "radiation" in rad_data:
-                        bit_count = len(str(rad_data["radiation"])) if isinstance(rad_data["radiation"], str) else len(bin(rad_data["radiation"])[2:])
-                        label.setText(f"{bit_count} bits")
-                    else:
-                        label.setText("--")
-                elif key == "radiation_preview":
-                    # Show first/last few characters
-                    if "radiation" in rad_data:
-                        data_str = str(rad_data["radiation"])
-                        if len(data_str) > 20:
-                            preview = f"{data_str[:10]}...{data_str[-10:]}"
+            # Update RAD - Show statistics instead of raw data
+            rad_data = self.telemetry_manager.current_data["RAD"]
+            for key, label in self.rad_labels.items():
+                if key in rad_data:
+                    if key == "radiation":
+                        # Skip
+                        continue
+                    elif key == "radiation_size":
+                        # Show bit count
+                        if "radiation" in rad_data:
+                            bit_count = len(str(rad_data["radiation"])) if isinstance(rad_data["radiation"], str) else len(bin(rad_data["radiation"])[2:])
+                            label.setText(f"{bit_count} bits")
                         else:
-                            preview = data_str
-                        label.setText(preview)
+                            label.setText("--")
+                    elif key == "radiation_preview":
+                        # Show first/last few characters
+                        if "radiation" in rad_data:
+                            data_str = str(rad_data["radiation"])
+                            if len(data_str) > 20:
+                                preview = f"{data_str[:10]}...{data_str[-10:]}"
+                            else:
+                                preview = data_str
+                            label.setText(preview)
+                        else:
+                            label.setText("--")
                     else:
-                        label.setText("--")
-                else:
-                    label.setText(str(rad_data[key]))
+                        label.setText(str(rad_data[key]))
 
-        # Update ACK
-        ack_data = self.telemetry_manager.current_data["ACK"]
-        for key, label in self.ack_labels.items():
-            if key in ack_data:
-                label.setText(str(ack_data[key]))
-        
-        # Update packet counters using statistics from telemetry manager
-        packet_stats = self.telemetry_manager.get_packet_stats()
-        
-        # Update packet type counters
-        total_valid_packets = 0
-        for packet_type in ["HK", "BF", "ACK", "RAD"]:
-            count = self.telemetry_manager.packet_type_counts[packet_type]
-            self.packet_counters[packet_type].setText(str(count))
-            total_valid_packets += count
-        
-        # Update overall statistics
-        self.total_packets_label.setText(str(packet_stats["total_received"]))
-        self.lost_packets_label.setText(str(packet_stats["lost_packets"]))
-        self.corrupt_packets_label.setText(str(packet_stats["corrupt_packets"]))
-        self.valid_packets_label.setText(str(packet_stats["valid_packets"]))
-        
-        # Update graphs
-        if hk_data and "rtc" in hk_data:
-            rtc_seconds = rtc_str_to_seconds(hk_data["rtc"])
-            self.update_temperature(hk_data, rtc_seconds)
-            self.update_altitude(hk_data, rtc_seconds)
-
-        # Update connection status
-        self.update_connection_status()
+            # Update ACK
+            ack_data = self.telemetry_manager.current_data["ACK"]
+            for key, label in self.ack_labels.items():
+                if key in ack_data:
+                    label.setText(str(ack_data[key]))
+            
+            # Update packet counters using statistics from telemetry manager
+            packet_stats = self.telemetry_manager.get_packet_stats()
+            
+            # Update packet type counters
+            total_valid_packets = 0
+            for packet_type in ["HK", "BF", "ACK", "RAD"]:
+                count = self.telemetry_manager.packet_type_counts[packet_type]
+                self.packet_counters[packet_type].setText(str(count))
+                total_valid_packets += count
+            
+            # Update overall statistics
+            self.total_packets_label.setText(str(packet_stats["total_received"]))
+            self.lost_packets_label.setText(str(packet_stats["lost_packets"]))
+            self.corrupt_packets_label.setText(str(packet_stats["corrupt_packets"]))
+            self.valid_packets_label.setText(str(packet_stats["valid_packets"]))
+            
+            # Update connection status
+            self.update_connection_status()
+            
+        except Exception as e:
+            print(f"Error in update_display: {e}")
+        finally:
+            self.updating = False
     
     def update_connection_status(self):
         """Update connection status indicator with real-time information"""
@@ -527,61 +539,77 @@ class Dashboard(QMainWindow):
             self.status_circle.setStyleSheet("color: red; font-size: 14px; font-weight: bold;")
 
     def update_altitude(self, hk_data, rtc_seconds):
-        # Shift arrays left to remove oldest data point
-        self.alt_time_data[:-1] = self.alt_time_data[1:]
-        self.alt_data[:-1] = self.alt_data[1:]
-        
-        # Add new data at the end
-        self.alt_time_data[-1] = rtc_seconds
-        
-        # Add altitude data with fallback to previous value
-        if 'altitude' in hk_data:
-            self.last_altitude = float(hk_data['altitude'])
-        self.alt_data[-1] = self.last_altitude
-        
-        # Update plot - only show non-zero values (to avoid initial zeros)
-        non_zero_indices = np.where(self.alt_time_data > 0)[0]
-        if len(non_zero_indices) > 0:
-            start_idx = non_zero_indices[0]
-            self.alt_line.setData(self.alt_time_data[start_idx:], self.alt_data[start_idx:])
-        else:
-            # No data yet
-            self.alt_line.setData([], [])
+        try:
+            # Shift arrays left to remove oldest data point
+            self.alt_time_data[:-1] = self.alt_time_data[1:]
+            self.alt_data[:-1] = self.alt_data[1:]
+            
+            # Add new data at the end
+            self.alt_time_data[-1] = rtc_seconds
+            
+            # Add altitude data with fallback to previous value
+            if 'altitude' in hk_data:
+                self.last_altitude = float(hk_data['altitude'])
+            self.alt_data[-1] = self.last_altitude
+            
+            # Update plot - only show non-zero values (to avoid initial zeros)
+            non_zero_indices = np.where(self.alt_time_data > 0)[0]
+            if len(non_zero_indices) > 0:
+                start_idx = non_zero_indices[0]
+                self.alt_line.setData(self.alt_time_data[start_idx:], self.alt_data[start_idx:])
+            else:
+                # No data yet
+                self.alt_line.setData([], [])
+        except Exception as e:
+            print(f"Error updating altitude graph: {e}")
     
     def update_temperature(self, hk_data, rtc_seconds):
-        # Shift arrays left to remove oldest data point
-        self.time_data[:-1] = self.time_data[1:]
-        self.internal_temp_data[:-1] = self.internal_temp_data[1:]
-        self.external_temp_data[:-1] = self.external_temp_data[1:]
+        try:
+            # Shift arrays left to remove oldest data point
+            self.time_data[:-1] = self.time_data[1:]
+            self.internal_temp_data[:-1] = self.internal_temp_data[1:]
+            self.external_temp_data[:-1] = self.external_temp_data[1:]
+            
+            # Add new data at the end
+            self.time_data[-1] = rtc_seconds
+            
+            # Add temperature data with fallback to previous values
+            if 'internal' in hk_data:
+                self.last_internal_temp = float(hk_data['internal'])
+            self.internal_temp_data[-1] = self.last_internal_temp
         
-        # Add new data at the end
-        self.time_data[-1] = rtc_seconds
+            if 'external' in hk_data:
+                self.last_external_temp = float(hk_data['external'])
+            self.external_temp_data[-1] = self.last_external_temp
         
-        # Add temperature data with fallback to previous values
-        if 'internal' in hk_data:
-            self.last_internal_temp = float(hk_data['internal'])
-        self.internal_temp_data[-1] = self.last_internal_temp
-    
-        if 'external' in hk_data:
-            self.last_external_temp = float(hk_data['external'])
-        self.external_temp_data[-1] = self.last_external_temp
-    
-    
-        # Update plot data - only show non-zero values (to avoid initial zeros)
-        non_zero_indices = np.where(self.time_data > 0)[0]
-        if len(non_zero_indices) > 0:
-            start_idx = non_zero_indices[0]
-            self.internal_line.setData(self.time_data[start_idx:], self.internal_temp_data[start_idx:])
-            self.external_line.setData(self.time_data[start_idx:], self.external_temp_data[start_idx:])
-        else:
-            # No data yet
-            self.internal_line.setData([], [])
-            self.external_line.setData([], [])
+        
+            # Update plot data - only show non-zero values (to avoid initial zeros)
+            non_zero_indices = np.where(self.time_data > 0)[0]
+            if len(non_zero_indices) > 0:
+                start_idx = non_zero_indices[0]
+                self.internal_line.setData(self.time_data[start_idx:], self.internal_temp_data[start_idx:])
+                self.external_line.setData(self.time_data[start_idx:], self.external_temp_data[start_idx:])
+            else:
+                # No data yet
+                self.internal_line.setData([], [])
+                self.external_line.setData([], [])
+        except Exception as e:
+            print(f"Error updating temperature graph: {e}")
     
     def callback_update(self, packet):
-        """Called when new packet is received"""
+        """Called when new packet is received - thread-safe signal emission"""
+        # Emit signal instead of directly updating GUI
+        self.packet_received_signal.emit(packet)
+    
+    def on_packet_received(self, packet):
+        """Handle packet received signal in main thread"""
         self.last_packet_time = pd.Timestamp.now()
-        self.update_display()
+        
+        # Only update graphs for HK packets to avoid excessive updates
+        if packet.get("type") == "HK" and "rtc" in packet:
+            rtc_seconds = rtc_str_to_seconds(packet["rtc"])
+            self.update_temperature(packet, rtc_seconds)
+            self.update_altitude(packet, rtc_seconds)
 
     def send_command(self):
         seq = self.uplink_seq_counter
