@@ -705,6 +705,11 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
         ESP_LOGE(TAG, "Failed to format telecommand packet for acknowledgment");
         return ESP_FAIL;
     }
+    // Initialize storage if enabled
+    #ifdef CONFIG_ENABLE_SD_STORAGE
+        uint8_t packet_type = (ack_packet[0] >> 6) & 0x03;
+        storage_enqueue_packet(ack_packet, check_length(packet), packet_type);  // <- async
+    #endif
     eth_transmit(sock, ack_packet, 2);
 
     return ESP_OK;
@@ -796,6 +801,7 @@ void tcp_server_task(void *pvParameters)
         // Check server kill flag
         if (*server_kill_flag) {
             ESP_LOGI(TAG, "Server kill flag set, exiting");
+            esp_task_wdt_delete(NULL);
             break;
         }
         
