@@ -708,7 +708,7 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
     // Initialize storage if enabled
     #ifdef CONFIG_ENABLE_SD_STORAGE
         uint8_t packet_type = (ack_packet[0] >> 6) & 0x03;
-        storage_enqueue_packet(ack_packet, check_length(packet), packet_type);  // <- async
+        storage_enqueue_packet(ack_packet, check_length(ack_packet), packet_type);  // <- async
     #endif
     eth_transmit(sock, ack_packet, 2);
 

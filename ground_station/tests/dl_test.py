@@ -12,10 +12,50 @@ from main import main as run_main
 from utils import calc_crc
 import config
 
+# Override config with localhost IPs for testing
+config.DEFAULT_MCU_IP = "127.0.0.1"
+config.DEFAULT_GROUND_STATION_IP = "127.0.0.1"
+config.DEFAULT_MCU_PORT = 8080
+config.LOGS_DIR = "storage/logs"
+print(f"Testing mode: Using localhost IPs - MCU: {config.DEFAULT_MCU_IP}:{config.DEFAULT_MCU_PORT}, GS: {config.DEFAULT_GROUND_STATION_IP}")
+
+# Initial position (Kiruna, Sweden)
+initial_lat = 67.887553
+initial_lon = 21.082744
+#67.887553, 21.082744
+
+# Movement parameters
+lat_increment_per_packet = 0.002  # Move ~200 meters north per packet
+lon_drift_range = 0.001           # Small east/west drift
+
 #initial temperatures for all sensors
 internal_temp = 24559
 external_temp = 13743
 sensor_board_temp = 26797
+
+def get_current_gnss_position(seq_counter):
+    """Calculate current GNSS position based on sequence counter"""
+    # Move north gradually
+    current_lat = initial_lat + (seq_counter * lat_increment_per_packet)
+    
+    # Add small random east/west drift (wind effect)
+    lon_drift = random.uniform(-lon_drift_range, lon_drift_range)
+    current_lon = initial_lon + lon_drift
+    
+    return current_lat, current_lon
+
+def format_gnss_coordinate(coord, is_latitude=True):
+    """Convert decimal degrees to DDMM.MMMM format"""
+    abs_coord = abs(coord)
+    degrees = int(abs_coord)
+    minutes = (abs_coord - degrees) * 60
+    
+    if is_latitude:
+        # Latitude: DDMM.MMMM (2 digits for degrees)
+        return f"{degrees:02d}{minutes:06.3f}"
+    else:
+        # Longitude: DDDMM.MMMM (3 digits for degrees) 
+        return f"{degrees:03d}{minutes:06.3f}"
 
 def build_hk_pkt(seq_counter):
     packet = BitArray()
@@ -24,27 +64,54 @@ def build_hk_pkt(seq_counter):
     packet.append("uint:2=0")                 # HK packet type
     packet.append(f"uint:16={seq_counter}")   # 16-bit sequence counter
 
-    # RTC (17 bits)
-    packet.append(f"uint:17={45678 + seq_counter}")
+    # RTC (24 bits) - updated from 17 bits
+    packet.append(f"uint:24={45678 + seq_counter}")
 
-    global internal_temp, external_temp, sensor_board_temp
+    # GNSS (384 bits = 48 bytes) - encode the moving GNSS string
+    current_lat, current_lon = get_current_gnss_position(seq_counter)
+    
+    # Format coordinates in GPRMC format - FIXED conversion
+    lat_formatted = format_gnss_coordinate(current_lat, True)
+    lat_dir = 'N' if current_lat >= 0 else 'S'
+    
+    lon_formatted = format_gnss_coordinate(current_lon, False)
+    lon_dir = 'E' if current_lon >= 0 else 'W'
+    
+    # Build GPRMC string with moving coordinates
+    gnss_string = f"$GPRMC,140618.206,A,{lat_formatted},{lat_dir},{lon_formatted},{lon_dir},0.4"
+    
+    # Debug: Print the actual GNSS string being generated
+    if seq_counter % 10 == 1:  # Print every 10th packet to avoid spam
+        print(f"Packet {seq_counter}: GNSS string = '{gnss_string}'")
+        print(f"  Decimal: Lat {current_lat:.6f}, Lon {current_lon:.6f}")
+        print(f"  DDMM.MMM: Lat {lat_formatted}{lat_dir}, Lon {lon_formatted}{lon_dir}")
+    
+    gnss_bytes = gnss_string.encode('ascii')
+    
+    # Pad or truncate to exactly 48 bytes
+    if len(gnss_bytes) < 48:
+        gnss_bytes += b'\x00' * (48 - len(gnss_bytes))  # Null-pad
+    else:
+        gnss_bytes = gnss_bytes[:48]  # Truncate if too long
+    
+    # Convert bytes to bits and append
+    for byte in gnss_bytes:
+        packet.append(f"uint:8={byte}")
+
+    global internal_temp, external_temp
     random_offset = random.randint(-1, 1)
     internal_temp += random_offset * 100  
     external_temp += random_offset * 100
-    sensor_board_temp += random_offset * 100
 
-    # Temperature sensors (32 bits each)
-    packet.append(f"uint:32={internal_temp}")  
-    packet.append(f"uint:32={external_temp}")  
-    packet.append(f"uint:32={sensor_board_temp}")  
+    # Temperature sensors (16 bits each) - updated from 32 bits
+    packet.append(f"uint:16={internal_temp & 0xFFFF}")  
+    packet.append(f"uint:16={external_temp & 0xFFFF}")  
 
-    # GNSS (55 bits)
-    packet.append(f"uint:55={0x123456789ABCD}")
-
-    # Altitude (48 bits, signed)
-    altitude = 100000  
-    altitude += random.randint(-100, 100)  
-    packet.append(f"int:48={altitude}")
+    # Altitude increases as balloon goes north (simulating ascent)
+    base_altitude = 100000
+    altitude_increase = seq_counter * 50  # 50 meters per packet
+    altitude = base_altitude + altitude_increase + random.randint(-50, 50)
+    packet.append(f"int:24={altitude & 0xFFFFFF}")
 
     # Calculate CRC for the packet so far (excluding CRC field)
     # Convert to bytes for CRC calculation
@@ -68,11 +135,23 @@ def build_bf_pkt(seq_counter):
     packet.append("uint:2=1")                 # BF packet type
     packet.append(f"uint:16={seq_counter}")   # 16-bit sequence counter
 
-    # RTC (17 bits)
-    packet.append(f"uint:17={45678 + seq_counter}")
+    # RTC (24 bits) - updated from 17 bits
+    packet.append(f"uint:24={45678 + seq_counter}")
 
-    # Bit flip data (172 bits)
-    packet.append(f"uint:172={0x123456789ABCDEF0123456789ABCDEF0}")
+    # BF packet structure based on packet_structures.py
+    # Tot (8 bits)
+    packet.append(f"uint:8={random.randint(1, 10)}")
+    
+    # Now (2 bits)
+    packet.append(f"uint:2={random.randint(0, 3)}")
+    
+    # 4 sets of: addr(22), data(16), which_sram(4), temp(1), oscillators(4)
+    for i in range(4):
+        packet.append(f"uint:22={random.randint(0, 0x3FFFFF)}")  # addr
+        packet.append(f"uint:16={random.randint(0, 0xFFFF)}")    # data
+        packet.append(f"uint:4={random.randint(0, 15)}")         # which_sram
+        packet.append(f"uint:1={random.randint(0, 1)}")          # temp
+        packet.append(f"uint:4={random.randint(0, 15)}")         # oscillators
 
     # Calculate CRC for the packet so far
     temp_bytes = packet.tobytes()
@@ -85,33 +164,6 @@ def build_bf_pkt(seq_counter):
     # Pad to byte boundary
     while len(packet) % 8 != 0:
         packet.append("uint:1=0") 
-
-    return packet.bytes
-
-def build_ack_pkt(seq_counter, tc_ack=1):
-    packet = BitArray()
-
-    # Packet ID (2 bits) + Sequence Counter (16 bits)
-    packet.append("uint:2=3")                 # ACK packet type
-    packet.append(f"uint:16={seq_counter}")   # 16-bit sequence counter
-
-    # RTC (17 bits)
-    packet.append(f"uint:17={45678 + seq_counter}")
-
-    # Telecommand ACK (3 bits)
-    packet.append(f"uint:3={tc_ack}")
-
-    # Calculate CRC for the packet so far
-    temp_bytes = packet.tobytes()
-    data_bits = len(packet)
-    crc_value = calc_crc(temp_bytes, data_bits)
-
-    # Add CRC (16 bits)
-    packet.append(f"uint:16={crc_value}")
-
-    # Pad to byte boundary
-    while len(packet) % 8 != 0:
-        packet.append("uint:1=0")
 
     return packet.bytes
 
@@ -171,31 +223,28 @@ def send_packets_tcp(ip=None, port=None):
             print(f"Ground station connected from {addr}")
 
             while True:
-                # Send one packet type per cycle
-                packet_type = seq_counter % 3
+                # Send one packet type per cycle - only HK and BF now
+                packet_type = seq_counter % 2
                 
                 if packet_type == 0:
                     packet = build_hk_pkt(seq_counter % 65536)
                     packet_name = "HK"
-                elif packet_type == 1:
+                else:
                     packet = build_bf_pkt(seq_counter % 65536)
                     packet_name = "BF"
-                else:
-                    packet = build_ack_pkt(seq_counter % 65536)
-                    packet_name = "ACK"
 
-                # Randomly corrupt packets (10% chance)
+                # Randomly corrupt packets (5% chance - reduced for testing)
                 send_packet = packet
                 name = packet_name
-                if random.random() < 0.1:
+                if random.random() < 0.001:
                     send_packet = corrupt_packet(packet)
                     name += " (CORRUPTED)"
 
                 try:
                     client_sock.send(send_packet)
-                    print(f"Sent {name} packet (seq: {seq_counter % 65536}, {len(send_packet)} bytes)")
+                    #print(f"Sent {name} packet (seq: {seq_counter % 65536}, {len(send_packet)} bytes)")
                     seq_counter += 1
-                    time.sleep(1)  # Increased delay to avoid overwhelming receiver
+                    time.sleep(1)  # 1 second delay between packets for easier observation
                 except socket.error:
                     print("Ground station disconnected")
                     break

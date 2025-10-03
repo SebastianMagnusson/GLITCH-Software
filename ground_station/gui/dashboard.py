@@ -3,17 +3,20 @@ import os
 import pandas as pd
 import numpy as np
 import pyqtgraph as pg
+import json
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, 
                             QVBoxLayout, QHBoxLayout, QLabel, QTableWidget, 
                             QTableWidgetItem, QPushButton, QGroupBox, QComboBox,
                             QFrame, QHeaderView)
-from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QObject
+from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QObject, QUrl
 from telemetry.telemetry_manager import TelemetryManager
 from uplink.uplink_sender import send_telecommand
 from uplink.tc_types import TC_RESET, TC_SET_MODE_POWER_SAVE, TC_SET_MODE_NORMAL, TC_SEND_HELLO, TC_SET_RTC, TC_CLEAR_SD, TC_CUT_OFF
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 import config
 from utils import rtc_str_to_seconds
+import tempfile
 
 class Dashboard(QMainWindow):
     packet_received_signal = pyqtSignal(dict)
@@ -86,7 +89,6 @@ class Dashboard(QMainWindow):
             ("Internal Temp", "internal"),
             ("GNSS", "gnss"),
             ("Altitude", "altitude"),
-            ("Radiation", "radiation")
         ]
         
         for display_name, param_key in hk_params:
@@ -315,59 +317,41 @@ class Dashboard(QMainWindow):
         self.temp_plot.setLabel('bottom', 'Time', units='s')
         self.temp_plot.showGrid(x=True, y=True)
         self.temp_plot.addLegend()
-
         self.temp_plot.setYRange(-40, 50, padding=0)
-        #self.temp_plot.enableAutoRange(axis='y', enable=True)
         
         # Create temperature data arrays
-        self.max_data_points = 300  # 5 minutes at 1 sample per second
-        
-        # Use fixed-size arrays for temperature graph
+        self.max_data_points = 300
         self.time_data = np.zeros(self.max_data_points)
         self.internal_temp_data = np.zeros(self.max_data_points)
-        
-        # Use fixed-size arrays for altitude graph
-        self.alt_time_data = np.zeros(self.max_data_points)
-        self.alt_data = np.zeros(self.max_data_points)
-        
-        # Track previous values for missing data points
         self.last_internal_temp = 0
-        self.last_altitude = 0
-
         
         self.internal_line = self.temp_plot.plot(
             self.time_data, self.internal_temp_data, 
             pen=pg.mkPen('g', width=2), name='Internal'
         )
-
-        
         
         temp_graph_layout.addWidget(self.temp_plot)
         graph_panel.addWidget(temp_graph_group)
         
-        # Altitude graph section
-        alt_graph_group = QGroupBox("Altitude")
-        alt_graph_layout = QVBoxLayout(alt_graph_group)
+        # REPLACE altitude graph with GNSS map
+        map_group = QGroupBox("GNSS Position")
+        map_layout = QVBoxLayout(map_group)
         
-        self.alt_plot = pg.PlotWidget()
-        self.alt_plot.setLabel('left', 'Altitude', units='m')
-        self.alt_plot.setLabel('bottom', 'Time', units='s')
-        self.alt_plot.showGrid(x=True, y=True)
+        # Create web view for map
+        self.map_view = QWebEngineView()
         
-        self.alt_line = self.alt_plot.plot(
-            [], [], # Start with empty data
-            pen=pg.mkPen('c', width=2), name='Altitude'
-        )
+        # Initialize map data
+        self.current_lat = 67.8403  # Default to northern Norway (close to your test data)
+        self.current_lon = 20.4086
+        self.gnss_history = []  # Store position history as [lat, lon] pairs
+        self.map_update_counter = 0  # To limit map updates
         
-        self.alt_line = self.alt_plot.plot(
-            self.alt_time_data, self.alt_data, 
-            pen=pg.mkPen('c', width=2), name='Altitude'
-        )
+        # Create initial offline map
+        self.create_offline_map()
         
-        alt_graph_layout.addWidget(self.alt_plot)
-        graph_panel.addWidget(alt_graph_group)
+        map_layout.addWidget(self.map_view)
+        graph_panel.addWidget(map_group)
         
-
         # Set fixed widths for left and right panels
         left_panel_widget = QWidget()
         left_panel_widget.setLayout(left_panel)
@@ -389,114 +373,256 @@ class Dashboard(QMainWindow):
         # Add content layout to main layout
         main_layout.addLayout(content_layout)
         
-        # Setup refresh timer
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.update_display)
-        self.timer.start(1000)  
-                
-        self.max_data_points = config.MAX_DATA_POINTS_GRAPH
+        # Remove the timer setup - no more polling!
+        # self.timer = QTimer()
+        # self.timer.timeout.connect(self.update_display)
+        # self.timer.start(1000)  
         
-        self.connection_timeout = config.CONNECTION_TIMEOUT
-        
-        # Connect signal for thread-safe updates
+        # Only keep the packet-received signal
         self.packet_received_signal.connect(self.on_packet_received)
-    
-        # Register callback after all attributes are initialized
         self.telemetry_manager.register_callback(self.callback_update)
         
-        # Flag to prevent update conflicts
-        self.updating = False
-    
-    def update_display(self):
-        # Prevent concurrent updates
-        if self.updating:
-            return
-            
-        self.updating = True
-        
-        try:
-            # Update HK
-            hk_data = self.telemetry_manager.current_data["HK"]
-            for key, label in self.hk_labels.items():
-                if key in hk_data:
-                    label.setText(str(hk_data[key]))
-            
-            # Update BF Tot and Now
-            bf_data = self.telemetry_manager.current_data["BF"]
-            for key, label in self.bf_labels.items():
-                if key in bf_data:
-                    label.setText(str(bf_data[key]))
+        # Remove the updating flag - no longer needed
+        # self.updating = False
 
-            # Update BF Table
+    def on_packet_received(self, packet):
+        """Handle packet received signal in main thread - update everything here"""
+        self.last_packet_time = pd.Timestamp.now()
+        
+        # Update specific displays based on packet type
+        packet_type = packet.get("type")
+        
+        if packet_type == "HK":
+            # Update HK display
+            for key, label in self.hk_labels.items():
+                if key in packet:
+                    label.setText(str(packet[key]))
+            
+            # Update temperature graph
+            if "rtc" in packet:
+                rtc_seconds = rtc_str_to_seconds(packet["rtc"])
+                self.update_temperature(packet, rtc_seconds)
+            
+            # Update GNSS map
+            if "gnss" in packet:
+                lat, lon = self.parse_gnss_coordinates(packet["gnss"])
+                if lat is not None and lon is not None:
+                    self.update_gnss_map(lat, lon)
+        
+        elif packet_type == "BF":
+            # Update BF display
+            for key, label in self.bf_labels.items():
+                if key in packet:
+                    label.setText(str(packet[key]))
+            
+            # Update BF table
             for col in range(4):
                 for row, field in enumerate(self.bf_row_names):
                     key = f"{field}{col}"
-                    value = bf_data.get(key, "--")
-                    # Show addr/data in hex, others as int
+                    value = packet.get(key, "--")
                     if field in ["addr", "data"]:
                         try:
                             value = hex(int(value))
                         except Exception:
                             pass
                     self.bf_table.setItem(row, col, QTableWidgetItem(str(value)))
-
-            # Update RAD - Show statistics instead of raw data
-            rad_data = self.telemetry_manager.current_data["RAD"]
+        
+        elif packet_type == "RAD":
+            # Update RAD display
             for key, label in self.rad_labels.items():
-                if key in rad_data:
-                    if key == "radiation":
-                        # Skip
-                        continue
-                    elif key == "radiation_size":
-                        # Show bit count
-                        if "radiation" in rad_data:
-                            bit_count = len(str(rad_data["radiation"])) if isinstance(rad_data["radiation"], str) else len(bin(rad_data["radiation"])[2:])
-                            label.setText(f"{bit_count} bits")
-                        else:
-                            label.setText("--")
-                    elif key == "radiation_preview":
-                        # Show first/last few characters
-                        if "radiation" in rad_data:
-                            data_str = str(rad_data["radiation"])
-                            if len(data_str) > 20:
-                                preview = f"{data_str[:10]}...{data_str[-10:]}"
-                            else:
-                                preview = data_str
-                            label.setText(preview)
-                        else:
-                            label.setText("--")
+                if key == "radiation_size" and "radiation" in packet:
+                    data = packet["radiation"]
+                    bit_count = len(str(data)) if isinstance(data, str) else len(bin(data)[2:])
+                    label.setText(f"{bit_count} bits")
+                elif key == "radiation_preview" and "radiation" in packet:
+                    data_str = str(packet["radiation"])
+                    if len(data_str) > 20:
+                        preview = f"{data_str[:10]}...{data_str[-10:]}"
                     else:
-                        label.setText(str(rad_data[key]))
-
-            # Update ACK
-            ack_data = self.telemetry_manager.current_data["ACK"]
+                        preview = data_str
+                    label.setText(preview)
+                elif key in packet:
+                    label.setText(str(packet[key]))
+        
+        elif packet_type == "ACK":
+            # Update ACK display
             for key, label in self.ack_labels.items():
-                if key in ack_data:
-                    label.setText(str(ack_data[key]))
+                if key in packet:
+                    label.setText(str(packet[key]))
+        
+        # Update packet statistics (every packet)
+        self.update_packet_statistics()
+        
+        # Update connection status (every packet)
+        self.update_connection_status()
+
+    def update_packet_statistics(self):
+        """Update packet statistics from telemetry manager"""
+        packet_stats = self.telemetry_manager.get_packet_stats()
+        
+        # Update packet type counters
+        for packet_type in ["HK", "BF", "ACK", "RAD"]:
+            count = self.telemetry_manager.packet_type_counts[packet_type]
+            self.packet_counters[packet_type].setText(str(count))
+        
+        # Update overall statistics
+        self.total_packets_label.setText(str(packet_stats["total_received"]))
+        self.lost_packets_label.setText(str(packet_stats["lost_packets"]))
+        self.corrupt_packets_label.setText(str(packet_stats["corrupt_packets"]))
+        self.valid_packets_label.setText(str(packet_stats["valid_packets"]))
+
+    # Remove the old update_display method entirely - no longer needed!
+    # def update_display(self):
+    #     ...
+
+    def update_gnss_map(self, lat, lon):
+        """Update the GNSS map with new position"""
+        try:
+            # Update current position
+            self.current_lat = lat
+            self.current_lon = lon
             
-            # Update packet counters using statistics from telemetry manager
-            packet_stats = self.telemetry_manager.get_packet_stats()
+            # Add to history (limit to last 50 points to avoid performance issues)
+            self.gnss_history.append([lat, lon])
+            if len(self.gnss_history) > 50:
+                self.gnss_history.pop(0)
             
-            # Update packet type counters
-            total_valid_packets = 0
-            for packet_type in ["HK", "BF", "ACK", "RAD"]:
-                count = self.telemetry_manager.packet_type_counts[packet_type]
-                self.packet_counters[packet_type].setText(str(count))
-                total_valid_packets += count
+            # Prepare JavaScript call
+            history_js = json.dumps(self.gnss_history)
+            js_code = f"if (typeof updatePosition === 'function') {{ updatePosition({lat}, {lon}, {history_js}); }}"
             
-            # Update overall statistics
-            self.total_packets_label.setText(str(packet_stats["total_received"]))
-            self.lost_packets_label.setText(str(packet_stats["lost_packets"]))
-            self.corrupt_packets_label.setText(str(packet_stats["corrupt_packets"]))
-            self.valid_packets_label.setText(str(packet_stats["valid_packets"]))
-            
-            # Update connection status
-            self.update_connection_status()
+            # Execute JavaScript in web view
+            self.map_view.page().runJavaScript(js_code)
             
         except Exception as e:
-            print(f"Error in update_display: {e}")
-        finally:
-            self.updating = False
+            print(f"Error updating GNSS map: {e}")
+
+    def create_offline_map(self):
+        """Create a completely offline Leaflet map using local tiles"""
+        # Get absolute path to map tiles
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        tiles_dir = os.path.join(os.path.dirname(current_dir), "map_tiles")
+        tiles_url = f"file:///{tiles_dir}"
+        
+        html_content = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>GNSS Position Map</title>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            <!-- Include Leaflet CSS and JS locally -->
+            <link rel="stylesheet" href="file:///""" + current_dir + """/leaflet/leaflet.css" />
+            <script src="file:///""" + current_dir + """/leaflet/leaflet.js"></script>
+            
+            <style>
+                body { margin: 0; padding: 0; }
+                #map { width: 100%; height: 100vh; }
+                .leaflet-container { background-color: #f0f0f0; }
+            </style>
+        </head>
+        <body>
+            <div id="map"></div>
+            
+            <script>
+                var map, currentMarker, flightPath, positionMarkers = [];
+                
+                // Initialize map 67.887520, 21.082814
+                map = L.map('map').setView([67.887520, 21.082814], 10);
+                
+                // Use local tile layer
+                L.tileLayer('""" + tiles_url + """/{z}/{x}/{y}.png', {
+                    attribution: 'Local OpenStreetMap tiles',
+                    maxZoom: 16,
+                    minZoom: 6
+                }).addTo(map);
+                
+                // Function to update position (called from Python)
+                window.updatePosition = function(lat, lon, history) {
+                    // Remove old current marker
+                    if (currentMarker) {
+                        map.removeLayer(currentMarker);
+                    }
+                    
+                    // Add new current position marker with custom size
+                    var customIcon = L.icon({
+                        iconUrl: '""" + current_dir + """/leaflet/images/marker-icon.png',
+                        shadowUrl: '""" + current_dir + """/leaflet/images/marker-shadow.png',
+                        iconSize: [50, 60],     // size of the icon [width, height]
+                        shadowSize: [20, 20],   // size of the shadow
+                        iconAnchor: [25, 60],    // point of the icon which will correspond to marker's location
+                        shadowAnchor: [6, 20],  // the same for the shadow
+                        popupAnchor: [1, -60]   // point from which the popup should open relative to the iconAnchor
+                    });
+                    
+                    currentMarker = L.marker([lat, lon], {icon: customIcon})
+                        .addTo(map)
+                        .bindPopup('Current Position<br>Lat: ' + lat.toFixed(6) + '<br>Lon: ' + lon.toFixed(6));
+                    
+                    // Update path
+                    if (history && history.length > 1) {
+                        // Remove old path
+                        if (flightPath) {
+                            map.removeLayer(flightPath);
+                        }
+                        
+                        // Add new path
+                        flightPath = L.polyline(history, {
+                            color: 'blue',
+                            weight: 3,
+                            opacity: 0.8
+                        }).addTo(map);
+                        
+                        // Clear old position markers
+                        positionMarkers.forEach(function(marker) {
+                            map.removeLayer(marker);
+                        });
+                        positionMarkers = [];
+                        
+                        // Add markers for recent positions (last 5)
+                        var recentPositions = history.slice(-5);
+                        recentPositions.forEach(function(pos, index) {
+                            if (index < recentPositions.length - 1) {
+                                var marker = L.circleMarker(pos, {
+                                    radius: 4,
+                                    fillColor: 'blue',
+                                    color: 'darkblue',
+                                    weight: 1,
+                                    opacity: 1,
+                                    fillOpacity: 0.8
+                                }).addTo(map);
+                                positionMarkers.push(marker);
+                            }
+                        });
+                    }
+                };
+            </script>
+        </body>
+        </html>
+        """
+        
+        # Save and load the map
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.html', delete=False) as f:
+            f.write(html_content)
+            self.map_file_path = f.name
+            
+        self.map_view.load(QUrl.fromLocalFile(self.map_file_path))
+    
+    def parse_gnss_coordinates(self, gnss_string):
+        """Parse GNSS string to extract lat/lon coordinates"""
+        try:
+            # Data is already parsed as decimal coordinates (lat,lon format)
+            gnss_string = gnss_string.rstrip('\x00')
+            parts = gnss_string.split(',')
+            if len(parts) == 2:
+                lat = float(parts[0])
+                lon = float(parts[1])
+                return lat, lon
+        except Exception as e:
+            print(f"Error parsing GNSS: {e}")
+        
+        return None, None
     
     def update_connection_status(self):
         """Update connection status indicator with real-time information"""
@@ -590,16 +716,6 @@ class Dashboard(QMainWindow):
         # Emit signal instead of directly updating GUI
         self.packet_received_signal.emit(packet)
     
-    def on_packet_received(self, packet):
-        """Handle packet received signal in main thread"""
-        self.last_packet_time = pd.Timestamp.now()
-        
-        # Only update graphs for HK packets to avoid excessive updates
-        if packet.get("type") == "HK" and "rtc" in packet:
-            rtc_seconds = rtc_str_to_seconds(packet["rtc"])
-            self.update_temperature(packet, rtc_seconds)
-            self.update_altitude(packet, rtc_seconds)
-
     def send_command(self):
         seq = self.uplink_seq_counter
         self.uplink_seq_counter += 1
