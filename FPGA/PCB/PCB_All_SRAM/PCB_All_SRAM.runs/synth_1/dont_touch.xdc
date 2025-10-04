@@ -33,9 +33,6 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCB_All_SRA
 # IP: bd/PCB_All_SRAM/ip/PCB_All_SRAM_Pulse_Per_Second_100_0_0/PCB_All_SRAM_Pulse_Per_Second_100_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCB_All_SRAM_Pulse_Per_Second_100_0_0 || ORIG_REF_NAME==PCB_All_SRAM_Pulse_Per_Second_100_0_0} -quiet] -quiet
 
-# IP: bd/PCB_All_SRAM/ip/PCB_All_SRAM_RAD_formatter_0_0/PCB_All_SRAM_RAD_formatter_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCB_All_SRAM_RAD_formatter_0_0 || ORIG_REF_NAME==PCB_All_SRAM_RAD_formatter_0_0} -quiet] -quiet
-
 # IP: bd/PCB_All_SRAM/ip/PCB_All_SRAM_Read_8SRAM_100MHZ_0_0/PCB_All_SRAM_Read_8SRAM_100MHZ_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCB_All_SRAM_Read_8SRAM_100MHZ_0_0 || ORIG_REF_NAME==PCB_All_SRAM_Read_8SRAM_100MHZ_0_0} -quiet] -quiet
 
@@ -71,9 +68,6 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCB_All_SRA
 
 # IP: bd/PCB_All_SRAM/ip/PCB_All_SRAM_BF_Data_Collector_Dr_0_0/PCB_All_SRAM_BF_Data_Collector_Dr_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCB_All_SRAM_BF_Data_Collector_Dr_0_0 || ORIG_REF_NAME==PCB_All_SRAM_BF_Data_Collector_Dr_0_0} -quiet] -quiet
-
-# IP: bd/PCB_All_SRAM/ip/PCB_All_SRAM_UART_RX_100MHZ_2_0/PCB_All_SRAM_UART_RX_100MHZ_2_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCB_All_SRAM_UART_RX_100MHZ_2_0 || ORIG_REF_NAME==PCB_All_SRAM_UART_RX_100MHZ_2_0} -quiet] -quiet
 
 # IP: bd/PCB_All_SRAM/ip/PCB_All_SRAM_Read_8SRAM_100MHZ_1_0/PCB_All_SRAM_Read_8SRAM_100MHZ_1_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==PCB_All_SRAM_Read_8SRAM_100MHZ_1_0 || ORIG_REF_NAME==PCB_All_SRAM_Read_8SRAM_100MHZ_1_0} -quiet] -quiet

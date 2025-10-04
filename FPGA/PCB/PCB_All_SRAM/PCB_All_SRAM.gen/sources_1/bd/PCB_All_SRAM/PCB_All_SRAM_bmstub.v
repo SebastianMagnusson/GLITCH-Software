@@ -22,7 +22,6 @@ module PCB_All_SRAM (
   sda_t,
   scl_o,
   scl_t,
-  UART_RAD_TX,
   UART_MCU_TX,
   HEATER_1,
   HEATER_2,
@@ -35,8 +34,7 @@ module PCB_All_SRAM (
   SRAM2DQ_o,
   SRAM2DQ_t,
   SRAM2DEC,
-  led2,
-  led3
+  led2
 );
 
   (* X_INTERFACE_IGNORE = "true" *)
@@ -72,8 +70,6 @@ module PCB_All_SRAM (
   (* X_INTERFACE_IGNORE = "true" *)
   output scl_t;
   (* X_INTERFACE_IGNORE = "true" *)
-  input UART_RAD_TX;
-  (* X_INTERFACE_IGNORE = "true" *)
   output UART_MCU_TX;
   (* X_INTERFACE_IGNORE = "true" *)
   output HEATER_1;
@@ -99,8 +95,6 @@ module PCB_All_SRAM (
   output [2:0]SRAM2DEC;
   (* X_INTERFACE_IGNORE = "true" *)
   output led2;
-  (* X_INTERFACE_IGNORE = "true" *)
-  output led3;
 
   // stub module has no contents
 

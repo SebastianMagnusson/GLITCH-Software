@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Mon Sep 29 20:01:17 2025
+// Date        : Thu Oct  2 11:12:27 2025
 // Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/ip/PCB_All_SRAM_Write_8SRAM_100MHZ_1_0/PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_sim_netlist.v
@@ -38,7 +38,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0
 
   wire [21:0]A;
   wire CE_n;
-  wire [13:8]\^DQ_o ;
+  wire [13:12]\^DQ_o ;
   wire [0:0]\^DQ_t ;
   wire WE_n;
   wire [2:0]decoder;
@@ -48,12 +48,12 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0
 
   assign DQ_o[15:14] = \^DQ_o [13:12];
   assign DQ_o[13:12] = \^DQ_o [13:12];
-  assign DQ_o[11:10] = \^DQ_o [9:8];
-  assign DQ_o[9:8] = \^DQ_o [9:8];
+  assign DQ_o[11:10] = \^DQ_o [13:12];
+  assign DQ_o[9:8] = \^DQ_o [13:12];
   assign DQ_o[7:6] = \^DQ_o [13:12];
   assign DQ_o[5:4] = \^DQ_o [13:12];
-  assign DQ_o[3:2] = \^DQ_o [9:8];
-  assign DQ_o[1:0] = \^DQ_o [9:8];
+  assign DQ_o[3:2] = \^DQ_o [13:12];
+  assign DQ_o[1:0] = \^DQ_o [13:12];
   assign DQ_t[15] = \^DQ_t [0];
   assign DQ_t[14] = \^DQ_t [0];
   assign DQ_t[13] = \^DQ_t [0];
@@ -73,7 +73,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0
   PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ U0
        (.A(A),
         .CE_n(CE_n),
-        .DQ_o({\^DQ_o [13:12],\^DQ_o [9:8]}),
+        .DQ_o(\^DQ_o ),
         .DQ_t(\^DQ_t ),
         .WE_n(WE_n),
         .decoder(decoder),
@@ -96,7 +96,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
   output [21:0]A;
   output CE_n;
   output WE_n;
-  output [3:0]DQ_o;
+  output [1:0]DQ_o;
   output [2:0]decoder;
   output [0:0]DQ_t;
   output write_complete;
@@ -105,7 +105,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
 
   wire [21:0]A;
   wire CE_n;
-  wire [3:0]DQ_o;
+  wire [1:0]DQ_o;
   wire [0:0]DQ_t;
   wire \FSM_onehot_state[0]_i_1_n_0 ;
   wire \FSM_onehot_state[2]_i_1_n_0 ;
@@ -120,13 +120,14 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
   wire \FSM_onehot_state[6]_i_1_n_0 ;
   wire \FSM_onehot_state[6]_i_2_n_0 ;
   wire \FSM_onehot_state[6]_i_3_n_0 ;
+  wire \FSM_onehot_state[6]_i_4_n_0 ;
   wire \FSM_onehot_state_reg_n_0_[1] ;
   wire \FSM_onehot_state_reg_n_0_[2] ;
   wire \FSM_onehot_state_reg_n_0_[3] ;
   wire \FSM_onehot_state_reg_n_0_[4] ;
   wire \FSM_onehot_state_reg_n_0_[6] ;
   wire [3:0]SRAM_cnt;
-  wire \SRAM_cnt[3]_i_1_n_0 ;
+  wire SRAM_cnt_1;
   wire WE_n;
   wire WE_n_i_1_n_0;
   wire \addr_cnt[0]_i_1_n_0 ;
@@ -231,15 +232,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
   wire write_complete;
   wire write_complete_i_1_n_0;
   wire write_complete_i_2_n_0;
-  wire \write_data[10]_i_1_n_0 ;
-  wire \write_data[11]_i_1_n_0 ;
   wire \write_data[14]_i_1_n_0 ;
-  wire \write_data[14]_i_2_n_0 ;
-  wire \write_data[14]_i_3_n_0 ;
-  wire \write_data[14]_i_4_n_0 ;
-  wire \write_data[14]_i_5_n_0 ;
-  wire \write_data[14]_i_6_n_0 ;
-  wire \write_data[14]_i_7_n_0 ;
   wire \write_data[15]_i_1_n_0 ;
   wire \write_data[15]_i_2_n_0 ;
   wire \write_data[15]_i_3_n_0 ;
@@ -444,14 +437,14 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .I5(\write_data[15]_i_3_n_0 ),
         .O(\FSM_onehot_state[0]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFF0222AAAA)) 
+    .INIT(64'hDDDDCCCCDFFFCCCC)) 
     \FSM_onehot_state[2]_i_1 
-       (.I0(\FSM_onehot_state_reg_n_0_[2] ),
-        .I1(\wait_aftwr_count_reg_n_0_[2] ),
+       (.I0(\wait_aftwr_count_reg_n_0_[3] ),
+        .I1(\FSM_onehot_state_reg_n_0_[1] ),
         .I2(\wait_aftwr_count_reg_n_0_[0] ),
         .I3(\wait_aftwr_count_reg_n_0_[1] ),
-        .I4(\wait_aftwr_count_reg_n_0_[3] ),
-        .I5(\FSM_onehot_state_reg_n_0_[1] ),
+        .I4(\FSM_onehot_state_reg_n_0_[2] ),
+        .I5(\wait_aftwr_count_reg_n_0_[2] ),
         .O(\FSM_onehot_state[2]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'hF8000000)) 
@@ -515,23 +508,22 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .I3(\addr_cnt_reg_n_0_[4] ),
         .O(\FSM_onehot_state[4]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAEAEAEEEEEEEEE)) 
+    .INIT(64'hDDDDCCCCDFFFCCCC)) 
     \FSM_onehot_state[5]_i_1 
-       (.I0(\SRAM_cnt[3]_i_1_n_0 ),
-        .I1(next_cnt),
-        .I2(\next_cnt_reg_n_0_[2] ),
-        .I3(\next_cnt_reg_n_0_[0] ),
-        .I4(\next_cnt_reg_n_0_[1] ),
-        .I5(\next_cnt_reg_n_0_[3] ),
+       (.I0(\next_cnt_reg_n_0_[3] ),
+        .I1(SRAM_cnt_1),
+        .I2(\next_cnt_reg_n_0_[0] ),
+        .I3(\next_cnt_reg_n_0_[1] ),
+        .I4(next_cnt),
+        .I5(\next_cnt_reg_n_0_[2] ),
         .O(\FSM_onehot_state[5]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFFFFE)) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
     \FSM_onehot_state[6]_i_1 
-       (.I0(\FSM_onehot_state[6]_i_3_n_0 ),
-        .I1(\FSM_onehot_state_reg_n_0_[3] ),
-        .I2(\FSM_onehot_state_reg_n_0_[4] ),
-        .I3(\FSM_onehot_state_reg_n_0_[2] ),
-        .I4(write_active_0),
+       (.I0(write_active_0),
+        .I1(\FSM_onehot_state_reg_n_0_[2] ),
+        .I2(\FSM_onehot_state_reg_n_0_[3] ),
+        .I3(\FSM_onehot_state[6]_i_3_n_0 ),
         .O(\FSM_onehot_state[6]_i_1_n_0 ));
   LUT3 #(
     .INIT(8'hF8)) 
@@ -541,15 +533,22 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .I2(\FSM_onehot_state_reg_n_0_[6] ),
         .O(\FSM_onehot_state[6]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFA080)) 
+    .INIT(64'hFFFEFEFEFEFEFEFE)) 
     \FSM_onehot_state[6]_i_3 
-       (.I0(\wait_count_reg_n_0_[2] ),
-        .I1(\wait_count_reg_n_0_[0] ),
-        .I2(\FSM_onehot_state_reg_n_0_[1] ),
-        .I3(\wait_count_reg_n_0_[1] ),
-        .I4(\FSM_onehot_state_reg_n_0_[6] ),
-        .I5(next_cnt),
+       (.I0(\FSM_onehot_state_reg_n_0_[4] ),
+        .I1(next_cnt),
+        .I2(\FSM_onehot_state_reg_n_0_[6] ),
+        .I3(\FSM_onehot_state[6]_i_4_n_0 ),
+        .I4(\wait_count_reg_n_0_[2] ),
+        .I5(\FSM_onehot_state_reg_n_0_[1] ),
         .O(\FSM_onehot_state[6]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
+    \FSM_onehot_state[6]_i_4 
+       (.I0(\wait_count_reg_n_0_[0] ),
+        .I1(\wait_count_reg_n_0_[1] ),
+        .O(\FSM_onehot_state[6]_i_4_n_0 ));
   (* FSM_ENCODED_STATES = "write:0000010,next_addr:0001000,write_finish:0000100,done:0010000,complete:1000000,write_start:0000001,set_decoder:0100000" *) 
   FDPE #(
     .INIT(1'b1)) 
@@ -613,13 +612,13 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .CLR(write_complete_i_2_n_0),
         .D(\FSM_onehot_state[6]_i_2_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[6] ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \SRAM_cnt[0]_i_1 
        (.I0(SRAM_cnt[0]),
         .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \SRAM_cnt[1]_i_1 
@@ -639,20 +638,20 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
     \SRAM_cnt[3]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[4] ),
         .I1(SRAM_cnt[3]),
-        .O(\SRAM_cnt[3]_i_1_n_0 ));
+        .O(SRAM_cnt_1));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'h80)) 
     \SRAM_cnt[3]_i_2 
-       (.I0(SRAM_cnt[0]),
-        .I1(SRAM_cnt[1]),
-        .I2(SRAM_cnt[2]),
+       (.I0(SRAM_cnt[2]),
+        .I1(SRAM_cnt[0]),
+        .I2(SRAM_cnt[1]),
         .O(p_0_in[3]));
   FDCE #(
     .INIT(1'b0)) 
     \SRAM_cnt_reg[0] 
        (.C(sysclk),
-        .CE(\SRAM_cnt[3]_i_1_n_0 ),
+        .CE(SRAM_cnt_1),
         .CLR(write_complete_i_2_n_0),
         .D(p_0_in[0]),
         .Q(SRAM_cnt[0]));
@@ -660,7 +659,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
     .INIT(1'b0)) 
     \SRAM_cnt_reg[1] 
        (.C(sysclk),
-        .CE(\SRAM_cnt[3]_i_1_n_0 ),
+        .CE(SRAM_cnt_1),
         .CLR(write_complete_i_2_n_0),
         .D(p_0_in[1]),
         .Q(SRAM_cnt[1]));
@@ -668,7 +667,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
     .INIT(1'b0)) 
     \SRAM_cnt_reg[2] 
        (.C(sysclk),
-        .CE(\SRAM_cnt[3]_i_1_n_0 ),
+        .CE(SRAM_cnt_1),
         .CLR(write_complete_i_2_n_0),
         .D(p_0_in[2]),
         .Q(SRAM_cnt[2]));
@@ -676,15 +675,15 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
     .INIT(1'b0)) 
     \SRAM_cnt_reg[3] 
        (.C(sysclk),
-        .CE(\SRAM_cnt[3]_i_1_n_0 ),
+        .CE(SRAM_cnt_1),
         .CLR(write_complete_i_2_n_0),
         .D(p_0_in[3]),
         .Q(SRAM_cnt[3]));
   LUT2 #(
     .INIT(4'hE)) 
     WE_n_i_1
-       (.I0(\FSM_onehot_state_reg_n_0_[2] ),
-        .I1(write_active_0),
+       (.I0(write_active_0),
+        .I1(\FSM_onehot_state_reg_n_0_[2] ),
         .O(WE_n_i_1_n_0));
   FDPE WE_n_reg
        (.C(sysclk),
@@ -692,154 +691,154 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .D(\FSM_onehot_state_reg_n_0_[2] ),
         .PRE(write_complete_i_2_n_0),
         .Q(WE_n));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \addr_cnt[0]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(\addr_cnt_reg_n_0_[0] ),
         .O(\addr_cnt[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[10]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[10]),
         .O(\addr_cnt[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[11]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[11]),
         .O(\addr_cnt[11]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[12]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[12]),
         .O(\addr_cnt[12]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[13]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[13]),
         .O(\addr_cnt[13]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[14]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[14]),
         .O(\addr_cnt[14]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[15]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[15]),
         .O(\addr_cnt[15]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[16]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[16]),
         .O(\addr_cnt[16]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[17]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[17]),
         .O(\addr_cnt[17]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[18]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[18]),
         .O(\addr_cnt[18]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[19]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[19]),
         .O(\addr_cnt[19]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[1]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[1]),
         .O(\addr_cnt[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[20]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[20]),
         .O(\addr_cnt[20]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[21]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[21]),
         .O(\addr_cnt[21]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[2]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[2]),
         .O(\addr_cnt[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[3]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[3]),
         .O(\addr_cnt[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[4]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[4]),
         .O(\addr_cnt[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[5]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[5]),
         .O(\addr_cnt[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[6]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[6]),
         .O(\addr_cnt[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[7]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[7]),
         .O(\addr_cnt[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[8]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(in10[8]),
         .O(\addr_cnt[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \addr_cnt[9]_i_1 
@@ -1070,7 +1069,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
     .INIT(1'b0)) 
     \decoder_cnt_reg[0] 
        (.C(sysclk),
-        .CE(\SRAM_cnt[3]_i_1_n_0 ),
+        .CE(SRAM_cnt_1),
         .CLR(write_complete_i_2_n_0),
         .D(plusOp[0]),
         .Q(decoder_cnt[0]));
@@ -1078,7 +1077,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
     .INIT(1'b0)) 
     \decoder_cnt_reg[1] 
        (.C(sysclk),
-        .CE(\SRAM_cnt[3]_i_1_n_0 ),
+        .CE(SRAM_cnt_1),
         .CLR(write_complete_i_2_n_0),
         .D(plusOp[1]),
         .Q(decoder_cnt[1]));
@@ -1086,7 +1085,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
     .INIT(1'b0)) 
     \decoder_cnt_reg[2] 
        (.C(sysclk),
-        .CE(\SRAM_cnt[3]_i_1_n_0 ),
+        .CE(SRAM_cnt_1),
         .CLR(write_complete_i_2_n_0),
         .D(plusOp[2]),
         .Q(decoder_cnt[2]));
@@ -1108,7 +1107,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .CLR(write_complete_i_2_n_0),
         .D(\decoder[2]_i_1_n_0 ),
         .Q(decoder[2]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'h07)) 
     \next_cnt[0]_i_1 
@@ -1116,32 +1115,32 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .I1(\next_cnt_reg_n_0_[2] ),
         .I2(\next_cnt_reg_n_0_[0] ),
         .O(\next_cnt[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
     .INIT(16'h0770)) 
     \next_cnt[1]_i_1 
-       (.I0(\next_cnt_reg_n_0_[3] ),
-        .I1(\next_cnt_reg_n_0_[2] ),
-        .I2(\next_cnt_reg_n_0_[1] ),
-        .I3(\next_cnt_reg_n_0_[0] ),
-        .O(\next_cnt[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT4 #(
-    .INIT(16'h1444)) 
-    \next_cnt[2]_i_1 
-       (.I0(\next_cnt_reg_n_0_[3] ),
-        .I1(\next_cnt_reg_n_0_[2] ),
+       (.I0(\next_cnt_reg_n_0_[2] ),
+        .I1(\next_cnt_reg_n_0_[3] ),
         .I2(\next_cnt_reg_n_0_[0] ),
         .I3(\next_cnt_reg_n_0_[1] ),
+        .O(\next_cnt[1]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT4 #(
+    .INIT(16'h0078)) 
+    \next_cnt[2]_i_1 
+       (.I0(\next_cnt_reg_n_0_[0] ),
+        .I1(\next_cnt_reg_n_0_[1] ),
+        .I2(\next_cnt_reg_n_0_[2] ),
+        .I3(\next_cnt_reg_n_0_[3] ),
         .O(\next_cnt[2]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
-    .INIT(16'h4222)) 
+    .INIT(16'h0780)) 
     \next_cnt[3]_i_1 
-       (.I0(\next_cnt_reg_n_0_[3] ),
-        .I1(\next_cnt_reg_n_0_[2] ),
-        .I2(\next_cnt_reg_n_0_[1] ),
-        .I3(\next_cnt_reg_n_0_[0] ),
+       (.I0(\next_cnt_reg_n_0_[0] ),
+        .I1(\next_cnt_reg_n_0_[1] ),
+        .I2(\next_cnt_reg_n_0_[2] ),
+        .I3(\next_cnt_reg_n_0_[3] ),
         .O(\next_cnt[3]_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
@@ -1223,7 +1222,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({NLW_plusOp_carry__4_O_UNCONNECTED[3:1],in10[21]}),
         .S({1'b0,1'b0,1'b0,\addr_cnt_reg_n_0_[21] }));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'h0444)) 
     \wait_aftwr_count[0]_i_1 
@@ -1242,25 +1241,25 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .I3(\wait_aftwr_count_reg_n_0_[1] ),
         .I4(\wait_aftwr_count_reg_n_0_[0] ),
         .O(\wait_aftwr_count[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
-    .INIT(32'h02202020)) 
+    .INIT(32'h02222000)) 
     \wait_aftwr_count[2]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[2] ),
         .I1(\wait_aftwr_count_reg_n_0_[3] ),
-        .I2(\wait_aftwr_count_reg_n_0_[2] ),
+        .I2(\wait_aftwr_count_reg_n_0_[1] ),
         .I3(\wait_aftwr_count_reg_n_0_[0] ),
-        .I4(\wait_aftwr_count_reg_n_0_[1] ),
+        .I4(\wait_aftwr_count_reg_n_0_[2] ),
         .O(\wait_aftwr_count[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
-    .INIT(32'h20080808)) 
+    .INIT(32'h08007000)) 
     \wait_aftwr_count[3]_i_1 
-       (.I0(\FSM_onehot_state_reg_n_0_[2] ),
-        .I1(\wait_aftwr_count_reg_n_0_[3] ),
-        .I2(\wait_aftwr_count_reg_n_0_[2] ),
-        .I3(\wait_aftwr_count_reg_n_0_[1] ),
-        .I4(\wait_aftwr_count_reg_n_0_[0] ),
+       (.I0(\wait_aftwr_count_reg_n_0_[0] ),
+        .I1(\wait_aftwr_count_reg_n_0_[1] ),
+        .I2(\wait_aftwr_count_reg_n_0_[3] ),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
+        .I4(\wait_aftwr_count_reg_n_0_[2] ),
         .O(\wait_aftwr_count[3]_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
@@ -1294,33 +1293,34 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .CLR(write_complete_i_2_n_0),
         .D(\wait_aftwr_count[3]_i_1_n_0 ),
         .Q(\wait_aftwr_count_reg_n_0_[3] ));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
-    .INIT(32'h000F7070)) 
+    .INIT(32'h000F7700)) 
     \wait_count[0]_i_1 
-       (.I0(\wait_count_reg_n_0_[2] ),
-        .I1(\wait_count_reg_n_0_[1] ),
-        .I2(\FSM_onehot_state_reg_n_0_[1] ),
-        .I3(write_active_0),
+       (.I0(\wait_count_reg_n_0_[1] ),
+        .I1(\wait_count_reg_n_0_[2] ),
+        .I2(write_active_0),
+        .I3(\FSM_onehot_state_reg_n_0_[1] ),
         .I4(\wait_count_reg_n_0_[0] ),
         .O(\wait_count[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
-    .INIT(32'h101F4040)) 
+    .INIT(32'h110F4400)) 
     \wait_count[1]_i_1 
        (.I0(\wait_count_reg_n_0_[2] ),
         .I1(\wait_count_reg_n_0_[0] ),
-        .I2(\FSM_onehot_state_reg_n_0_[1] ),
-        .I3(write_active_0),
+        .I2(write_active_0),
+        .I3(\FSM_onehot_state_reg_n_0_[1] ),
         .I4(\wait_count_reg_n_0_[1] ),
         .O(\wait_count[1]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
-    .INIT(32'h101F8080)) 
+    .INIT(32'h110F8800)) 
     \wait_count[2]_i_1 
        (.I0(\wait_count_reg_n_0_[0] ),
         .I1(\wait_count_reg_n_0_[1] ),
-        .I2(\FSM_onehot_state_reg_n_0_[1] ),
-        .I3(write_active_0),
+        .I2(write_active_0),
+        .I3(\FSM_onehot_state_reg_n_0_[1] ),
         .I4(\wait_count_reg_n_0_[2] ),
         .O(\wait_count[2]_i_1_n_0 ));
   FDCE #(
@@ -1373,80 +1373,12 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .CLR(write_complete_i_2_n_0),
         .D(write_complete_i_1_n_0),
         .Q(write_complete));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h8)) 
-    \write_data[10]_i_1 
-       (.I0(A[0]),
-        .I1(\FSM_onehot_state_reg_n_0_[3] ),
-        .O(\write_data[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT4 #(
-    .INIT(16'hFF20)) 
-    \write_data[11]_i_1 
+    \write_data[14]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(A[0]),
-        .I2(\write_data[14]_i_2_n_0 ),
-        .I3(\FSM_onehot_state_reg_n_0_[4] ),
-        .O(\write_data[11]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT3 #(
-    .INIT(8'hB0)) 
-    \write_data[14]_i_1 
-       (.I0(A[0]),
-        .I1(\write_data[14]_i_2_n_0 ),
-        .I2(\FSM_onehot_state_reg_n_0_[3] ),
         .O(\write_data[14]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFFFFE)) 
-    \write_data[14]_i_2 
-       (.I0(\write_data[14]_i_3_n_0 ),
-        .I1(\write_data[14]_i_4_n_0 ),
-        .I2(\write_data[14]_i_5_n_0 ),
-        .I3(\write_data[14]_i_6_n_0 ),
-        .I4(\write_data[14]_i_7_n_0 ),
-        .O(\write_data[14]_i_2_n_0 ));
-  LUT5 #(
-    .INIT(32'hEFFFFFFF)) 
-    \write_data[14]_i_3 
-       (.I0(A[1]),
-        .I1(A[21]),
-        .I2(A[20]),
-        .I3(A[3]),
-        .I4(A[2]),
-        .O(\write_data[14]_i_3_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFFD)) 
-    \write_data[14]_i_4 
-       (.I0(A[12]),
-        .I1(A[13]),
-        .I2(A[15]),
-        .I3(A[14]),
-        .O(\write_data[14]_i_4_n_0 ));
-  LUT4 #(
-    .INIT(16'hFF7F)) 
-    \write_data[14]_i_5 
-       (.I0(A[17]),
-        .I1(A[16]),
-        .I2(A[18]),
-        .I3(A[19]),
-        .O(\write_data[14]_i_5_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFDF)) 
-    \write_data[14]_i_6 
-       (.I0(A[8]),
-        .I1(A[9]),
-        .I2(A[10]),
-        .I3(A[11]),
-        .O(\write_data[14]_i_6_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFDF)) 
-    \write_data[14]_i_7 
-       (.I0(A[5]),
-        .I1(A[4]),
-        .I2(A[7]),
-        .I3(A[6]),
-        .O(\write_data[14]_i_7_n_0 ));
   LUT3 #(
     .INIT(8'hBA)) 
     \write_data[15]_i_1 
@@ -1454,7 +1386,6 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .I1(SRAM_cnt[3]),
         .I2(\FSM_onehot_state_reg_n_0_[4] ),
         .O(\write_data[15]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hF4)) 
     \write_data[15]_i_2 
@@ -1474,28 +1405,12 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .O(\write_data[15]_i_3_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
-    \write_data_reg[10] 
-       (.C(sysclk),
-        .CE(\write_data[15]_i_1_n_0 ),
-        .CLR(write_complete_i_2_n_0),
-        .D(\write_data[10]_i_1_n_0 ),
-        .Q(DQ_o[0]));
-  FDPE #(
-    .INIT(1'b1)) 
-    \write_data_reg[11] 
-       (.C(sysclk),
-        .CE(\write_data[15]_i_1_n_0 ),
-        .D(\write_data[11]_i_1_n_0 ),
-        .PRE(write_complete_i_2_n_0),
-        .Q(DQ_o[1]));
-  FDCE #(
-    .INIT(1'b0)) 
     \write_data_reg[14] 
        (.C(sysclk),
         .CE(\write_data[15]_i_1_n_0 ),
         .CLR(write_complete_i_2_n_0),
         .D(\write_data[14]_i_1_n_0 ),
-        .Q(DQ_o[2]));
+        .Q(DQ_o[0]));
   FDPE #(
     .INIT(1'b1)) 
     \write_data_reg[15] 
@@ -1503,7 +1418,7 @@ module PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_Write_8SRAM_100MHZ
         .CE(\write_data[15]_i_1_n_0 ),
         .D(\write_data[15]_i_2_n_0 ),
         .PRE(write_complete_i_2_n_0),
-        .Q(DQ_o[3]));
+        .Q(DQ_o[1]));
 endmodule
 `ifndef GLBL
 `define GLBL

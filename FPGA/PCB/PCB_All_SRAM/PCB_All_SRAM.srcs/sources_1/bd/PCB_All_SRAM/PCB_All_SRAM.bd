@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xEAD84DCA035B2C78",
+      "boundary_crc": "0xD06056B939AC2E4F",
       "device": "xc7a100tcsg324-1",
       "gen_directory": "../../../../PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM",
       "name": "PCB_All_SRAM",
@@ -20,7 +20,6 @@
       "I2Cmod_0": "",
       "Mode_control_0": "",
       "Pulse_Per_Second_100_0": "",
-      "RAD_formatter_0": "",
       "Read_8SRAM_100MHZ_0": "",
       "RESTART_mod_0": "",
       "RW_ROUTER_100MHZ_0": "",
@@ -33,7 +32,6 @@
       "UART_TX_100MHZ_0": "",
       "Write_8SRAM_100MHZ_0": "",
       "BF_Data_Collector_Dr_0": "",
-      "UART_RX_100MHZ_2": "",
       "Read_8SRAM_100MHZ_1": "",
       "Write_8SRAM_100MHZ_1": "",
       "RW_ROUTER_100MHZ_1": "",
@@ -101,9 +99,6 @@
       "scl_t": {
         "direction": "O"
       },
-      "UART_RAD_TX": {
-        "direction": "I"
-      },
       "UART_MCU_TX": {
         "direction": "O"
       },
@@ -153,9 +148,6 @@
         "right": "0"
       },
       "led2": {
-        "direction": "O"
-      },
-      "led3": {
         "direction": "O"
       }
     },
@@ -713,76 +705,6 @@
             "direction": "O"
           },
           "led0": {
-            "direction": "O"
-          }
-        }
-      },
-      "RAD_formatter_0": {
-        "vlnv": "xilinx.com:module_ref:RAD_formatter:1.0",
-        "ip_revision": "1",
-        "xci_name": "PCB_All_SRAM_RAD_formatter_0_0",
-        "xci_path": "ip\\PCB_All_SRAM_RAD_formatter_0_0\\PCB_All_SRAM_RAD_formatter_0_0.xci",
-        "inst_hier_path": "RAD_formatter_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "RAD_formatter",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rst",
-                "value_src": "constant"
-              }
-            }
-          },
-          "rst": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "RAD_packet_got": {
-            "direction": "I"
-          },
-          "RAD_data_DV": {
-            "direction": "I"
-          },
-          "RAD_data": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "RTC_data_DV": {
-            "direction": "I"
-          },
-          "RTC_data": {
-            "direction": "I",
-            "left": "23",
-            "right": "0"
-          },
-          "RTC_request": {
-            "direction": "O"
-          },
-          "I2C_read_done": {
-            "direction": "O"
-          },
-          "RAD_packet_DV": {
-            "direction": "O"
-          },
-          "RAD_packet": {
-            "direction": "O",
-            "left": "5015",
-            "right": "0"
-          },
-          "led0": {
-            "direction": "O"
-          },
-          "led1": {
-            "direction": "O"
-          },
-          "led2": {
             "direction": "O"
           }
         }
@@ -1408,42 +1330,6 @@
             "direction": "O"
           },
           "led1": {
-            "direction": "O"
-          }
-        }
-      },
-      "UART_RX_100MHZ_2": {
-        "vlnv": "xilinx.com:module_ref:UART_RX_100MHZ:1.0",
-        "ip_revision": "1",
-        "xci_name": "PCB_All_SRAM_UART_RX_100MHZ_2_0",
-        "xci_path": "ip\\PCB_All_SRAM_UART_RX_100MHZ_2_0\\PCB_All_SRAM_UART_RX_100MHZ_2_0.xci",
-        "inst_hier_path": "UART_RX_100MHZ_2",
-        "parameters": {
-          "Baud_Rate": {
-            "value": "500000"
-          }
-        },
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "UART_RX_100MHZ",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "sysclk": {
-            "direction": "I"
-          },
-          "i_RX_Serial": {
-            "direction": "I"
-          },
-          "o_RX_DV": {
-            "direction": "O"
-          },
-          "o_RX_byte": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          },
-          "led0": {
             "direction": "O"
           }
         }
@@ -2331,18 +2217,11 @@
           "HTR_ROUTER_0/temp_DV_normal"
         ]
       },
-      "I2C_full_sensor_data_0_o_TX_DV_RAD": {
-        "ports": [
-          "I2C_full_sensor_data_0/o_TX_DV_RAD",
-          "RAD_formatter_0/RTC_data_DV"
-        ]
-      },
       "I2C_full_sensor_data_0_o_TX_RTC_data": {
         "ports": [
           "I2C_full_sensor_data_0/o_TX_RTC_data",
           "BF_formatter_0/RTC_data",
-          "HK_formatter_0/RTC_data",
-          "RAD_formatter_0/RTC_data"
+          "HK_formatter_0/RTC_data"
         ]
       },
       "I2C_full_sensor_data_0_o_TX_TEMP_data": {
@@ -2431,14 +2310,13 @@
           "I2C_full_sensor_data_0/rst",
           "Read_8SRAM_100MHZ_0/reset_n",
           "Read_8SRAM_100MHZ_1/reset_n",
-          "Write_8SRAM_100MHZ_0/reset_n",
-          "Write_8SRAM_100MHZ_1/reset_n",
           "HK_formatter_0/rst",
           "Pulse_WithDelay_Per_0/reset_n",
           "HTR_ROUTER_0/reset_n",
           "I2C_HTR_ROUTER_0/reset_n",
           "BF_Data_Collector_Dr_0/reset_n",
-          "RAD_formatter_0/rst"
+          "Write_8SRAM_100MHZ_0/reset_n",
+          "Write_8SRAM_100MHZ_1/reset_n"
         ]
       },
       "Net": {
@@ -2462,42 +2340,6 @@
         "ports": [
           "Pulse_WithDelay_Per_0/o_pulse",
           "HK_formatter_0/start_pulse"
-        ]
-      },
-      "RAD_formatter_0_I2C_read_done": {
-        "ports": [
-          "RAD_formatter_0/I2C_read_done",
-          "I2C_full_sensor_data_0/i_TX_done_RAD"
-        ]
-      },
-      "RAD_formatter_0_RAD_packet": {
-        "ports": [
-          "RAD_formatter_0/RAD_packet",
-          "TM_packet_sender_0/i_RAD_data"
-        ]
-      },
-      "RAD_formatter_0_RAD_packet_DV": {
-        "ports": [
-          "RAD_formatter_0/RAD_packet_DV",
-          "TM_packet_sender_0/i_RAD_DV"
-        ]
-      },
-      "RAD_formatter_0_RTC_request": {
-        "ports": [
-          "RAD_formatter_0/RTC_request",
-          "I2C_full_sensor_data_0/i_RAD_RTC_request"
-        ]
-      },
-      "RAD_formatter_0_led0": {
-        "ports": [
-          "RAD_formatter_0/led0",
-          "led3"
-        ]
-      },
-      "RAD_formatter_0_led2": {
-        "ports": [
-          "RAD_formatter_0/led2",
-          "led1"
         ]
       },
       "RW_ROUTER_100MHZ_0_A": {
@@ -2536,6 +2378,12 @@
           "SRAM1DEC"
         ]
       },
+      "RW_ROUTER_100MHZ_0_led1": {
+        "ports": [
+          "RW_ROUTER_100MHZ_0/led1",
+          "led2"
+        ]
+      },
       "RW_ROUTER_100MHZ_1_A": {
         "ports": [
           "RW_ROUTER_100MHZ_1/A",
@@ -2570,6 +2418,12 @@
         "ports": [
           "RW_ROUTER_100MHZ_1/decoder",
           "SRAM2DEC"
+        ]
+      },
+      "RW_ROUTER_100MHZ_1_led1": {
+        "ports": [
+          "RW_ROUTER_100MHZ_1/led1",
+          "led1"
         ]
       },
       "Read_8SRAM_100MHZ_0_A": {
@@ -2734,12 +2588,6 @@
           "HK_formatter_0/HK_packet_got"
         ]
       },
-      "TM_packet_sender_0_o_RAD_got": {
-        "ports": [
-          "TM_packet_sender_0/o_RAD_got",
-          "RAD_formatter_0/RAD_packet_got"
-        ]
-      },
       "TM_packet_sender_0_o_TX_DV": {
         "ports": [
           "TM_packet_sender_0/o_TX_DV",
@@ -2774,24 +2622,6 @@
         "ports": [
           "UART_RX_100MHZ_1/o_RX_byte",
           "TC_distributor_0/TC"
-        ]
-      },
-      "UART_RX_100MHZ_2_led0": {
-        "ports": [
-          "UART_RX_100MHZ_2/led0",
-          "led2"
-        ]
-      },
-      "UART_RX_100MHZ_2_o_RX_DV": {
-        "ports": [
-          "UART_RX_100MHZ_2/o_RX_DV",
-          "RAD_formatter_0/RAD_data_DV"
-        ]
-      },
-      "UART_RX_100MHZ_2_o_RX_byte": {
-        "ports": [
-          "UART_RX_100MHZ_2/o_RX_byte",
-          "RAD_formatter_0/RAD_data"
         ]
       },
       "UART_TX_100MHZ_0_o_TX_Active": {
@@ -2910,12 +2740,6 @@
           "UART_RX_100MHZ_0/i_RX_Serial"
         ]
       },
-      "i_RX_Serial_0_3": {
-        "ports": [
-          "UART_RAD_TX",
-          "UART_RX_100MHZ_2/i_RX_Serial"
-        ]
-      },
       "scl_i_0_1": {
         "ports": [
           "scl_i",
@@ -2947,8 +2771,6 @@
           "I2C_full_sensor_data_0/clk",
           "Read_8SRAM_100MHZ_0/sysclk",
           "Read_8SRAM_100MHZ_1/sysclk",
-          "Write_8SRAM_100MHZ_0/sysclk",
-          "Write_8SRAM_100MHZ_1/sysclk",
           "HK_formatter_0/clk",
           "Pulse_WithDelay_Per_0/sysclk",
           "HTR_ROUTER_0/sysclk",
@@ -2959,10 +2781,10 @@
           "I2C_HTR_TEMP_0/clk",
           "HTR_CALC_0/clk",
           "BF_Data_Collector_Dr_0/sysclk",
-          "RAD_formatter_0/clk",
           "UART_RX_100MHZ_0/sysclk",
           "UART_RX_100MHZ_1/sysclk",
-          "UART_RX_100MHZ_2/sysclk"
+          "Write_8SRAM_100MHZ_0/sysclk",
+          "Write_8SRAM_100MHZ_1/sysclk"
         ]
       }
     }

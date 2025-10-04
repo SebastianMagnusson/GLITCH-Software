@@ -128,14 +128,15 @@ begin
         when NEXT_ADDR =>
           if (addr_cnt = (unsigned'(ADDR_WIDTH-1 downto 0 => '1'))) then -- All addresses done
             state <= DONE;
-          elsif(A_buf = "1010001011111000101000" and SRAM = 0) then    -- Random address to give wrong value (the one after this is the one changed)
-            addr_cnt   <= addr_cnt + 1;
-            write_data <= "1100110001001100";       -- Data written to address
-            state      <= WRITE_START;
-          elsif(A_buf = "0101110001010110101100" and SRAM = 1) then    -- Random address to give wrong value (the one after this is the one changed)
-            addr_cnt   <= addr_cnt + 1;
-            write_data <= "1111000011110000";       -- Data written to address
-            state      <= WRITE_START;
+          -- Below is for inserting test bit flips
+          --elsif(A_buf = "1010001011111000101000" and SRAM = 0) then    -- Random address to give wrong value (the one after this is the one changed)
+          --  addr_cnt   <= addr_cnt + 1;
+          --  write_data <= "1100110001001100";       -- Data written to address
+          --  state      <= WRITE_START;
+          --elsif(A_buf = "0101110001010110101100" and SRAM = 1) then    -- Random address to give wrong value (the one after this is the one changed)
+          --  addr_cnt   <= addr_cnt + 1;
+          --  write_data <= "1111000011110000";       -- Data written to address
+          --  state      <= WRITE_START;
           else                                -- Continue looping                   
             addr_cnt   <= addr_cnt + 1;
             if(A_buf(0) = '0') then

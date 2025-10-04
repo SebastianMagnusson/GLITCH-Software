@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
---Date        : Wed Oct  1 14:37:39 2025
+--Date        : Sat Oct  4 10:14:51 2025
 --Host        : LAPTOP-1SQM85NC running 64-bit major release  (build 9200)
 --Command     : generate_target PCB_All_SRAM_wrapper.bd
 --Design      : PCB_All_SRAM_wrapper
@@ -33,11 +33,9 @@ entity PCB_All_SRAM_wrapper is
     SRAM2_WE : out STD_LOGIC;
     UART_MCU_RX : in STD_LOGIC;
     UART_MCU_TX : out STD_LOGIC;
-    UART_RAD_TX : in STD_LOGIC;
     led0 : out STD_LOGIC;
     led1 : out STD_LOGIC;
     led2 : out STD_LOGIC;
-    led3 : out STD_LOGIC;
     scl_i : in STD_LOGIC;
     scl_o : out STD_LOGIC;
     scl_t : out STD_LOGIC;
@@ -67,7 +65,6 @@ architecture STRUCTURE of PCB_All_SRAM_wrapper is
     sda_t : out STD_LOGIC;
     scl_o : out STD_LOGIC;
     scl_t : out STD_LOGIC;
-    UART_RAD_TX : in STD_LOGIC;
     UART_MCU_TX : out STD_LOGIC;
     HEATER_1 : out STD_LOGIC;
     HEATER_2 : out STD_LOGIC;
@@ -80,8 +77,7 @@ architecture STRUCTURE of PCB_All_SRAM_wrapper is
     SRAM2DQ_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
     SRAM2DQ_t : out STD_LOGIC_VECTOR ( 15 downto 0 );
     SRAM2DEC : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    led2 : out STD_LOGIC;
-    led3 : out STD_LOGIC
+    led2 : out STD_LOGIC
   );
   end component PCB_All_SRAM;
 begin
@@ -106,11 +102,9 @@ PCB_All_SRAM_i: component PCB_All_SRAM
       SRAM2_WE => SRAM2_WE,
       UART_MCU_RX => UART_MCU_RX,
       UART_MCU_TX => UART_MCU_TX,
-      UART_RAD_TX => UART_RAD_TX,
       led0 => led0,
       led1 => led1,
       led2 => led2,
-      led3 => led3,
       scl_i => scl_i,
       scl_o => scl_o,
       scl_t => scl_t,
