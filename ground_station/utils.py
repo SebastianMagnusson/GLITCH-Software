@@ -56,6 +56,8 @@ def convert_gnss(value):
         value = value.to_bytes(48, 'big')
     ascii_str = value.rstrip(b'\x00').decode('ascii', errors='replace')
     # Example: $GPRMC,141502.000,A,6750.4288,N,02024.6432,E,0.0
+    print("gnss = " + ascii_str)
+
     parts = ascii_str.split(',')
     if len(parts) >= 7:
         # Latitude: ddmm.mmmm,N/S

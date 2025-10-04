@@ -12,6 +12,7 @@ from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QObject, QUrl
 from telemetry.telemetry_manager import TelemetryManager
 from uplink.uplink_sender import send_telecommand
 from uplink.tc_types import TC_RESET, TC_SET_MODE_POWER_SAVE, TC_SET_MODE_NORMAL, TC_SEND_HELLO, TC_SET_RTC, TC_CLEAR_SD, TC_CUT_OFF
+from config import CONNECTION_TIMEOUT
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 import config
@@ -25,8 +26,13 @@ class Dashboard(QMainWindow):
         super().__init__()
         
         self.uplink_seq_counter = 0
-        self.last_packet_time = None  
-        
+        self.last_packet_time = None
+        self.connection_timeout = CONNECTION_TIMEOUT
+
+        self.status_timer = QTimer()
+        self.status_timer.timeout.connect(self.update_connection_status)
+        self.status_timer.start(1000)  # Check every 1 second
+
         # Configure dark theme for graphs
         pg.setConfigOption('background', '#393939')
         pg.setConfigOption('foreground', 'w')
@@ -453,8 +459,6 @@ class Dashboard(QMainWindow):
         # Update packet statistics (every packet)
         self.update_packet_statistics()
         
-        # Update connection status (every packet)
-        self.update_connection_status()
 
     def update_packet_statistics(self):
         """Update packet statistics from telemetry manager"""

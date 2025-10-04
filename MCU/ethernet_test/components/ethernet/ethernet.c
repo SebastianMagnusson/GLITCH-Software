@@ -29,8 +29,8 @@
 #include "packet_generation.h"
 
 #if CONFIG_USE_STATIC_IP
-    #define STATIC_IP "192.168.4.2"
-    #define STATIC_GATEWAY "192.168.4.1"
+    #define STATIC_IP "172.16.18.161"
+    #define STATIC_GATEWAY "172.16.18.1"
     #define STATIC_NETMASK "255.255.255.0"
 #endif
 
