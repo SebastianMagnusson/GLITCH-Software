@@ -651,7 +651,7 @@ class Dashboard(QMainWindow):
                     self.status_circle.setStyleSheet("color: green; font-size: 14px; font-weight: bold;")
                 elif time_since_last <= self.connection_timeout:
                     # No recent data but still within timeout
-                    self.status_label.setText(f"Status: Connected - No data for {int(time_since_last)}s")
+                    self.status_label.setText(f"Status: No data for {int(time_since_last)}s")
                     self.status_circle.setStyleSheet("color: orange; font-size: 14px; font-weight: bold;")
                 else:
                     # No data for too long - likely connection issues
