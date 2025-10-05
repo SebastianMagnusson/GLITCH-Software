@@ -2779,12 +2779,12 @@
           "HTR_controller_new_0/clk",
           "HTR_controller_new_1/clk",
           "I2C_HTR_TEMP_0/clk",
-          "HTR_CALC_0/clk",
           "BF_Data_Collector_Dr_0/sysclk",
           "UART_RX_100MHZ_0/sysclk",
           "UART_RX_100MHZ_1/sysclk",
           "Write_8SRAM_100MHZ_0/sysclk",
-          "Write_8SRAM_100MHZ_1/sysclk"
+          "Write_8SRAM_100MHZ_1/sysclk",
+          "HTR_CALC_0/clk"
         ]
       }
     }

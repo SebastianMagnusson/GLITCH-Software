@@ -8,16 +8,14 @@
   **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Sat Oct  4 10:15:28 2025
+  **** Start of session at: Sat Oct  4 13:02:10 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source PCB_All_SRAM_wrapper.tcl -notrace
-create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 458.020 ; gain = 139.422
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
-add_files: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 458.020 ; gain = 0.000
 Command: read_checkpoint -auto_incremental -incremental C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.srcs/utils_1/imports/synth_1/PCB_All_SRAM_wrapper.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.srcs/utils_1/imports/synth_1/PCB_All_SRAM_wrapper.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -30,73 +28,73 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 24624
+INFO: [Synth 8-7075] Helper process launched with PID 27932
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1149.074 ; gain = 468.625
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1148.082 ; gain = 467.770
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_wrapper' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.srcs/sources_1/imports/hdl/PCB_All_SRAM_wrapper.vhd:41]
 INFO: [Synth 8-3491] module 'PCB_All_SRAM' declared at 'c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:15' bound to instance 'PCB_All_SRAM_i' of component 'PCB_All_SRAM' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.srcs/sources_1/imports/hdl/PCB_All_SRAM_wrapper.vhd:97]
 INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:53]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_BF_Data_Collector_Dr_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_BF_Data_Collector_Dr_0_0_stub.vhdl:6' bound to instance 'BF_Data_Collector_Dr_0' of component 'PCB_All_SRAM_BF_Data_Collector_Dr_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:672]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_BF_Data_Collector_Dr_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_BF_Data_Collector_Dr_0_0_stub.vhdl:30]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_BF_formatter_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_BF_formatter_0_0_stub.vhdl:6' bound to instance 'BF_formatter_0' of component 'PCB_All_SRAM_BF_formatter_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:685]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_BF_formatter_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_BF_formatter_0_0_stub.vhdl:32]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_GNSS_Fetcher_mod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_GNSS_Fetcher_mod_0_0_stub.vhdl:6' bound to instance 'GNSS_Fetcher_mod_0' of component 'PCB_All_SRAM_GNSS_Fetcher_mod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:700]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_GNSS_Fetcher_mod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_GNSS_Fetcher_mod_0_0_stub.vhdl:27]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_GNSS_Sender_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_GNSS_Sender_0_0_stub.vhdl:6' bound to instance 'GNSS_Sender_0' of component 'PCB_All_SRAM_GNSS_Sender_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:710]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_GNSS_Sender_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_GNSS_Sender_0_0_stub.vhdl:27]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_HK_formatter_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HK_formatter_0_0_stub.vhdl:6' bound to instance 'HK_formatter_0' of component 'PCB_All_SRAM_HK_formatter_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:720]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_HK_formatter_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HK_formatter_0_0_stub.vhdl:39]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_HTR_CALC_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_CALC_0_0_stub.vhdl:6' bound to instance 'HTR_CALC_0' of component 'PCB_All_SRAM_HTR_CALC_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:742]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_HTR_CALC_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_CALC_0_0_stub.vhdl:29]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_HTR_ROUTER_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_ROUTER_0_0_stub.vhdl:6' bound to instance 'HTR_ROUTER_0' of component 'PCB_All_SRAM_HTR_ROUTER_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:754]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_HTR_ROUTER_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_ROUTER_0_0_stub.vhdl:36]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_HTR_controller_new_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_controller_new_0_0_stub.vhdl:6' bound to instance 'HTR_controller_new_0' of component 'PCB_All_SRAM_HTR_controller_new_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:773]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_HTR_controller_new_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_controller_new_0_0_stub.vhdl:25]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_HTR_controller_new_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_controller_new_1_0_stub.vhdl:6' bound to instance 'HTR_controller_new_1' of component 'PCB_All_SRAM_HTR_controller_new_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:781]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_HTR_controller_new_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_controller_new_1_0_stub.vhdl:25]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_I2C_HTR_ROUTER_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_HTR_ROUTER_0_0_stub.vhdl:6' bound to instance 'I2C_HTR_ROUTER_0' of component 'PCB_All_SRAM_I2C_HTR_ROUTER_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:789]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_I2C_HTR_ROUTER_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_HTR_ROUTER_0_0_stub.vhdl:43]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_I2C_HTR_TEMP_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_HTR_TEMP_0_0_stub.vhdl:6' bound to instance 'I2C_HTR_TEMP_0' of component 'PCB_All_SRAM_I2C_HTR_TEMP_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:815]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_I2C_HTR_TEMP_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_HTR_TEMP_0_0_stub.vhdl:35]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_I2C_full_sensor_data_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_full_sensor_data_0_0_stub.vhdl:6' bound to instance 'I2C_full_sensor_data_0' of component 'PCB_All_SRAM_I2C_full_sensor_data_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:833]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_I2C_full_sensor_data_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_full_sensor_data_0_0_stub.vhdl:50]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_I2Cmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2Cmod_0_0_stub.vhdl:6' bound to instance 'I2Cmod_0' of component 'PCB_All_SRAM_I2Cmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:866]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_I2Cmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2Cmod_0_0_stub.vhdl:36]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_Mode_control_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Mode_control_0_0_stub.vhdl:6' bound to instance 'Mode_control_0' of component 'PCB_All_SRAM_Mode_control_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:885]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Mode_control_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Mode_control_0_0_stub.vhdl:27]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_Pulse_Per_Second_100_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Pulse_Per_Second_100_0_0_stub.vhdl:6' bound to instance 'Pulse_Per_Second_100_0' of component 'PCB_All_SRAM_Pulse_Per_Second_100_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:895]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Pulse_Per_Second_100_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Pulse_Per_Second_100_0_0_stub.vhdl:24]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_Pulse_WithDelay_Per_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Pulse_WithDelay_Per_0_0_stub.vhdl:6' bound to instance 'Pulse_WithDelay_Per_0' of component 'PCB_All_SRAM_Pulse_WithDelay_Per_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:902]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Pulse_WithDelay_Per_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Pulse_WithDelay_Per_0_0_stub.vhdl:24]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_RESTART_mod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RESTART_mod_0_0_stub.vhdl:6' bound to instance 'RESTART_mod_0' of component 'PCB_All_SRAM_RESTART_mod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:909]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_RESTART_mod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RESTART_mod_0_0_stub.vhdl:24]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_RW_ROUTER_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RW_ROUTER_100MHZ_0_0_stub.vhdl:6' bound to instance 'RW_ROUTER_100MHZ_0' of component 'PCB_All_SRAM_RW_ROUTER_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:916]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_RW_ROUTER_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RW_ROUTER_100MHZ_0_0_stub.vhdl:42]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_RW_ROUTER_100MHZ_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RW_ROUTER_100MHZ_1_0_stub.vhdl:6' bound to instance 'RW_ROUTER_100MHZ_1' of component 'PCB_All_SRAM_RW_ROUTER_100MHZ_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:941]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_RW_ROUTER_100MHZ_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RW_ROUTER_100MHZ_1_0_stub.vhdl:42]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_Read_8SRAM_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Read_8SRAM_100MHZ_0_0_stub.vhdl:6' bound to instance 'Read_8SRAM_100MHZ_0' of component 'PCB_All_SRAM_Read_8SRAM_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:966]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Read_8SRAM_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Read_8SRAM_100MHZ_0_0_stub.vhdl:37]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_Read_8SRAM_100MHZ_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Read_8SRAM_100MHZ_1_0_stub.vhdl:6' bound to instance 'Read_8SRAM_100MHZ_1' of component 'PCB_All_SRAM_Read_8SRAM_100MHZ_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:986]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Read_8SRAM_100MHZ_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Read_8SRAM_100MHZ_1_0_stub.vhdl:37]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_SAY_HEY_switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_SAY_HEY_switchmod_0_0_stub.vhdl:6' bound to instance 'SAY_HEY_switchmod_0' of component 'PCB_All_SRAM_SAY_HEY_switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1006]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_SAY_HEY_switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_SAY_HEY_switchmod_0_0_stub.vhdl:25]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_SET_RTC_switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_SET_RTC_switchmod_0_0_stub.vhdl:6' bound to instance 'SET_RTC_switchmod_0' of component 'PCB_All_SRAM_SET_RTC_switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1014]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_SET_RTC_switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_SET_RTC_switchmod_0_0_stub.vhdl:25]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_TC_distributor_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_TC_distributor_0_0_stub.vhdl:6' bound to instance 'TC_distributor_0' of component 'PCB_All_SRAM_TC_distributor_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1022]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_TC_distributor_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_TC_distributor_0_0_stub.vhdl:32]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_TM_packet_sender_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_TM_packet_sender_0_0_stub.vhdl:6' bound to instance 'TM_packet_sender_0' of component 'PCB_All_SRAM_TM_packet_sender_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1037]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_TM_packet_sender_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_TM_packet_sender_0_0_stub.vhdl:39]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_UART_RX_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_RX_100MHZ_0_0_stub.vhdl:6' bound to instance 'UART_RX_100MHZ_0' of component 'PCB_All_SRAM_UART_RX_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1059]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_UART_RX_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_RX_100MHZ_0_0_stub.vhdl:25]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_UART_RX_100MHZ_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_RX_100MHZ_1_0_stub.vhdl:6' bound to instance 'UART_RX_100MHZ_1' of component 'PCB_All_SRAM_UART_RX_100MHZ_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1067]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_UART_RX_100MHZ_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_RX_100MHZ_1_0_stub.vhdl:25]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_UART_TX_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_TX_100MHZ_0_0_stub.vhdl:6' bound to instance 'UART_TX_100MHZ_0' of component 'PCB_All_SRAM_UART_TX_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1075]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_UART_TX_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_TX_100MHZ_0_0_stub.vhdl:27]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_Write_8SRAM_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Write_8SRAM_100MHZ_0_0_stub.vhdl:6' bound to instance 'Write_8SRAM_100MHZ_0' of component 'PCB_All_SRAM_Write_8SRAM_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1085]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Write_8SRAM_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Write_8SRAM_100MHZ_0_0_stub.vhdl:29]
-INFO: [Synth 8-3491] module 'PCB_All_SRAM_Write_8SRAM_100MHZ_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_stub.vhdl:6' bound to instance 'Write_8SRAM_100MHZ_1' of component 'PCB_All_SRAM_Write_8SRAM_100MHZ_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1097]
-INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Write_8SRAM_100MHZ_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-41048-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_stub.vhdl:29]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_BF_Data_Collector_Dr_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_BF_Data_Collector_Dr_0_0_stub.vhdl:6' bound to instance 'BF_Data_Collector_Dr_0' of component 'PCB_All_SRAM_BF_Data_Collector_Dr_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:672]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_BF_Data_Collector_Dr_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_BF_Data_Collector_Dr_0_0_stub.vhdl:30]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_BF_formatter_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_BF_formatter_0_0_stub.vhdl:6' bound to instance 'BF_formatter_0' of component 'PCB_All_SRAM_BF_formatter_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:685]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_BF_formatter_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_BF_formatter_0_0_stub.vhdl:32]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_GNSS_Fetcher_mod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_GNSS_Fetcher_mod_0_0_stub.vhdl:6' bound to instance 'GNSS_Fetcher_mod_0' of component 'PCB_All_SRAM_GNSS_Fetcher_mod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:700]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_GNSS_Fetcher_mod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_GNSS_Fetcher_mod_0_0_stub.vhdl:27]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_GNSS_Sender_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_GNSS_Sender_0_0_stub.vhdl:6' bound to instance 'GNSS_Sender_0' of component 'PCB_All_SRAM_GNSS_Sender_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:710]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_GNSS_Sender_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_GNSS_Sender_0_0_stub.vhdl:27]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_HK_formatter_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HK_formatter_0_0_stub.vhdl:6' bound to instance 'HK_formatter_0' of component 'PCB_All_SRAM_HK_formatter_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:720]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_HK_formatter_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HK_formatter_0_0_stub.vhdl:39]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_HTR_CALC_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_CALC_0_0_stub.vhdl:6' bound to instance 'HTR_CALC_0' of component 'PCB_All_SRAM_HTR_CALC_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:742]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_HTR_CALC_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_CALC_0_0_stub.vhdl:29]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_HTR_ROUTER_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_ROUTER_0_0_stub.vhdl:6' bound to instance 'HTR_ROUTER_0' of component 'PCB_All_SRAM_HTR_ROUTER_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:754]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_HTR_ROUTER_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_ROUTER_0_0_stub.vhdl:36]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_HTR_controller_new_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_controller_new_0_0_stub.vhdl:6' bound to instance 'HTR_controller_new_0' of component 'PCB_All_SRAM_HTR_controller_new_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:773]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_HTR_controller_new_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_controller_new_0_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_HTR_controller_new_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_controller_new_1_0_stub.vhdl:6' bound to instance 'HTR_controller_new_1' of component 'PCB_All_SRAM_HTR_controller_new_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:781]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_HTR_controller_new_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_HTR_controller_new_1_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_I2C_HTR_ROUTER_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_HTR_ROUTER_0_0_stub.vhdl:6' bound to instance 'I2C_HTR_ROUTER_0' of component 'PCB_All_SRAM_I2C_HTR_ROUTER_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:789]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_I2C_HTR_ROUTER_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_HTR_ROUTER_0_0_stub.vhdl:43]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_I2C_HTR_TEMP_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_HTR_TEMP_0_0_stub.vhdl:6' bound to instance 'I2C_HTR_TEMP_0' of component 'PCB_All_SRAM_I2C_HTR_TEMP_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:815]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_I2C_HTR_TEMP_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_HTR_TEMP_0_0_stub.vhdl:35]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_I2C_full_sensor_data_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_full_sensor_data_0_0_stub.vhdl:6' bound to instance 'I2C_full_sensor_data_0' of component 'PCB_All_SRAM_I2C_full_sensor_data_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:833]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_I2C_full_sensor_data_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2C_full_sensor_data_0_0_stub.vhdl:50]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_I2Cmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2Cmod_0_0_stub.vhdl:6' bound to instance 'I2Cmod_0' of component 'PCB_All_SRAM_I2Cmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:866]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_I2Cmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_I2Cmod_0_0_stub.vhdl:36]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_Mode_control_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Mode_control_0_0_stub.vhdl:6' bound to instance 'Mode_control_0' of component 'PCB_All_SRAM_Mode_control_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:885]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Mode_control_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Mode_control_0_0_stub.vhdl:27]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_Pulse_Per_Second_100_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Pulse_Per_Second_100_0_0_stub.vhdl:6' bound to instance 'Pulse_Per_Second_100_0' of component 'PCB_All_SRAM_Pulse_Per_Second_100_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:895]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Pulse_Per_Second_100_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Pulse_Per_Second_100_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_Pulse_WithDelay_Per_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Pulse_WithDelay_Per_0_0_stub.vhdl:6' bound to instance 'Pulse_WithDelay_Per_0' of component 'PCB_All_SRAM_Pulse_WithDelay_Per_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:902]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Pulse_WithDelay_Per_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Pulse_WithDelay_Per_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_RESTART_mod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RESTART_mod_0_0_stub.vhdl:6' bound to instance 'RESTART_mod_0' of component 'PCB_All_SRAM_RESTART_mod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:909]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_RESTART_mod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RESTART_mod_0_0_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_RW_ROUTER_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RW_ROUTER_100MHZ_0_0_stub.vhdl:6' bound to instance 'RW_ROUTER_100MHZ_0' of component 'PCB_All_SRAM_RW_ROUTER_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:916]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_RW_ROUTER_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RW_ROUTER_100MHZ_0_0_stub.vhdl:42]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_RW_ROUTER_100MHZ_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RW_ROUTER_100MHZ_1_0_stub.vhdl:6' bound to instance 'RW_ROUTER_100MHZ_1' of component 'PCB_All_SRAM_RW_ROUTER_100MHZ_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:941]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_RW_ROUTER_100MHZ_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_RW_ROUTER_100MHZ_1_0_stub.vhdl:42]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_Read_8SRAM_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Read_8SRAM_100MHZ_0_0_stub.vhdl:6' bound to instance 'Read_8SRAM_100MHZ_0' of component 'PCB_All_SRAM_Read_8SRAM_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:966]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Read_8SRAM_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Read_8SRAM_100MHZ_0_0_stub.vhdl:37]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_Read_8SRAM_100MHZ_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Read_8SRAM_100MHZ_1_0_stub.vhdl:6' bound to instance 'Read_8SRAM_100MHZ_1' of component 'PCB_All_SRAM_Read_8SRAM_100MHZ_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:986]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Read_8SRAM_100MHZ_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Read_8SRAM_100MHZ_1_0_stub.vhdl:37]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_SAY_HEY_switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_SAY_HEY_switchmod_0_0_stub.vhdl:6' bound to instance 'SAY_HEY_switchmod_0' of component 'PCB_All_SRAM_SAY_HEY_switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1006]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_SAY_HEY_switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_SAY_HEY_switchmod_0_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_SET_RTC_switchmod_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_SET_RTC_switchmod_0_0_stub.vhdl:6' bound to instance 'SET_RTC_switchmod_0' of component 'PCB_All_SRAM_SET_RTC_switchmod_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1014]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_SET_RTC_switchmod_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_SET_RTC_switchmod_0_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_TC_distributor_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_TC_distributor_0_0_stub.vhdl:6' bound to instance 'TC_distributor_0' of component 'PCB_All_SRAM_TC_distributor_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1022]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_TC_distributor_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_TC_distributor_0_0_stub.vhdl:32]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_TM_packet_sender_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_TM_packet_sender_0_0_stub.vhdl:6' bound to instance 'TM_packet_sender_0' of component 'PCB_All_SRAM_TM_packet_sender_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1037]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_TM_packet_sender_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_TM_packet_sender_0_0_stub.vhdl:39]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_UART_RX_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_RX_100MHZ_0_0_stub.vhdl:6' bound to instance 'UART_RX_100MHZ_0' of component 'PCB_All_SRAM_UART_RX_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1059]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_UART_RX_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_RX_100MHZ_0_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_UART_RX_100MHZ_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_RX_100MHZ_1_0_stub.vhdl:6' bound to instance 'UART_RX_100MHZ_1' of component 'PCB_All_SRAM_UART_RX_100MHZ_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1067]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_UART_RX_100MHZ_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_RX_100MHZ_1_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_UART_TX_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_TX_100MHZ_0_0_stub.vhdl:6' bound to instance 'UART_TX_100MHZ_0' of component 'PCB_All_SRAM_UART_TX_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1075]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_UART_TX_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_UART_TX_100MHZ_0_0_stub.vhdl:27]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_Write_8SRAM_100MHZ_0_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Write_8SRAM_100MHZ_0_0_stub.vhdl:6' bound to instance 'Write_8SRAM_100MHZ_0' of component 'PCB_All_SRAM_Write_8SRAM_100MHZ_0_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1085]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Write_8SRAM_100MHZ_0_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Write_8SRAM_100MHZ_0_0_stub.vhdl:29]
+INFO: [Synth 8-3491] module 'PCB_All_SRAM_Write_8SRAM_100MHZ_1_0' declared at 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_stub.vhdl:6' bound to instance 'Write_8SRAM_100MHZ_1' of component 'PCB_All_SRAM_Write_8SRAM_100MHZ_1_0' [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:1097]
+INFO: [Synth 8-638] synthesizing module 'PCB_All_SRAM_Write_8SRAM_100MHZ_1_0' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/.Xil/Vivado-21692-LAPTOP-1SQM85NC/realtime/PCB_All_SRAM_Write_8SRAM_100MHZ_1_0_stub.vhdl:29]
 INFO: [Synth 8-256] done synthesizing module 'PCB_All_SRAM' (0#1) [c:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.gen/sources_1/bd/PCB_All_SRAM/synth/PCB_All_SRAM.vhd:53]
 INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.srcs/sources_1/imports/hdl/PCB_All_SRAM_wrapper.vhd:132]
 INFO: [Synth 8-113] binding component instance 'iobuf_inst' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.srcs/sources_1/imports/hdl/PCB_All_SRAM_wrapper.vhd:132]
@@ -134,18 +132,18 @@ INFO: [Synth 8-113] binding component instance 'SDA_iobuf' to cell 'IOBUF' [C:/G
 INFO: [Synth 8-113] binding component instance 'SCL_iobuf' to cell 'IOBUF' [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.srcs/sources_1/imports/hdl/PCB_All_SRAM_wrapper.vhd:162]
 INFO: [Synth 8-256] done synthesizing module 'PCB_All_SRAM_wrapper' (0#1) [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.srcs/sources_1/imports/hdl/PCB_All_SRAM_wrapper.vhd:41]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1260.672 ; gain = 580.223
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1260.688 ; gain = 580.375
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1260.672 ; gain = 580.223
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1260.688 ; gain = 580.375
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1260.672 ; gain = 580.223
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1260.688 ; gain = 580.375
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1260.672 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1260.688 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 34 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -324,23 +322,23 @@ Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.r
 Finished Parsing XDC File [C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1329.812 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1334.957 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 34 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 34 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1329.812 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1334.957 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1329.812 ; gain = 649.363
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1334.957 ; gain = 654.645
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1329.812 ; gain = 649.363
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1334.957 ; gain = 654.645
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -377,10 +375,10 @@ Applied set_property KEEP_HIERARCHY = SOFT for PCB_All_SRAM_i/I2C_HTR_ROUTER_0. 
 Applied set_property KEEP_HIERARCHY = SOFT for PCB_All_SRAM_i/HTR_controller_new_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for PCB_All_SRAM_i/HTR_controller_new_1. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1329.812 ; gain = 649.363
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1334.957 ; gain = 654.645
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 1329.812 ; gain = 649.363
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1334.957 ; gain = 654.645
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -403,25 +401,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1329.812 ; gain = 649.363
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1334.957 ; gain = 654.645
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 1436.938 ; gain = 756.488
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1435.680 ; gain = 755.367
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 1437.375 ; gain = 756.926
+Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1436.199 ; gain = 755.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 1449.695 ; gain = 769.246
+Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1448.504 ; gain = 768.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -439,37 +437,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1664.277 ; gain = 983.828
+Finished IO Insertion : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1663.051 ; gain = 982.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1664.277 ; gain = 983.828
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1663.051 ; gain = 982.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1664.277 ; gain = 983.828
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1663.051 ; gain = 982.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1664.277 ; gain = 983.828
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1663.051 ; gain = 982.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1664.277 ; gain = 983.828
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1663.051 ; gain = 982.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1664.277 ; gain = 983.828
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1663.051 ; gain = 982.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -550,18 +548,18 @@ Report Cell Usage:
 |33    |OBUF                                       |    60|
 +------+-------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1664.277 ; gain = 983.828
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1663.051 ; gain = 982.738
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:24 . Memory (MB): peak = 1664.277 ; gain = 914.688
-Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1664.277 ; gain = 983.828
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1663.051 ; gain = 908.469
+Synthesis Optimization Complete : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1663.051 ; gain = 982.738
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.023 . Memory (MB): peak = 1664.277 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1663.051 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 34 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1677.137 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1663.051 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 34 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 34 instances
@@ -570,8 +568,8 @@ Synth Design complete | Checksum: 258f2b7
 INFO: [Common 17-83] Releasing license: Synthesis
 126 Infos, 104 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:01:06 . Memory (MB): peak = 1677.137 ; gain = 1208.395
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1677.137 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:47 . Memory (MB): peak = 1663.051 ; gain = 1195.367
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1663.051 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/GitHub/GLITCH-Software/FPGA/PCB/PCB_All_SRAM/PCB_All_SRAM.runs/synth_1/PCB_All_SRAM_wrapper.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file PCB_All_SRAM_wrapper_utilization_synth.rpt -pb PCB_All_SRAM_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Oct  4 10:17:01 2025...
+INFO: [Common 17-206] Exiting Vivado at Sat Oct  4 13:03:06 2025...
