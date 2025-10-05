@@ -3,4 +3,6 @@ pandas
 numpy
 pyqtgraph
 PyQt5
+PyQtWebEngine
 crcmod
+requests
