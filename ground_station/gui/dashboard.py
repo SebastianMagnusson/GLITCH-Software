@@ -94,7 +94,7 @@ class Dashboard(QMainWindow):
             ("RTC", "rtc"),
             ("Internal Temp", "internal"),
             ("GNSS", "gnss"),
-            ("Altitude", "altitude"),
+            #("Altitude", "altitude"),
         ]
         
         for display_name, param_key in hk_params:

@@ -687,18 +687,18 @@ static esp_err_t process_received_telecommand(uint8_t *rx_buffer, int sock,
             ESP_LOGE(TAG, "Failed to create confirmation task");
             return ESP_FAIL;
         }
-        return ESP_OK;
     } else if (tc_received == CONFIG_CLEAR_SD_TC_ID) {
         // Clear the SD card data
         if (storage_clear_all_data() != ESP_OK) {
             ESP_LOGE(TAG, "Failed to clear SD card data");
             return ESP_FAIL;
         }
-        return ESP_OK;
     }
 
     // FIX: Pass the entire tc_received data, not just the ID
-    buffer_add_tc(tc_received);  // Pass the pointer directly
+    if (tc_received != CONFIG_CUT_OFF_TC_ID || tc_received != CONFIG_CLEAR_SD_TC_ID) {
+        buffer_add_tc(tc_received);  // Pass the pointer directly
+    }
     
     uint8_t *ack_packet = format_ack(tc_received);
     if (ack_packet == NULL) {
@@ -806,17 +806,19 @@ void tcp_server_task(void *pvParameters)
         }
         
         // Process any pending telemetry even when not connected
-        uint8_t *tm_data = buffer_retreive_tm();
-        if (tm_data != NULL) {
-            if (connected_sock >= 0) {
-                if (eth_transmit(connected_sock, tm_data, 2) != ESP_OK) {
-                    ESP_LOGE(TAG, "Failed to send telemetry, closing connection");
-                    shutdown(connected_sock, 0);
-                    close(connected_sock);
-                    connected_sock = -1;
-                }
+        if (connected_sock >= 0) {
+            uint8_t *tm_data = buffer_retreive_tm();
+            if (tm_data != NULL) {
+                
+                    if (eth_transmit(connected_sock, tm_data, 2) != ESP_OK) {
+                        ESP_LOGE(TAG, "Failed to send telemetry, closing connection");
+                        shutdown(connected_sock, 0);
+                        close(connected_sock);
+                        connected_sock = -1;
+                    }
+                
+                free(tm_data);  // Always free the data
             }
-            free(tm_data);  // Always free the data
         }
 
         // If not connected, try to accept a new connection

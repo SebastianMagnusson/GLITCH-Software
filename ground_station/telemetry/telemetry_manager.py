@@ -26,6 +26,14 @@ class TelemetryManager:
         self._connection_thread = None
         self.logger = Logger()
         
+        # Track sequence numbers per packet type
+        self.last_sequence_numbers = {
+            "HK": None,
+            "BF": None,
+            "RAD": None,
+            "ACK": None
+        }
+        
         # Add packet statistics tracking
         self.packet_stats = {
             "total_received": 0,
@@ -93,6 +101,31 @@ class TelemetryManager:
                     if parsed:
                         print(f"Received packet: {parsed}")
                         self.packet_stats["valid_packets"] += 1
+                        
+                        # Check for lost packets per packet type
+                        packet_type = parsed["type"]
+                        if "seq_counter" in parsed and packet_type in self.last_sequence_numbers:
+                            current_seq = parsed["seq_counter"]
+                            last_seq = self.last_sequence_numbers[packet_type]
+                            
+                            if last_seq is not None:
+                                seq_mod = 65536  # uint16 sequence counter
+                                expected_seq = (last_seq + 1) % seq_mod
+                                
+                                if current_seq != expected_seq:
+                                    # Calculate lost packets for this packet type
+                                    if current_seq > expected_seq:
+                                        lost = current_seq - expected_seq
+                                    else:
+                                        # Handle wraparound
+                                        lost = (seq_mod - expected_seq) + current_seq
+                                    
+                                    self.packet_stats["lost_packets"] += lost
+                                    print(f"Detected {lost} lost {packet_type} packets. Expected: {expected_seq}, Got: {current_seq}")
+                            
+                            # Update the sequence number for this packet type
+                            self.last_sequence_numbers[packet_type] = current_seq
+                        
                         self.logger.log(parsed)
                         self.update(parsed)
                     else:
@@ -103,6 +136,7 @@ class TelemetryManager:
             except socket.error as e:
                 print(f"Socket error: {e}")
                 print(f"Error number: {e.errno}")
+                self.uplink_socket = None  # Clear socket immediately
                 if e.errno == errno.ECONNREFUSED:
                     print("Connection refused - MCU TCP server not running")
                 elif e.errno == errno.EHOSTUNREACH:
@@ -111,6 +145,7 @@ class TelemetryManager:
                     print("Connection timeout - MCU not responding")
             except Exception as e:
                 print(f"General error: {e}")
+                self.uplink_socket = None  # Clear socket immediately
                 
             if sock:
                 sock.close()
@@ -155,4 +190,12 @@ class TelemetryManager:
             "valid_packets": 0,
             "corrupt_packets": 0,
             "lost_packets": 0
+        }
+        
+        # Also reset sequence number tracking
+        self.last_sequence_numbers = {
+            "HK": None,
+            "BF": None,
+            "RAD": None,
+            "ACK": None
         }
